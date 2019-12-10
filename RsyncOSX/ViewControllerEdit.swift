@@ -7,25 +7,24 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Index, Delay {
-
-    @IBOutlet weak var localCatalog: NSTextField!
-    @IBOutlet weak var offsiteCatalog: NSTextField!
-    @IBOutlet weak var offsiteUsername: NSTextField!
-    @IBOutlet weak var offsiteServer: NSTextField!
-    @IBOutlet weak var backupID: NSTextField!
-    @IBOutlet weak var sshport: NSTextField!
-    @IBOutlet weak var snapshotnum: NSTextField!
-    @IBOutlet weak var stringlocalcatalog: NSTextField!
-    @IBOutlet weak var stringremotecatalog: NSTextField!
+    @IBOutlet var localCatalog: NSTextField!
+    @IBOutlet var offsiteCatalog: NSTextField!
+    @IBOutlet var offsiteUsername: NSTextField!
+    @IBOutlet var offsiteServer: NSTextField!
+    @IBOutlet var backupID: NSTextField!
+    @IBOutlet var sshport: NSTextField!
+    @IBOutlet var snapshotnum: NSTextField!
+    @IBOutlet var stringlocalcatalog: NSTextField!
+    @IBOutlet var stringremotecatalog: NSTextField!
 
     var index: Int?
     var singleFile: Bool = false
 
-    @IBAction func enabledisableresetsnapshotnum(_ sender: NSButton) {
+    @IBAction func enabledisableresetsnapshotnum(_: NSButton) {
         let config: Configuration = self.configurations!.getConfigurations()[self.index!]
         guard config.task == "snapshot" else { return }
         let info: String = NSLocalizedString("Dont change the snapshot num if you don´t know what you are doing...", comment: "Snapshots")
@@ -36,15 +35,16 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
             self.snapshotnum.isEnabled = true
         }
     }
+
     // Close and dismiss view
-    @IBAction func close(_ sender: NSButton) {
+    @IBAction func close(_: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // Update configuration, save and dismiss view
-    @IBAction func update(_ sender: NSButton) {
+    @IBAction func update(_: NSButton) {
         var config: [Configuration] = self.configurations!.getConfigurations()
-        if self.localCatalog.stringValue.hasSuffix("/") == false && self.singleFile == false {
+        if self.localCatalog.stringValue.hasSuffix("/") == false, self.singleFile == false {
             self.localCatalog.stringValue += "/"
         }
         config[self.index!].localCatalog = self.localCatalog.stringValue
@@ -118,11 +118,11 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
 }
 
 extension ViewControllerEdit: NSTextFieldDelegate {
-    func controlTextDidChange(_ notification: Notification) {
+    func controlTextDidChange(_: Notification) {
         delayWithSeconds(0.5) {
             if let num = Int(self.snapshotnum.stringValue) {
                 let config: Configuration = self.configurations!.getConfigurations()[self.index!]
-                guard num < config.snapshotnum ?? 0 && num > 0 else {
+                guard num < config.snapshotnum ?? 0, num > 0 else {
                     self.snapshotnum.stringValue = String(config.snapshotnum ?? 1)
                     return
                 }

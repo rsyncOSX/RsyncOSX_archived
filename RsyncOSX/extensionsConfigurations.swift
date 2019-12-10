@@ -6,8 +6,8 @@
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 // Protocol for returning object Configurations
 protocol GetConfigurationsObject: class {
@@ -25,9 +25,11 @@ extension SetConfigurations {
     var configurationsDelegate: GetConfigurationsObject? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
+
     var configurations: Configurations? {
         return self.configurationsDelegate?.getconfigurationsobject()
     }
+
     var sortedandexpanded: ScheduleSortedAndExpand? {
         return self.configurationsDelegate?.getschedulesortedandexpanded()
     }
@@ -49,12 +51,15 @@ extension ReloadTable {
     var reloadDelegateMain: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
+
     var reloadDelegateSchedule: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
+
     var reloadDelegateLoggData: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
+
     var reloadDelegateSnapshot: Reloadandrefresh? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }

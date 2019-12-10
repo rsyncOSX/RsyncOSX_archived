@@ -8,8 +8,8 @@
 //
 //  swiftlint:disable line_length function_body_length type_body_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 // protocol for returning if userparams is updated or not
 protocol RsyncUserParams: class {
@@ -23,43 +23,42 @@ protocol GetSelecetedIndex: class {
 }
 
 class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDismisser, Index {
-
     weak var userparamsupdatedDelegate: RsyncUserParams?
     var comboBoxValues = [String]()
     var diddissappear: Bool = false
 
-    @IBOutlet weak var param1: NSTextField!
-    @IBOutlet weak var param2: NSTextField!
-    @IBOutlet weak var param3: NSTextField!
-    @IBOutlet weak var param4: NSTextField!
-    @IBOutlet weak var param5: NSTextField!
+    @IBOutlet var param1: NSTextField!
+    @IBOutlet var param2: NSTextField!
+    @IBOutlet var param3: NSTextField!
+    @IBOutlet var param4: NSTextField!
+    @IBOutlet var param5: NSTextField!
 
-    @IBOutlet weak var param8: NSTextField!
-    @IBOutlet weak var param9: NSTextField!
-    @IBOutlet weak var param10: NSTextField!
-    @IBOutlet weak var param11: NSTextField!
-    @IBOutlet weak var param12: NSTextField!
-    @IBOutlet weak var param13: NSTextField!
-    @IBOutlet weak var param14: NSTextField!
-    @IBOutlet weak var rsyncdaemon: NSButton!
-    @IBOutlet weak var sshport: NSTextField!
-    @IBOutlet weak var compressparameter: NSButton!
-    @IBOutlet weak var esshparameter: NSButton!
-    @IBOutlet weak var deleteparamater: NSButton!
+    @IBOutlet var param8: NSTextField!
+    @IBOutlet var param9: NSTextField!
+    @IBOutlet var param10: NSTextField!
+    @IBOutlet var param11: NSTextField!
+    @IBOutlet var param12: NSTextField!
+    @IBOutlet var param13: NSTextField!
+    @IBOutlet var param14: NSTextField!
+    @IBOutlet var rsyncdaemon: NSButton!
+    @IBOutlet var sshport: NSTextField!
+    @IBOutlet var compressparameter: NSButton!
+    @IBOutlet var esshparameter: NSButton!
+    @IBOutlet var deleteparamater: NSButton!
 
-    @IBOutlet weak var combo8: NSComboBox!
-    @IBOutlet weak var combo9: NSComboBox!
-    @IBOutlet weak var combo10: NSComboBox!
-    @IBOutlet weak var combo11: NSComboBox!
-    @IBOutlet weak var combo12: NSComboBox!
-    @IBOutlet weak var combo13: NSComboBox!
-    @IBOutlet weak var combo14: NSComboBox!
+    @IBOutlet var combo8: NSComboBox!
+    @IBOutlet var combo9: NSComboBox!
+    @IBOutlet var combo10: NSComboBox!
+    @IBOutlet var combo11: NSComboBox!
+    @IBOutlet var combo12: NSComboBox!
+    @IBOutlet var combo13: NSComboBox!
+    @IBOutlet var combo14: NSComboBox!
 
-    @IBAction func close(_ sender: NSButton) {
+    @IBAction func close(_: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
-    @IBAction func togglersyncdaemon(_ sender: NSButton) {
+    @IBAction func togglersyncdaemon(_: NSButton) {
         if let index = self.index() {
             switch self.rsyncdaemon.state {
             case .on:
@@ -76,7 +75,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
     }
 
-    @IBAction func removecompressparameter(_ sender: NSButton) {
+    @IBAction func removecompressparameter(_: NSButton) {
         if let index = self.index() {
             switch self.compressparameter.state {
             case .on:
@@ -90,7 +89,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
     }
 
-    @IBAction func removeesshparameter(_ sender: NSButton) {
+    @IBAction func removeesshparameter(_: NSButton) {
         if let index = self.index() {
             switch self.esshparameter.state {
             case .on:
@@ -105,7 +104,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
     }
 
-    @IBAction func removedeleteparameter(_ sender: NSButton) {
+    @IBAction func removedeleteparameter(_: NSButton) {
         if let index = self.index() {
             switch self.deleteparamater.state {
             case .on:
@@ -121,36 +120,36 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
-    @IBAction func backup(_ sender: NSButton) {
+    @IBAction func backup(_: NSButton) {
         if let index = self.index() {
             let configurations: [Configuration] = self.configurations!.getConfigurations()
             let param = ComboboxRsyncParameters(config: configurations[index])
             switch self.backupbutton.state {
             case .on:
-                self.initcombox(combobox: self.combo12, index: (param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).0))
+                self.initcombox(combobox: self.combo12, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).0)
                 self.param12.stringValue = param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).1
                 let hiddenID = self.configurations!.gethiddenID(index: (self.index())!)
                 guard hiddenID > -1 else { return }
                 let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
                 let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
-                self.initcombox(combobox: self.combo13, index: (param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[1]).0))
+                self.initcombox(combobox: self.combo13, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[1]).0)
                 self.param13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
             case .off:
-                self.initcombox(combobox: self.combo12, index: (0))
+                self.initcombox(combobox: self.combo12, index: 0)
                 self.param12.stringValue = ""
-                self.initcombox(combobox: self.combo13, index: (0))
+                self.initcombox(combobox: self.combo13, index: 0)
                 self.param13.stringValue = ""
-                self.initcombox(combobox: self.combo14, index: (0))
+                self.initcombox(combobox: self.combo14, index: 0)
                 self.param14.stringValue = ""
-            default : break
+            default: break
             }
         }
     }
 
-    // Function for enabling suffix date + time changed files. 
+    // Function for enabling suffix date + time changed files.
     // Parameters are appended to last parameter (14).
-    @IBOutlet weak var suffixButton: NSButton!
-    @IBAction func suffix(_ sender: NSButton) {
+    @IBOutlet var suffixButton: NSButton!
+    @IBAction func suffix(_: NSButton) {
         if let index = self.index() {
             self.suffixButton2.state = .off
             let configurations: [Configuration] = self.configurations!.getConfigurations()
@@ -158,10 +157,10 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             switch self.suffixButton.state {
             case .on:
                 let suffix = SuffixstringsRsyncParameters().suffixstringfreebsd
-                self.initcombox(combobox: self.combo14, index: (param.indexandvaluersyncparameter(suffix).0))
+                self.initcombox(combobox: self.combo14, index: param.indexandvaluersyncparameter(suffix).0)
                 self.param14.stringValue = param.indexandvaluersyncparameter(suffix).1
             case .off:
-                self.initcombox(combobox: self.combo14, index: (0))
+                self.initcombox(combobox: self.combo14, index: 0)
                 self.param14.stringValue = ""
             default:
                 break
@@ -169,8 +168,8 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
     }
 
-    @IBOutlet weak var suffixButton2: NSButton!
-    @IBAction func suffix2(_ sender: NSButton) {
+    @IBOutlet var suffixButton2: NSButton!
+    @IBAction func suffix2(_: NSButton) {
         if let index = self.index() {
             let configurations: [Configuration] = self.configurations!.getConfigurations()
             let param = ComboboxRsyncParameters(config: configurations[index])
@@ -178,10 +177,10 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             switch self.suffixButton2.state {
             case .on:
                 let suffix = SuffixstringsRsyncParameters().suffixstringlinux
-                self.initcombox(combobox: self.combo14, index: (param.indexandvaluersyncparameter(suffix).0))
+                self.initcombox(combobox: self.combo14, index: param.indexandvaluersyncparameter(suffix).0)
                 self.param14.stringValue = param.indexandvaluersyncparameter(suffix).1
             case .off:
-                self.initcombox(combobox: self.combo14, index: (0))
+                self.initcombox(combobox: self.combo14, index: 0)
                 self.param14.stringValue = ""
             default:
                 break
@@ -189,7 +188,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         }
     }
 
-    @IBOutlet weak var backupbutton: NSButton!
+    @IBOutlet var backupbutton: NSButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -266,7 +265,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     }
 
     // Function for saving changed or new parameters for one configuration.
-    @IBAction func update(_ sender: NSButton) {
+    @IBAction func update(_: NSButton) {
         var configurations: [Configuration] = self.configurations!.getConfigurations()
         guard configurations.count > 0 else { return }
         // Get the index of selected configuration

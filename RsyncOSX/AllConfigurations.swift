@@ -10,7 +10,6 @@
 import Foundation
 
 final class AllConfigurations: Sorting {
-
     private var allconfigurations: [Configuration]?
     var allconfigurationsasdictionary: [NSMutableDictionary]?
     private var allprofiles: [String]?
@@ -38,9 +37,9 @@ final class AllConfigurations: Sorting {
 
     private func setConfigurationsDataSourcecountBackupSnapshot() {
         guard self.allconfigurations != nil else { return }
-        var configurations: [Configuration] = self.allconfigurations!.filter({return ($0.task == ViewControllerReference.shared.synchronize ||
-            $0.task == ViewControllerReference.shared.snapshot ||
-            $0.task == ViewControllerReference.shared.syncremote )})
+        var configurations: [Configuration] = self.allconfigurations!.filter { ($0.task == ViewControllerReference.shared.synchronize ||
+                $0.task == ViewControllerReference.shared.snapshot ||
+                $0.task == ViewControllerReference.shared.syncremote) }
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
@@ -63,7 +62,7 @@ final class AllConfigurations: Sorting {
                 "dateExecuted": date,
                 "daysID": configurations[i].dayssincelastbackup ?? "",
                 "markdays": configurations[i].markdays,
-                "selectCellID": 0
+                "selectCellID": 0,
             ]
             data.append(row)
         }
@@ -72,14 +71,14 @@ final class AllConfigurations: Sorting {
 
     // Function for filter
     func myownfilter(search: String?, filterby: Sortandfilter?) {
-        guard search != nil && self.allconfigurationsasdictionary != nil && filterby != nil else { return }
-        globalDefaultQueue.async(execute: {() -> Void in
+        guard search != nil, self.allconfigurationsasdictionary != nil, filterby != nil else { return }
+        globalDefaultQueue.async { () -> Void in
             let valueforkey = self.filterbystring(filterby: filterby!)
-            let filtereddata = self.allconfigurationsasdictionary?.filter({
+            let filtereddata = self.allconfigurationsasdictionary?.filter {
                 ($0.value(forKey: valueforkey) as? String)?.contains(search ?? "") ?? false
-            })
+            }
             self.allconfigurationsasdictionary = filtereddata
-        })
+        }
     }
 
     init() {

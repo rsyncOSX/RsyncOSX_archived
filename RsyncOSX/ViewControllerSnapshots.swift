@@ -7,11 +7,10 @@
 //
 // swiftlint:disable line_length file_length cyclomatic_complexity type_body_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
-
     private var hiddenID: Int?
     private var config: Configuration?
     private var snapshotsloggdata: SnapshotsLoggData?
@@ -23,8 +22,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var abort: Bool = false
     // Reference to which plan in combox
     var combovalueslast = [NSLocalizedString("none", comment: "plan"),
-                          NSLocalizedString("every", comment: "plan"),
-                          NSLocalizedString("last", comment: "plan")]
+                           NSLocalizedString("every", comment: "plan"),
+                           NSLocalizedString("last", comment: "plan")]
 
     let combovaluesdayofweek: [String] = [NSLocalizedString("Sunday", comment: "plan"),
                                           NSLocalizedString("Monday", comment: "plan"),
@@ -35,57 +34,57 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                                           NSLocalizedString("Saturday", comment: "plan")]
     var diddissappear: Bool = false
 
-    @IBOutlet weak var snapshotstableView: NSTableView!
-    @IBOutlet weak var rsynctableView: NSTableView!
-    @IBOutlet weak var localCatalog: NSTextField!
-    @IBOutlet weak var offsiteCatalog: NSTextField!
-    @IBOutlet weak var offsiteUsername: NSTextField!
-    @IBOutlet weak var backupID: NSTextField!
-    @IBOutlet weak var info: NSTextField!
-    @IBOutlet weak var deletebutton: NSButton!
-    @IBOutlet weak var numberOflogfiles: NSTextField!
-    @IBOutlet weak var deletesnapshots: NSSlider!
-    @IBOutlet weak var stringdeletesnapshotsnum: NSTextField!
-    @IBOutlet weak var gettinglogs: NSProgressIndicator!
-    @IBOutlet weak var deletesnapshotsdays: NSSlider!
-    @IBOutlet weak var stringdeletesnapshotsdaysnum: NSTextField!
-    @IBOutlet weak var selectplan: NSComboBox!
-    @IBOutlet weak var savebutton: NSButton!
-    @IBOutlet weak var selectdayofweek: NSComboBox!
-    @IBOutlet weak var dayofweek: NSTextField!
-    @IBOutlet weak var lastorevery: NSTextField!
+    @IBOutlet var snapshotstableView: NSTableView!
+    @IBOutlet var rsynctableView: NSTableView!
+    @IBOutlet var localCatalog: NSTextField!
+    @IBOutlet var offsiteCatalog: NSTextField!
+    @IBOutlet var offsiteUsername: NSTextField!
+    @IBOutlet var backupID: NSTextField!
+    @IBOutlet var info: NSTextField!
+    @IBOutlet var deletebutton: NSButton!
+    @IBOutlet var numberOflogfiles: NSTextField!
+    @IBOutlet var deletesnapshots: NSSlider!
+    @IBOutlet var stringdeletesnapshotsnum: NSTextField!
+    @IBOutlet var gettinglogs: NSProgressIndicator!
+    @IBOutlet var deletesnapshotsdays: NSSlider!
+    @IBOutlet var stringdeletesnapshotsdaysnum: NSTextField!
+    @IBOutlet var selectplan: NSComboBox!
+    @IBOutlet var savebutton: NSButton!
+    @IBOutlet var selectdayofweek: NSComboBox!
+    @IBOutlet var dayofweek: NSTextField!
+    @IBOutlet var lastorevery: NSTextField!
 
-    @IBAction func totinfo(_ sender: NSButton) {
+    @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
-        })
+        }
     }
 
-    @IBAction func quickbackup(_ sender: NSButton) {
+    @IBAction func quickbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         self.openquickbackup()
     }
 
-    @IBAction func automaticbackup(_ sender: NSButton) {
+    @IBAction func automaticbackup(_: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
     // Selecting profiles
-    @IBAction func profiles(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
+    @IBAction func profiles(_: NSButton) {
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProfile!)
-        })
+        }
     }
 
     // Userconfiguration button
-    @IBAction func userconfiguration(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
+    @IBAction func userconfiguration(_: NSButton) {
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
-        })
+        }
     }
 
-    @IBAction func savesnapdayofweek(_ sender: NSButton) {
+    @IBAction func savesnapdayofweek(_: NSButton) {
         var configurations: [Configuration] = self.configurations!.getConfigurations()
         guard configurations.count > 0 else { return }
         if let index = self.index {
@@ -116,27 +115,27 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         combobox.selectItem(at: index)
     }
 
-    @IBAction func updatedeletesnapshotsnum(_ sender: NSSlider) {
+    @IBAction func updatedeletesnapshotsnum(_: NSSlider) {
         guard self.index != nil else { return }
         self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
-        })
+        }
     }
 
-    @IBAction func updatedeletesnapshotsdays(_ sender: NSSlider) {
+    @IBAction func updatedeletesnapshotsdays(_: NSSlider) {
         guard self.index != nil else { return }
         self.stringdeletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
         self.numbersinsequencetodelete = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
-        })
+        }
     }
 
-    private func markfordelete(numberstomark: Int ) {
+    private func markfordelete(numberstomark: Int) {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count - 1 {
             if i <= numberstomark {
@@ -148,12 +147,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     // Abort button
-    @IBAction func abort(_ sender: NSButton) {
+    @IBAction func abort(_: NSButton) {
         self.info.stringValue = Infosnapshots().info(num: 2)
         self.snapshotsloggdata?.remotecatalogstodelete = nil
     }
 
-    @IBAction func delete(_ sender: NSButton) {
+    @IBAction func delete(_: NSButton) {
         guard self.snapshotsloggdata != nil else { return }
         let question: String = NSLocalizedString("Do you REALLY want to DELETE selected snapshots?", comment: "Snapshots")
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
@@ -289,7 +288,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func preselectcomboboxes() {
-        guard self.config?.snaplast != nil && self.config?.snapdayoffweek != nil else { return }
+        guard self.config?.snaplast != nil, self.config?.snapdayoffweek != nil else { return }
         self.selectdayofweek.selectItem(withObjectValue: NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek"))
         if self.config!.snaplast == 1 {
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
@@ -299,12 +298,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func setlabeldayofweekandlast() {
-        guard self.config?.snaplast != nil && self.config?.snapdayoffweek != nil else { return }
+        guard self.config?.snaplast != nil, self.config?.snapdayoffweek != nil else { return }
         self.dayofweek.textColor = self.setcolor(nsviewcontroller: self, color: .green)
         self.lastorevery.textColor = self.setcolor(nsviewcontroller: self, color: .green)
         self.dayofweek.isHidden = false
         self.lastorevery.isHidden = false
-        self.dayofweek.stringValue =  NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek")
+        self.dayofweek.stringValue = NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek")
         if self.config!.snaplast == 1 {
             self.lastorevery.stringValue = NSLocalizedString("every", comment: "plan")
         } else {
@@ -314,7 +313,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 }
 
 extension ViewControllerSnapshots: DismissViewController {
-
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
         if self.snapshotsloggdata?.remotecatalogstodelete != nil {
@@ -355,9 +353,9 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.numbersinsequencetodelete = nil
             self.preselectcomboboxes()
             _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue)
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.snapshotstableView.reloadData()
-            })
+            }
         }
     }
 
@@ -380,7 +378,6 @@ extension ViewControllerSnapshots: Count {
 }
 
 extension ViewControllerSnapshots: NSTableViewDataSource {
-
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.snapshotstableView {
             let numberofsnaps: String = NSLocalizedString("Number snapshots:", comment: "Snapshots")
@@ -391,13 +388,12 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
             self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotsloggdata?.snapshotslogs?.count ?? 0)
             return self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         } else {
-           return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
     }
 }
 
 extension ViewControllerSnapshots: NSTableViewDelegate {
-
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableView == self.rsynctableView {
             guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count else { return nil }
@@ -415,7 +411,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         }
     }
 
-    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+    func tableView(_ tableView: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard tableView == self.snapshotstableView else { return }
         if tableColumn!.identifier.rawValue == "selectCellID" {
             var select: Int = (self.snapshotsloggdata?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
@@ -429,10 +425,10 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         self.setlabeldayofweekandlast()
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
             self.rsynctableView.reloadData()
-        })
+        }
     }
 }
 
@@ -452,9 +448,9 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         }
                         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue) - 1
                         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
-                        globalMainQueue.async(execute: { () -> Void in
+                        globalMainQueue.async { () -> Void in
                             self.snapshotstableView.reloadData()
-                        })
+                        }
                     } else {
                         self.info.stringValue = Infosnapshots().info(num: 4)
                     }
@@ -465,9 +461,9 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         self.deletesnapshotsdays.intValue = Int32(num)
                         self.numbersinsequencetodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
                         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
-                        globalMainQueue.async(execute: { () -> Void in
+                        globalMainQueue.async { () -> Void in
                             self.snapshotstableView.reloadData()
-                        })
+                        }
                     } else {
                         self.info.stringValue = Infosnapshots().info(num: 4)
                     }
@@ -484,11 +480,11 @@ extension ViewControllerSnapshots: GetSnapshotsLoggData {
 }
 
 extension ViewControllerSnapshots: NewProfile {
-    func newProfile(profile: String?) {
+    func newProfile(profile _: String?) {
         self.snapshotsloggdata = nil
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
-        })
+        }
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
@@ -501,8 +497,8 @@ extension ViewControllerSnapshots: NewProfile {
 }
 
 extension ViewControllerSnapshots: NSComboBoxDelegate {
-    func comboBoxSelectionDidChange(_ notification: Notification) {
-        guard self.config != nil  else { return }
+    func comboBoxSelectionDidChange(_: Notification) {
+        guard self.config != nil else { return }
         self.savebutton.isEnabled = true
         switch self.selectdayofweek.indexOfSelectedItem {
         case 0:
@@ -537,9 +533,9 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
 
 extension ViewControllerSnapshots: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
-        })
+        }
     }
 }
 

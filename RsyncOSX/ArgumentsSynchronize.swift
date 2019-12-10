@@ -9,7 +9,6 @@
 import Foundation
 
 final class ArgumentsSynchronize: RsyncParameters {
-
     var config: Configuration?
 
     /// Function for initialize arguments array. RsyncOSX computes four argumentstrings

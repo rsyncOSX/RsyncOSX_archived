@@ -7,11 +7,10 @@
 //
 //  swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 final class ExecuteBatch: SetSchedules, SetConfigurations {
-
     weak var closeviewerrorDelegate: ReportonandhaltonError?
     var process: Process?
     var outputprocess: OutputProcess?
@@ -42,7 +41,7 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
                 localupdateprogressDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch
                 localupdateprogressDelegate?.complete()
                 self.configurationsDelegate?.reloadconfigurationsobject()
-            default :
+            default:
                 break
             }
         }
@@ -65,8 +64,8 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     }
 
     func maxcountintask(hiddenID: Int) -> Int {
-        let max = self.estimatedlist?.filter({$0.value( forKey: "hiddenID") as? Int == hiddenID})
-        guard max?.count ?? 0 > 0 else { return 0}
+        let max = self.estimatedlist?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
+        guard max?.count ?? 0 > 0 else { return 0 }
         let maxnumber = max![0].value(forKey: "transferredNumber") as? String ?? "0"
         return Int(maxnumber) ?? 0
     }
@@ -77,7 +76,6 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
 }
 
 extension ExecuteBatch: UpdateProgress {
-
     func processTermination() {
         weak var localprocessupdateDelegate: UpdateProgress?
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch

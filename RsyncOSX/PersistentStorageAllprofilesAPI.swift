@@ -9,14 +9,13 @@
 import Foundation
 
 class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
-
     var profile: String?
 
     // Configurations
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
         let read = PersistentStorageConfiguration(profile: self.profile, allprofiles: true)
-        guard read.configurationsasdictionary != nil else { return nil}
+        guard read.configurationsasdictionary != nil else { return nil }
         var Configurations = [Configuration]()
         for dict in read.configurationsasdictionary! {
             let conf = Configuration(dictionary: dict)

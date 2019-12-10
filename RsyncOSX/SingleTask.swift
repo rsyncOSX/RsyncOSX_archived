@@ -28,7 +28,6 @@ protocol SingleTaskProcess: class {
 }
 
 final class SingleTask: SetSchedules, SetConfigurations {
-
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     weak var singletaskDelegate: SingleTaskProcess?
     weak var setprocessDelegate: SendProcessreference?
@@ -91,7 +90,6 @@ final class SingleTask: SetSchedules, SetConfigurations {
 }
 
 extension SingleTask: Count {
-
     func maxCount() -> Int {
         return self.maxcount
     }
@@ -99,11 +97,9 @@ extension SingleTask: Count {
     func inprogressCount() -> Int {
         return self.outputprocess?.count() ?? 0
     }
-
 }
 
 extension SingleTask: UpdateProgress {
-
     func processTermination() {
         if let workload = self.workload {
             switch workload.pop() {

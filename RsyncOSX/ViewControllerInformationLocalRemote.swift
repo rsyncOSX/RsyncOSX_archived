@@ -7,8 +7,8 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 protocol SetLocalRemoteInfo: class {
     func setlocalremoteinfo(info: NSMutableDictionary?)
@@ -16,26 +16,25 @@ protocol SetLocalRemoteInfo: class {
 }
 
 class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor, Connected {
-
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var complete: Bool = false
     weak var localremoteinfoDelegate: SetLocalRemoteInfo?
 
-    @IBOutlet weak var transferredNumber: NSTextField!
-    @IBOutlet weak var transferredNumberSizebytes: NSTextField!
-    @IBOutlet weak var newfiles: NSTextField!
-    @IBOutlet weak var deletefiles: NSTextField!
-    @IBOutlet weak var totalNumber: NSTextField!
-    @IBOutlet weak var totalDirs: NSTextField!
-    @IBOutlet weak var totalNumberSizebytes: NSTextField!
-    @IBOutlet weak var localtotalNumber: NSTextField!
-    @IBOutlet weak var localtotalDirs: NSTextField!
-    @IBOutlet weak var localtotalNumberSizebytes: NSTextField!
-    @IBOutlet weak var working: NSProgressIndicator!
-    @IBOutlet weak var gotit: NSTextField!
-    @IBOutlet weak var datelastbackup: NSTextField!
-    @IBOutlet weak var dayslastbackup: NSTextField!
+    @IBOutlet var transferredNumber: NSTextField!
+    @IBOutlet var transferredNumberSizebytes: NSTextField!
+    @IBOutlet var newfiles: NSTextField!
+    @IBOutlet var deletefiles: NSTextField!
+    @IBOutlet var totalNumber: NSTextField!
+    @IBOutlet var totalDirs: NSTextField!
+    @IBOutlet var totalNumberSizebytes: NSTextField!
+    @IBOutlet var localtotalNumber: NSTextField!
+    @IBOutlet var localtotalDirs: NSTextField!
+    @IBOutlet var localtotalNumberSizebytes: NSTextField!
+    @IBOutlet var working: NSProgressIndicator!
+    @IBOutlet var gotit: NSTextField!
+    @IBOutlet var datelastbackup: NSTextField!
+    @IBOutlet var dayslastbackup: NSTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +58,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
             self.dayslastbackup.stringValue = NSLocalizedString("Days since last backup:", comment: "Remote Info")
                 + " " + numberlastbackup
-            if  self.localremoteinfoDelegate?.getlocalremoteinfo(index: index)?.count ?? 0 > 0 {
+            if self.localremoteinfoDelegate?.getlocalremoteinfo(index: index)?.count ?? 0 > 0 {
                 self.setcachedNumbers(dict: self.localremoteinfoDelegate?.getlocalremoteinfo(index: index))
             } else {
                 if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
@@ -71,17 +70,17 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                     self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
                 }
             }
-         }
+        }
     }
 
-    @IBAction func close(_ sender: NSButton) {
+    @IBAction func close(_: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
     private func setnumbers(outputprocess: OutputProcess?, local: Bool) {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             let infotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
             if local {
                 self.localtotalNumber.stringValue = infotask.totalNumber!
@@ -101,7 +100,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 self.gotit.stringValue = NSLocalizedString("Got it...", comment: "Remote Info")
                 self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             }
-        })
+        }
     }
 
     private func setcachedNumbers(dict: [NSDictionary]?) {

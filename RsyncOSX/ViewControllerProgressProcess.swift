@@ -16,14 +16,13 @@ protocol Count: class {
 }
 
 class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDismisser, Abort {
-
     var count: Double = 0
     var maxcount: Double = 0
     weak var countDelegate: Count?
-    @IBOutlet weak var abort: NSButton!
-    @IBOutlet weak var progress: NSProgressIndicator!
+    @IBOutlet var abort: NSButton!
+    @IBOutlet var progress: NSProgressIndicator!
 
-    @IBAction func abort(_ sender: NSButton) {
+    @IBAction func abort(_: NSButton) {
         switch self.countDelegate {
         case is ViewControllerMain:
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -78,11 +77,9 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
     private func updateProgressbar(_ value: Double) {
         self.progress.doubleValue = value
     }
-
 }
 
 extension ViewControllerProgressProcess: UpdateProgress {
-
     func processTermination() {
         self.stopProgressbar()
         switch self.countDelegate {

@@ -9,7 +9,6 @@
 import Cocoa
 
 public struct Alerts {
-
     public static func showInfo(info: String) {
         let alert = NSAlert()
         alert.messageText = info

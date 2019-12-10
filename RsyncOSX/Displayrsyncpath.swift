@@ -19,7 +19,6 @@ enum RsynccommandDisplay {
 }
 
 struct Displayrsyncpath: SetConfigurations {
-
     var displayrsyncpath: String?
 
     init(index: Int, display: RsynccommandDisplay) {
@@ -47,6 +46,6 @@ struct Displayrsyncpath: SetConfigurations {
                 }
             }
         }
-        self.displayrsyncpath  = str
+        self.displayrsyncpath = str
     }
 }

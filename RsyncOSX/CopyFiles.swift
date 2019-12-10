@@ -9,7 +9,6 @@
 import Foundation
 
 final class CopyFiles: SetConfigurations {
-
     private var index: Int?
     private var config: Configuration?
     private var commandDisplay: String?
@@ -30,7 +29,7 @@ final class CopyFiles: SetConfigurations {
         var arguments: [String]?
         guard self.config != nil else { return }
         arguments = CopyFilesArguments(task: .rsync, config: self.config!, remoteFile: remotefile,
-        localCatalog: localCatalog, drynrun: dryrun).getArguments()
+                                       localCatalog: localCatalog, drynrun: dryrun).getArguments()
         self.outputprocess = OutputProcess()
         self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
         self.process = ProcessCmd(command: nil, arguments: arguments)
@@ -41,13 +40,13 @@ final class CopyFiles: SetConfigurations {
     func getCommandDisplayinView(remotefile: String, localCatalog: String) -> String {
         guard self.config != nil else { return "" }
         self.commandDisplay = CopyFilesArguments(task: .rsync, config: self.config!, remoteFile: remotefile,
-                                                localCatalog: localCatalog, drynrun: true).getcommandDisplay()
+                                                 localCatalog: localCatalog, drynrun: true).getcommandDisplay()
         return self.commandDisplay ?? ""
     }
 
-    init (hiddenID: Int) {
+    init(hiddenID: Int) {
         self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.index = self.configurations?.getIndex(hiddenID)
         self.config = self.configurations!.getConfigurations()[self.index!]
     }
-  }
+}

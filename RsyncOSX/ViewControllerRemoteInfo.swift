@@ -7,21 +7,20 @@
 //
 // swiftlint:disable line_length cyclomatic_complexity
 
-import Foundation
 import Cocoa
+import Foundation
 
 protocol OpenQuickBackup: class {
     func openquickbackup()
 }
 
 class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor {
-
-    @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var progress: NSProgressIndicator!
-    @IBOutlet weak var executebutton: NSButton!
-    @IBOutlet weak var abortbutton: NSButton!
-    @IBOutlet weak var count: NSTextField!
-    @IBOutlet weak var selectalltaskswithfilestobackupbutton: NSButton!
+    @IBOutlet var mainTableView: NSTableView!
+    @IBOutlet var progress: NSProgressIndicator!
+    @IBOutlet var executebutton: NSButton!
+    @IBOutlet var abortbutton: NSButton!
+    @IBOutlet var count: NSTextField!
+    @IBOutlet var selectalltaskswithfilestobackupbutton: NSButton!
 
     // remote info tasks
     private var remoteinfotask: RemoteinfoEstimation?
@@ -30,7 +29,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     var loaded: Bool = false
     var diddissappear: Bool = false
 
-    @IBAction func execute(_ sender: NSButton) {
+    @IBAction func execute(_: NSButton) {
         if let backup = self.dobackups() {
             if backup.count > 0 {
                 self.remoteinfotask?.setbackuplist(list: backup)
@@ -61,12 +60,12 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     }
 
     // Either abort or close
-    @IBAction func abort(_ sender: NSButton) {
+    @IBAction func abort(_: NSButton) {
         if self.remoteinfotask?.stackoftasktobeestimated?.count ?? 0 > 0 {
             self.abort()
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: nil)
         }
-         self.closeview()
+        self.closeview()
     }
 
     private func closeview() {
@@ -91,16 +90,16 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         }
     }
 
-    @IBAction func selectalltaskswithfilestobackup(_ sender: NSButton) {
+    @IBAction func selectalltaskswithfilestobackup(_: NSButton) {
         self.remoteinfotask?.selectalltaskswithnumbers(deselect: self.selected)
         if self.selected == true {
             self.selected = false
         } else {
             self.selected = true
         }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
         self.enableexecutebutton()
     }
 
@@ -124,14 +123,14 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     override func viewDidAppear() {
         super.viewDidAppear()
         guard self.diddissappear == false else {
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.mainTableView.reloadData()
-            })
+            }
             return
         }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
         self.count.stringValue = self.number()
         self.enableexecutebutton()
         if self.loaded {
@@ -157,7 +156,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     }
 
     private func dobackups() -> [NSMutableDictionary]? {
-        let backup = self.remoteinfotask?.records?.filter({$0.value( forKey: "select") as? Int == 1})
+        let backup = self.remoteinfotask?.records?.filter { $0.value(forKey: "select") as? Int == 1 }
         return backup
     }
 
@@ -186,15 +185,13 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
 }
 
 extension ViewControllerRemoteInfo: NSTableViewDataSource {
-
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         return self.remoteinfotask?.records?.count ?? 0
     }
 }
 
 extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
-
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         guard self.remoteinfotask?.records != nil else { return nil }
         guard row < (self.remoteinfotask!.records?.count)! else { return nil }
         let object: NSDictionary = (self.remoteinfotask?.records?[row])!
@@ -219,8 +216,8 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
     }
 
     // Toggling selection
-    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        guard  self.remoteinfotask?.records != nil else { return }
+    func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        guard self.remoteinfotask?.records != nil else { return }
         if tableColumn!.identifier.rawValue == "select" {
             var select: Int = self.remoteinfotask?.records![row].value(forKey: "select") as? Int ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
@@ -232,9 +229,9 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
 
 extension ViewControllerRemoteInfo: UpdateProgress {
     func processTermination() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
         let progress = Double(self.remoteinfotask?.maxCount() ?? 0) - Double(self.remoteinfotask?.inprogressCount() ?? 0)
         self.updateProgressbar(progress)
     }
@@ -250,9 +247,9 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
     }
 
     func stop() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
         self.progress.stopAnimation(nil)
         self.progress.isHidden = true
         self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")

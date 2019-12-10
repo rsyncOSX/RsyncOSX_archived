@@ -10,7 +10,6 @@
 import Foundation
 
 class Remotefilelist: ProcessCmd, SetConfigurations {
-
     var outputprocess: OutputProcess?
     var config: Configuration?
     var remotefilelist: [String]?
@@ -22,9 +21,9 @@ class Remotefilelist: ProcessCmd, SetConfigurations {
         self.config = self.configurations!.getConfigurations()[index]
         self.outputprocess = OutputProcess()
         self.arguments = CopyFilesArguments(task: .rsyncfilelistings, config: self.config!,
-        remoteFile: nil, localCatalog: nil, drynrun: nil).getArguments()
+                                            remoteFile: nil, localCatalog: nil, drynrun: nil).getArguments()
         self.command = CopyFilesArguments(task: .rsyncfilelistings, config: self.config!,
-        remoteFile: nil, localCatalog: nil, drynrun: nil).getCommand()
+                                          remoteFile: nil, localCatalog: nil, drynrun: nil).getCommand()
         self.setupdateDelegate(object: self)
         self.setremotefilelistDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
         self.executeProcess(outputprocess: self.outputprocess)

@@ -6,19 +6,18 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 class ViewControllerAbout: NSViewController, SetDismisser, Delay {
-
-    @IBOutlet weak var version: NSTextField!
-    @IBOutlet weak var downloadbutton: NSButton!
-    @IBOutlet weak var thereisanewversion: NSTextField!
-    @IBOutlet weak var rsyncversionstring: NSTextField!
-    @IBOutlet weak var copyright: NSTextField!
-    @IBOutlet weak var iconby: NSTextField!
-    @IBOutlet weak var chinese: NSTextField!
-    @IBOutlet weak var norwegian: NSTextField!
+    @IBOutlet var version: NSTextField!
+    @IBOutlet var downloadbutton: NSButton!
+    @IBOutlet var thereisanewversion: NSTextField!
+    @IBOutlet var rsyncversionstring: NSTextField!
+    @IBOutlet var copyright: NSTextField!
+    @IBOutlet var iconby: NSTextField!
+    @IBOutlet var chinese: NSTextField!
+    @IBOutlet var norwegian: NSTextField!
 
     var copyrigthstring: String = NSLocalizedString("Copyright ©2019 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
@@ -28,7 +27,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     var resource: Resources?
     var outputprocess: OutputProcess?
 
-    @IBAction func dismiss(_ sender: NSButton) {
+    @IBAction func dismiss(_: NSButton) {
         if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
@@ -50,28 +49,28 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
         }
     }
 
-    @IBAction func changelog(_ sender: NSButton) {
+    @IBAction func changelog(_: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
-    @IBAction func documentation(_ sender: NSButton) {
+    @IBAction func documentation(_: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .documents))!)
         }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
-    @IBAction func introduction(_ sender: NSButton) {
+    @IBAction func introduction(_: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .introduction))!)
         }
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
-    @IBAction func download(_ sender: NSButton) {
+    @IBAction func download(_: NSButton) {
         guard ViewControllerReference.shared.URLnewVersion != nil else {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
             return
@@ -109,9 +108,9 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
 extension ViewControllerAbout: NewVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.downloadbutton.isEnabled = true
             self.thereisanewversion.stringValue = NSLocalizedString("New version is available:", comment: "About")
-        })
+        }
     }
 }

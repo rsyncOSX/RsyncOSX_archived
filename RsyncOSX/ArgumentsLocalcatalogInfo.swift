@@ -9,7 +9,6 @@
 import Foundation
 
 final class ArgumentsLocalcatalogInfo: RsyncParameters {
-
     var config: Configuration?
 
     func argumentslocalcataloginfo(dryRun: Bool, forDisplay: Bool) -> [String] {

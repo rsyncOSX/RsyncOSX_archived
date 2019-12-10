@@ -9,12 +9,11 @@
 import Foundation
 
 final class ArgumentsRestore: RsyncParameters {
-
     var config: Configuration?
 
     func argumentsrestore(dryRun: Bool, forDisplay: Bool, tmprestore: Bool) -> [String] {
-        self.localCatalog =  self.config!.localCatalog
-        if  self.config!.snapshotnum != nil {
+        self.localCatalog = self.config!.localCatalog
+        if self.config!.snapshotnum != nil {
             self.remoteargssnapshot(config: self.config!)
         } else {
             self.remoteargs(config: self.config!)

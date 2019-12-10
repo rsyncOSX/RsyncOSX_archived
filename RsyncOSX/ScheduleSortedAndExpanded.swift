@@ -7,11 +7,10 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
-
     private var schedulesNSDictionary: [NSDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
     private var expandedData = [NSDictionary]()
@@ -31,7 +30,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "dateStart": dateStart,
                     "schedule": schedule,
                     "timetostart": time,
-                    "profilename": profilename]
+                    "profilename": profilename,
+                ]
                 self.expandedData.append(dictSchedule)
             }
         }
@@ -51,7 +51,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "dateStart": dateStart,
                     "schedule": schedule,
                     "timetostart": time,
-                    "profilename": profilename]
+                    "profilename": profilename,
+                ]
                 self.expandedData.append(dictSchedule)
             }
         }
@@ -69,7 +70,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             // Get all jobs which are not executed
             if seconds > 0 {
                 switch schedule {
-                case "once" :
+                case "once":
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                     let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = seconds
@@ -79,7 +80,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         "dateStart": dateStart,
                         "schedule": schedule,
                         "timetostart": time,
-                        "profilename": profilename]
+                        "profilename": profilename,
+                    ]
                     self.expandedData.append(dict)
                 case "daily":
                     self.daily(dateStart: dateStart, schedule: schedule, dict: dict)
@@ -90,7 +92,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 }
             }
             self.sortedschedules = self.expandedData.sorted { (di1, di2) -> Bool in
-                if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!)>0 {
+                if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!) > 0 {
                     return false
                 } else {
                     return true
@@ -103,25 +105,26 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculates number of future Schedules ID by hiddenID
     func numberoftasks(_ hiddenID: Int) -> Futureschedules {
-        let result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID)})
-        guard result?.count ?? 0 > 0 else { return (0, 0)}
-        let timetostart = result![0].value(forKey: "timetostart" ) as? Double ?? 0
+        let result = self.sortedschedules?.filter { (($0.value(forKey: "hiddenID") as? Int)! == hiddenID) }
+        guard result?.count ?? 0 > 0 else { return (0, 0) }
+        let timetostart = result![0].value(forKey: "timetostart") as? Double ?? 0
         return (result!.count, timetostart)
     }
 
     func sortandcountscheduledonetask(_ hiddenID: Int, profilename: String?, number: Bool) -> String {
         var result: [NSDictionary]?
         if profilename != nil {
-            result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
-                && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )
-                && ($0.value(forKey: "profilename") as? String)! == profilename! })
+            result = self.sortedschedules?.filter { (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
+                    && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0)
+                && ($0.value(forKey: "profilename") as? String)! == profilename!
+            }
         } else {
-            result = self.sortedschedules?.filter({return (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
-                && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0 )})
+            result = self.sortedschedules?.filter { (($0.value(forKey: "hiddenID") as? Int)! == hiddenID
+                    && ($0.value(forKey: "start") as? Date)!.timeIntervalSinceNow > 0) }
         }
-        guard result != nil else { return ""}
-        let sorted = result!.sorted {(di1, di2) -> Bool in
-            if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!)>0 {
+        guard result != nil else { return "" }
+        let sorted = result!.sorted { (di1, di2) -> Bool in
+            if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!) > 0 {
                 return false
             } else {
                 return true
@@ -145,14 +148,15 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         var data = [NSDictionary]()
         for i in 0 ..< self.scheduleConfiguration!.count where
             self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != "stopped" {
-                let dict: NSDictionary = [
-                    "dateStart": self.scheduleConfiguration![i].dateStart,
-                    "dateStop": self.scheduleConfiguration![i].dateStop!,
-                    "hiddenID": self.scheduleConfiguration![i].hiddenID,
-                    "schedule": self.scheduleConfiguration![i].schedule,
-                    "profilename": self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile")]
-                data.append(dict as NSDictionary)
-            }
+            let dict: NSDictionary = [
+                "dateStart": self.scheduleConfiguration![i].dateStart,
+                "dateStop": self.scheduleConfiguration![i].dateStop!,
+                "hiddenID": self.scheduleConfiguration![i].hiddenID,
+                "schedule": self.scheduleConfiguration![i].schedule,
+                "profilename": self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile"),
+            ]
+            data.append(dict as NSDictionary)
+        }
         self.schedulesNSDictionary = data
     }
 

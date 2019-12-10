@@ -7,8 +7,8 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 // Protocol for progress indicator
 protocol CountRemoteEstimatingNumberoftasks: class {
@@ -17,7 +17,6 @@ protocol CountRemoteEstimatingNumberoftasks: class {
 }
 
 class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations, SetDismisser {
-
     var count: Double = 0
     var maxcount: Double = 0
     var calculatedNumberOfFiles: Int?
@@ -26,10 +25,10 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     private var remoteinfotask: RemoteinfoEstimation?
     var diddissappear: Bool = false
 
-    @IBOutlet weak var abort: NSButton!
-    @IBOutlet weak var progress: NSProgressIndicator!
+    @IBOutlet var abort: NSButton!
+    @IBOutlet var progress: NSProgressIndicator!
 
-    @IBAction func abort(_ sender: NSButton) {
+    @IBAction func abort(_: NSButton) {
         self.abort()
         self.closeview()
     }
@@ -92,7 +91,7 @@ extension ViewControllerEstimatingTasks: UpdateProgress {
     }
 
     func fileHandler() {
-     //
+        //
     }
 }
 

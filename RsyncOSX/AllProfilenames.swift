@@ -9,8 +9,7 @@
 import Foundation
 
 class AllProfilenames {
-
-   var allprofiles: [String]?
+    var allprofiles: [String]?
 
     private func getprofilenames() {
         let profile = Files(whichroot: .profileRoot, configpath: ViewControllerReference.shared.configpath)

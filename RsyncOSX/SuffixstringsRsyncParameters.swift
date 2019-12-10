@@ -27,5 +27,6 @@ struct SuffixstringsRsyncParameters {
         ("--files-from", 1),
         ("--max-size", 1),
         ("--suffix", 1),
-        ("--max-delete", 1)]
+        ("--max-delete", 1),
+    ]
 }

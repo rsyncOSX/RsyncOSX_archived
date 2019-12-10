@@ -66,7 +66,6 @@ extension FileerrorMessage {
 }
 
 class Files: ReportFileerror {
-
     var whichroot: WhichRoot?
     var rootpath: String?
     // config path either
@@ -93,15 +92,15 @@ class Files: ReportFileerror {
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
                 guard isDir.boolValue else { return nil }
-                } else { return nil }
-                if let fileURLs = self.getfileURLs(path: filePath) {
-                    array = [URL]()
-                    for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                        array!.append(fileURLs[i])
-                    }
-                    return array
+            } else { return nil }
+            if let fileURLs = self.getfileURLs(path: filePath) {
+                array = [URL]()
+                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                    array!.append(fileURLs[i])
                 }
+                return array
             }
+        }
         return nil
     }
 
@@ -113,15 +112,15 @@ class Files: ReportFileerror {
             var isDir: ObjCBool = false
             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
                 guard isDir.boolValue else { return nil }
-                } else { return nil }
-                if let fileURLs = self.getfileURLs(path: filePath) {
-                    array = [String]()
-                    for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                        array!.append(fileURLs[i].path)
-                    }
-                    return array
+            } else { return nil }
+            if let fileURLs = self.getfileURLs(path: filePath) {
+                array = [String]()
+                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                    array!.append(fileURLs[i].path)
                 }
+                return array
             }
+        }
         return nil
     }
 
@@ -133,7 +132,7 @@ class Files: ReportFileerror {
                 for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
                     let path = fileURLs[i].pathComponents
                     let i = path.count
-                    array.append(path[i-1])
+                    array.append(path[i - 1])
                 }
                 return array
             }
@@ -158,9 +157,9 @@ class Files: ReportFileerror {
     }
 
     // Function for getting fileURLs for a given path
-    func getfileURLs (path: String) -> [URL]? {
+    func getfileURLs(path: String) -> [URL]? {
         let fileManager = FileManager.default
-        if let filepath = URL.init(string: path) {
+        if let filepath = URL(string: path) {
             do {
                 let files = try fileManager.contentsOfDirectory(at: filepath, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
                 return files
@@ -174,7 +173,7 @@ class Files: ReportFileerror {
         }
     }
 
-    init (whichroot: WhichRoot, configpath: String) {
+    init(whichroot: WhichRoot, configpath: String) {
         self.configpath = configpath
         self.whichroot = whichroot
         self.setrootpath()

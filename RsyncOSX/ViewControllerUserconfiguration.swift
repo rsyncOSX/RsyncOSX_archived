@@ -7,44 +7,43 @@
 //
 // swiftlint:disable line_length type_body_length cyclomatic_complexity
 
-import Foundation
 import Cocoa
+import Foundation
 
 protocol MenuappChanged: class {
     func menuappchanged()
 }
 
 class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, ChangeTemporaryRestorePath {
-
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
     weak var menuappDelegate: MenuappChanged?
     var oldmarknumberofdayssince: Double?
     var reload: Bool = false
 
-    @IBOutlet weak var rsyncPath: NSTextField!
-    @IBOutlet weak var version3rsync: NSButton!
-    @IBOutlet weak var detailedlogging: NSButton!
-    @IBOutlet weak var noRsync: NSTextField!
-    @IBOutlet weak var restorePath: NSTextField!
-    @IBOutlet weak var fulllogging: NSButton!
-    @IBOutlet weak var minimumlogging: NSButton!
-    @IBOutlet weak var nologging: NSButton!
-    @IBOutlet weak var marknumberofdayssince: NSTextField!
-    @IBOutlet weak var pathRsyncOSX: NSTextField!
-    @IBOutlet weak var pathRsyncOSXsched: NSTextField!
-    @IBOutlet weak var statuslightpathrsync: NSImageView!
-    @IBOutlet weak var statuslighttemppath: NSImageView!
-    @IBOutlet weak var statuslightpathrsyncosx: NSImageView!
-    @IBOutlet weak var statuslightpathrsyncosxsched: NSImageView!
-    @IBOutlet weak var savebutton: NSButton!
-    @IBOutlet weak var automaticexecutelocalvolumes: NSButton!
-    @IBOutlet weak var environment: NSTextField!
-    @IBOutlet weak var environmentvalue: NSTextField!
-    @IBOutlet weak var enableenvironment: NSButton!
-    @IBOutlet weak var togglecheckdatabutton: NSButton!
+    @IBOutlet var rsyncPath: NSTextField!
+    @IBOutlet var version3rsync: NSButton!
+    @IBOutlet var detailedlogging: NSButton!
+    @IBOutlet var noRsync: NSTextField!
+    @IBOutlet var restorePath: NSTextField!
+    @IBOutlet var fulllogging: NSButton!
+    @IBOutlet var minimumlogging: NSButton!
+    @IBOutlet var nologging: NSButton!
+    @IBOutlet var marknumberofdayssince: NSTextField!
+    @IBOutlet var pathRsyncOSX: NSTextField!
+    @IBOutlet var pathRsyncOSXsched: NSTextField!
+    @IBOutlet var statuslightpathrsync: NSImageView!
+    @IBOutlet var statuslighttemppath: NSImageView!
+    @IBOutlet var statuslightpathrsyncosx: NSImageView!
+    @IBOutlet var statuslightpathrsyncosxsched: NSImageView!
+    @IBOutlet var savebutton: NSButton!
+    @IBOutlet var automaticexecutelocalvolumes: NSButton!
+    @IBOutlet var environment: NSTextField!
+    @IBOutlet var environmentvalue: NSTextField!
+    @IBOutlet var enableenvironment: NSButton!
+    @IBOutlet var togglecheckdatabutton: NSButton!
 
-    @IBAction func togglecheckdata(_ sender: NSButton) {
+    @IBAction func togglecheckdata(_: NSButton) {
         if ViewControllerReference.shared.checkinput {
             self.togglecheckdatabutton.state = .off
             ViewControllerReference.shared.checkinput = false
@@ -54,7 +53,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
     }
 
-    @IBAction func toggleenableenvironment(_ sender: NSButton) {
+    @IBAction func toggleenableenvironment(_: NSButton) {
         switch self.enableenvironment.state {
         case .on:
             self.environment.isEnabled = true
@@ -67,7 +66,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
     }
 
-    @IBAction func toggleautomaticexecutelocalvolumes(_ sender: NSButton) {
+    @IBAction func toggleautomaticexecutelocalvolumes(_: NSButton) {
         if automaticexecutelocalvolumes.state == .on {
             ViewControllerReference.shared.automaticexecutelocalvolumes = true
         } else {
@@ -76,7 +75,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.setdirty()
     }
 
-    @IBAction func toggleversion3rsync(_ sender: NSButton) {
+    @IBAction func toggleversion3rsync(_: NSButton) {
         if self.version3rsync.state == .on {
             ViewControllerReference.shared.rsyncversion3 = true
             if self.rsyncPath.stringValue == "" {
@@ -92,7 +91,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.verifyrsync()
     }
 
-    @IBAction func toggleDetailedlogging(_ sender: NSButton) {
+    @IBAction func toggleDetailedlogging(_: NSButton) {
         if self.detailedlogging.state == .on {
             ViewControllerReference.shared.detailedlogging = true
         } else {
@@ -101,7 +100,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.setdirty()
     }
 
-    @IBAction func close(_ sender: NSButton) {
+    @IBAction func close(_: NSButton) {
         if self.dirty {
             // Before closing save changed configuration
             _ = Setrsyncpath(path: self.rsyncPath.stringValue)
@@ -138,7 +137,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         _ = RsyncVersionString()
     }
 
-    @IBAction func logging(_ sender: NSButton) {
+    @IBAction func logging(_: NSButton) {
         if self.fulllogging.state == .on {
             ViewControllerReference.shared.fulllogging = true
             ViewControllerReference.shared.minimumlogging = false
@@ -149,7 +148,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             ViewControllerReference.shared.fulllogging = false
             ViewControllerReference.shared.minimumlogging = false
         }
-         self.setdirty()
+        self.setdirty()
     }
 
     private func setdirty() {
@@ -362,7 +361,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 }
 
 extension ViewControllerUserconfiguration: NSTextFieldDelegate {
-
     func controlTextDidChange(_ notification: Notification) {
         delayWithSeconds(0.5) {
             self.setdirty()

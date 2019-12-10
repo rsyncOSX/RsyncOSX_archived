@@ -13,7 +13,6 @@ import Foundation
 // and a version to show in view of both
 
 struct ArgumentsOneConfiguration {
-
     var arg: [String]?
     var argdryRun: [String]?
     var argDisplay: [String]?

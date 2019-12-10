@@ -11,7 +11,6 @@ import Foundation
 
 // Reading userconfiguration from file into RsyncOSX
 struct Userconfiguration {
-
     private func readUserconfiguration(dict: NSDictionary) {
         // Another version of rsync
         if let version3rsync = dict.value(forKey: "version3Rsync") as? Int {
@@ -83,14 +82,14 @@ struct Userconfiguration {
             }
         }
         if let environment = dict.value(forKey: "environment") as? String {
-             ViewControllerReference.shared.environment = environment
+            ViewControllerReference.shared.environment = environment
         }
         if let environmentvalue = dict.value(forKey: "environmentvalue") as? String {
             ViewControllerReference.shared.environmentvalue = environmentvalue
         }
     }
 
-    init (userconfigRsyncOSX: [NSDictionary]) {
+    init(userconfigRsyncOSX: [NSDictionary]) {
         if userconfigRsyncOSX.count > 0 {
             self.readUserconfiguration(dict: userconfigRsyncOSX[0])
         }

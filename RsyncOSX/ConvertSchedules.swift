@@ -9,7 +9,6 @@
 import Foundation
 
 struct ConvertSchedules: SetSchedules {
-
     var schedules: [NSDictionary]?
 
     init() {
@@ -22,7 +21,8 @@ struct ConvertSchedules: SetSchedules {
                     "dateStart": schedules[i].dateStart,
                     "schedule": schedules[i].schedule,
                     "executed": schedules[i].logrecords,
-                    "offsiteserver": schedules[i].offsiteserver ?? "localhost"]
+                    "offsiteserver": schedules[i].offsiteserver ?? "localhost",
+                ]
                 if schedules[i].dateStop != nil {
                     dict.setValue(schedules[i].dateStop, forKey: "dateStop")
                 }

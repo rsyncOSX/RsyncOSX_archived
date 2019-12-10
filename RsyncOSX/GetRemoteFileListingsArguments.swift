@@ -14,7 +14,6 @@ protocol ProcessArguments {
 }
 
 final class GetRemoteFileListingsArguments: ProcessArguments {
-
     private var config: Configuration?
     private var args: [String]?
 

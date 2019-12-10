@@ -6,13 +6,12 @@
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
 class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
-
-    @IBOutlet weak var mainTableView: NSTableView!
-    @IBOutlet weak var selectButton: NSButton!
+    @IBOutlet var mainTableView: NSTableView!
+    @IBOutlet var selectButton: NSButton!
 
     weak var getSourceDelegateSsh: ViewControllerSsh?
     weak var getSourceDelegateSnapshots: ViewControllerSnapshots?
@@ -49,11 +48,11 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
         }
     }
 
-    @IBAction func close(_ sender: NSButton) {
+    @IBAction func close(_: NSButton) {
         self.dismissview()
     }
 
-    @IBAction func select(_ sender: NSButton) {
+    @IBAction func select(_: NSButton) {
         self.select()
         self.dismissview()
     }
@@ -68,12 +67,12 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
 
     override func viewDidAppear() {
         self.selectButton.isEnabled = false
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
-        })
+        }
     }
 
-    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender: AnyObject) {
+    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         self.select()
         self.dismissview()
     }
@@ -93,14 +92,14 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
 }
 
 extension ViewControllerSource: NSTableViewDataSource {
-    func numberOfRows(in tableView: NSTableView) -> Int {
+    func numberOfRows(in _: NSTableView) -> Int {
         guard self.configurations != nil else { return 0 }
         return self.configurations!.getConfigurationsDataSourceSynchronize()?.count ?? 0
     }
 }
 
 extension ViewControllerSource: NSTableViewDelegate {
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+    func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
         return object[tableColumn!.identifier] as? String
     }

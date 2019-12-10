@@ -9,7 +9,6 @@
 import Foundation
 
 final class RemoteCapacity: SetConfigurations, Connected {
-
     var process: Process?
     var outputprocess: OutputProcess?
     var remotecapacity: [NSMutableDictionary]?
@@ -27,7 +26,7 @@ final class RemoteCapacity: SetConfigurations, Connected {
     private func getremotesizes(index: Int) {
         self.outputprocess = OutputProcess()
         let config = self.configurations!.getConfigurations()[index]
-        if self.connected(config: config) == true && config.offsiteServer.isEmpty == false {
+        if self.connected(config: config) == true, config.offsiteServer.isEmpty == false {
             let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
             guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
             let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())

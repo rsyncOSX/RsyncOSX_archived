@@ -7,8 +7,8 @@
 //
 //  swiftlint:disable function_body_length line_length cyclomatic_complexity
 
-import Foundation
 import Cocoa
+import Foundation
 
 enum Typebackup {
     case synchronize
@@ -18,7 +18,6 @@ enum Typebackup {
 }
 
 class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Delay, Index, VcMain, Checkforrsync {
-
     var newconfigurations: NewConfigurations?
     var tabledata: [NSMutableDictionary]?
     let archive: String = "--archive"
@@ -38,63 +37,63 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     var diddissappear: Bool = false
     var remote: RemoteCapacity?
 
-    @IBOutlet weak var addtable: NSTableView!
-    @IBOutlet weak var remotecapacitytable: NSTableView!
-    @IBOutlet weak var viewParameter1: NSTextField!
-    @IBOutlet weak var viewParameter2: NSTextField!
-    @IBOutlet weak var viewParameter3: NSTextField!
-    @IBOutlet weak var viewParameter4: NSTextField!
-    @IBOutlet weak var viewParameter5: NSTextField!
-    @IBOutlet weak var localCatalog: NSTextField!
-    @IBOutlet weak var offsiteCatalog: NSTextField!
-    @IBOutlet weak var offsiteUsername: NSTextField!
-    @IBOutlet weak var offsiteServer: NSTextField!
-    @IBOutlet weak var backupID: NSTextField!
-    @IBOutlet weak var sshport: NSTextField!
-    @IBOutlet weak var profilInfo: NSTextField!
-    @IBOutlet weak var copyconfigbutton: NSButton!
-    @IBOutlet weak var backuptype: NSComboBox!
-    @IBOutlet weak var remotecapacitybutton: NSButton!
-    @IBOutlet weak var addingtrailingbackslash: NSButton!
-    @IBOutlet weak var stringlocalcatalog: NSTextField!
-    @IBOutlet weak var stringremotecatalog: NSTextField!
+    @IBOutlet var addtable: NSTableView!
+    @IBOutlet var remotecapacitytable: NSTableView!
+    @IBOutlet var viewParameter1: NSTextField!
+    @IBOutlet var viewParameter2: NSTextField!
+    @IBOutlet var viewParameter3: NSTextField!
+    @IBOutlet var viewParameter4: NSTextField!
+    @IBOutlet var viewParameter5: NSTextField!
+    @IBOutlet var localCatalog: NSTextField!
+    @IBOutlet var offsiteCatalog: NSTextField!
+    @IBOutlet var offsiteUsername: NSTextField!
+    @IBOutlet var offsiteServer: NSTextField!
+    @IBOutlet var backupID: NSTextField!
+    @IBOutlet var sshport: NSTextField!
+    @IBOutlet var profilInfo: NSTextField!
+    @IBOutlet var copyconfigbutton: NSButton!
+    @IBOutlet var backuptype: NSComboBox!
+    @IBOutlet var remotecapacitybutton: NSButton!
+    @IBOutlet var addingtrailingbackslash: NSButton!
+    @IBOutlet var stringlocalcatalog: NSTextField!
+    @IBOutlet var stringremotecatalog: NSTextField!
 
-    @IBAction func totinfo(_ sender: NSButton) {
+    @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
-        })
+        }
     }
 
-    @IBAction func quickbackup(_ sender: NSButton) {
+    @IBAction func quickbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         self.openquickbackup()
     }
 
-    @IBAction func automaticbackup(_ sender: NSButton) {
+    @IBAction func automaticbackup(_: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
     }
 
-    @IBAction func remotecapacity(_ sender: NSButton) {
+    @IBAction func remotecapacity(_: NSButton) {
         self.remotecapacitybutton.isEnabled = false
         self.remote = RemoteCapacity(object: self)
     }
 
     // Selecting profiles
-    @IBAction func profiles(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
+    @IBAction func profiles(_: NSButton) {
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProfile!)
-        })
+        }
     }
 
     // Userconfiguration button
-    @IBAction func userconfiguration(_ sender: NSButton) {
-        globalMainQueue.async(execute: { () -> Void in
+    @IBAction func userconfiguration(_: NSButton) {
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
-        })
+        }
     }
 
-    @IBAction func copyconfiguration(_ sender: NSButton) {
+    @IBAction func copyconfiguration(_: NSButton) {
         guard self.index() != nil else { return }
         let hiddenID = self.configurations!.gethiddenID(index: self.index() ?? -1)
         guard hiddenID > -1 else { return }
@@ -110,13 +109,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.sshport.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .sshport)
     }
 
-    @IBAction func cleartable(_ sender: NSButton) {
+    @IBAction func cleartable(_: NSButton) {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.addtable.reloadData()
             self.setFields()
-        })
+        }
     }
 
     private func changelabels() {
@@ -130,7 +129,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         }
     }
 
-    @IBAction func setbackuptype(_ sender: NSComboBox) {
+    @IBAction func setbackuptype(_: NSComboBox) {
         switch self.backuptype.indexOfSelectedItem {
         case 0:
             self.backuptypeselected = .synchronize
@@ -193,7 +192,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.sshport.stringValue = ""
     }
 
-    private func snapshotcreatecatalog (dict: NSDictionary, outputprocess: OutputProcess?) {
+    private func snapshotcreatecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
         let config: Configuration = Configuration(dictionary: dict)
         guard config.offsiteServer.isEmpty == false else { return }
         let args = SnapshotCreateCatalogArguments(config: config)
@@ -201,7 +200,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
-    @IBAction func addConfig(_ sender: NSButton) {
+    @IBAction func addConfig(_: NSButton) {
         let dict: NSMutableDictionary = [
             "task": ViewControllerReference.shared.synchronize,
             "backupID": backupID.stringValue,
@@ -218,7 +217,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             "dryrun": self.dryrun,
             "dateRun": "",
             "singleFile": 0,
-            "batch": 0]
+            "batch": 0,
+        ]
         if self.backuptypeselected == .snapshots {
             dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
@@ -230,11 +230,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         } else if self.backuptypeselected == .singlefile {
             dict.setValue(1, forKey: "singleFile")
         }
-        if !self.localCatalog.stringValue.hasSuffix("/") && self.backuptypeselected != .singlefile && self.addingtrailingbackslash.state == .off {
+        if !self.localCatalog.stringValue.hasSuffix("/"), self.backuptypeselected != .singlefile, self.addingtrailingbackslash.state == .off {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
         }
-        if !self.offsiteCatalog.stringValue.hasSuffix("/") && self.addingtrailingbackslash.state == .off {
+        if !self.offsiteCatalog.stringValue.hasSuffix("/"), self.addingtrailingbackslash.state == .off {
             self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
         }
@@ -276,7 +276,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDataSource {
-
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.addtable {
             return self.newconfigurations?.newConfigurationsCount() ?? 0
@@ -287,7 +286,6 @@ extension ViewControllerNewConfigurations: NSTableViewDataSource {
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDelegate {
-
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableView == self.addtable {
             guard self.newconfigurations?.getnewConfigurations() != nil else { return nil }
@@ -300,13 +298,12 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
         }
     }
 
-    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+    func tableView(_: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
     }
 }
 
 extension ViewControllerNewConfigurations: DismissViewController {
-
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
     }
@@ -314,10 +311,10 @@ extension ViewControllerNewConfigurations: DismissViewController {
 
 extension ViewControllerNewConfigurations: SetProfileinfo {
     func setprofile(profile: String, color: NSColor) {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.profilInfo.stringValue = profile
             self.profilInfo.textColor = color
-        })
+        }
     }
 }
 
@@ -325,9 +322,9 @@ extension ViewControllerNewConfigurations: UpdateProgress {
     func processTermination() {
         self.remote?.processTermination()
         self.remotecapacitybutton.isEnabled = self.remote!.enableremotecapacitybutton()
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.remotecapacitytable.reloadData()
-        })
+        }
     }
 
     func fileHandler() {
@@ -337,8 +334,8 @@ extension ViewControllerNewConfigurations: UpdateProgress {
 
 extension ViewControllerNewConfigurations: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
-        })
+        }
     }
 }

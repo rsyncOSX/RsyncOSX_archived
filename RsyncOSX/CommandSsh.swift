@@ -9,7 +9,7 @@
 import Foundation
 
 final class CommandSsh: ProcessCmd {
-    override init (command: String?, arguments: [String]?) {
+    override init(command: String?, arguments: [String]?) {
         super.init(command: command, arguments: arguments)
         self.updateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
     }

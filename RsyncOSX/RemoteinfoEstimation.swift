@@ -7,8 +7,8 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 protocol SetRemoteInfo: class {
     func setremoteinfo(remoteinfotask: RemoteinfoEstimation?)
@@ -71,7 +71,7 @@ final class RemoteinfoEstimation: SetConfigurations {
         guard self.records != nil else { return }
         self.configurations?.quickbackuplist = [Int]()
         for i in 0 ..< self.records!.count {
-            if self.records![i].value( forKey: "select") as? Int == 1 {
+            if self.records![i].value(forKey: "select") as? Int == 1 {
                 self.configurations?.quickbackuplist!.append((self.records![i].value(forKey: "hiddenID") as? Int)!)
             }
         }
@@ -109,7 +109,6 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
 }
 
 extension RemoteinfoEstimation: UpdateProgress {
-
     func processTermination() {
         let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")

@@ -19,7 +19,6 @@ enum Trim {
 }
 
 final class OutputProcess {
-
     private var output: [String]?
     private var trimmedoutput: [String]?
     private var startindex: Int?
@@ -51,13 +50,13 @@ final class OutputProcess {
         }
     }
 
-    func addlinefromoutput (str: String) {
+    func addlinefromoutput(str: String) {
         if self.startindex == nil {
             self.startindex = 0
         } else {
             self.startindex = self.output?.count ?? 0 + 1
         }
-        str.enumerateLines { (line, _) in
+        str.enumerateLines { line, _ in
             self.output?.append(line)
         }
     }
@@ -70,7 +69,7 @@ final class OutputProcess {
             for i in 0 ..< self.output!.count {
                 let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
                 let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
-                if str.isEmpty == false && str.contains(".DS_Store") == false {
+                if str.isEmpty == false, str.contains(".DS_Store") == false {
                     out.append("./" + str)
                 }
             }
@@ -101,7 +100,7 @@ final class OutputProcess {
         return out
     }
 
-    init () {
+    init() {
         self.output = [String]()
     }
- }
+}

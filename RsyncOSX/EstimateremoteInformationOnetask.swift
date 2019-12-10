@@ -24,5 +24,4 @@ final class EstimateremoteInformationOnetask: SetConfigurations {
         setprocessDelegate?.sendprocessreference(process: process.getProcess()!)
         setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
     }
-
 }

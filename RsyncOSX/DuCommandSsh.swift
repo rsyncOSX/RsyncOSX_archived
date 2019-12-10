@@ -17,7 +17,7 @@ final class DuCommandSsh: ProcessCmd {
         self.updateDelegate = object
     }
 
-    override init (command: String?, arguments: [String]?) {
+    override init(command: String?, arguments: [String]?) {
         super.init(command: command, arguments: arguments)
     }
 }

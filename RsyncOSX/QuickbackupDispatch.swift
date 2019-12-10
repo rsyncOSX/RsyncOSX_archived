@@ -9,11 +9,10 @@
 import Foundation
 
 class QuickbackupDispatch: SetSchedules {
-
     private var workitem: DispatchWorkItem?
 
     private func dispatchtask(seconds: Int) {
-        let work = DispatchWorkItem {  () -> Void in
+        let work = DispatchWorkItem { () -> Void in
             _ = ExecuteQuickbackupTask()
         }
         self.workitem = work
@@ -21,7 +20,7 @@ class QuickbackupDispatch: SetSchedules {
     }
 
     private func dispatchtask(seconds: Int, updateprogress: UpdateProgress?) {
-        let work = DispatchWorkItem {  () -> Void in
+        let work = DispatchWorkItem { () -> Void in
             _ = ExecuteQuickbackupTask(updateprogress: updateprogress)
         }
         self.workitem = work

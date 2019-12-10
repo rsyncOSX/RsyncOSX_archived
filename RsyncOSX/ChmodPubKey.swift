@@ -15,7 +15,6 @@ enum ChmodTask {
 }
 
 final class ChmodPubKey {
-
     // Work Queue
     private var work: [ChmodTask]?
 

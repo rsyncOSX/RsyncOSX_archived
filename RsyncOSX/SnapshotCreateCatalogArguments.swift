@@ -9,7 +9,6 @@
 import Foundation
 
 final class SnapshotCreateCatalogArguments: ProcessArguments {
-
     private var config: Configuration?
     private var args: [String]?
     private var command: String?
@@ -38,7 +37,7 @@ final class SnapshotCreateCatalogArguments: ProcessArguments {
         return self.command
     }
 
-    init (config: Configuration) {
+    init(config: Configuration) {
         self.args = [String]()
         self.config = config
         self.remotearguments()

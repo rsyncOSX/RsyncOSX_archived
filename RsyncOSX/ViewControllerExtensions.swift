@@ -7,15 +7,14 @@
 //
 // swiftlint:disable line_length
 
-import Foundation
 import Cocoa
+import Foundation
 
 protocol VcMain {
     var storyboard: NSStoryboard? { get }
 }
 
 extension VcMain {
-
     var storyboard: NSStoryboard? {
         return NSStoryboard(name: "Main", bundle: nil)
     }
@@ -125,32 +124,40 @@ extension SetDismisser {
     var dismissDelegateMain: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
+
     var dismissDelegateSchedule: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
+
     var dismissDelegateCopyFiles: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
     }
+
     var dismissDelegateNewConfigurations: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
     }
+
     var dismissDelegateSsh: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
     }
+
     var dimissDelegateSnapshot: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
+
     var dismissDelegateVerify: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
     }
+
     var dismissDelegateLoggData: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
+
     var dismissDelegateRestore: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
     }
 
-    func dismissview(viewcontroller: NSViewController, vcontroller: ViewController) {
+    func dismissview(viewcontroller _: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vctabschedule {
@@ -187,6 +194,7 @@ extension Deselect {
     var deselectDelegateMain: DeselectRowTable? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
+
     var deselectDelegateSchedule: DeselectRowTable? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
@@ -270,7 +278,7 @@ extension Abort {
 }
 
 protocol GetOutput: class {
-    func getoutput () -> [String]
+    func getoutput() -> [String]
 }
 
 protocol OutPut {
