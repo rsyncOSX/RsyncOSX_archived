@@ -157,15 +157,19 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         if let index = self.index {
             let config = self.configurations!.getConfigurations()[index]
             guard config.task != ViewControllerReference.shared.syncremote else {
+                self.gotit.stringValue = ""
                 self.verifybutton.isEnabled = false
                 self.changedbutton.isEnabled = false
+                self.resetinfo()
                 return
             }
             guard self.connected(config: config) == true else {
+                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
                 let dontgotit: String = NSLocalizedString("Seems not to be connected...", comment: "Verify")
                 self.gotit.stringValue = dontgotit
                 self.verifybutton.isEnabled = false
                 self.changedbutton.isEnabled = false
+                self.resetinfo()
                 return
             }
             guard index != self.lastindex ?? -1 else { return }
@@ -175,6 +179,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             self.enabledisablebuttons(enable: false)
             self.estimatedindex = index
             let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.gotit.stringValue = gotit
             self.gotremoteinfo = false
             self.complete = false
