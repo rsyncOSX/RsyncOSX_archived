@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
+//  swiftlint:disable line_length cyclomatic_complexity
 
 import Cocoa
 import Foundation
@@ -242,6 +242,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
+        guard hiddenID > -1 else { return "" }
         let result = self.configurations!.filter { ($0.hiddenID == hiddenID) }
         guard result.count > 0 else { return "" }
         switch resource {

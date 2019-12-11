@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 26.07.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length function_body_length
+// swiftlint:disable line_length type_body_length
 
 import Cocoa
 import Foundation
@@ -138,8 +138,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 
     // Abort button
     @IBAction func abort(_: NSButton) {
-        guard self.processRefererence != nil else { return }
-        self.processRefererence!.abortProcess()
+        self.processRefererence?.abortProcess()
     }
 
     override func viewDidLoad() {
@@ -153,45 +152,28 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     override func viewDidAppear() {
         super.viewDidAppear()
         if let index = self.index() {
-            let config = self.configurations!.getConfigurations()[index]
-            guard config.task != ViewControllerReference.shared.syncremote else {
-                self.gotit.stringValue = ""
-                self.verifybutton.isEnabled = false
-                self.changedbutton.isEnabled = false
+            if self.reload() {
                 self.resetinfo()
-                return
+                self.setinfo()
+                self.enabledisablebuttons(enable: false)
+                self.estimatedindex = index
+                let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
+                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
+                self.gotit.stringValue = gotit
+                self.gotremoteinfo = false
+                self.complete = false
+                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
+                if datelastbackup.isEmpty == false {
+                    let date = datelastbackup.en_us_date_from_string()
+                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                        + " " + date.localized_string_from_date()
+                } else {
+                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                }
+                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
+                self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
+                self.estimateremoteinfo(index: index, local: true)
             }
-            guard self.connected(config: config) == true else {
-                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
-                let dontgotit: String = NSLocalizedString("Seems not to be connected...", comment: "Verify")
-                self.gotit.stringValue = dontgotit
-                self.verifybutton.isEnabled = false
-                self.changedbutton.isEnabled = false
-                self.resetinfo()
-                return
-            }
-            guard self.index() != self.lastindex ?? -1 else { return }
-            guard self.estimatedindex ?? -1 != index else { return }
-            self.resetinfo()
-            self.setinfo()
-            self.enabledisablebuttons(enable: false)
-            self.estimatedindex = index
-            let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
-            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.gotit.stringValue = gotit
-            self.gotremoteinfo = false
-            self.complete = false
-            let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
-            if datelastbackup.isEmpty == false {
-                let date = datelastbackup.en_us_date_from_string()
-                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-                    + " " + date.localized_string_from_date()
-            } else {
-                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-            }
-            let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
-            self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
-            self.estimateremoteinfo(index: index, local: true)
         } else {
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
@@ -202,6 +184,31 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
                 self.outputtable.reloadData()
             }
         }
+    }
+
+    private func reload() -> Bool {
+        if let index = self.index() {
+            let config = self.configurations!.getConfigurations()[index]
+            guard config.task != ViewControllerReference.shared.syncremote else {
+                self.gotit.stringValue = ""
+                self.verifybutton.isEnabled = false
+                self.changedbutton.isEnabled = false
+                self.resetinfo()
+                return false
+            }
+            guard self.connected(config: config) == true else {
+                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
+                let dontgotit: String = NSLocalizedString("Seems not to be connected...", comment: "Verify")
+                self.gotit.stringValue = dontgotit
+                self.verifybutton.isEnabled = false
+                self.changedbutton.isEnabled = false
+                self.resetinfo()
+                return false
+            }
+            guard self.index() != self.lastindex ?? -1 else { return false }
+            guard self.estimatedindex ?? -1 != index else { return false }
+        }
+        return true
     }
 
     override func viewDidDisappear() {
@@ -254,11 +261,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     private func setinfo() {
-        let hiddenID = self.configurations?.gethiddenID(index: self.index()!) ?? -1
-        guard hiddenID > -1 else { return }
-        self.localcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
-        self.remoteserver.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-        self.remotecatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+        if let hiddenID = self.configurations?.gethiddenID(index: self.index() ?? -1) {
+            self.localcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
+            self.remoteserver.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
+            self.remotecatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+        }
     }
 
     private func resetinfo() {
