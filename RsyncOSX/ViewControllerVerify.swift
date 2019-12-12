@@ -151,29 +151,27 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if let index = self.index() {
-            if self.reload() {
-                self.resetinfo()
-                self.setinfo()
-                self.enabledisablebuttons(enable: false)
-                self.estimatedindex = index
-                let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
-                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-                self.gotit.stringValue = gotit
-                self.gotremoteinfo = false
-                self.complete = false
-                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
-                if datelastbackup.isEmpty == false {
-                    let date = datelastbackup.en_us_date_from_string()
-                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-                        + " " + date.localized_string_from_date()
-                } else {
-                    self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
-                }
-                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
-                self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
-                self.estimateremoteinfo(index: index, local: true)
+        if self.index() != nil && self.reload() {
+            self.resetinfo()
+            self.setinfo()
+            self.enabledisablebuttons(enable: false)
+            self.estimatedindex = self.index()
+            let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
+            self.gotit.stringValue = gotit
+            self.gotremoteinfo = false
+            self.complete = false
+            let datelastbackup = self.configurations?.getConfigurations()[self.index()!].dateRun ?? ""
+            if datelastbackup.isEmpty == false {
+                let date = datelastbackup.en_us_date_from_string()
+                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                    + " " + date.localized_string_from_date()
+            } else {
+                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
             }
+            let numberlastbackup = self.configurations?.getConfigurations()[self.index()!].dayssincelastbackup ?? ""
+            self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
+            self.estimateremoteinfo(index: self.index()!, local: true)
         } else {
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")

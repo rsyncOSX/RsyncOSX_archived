@@ -204,19 +204,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
             let indexes = myTableViewFromNotification.selectedRowIndexes
             self.commandString.stringValue = ""
             if let index = indexes.first {
-                guard self.inprogress() == false else {
-                    self.working.stopAnimation(nil)
-                    guard self.copyfiles != nil else { return }
-                    self.restorebutton.isEnabled = true
-                    self.copyfiles!.abort()
-                    return
-                }
-                let config = self.configurations!.getConfigurations()[index]
-                guard self.connected(config: config) == true else {
-                    self.restorebutton.isEnabled = false
-                    self.info.stringValue = Infocopyfiles().info(num: 4)
-                    return
-                }
+                guard self.getremotefiles(index: index) == true else { return }
                 self.info.stringValue = Infocopyfiles().info(num: 0)
                 self.restorebutton.title = "Estimate"
                 self.restorebutton.isEnabled = false
@@ -235,6 +223,24 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
                 }
             }
         }
+    }
+
+    private func getremotefiles(index: Int) -> Bool {
+        guard self.inprogress() == false else {
+            self.working.stopAnimation(nil)
+            guard self.copyfiles != nil else { return false }
+            self.restorebutton.isEnabled = true
+            self.copyfiles!.abort()
+            return false
+        }
+        let config = self.configurations!.getConfigurations()[index]
+        guard self.connected(config: config) == true else {
+            self.restorebutton.isEnabled = false
+            self.info.stringValue = Infocopyfiles().info(num: 4)
+            return false
+        }
+        guard config.task != ViewControllerReference.shared.syncremote else { return false }
+        return true
     }
 }
 
