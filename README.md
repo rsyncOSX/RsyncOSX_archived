@@ -25,26 +25,25 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 - Norwegian - by me
 - English - the base language of RsyncOSX
 
-RsyncOSX is prepared for new languages.
+### Version of rsync
 
-### Please read this
+RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
+
+If you are only looking for utilizing stock version of rsync (version 2.6.9) and only synchronize data to either local attached disks or remote servers, [there is a minor version (RsynGUI) available on Mac App Store](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12). RsyncGUI does **not** support snapshots or scheduling task.
+
+### Limitations of RsyncOSX
+
+RsyncOSX is **not** developed to be an easy synchronize and backup tool. The main purpose is to ease the use of rsync and synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
+
+The UI might be difficult to understand if you don't know rsync.
 
 Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of how to use rsync, it is helpful for understand the use of RsyncOSX. If you don't know what rsync is I recommend to read about rsync before commencing use of RsyncOSX.
-
-RsyncOSX is not developed to be an easy synchronize and backup tool. The main purpose is to ease the use of rsync and synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers. The UX might be difficult to understand if you don't know rsync.
 
 RsyncOSX supports synchronize files and snapshots of files. It is important you understand either what synchronize is and snapshot before using RsyncOSX.
 
 If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of RsyncOSX and rsync. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
 
 There is a [short intro to RsyncOSX](https://rsyncosx.github.io/Intro) and [some more documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
-
-
-### Version of rsync
-
-RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
-
-If you are only looking for utilizing stock version of rsync (version 2.6.9) and only synchronize data to either local attached disks or remote servers, [there is a minor version (RsynGUI) available on Mac App Store](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12). RsyncGUI does **not** support snapshots or scheduling task.
 
 ### The --delete parameter
 
@@ -90,13 +89,11 @@ The application icon is created by [Zsolt Sándor](https://github.com/graphis). 
 
 ### How to use RsyncOSX - YouTube videos
 
-There are four short YouTube videos of RsyncOSX:
+There are two short YouTube videos of RsyncOSX:
 
-- [getting](https://youtu.be/MrT8NzdF9dE) RsyncOSX and installing it
+- [getting RsyncOSX](https://youtu.be/MrT8NzdF9dE) and installing it
   - the video also shows how to create the two local ssh certificates for password less logins to remote server
-- adding and executing the [first backup](https://youtu.be/8oe1lKgiDx8)
-- doing a full [restore](https://youtu.be/-R6n_8fl6Ls) to a temporary local restore catalogs
-- how to change [version of rsync](https://youtu.be/mVFL25-lo6Y) utilized by RsyncOSX
+- [adding and executing the first backup](https://youtu.be/8oe1lKgiDx8)
 
 #### SwiftLint and SwiftFormat
 
