@@ -33,15 +33,13 @@ If you are only looking for utilizing stock version of rsync (version 2.6.9) and
 
 ### Limitations of RsyncOSX
 
-RsyncOSX is **not** developed to be an easy synchronize and backup tool. The main purpose is to ease the use of rsync and synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
+RsyncOSX is not developed to be an easy synchronize and backup tool. The main purpose is to ease the use of rsync and synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
 
-The UI might be difficult to understand if you don't know rsync.
+The UI might be difficult to understand if you don't know `rsync`. If you don't know what `rsync` is I recommend to read about it before commencing use of RsyncOSX. It is not required to know it but it will ease the use and understanding of RsyncOSX.
 
-Is RsyncOSX easy to use or a backup tool for the average user? If you have some understanding of how to use rsync, it is helpful for understand the use of RsyncOSX. If you don't know what rsync is I recommend to read about rsync before commencing use of RsyncOSX.
+RsyncOSX supports synchronize of files and snapshots of files.
 
-RsyncOSX supports synchronize files and snapshots of files. It is important you understand either what synchronize is and snapshot before using RsyncOSX.
-
-If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of RsyncOSX and rsync. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
+If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of it. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
 
 There is a [short intro to RsyncOSX](https://rsyncosx.github.io/Intro) and [some more documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
