@@ -155,8 +155,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
 
     @IBAction func prepareforrestore(_: NSButton) {
         if let index = self.index {
-            if self.connected(config: self.configurations!.getConfigurations()[index]) == true,
-                self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote {
+            if self.dorestore() {
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
                 self.gotit.stringValue = gotit
@@ -173,12 +172,23 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
                     _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
                                     tmprestore: false, updateprogress: self)
                 }
-            } else {
+            }
+        }
+    }
+
+    private func dorestore() -> Bool {
+        if let index = self.index {
+            if self.connected(config: self.configurations!.getConfigurations()[index]) == false {
                 self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
                 self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.gotit.isHidden = false
             }
+            if self.configurations!.getConfigurations()[index].task == ViewControllerReference.shared.syncremote {
+                self.gotit.stringValue = ""
+                return false
+            }
         }
+        return true
     }
 
     @IBAction func toggletmprestore(_: NSButton) {
