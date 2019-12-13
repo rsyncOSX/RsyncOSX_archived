@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length function_body_length
+//  swiftlint:disable line_length file_length
 
 import Cocoa
 import Foundation
@@ -239,7 +239,14 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
             self.info.stringValue = Infocopyfiles().info(num: 4)
             return false
         }
-        guard config.task != ViewControllerReference.shared.syncremote else { return false }
+        guard config.task != ViewControllerReference.shared.syncremote else {
+            self.info.stringValue = Infocopyfiles().info(num: 5)
+            self.restoretabledata = nil
+            globalMainQueue.async { () -> Void in
+                self.restoretableView.reloadData()
+            }
+            return false
+        }
         return true
     }
 }
