@@ -173,14 +173,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
             self.estimateremoteinfo(index: self.index()!, local: true)
         } else {
-            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-            let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
-            self.gotit.stringValue = task
-            self.outputprocess = nil
-            globalMainQueue.async { () -> Void in
-                self.resetinfo()
-                self.outputtable.reloadData()
-            }
+            _ = self.reload()
         }
     }
 
@@ -188,7 +181,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         if let index = self.index() {
             let config = self.configurations!.getConfigurations()[index]
             guard config.task != ViewControllerReference.shared.syncremote else {
-                self.gotit.stringValue = ""
+                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
+                let message: String = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
+                self.gotit.stringValue = message
                 self.verifybutton.isEnabled = false
                 self.changedbutton.isEnabled = false
                 self.resetinfo()
@@ -205,6 +200,16 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             }
             guard self.index() != self.lastindex ?? -1 else { return false }
             guard self.estimatedindex ?? -1 != index else { return false }
+        } else {
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
+            let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
+            self.gotit.stringValue = task
+            self.outputprocess = nil
+            self.resetinfo()
+            globalMainQueue.async { () -> Void in
+                self.outputtable.reloadData()
+            }
+            guard self.index() != nil else { return false }
         }
         return true
     }
