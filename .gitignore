@@ -78,5 +78,3 @@ fastlane/test_output
 RsyncOSX/\.DS_Store
 
 RsyncOSX/Assets\.xcassets/\.DS_Store
-info.plist
-info.plist
