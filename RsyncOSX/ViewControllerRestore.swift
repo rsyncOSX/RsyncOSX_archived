@@ -155,36 +155,38 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
 
     @IBAction func prepareforrestore(_: NSButton) {
         if let index = self.index {
-            if self.dorestore() {
-                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
-                let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
-                self.gotit.stringValue = gotit
-                self.gotit.isHidden = false
-                self.estimatebutton.isEnabled = false
-                self.working.startAnimation(nil)
-                self.outputprocess = OutputProcess()
-                self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-                if ViewControllerReference.shared.restorePath != nil && self.selecttmptorestore.state == .on {
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                    tmprestore: true, updateprogress: self)
-                } else {
-                    self.selecttmptorestore.state = .off
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                    tmprestore: false, updateprogress: self)
-                }
+            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
+            let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
+            self.gotit.stringValue = gotit
+            self.gotit.isHidden = false
+            self.estimatebutton.isEnabled = false
+            self.working.startAnimation(nil)
+            self.outputprocess = OutputProcess()
+            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            if ViewControllerReference.shared.restorePath != nil && self.selecttmptorestore.state == .on {
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                tmprestore: true, updateprogress: self)
+            } else {
+                self.selecttmptorestore.state = .off
+                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
+                                tmprestore: false, updateprogress: self)
             }
         }
     }
 
     private func dorestore() -> Bool {
         if let index = self.index {
-            if self.connected(config: self.configurations!.getConfigurations()[index]) == false {
+            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
                 self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
                 self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.gotit.isHidden = false
+                return false
             }
-            if self.configurations!.getConfigurations()[index].task == ViewControllerReference.shared.syncremote {
-                self.gotit.stringValue = ""
+            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+                self.estimatebutton.isEnabled = false
+                self.gotit.stringValue = NSLocalizedString("Cannot copy from a syncremote task...", comment: "Remote Info")
+                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.gotit.isHidden = false
                 return false
             }
         }
@@ -198,11 +200,16 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
+        self.gotit.stringValue = ""
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            self.estimatebutton.isEnabled = true
             self.index = index
+            if self.dorestore() {
+                self.estimatebutton.isEnabled = true
+            } else {
+                self.index = nil
+            }
         } else {
             self.estimatebutton.isEnabled = false
             self.index = nil

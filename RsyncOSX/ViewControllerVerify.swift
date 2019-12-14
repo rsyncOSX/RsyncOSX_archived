@@ -151,7 +151,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if self.index() != nil && self.reload() {
+        if self.index() != nil, self.reload() {
             self.resetinfo()
             self.setinfo()
             self.enabledisablebuttons(enable: false)
