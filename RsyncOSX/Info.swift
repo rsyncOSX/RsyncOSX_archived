@@ -71,6 +71,7 @@ struct Infocopyfiles {
     let info32: String = NSLocalizedString("Not a remote task, use Finder to copy files...", comment: "Copy files")
     let info33: String = NSLocalizedString("Local or remote catalog cannot be empty...", comment: "Copy files")
     let info34: String = NSLocalizedString("Seems not to be connected...", comment: "Copy files")
+    let info35: String = NSLocalizedString("Cannot copy from a syncremote task...", comment: "Copy files")
 
     func info(num: Int) -> String {
         switch num {
@@ -82,6 +83,8 @@ struct Infocopyfiles {
             return self.info33
         case 4:
             return self.info34
+        case 5:
+            return self.info35
         default:
             return ""
         }
