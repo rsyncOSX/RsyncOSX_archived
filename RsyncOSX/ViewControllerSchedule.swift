@@ -181,8 +181,9 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if self.index() != nil {
+        if self.index() != nil && self.index == nil {
             self.info.stringValue = Infoschedule().info(num: 3)
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
         } else {
             self.info.stringValue = Infoschedule().info(num: 0)
         }
@@ -214,6 +215,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             }
             globalMainQueue.async { () -> Void in
                 self.scheduletabledetails.reloadData()
+                self.scheduletable.reloadData()
             }
         }
     }
@@ -275,14 +277,14 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 case "offsiteServerCellID":
                     if (object[tableColumn!.identifier] as? String)!.isEmpty {
                         if self.index() ?? -1 == row, self.index == nil {
-                            return self.attributedstring(str: "localhost", color: NSColor.red, align: .left)
+                            return self.attributedstring(str: "localhost", color: NSColor.green, align: .left)
                         } else {
                             return "localhost"
                         }
                     } else {
                         if self.index() ?? -1 == row, self.index == nil {
                             let text = object[tableColumn!.identifier] as? String
-                            return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                            return self.attributedstring(str: text!, color: NSColor.green, align: .left)
                         } else {
                             return object[tableColumn!.identifier] as? String
                         }
@@ -295,7 +297,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 default:
                     if self.index() ?? -1 == row, self.index == nil {
                         let text = object[tableColumn!.identifier] as? String
-                        return self.attributedstring(str: text!, color: NSColor.red, align: .left)
+                        return self.attributedstring(str: text!, color: NSColor.green, align: .left)
                     } else {
                         return object[tableColumn!.identifier] as? String
                     }
