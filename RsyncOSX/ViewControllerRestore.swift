@@ -13,8 +13,7 @@ import Foundation
 class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connected, Setcolor, VcMain, Checkforrsync {
     @IBOutlet var restoretable: NSTableView!
     @IBOutlet var working: NSProgressIndicator!
-    @IBOutlet var gotit: NSTextField!
-
+    @IBOutlet var info: NSTextField!
     @IBOutlet var transferredNumber: NSTextField!
     @IBOutlet var transferredNumberSizebytes: NSTextField!
     @IBOutlet var newfiles: NSTextField!
@@ -79,10 +78,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             if let index = self.index {
-                self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
+                self.info.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
-                self.gotit.stringValue = gotit
-                self.gotit.isHidden = false
+                self.info.stringValue = gotit
+                self.info.isHidden = false
                 self.restorebutton.isEnabled = false
                 self.outputprocess = OutputProcess()
                 globalMainQueue.async { () -> Void in
@@ -112,7 +111,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.gotit.isHidden = true
         guard self.diddissappear == false else { return }
         self.restorebutton.isEnabled = false
         self.estimatebutton.isEnabled = false
@@ -146,19 +144,19 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
             self.deletefiles.stringValue = infotask.deletefiles!
             self.working.stopAnimation(nil)
             self.restorebutton.isEnabled = true
-            self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+            self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             let gotit: String = NSLocalizedString("Got it...", comment: "Restore")
-            self.gotit.stringValue = gotit
-            self.gotit.isHidden = false
+            self.info.stringValue = gotit
+            self.info.isHidden = false
         }
     }
 
     @IBAction func prepareforrestore(_: NSButton) {
         if let index = self.index {
-            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .white)
             let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
-            self.gotit.stringValue = gotit
-            self.gotit.isHidden = false
+            self.info.stringValue = gotit
+            self.info.isHidden = false
             self.estimatebutton.isEnabled = false
             self.working.startAnimation(nil)
             self.outputprocess = OutputProcess()
@@ -177,16 +175,16 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
     private func dorestore() -> Bool {
         if let index = self.index {
             guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
-                self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
-                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.gotit.isHidden = false
+                self.info.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
                 return false
             }
             guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
                 self.estimatebutton.isEnabled = false
-                self.gotit.stringValue = NSLocalizedString("Cannot copy from a syncremote task...", comment: "Remote Info")
-                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.gotit.isHidden = false
+                self.info.stringValue = NSLocalizedString("Cannot copy from a syncremote task...", comment: "Remote Info")
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
                 return false
             }
         }
@@ -200,7 +198,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Abort, Connect
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.gotit.stringValue = ""
+        self.info.stringValue = ""
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
