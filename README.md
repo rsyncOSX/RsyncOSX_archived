@@ -31,13 +31,11 @@ RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other vers
 
 If you are only looking for utilizing stock version of rsync (version 2.6.9) and only synchronize data to either local attached disks or remote servers, [there is a minor version (RsynGUI) available on Mac App Store](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12). RsyncGUI does **not** support snapshots or scheduling task.
 
-### Limitations of RsyncOSX
+### Some words about RsyncOSX
 
-RsyncOSX is not developed to be an easy synchronize and backup tool. The main purpose is to ease the use of rsync and synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
+RsyncOSX is not developed to be an easy synchronize and backup tool. The main purpose is to ease the use of `rsync` and synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers. The UI might also be difficult to understand or complex if you don't know what `rsync` is. It is not required to know `rsync` but it will ease the use and understanding of RsyncOSX. But it is though, possible to use RsyncOSX by just adding a source and remote backup catalog using default parameters.
 
-The UI might be difficult to understand if you don't know `rsync`. If you don't know what `rsync` is I recommend to read about it before commencing use of RsyncOSX. It is not required to know it but it will ease the use and understanding of RsyncOSX.
-
-RsyncOSX supports synchronize of files and snapshots of files.
+RsyncOSX supports synchronize and snapshots of files.
 
 If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of it. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
 
