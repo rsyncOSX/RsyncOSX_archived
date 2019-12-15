@@ -7130,13 +7130,13 @@ DQ
                                 <rect key="frame" x="807" y="338" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LM4-gR-Reg">
-                                <rect key="frame" x="829" y="338" width="245" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Getting remote info..." id="HWO-DQ-sfw">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="znI-aB-F0f">
+                                <rect key="frame" x="846" y="335" width="226" height="21"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="VsV-0P-hfS">
+                                    <font key="font" metaFont="label" size="12"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
@@ -7144,7 +7144,7 @@ DQ
                     <connections>
                         <outlet property="deletefiles" destination="TRp-PQ-qtV" id="kib-5t-JnO"/>
                         <outlet property="estimatebutton" destination="jex-7p-gTX" id="KvV-P4-Y6V"/>
-                        <outlet property="gotit" destination="LM4-gR-Reg" id="doh-1r-oap"/>
+                        <outlet property="info" destination="znI-aB-F0f" id="9pk-go-bsL"/>
                         <outlet property="newfiles" destination="yIo-A2-pDH" id="Rgh-ur-qXm"/>
                         <outlet property="restorebutton" destination="sRg-L0-I4h" id="V56-aY-bKF"/>
                         <outlet property="restoretable" destination="FBx-bz-Sci" id="BNb-Kg-VvK"/>

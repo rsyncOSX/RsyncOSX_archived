@@ -41,6 +41,13 @@
 /* Restore */
 "Cancel or Restore" = "Kanseler eller kopier";
 
+/* Copy files
+   Remote Info */
+"Cannot copy from a syncremote task..." = "Kan ikke kopiere fra syncremote...";
+
+/* Verify */
+"Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
+
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
 
