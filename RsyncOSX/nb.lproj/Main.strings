@@ -700,9 +700,6 @@
 /* Class = "NSTextFieldCell"; title = "output"; ObjectID = "hwk-s3-pSJ"; */
 "hwk-s3-pSJ.title" = "output";
 
-/* Class = "NSTextFieldCell"; title = "Getting remote info..."; ObjectID = "HWO-DQ-sfw"; */
-"HWO-DQ-sfw.title" = "Henter ekstern info...";
-
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7"; */
 "hXq-5p-KS7.title" = "Last";
 
