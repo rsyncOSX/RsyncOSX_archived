@@ -8,6 +8,7 @@
 //  Object for sorting and holding logg data about all tasks.
 //  Detailed logging must be set on if logging data.
 //
+// swiftlint:disable trailing_comma
 
 import Foundation
 
