@@ -7134,7 +7134,7 @@ DQ
                                 <rect key="frame" x="846" y="335" width="226" height="21"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="VsV-0P-hfS">
-                                    <font key="font" metaFont="label" size="12"/>
+                                    <font key="font" size="10" name="HelveticaNeue"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
