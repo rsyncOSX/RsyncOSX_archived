@@ -44,8 +44,6 @@ If your plan is to use RsyncOSX as your main tool for backup of files, please in
 There is a [short intro to RsyncOSX](https://rsyncosx.github.io/Intro) and [some more documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
 
 ### The --delete parameter
-
-For your own safety please read and understand the following:
 ```
 Caution about RsyncOSX and the `--delete` parameter. The `--delete` is a default parameter.
 The parameter instructs rsync to keep the source and destination synchronized (in sync).
@@ -61,7 +59,6 @@ or the `--backup` feature (https://rsyncosx.github.io/Parameters).
 
 The --delete parameter and other default parameters might be deleted if wanted.
 ```
-
 ### Main view
 
 The main view of RsyncOSX.
