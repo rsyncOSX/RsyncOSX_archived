@@ -18,14 +18,14 @@ import Foundation
 class Configurations: ReloadTable, SetSchedules {
     // reference to Process, used for kill in executing task
     var process: Process?
-    private var profile: String?
+    var profile: String?
     // The main structure storing all Configurations for tasks
-    private var configurations: [Configuration]?
+    var configurations: [Configuration]?
     // Array to store argumenst for all tasks.
     // Initialized during startup
-    private var argumentAllConfigurations: [ArgumentsOneConfiguration]?
+    var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // Datasource for NSTableViews
-    private var configurationsDataSource: [NSMutableDictionary]?
+    var configurationsDataSource: [NSMutableDictionary]?
     // Object for batchQueue data and operations
     var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
