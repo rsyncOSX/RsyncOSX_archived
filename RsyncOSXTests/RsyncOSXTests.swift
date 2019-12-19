@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 25/06/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length trailing_comma
 
 import XCTest
 @testable import RsyncOSX
@@ -105,7 +105,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         XCTAssertEqual(0, schedules.loggdata?.count, "Should be zero")
     }
 
-    func testschedule() {
+    func testaddschedule() {
         let schedules = SchedulesXCTEST(profile: "XCTest")
         let today: Date = Date()
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)
@@ -115,6 +115,30 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         XCTAssertEqual(3, schedules.getSchedule().count, "Should be three")
         let schedulesortedandexpanded = ScheduleSortedAndExpand(schedules: schedules)
         XCTAssertEqual("23h 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "23h 59m")
+    }
+
+    func testaddconfig() {
+        let configurations = ConfigurationsXCTEST(profile: "XCTest")
+        let dict: NSMutableDictionary = [
+            "task": ViewControllerReference.shared.snapshot,
+            "backupID": "backupID",
+            "localCatalog": "localCatalog",
+            "offsiteCatalog": "offsiteCatalog",
+            "offsiteServer": "offsiteServer",
+            "offsiteUsername": "offsiteUsername",
+            "parameter1": "parameter1",
+            "parameter2": "parameter2",
+            "parameter3": "parameter3",
+            "parameter4": "parameter4",
+            "parameter5": "parameter5",
+            "parameter6": "parameter6",
+            "dryrun": "dryrun",
+            "dateRun": "",
+            "singleFile": 0,
+            "batch": 0,
+        ]
+        dict.setValue(1, forKey: "snapshotnum")
+        configurations.addNewConfigurations(dict)
     }
 
     func testreorgschedules() {
