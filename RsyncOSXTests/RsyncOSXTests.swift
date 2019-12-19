@@ -139,12 +139,23 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
+        let count = configurations.getConfigurations().count
+        XCTAssertEqual(count, 4, "Should be equal to 4")
     }
 
-    func testreorgschedules() {
+    func testreorgschedulesbefore() {
+        ViewControllerReference.shared.restorePath = "/temporaryrestore"
+        ViewControllerReference.shared.checkinput = false
         _ = Selectprofile(profile: "Datacheck")
+        let count = CountSchedulesandLogs()
+        XCTAssertEqual(19, count.schedulerecords, "Should be 19")
+        XCTAssertEqual(299, count.logrecords, "Should be 299")
+    }
+    
+    func testreorgschedulesafter() {
         ViewControllerReference.shared.restorePath = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
+         _ = Selectprofile(profile: "Datacheck")
         let count = CountSchedulesandLogs()
         XCTAssertEqual(10, count.schedulerecords, "Should be 10")
         XCTAssertEqual(299, count.logrecords, "Should be 299")

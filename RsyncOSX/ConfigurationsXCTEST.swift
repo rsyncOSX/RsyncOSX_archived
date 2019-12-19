@@ -5,27 +5,28 @@
 //  Created by Thomas Evensen on 19/12/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
 class ConfigurationsXCTEST: Configurations {
     private var maxhiddenID: Int {
-           // Reading Configurations from memory
-           let store: [Configuration] = self.getConfigurations()
-           if store.count > 0 {
-               _ = store.sorted { (config1, config2) -> Bool in
-                   if config1.hiddenID > config2.hiddenID {
-                       return true
-                   } else {
-                       return false
-                   }
-               }
-               let index = store.count - 1
-               return store[index].hiddenID
-           } else {
-               return 0
-           }
-       }
+        // Reading Configurations from memory
+        let store: [Configuration] = self.getConfigurations()
+        if store.count > 0 {
+            _ = store.sorted { (config1, config2) -> Bool in
+                if config1.hiddenID > config2.hiddenID {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            let index = store.count - 1
+            return store[index].hiddenID
+        } else {
+            return 0
+        }
+    }
 
     override func addNewConfigurations(_ dict: NSMutableDictionary) {
         var array = [NSDictionary]()
@@ -39,5 +40,26 @@ class ConfigurationsXCTEST: Configurations {
         dict.removeObject(forKey: "singleFile")
         array.append(dict)
         self.appendconfigurationstomemory(dict: array[array.count - 1])
+    }
+
+    override func readconfigurations() {
+        self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
+        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).getConfigurations()
+        for i in 0 ..< (store?.count ?? 0) {
+            if ViewControllerReference.shared.synctasks.contains(store![i].task) {
+                self.configurations?.append(store![i])
+                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
+                self.argumentAllConfigurations!.append(rsyncArgumentsOneConfig)
+            }
+        }
+        // Then prepare the datasource for use in tableviews as Dictionarys
+        var data = [NSMutableDictionary]()
+        for i in 0 ..< (self.configurations?.count ?? 0) {
+            let task = self.configurations?[i].task
+            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
+                data.append(ConvertOneConfig(config: self.configurations![i]).dict)
+            }
+        }
+        self.configurationsDataSource = data
     }
 }
