@@ -137,9 +137,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.reset()
     }
 
-    @IBOutlet var TCPButton: NSButton!
     @IBAction func TCP(_: NSButton) {
-        self.TCPButton.isEnabled = false
         self.configurations?.tcpconnections = TCPconnections()
         self.configurations?.tcpconnections?.testAllremoteserverConnections()
         self.displayProfile()
@@ -333,7 +331,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         localprofileinfo2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
         localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
-        self.TCPButton.isEnabled = true
         self.showrsynccommandmainview()
     }
 
