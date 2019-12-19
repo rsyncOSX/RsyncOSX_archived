@@ -321,7 +321,7 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations![index].snapshotnum = num + 1
     }
 
-    private func readconfigurations() {
+    func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).getConfigurations()
         for i in 0 ..< (store?.count ?? 0) {

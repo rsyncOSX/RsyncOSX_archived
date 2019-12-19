@@ -181,7 +181,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if self.index() != nil && self.index == nil {
+        if self.index() != nil, self.index == nil {
             self.info.stringValue = Infoschedule().info(num: 3)
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
         } else {
