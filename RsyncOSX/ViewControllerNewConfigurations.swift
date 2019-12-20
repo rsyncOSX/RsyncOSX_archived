@@ -137,7 +137,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             self.backuptypeselected = .snapshots
         case 2:
             self.backuptypeselected = .syncremote
-
         case 3:
             self.backuptypeselected = .singlefile
         default:
