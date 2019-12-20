@@ -114,7 +114,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.newconfigurations = NewConfigurations()
         globalMainQueue.async { () -> Void in
             self.addtable.reloadData()
-            self.setFields()
+            self.resetinputfields()
         }
     }
 
@@ -168,6 +168,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         } else {
             self.copyconfigbutton.isEnabled = false
         }
+        guard self.diddissappear == false else { return }
         self.viewParameter1.stringValue = self.archive
         self.viewParameter2.stringValue = self.verbose
         self.viewParameter3.stringValue = self.compress
@@ -176,13 +177,19 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.changelabels()
     }
 
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.diddissappear = true
+        
+    }
+
     private func initcombox(combobox: NSComboBox, index: Int) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: self.comboBoxValues)
         combobox.selectItem(at: index)
     }
 
-    private func setFields() {
+    private func resetinputfields() {
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
@@ -270,7 +277,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         globalMainQueue.async(execute: { () -> Void in
             self.addtable.reloadData()
         })
-        self.setFields()
+        self.resetinputfields()
     }
 }
 
