@@ -151,7 +151,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         XCTAssertEqual(19, count.schedulerecords, "Should be 19")
         XCTAssertEqual(299, count.logrecords, "Should be 299")
     }
-    
+
     func testreorgschedulesafter() {
         ViewControllerReference.shared.restorePath = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
