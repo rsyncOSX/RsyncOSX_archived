@@ -7,14 +7,13 @@
 //
 // swiftlint:disable line_length trailing_comma
 
-import XCTest
 @testable import RsyncOSX
+import XCTest
 
 class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
-
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-         _ = Selectprofile(profile: "XCTest")
+        _ = Selectprofile(profile: "XCTest")
         ViewControllerReference.shared.restorePath = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
     }
@@ -68,26 +67,26 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testargumentsrestore0() {
-          let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
-          "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
-          "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/Users/thomas/XCTest/"]
-          XCTAssertEqual(arguments, self.configurations?.arguments4restore(index: 0, argtype: .arg),
-                         "Arguments should be equal")
-      }
+        let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
+                         "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
+                         "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/Users/thomas/XCTest/"]
+        XCTAssertEqual(arguments, self.configurations?.arguments4restore(index: 0, argtype: .arg),
+                       "Arguments should be equal")
+    }
 
     func testargumentsrestoretmp0() {
         let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
-        "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
-        "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/temporaryrestore"]
+                         "--backup", "--backup-dir=../backup_XCTest", "--suffix=_$(date +%Y-%m-%d.%H.%M)",
+                         "--stats", "thomas@10.0.0.57:/backup2/RsyncOSX/XCTest/", "/temporaryrestore"]
         XCTAssertEqual(arguments, self.configurations?.arguments4tmprestore(index: 0, argtype: .arg),
-                         "Arguments should be equal")
+                       "Arguments should be equal")
     }
 
     func testargumentssyncremoterealrun() {
         let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -p 22", "--exclude=.git",
-        "--stats", "thomas@web:~/remotecatalog/", "/Users/thomas/localcatalog/"]
+                         "--stats", "thomas@web:~/remotecatalog/", "/Users/thomas/localcatalog/"]
         XCTAssertEqual(arguments, self.configurations?.arguments4rsync(index: 2, argtype: .arg),
-        "Arguments should be equal")
+                       "Arguments should be equal")
     }
 
     func testalllogs() {
@@ -155,7 +154,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     func testreorgschedulesafter() {
         ViewControllerReference.shared.restorePath = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
-         _ = Selectprofile(profile: "Datacheck")
+        _ = Selectprofile(profile: "Datacheck")
         let count = CountSchedulesandLogs()
         XCTAssertEqual(10, count.schedulerecords, "Should be 10")
         XCTAssertEqual(299, count.logrecords, "Should be 299")

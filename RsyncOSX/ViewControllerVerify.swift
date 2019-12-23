@@ -328,9 +328,9 @@ extension ViewControllerVerify: UpdateProgress {
                     self.estimateremoteinfo(index: index, local: false)
                 }
             }
-            globalMainQueue.async(execute: { () -> Void in
+            globalMainQueue.async { () -> Void in
                 self.outputtable.reloadData()
-            })
+            }
         } else {
             self.working.stopAnimation(nil)
             let gotit: String = NSLocalizedString("Completed ...", comment: "Verify")
