@@ -151,9 +151,9 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
                 self.scheduledetails![i].setValue(1, forKey: "stopCellID")
             }
         }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.scheduletabledetails.reloadData()
-        })
+        }
     }
 
     @IBAction func deleteall(_: NSButton) {
@@ -164,9 +164,9 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
                 self.scheduledetails![i].setValue(1, forKey: "deleteCellID")
             }
         }
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.scheduletabledetails.reloadData()
-        })
+        }
     }
 
     // Initial functions viewDidLoad and viewDidAppear

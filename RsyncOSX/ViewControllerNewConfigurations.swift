@@ -180,7 +180,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.diddissappear = true
-        
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {
@@ -274,9 +273,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.configurations!.addNewConfigurations(dict)
         self.newconfigurations?.appendnewConfigurations(dict: dict)
         self.tabledata = self.newconfigurations!.getnewConfigurations()
-        globalMainQueue.async(execute: { () -> Void in
+        globalMainQueue.async { () -> Void in
             self.addtable.reloadData()
-        })
+        }
         self.resetinputfields()
     }
 }

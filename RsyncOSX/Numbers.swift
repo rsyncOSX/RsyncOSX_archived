@@ -206,22 +206,22 @@ final class Numbers: SetConfigurations {
         if self.output!.count > 2 {
             self.resultRsync = (self.output![self.output!.count - 2])
         }
-        self.files = self.output!.filter({ ($0.contains("files transferred:")) })
+        self.files = self.output!.filter { ($0.contains("files transferred:")) }
         // ver 3.x - [Number of regular files transferred: 24]
         // ver 2.x - [Number of files transferred: 24]
-        self.filesSize = self.output!.filter({ ($0.contains("Total transferred file size:")) })
+        self.filesSize = self.output!.filter { ($0.contains("Total transferred file size:")) }
         // ver 3.x - [Total transferred file size: 278,642 bytes]
         // ver 2.x - [Total transferred file size: 278197 bytes]
-        self.totfileSize = self.output!.filter({ ($0.contains("Total file size:")) })
+        self.totfileSize = self.output!.filter { ($0.contains("Total file size:")) }
         // ver 3.x - [Total file size: 1,016,382,148 bytes]
         // ver 2.x - [Total file size: 1016381703 bytes]
-        self.totfilesNum = self.output!.filter({ ($0.contains("Number of files:")) })
+        self.totfilesNum = self.output!.filter { ($0.contains("Number of files:")) }
         // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
         // ver 2.x - [Number of files: 3956]
         // New files
-        self.new = self.output!.filter({ ($0.contains("Number of created files:")) })
+        self.new = self.output!.filter { ($0.contains("Number of created files:")) }
         // Delete files
-        self.delete = self.output!.filter({ ($0.contains("Number of deleted files:")) })
+        self.delete = self.output!.filter { ($0.contains("Number of deleted files:")) }
         if files!.count == 1, filesSize!.count == 1, totfileSize!.count == 1, totfilesNum!.count == 1 {
             if ViewControllerReference.shared.rsyncversion3 {
                 self.resultrsyncver3()
