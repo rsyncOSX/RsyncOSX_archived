@@ -10,7 +10,8 @@
 /* Snapshots */
 "Aborting delete operation..." = "停止删除操作";
 
-/* Add schedule */
+/* Add schedule
+   New */
 "Add" = "添加";
 
 /* Add schedule */
@@ -58,9 +59,6 @@
 /* Remote Info
    Verify */
 "Date last backup:" = "上次备份日期：";
-
-/* Schedule details */
-"dateStop" = "停止时间";
 
 /* datetime */
 "days" = "天数";

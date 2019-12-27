@@ -217,9 +217,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "All output"; ObjectID = "302-lC-sbl"; */
 "302-lC-sbl.headerCell.title" = "所有输出";
 
-/* Class = "NSBox"; title = "Connections"; ObjectID = "571-N7-84g"; */
-"571-N7-84g.title" = "连接";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "798-Ig-rVS"; */
 "798-Ig-rVS.title" = "Text Cell";
 
@@ -505,9 +502,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo"; */
 "fAL-TO-qxo.headerCell.title" = "远程服务器";
 
-/* Class = "NSButtonCell"; title = "Tcp"; ObjectID = "FaP-hR-iYc"; */
-"FaP-hR-iYc.title" = "TCP";
-
 /* Class = "NSTableColumn"; headerCell.title = "User name"; ObjectID = "Fd7-v3-h8m"; */
 "Fd7-v3-h8m.headerCell.title" = "用户名";
 
@@ -676,9 +670,6 @@
 /* Class = "NSTextFieldCell"; title = "output"; ObjectID = "hwk-s3-pSJ"; */
 "hwk-s3-pSJ.title" = "输出";
 
-/* Class = "NSTextFieldCell"; title = "Getting remote info..."; ObjectID = "HWO-DQ-sfw"; */
-"HWO-DQ-sfw.title" = "获取远程信息......";
-
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7"; */
 "hXq-5p-KS7.title" = "加载";
 
@@ -699,9 +690,6 @@
 
 /* Class = "NSMenuItem"; title = "Profiles"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "简介";
-
-/* Class = "NSButtonCell"; title = "Restore"; ObjectID = "ibt-MA-DJs"; */
-"ibt-MA-DJs.title" = "恢复";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ibW-Po-vbR"; */
 "ibW-Po-vbR.title" = "Text Cell";
@@ -1024,7 +1012,7 @@
 /* Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "qat-Dj-4j6"; */
 "qat-Dj-4j6.title" = "上次备份后的天数：";
 
-/* Class = "NSBox"; title = "Default params"; ObjectID = "Qc4-06-mOR"; */
+/* Class = "NSBox"; title = "Default parameters"; ObjectID = "Qc4-06-mOR"; */
 "Qc4-06-mOR.title" = "默认参数";
 
 /* Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N"; */
@@ -1320,9 +1308,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WlH-m8-C35"; */
 "WlH-m8-C35.title" = "Text Cell";
-
-/* Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "Wmd-vt-cwI"; */
-"Wmd-vt-cwI.title" = "远程服务器时需要";
 
 /* Class = "NSButtonCell"; title = "Rsa key"; ObjectID = "wmz-CK-ZzC"; */
 "wmz-CK-ZzC.title" = "Rsa 密钥";
