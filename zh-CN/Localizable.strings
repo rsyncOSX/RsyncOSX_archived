@@ -14,6 +14,9 @@
    New */
 "Add" = "Legg til";
 
+/* New */
+"Add config?" = "Legge til?";
+
 /* Add schedule */
 "Add Schedule?" = "Legg til oppgave?";
 
@@ -38,6 +41,16 @@
 /* Restore */
 "Cancel or Restore" = "Kanseler eller kopier";
 
+/* Copy files
+   Remote Info */
+"Cannot copy from a syncremote task..." = "Kan ikke kopiere fra syncremote...";
+
+/* Verify */
+"Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
+
+/* chinese */
+"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
+
 /* Close NSAlert */
 "Close" = "Lukk";
 
@@ -52,6 +65,9 @@
 
 /* Restore */
 "Copy single files or directory?" = "Kopier fil eller katalog?";
+
+/* copyright */
+"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
 
 /* main */
 "daily" = "daglig";
@@ -86,6 +102,9 @@
 /* Execute */
 "Delete selected task?" = "Slett valgte oppgave?";
 
+/* Tooltip */
+"Destination catalog:" = "Lokal katalog:";
+
 /* Snapshots */
 "Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
 
@@ -94,6 +113,9 @@
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
+
+/* plan */
+"earlier months" = "tidligere måned";
 
 /* Error rsync */
 "ERROR: no rsync in" = "FEIL: ingen rsync i";
@@ -138,6 +160,9 @@
 /* datetime */
 "hours" = "timer";
 
+/* icon */
+"Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+
 /* plan */
 "Keep" = "Behold";
 
@@ -150,6 +175,9 @@
 /* Remote info
    Remote Info */
 "Loaded cached data..." = "Lastet cached info...";
+
+/* Tooltip */
+"Local catalog:" = "Lokal katalog:";
 
 /* Copy files */
 "Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
@@ -167,6 +195,12 @@
 "Monday" = "mandag";
 
 /* Execute */
+"New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
+
+/* About */
+"New version is available:" = "Ny versjon er tilgjengelig:";
+
+/* Execute */
 "No rclone config found..." = "Ingen rclone konfigurasjon funnet";
 
 /* Execute */
@@ -175,11 +209,17 @@
 /* Schedule details */
 "no startdate" = "ingen startdato";
 
+/* Schedule details */
+"no stopdate" = "ingen stopp dato";
+
 /* Copy files */
 "No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
 
 /* plan */
 "none" = "ingen";
+
+/* norwegian */
+"Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
 /* Copy files */
 "Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
@@ -214,11 +254,17 @@
 /* Execute */
 "Possible error logging..." = "Mulig feil logging...";
 
+/* plan */
+"previous month" = "forrige måned";
+
 /* Execute */
 "Profile:" = "Profil:";
 
 /* Execute */
 "Profile: please wait..." = "Profil: vennligst vent...";
+
+/* Tooltip */
+"Remote catalog:" = "Ekstern katalog:";
 
 /* Restore */
 "Restore" = "Kopi";
@@ -253,8 +299,14 @@
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
 
+/* Tooltip */
+"Source catalog:" = "Ekstern katalog:";
+
 /* Restore */
 "Start restore?" = "Start kopi?";
+
+/* main */
+"stopped" = "stoppet";
 
 /* plan */
 "Sunday" = "søndag";
@@ -264,6 +316,9 @@
 
 /* Execute */
 "This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
+
+/* New */
+"This is added before?" = "Denne er lagt til tidligere?";
 
 /* plan */
 "this month" = "denne måned";
