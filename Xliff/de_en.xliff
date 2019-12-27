@@ -1,0 +1,3230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="RsyncOSX/Base.lproj/Main.storyboard" source-language="en" target-language="de" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.3" build-num="11C29"/>
+    </header>
+    <body>
+      <trans-unit id="0B4-M8-m3v.title" xml:space="preserve">
+        <source>Edit</source>
+        <target state="needs-translation">Edit</target>
+        <note>Class = "NSBox"; title = "Edit"; ObjectID = "0B4-M8-m3v";</note>
+      </trans-unit>
+      <trans-unit id="00G-Ps-GJD.title" xml:space="preserve">
+        <source>Local catalog : </source>
+        <target state="needs-translation">Local catalog : </target>
+        <note>Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD";</note>
+      </trans-unit>
+      <trans-unit id="0KI-B9-ezl.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "0KI-B9-ezl";</note>
+      </trans-unit>
+      <trans-unit id="1DK-sF-JKV.title" xml:space="preserve">
+        <source>Logging</source>
+        <target state="needs-translation">Logging</target>
+        <note>Class = "NSBox"; title = "Logging"; ObjectID = "1DK-sF-JKV";</note>
+      </trans-unit>
+      <trans-unit id="1Mb-0q-Dwi.title" xml:space="preserve">
+        <source>New version available:</source>
+        <target state="needs-translation">New version available:</target>
+        <note>Class = "NSTextFieldCell"; title = "New version available:"; ObjectID = "1Mb-0q-Dwi";</note>
+      </trans-unit>
+      <trans-unit id="1SO-6i-hws.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1SO-6i-hws";</note>
+      </trans-unit>
+      <trans-unit id="1Xq-6O-MUE.label" xml:space="preserve">
+        <source>All</source>
+        <target state="needs-translation">All</target>
+        <note>Class = "NSToolbarItem"; label = "All"; ObjectID = "1Xq-6O-MUE";</note>
+      </trans-unit>
+      <trans-unit id="1Xq-6O-MUE.paletteLabel" xml:space="preserve">
+        <source>All</source>
+        <target state="needs-translation">All</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "All"; ObjectID = "1Xq-6O-MUE";</note>
+      </trans-unit>
+      <trans-unit id="1Xq-6O-MUE.toolTip" xml:space="preserve">
+        <source>List all profiles and configurations...</source>
+        <target state="needs-translation">List all profiles and configurations...</target>
+        <note>Class = "NSToolbarItem"; toolTip = "List all profiles and configurations..."; ObjectID = "1Xq-6O-MUE";</note>
+      </trans-unit>
+      <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
+        <source>RsyncOSX</source>
+        <target state="needs-translation">RsyncOSX</target>
+        <note>Class = "NSMenuItem"; title = "RsyncOSX"; ObjectID = "1Xt-HY-uBw";</note>
+      </trans-unit>
+      <trans-unit id="01g-QQ-yHM.headerCell.title" xml:space="preserve">
+        <source>Date executed</source>
+        <target state="needs-translation">Date executed</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "01g-QQ-yHM";</note>
+      </trans-unit>
+      <trans-unit id="1o3-wD-XkY.headerCell.title" xml:space="preserve">
+        <source>Avail (GB)</source>
+        <target state="needs-translation">Avail (GB)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "1o3-wD-XkY";</note>
+      </trans-unit>
+      <trans-unit id="1xL-86-DnF.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "1xL-86-DnF";</note>
+      </trans-unit>
+      <trans-unit id="1xY-fG-SDm.title" xml:space="preserve">
+        <source>Remote catalog :</source>
+        <target state="needs-translation">Remote catalog :</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog :"; ObjectID = "1xY-fG-SDm";</note>
+      </trans-unit>
+      <trans-unit id="2Cv-Hb-dy9.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2Cv-Hb-dy9";</note>
+      </trans-unit>
+      <trans-unit id="2Fm-Br-GhC.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "2Fm-Br-GhC";</note>
+      </trans-unit>
+      <trans-unit id="2Kr-a7-U09.title" xml:space="preserve">
+        <source>ID:</source>
+        <target state="needs-translation">ID:</target>
+        <note>Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "2Kr-a7-U09";</note>
+      </trans-unit>
+      <trans-unit id="2W2-3F-urP.title" xml:space="preserve">
+        <source>KB to be transferred:</source>
+        <target state="needs-translation">KB to be transferred:</target>
+        <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "2W2-3F-urP";</note>
+      </trans-unit>
+      <trans-unit id="2eK-ib-h9A.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2eK-ib-h9A";</note>
+      </trans-unit>
+      <trans-unit id="2sX-ek-QE0.title" xml:space="preserve">
+        <source>Required</source>
+        <target state="needs-translation">Required</target>
+        <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "2sX-ek-QE0";</note>
+      </trans-unit>
+      <trans-unit id="2tH-gF-ycx.title" xml:space="preserve">
+        <source>synchronize</source>
+        <target state="needs-translation">synchronize</target>
+        <note>Class = "NSButtonCell"; title = "synchronize"; ObjectID = "2tH-gF-ycx";</note>
+      </trans-unit>
+      <trans-unit id="2zQ-iW-vbk.title" xml:space="preserve">
+        <source>remove -e ssh</source>
+        <target state="needs-translation">remove -e ssh</target>
+        <note>Class = "NSButtonCell"; title = "remove -e ssh"; ObjectID = "2zQ-iW-vbk";</note>
+      </trans-unit>
+      <trans-unit id="3Ch-5Q-dft.title" xml:space="preserve">
+        <source>Edit</source>
+        <target state="needs-translation">Edit</target>
+        <note>Class = "NSButtonCell"; title = "Edit"; ObjectID = "3Ch-5Q-dft";</note>
+      </trans-unit>
+      <trans-unit id="3LC-v7-7Pz.title" xml:space="preserve">
+        <source>Rsync command (--dry-run)</source>
+        <target state="needs-translation">Rsync command (--dry-run)</target>
+        <note>Class = "NSBox"; title = "Rsync command (--dry-run)"; ObjectID = "3LC-v7-7Pz";</note>
+      </trans-unit>
+      <trans-unit id="3Td-g5-CaS.title" xml:space="preserve">
+        <source>Total size (kB):</source>
+        <target state="needs-translation">Total size (kB):</target>
+        <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "3Td-g5-CaS";</note>
+      </trans-unit>
+      <trans-unit id="3lN-qc-jYH.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "3lN-qc-jYH";</note>
+      </trans-unit>
+      <trans-unit id="3pw-4t-6v9.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "3pw-4t-6v9";</note>
+      </trans-unit>
+      <trans-unit id="3xI-3C-guU.title" xml:space="preserve">
+        <source>Add</source>
+        <target state="needs-translation">Add</target>
+        <note>Class = "NSViewController"; title = "Add"; ObjectID = "3xI-3C-guU";</note>
+      </trans-unit>
+      <trans-unit id="4bI-2z-3J9.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "4bI-2z-3J9";</note>
+      </trans-unit>
+      <trans-unit id="4cL-gF-geP.headerCell.title" xml:space="preserve">
+        <source>Sched</source>
+        <target state="needs-translation">Sched</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "4cL-gF-geP";</note>
+      </trans-unit>
+      <trans-unit id="4fh-oN-1Ue.title" xml:space="preserve">
+        <source>lastorevery</source>
+        <target state="needs-translation">lastorevery</target>
+        <note>Class = "NSTextFieldCell"; title = "lastorevery"; ObjectID = "4fh-oN-1Ue";</note>
+      </trans-unit>
+      <trans-unit id="4rw-XH-Spd.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "4rw-XH-Spd";</note>
+      </trans-unit>
+      <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
+        <source>Quit RsyncOSX</source>
+        <target state="needs-translation">Quit RsyncOSX</target>
+        <note>Class = "NSMenuItem"; title = "Quit RsyncOSX"; ObjectID = "4sb-4s-VLi";</note>
+      </trans-unit>
+      <trans-unit id="5A9-Q1-SN9.title" xml:space="preserve">
+        <source>Edit</source>
+        <target state="needs-translation">Edit</target>
+        <note>Class = "NSMenu"; title = "Edit"; ObjectID = "5A9-Q1-SN9";</note>
+      </trans-unit>
+      <trans-unit id="5Ha-1J-UqF.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5Ha-1J-UqF";</note>
+      </trans-unit>
+      <trans-unit id="5PJ-QW-PyL.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5PJ-QW-PyL";</note>
+      </trans-unit>
+      <trans-unit id="5SJ-qh-z2I.title" xml:space="preserve">
+        <source>Getting information, please wait ...</source>
+        <target state="needs-translation">Getting information, please wait ...</target>
+        <note>Class = "NSTextFieldCell"; title = "Getting information, please wait ..."; ObjectID = "5SJ-qh-z2I";</note>
+      </trans-unit>
+      <trans-unit id="5TL-a2-yBQ.headerCell.title" xml:space="preserve">
+        <source>Stop schedule</source>
+        <target state="needs-translation">Stop schedule</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "5TL-a2-yBQ";</note>
+      </trans-unit>
+      <trans-unit id="5Zv-SY-8nT.title" xml:space="preserve">
+        <source>remove --delete</source>
+        <target state="needs-translation">remove --delete</target>
+        <note>Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT";</note>
+      </trans-unit>
+      <trans-unit id="5cK-IB-eA3.title" xml:space="preserve">
+        <source>Files to be transferred:</source>
+        <target state="needs-translation">Files to be transferred:</target>
+        <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "5cK-IB-eA3";</note>
+      </trans-unit>
+      <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
+        <source>About RsyncOSX</source>
+        <target state="needs-translation">About RsyncOSX</target>
+        <note>Class = "NSMenuItem"; title = "About RsyncOSX"; ObjectID = "5kV-Vb-QxS";</note>
+      </trans-unit>
+      <trans-unit id="5zk-w0-I3D.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5zk-w0-I3D";</note>
+      </trans-unit>
+      <trans-unit id="6XP-ke-9TT.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "6XP-ke-9TT";</note>
+      </trans-unit>
+      <trans-unit id="6ZS-zy-PHc.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "6ZS-zy-PHc";</note>
+      </trans-unit>
+      <trans-unit id="6rO-sZ-edB.title" xml:space="preserve">
+        <source>Remote catalog:</source>
+        <target state="needs-translation">Remote catalog:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB";</note>
+      </trans-unit>
+      <trans-unit id="7KY-LK-D7K.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "7KY-LK-D7K";</note>
+      </trans-unit>
+      <trans-unit id="7w4-6r-ai5.label" xml:space="preserve">
+        <source>abort</source>
+        <target state="needs-translation">abort</target>
+        <note>Class = "NSToolbarItem"; label = "abort"; ObjectID = "7w4-6r-ai5";</note>
+      </trans-unit>
+      <trans-unit id="7w4-6r-ai5.paletteLabel" xml:space="preserve">
+        <source>abort</source>
+        <target state="needs-translation">abort</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "abort"; ObjectID = "7w4-6r-ai5";</note>
+      </trans-unit>
+      <trans-unit id="7w4-6r-ai5.toolTip" xml:space="preserve">
+        <source>Abort task...</source>
+        <target state="needs-translation">Abort task...</target>
+        <note>Class = "NSToolbarItem"; toolTip = "Abort task..."; ObjectID = "7w4-6r-ai5";</note>
+      </trans-unit>
+      <trans-unit id="8YP-GO-G5h.title" xml:space="preserve">
+        <source>files :</source>
+        <target state="needs-translation">files :</target>
+        <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "8YP-GO-G5h";</note>
+      </trans-unit>
+      <trans-unit id="8ml-tx-gzW.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "8ml-tx-gzW";</note>
+      </trans-unit>
+      <trans-unit id="8n3-RC-KfH.title" xml:space="preserve">
+        <source>Number of files:</source>
+        <target state="needs-translation">Number of files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "8n3-RC-KfH";</note>
+      </trans-unit>
+      <trans-unit id="8nA-Jb-fac.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "8nA-Jb-fac";</note>
+      </trans-unit>
+      <trans-unit id="8pt-99-AYJ.headerCell.title" xml:space="preserve">
+        <source>Files </source>
+        <target state="needs-translation">Files </target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Files "; ObjectID = "8pt-99-AYJ";</note>
+      </trans-unit>
+      <trans-unit id="9hn-5x-M6a.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9hn-5x-M6a";</note>
+      </trans-unit>
+      <trans-unit id="9lf-HS-UMZ.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9lf-HS-UMZ";</note>
+      </trans-unit>
+      <trans-unit id="12s-Z1-kRl.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "12s-Z1-kRl";</note>
+      </trans-unit>
+      <trans-unit id="12y-cd-eEQ.headerCell.title" xml:space="preserve">
+        <source>Active</source>
+        <target state="needs-translation">Active</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "12y-cd-eEQ";</note>
+      </trans-unit>
+      <trans-unit id="27J-nn-5gh.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "27J-nn-5gh";</note>
+      </trans-unit>
+      <trans-unit id="032-vc-gNs.title" xml:space="preserve">
+        <source>Remote server:</source>
+        <target state="needs-translation">Remote server:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "032-vc-gNs";</note>
+      </trans-unit>
+      <trans-unit id="35g-px-ZH6.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "35g-px-ZH6";</note>
+      </trans-unit>
+      <trans-unit id="37m-qS-TRa.headerCell.title" xml:space="preserve">
+        <source>Avail(%)</source>
+        <target state="needs-translation">Avail(%)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "37m-qS-TRa";</note>
+      </trans-unit>
+      <trans-unit id="39A-da-zAW.title" xml:space="preserve">
+        <source>Show error messages...</source>
+        <target state="needs-translation">Show error messages...</target>
+        <note>Class = "NSButtonCell"; title = "Show error messages..."; ObjectID = "39A-da-zAW";</note>
+      </trans-unit>
+      <trans-unit id="41i-nE-ZWF.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "41i-nE-ZWF";</note>
+      </trans-unit>
+      <trans-unit id="43A-a5-y1p.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43A-a5-y1p";</note>
+      </trans-unit>
+      <trans-unit id="52M-g3-zq9.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "52M-g3-zq9";</note>
+      </trans-unit>
+      <trans-unit id="55D-T2-yld.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "55D-T2-yld";</note>
+      </trans-unit>
+      <trans-unit id="55G-cO-jYL.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "55G-cO-jYL";</note>
+      </trans-unit>
+      <trans-unit id="60W-M7-Vqr.title" xml:space="preserve">
+        <source>Profile :</source>
+        <target state="needs-translation">Profile :</target>
+        <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "60W-M7-Vqr";</note>
+      </trans-unit>
+      <trans-unit id="65j-NR-wz6.title" xml:space="preserve">
+        <source>Estimate</source>
+        <target state="needs-translation">Estimate</target>
+        <note>Class = "NSButtonCell"; title = "Estimate"; ObjectID = "65j-NR-wz6";</note>
+      </trans-unit>
+      <trans-unit id="66b-7r-iey.title" xml:space="preserve">
+        <source>Number of directories:</source>
+        <target state="needs-translation">Number of directories:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "66b-7r-iey";</note>
+      </trans-unit>
+      <trans-unit id="75g-jk-ycD.title" xml:space="preserve">
+        <source>Remote server:</source>
+        <target state="needs-translation">Remote server:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote server:"; ObjectID = "75g-jk-ycD";</note>
+      </trans-unit>
+      <trans-unit id="78a-Cw-Mjk.title" xml:space="preserve">
+        <source>Count</source>
+        <target state="needs-translation">Count</target>
+        <note>Class = "NSTextFieldCell"; title = "Count"; ObjectID = "78a-Cw-Mjk";</note>
+      </trans-unit>
+      <trans-unit id="090-WS-IHZ.title" xml:space="preserve">
+        <source>Info about : </source>
+        <target state="needs-translation">Info about : </target>
+        <note>Class = "NSTextFieldCell"; title = "Info about : "; ObjectID = "090-WS-IHZ";</note>
+      </trans-unit>
+      <trans-unit id="241-VI-fhB.headerCell.title" xml:space="preserve">
+        <source>Double click to select or Default</source>
+        <target state="needs-translation">Double click to select or Default</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Double click to select or Default"; ObjectID = "241-VI-fhB";</note>
+      </trans-unit>
+      <trans-unit id="302-lC-sbl.headerCell.title" xml:space="preserve">
+        <source>All output</source>
+        <target state="needs-translation">All output</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "All output"; ObjectID = "302-lC-sbl";</note>
+      </trans-unit>
+      <trans-unit id="798-Ig-rVS.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "798-Ig-rVS";</note>
+      </trans-unit>
+      <trans-unit id="857-EY-QrY.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "857-EY-QrY";</note>
+      </trans-unit>
+      <trans-unit id="ACw-EV-vDL.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ACw-EV-vDL";</note>
+      </trans-unit>
+      <trans-unit id="AEh-Gt-Awg.title" xml:space="preserve">
+        <source>Number of files:</source>
+        <target state="needs-translation">Number of files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "AEh-Gt-Awg";</note>
+      </trans-unit>
+      <trans-unit id="AGP-WH-AJy.title" xml:space="preserve">
+        <source>Save</source>
+        <target state="needs-translation">Save</target>
+        <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "AGP-WH-AJy";</note>
+      </trans-unit>
+      <trans-unit id="AIr-rt-OLN.headerCell.title" xml:space="preserve">
+        <source>Stop date schedule</source>
+        <target state="needs-translation">Stop date schedule</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Stop date schedule"; ObjectID = "AIr-rt-OLN";</note>
+      </trans-unit>
+      <trans-unit id="AMs-qg-ohN.title" xml:space="preserve">
+        <source>Either double click on row or select row and Load button</source>
+        <target state="needs-translation">Either double click on row or select row and Load button</target>
+        <note>Class = "NSTextFieldCell"; title = "Either double click on row or select row and Load button"; ObjectID = "AMs-qg-ohN";</note>
+      </trans-unit>
+      <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
+        <source>Main Menu</source>
+        <target state="needs-translation">Main Menu</target>
+        <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
+      </trans-unit>
+      <trans-unit id="Aa2-8Q-PPo.headerCell.title" xml:space="preserve">
+        <source>Days</source>
+        <target state="needs-translation">Days</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo";</note>
+      </trans-unit>
+      <trans-unit id="Ad7-9e-Q7b.title" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "Ad7-9e-Q7b";</note>
+      </trans-unit>
+      <trans-unit id="AkJ-MA-346.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "AkJ-MA-346";</note>
+      </trans-unit>
+      <trans-unit id="AlG-Cw-Xi9.title" xml:space="preserve">
+        <source>Logs</source>
+        <target state="needs-translation">Logs</target>
+        <note>Class = "NSViewController"; title = "Logs"; ObjectID = "AlG-Cw-Xi9";</note>
+      </trans-unit>
+      <trans-unit id="Am3-Ji-1Ox.title" xml:space="preserve">
+        <source>add suffix FreeBSD </source>
+        <target state="needs-translation">add suffix FreeBSD </target>
+        <note>Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox";</note>
+      </trans-unit>
+      <trans-unit id="B2y-Kc-2LJ.title" xml:space="preserve">
+        <source>Remote catalog : </source>
+        <target state="needs-translation">Remote catalog : </target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "B2y-Kc-2LJ";</note>
+      </trans-unit>
+      <trans-unit id="B5v-j0-w2F.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "B5v-j0-w2F";</note>
+      </trans-unit>
+      <trans-unit id="B9V-8v-Aba.title" xml:space="preserve">
+        <source>Ssh</source>
+        <target state="needs-translation">Ssh</target>
+        <note>Class = "NSViewController"; title = "Ssh"; ObjectID = "B9V-8v-Aba";</note>
+      </trans-unit>
+      <trans-unit id="B39-H6-802.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "B39-H6-802";</note>
+      </trans-unit>
+      <trans-unit id="BDO-Nt-D9h.title" xml:space="preserve">
+        <source>Estimating task, please wait...</source>
+        <target state="needs-translation">Estimating task, please wait...</target>
+        <note>Class = "NSTextFieldCell"; title = "Estimating task, please wait..."; ObjectID = "BDO-Nt-D9h";</note>
+      </trans-unit>
+      <trans-unit id="BEH-BV-PWu.title" xml:space="preserve">
+        <source>ssh port:</source>
+        <target state="needs-translation">ssh port:</target>
+        <note>Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "BEH-BV-PWu";</note>
+      </trans-unit>
+      <trans-unit id="BG6-Wq-kSc.title" xml:space="preserve">
+        <source>Automatic execution of local configurations</source>
+        <target state="needs-translation">Automatic execution of local configurations</target>
+        <note>Class = "NSButtonCell"; title = "Automatic execution of local configurations"; ObjectID = "BG6-Wq-kSc";</note>
+      </trans-unit>
+      <trans-unit id="BGM-Kg-KGO.title" xml:space="preserve">
+        <source>Clear</source>
+        <target state="needs-translation">Clear</target>
+        <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "BGM-Kg-KGO";</note>
+      </trans-unit>
+      <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
+        <source>Preferences…</source>
+        <target state="needs-translation">Preferences…</target>
+        <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
+      </trans-unit>
+      <trans-unit id="BVb-Fw-C80.headerCell.title" xml:space="preserve">
+        <source>Snap</source>
+        <target state="needs-translation">Snap</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "BVb-Fw-C80";</note>
+      </trans-unit>
+      <trans-unit id="Bb6-iv-DYc.title" xml:space="preserve">
+        <source>Verify</source>
+        <target state="needs-translation">Verify</target>
+        <note>Class = "NSViewController"; title = "Verify"; ObjectID = "Bb6-iv-DYc";</note>
+      </trans-unit>
+      <trans-unit id="Beq-PN-DJW.headerCell.title" xml:space="preserve">
+        <source>Avail (GB)</source>
+        <target state="needs-translation">Avail (GB)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW";</note>
+      </trans-unit>
+      <trans-unit id="BrN-3s-w3t.headerCell.title" xml:space="preserve">
+        <source>Logs</source>
+        <target state="needs-translation">Logs</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Logs"; ObjectID = "BrN-3s-w3t";</note>
+      </trans-unit>
+      <trans-unit id="Bu5-79-2AR.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Bu5-79-2AR";</note>
+      </trans-unit>
+      <trans-unit id="Byb-kM-Mpk.headerCell.title" xml:space="preserve">
+        <source>Batch</source>
+        <target state="needs-translation">Batch</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Batch"; ObjectID = "Byb-kM-Mpk";</note>
+      </trans-unit>
+      <trans-unit id="C7v-tI-RMe.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "C7v-tI-RMe";</note>
+      </trans-unit>
+      <trans-unit id="CCB-zy-XDh.title" xml:space="preserve">
+        <source>Error : no rsync in path</source>
+        <target state="needs-translation">Error : no rsync in path</target>
+        <note>Class = "NSTextFieldCell"; title = "Error : no rsync in path"; ObjectID = "CCB-zy-XDh";</note>
+      </trans-unit>
+      <trans-unit id="CIR-Jz-Krc.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "CIR-Jz-Krc";</note>
+      </trans-unit>
+      <trans-unit id="CUQ-YI-Irs.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "CUQ-YI-Irs";</note>
+      </trans-unit>
+      <trans-unit id="Can-2K-epd.headerCell.title" xml:space="preserve">
+        <source>Total dir</source>
+        <target state="needs-translation">Total dir</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Total dir"; ObjectID = "Can-2K-epd";</note>
+      </trans-unit>
+      <trans-unit id="CcG-h4-w76.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "CcG-h4-w76";</note>
+      </trans-unit>
+      <trans-unit id="Cg6-Ym-xzl.title" xml:space="preserve">
+        <source>Days since last backup:</source>
+        <target state="needs-translation">Days since last backup:</target>
+        <note>Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "Cg6-Ym-xzl";</note>
+      </trans-unit>
+      <trans-unit id="CiR-sD-XpQ.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "CiR-sD-XpQ";</note>
+      </trans-unit>
+      <trans-unit id="CkB-lg-RfP.title" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "CkB-lg-RfP";</note>
+      </trans-unit>
+      <trans-unit id="CwH-vm-SWF.title" xml:space="preserve">
+        <source>Total size (kB):</source>
+        <target state="needs-translation">Total size (kB):</target>
+        <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "CwH-vm-SWF";</note>
+      </trans-unit>
+      <trans-unit id="D7f-Cg-ZtW.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "D7f-Cg-ZtW";</note>
+      </trans-unit>
+      <trans-unit id="DDM-6v-WfN.headerCell.title" xml:space="preserve">
+        <source>Information</source>
+        <target state="needs-translation">Information</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Information"; ObjectID = "DDM-6v-WfN";</note>
+      </trans-unit>
+      <trans-unit id="DH3-Cj-gh5.title" xml:space="preserve">
+        <source>Local catalog:</source>
+        <target state="needs-translation">Local catalog:</target>
+        <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "DH3-Cj-gh5";</note>
+      </trans-unit>
+      <trans-unit id="DNv-s3-smo.title" xml:space="preserve">
+        <source>Actions</source>
+        <target state="needs-translation">Actions</target>
+        <note>Class = "NSBox"; title = "Actions"; ObjectID = "DNv-s3-smo";</note>
+      </trans-unit>
+      <trans-unit id="Dl6-i6-oA7.title" xml:space="preserve">
+        <source>status</source>
+        <target state="needs-translation">status</target>
+        <note>Class = "NSTextFieldCell"; title = "status"; ObjectID = "Dl6-i6-oA7";</note>
+      </trans-unit>
+      <trans-unit id="E9g-tP-EaI.headerCell.title" xml:space="preserve">
+        <source>ID</source>
+        <target state="needs-translation">ID</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "E9g-tP-EaI";</note>
+      </trans-unit>
+      <trans-unit id="EH0-Ty-cyz.title" xml:space="preserve">
+        <source>Catalog parameters (use Finder to drag and drop paths)</source>
+        <target state="needs-translation">Catalog parameters (use Finder to drag and drop paths)</target>
+        <note>Class = "NSBox"; title = "Catalog parameters (use Finder to drag and drop paths)"; ObjectID = "EH0-Ty-cyz";</note>
+      </trans-unit>
+      <trans-unit id="EU9-bF-96n.title" xml:space="preserve">
+        <source>rsyncversionshort</source>
+        <target state="needs-translation">rsyncversionshort</target>
+        <note>Class = "NSTextFieldCell"; title = "rsyncversionshort"; ObjectID = "EU9-bF-96n";</note>
+      </trans-unit>
+      <trans-unit id="EVd-zs-u1i.title" xml:space="preserve">
+        <source>RsyncOSX</source>
+        <target state="needs-translation">RsyncOSX</target>
+        <note>Class = "NSWindow"; title = "RsyncOSX"; ObjectID = "EVd-zs-u1i";</note>
+      </trans-unit>
+      <trans-unit id="EZS-oJ-mKt.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "EZS-oJ-mKt";</note>
+      </trans-unit>
+      <trans-unit id="Eb4-2s-zft.title" xml:space="preserve">
+        <source>new :  </source>
+        <target state="needs-translation">new :  </target>
+        <note>Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft";</note>
+      </trans-unit>
+      <trans-unit id="EeS-fZ-csl.title" xml:space="preserve">
+        <source>Dsa public key is found.</source>
+        <target state="needs-translation">Dsa public key is found.</target>
+        <note>Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl";</note>
+      </trans-unit>
+      <trans-unit id="EiP-tC-Ve8.title" xml:space="preserve">
+        <source>Selected logs: 0</source>
+        <target state="needs-translation">Selected logs: 0</target>
+        <note>Class = "NSTextFieldCell"; title = "Selected logs: 0"; ObjectID = "EiP-tC-Ve8";</note>
+      </trans-unit>
+      <trans-unit id="Emj-io-EGu.headerCell.title" xml:space="preserve">
+        <source>Date executed</source>
+        <target state="needs-translation">Date executed</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "Emj-io-EGu";</note>
+      </trans-unit>
+      <trans-unit id="ExZ-72-tbq.headerCell.title" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "ExZ-72-tbq";</note>
+      </trans-unit>
+      <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
+        <source>Help</source>
+        <target state="needs-translation">Help</target>
+        <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
+      </trans-unit>
+      <trans-unit id="F9T-gx-oeJ.title" xml:space="preserve">
+        <source>configuration ID:</source>
+        <target state="needs-translation">configuration ID:</target>
+        <note>Class = "NSTextFieldCell"; title = "configuration ID:"; ObjectID = "F9T-gx-oeJ";</note>
+      </trans-unit>
+      <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
+        <source>RsyncOSX Help</source>
+        <target state="needs-translation">RsyncOSX Help</target>
+        <note>Class = "NSMenuItem"; title = "RsyncOSX Help"; ObjectID = "FKE-Sm-Kum";</note>
+      </trans-unit>
+      <trans-unit id="FSh-WF-QKH.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "FSh-WF-QKH";</note>
+      </trans-unit>
+      <trans-unit id="FW3-kS-er7.title" xml:space="preserve">
+        <source>kB to be transferred:</source>
+        <target state="needs-translation">kB to be transferred:</target>
+        <note>Class = "NSTextFieldCell"; title = "kB to be transferred:"; ObjectID = "FW3-kS-er7";</note>
+      </trans-unit>
+      <trans-unit id="FXq-M1-hKG.headerCell.title" xml:space="preserve">
+        <source>Schedule</source>
+        <target state="needs-translation">Schedule</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Schedule"; ObjectID = "FXq-M1-hKG";</note>
+      </trans-unit>
+      <trans-unit id="Fd7-v3-h8m.headerCell.title" xml:space="preserve">
+        <source>User name</source>
+        <target state="needs-translation">User name</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "User name"; ObjectID = "Fd7-v3-h8m";</note>
+      </trans-unit>
+      <trans-unit id="Fmg-bN-W4h.title" xml:space="preserve">
+        <source>About</source>
+        <target state="needs-translation">About</target>
+        <note>Class = "NSViewController"; title = "About"; ObjectID = "Fmg-bN-W4h";</note>
+      </trans-unit>
+      <trans-unit id="Fpf-1W-JiM.headerCell.title" xml:space="preserve">
+        <source>Delete schedule</source>
+        <target state="needs-translation">Delete schedule</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Delete schedule"; ObjectID = "Fpf-1W-JiM";</note>
+      </trans-unit>
+      <trans-unit id="FrI-lc-qcT.title" xml:space="preserve">
+        <source>Number of days</source>
+        <target state="needs-translation">Number of days</target>
+        <note>Class = "NSBox"; title = "Number of days"; ObjectID = "FrI-lc-qcT";</note>
+      </trans-unit>
+      <trans-unit id="Fry-AD-Rmf.headerCell.title" xml:space="preserve">
+        <source>Server</source>
+        <target state="needs-translation">Server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Server"; ObjectID = "Fry-AD-Rmf";</note>
+      </trans-unit>
+      <trans-unit id="FyK-Vx-KC3.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "FyK-Vx-KC3";</note>
+      </trans-unit>
+      <trans-unit id="Fzm-Cm-ENf.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Fzm-Cm-ENf";</note>
+      </trans-unit>
+      <trans-unit id="G5V-jz-71t.headerCell.title" xml:space="preserve">
+        <source>Days</source>
+        <target state="needs-translation">Days</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "G5V-jz-71t";</note>
+      </trans-unit>
+      <trans-unit id="G8q-vp-nPf.title" xml:space="preserve">
+        <source>Total size (kB) :</source>
+        <target state="needs-translation">Total size (kB) :</target>
+        <note>Class = "NSTextFieldCell"; title = "Total size (kB) :"; ObjectID = "G8q-vp-nPf";</note>
+      </trans-unit>
+      <trans-unit id="G43-jD-Ptq.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "G43-jD-Ptq";</note>
+      </trans-unit>
+      <trans-unit id="GF9-Lf-PIQ.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "GF9-Lf-PIQ";</note>
+      </trans-unit>
+      <trans-unit id="GJH-xK-5LY.title" xml:space="preserve">
+        <source>Files</source>
+        <target state="needs-translation">Files</target>
+        <note>Class = "NSViewController"; title = "Files"; ObjectID = "GJH-xK-5LY";</note>
+      </trans-unit>
+      <trans-unit id="GKP-F2-XbX.title" xml:space="preserve">
+        <source>temporary path restore:</source>
+        <target state="needs-translation">temporary path restore:</target>
+        <note>Class = "NSTextFieldCell"; title = "temporary path restore:"; ObjectID = "GKP-F2-XbX";</note>
+      </trans-unit>
+      <trans-unit id="GYz-8J-WDp.label" xml:space="preserve">
+        <source>info</source>
+        <target state="needs-translation">info</target>
+        <note>Class = "NSToolbarItem"; label = "info"; ObjectID = "GYz-8J-WDp";</note>
+      </trans-unit>
+      <trans-unit id="GYz-8J-WDp.paletteLabel" xml:space="preserve">
+        <source>info</source>
+        <target state="needs-translation">info</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "info"; ObjectID = "GYz-8J-WDp";</note>
+      </trans-unit>
+      <trans-unit id="GYz-8J-WDp.toolTip" xml:space="preserve">
+        <source>Display output from rsync...</source>
+        <target state="needs-translation">Display output from rsync...</target>
+        <note>Class = "NSToolbarItem"; toolTip = "Display output from rsync..."; ObjectID = "GYz-8J-WDp";</note>
+      </trans-unit>
+      <trans-unit id="GZS-gl-N62.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "GZS-gl-N62";</note>
+      </trans-unit>
+      <trans-unit id="GiH-5F-U37.headerCell.title" xml:space="preserve">
+        <source>New</source>
+        <target state="needs-translation">New</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "New"; ObjectID = "GiH-5F-U37";</note>
+      </trans-unit>
+      <trans-unit id="Gw5-qa-AvW.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Gw5-qa-AvW";</note>
+      </trans-unit>
+      <trans-unit id="H79-tQ-7yT.headerCell.title" xml:space="preserve">
+        <source>Avail(%)</source>
+        <target state="needs-translation">Avail(%)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "H79-tQ-7yT";</note>
+      </trans-unit>
+      <trans-unit id="HEg-kc-zdY.headerCell.title" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "HEg-kc-zdY";</note>
+      </trans-unit>
+      <trans-unit id="HLP-3M-FTI.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "HLP-3M-FTI";</note>
+      </trans-unit>
+      <trans-unit id="HQE-mN-lgx.title" xml:space="preserve">
+        <source>Number of files:</source>
+        <target state="needs-translation">Number of files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "HQE-mN-lgx";</note>
+      </trans-unit>
+      <trans-unit id="HXz-ee-7v0.title" xml:space="preserve">
+        <source>Select</source>
+        <target state="needs-translation">Select</target>
+        <note>Class = "NSButtonCell"; title = "Select"; ObjectID = "HXz-ee-7v0";</note>
+      </trans-unit>
+      <trans-unit id="Hah-L7-Bvj.title" xml:space="preserve">
+        <source>Cut</source>
+        <target state="needs-translation">Cut</target>
+        <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "Hah-L7-Bvj";</note>
+      </trans-unit>
+      <trans-unit id="I5D-Dq-PRZ.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "I5D-Dq-PRZ";</note>
+      </trans-unit>
+      <trans-unit id="I48-tD-2H3.title" xml:space="preserve">
+        <source>All rights reserved.</source>
+        <target state="needs-translation">All rights reserved.</target>
+        <note>Class = "NSTextFieldCell"; title = "All rights reserved."; ObjectID = "I48-tD-2H3";</note>
+      </trans-unit>
+      <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
+        <source>Profiles</source>
+        <target state="needs-translation">Profiles</target>
+        <note>Class = "NSMenuItem"; title = "Profiles"; ObjectID = "IAo-SY-fd9";</note>
+      </trans-unit>
+      <trans-unit id="IDs-zU-XOw.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "IDs-zU-XOw";</note>
+      </trans-unit>
+      <trans-unit id="IMJ-3e-rYJ.title" xml:space="preserve">
+        <source>Getting information, please wait ...</source>
+        <target state="needs-translation">Getting information, please wait ...</target>
+        <note>Class = "NSTextFieldCell"; title = "Getting information, please wait ..."; ObjectID = "IMJ-3e-rYJ";</note>
+      </trans-unit>
+      <trans-unit id="Icw-Qm-VbA.headerCell.title" xml:space="preserve">
+        <source>files copied</source>
+        <target state="needs-translation">files copied</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "files copied"; ObjectID = "Icw-Qm-VbA";</note>
+      </trans-unit>
+      <trans-unit id="Ien-PS-8Dv.title" xml:space="preserve">
+        <source>no log</source>
+        <target state="needs-translation">no log</target>
+        <note>Class = "NSButtonCell"; title = "no log"; ObjectID = "Ien-PS-8Dv";</note>
+      </trans-unit>
+      <trans-unit id="IiK-OB-SY0.title" xml:space="preserve">
+        <source>New profile name </source>
+        <target state="needs-translation">New profile name </target>
+        <note>Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0";</note>
+      </trans-unit>
+      <trans-unit id="Iii-2E-YHF.title" xml:space="preserve">
+        <source>reset next snapshot number</source>
+        <target state="needs-translation">reset next snapshot number</target>
+        <note>Class = "NSButtonCell"; title = "reset next snapshot number"; ObjectID = "Iii-2E-YHF";</note>
+      </trans-unit>
+      <trans-unit id="ImR-R8-DPA.title" xml:space="preserve">
+        <source>rsync daemon</source>
+        <target state="needs-translation">rsync daemon</target>
+        <note>Class = "NSTextFieldCell"; title = "rsync daemon"; ObjectID = "ImR-R8-DPA";</note>
+      </trans-unit>
+      <trans-unit id="Izt-dc-ZBW.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "Izt-dc-ZBW";</note>
+      </trans-unit>
+      <trans-unit id="J3H-wG-sas.title" xml:space="preserve">
+        <source>Local catalog:</source>
+        <target state="needs-translation">Local catalog:</target>
+        <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "J3H-wG-sas";</note>
+      </trans-unit>
+      <trans-unit id="J5u-bX-RZk.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "J5u-bX-RZk";</note>
+      </trans-unit>
+      <trans-unit id="JF9-s4-tD7.title" xml:space="preserve">
+        <source>Create keys</source>
+        <target state="needs-translation">Create keys</target>
+        <note>Class = "NSButtonCell"; title = "Create keys"; ObjectID = "JF9-s4-tD7";</note>
+      </trans-unit>
+      <trans-unit id="JKJ-Kp-IuV.title" xml:space="preserve">
+        <source>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</source>
+        <target state="needs-translation">Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</target>
+        <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
+      </trans-unit>
+      <trans-unit id="Jil-HV-f4r.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Jil-HV-f4r";</note>
+      </trans-unit>
+      <trans-unit id="K2f-Jb-uUB.headerCell.title" xml:space="preserve">
+        <source>Days</source>
+        <target state="needs-translation">Days</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "K2f-Jb-uUB";</note>
+      </trans-unit>
+      <trans-unit id="K9c-yf-VMY.title" xml:space="preserve">
+        <source>RsyncOSX parameters</source>
+        <target state="needs-translation">RsyncOSX parameters</target>
+        <note>Class = "NSViewController"; title = "RsyncOSX parameters"; ObjectID = "K9c-yf-VMY";</note>
+      </trans-unit>
+      <trans-unit id="KIJ-hF-wBF.title" xml:space="preserve">
+        <source>Remote info</source>
+        <target state="needs-translation">Remote info</target>
+        <note>Class = "NSBox"; title = "Remote info"; ObjectID = "KIJ-hF-wBF";</note>
+      </trans-unit>
+      <trans-unit id="KPx-Pg-dAk.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "KPx-Pg-dAk";</note>
+      </trans-unit>
+      <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
+        <source>Show All</source>
+        <target state="needs-translation">Show All</target>
+        <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
+      </trans-unit>
+      <trans-unit id="KfP-cj-1yp.headerCell.title" xml:space="preserve">
+        <source>Select</source>
+        <target state="needs-translation">Select</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Select"; ObjectID = "KfP-cj-1yp";</note>
+      </trans-unit>
+      <trans-unit id="L1n-6w-rIj.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "L1n-6w-rIj";</note>
+      </trans-unit>
+      <trans-unit id="L5g-6S-at9.title" xml:space="preserve">
+        <source>Save</source>
+        <target state="needs-translation">Save</target>
+        <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "L5g-6S-at9";</note>
+      </trans-unit>
+      <trans-unit id="LD6-1k-P7V.headerCell.title" xml:space="preserve">
+        <source>Stat</source>
+        <target state="needs-translation">Stat</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Stat"; ObjectID = "LD6-1k-P7V";</note>
+      </trans-unit>
+      <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
+        <source>Bring All to Front</source>
+        <target state="needs-translation">Bring All to Front</target>
+        <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
+      </trans-unit>
+      <trans-unit id="LGQ-8V-u3e.title" xml:space="preserve">
+        <source>Restore to tmp catalog</source>
+        <target state="needs-translation">Restore to tmp catalog</target>
+        <note>Class = "NSBox"; title = "Restore to tmp catalog"; ObjectID = "LGQ-8V-u3e";</note>
+      </trans-unit>
+      <trans-unit id="LNh-Ch-4lY.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "LNh-Ch-4lY";</note>
+      </trans-unit>
+      <trans-unit id="LPL-36-14W.title" xml:space="preserve">
+        <source>Restore</source>
+        <target state="needs-translation">Restore</target>
+        <note>Class = "NSViewController"; title = "Restore"; ObjectID = "LPL-36-14W";</note>
+      </trans-unit>
+      <trans-unit id="Lkc-8f-opa.title" xml:space="preserve">
+        <source>Remote username:</source>
+        <target state="needs-translation">Remote username:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa";</note>
+      </trans-unit>
+      <trans-unit id="LpG-4N-4hH.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "LpG-4N-4hH";</note>
+      </trans-unit>
+      <trans-unit id="LtM-4s-IJ1.title" xml:space="preserve">
+        <source>Dsa key</source>
+        <target state="needs-translation">Dsa key</target>
+        <note>Class = "NSButtonCell"; title = "Dsa key"; ObjectID = "LtM-4s-IJ1";</note>
+      </trans-unit>
+      <trans-unit id="Lur-Sd-kBP.headerCell.title" xml:space="preserve">
+        <source>Result</source>
+        <target state="needs-translation">Result</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "Lur-Sd-kBP";</note>
+      </trans-unit>
+      <trans-unit id="MVn-QH-6i5.title" xml:space="preserve">
+        <source>Executing task, please wait...</source>
+        <target state="needs-translation">Executing task, please wait...</target>
+        <note>Class = "NSTextFieldCell"; title = "Executing task, please wait..."; ObjectID = "MVn-QH-6i5";</note>
+      </trans-unit>
+      <trans-unit id="MWF-sp-vNQ.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MWF-sp-vNQ";</note>
+      </trans-unit>
+      <trans-unit id="Md7-8G-z2y.title" xml:space="preserve">
+        <source>minimum log</source>
+        <target state="needs-translation">minimum log</target>
+        <note>Class = "NSButtonCell"; title = "minimum log"; ObjectID = "Md7-8G-z2y";</note>
+      </trans-unit>
+      <trans-unit id="Ml3-CP-4eZ.title" xml:space="preserve">
+        <source>Estimating progress</source>
+        <target state="needs-translation">Estimating progress</target>
+        <note>Class = "NSViewController"; title = "Estimating progress"; ObjectID = "Ml3-CP-4eZ";</note>
+      </trans-unit>
+      <trans-unit id="MmU-sA-BEQ.title" xml:space="preserve">
+        <source>output</source>
+        <target state="needs-translation">output</target>
+        <note>Class = "NSTextFieldCell"; title = "output"; ObjectID = "MmU-sA-BEQ";</note>
+      </trans-unit>
+      <trans-unit id="Mn8-vX-I59.title" xml:space="preserve">
+        <source>Configuration snapshot</source>
+        <target state="needs-translation">Configuration snapshot</target>
+        <note>Class = "NSBox"; title = "Configuration snapshot"; ObjectID = "Mn8-vX-I59";</note>
+      </trans-unit>
+      <trans-unit id="NC7-Ka-Wgs.title" xml:space="preserve">
+        <source>days older</source>
+        <target state="needs-translation">days older</target>
+        <note>Class = "NSTextFieldCell"; title = "days older"; ObjectID = "NC7-Ka-Wgs";</note>
+      </trans-unit>
+      <trans-unit id="NDf-8B-idO.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSBox"; title = "Task"; ObjectID = "NDf-8B-idO";</note>
+      </trans-unit>
+      <trans-unit id="NFc-sB-jWP.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "NFc-sB-jWP";</note>
+      </trans-unit>
+      <trans-unit id="NMo-mM-awS.title" xml:space="preserve">
+        <source>Intro</source>
+        <target state="needs-translation">Intro</target>
+        <note>Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS";</note>
+      </trans-unit>
+      <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
+        <source>Services</source>
+        <target state="needs-translation">Services</target>
+        <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
+      </trans-unit>
+      <trans-unit id="NQS-NB-OI2.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2";</note>
+      </trans-unit>
+      <trans-unit id="Nbe-Ck-Oeu.title" xml:space="preserve">
+        <source>Delete files:</source>
+        <target state="needs-translation">Delete files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "Nbe-Ck-Oeu";</note>
+      </trans-unit>
+      <trans-unit id="NhR-OP-Eqo.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "NhR-OP-Eqo";</note>
+      </trans-unit>
+      <trans-unit id="O7r-k8-Xo1.title" xml:space="preserve">
+        <source>Capacity</source>
+        <target state="needs-translation">Capacity</target>
+        <note>Class = "NSButtonCell"; title = "Capacity"; ObjectID = "O7r-k8-Xo1";</note>
+      </trans-unit>
+      <trans-unit id="OIG-cZ-jQ9.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OIG-cZ-jQ9";</note>
+      </trans-unit>
+      <trans-unit id="OOi-RG-4If.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OOi-RG-4If";</note>
+      </trans-unit>
+      <trans-unit id="OS5-Kb-1ct.title" xml:space="preserve">
+        <source>Params</source>
+        <target state="needs-translation">Params</target>
+        <note>Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct";</note>
+      </trans-unit>
+      <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
+        <source>Minimize</source>
+        <target state="needs-translation">Minimize</target>
+        <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
+      </trans-unit>
+      <trans-unit id="OlM-9W-pxf.title" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "OlM-9W-pxf";</note>
+      </trans-unit>
+      <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
+        <source>Hide RsyncOSX</source>
+        <target state="needs-translation">Hide RsyncOSX</target>
+        <note>Class = "NSMenuItem"; title = "Hide RsyncOSX"; ObjectID = "Olw-nP-bQN";</note>
+      </trans-unit>
+      <trans-unit id="OrH-Ty-gyv.label" xml:space="preserve">
+        <source>batch</source>
+        <target state="needs-translation">batch</target>
+        <note>Class = "NSToolbarItem"; label = "batch"; ObjectID = "OrH-Ty-gyv";</note>
+      </trans-unit>
+      <trans-unit id="OrH-Ty-gyv.paletteLabel" xml:space="preserve">
+        <source>batch</source>
+        <target state="needs-translation">batch</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "batch"; ObjectID = "OrH-Ty-gyv";</note>
+      </trans-unit>
+      <trans-unit id="OrH-Ty-gyv.toolTip" xml:space="preserve">
+        <source>Execute tasks marked for batch...</source>
+        <target state="needs-translation">Execute tasks marked for batch...</target>
+        <note>Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv";</note>
+      </trans-unit>
+      <trans-unit id="Ow3-Wv-2WC.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "Ow3-Wv-2WC";</note>
+      </trans-unit>
+      <trans-unit id="P4M-Uu-xLy.title" xml:space="preserve">
+        <source>Copy</source>
+        <target state="needs-translation">Copy</target>
+        <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "P4M-Uu-xLy";</note>
+      </trans-unit>
+      <trans-unit id="P5d-qB-XWj.title" xml:space="preserve">
+        <source>Server :</source>
+        <target state="needs-translation">Server :</target>
+        <note>Class = "NSTextFieldCell"; title = "Server :"; ObjectID = "P5d-qB-XWj";</note>
+      </trans-unit>
+      <trans-unit id="PIK-cY-cmQ.title" xml:space="preserve">
+        <source>File or catalog to restore</source>
+        <target state="needs-translation">File or catalog to restore</target>
+        <note>Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ";</note>
+      </trans-unit>
+      <trans-unit id="PkH-9i-AY6.title" xml:space="preserve">
+        <source>Select a start date and then a schedule </source>
+        <target state="needs-translation">Select a start date and then a schedule </target>
+        <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
+      </trans-unit>
+      <trans-unit id="PqI-jS-0y7.headerCell.title" xml:space="preserve">
+        <source>Profile</source>
+        <target state="needs-translation">Profile</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Profile"; ObjectID = "PqI-jS-0y7";</note>
+      </trans-unit>
+      <trans-unit id="Psw-ga-cgO.title" xml:space="preserve">
+        <source>View Controller Configuration</source>
+        <target state="needs-translation">View Controller Configuration</target>
+        <note>Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO";</note>
+      </trans-unit>
+      <trans-unit id="Pt7-g0-FoN.headerCell.title" xml:space="preserve">
+        <source>Backup ID</source>
+        <target state="needs-translation">Backup ID</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Backup ID"; ObjectID = "Pt7-g0-FoN";</note>
+      </trans-unit>
+      <trans-unit id="Pty-Sm-7R1.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSBox"; title = "Remote server"; ObjectID = "Pty-Sm-7R1";</note>
+      </trans-unit>
+      <trans-unit id="Pya-4O-vFn.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Pya-4O-vFn";</note>
+      </trans-unit>
+      <trans-unit id="QCj-5P-T2N.title" xml:space="preserve">
+        <source>Once</source>
+        <target state="needs-translation">Once</target>
+        <note>Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N";</note>
+      </trans-unit>
+      <trans-unit id="QOZ-8g-24B.title" xml:space="preserve">
+        <source>dayofweek</source>
+        <target state="needs-translation">dayofweek</target>
+        <note>Class = "NSTextFieldCell"; title = "dayofweek"; ObjectID = "QOZ-8g-24B";</note>
+      </trans-unit>
+      <trans-unit id="QPs-xd-DDF.title" xml:space="preserve">
+        <source>add suffix Linux</source>
+        <target state="needs-translation">add suffix Linux</target>
+        <note>Class = "NSButtonCell"; title = "add suffix Linux"; ObjectID = "QPs-xd-DDF";</note>
+      </trans-unit>
+      <trans-unit id="Qc4-06-mOR.title" xml:space="preserve">
+        <source>Default parameters</source>
+        <target state="needs-translation">Default parameters</target>
+        <note>Class = "NSBox"; title = "Default parameters"; ObjectID = "Qc4-06-mOR";</note>
+      </trans-unit>
+      <trans-unit id="QdJ-n1-Mtr.title" xml:space="preserve">
+        <source>Process info</source>
+        <target state="needs-translation">Process info</target>
+        <note>Class = "NSBox"; title = "Process info"; ObjectID = "QdJ-n1-Mtr";</note>
+      </trans-unit>
+      <trans-unit id="QmL-ZM-Xc4.label" xml:space="preserve">
+        <source>backupnow</source>
+        <target state="needs-translation">backupnow</target>
+        <note>Class = "NSToolbarItem"; label = "backupnow"; ObjectID = "QmL-ZM-Xc4";</note>
+      </trans-unit>
+      <trans-unit id="QmL-ZM-Xc4.paletteLabel" xml:space="preserve">
+        <source>backupnow</source>
+        <target state="needs-translation">backupnow</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "backupnow"; ObjectID = "QmL-ZM-Xc4";</note>
+      </trans-unit>
+      <trans-unit id="QmL-ZM-Xc4.toolTip" xml:space="preserve">
+        <source>Execute all tasks now...</source>
+        <target state="needs-translation">Execute all tasks now...</target>
+        <note>Class = "NSToolbarItem"; toolTip = "Execute all tasks now..."; ObjectID = "QmL-ZM-Xc4";</note>
+      </trans-unit>
+      <trans-unit id="QwI-78-cY5.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "QwI-78-cY5";</note>
+      </trans-unit>
+      <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
+        <source>Zoom</source>
+        <target state="needs-translation">Zoom</target>
+        <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
+      </trans-unit>
+      <trans-unit id="RDZ-vd-MTb.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "RDZ-vd-MTb";</note>
+      </trans-unit>
+      <trans-unit id="RFG-uU-oRD.title" xml:space="preserve">
+        <source>copyright</source>
+        <target state="needs-translation">copyright</target>
+        <note>Class = "NSTextFieldCell"; title = "copyright"; ObjectID = "RFG-uU-oRD";</note>
+      </trans-unit>
+      <trans-unit id="RPd-mi-bp4.title" xml:space="preserve">
+        <source>Default params</source>
+        <target state="needs-translation">Default params</target>
+        <note>Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4";</note>
+      </trans-unit>
+      <trans-unit id="RVB-9H-LQM.title" xml:space="preserve">
+        <source>Local info</source>
+        <target state="needs-translation">Local info</target>
+        <note>Class = "NSBox"; title = "Local info"; ObjectID = "RVB-9H-LQM";</note>
+      </trans-unit>
+      <trans-unit id="RX2-fV-dtX.title" xml:space="preserve">
+        <source>estimating</source>
+        <target state="needs-translation">estimating</target>
+        <note>Class = "NSTextFieldCell"; title = "estimating"; ObjectID = "RX2-fV-dtX";</note>
+      </trans-unit>
+      <trans-unit id="RhH-4H-aT8.title" xml:space="preserve">
+        <source>selectedstart</source>
+        <target state="needs-translation">selectedstart</target>
+        <note>Class = "NSTextFieldCell"; title = "selectedstart"; ObjectID = "RhH-4H-aT8";</note>
+      </trans-unit>
+      <trans-unit id="Rq7-8F-bHb.headerCell.title" xml:space="preserve">
+        <source>Snap</source>
+        <target state="needs-translation">Snap</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "Rq7-8F-bHb";</note>
+      </trans-unit>
+      <trans-unit id="Rtk-Je-8N1.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Rtk-Je-8N1";</note>
+      </trans-unit>
+      <trans-unit id="Rv2-24-MJh.title" xml:space="preserve">
+        <source>Dowload</source>
+        <target state="needs-translation">Dowload</target>
+        <note>Class = "NSButtonCell"; title = "Dowload"; ObjectID = "Rv2-24-MJh";</note>
+      </trans-unit>
+      <trans-unit id="Rve-M9-9Pp.title" xml:space="preserve">
+        <source>kB :</source>
+        <target state="needs-translation">kB :</target>
+        <note>Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "Rve-M9-9Pp";</note>
+      </trans-unit>
+      <trans-unit id="S9g-HX-Qf6.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "S9g-HX-Qf6";</note>
+      </trans-unit>
+      <trans-unit id="SBO-UN-kMy.title" xml:space="preserve">
+        <source>Number of remote files: 0 </source>
+        <target state="needs-translation">Number of remote files: 0 </target>
+        <note>Class = "NSTextFieldCell"; title = "Number of remote files: 0 "; ObjectID = "SBO-UN-kMy";</note>
+      </trans-unit>
+      <trans-unit id="SH2-9k-XFZ.title" xml:space="preserve">
+        <source>Most recent schedule on top...</source>
+        <target state="needs-translation">Most recent schedule on top...</target>
+        <note>Class = "NSTextFieldCell"; title = "Most recent schedule on top..."; ObjectID = "SH2-9k-XFZ";</note>
+      </trans-unit>
+      <trans-unit id="SHi-wp-O4D.title" xml:space="preserve">
+        <source>Remote info</source>
+        <target state="needs-translation">Remote info</target>
+        <note>Class = "NSBox"; title = "Remote info"; ObjectID = "SHi-wp-O4D";</note>
+      </trans-unit>
+      <trans-unit id="SJF-H0-E3i.title" xml:space="preserve">
+        <source>Paste</source>
+        <target state="needs-translation">Paste</target>
+        <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "SJF-H0-E3i";</note>
+      </trans-unit>
+      <trans-unit id="STf-VO-dOL.headerCell.title" xml:space="preserve">
+        <source>Last run</source>
+        <target state="needs-translation">Last run</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "STf-VO-dOL";</note>
+      </trans-unit>
+      <trans-unit id="SWF-DA-TlU.headerCell.title" xml:space="preserve">
+        <source>Size (kB)</source>
+        <target state="needs-translation">Size (kB)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Size (kB)"; ObjectID = "SWF-DA-TlU";</note>
+      </trans-unit>
+      <trans-unit id="Sdh-u9-bH2.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Sdh-u9-bH2";</note>
+      </trans-unit>
+      <trans-unit id="Sr3-1q-P2Q.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Sr3-1q-P2Q";</note>
+      </trans-unit>
+      <trans-unit id="T5h-eX-MCg.headerCell.title" xml:space="preserve">
+        <source>%</source>
+        <target state="needs-translation">%</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "%"; ObjectID = "T5h-eX-MCg";</note>
+      </trans-unit>
+      <trans-unit id="T8X-dP-h3a.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "T8X-dP-h3a";</note>
+      </trans-unit>
+      <trans-unit id="TG2-kC-9mp.headerCell.title" xml:space="preserve">
+        <source>Output</source>
+        <target state="needs-translation">Output</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "TG2-kC-9mp";</note>
+      </trans-unit>
+      <trans-unit id="TTa-S0-fjX.title" xml:space="preserve">
+        <source>Numbers remote</source>
+        <target state="needs-translation">Numbers remote</target>
+        <note>Class = "NSBox"; title = "Numbers remote"; ObjectID = "TTa-S0-fjX";</note>
+      </trans-unit>
+      <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
+        <source>Window</source>
+        <target state="needs-translation">Window</target>
+        <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
+      </trans-unit>
+      <trans-unit id="TdE-t5-FjR.title" xml:space="preserve">
+        <source>number of days last backup:</source>
+        <target state="needs-translation">number of days last backup:</target>
+        <note>Class = "NSTextFieldCell"; title = "number of days last backup:"; ObjectID = "TdE-t5-FjR";</note>
+      </trans-unit>
+      <trans-unit id="Tes-Z8-BIj.title" xml:space="preserve">
+        <source>scp dsa pub key:</source>
+        <target state="needs-translation">scp dsa pub key:</target>
+        <note>Class = "NSTextFieldCell"; title = "scp dsa pub key:"; ObjectID = "Tes-Z8-BIj";</note>
+      </trans-unit>
+      <trans-unit id="Tp7-5c-5Ii.title" xml:space="preserve">
+        <source>next snapshot num:</source>
+        <target state="needs-translation">next snapshot num:</target>
+        <note>Class = "NSTextFieldCell"; title = "next snapshot num:"; ObjectID = "Tp7-5c-5Ii";</note>
+      </trans-unit>
+      <trans-unit id="TqG-6l-QwU.title" xml:space="preserve">
+        <source>Profile :</source>
+        <target state="needs-translation">Profile :</target>
+        <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "TqG-6l-QwU";</note>
+      </trans-unit>
+      <trans-unit id="U4F-fe-c48.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U4F-fe-c48";</note>
+      </trans-unit>
+      <trans-unit id="UZO-oe-ZyD.title" xml:space="preserve">
+        <source>ssh port:</source>
+        <target state="needs-translation">ssh port:</target>
+        <note>Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "UZO-oe-ZyD";</note>
+      </trans-unit>
+      <trans-unit id="UbI-k2-XjL.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "UbI-k2-XjL";</note>
+      </trans-unit>
+      <trans-unit id="Uvm-NK-TNr.title" xml:space="preserve">
+        <source>Delete all</source>
+        <target state="needs-translation">Delete all</target>
+        <note>Class = "NSButtonCell"; title = "Delete all"; ObjectID = "Uvm-NK-TNr";</note>
+      </trans-unit>
+      <trans-unit id="Uye-5c-buD.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Uye-5c-buD";</note>
+      </trans-unit>
+      <trans-unit id="V8a-eh-20b.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "V8a-eh-20b";</note>
+      </trans-unit>
+      <trans-unit id="VBk-Qe-g0o.title" xml:space="preserve">
+        <source>backup (uses two last user selected parameters)</source>
+        <target state="needs-translation">backup (uses two last user selected parameters)</target>
+        <note>Class = "NSButtonCell"; title = "backup (uses two last user selected parameters)"; ObjectID = "VBk-Qe-g0o";</note>
+      </trans-unit>
+      <trans-unit id="VFf-HQ-GLW.headerCell.title" xml:space="preserve">
+        <source>Period</source>
+        <target state="needs-translation">Period</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Period"; ObjectID = "VFf-HQ-GLW";</note>
+      </trans-unit>
+      <trans-unit id="VWl-UA-V1i.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VWl-UA-V1i";</note>
+      </trans-unit>
+      <trans-unit id="VYu-Xf-XJc.label" xml:space="preserve">
+        <source>config</source>
+        <target state="needs-translation">config</target>
+        <note>Class = "NSToolbarItem"; label = "config"; ObjectID = "VYu-Xf-XJc";</note>
+      </trans-unit>
+      <trans-unit id="VYu-Xf-XJc.paletteLabel" xml:space="preserve">
+        <source>config</source>
+        <target state="needs-translation">config</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "config"; ObjectID = "VYu-Xf-XJc";</note>
+      </trans-unit>
+      <trans-unit id="VYu-Xf-XJc.toolTip" xml:space="preserve">
+        <source>Display userconfiguration</source>
+        <target state="needs-translation">Display userconfiguration</target>
+        <note>Class = "NSToolbarItem"; toolTip = "Display userconfiguration"; ObjectID = "VYu-Xf-XJc";</note>
+      </trans-unit>
+      <trans-unit id="Vbd-tp-W9Q.title" xml:space="preserve">
+        <source>Changed</source>
+        <target state="needs-translation">Changed</target>
+        <note>Class = "NSButtonCell"; title = "Changed"; ObjectID = "Vbd-tp-W9Q";</note>
+      </trans-unit>
+      <trans-unit id="Vdr-fp-XzO.title" xml:space="preserve">
+        <source>Hide Others</source>
+        <target state="needs-translation">Hide Others</target>
+        <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
+      </trans-unit>
+      <trans-unit id="Vnu-mV-aob.title" xml:space="preserve">
+        <source>icon</source>
+        <target state="needs-translation">icon</target>
+        <note>Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob";</note>
+      </trans-unit>
+      <trans-unit id="W3l-xH-fMA.title" xml:space="preserve">
+        <source>New files:</source>
+        <target state="needs-translation">New files:</target>
+        <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "W3l-xH-fMA";</note>
+      </trans-unit>
+      <trans-unit id="WMA-Xf-UcN.title" xml:space="preserve">
+        <source>Don´t add trailing /</source>
+        <target state="needs-translation">Don´t add trailing /</target>
+        <note>Class = "NSButtonCell"; title = "Don´t add trailing /"; ObjectID = "WMA-Xf-UcN";</note>
+      </trans-unit>
+      <trans-unit id="WVf-5Q-8C4.title" xml:space="preserve">
+        <source>Optional</source>
+        <target state="needs-translation">Optional</target>
+        <note>Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "WVf-5Q-8C4";</note>
+      </trans-unit>
+      <trans-unit id="WW7-sg-7Xq.title" xml:space="preserve">
+        <source>scp rsa pub key:</source>
+        <target state="needs-translation">scp rsa pub key:</target>
+        <note>Class = "NSTextFieldCell"; title = "scp rsa pub key:"; ObjectID = "WW7-sg-7Xq";</note>
+      </trans-unit>
+      <trans-unit id="WWj-MW-4MO.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WWj-MW-4MO";</note>
+      </trans-unit>
+      <trans-unit id="WYK-hg-6Bv.title" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "WYK-hg-6Bv";</note>
+      </trans-unit>
+      <trans-unit id="WbP-J3-f5z.title" xml:space="preserve">
+        <source>To be transferred</source>
+        <target state="needs-translation">To be transferred</target>
+        <note>Class = "NSBox"; title = "To be transferred"; ObjectID = "WbP-J3-f5z";</note>
+      </trans-unit>
+      <trans-unit id="WkQ-b5-iVL.title" xml:space="preserve">
+        <source>Update</source>
+        <target state="needs-translation">Update</target>
+        <note>Class = "NSButtonCell"; title = "Update"; ObjectID = "WkQ-b5-iVL";</note>
+      </trans-unit>
+      <trans-unit id="WlH-m8-C35.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WlH-m8-C35";</note>
+      </trans-unit>
+      <trans-unit id="Woh-4u-GUH.title" xml:space="preserve">
+        <source>Number of directories:</source>
+        <target state="needs-translation">Number of directories:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "Woh-4u-GUH";</note>
+      </trans-unit>
+      <trans-unit id="X2U-4M-dkS.title" xml:space="preserve">
+        <source>Required if remote server</source>
+        <target state="needs-translation">Required if remote server</target>
+        <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "X2U-4M-dkS";</note>
+      </trans-unit>
+      <trans-unit id="X6b-BG-uCr.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "X6b-BG-uCr";</note>
+      </trans-unit>
+      <trans-unit id="XAM-h1-StD.title" xml:space="preserve">
+        <source>Docs</source>
+        <target state="needs-translation">Docs</target>
+        <note>Class = "NSButtonCell"; title = "Docs"; ObjectID = "XAM-h1-StD";</note>
+      </trans-unit>
+      <trans-unit id="XIS-9x-9Gh.title" xml:space="preserve">
+        <source>Files to be transferred:</source>
+        <target state="needs-translation">Files to be transferred:</target>
+        <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "XIS-9x-9Gh";</note>
+      </trans-unit>
+      <trans-unit id="XbU-fs-Bir.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "XbU-fs-Bir";</note>
+      </trans-unit>
+      <trans-unit id="XjB-Sb-slI.title" xml:space="preserve">
+        <source>path RsyncOSXsched:</source>
+        <target state="needs-translation">path RsyncOSXsched:</target>
+        <note>Class = "NSTextFieldCell"; title = "path RsyncOSXsched:"; ObjectID = "XjB-Sb-slI";</note>
+      </trans-unit>
+      <trans-unit id="Y5P-iP-A70.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Y5P-iP-A70";</note>
+      </trans-unit>
+      <trans-unit id="YCX-qU-avh.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YCX-qU-avh";</note>
+      </trans-unit>
+      <trans-unit id="YCe-8d-WsE.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "YCe-8d-WsE";</note>
+      </trans-unit>
+      <trans-unit id="YGi-oe-yDr.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YGi-oe-yDr";</note>
+      </trans-unit>
+      <trans-unit id="YPN-3P-BXs.title" xml:space="preserve">
+        <source>Restore</source>
+        <target state="needs-translation">Restore</target>
+        <note>Class = "NSButtonCell"; title = "Restore"; ObjectID = "YPN-3P-BXs";</note>
+      </trans-unit>
+      <trans-unit id="YaD-4f-lEl.title" xml:space="preserve">
+        <source>Date last backup:</source>
+        <target state="needs-translation">Date last backup:</target>
+        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "YaD-4f-lEl";</note>
+      </trans-unit>
+      <trans-unit id="YdX-1p-DZ9.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YdX-1p-DZ9";</note>
+      </trans-unit>
+      <trans-unit id="YmB-7A-vYE.title" xml:space="preserve">
+        <source>Environment</source>
+        <target state="needs-translation">Environment</target>
+        <note>Class = "NSBox"; title = "Environment"; ObjectID = "YmB-7A-vYE";</note>
+      </trans-unit>
+      <trans-unit id="Z6c-BQ-VEV.title" xml:space="preserve">
+        <source>Norwegian</source>
+        <target state="needs-translation">Norwegian</target>
+        <note>Class = "NSTextFieldCell"; title = "Norwegian"; ObjectID = "Z6c-BQ-VEV";</note>
+      </trans-unit>
+      <trans-unit id="Z8Z-vX-Z7f.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Z8Z-vX-Z7f";</note>
+      </trans-unit>
+      <trans-unit id="ZJm-XI-lka.title" xml:space="preserve">
+        <source>User selected params</source>
+        <target state="needs-translation">User selected params</target>
+        <note>Class = "NSTextFieldCell"; title = "User selected params"; ObjectID = "ZJm-XI-lka";</note>
+      </trans-unit>
+      <trans-unit id="ZpW-Be-i8h.headerCell.title" xml:space="preserve">
+        <source>Days</source>
+        <target state="needs-translation">Days</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "ZpW-Be-i8h";</note>
+      </trans-unit>
+      <trans-unit id="Zsa-We-CKZ.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Zsa-We-CKZ";</note>
+      </trans-unit>
+      <trans-unit id="a0m-Z1-grn.title" xml:space="preserve">
+        <source>Rsa public key is found.</source>
+        <target state="needs-translation">Rsa public key is found.</target>
+        <note>Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn";</note>
+      </trans-unit>
+      <trans-unit id="aCU-js-shc.title" xml:space="preserve">
+        <source>Open</source>
+        <target state="needs-translation">Open</target>
+        <note>Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc";</note>
+      </trans-unit>
+      <trans-unit id="aHy-27-4y5.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "aHy-27-4y5";</note>
+      </trans-unit>
+      <trans-unit id="aO0-eB-xFM.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aO0-eB-xFM";</note>
+      </trans-unit>
+      <trans-unit id="aT2-oA-ahR.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aT2-oA-ahR";</note>
+      </trans-unit>
+      <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
+        <source>Window</source>
+        <target state="needs-translation">Window</target>
+        <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
+      </trans-unit>
+      <trans-unit id="aye-JD-U1q.title" xml:space="preserve">
+        <source>Number of logs:</source>
+        <target state="needs-translation">Number of logs:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of logs:"; ObjectID = "aye-JD-U1q";</note>
+      </trans-unit>
+      <trans-unit id="b5N-g5-vv6.title" xml:space="preserve">
+        <source>verify</source>
+        <target state="needs-translation">verify</target>
+        <note>Class = "NSButtonCell"; title = "verify"; ObjectID = "b5N-g5-vv6";</note>
+      </trans-unit>
+      <trans-unit id="b9w-AI-p9K.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "b9w-AI-p9K";</note>
+      </trans-unit>
+      <trans-unit id="bCH-Oe-dEC.title" xml:space="preserve">
+        <source>Backup all now</source>
+        <target state="needs-translation">Backup all now</target>
+        <note>Class = "NSMenuItem"; title = "Backup all now"; ObjectID = "bCH-Oe-dEC";</note>
+      </trans-unit>
+      <trans-unit id="bMD-bn-iZW.title" xml:space="preserve">
+        <source>Remote catalog:</source>
+        <target state="needs-translation">Remote catalog:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "bMD-bn-iZW";</note>
+      </trans-unit>
+      <trans-unit id="bPV-Wb-DGM.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "bPV-Wb-DGM";</note>
+      </trans-unit>
+      <trans-unit id="bPa-Pw-blK.title" xml:space="preserve">
+        <source>Logging to file</source>
+        <target state="needs-translation">Logging to file</target>
+        <note>Class = "NSBox"; title = "Logging to file"; ObjectID = "bPa-Pw-blK";</note>
+      </trans-unit>
+      <trans-unit id="bPp-gZ-UDZ.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "bPp-gZ-UDZ";</note>
+      </trans-unit>
+      <trans-unit id="bVT-KQ-Buk.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "bVT-KQ-Buk";</note>
+      </trans-unit>
+      <trans-unit id="bgh-eQ-3ly.headerCell.title" xml:space="preserve">
+        <source>Used (GB)</source>
+        <target state="needs-translation">Used (GB)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Used (GB)"; ObjectID = "bgh-eQ-3ly";</note>
+      </trans-unit>
+      <trans-unit id="bib-Uj-vzu.title" xml:space="preserve">
+        <source>File</source>
+        <target state="needs-translation">File</target>
+        <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
+      </trans-unit>
+      <trans-unit id="c3e-f5-7YK.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c3e-f5-7YK";</note>
+      </trans-unit>
+      <trans-unit id="cDj-gG-IHY.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "cDj-gG-IHY";</note>
+      </trans-unit>
+      <trans-unit id="cKa-xb-U4B.headerCell.title" xml:space="preserve">
+        <source>Select file or catalog to restore (and double click to copy in one go)</source>
+        <target state="needs-translation">Select file or catalog to restore (and double click to copy in one go)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Select file or catalog to restore (and double click to copy in one go)"; ObjectID = "cKa-xb-U4B";</note>
+      </trans-unit>
+      <trans-unit id="ceM-Kt-SJU.title" xml:space="preserve">
+        <source>Details about files</source>
+        <target state="needs-translation">Details about files</target>
+        <note>Class = "NSViewController"; title = "Details about files"; ObjectID = "ceM-Kt-SJU";</note>
+      </trans-unit>
+      <trans-unit id="cpU-CN-ZOm.title" xml:space="preserve">
+        <source>Copy</source>
+        <target state="needs-translation">Copy</target>
+        <note>Class = "NSButtonCell"; title = "Copy"; ObjectID = "cpU-CN-ZOm";</note>
+      </trans-unit>
+      <trans-unit id="d42-5A-02m.title" xml:space="preserve">
+        <source>Connections</source>
+        <target state="needs-translation">Connections</target>
+        <note>Class = "NSMenuItem"; title = "Connections"; ObjectID = "d42-5A-02m";</note>
+      </trans-unit>
+      <trans-unit id="dDj-C3-nB5.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "dDj-C3-nB5";</note>
+      </trans-unit>
+      <trans-unit id="dEW-Mo-F8C.title" xml:space="preserve">
+        <source>Select tmp: </source>
+        <target state="needs-translation">Select tmp: </target>
+        <note>Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "dEW-Mo-F8C";</note>
+      </trans-unit>
+      <trans-unit id="dMs-cI-mzQ.title" xml:space="preserve">
+        <source>File</source>
+        <target state="needs-translation">File</target>
+        <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
+      </trans-unit>
+      <trans-unit id="dTX-H7-8VC.title" xml:space="preserve">
+        <source>Profile :</source>
+        <target state="needs-translation">Profile :</target>
+        <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC";</note>
+      </trans-unit>
+      <trans-unit id="dqv-MZ-kBF.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "dqv-MZ-kBF";</note>
+      </trans-unit>
+      <trans-unit id="dsn-9I-wI5.title" xml:space="preserve">
+        <source> detailed logging</source>
+        <target state="needs-translation"> detailed logging</target>
+        <note>Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5";</note>
+      </trans-unit>
+      <trans-unit id="dtI-40-Iqi.headerCell.title" xml:space="preserve">
+        <source>When</source>
+        <target state="needs-translation">When</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi";</note>
+      </trans-unit>
+      <trans-unit id="dti-GW-qCA.title" xml:space="preserve">
+        <source>Optional</source>
+        <target state="needs-translation">Optional</target>
+        <note>Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "dti-GW-qCA";</note>
+      </trans-unit>
+      <trans-unit id="e0Y-OG-qu5.headerCell.title" xml:space="preserve">
+        <source>Snap</source>
+        <target state="needs-translation">Snap</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "e0Y-OG-qu5";</note>
+      </trans-unit>
+      <trans-unit id="e1h-Yf-46N.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "e1h-Yf-46N";</note>
+      </trans-unit>
+      <trans-unit id="e5v-pd-xF9.title" xml:space="preserve">
+        <source>Details about files</source>
+        <target state="needs-translation">Details about files</target>
+        <note>Class = "NSViewController"; title = "Details about files"; ObjectID = "e5v-pd-xF9";</note>
+      </trans-unit>
+      <trans-unit id="eAP-VY-l6H.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "eAP-VY-l6H";</note>
+      </trans-unit>
+      <trans-unit id="eHU-gd-SBP.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eHU-gd-SBP";</note>
+      </trans-unit>
+      <trans-unit id="eIC-WC-dFt.title" xml:space="preserve">
+        <source>Select snapshots to keep</source>
+        <target state="needs-translation">Select snapshots to keep</target>
+        <note>Class = "NSBox"; title = "Select snapshots to keep"; ObjectID = "eIC-WC-dFt";</note>
+      </trans-unit>
+      <trans-unit id="eLp-YO-ses.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eLp-YO-ses";</note>
+      </trans-unit>
+      <trans-unit id="eNk-N9-vVo.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eNk-N9-vVo";</note>
+      </trans-unit>
+      <trans-unit id="eSz-E4-xy1.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eSz-E4-xy1";</note>
+      </trans-unit>
+      <trans-unit id="ecv-vl-IKk.headerCell.title" xml:space="preserve">
+        <source>Server</source>
+        <target state="needs-translation">Server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Server"; ObjectID = "ecv-vl-IKk";</note>
+      </trans-unit>
+      <trans-unit id="egX-mx-3Br.title" xml:space="preserve">
+        <source>full log</source>
+        <target state="needs-translation">full log</target>
+        <note>Class = "NSButtonCell"; title = "full log"; ObjectID = "egX-mx-3Br";</note>
+      </trans-unit>
+      <trans-unit id="egt-C3-u4G.title" xml:space="preserve">
+        <source>Execute</source>
+        <target state="needs-translation">Execute</target>
+        <note>Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G";</note>
+      </trans-unit>
+      <trans-unit id="ej1-6m-NgB.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "ej1-6m-NgB";</note>
+      </trans-unit>
+      <trans-unit id="eys-24-pCG.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "eys-24-pCG";</note>
+      </trans-unit>
+      <trans-unit id="f6o-pt-x0z.title" xml:space="preserve">
+        <source>v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin</source>
+        <target state="needs-translation">v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin</target>
+        <note>Class = "NSButtonCell"; title = "v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z";</note>
+      </trans-unit>
+      <trans-unit id="f8w-ZJ-YZg.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "f8w-ZJ-YZg";</note>
+      </trans-unit>
+      <trans-unit id="fAL-TO-qxo.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo";</note>
+      </trans-unit>
+      <trans-unit id="fZA-KQ-voS.title" xml:space="preserve">
+        <source>Delete files:</source>
+        <target state="needs-translation">Delete files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "fZA-KQ-voS";</note>
+      </trans-unit>
+      <trans-unit id="fiO-Ux-xlw.title" xml:space="preserve">
+        <source>Snapshots</source>
+        <target state="needs-translation">Snapshots</target>
+        <note>Class = "NSViewController"; title = "Snapshots"; ObjectID = "fiO-Ux-xlw";</note>
+      </trans-unit>
+      <trans-unit id="fnk-Kq-6LU.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "fnk-Kq-6LU";</note>
+      </trans-unit>
+      <trans-unit id="fwm-ch-a0w.headerCell.title" xml:space="preserve">
+        <source>Total num</source>
+        <target state="needs-translation">Total num</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Total num"; ObjectID = "fwm-ch-a0w";</note>
+      </trans-unit>
+      <trans-unit id="fyc-hd-Fqh.title" xml:space="preserve">
+        <source>New or delete</source>
+        <target state="needs-translation">New or delete</target>
+        <note>Class = "NSBox"; title = "New or delete"; ObjectID = "fyc-hd-Fqh";</note>
+      </trans-unit>
+      <trans-unit id="fyt-XU-Mpu.title" xml:space="preserve">
+        <source>Default</source>
+        <target state="needs-translation">Default</target>
+        <note>Class = "NSButtonCell"; title = "Default"; ObjectID = "fyt-XU-Mpu";</note>
+      </trans-unit>
+      <trans-unit id="g1a-zY-Mpq.label" xml:space="preserve">
+        <source>info</source>
+        <target state="needs-translation">info</target>
+        <note>Class = "NSToolbarItem"; label = "info"; ObjectID = "g1a-zY-Mpq";</note>
+      </trans-unit>
+      <trans-unit id="g1a-zY-Mpq.paletteLabel" xml:space="preserve">
+        <source>info</source>
+        <target state="needs-translation">info</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "info"; ObjectID = "g1a-zY-Mpq";</note>
+      </trans-unit>
+      <trans-unit id="g1a-zY-Mpq.toolTip" xml:space="preserve">
+        <source>Display output from rsync singletasks...</source>
+        <target state="needs-translation">Display output from rsync singletasks...</target>
+        <note>Class = "NSToolbarItem"; toolTip = "Display output from rsync singletasks..."; ObjectID = "g1a-zY-Mpq";</note>
+      </trans-unit>
+      <trans-unit id="gCo-mB-zNc.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "gCo-mB-zNc";</note>
+      </trans-unit>
+      <trans-unit id="gJb-lQ-0wt.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "gJb-lQ-0wt";</note>
+      </trans-unit>
+      <trans-unit id="gKi-ca-sia.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gKi-ca-sia";</note>
+      </trans-unit>
+      <trans-unit id="gRY-vZ-99W.title" xml:space="preserve">
+        <source>Completed...</source>
+        <target state="needs-translation">Completed...</target>
+        <note>Class = "NSTextFieldCell"; title = "Completed..."; ObjectID = "gRY-vZ-99W";</note>
+      </trans-unit>
+      <trans-unit id="gVQ-92-htT.title" xml:space="preserve">
+        <source>Total size (kB):</source>
+        <target state="needs-translation">Total size (kB):</target>
+        <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "gVQ-92-htT";</note>
+      </trans-unit>
+      <trans-unit id="gXW-nt-e2S.title" xml:space="preserve">
+        <source>Check</source>
+        <target state="needs-translation">Check</target>
+        <note>Class = "NSButtonCell"; title = "Check"; ObjectID = "gXW-nt-e2S";</note>
+      </trans-unit>
+      <trans-unit id="gci-hz-pdE.headerCell.title" xml:space="preserve">
+        <source>Result</source>
+        <target state="needs-translation">Result</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "gci-hz-pdE";</note>
+      </trans-unit>
+      <trans-unit id="gfR-hu-CuQ.headerCell.title" xml:space="preserve">
+        <source>Day in week</source>
+        <target state="needs-translation">Day in week</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Day in week"; ObjectID = "gfR-hu-CuQ";</note>
+      </trans-unit>
+      <trans-unit id="gih-MT-omN.title" xml:space="preserve">
+        <source>Stop all</source>
+        <target state="needs-translation">Stop all</target>
+        <note>Class = "NSButtonCell"; title = "Stop all"; ObjectID = "gih-MT-omN";</note>
+      </trans-unit>
+      <trans-unit id="goN-EU-g61.title" xml:space="preserve">
+        <source>Check rsa</source>
+        <target state="needs-translation">Check rsa</target>
+        <note>Class = "NSButtonCell"; title = "Check rsa"; ObjectID = "goN-EU-g61";</note>
+      </trans-unit>
+      <trans-unit id="gsP-5c-DW5.title" xml:space="preserve">
+        <source>delete :  </source>
+        <target state="needs-translation">delete :  </target>
+        <note>Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5";</note>
+      </trans-unit>
+      <trans-unit id="h4F-dN-GN0.title" xml:space="preserve">
+        <source>Load</source>
+        <target state="needs-translation">Load</target>
+        <note>Class = "NSButtonCell"; title = "Load"; ObjectID = "h4F-dN-GN0";</note>
+      </trans-unit>
+      <trans-unit id="hBf-gt-Mxo.title" xml:space="preserve">
+        <source>Remote username:</source>
+        <target state="needs-translation">Remote username:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo";</note>
+      </trans-unit>
+      <trans-unit id="hF2-vi-oTK.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "hF2-vi-oTK";</note>
+      </trans-unit>
+      <trans-unit id="hGt-Wj-YDD.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hGt-Wj-YDD";</note>
+      </trans-unit>
+      <trans-unit id="hKn-nF-gg1.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hKn-nF-gg1";</note>
+      </trans-unit>
+      <trans-unit id="hLU-yg-gB8.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hLU-yg-gB8";</note>
+      </trans-unit>
+      <trans-unit id="hTP-NL-EPM.title" xml:space="preserve">
+        <source>Number of files:</source>
+        <target state="needs-translation">Number of files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "hTP-NL-EPM";</note>
+      </trans-unit>
+      <trans-unit id="hXq-5p-KS7.title" xml:space="preserve">
+        <source>Load</source>
+        <target state="needs-translation">Load</target>
+        <note>Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7";</note>
+      </trans-unit>
+      <trans-unit id="hpD-hN-6Xb.title" xml:space="preserve">
+        <source>Enable environment</source>
+        <target state="needs-translation">Enable environment</target>
+        <note>Class = "NSButtonCell"; title = "Enable environment"; ObjectID = "hpD-hN-6Xb";</note>
+      </trans-unit>
+      <trans-unit id="hq8-Fq-pip.title" xml:space="preserve">
+        <source>Check dsa</source>
+        <target state="needs-translation">Check dsa</target>
+        <note>Class = "NSButtonCell"; title = "Check dsa"; ObjectID = "hq8-Fq-pip";</note>
+      </trans-unit>
+      <trans-unit id="hrN-sQ-oUZ.title" xml:space="preserve">
+        <source>Edit</source>
+        <target state="needs-translation">Edit</target>
+        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "hrN-sQ-oUZ";</note>
+      </trans-unit>
+      <trans-unit id="hsc-HX-kP6.headerCell.title" xml:space="preserve">
+        <source>ID</source>
+        <target state="needs-translation">ID</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "hsc-HX-kP6";</note>
+      </trans-unit>
+      <trans-unit id="huo-sU-wpe.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "huo-sU-wpe";</note>
+      </trans-unit>
+      <trans-unit id="hwk-s3-pSJ.title" xml:space="preserve">
+        <source>output</source>
+        <target state="needs-translation">output</target>
+        <note>Class = "NSTextFieldCell"; title = "output"; ObjectID = "hwk-s3-pSJ";</note>
+      </trans-unit>
+      <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
+        <source>Services</source>
+        <target state="needs-translation">Services</target>
+        <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
+      </trans-unit>
+      <trans-unit id="i8f-03-7XY.title" xml:space="preserve">
+        <source>Total size (kB):</source>
+        <target state="needs-translation">Total size (kB):</target>
+        <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "i8f-03-7XY";</note>
+      </trans-unit>
+      <trans-unit id="iEk-Zm-Qpb.title" xml:space="preserve">
+        <source>dir :</source>
+        <target state="needs-translation">dir :</target>
+        <note>Class = "NSTextFieldCell"; title = "dir :"; ObjectID = "iEk-Zm-Qpb";</note>
+      </trans-unit>
+      <trans-unit id="iEn-jH-KFP.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "iEn-jH-KFP";</note>
+      </trans-unit>
+      <trans-unit id="iLe-BY-z0B.title" xml:space="preserve">
+        <source>Paths for RsyncOSX and RsyncOSXsched</source>
+        <target state="needs-translation">Paths for RsyncOSX and RsyncOSXsched</target>
+        <note>Class = "NSBox"; title = "Paths for RsyncOSX and RsyncOSXsched"; ObjectID = "iLe-BY-z0B";</note>
+      </trans-unit>
+      <trans-unit id="iS6-br-dsn.title" xml:space="preserve">
+        <source>Daily</source>
+        <target state="needs-translation">Daily</target>
+        <note>Class = "NSButtonCell"; title = "Daily"; ObjectID = "iS6-br-dsn";</note>
+      </trans-unit>
+      <trans-unit id="ibW-Po-vbR.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ibW-Po-vbR";</note>
+      </trans-unit>
+      <trans-unit id="ifc-VC-OWD.title" xml:space="preserve">
+        <source>Number of directories:</source>
+        <target state="needs-translation">Number of directories:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "ifc-VC-OWD";</note>
+      </trans-unit>
+      <trans-unit id="ipH-US-wgO.title" xml:space="preserve">
+        <source> port: </source>
+        <target state="needs-translation"> port: </target>
+        <note>Class = "NSTextFieldCell"; title = " port: "; ObjectID = "ipH-US-wgO";</note>
+      </trans-unit>
+      <trans-unit id="irb-Gi-c2A.title" xml:space="preserve">
+        <source>Source for restore file or catalog</source>
+        <target state="needs-translation">Source for restore file or catalog</target>
+        <note>Class = "NSBox"; title = "Source for restore file or catalog"; ObjectID = "irb-Gi-c2A";</note>
+      </trans-unit>
+      <trans-unit id="iu4-bN-FAI.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "iu4-bN-FAI";</note>
+      </trans-unit>
+      <trans-unit id="j1s-jO-7Gs.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "j1s-jO-7Gs";</note>
+      </trans-unit>
+      <trans-unit id="jTS-YA-55S.title" xml:space="preserve">
+        <source>verify</source>
+        <target state="needs-translation">verify</target>
+        <note>Class = "NSButtonCell"; title = "verify"; ObjectID = "jTS-YA-55S";</note>
+      </trans-unit>
+      <trans-unit id="jTT-Mq-cPB.title" xml:space="preserve">
+        <source>Delete files:</source>
+        <target state="needs-translation">Delete files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "jTT-Mq-cPB";</note>
+      </trans-unit>
+      <trans-unit id="jjS-gu-o5C.title" xml:space="preserve">
+        <source>Check data</source>
+        <target state="needs-translation">Check data</target>
+        <note>Class = "NSButtonCell"; title = "Check data"; ObjectID = "jjS-gu-o5C";</note>
+      </trans-unit>
+      <trans-unit id="k2Y-Hy-jMj.title" xml:space="preserve">
+        <source>Abort</source>
+        <target state="needs-translation">Abort</target>
+        <note>Class = "NSMenuItem"; title = "Abort"; ObjectID = "k2Y-Hy-jMj";</note>
+      </trans-unit>
+      <trans-unit id="k8Z-wy-8ml.title" xml:space="preserve">
+        <source>Files to be transferred:</source>
+        <target state="needs-translation">Files to be transferred:</target>
+        <note>Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "k8Z-wy-8ml";</note>
+      </trans-unit>
+      <trans-unit id="kFc-LP-RkZ.title" xml:space="preserve">
+        <source>Remote catalog : </source>
+        <target state="needs-translation">Remote catalog : </target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ";</note>
+      </trans-unit>
+      <trans-unit id="kNR-NX-OzR.title" xml:space="preserve">
+        <source>files :</source>
+        <target state="needs-translation">files :</target>
+        <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR";</note>
+      </trans-unit>
+      <trans-unit id="kUC-cs-Fc2.title" xml:space="preserve">
+        <source>ssh directory:</source>
+        <target state="needs-translation">ssh directory:</target>
+        <note>Class = "NSTextFieldCell"; title = "ssh directory:"; ObjectID = "kUC-cs-Fc2";</note>
+      </trans-unit>
+      <trans-unit id="lBk-94-nYF.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "lBk-94-nYF";</note>
+      </trans-unit>
+      <trans-unit id="lGN-As-q21.title" xml:space="preserve">
+        <source>Add parameters</source>
+        <target state="needs-translation">Add parameters</target>
+        <note>Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21";</note>
+      </trans-unit>
+      <trans-unit id="lV3-TO-Uao.title" xml:space="preserve">
+        <source>Terminal.App</source>
+        <target state="needs-translation">Terminal.App</target>
+        <note>Class = "NSButtonCell"; title = "Terminal.App"; ObjectID = "lV3-TO-Uao";</note>
+      </trans-unit>
+      <trans-unit id="lsc-bT-MTr.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "lsc-bT-MTr";</note>
+      </trans-unit>
+      <trans-unit id="lvl-UW-J6U.title" xml:space="preserve">
+        <source>Date last backup:</source>
+        <target state="needs-translation">Date last backup:</target>
+        <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
+      </trans-unit>
+      <trans-unit id="lzX-Ie-xTz.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "lzX-Ie-xTz";</note>
+      </trans-unit>
+      <trans-unit id="m7F-8t-VwR.title" xml:space="preserve">
+        <source>optional path for rsync:</source>
+        <target state="needs-translation">optional path for rsync:</target>
+        <note>Class = "NSTextFieldCell"; title = "optional path for rsync:"; ObjectID = "m7F-8t-VwR";</note>
+      </trans-unit>
+      <trans-unit id="mEQ-aD-Owg.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "mEQ-aD-Owg";</note>
+      </trans-unit>
+      <trans-unit id="mJ2-R8-Fa6.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "mJ2-R8-Fa6";</note>
+      </trans-unit>
+      <trans-unit id="mal-sc-mlY.title" xml:space="preserve">
+        <source>All output</source>
+        <target state="needs-translation">All output</target>
+        <note>Class = "NSViewController"; title = "All output"; ObjectID = "mal-sc-mlY";</note>
+      </trans-unit>
+      <trans-unit id="mkb-9F-CQR.title" xml:space="preserve">
+        <source>restore</source>
+        <target state="needs-translation">restore</target>
+        <note>Class = "NSButtonCell"; title = "restore"; ObjectID = "mkb-9F-CQR";</note>
+      </trans-unit>
+      <trans-unit id="mry-vG-0Hd.title" xml:space="preserve">
+        <source>Doubleclick on row to get remote capacity...</source>
+        <target state="needs-translation">Doubleclick on row to get remote capacity...</target>
+        <note>Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd";</note>
+      </trans-unit>
+      <trans-unit id="n1z-ZA-mQN.title" xml:space="preserve">
+        <source>Number of directories:</source>
+        <target state="needs-translation">Number of directories:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "n1z-ZA-mQN";</note>
+      </trans-unit>
+      <trans-unit id="nHu-Ph-Td8.title" xml:space="preserve">
+        <source>Remote username:</source>
+        <target state="needs-translation">Remote username:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "nHu-Ph-Td8";</note>
+      </trans-unit>
+      <trans-unit id="ngh-0r-Hwj.title" xml:space="preserve">
+        <source>All profiles</source>
+        <target state="needs-translation">All profiles</target>
+        <note>Class = "NSViewController"; title = "All profiles"; ObjectID = "ngh-0r-Hwj";</note>
+      </trans-unit>
+      <trans-unit id="nsN-YU-MJ2.title" xml:space="preserve">
+        <source>Local catalog:</source>
+        <target state="needs-translation">Local catalog:</target>
+        <note>Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "nsN-YU-MJ2";</note>
+      </trans-unit>
+      <trans-unit id="o1G-0k-G0I.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "o1G-0k-G0I";</note>
+      </trans-unit>
+      <trans-unit id="o77-iT-bNa.title" xml:space="preserve">
+        <source>New files:</source>
+        <target state="needs-translation">New files:</target>
+        <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "o77-iT-bNa";</note>
+      </trans-unit>
+      <trans-unit id="oSU-tO-D9d.title" xml:space="preserve">
+        <source>Info</source>
+        <target state="needs-translation">Info</target>
+        <note>Class = "NSMenuItem"; title = "Info"; ObjectID = "oSU-tO-D9d";</note>
+      </trans-unit>
+      <trans-unit id="oUI-Az-UAI.title" xml:space="preserve">
+        <source>Number of files:</source>
+        <target state="needs-translation">Number of files:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "oUI-Az-UAI";</note>
+      </trans-unit>
+      <trans-unit id="oar-D1-pfu.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "oar-D1-pfu";</note>
+      </trans-unit>
+      <trans-unit id="obo-Qd-fRN.title" xml:space="preserve">
+        <source>Estimate</source>
+        <target state="needs-translation">Estimate</target>
+        <note>Class = "NSButtonCell"; title = "Estimate"; ObjectID = "obo-Qd-fRN";</note>
+      </trans-unit>
+      <trans-unit id="of4-qq-ykX.title" xml:space="preserve">
+        <source>Number of snapshots:</source>
+        <target state="needs-translation">Number of snapshots:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX";</note>
+      </trans-unit>
+      <trans-unit id="oqO-Td-7wg.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "oqO-Td-7wg";</note>
+      </trans-unit>
+      <trans-unit id="ozI-GG-cgX.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ozI-GG-cgX";</note>
+      </trans-unit>
+      <trans-unit id="p7O-cs-wwA.headerCell.title" xml:space="preserve">
+        <source>Start date schedule</source>
+        <target state="needs-translation">Start date schedule</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "p7O-cs-wwA";</note>
+      </trans-unit>
+      <trans-unit id="p9L-16-Icv.title" xml:space="preserve">
+        <source>Parameters</source>
+        <target state="needs-translation">Parameters</target>
+        <note>Class = "NSMenuItem"; title = "Parameters"; ObjectID = "p9L-16-Icv";</note>
+      </trans-unit>
+      <trans-unit id="p56-o9-HcO.title" xml:space="preserve">
+        <source>Info all</source>
+        <target state="needs-translation">Info all</target>
+        <note>Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO";</note>
+      </trans-unit>
+      <trans-unit id="pZb-i1-xyG.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG";</note>
+      </trans-unit>
+      <trans-unit id="pql-cs-AEK.headerCell.title" xml:space="preserve">
+        <source>ID</source>
+        <target state="needs-translation">ID</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "pql-cs-AEK";</note>
+      </trans-unit>
+      <trans-unit id="prA-0K-uny.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "prA-0K-uny";</note>
+      </trans-unit>
+      <trans-unit id="q8z-Ku-oKx.title" xml:space="preserve">
+        <source>Version :</source>
+        <target state="needs-translation">Version :</target>
+        <note>Class = "NSTextFieldCell"; title = "Version :"; ObjectID = "q8z-Ku-oKx";</note>
+      </trans-unit>
+      <trans-unit id="qat-Dj-4j6.title" xml:space="preserve">
+        <source>Days since last backup:</source>
+        <target state="needs-translation">Days since last backup:</target>
+        <note>Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "qat-Dj-4j6";</note>
+      </trans-unit>
+      <trans-unit id="qfC-8t-e7C.headerCell.title" xml:space="preserve">
+        <source>Task</source>
+        <target state="needs-translation">Task</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "qfC-8t-e7C";</note>
+      </trans-unit>
+      <trans-unit id="qq5-4q-5kV.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "qq5-4q-5kV";</note>
+      </trans-unit>
+      <trans-unit id="qvy-yX-V6C.headerCell.title" xml:space="preserve">
+        <source>Last run</source>
+        <target state="needs-translation">Last run</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "qvy-yX-V6C";</note>
+      </trans-unit>
+      <trans-unit id="rFc-o9-SOW.title" xml:space="preserve">
+        <source>Check data when loading</source>
+        <target state="needs-translation">Check data when loading</target>
+        <note>Class = "NSBox"; title = "Check data when loading"; ObjectID = "rFc-o9-SOW";</note>
+      </trans-unit>
+      <trans-unit id="rMD-o2-QB4.headerCell.title" xml:space="preserve">
+        <source>ID</source>
+        <target state="needs-translation">ID</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "rMD-o2-QB4";</note>
+      </trans-unit>
+      <trans-unit id="rSn-oB-WbC.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rSn-oB-WbC";</note>
+      </trans-unit>
+      <trans-unit id="rXA-1B-Zpu.headerCell.title" xml:space="preserve">
+        <source>When</source>
+        <target state="needs-translation">When</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "rXA-1B-Zpu";</note>
+      </trans-unit>
+      <trans-unit id="rYt-b4-jmF.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rYt-b4-jmF";</note>
+      </trans-unit>
+      <trans-unit id="rfy-TN-1YB.headerCell.title" xml:space="preserve">
+        <source>Sched</source>
+        <target state="needs-translation">Sched</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "rfy-TN-1YB";</note>
+      </trans-unit>
+      <trans-unit id="rht-JI-asq.title" xml:space="preserve">
+        <source>Schedule</source>
+        <target state="needs-translation">Schedule</target>
+        <note>Class = "NSViewController"; title = "Schedule"; ObjectID = "rht-JI-asq";</note>
+      </trans-unit>
+      <trans-unit id="rol-5e-w2X.title" xml:space="preserve">
+        <source>Local catalog :</source>
+        <target state="needs-translation">Local catalog :</target>
+        <note>Class = "NSTextFieldCell"; title = "Local catalog :"; ObjectID = "rol-5e-w2X";</note>
+      </trans-unit>
+      <trans-unit id="ru1-fS-UXD.title" xml:space="preserve">
+        <source>Server: </source>
+        <target state="needs-translation">Server: </target>
+        <note>Class = "NSTextFieldCell"; title = "Server: "; ObjectID = "ru1-fS-UXD";</note>
+      </trans-unit>
+      <trans-unit id="s3e-Xz-emD.title" xml:space="preserve">
+        <source>Weekly</source>
+        <target state="needs-translation">Weekly</target>
+        <note>Class = "NSButtonCell"; title = "Weekly"; ObjectID = "s3e-Xz-emD";</note>
+      </trans-unit>
+      <trans-unit id="sBt-QN-KGK.title" xml:space="preserve">
+        <source>Number of configurations:</source>
+        <target state="needs-translation">Number of configurations:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of configurations:"; ObjectID = "sBt-QN-KGK";</note>
+      </trans-unit>
+      <trans-unit id="sDH-LN-0H4.title" xml:space="preserve">
+        <source>Progress</source>
+        <target state="needs-translation">Progress</target>
+        <note>Class = "NSViewController"; title = "Progress"; ObjectID = "sDH-LN-0H4";</note>
+      </trans-unit>
+      <trans-unit id="sE6-n6-Lin.title" xml:space="preserve">
+        <source>Add</source>
+        <target state="needs-translation">Add</target>
+        <note>Class = "NSButtonCell"; title = "Add"; ObjectID = "sE6-n6-Lin";</note>
+      </trans-unit>
+      <trans-unit id="sKa-Hn-USH.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sKa-Hn-USH";</note>
+      </trans-unit>
+      <trans-unit id="sTj-Zm-1Dz.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sTj-Zm-1Dz";</note>
+      </trans-unit>
+      <trans-unit id="srs-cz-k0D.title" xml:space="preserve">
+        <source>Local ssh keys</source>
+        <target state="needs-translation">Local ssh keys</target>
+        <note>Class = "NSBox"; title = "Local ssh keys"; ObjectID = "srs-cz-k0D";</note>
+      </trans-unit>
+      <trans-unit id="svl-UN-wQe.title" xml:space="preserve">
+        <source>Box</source>
+        <target state="needs-translation">Box</target>
+        <note>Class = "NSBox"; title = "Box"; ObjectID = "svl-UN-wQe";</note>
+      </trans-unit>
+      <trans-unit id="tBD-wX-XO5.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "tBD-wX-XO5";</note>
+      </trans-unit>
+      <trans-unit id="tIo-dN-yJ3.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "tIo-dN-yJ3";</note>
+      </trans-unit>
+      <trans-unit id="tNA-hi-kYT.headerCell.title" xml:space="preserve">
+        <source>Local catalog</source>
+        <target state="needs-translation">Local catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "tNA-hi-kYT";</note>
+      </trans-unit>
+      <trans-unit id="tQD-0V-0FQ.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "tQD-0V-0FQ";</note>
+      </trans-unit>
+      <trans-unit id="tRO-2l-LW7.title" xml:space="preserve">
+        <source>number of</source>
+        <target state="needs-translation">number of</target>
+        <note>Class = "NSTextFieldCell"; title = "number of"; ObjectID = "tRO-2l-LW7";</note>
+      </trans-unit>
+      <trans-unit id="tT2-Hu-JSP.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "tT2-Hu-JSP";</note>
+      </trans-unit>
+      <trans-unit id="tVm-A1-xMK.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSButtonCell"; title = "Remote server"; ObjectID = "tVm-A1-xMK";</note>
+      </trans-unit>
+      <trans-unit id="tjU-bB-LEK.title" xml:space="preserve">
+        <source>Info</source>
+        <target state="needs-translation">Info</target>
+        <note>Class = "NSButtonCell"; title = "Info"; ObjectID = "tjU-bB-LEK";</note>
+      </trans-unit>
+      <trans-unit id="uAb-Pv-NUT.title" xml:space="preserve">
+        <source>Number of directories:</source>
+        <target state="needs-translation">Number of directories:</target>
+        <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT";</note>
+      </trans-unit>
+      <trans-unit id="uBc-LG-TjQ.title" xml:space="preserve">
+        <source>KB to be transferred:</source>
+        <target state="needs-translation">KB to be transferred:</target>
+        <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "uBc-LG-TjQ";</note>
+      </trans-unit>
+      <trans-unit id="uCb-Gb-mwj.headerCell.title" xml:space="preserve">
+        <source>%</source>
+        <target state="needs-translation">%</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "%"; ObjectID = "uCb-Gb-mwj";</note>
+      </trans-unit>
+      <trans-unit id="uJk-xr-MjU.title" xml:space="preserve">
+        <source>New files:</source>
+        <target state="needs-translation">New files:</target>
+        <note>Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "uJk-xr-MjU";</note>
+      </trans-unit>
+      <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
+        <source>RsyncOSX</source>
+        <target state="needs-translation">RsyncOSX</target>
+        <note>Class = "NSMenu"; title = "RsyncOSX"; ObjectID = "uQy-DD-JDr";</note>
+      </trans-unit>
+      <trans-unit id="uRN-6L-8Nq.title" xml:space="preserve">
+        <source>kB :</source>
+        <target state="needs-translation">kB :</target>
+        <note>Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "uRN-6L-8Nq";</note>
+      </trans-unit>
+      <trans-unit id="uUH-RU-JKF.title" xml:space="preserve">
+        <source>Remove parameters</source>
+        <target state="needs-translation">Remove parameters</target>
+        <note>Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF";</note>
+      </trans-unit>
+      <trans-unit id="ufF-c0-esL.headerCell.title" xml:space="preserve">
+        <source>Remote server</source>
+        <target state="needs-translation">Remote server</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "ufF-c0-esL";</note>
+      </trans-unit>
+      <trans-unit id="v3T-Yl-fut.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "v3T-Yl-fut";</note>
+      </trans-unit>
+      <trans-unit id="v12-7x-cig.label" xml:space="preserve">
+        <source>totinfo</source>
+        <target state="needs-translation">totinfo</target>
+        <note>Class = "NSToolbarItem"; label = "totinfo"; ObjectID = "v12-7x-cig";</note>
+      </trans-unit>
+      <trans-unit id="v12-7x-cig.paletteLabel" xml:space="preserve">
+        <source>totinfo</source>
+        <target state="needs-translation">totinfo</target>
+        <note>Class = "NSToolbarItem"; paletteLabel = "totinfo"; ObjectID = "v12-7x-cig";</note>
+      </trans-unit>
+      <trans-unit id="v12-7x-cig.toolTip" xml:space="preserve">
+        <source>Execute estimate and quickbackup for all tasks...</source>
+        <target state="needs-translation">Execute estimate and quickbackup for all tasks...</target>
+        <note>Class = "NSToolbarItem"; toolTip = "Execute estimate and quickbackup for all tasks..."; ObjectID = "v12-7x-cig";</note>
+      </trans-unit>
+      <trans-unit id="vDS-vt-fgh.title" xml:space="preserve">
+        <source>Changelog</source>
+        <target state="needs-translation">Changelog</target>
+        <note>Class = "NSButtonCell"; title = "Changelog"; ObjectID = "vDS-vt-fgh";</note>
+      </trans-unit>
+      <trans-unit id="vJI-G9-Mbp.title" xml:space="preserve">
+        <source>Remote info</source>
+        <target state="needs-translation">Remote info</target>
+        <note>Class = "NSBox"; title = "Remote info"; ObjectID = "vJI-G9-Mbp";</note>
+      </trans-unit>
+      <trans-unit id="vQn-ev-3Ai.title" xml:space="preserve">
+        <source>ID:</source>
+        <target state="needs-translation">ID:</target>
+        <note>Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "vQn-ev-3Ai";</note>
+      </trans-unit>
+      <trans-unit id="vgF-FF-cIJ.title" xml:space="preserve">
+        <source>Rsync</source>
+        <target state="needs-translation">Rsync</target>
+        <note>Class = "NSBox"; title = "Rsync"; ObjectID = "vgF-FF-cIJ";</note>
+      </trans-unit>
+      <trans-unit id="vls-wI-lPQ.headerCell.title" xml:space="preserve">
+        <source>Schedule</source>
+        <target state="needs-translation">Schedule</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Schedule"; ObjectID = "vls-wI-lPQ";</note>
+      </trans-unit>
+      <trans-unit id="w6i-hq-pcc.title" xml:space="preserve">
+        <source>Required</source>
+        <target state="needs-translation">Required</target>
+        <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "w6i-hq-pcc";</note>
+      </trans-unit>
+      <trans-unit id="wD5-vA-j0P.title" xml:space="preserve">
+        <source>Remote server parameters</source>
+        <target state="needs-translation">Remote server parameters</target>
+        <note>Class = "NSBox"; title = "Remote server parameters"; ObjectID = "wD5-vA-j0P";</note>
+      </trans-unit>
+      <trans-unit id="wIa-4f-wP2.title" xml:space="preserve">
+        <source>Configuration info</source>
+        <target state="needs-translation">Configuration info</target>
+        <note>Class = "NSBox"; title = "Configuration info"; ObjectID = "wIa-4f-wP2";</note>
+      </trans-unit>
+      <trans-unit id="wJk-a6-R3B.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wJk-a6-R3B";</note>
+      </trans-unit>
+      <trans-unit id="wdA-qZ-WEZ.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wdA-qZ-WEZ";</note>
+      </trans-unit>
+      <trans-unit id="wh3-18-AJ4.headerCell.title" xml:space="preserve">
+        <source>Output</source>
+        <target state="needs-translation">Output</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "wh3-18-AJ4";</note>
+      </trans-unit>
+      <trans-unit id="wmz-CK-ZzC.title" xml:space="preserve">
+        <source>Rsa key</source>
+        <target state="needs-translation">Rsa key</target>
+        <note>Class = "NSButtonCell"; title = "Rsa key"; ObjectID = "wmz-CK-ZzC";</note>
+      </trans-unit>
+      <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
+        <source>Help</source>
+        <target state="needs-translation">Help</target>
+        <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
+      </trans-unit>
+      <trans-unit id="wrj-tn-Y3v.title" xml:space="preserve">
+        <source>path RsyncOSX: </source>
+        <target state="needs-translation">path RsyncOSX: </target>
+        <note>Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v";</note>
+      </trans-unit>
+      <trans-unit id="wrk-73-4cu.title" xml:space="preserve">
+        <source>Backup now</source>
+        <target state="needs-translation">Backup now</target>
+        <note>Class = "NSMenuItem"; title = "Backup now"; ObjectID = "wrk-73-4cu";</note>
+      </trans-unit>
+      <trans-unit id="x4K-TO-hhc.title" xml:space="preserve">
+        <source>Edit</source>
+        <target state="needs-translation">Edit</target>
+        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "x4K-TO-hhc";</note>
+      </trans-unit>
+      <trans-unit id="xKW-0W-Nbb.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "xKW-0W-Nbb";</note>
+      </trans-unit>
+      <trans-unit id="xUg-0M-AYM.title" xml:space="preserve">
+        <source>Remote catalog:</source>
+        <target state="needs-translation">Remote catalog:</target>
+        <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "xUg-0M-AYM";</note>
+      </trans-unit>
+      <trans-unit id="xXy-oY-7zq.title" xml:space="preserve">
+        <source>Finding tasks for automatic backup, please wait...</source>
+        <target state="needs-translation">Finding tasks for automatic backup, please wait...</target>
+        <note>Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq";</note>
+      </trans-unit>
+      <trans-unit id="xZ6-fW-WQl.title" xml:space="preserve">
+        <source>Table View Cell</source>
+        <target state="needs-translation">Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "xZ6-fW-WQl";</note>
+      </trans-unit>
+      <trans-unit id="xnI-Se-9HL.title" xml:space="preserve">
+        <source>Save</source>
+        <target state="needs-translation">Save</target>
+        <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "xnI-Se-9HL";</note>
+      </trans-unit>
+      <trans-unit id="xsi-tM-sv9.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "xsi-tM-sv9";</note>
+      </trans-unit>
+      <trans-unit id="xz5-2j-E51.title" xml:space="preserve">
+        <source>Chinese</source>
+        <target state="needs-translation">Chinese</target>
+        <note>Class = "NSTextFieldCell"; title = "Chinese"; ObjectID = "xz5-2j-E51";</note>
+      </trans-unit>
+      <trans-unit id="yCU-73-EqR.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yCU-73-EqR";</note>
+      </trans-unit>
+      <trans-unit id="yOD-ng-BAz.title" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Class = "NSButtonCell"; title = "Delete"; ObjectID = "yOD-ng-BAz";</note>
+      </trans-unit>
+      <trans-unit id="yUA-PJ-sOA.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yUA-PJ-sOA";</note>
+      </trans-unit>
+      <trans-unit id="yWQ-Wj-w1t.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yWQ-Wj-w1t";</note>
+      </trans-unit>
+      <trans-unit id="ydG-5b-K3r.title" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "ydG-5b-K3r";</note>
+      </trans-unit>
+      <trans-unit id="ygQ-aZ-NXY.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ygQ-aZ-NXY";</note>
+      </trans-unit>
+      <trans-unit id="ypE-IB-6gc.title" xml:space="preserve">
+        <source>Local info</source>
+        <target state="needs-translation">Local info</target>
+        <note>Class = "NSBox"; title = "Local info"; ObjectID = "ypE-IB-6gc";</note>
+      </trans-unit>
+      <trans-unit id="zF8-9O-ajg.title" xml:space="preserve">
+        <source>remove --compress</source>
+        <target state="needs-translation">remove --compress</target>
+        <note>Class = "NSButtonCell"; title = "remove --compress"; ObjectID = "zF8-9O-ajg";</note>
+      </trans-unit>
+      <trans-unit id="zFx-cJ-7DI.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "zFx-cJ-7DI";</note>
+      </trans-unit>
+      <trans-unit id="zGR-lC-3fH.title" xml:space="preserve">
+        <source>Select to delete</source>
+        <target state="needs-translation">Select to delete</target>
+        <note>Class = "NSBox"; title = "Select to delete"; ObjectID = "zGR-lC-3fH";</note>
+      </trans-unit>
+      <trans-unit id="zHz-9r-Cpj.title" xml:space="preserve">
+        <source>Verify</source>
+        <target state="needs-translation">Verify</target>
+        <note>Class = "NSButtonCell"; title = "Verify"; ObjectID = "zHz-9r-Cpj";</note>
+      </trans-unit>
+      <trans-unit id="zSZ-Tb-zlJ.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target state="needs-translation">Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "zSZ-Tb-zlJ";</note>
+      </trans-unit>
+      <trans-unit id="zXX-tD-Lcg.title" xml:space="preserve">
+        <source>changed</source>
+        <target state="needs-translation">changed</target>
+        <note>Class = "NSButtonCell"; title = "changed"; ObjectID = "zXX-tD-Lcg";</note>
+      </trans-unit>
+      <trans-unit id="znZ-ht-M5x.title" xml:space="preserve">
+        <source>Required if remote server</source>
+        <target state="needs-translation">Required if remote server</target>
+        <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "znZ-ht-M5x";</note>
+      </trans-unit>
+      <trans-unit id="zoV-D2-sU8.headerCell.title" xml:space="preserve">
+        <source>Total size (kB)</source>
+        <target state="needs-translation">Total size (kB)</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Total size (kB)"; ObjectID = "zoV-D2-sU8";</note>
+      </trans-unit>
+      <trans-unit id="zv2-BP-T5J.headerCell.title" xml:space="preserve">
+        <source>Select</source>
+        <target state="needs-translation">Select</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Select"; ObjectID = "zv2-BP-T5J";</note>
+      </trans-unit>
+      <trans-unit id="zzK-ZO-wvj.headerCell.title" xml:space="preserve">
+        <source>Remote catalog</source>
+        <target state="needs-translation">Remote catalog</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="RsyncOSX/en.lproj/InfoPlist.strings" source-language="en" target-language="de" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.3" build-num="11C29"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>RsyncOSX</source>
+        <target state="needs-translation">RsyncOSX</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2019 Thomas Evensen. All rights reserved.</source>
+        <target state="needs-translation">Copyright © 2019 Thomas Evensen. All rights reserved.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="RsyncOSX/en.lproj/Localizable.strings" source-language="en" target-language="de" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.3" build-num="11C29"/>
+    </header>
+    <body>
+      <trans-unit id=" ... set in User configuration ..." xml:space="preserve">
+        <source> ... set in User configuration ...</source>
+        <target state="needs-translation"> ... set in User configuration ...</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="... no remote server ..." xml:space="preserve">
+        <source>... no remote server ...</source>
+        <target state="needs-translation">... no remote server ...</target>
+        <note>Ssh</note>
+      </trans-unit>
+      <trans-unit id="Aborting delete operation..." xml:space="preserve">
+        <source>Aborting delete operation...</source>
+        <target state="needs-translation">Aborting delete operation...</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Add" xml:space="preserve">
+        <source>Add</source>
+        <target state="needs-translation">Add</target>
+        <note>Add schedule
+   New</note>
+      </trans-unit>
+      <trans-unit id="Add Schedule?" xml:space="preserve">
+        <source>Add Schedule?</source>
+        <target state="needs-translation">Add Schedule?</target>
+        <note>Add schedule</note>
+      </trans-unit>
+      <trans-unit id="Add config?" xml:space="preserve">
+        <source>Add config?</source>
+        <target state="needs-translation">Add config?</target>
+        <note>New</note>
+      </trans-unit>
+      <trans-unit id="Batchtasks completed, close view..." xml:space="preserve">
+        <source>Batchtasks completed, close view...</source>
+        <target state="needs-translation">Batchtasks completed, close view...</target>
+        <note>Batch</note>
+      </trans-unit>
+      <trans-unit id="By using Finder drag and drop filepaths." xml:space="preserve">
+        <source>By using Finder drag and drop filepaths.</source>
+        <target state="needs-translation">By using Finder drag and drop filepaths.</target>
+        <note>Tooltip</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target state="needs-translation">Cancel</target>
+        <note>Cancel NSAlert</note>
+      </trans-unit>
+      <trans-unit id="Cancel or Add" xml:space="preserve">
+        <source>Cancel or Add</source>
+        <target state="needs-translation">Cancel or Add</target>
+        <note>Add schedule</note>
+      </trans-unit>
+      <trans-unit id="Cancel or Delete" xml:space="preserve">
+        <source>Cancel or Delete</source>
+        <target state="needs-translation">Cancel or Delete</target>
+        <note>Execute
+   Logg
+   Profiles
+   Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Cancel or Restore" xml:space="preserve">
+        <source>Cancel or Restore</source>
+        <target state="needs-translation">Cancel or Restore</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Cannot copy from a syncremote task..." xml:space="preserve">
+        <source>Cannot copy from a syncremote task...</source>
+        <target state="needs-translation">Cannot copy from a syncremote task...</target>
+        <note>Copy files
+   Remote Info</note>
+      </trans-unit>
+      <trans-unit id="Cannot verify a syncremote task..." xml:space="preserve">
+        <source>Cannot verify a syncremote task...</source>
+        <target state="needs-translation">Cannot verify a syncremote task...</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Chinese (Simplified) translation by: StringKe" xml:space="preserve">
+        <source>Chinese (Simplified) translation by: StringKe</source>
+        <target state="needs-translation">Chinese (Simplified) translation by: StringKe</target>
+        <note>chinese</note>
+      </trans-unit>
+      <trans-unit id="Close" xml:space="preserve">
+        <source>Close</source>
+        <target state="needs-translation">Close</target>
+        <note>Close NSAlert</note>
+      </trans-unit>
+      <trans-unit id="Completed" xml:space="preserve">
+        <source>Completed</source>
+        <target state="needs-translation">Completed</target>
+        <note>Remote info</note>
+      </trans-unit>
+      <trans-unit id="Completed ..." xml:space="preserve">
+        <source>Completed ...</source>
+        <target state="needs-translation">Completed ...</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Computing changed, please wait..." xml:space="preserve">
+        <source>Computing changed, please wait...</source>
+        <target state="needs-translation">Computing changed, please wait...</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Copy single files or directory?" xml:space="preserve">
+        <source>Copy single files or directory?</source>
+        <target state="needs-translation">Copy single files or directory?</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Copyright ©2019 Thomas Evensen" xml:space="preserve">
+        <source>Copyright ©2019 Thomas Evensen</source>
+        <target state="needs-translation">Copyright ©2019 Thomas Evensen</target>
+        <note>copyright</note>
+      </trans-unit>
+      <trans-unit id="Date last backup:" xml:space="preserve">
+        <source>Date last backup:</source>
+        <target state="needs-translation">Date last backup:</target>
+        <note>Remote Info
+   Verify</note>
+      </trans-unit>
+      <trans-unit id="Days since last backup:" xml:space="preserve">
+        <source>Days since last backup:</source>
+        <target state="needs-translation">Days since last backup:</target>
+        <note>Remote Info
+   Verify</note>
+      </trans-unit>
+      <trans-unit id="Default profile" xml:space="preserve">
+        <source>Default profile</source>
+        <target state="needs-translation">Default profile</target>
+        <note>default profile</note>
+      </trans-unit>
+      <trans-unit id="Delete" xml:space="preserve">
+        <source>Delete</source>
+        <target state="needs-translation">Delete</target>
+        <note>Execute
+   Logg
+   plan
+   Profiles
+   Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Delete operation completed..." xml:space="preserve">
+        <source>Delete operation completed...</source>
+        <target state="needs-translation">Delete operation completed...</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Delete profile:" xml:space="preserve">
+        <source>Delete profile:</source>
+        <target state="needs-translation">Delete profile:</target>
+        <note>Profiles</note>
+      </trans-unit>
+      <trans-unit id="Delete selected task?" xml:space="preserve">
+        <source>Delete selected task?</source>
+        <target state="needs-translation">Delete selected task?</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Destination catalog:" xml:space="preserve">
+        <source>Destination catalog:</source>
+        <target state="needs-translation">Destination catalog:</target>
+        <note>Tooltip</note>
+      </trans-unit>
+      <trans-unit id="Do you REALLY want to DELETE selected snapshots?" xml:space="preserve">
+        <source>Do you REALLY want to DELETE selected snapshots?</source>
+        <target state="needs-translation">Do you REALLY want to DELETE selected snapshots?</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Do you REALLY want to start a RESTORE ?" xml:space="preserve">
+        <source>Do you REALLY want to start a RESTORE ?</source>
+        <target state="needs-translation">Do you REALLY want to start a RESTORE ?</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Dont change the snapshot num if you don´t know what you are doing..." xml:space="preserve">
+        <source>Dont change the snapshot num if you don´t know what you are doing...</source>
+        <target state="needs-translation">Dont change the snapshot num if you don´t know what you are doing...</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="ERROR: no rsync in" xml:space="preserve">
+        <source>ERROR: no rsync in</source>
+        <target state="needs-translation">ERROR: no rsync in</target>
+        <note>Error rsync</note>
+      </trans-unit>
+      <trans-unit id="ERROR: no rsync in /usr/local/bin" xml:space="preserve">
+        <source>ERROR: no rsync in /usr/local/bin</source>
+        <target state="needs-translation">ERROR: no rsync in /usr/local/bin</target>
+        <note>Error rsync</note>
+      </trans-unit>
+      <trans-unit id="Estimation completed, you can start batch..." xml:space="preserve">
+        <source>Estimation completed, you can start batch...</source>
+        <target state="needs-translation">Estimation completed, you can start batch...</target>
+        <note>Batch</note>
+      </trans-unit>
+      <trans-unit id="Executing restore..." xml:space="preserve">
+        <source>Executing restore...</source>
+        <target state="needs-translation">Executing restore...</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Friday" xml:space="preserve">
+        <source>Friday</source>
+        <target state="needs-translation">Friday</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="Getting info, please wait..." xml:space="preserve">
+        <source>Getting info, please wait...</source>
+        <target state="needs-translation">Getting info, please wait...</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Getting information, please wait ..." xml:space="preserve">
+        <source>Getting information, please wait ...</source>
+        <target state="needs-translation">Getting information, please wait ...</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Got index from Execute and listing logs for one configuration..." xml:space="preserve">
+        <source>Got index from Execute and listing logs for one configuration...</source>
+        <target state="needs-translation">Got index from Execute and listing logs for one configuration...</target>
+        <note>Loggdata</note>
+      </trans-unit>
+      <trans-unit id="Got index from Execute..." xml:space="preserve">
+        <source>Got index from Execute...</source>
+        <target state="needs-translation">Got index from Execute...</target>
+        <note>Schedules</note>
+      </trans-unit>
+      <trans-unit id="Got index from Snapshots and listing logs for one configuration..." xml:space="preserve">
+        <source>Got index from Snapshots and listing logs for one configuration...</source>
+        <target state="needs-translation">Got index from Snapshots and listing logs for one configuration...</target>
+        <note>Loggdata</note>
+      </trans-unit>
+      <trans-unit id="Got it..." xml:space="preserve">
+        <source>Got it...</source>
+        <target state="needs-translation">Got it...</target>
+        <note>Remote Info
+   Restore</note>
+      </trans-unit>
+      <trans-unit id="Icon by: Zsolt Sándor" xml:space="preserve">
+        <source>Icon by: Zsolt Sándor</source>
+        <target state="needs-translation">Icon by: Zsolt Sándor</target>
+        <note>icon</note>
+      </trans-unit>
+      <trans-unit id="Keep" xml:space="preserve">
+        <source>Keep</source>
+        <target state="needs-translation">Keep</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="Load" xml:space="preserve">
+        <source>Load</source>
+        <target state="needs-translation">Load</target>
+        <note>Profile</note>
+      </trans-unit>
+      <trans-unit id="Loaded cached data..." xml:space="preserve">
+        <source>Loaded cached data...</source>
+        <target state="needs-translation">Loaded cached data...</target>
+        <note>Remote info
+   Remote Info</note>
+      </trans-unit>
+      <trans-unit id="Local catalog:" xml:space="preserve">
+        <source>Local catalog:</source>
+        <target state="needs-translation">Local catalog:</target>
+        <note>Tooltip</note>
+      </trans-unit>
+      <trans-unit id="Local or remote catalog cannot be empty..." xml:space="preserve">
+        <source>Local or remote catalog cannot be empty...</source>
+        <target state="needs-translation">Local or remote catalog cannot be empty...</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Menu app is running..." xml:space="preserve">
+        <source>Menu app is running...</source>
+        <target state="needs-translation">Menu app is running...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Monday" xml:space="preserve">
+        <source>Monday</source>
+        <target state="needs-translation">Monday</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="New version is available - see About" xml:space="preserve">
+        <source>New version is available - see About</source>
+        <target state="needs-translation">New version is available - see About</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="New version is available:" xml:space="preserve">
+        <source>New version is available:</source>
+        <target state="needs-translation">New version is available:</target>
+        <note>About</note>
+      </trans-unit>
+      <trans-unit id="No rclone config found..." xml:space="preserve">
+        <source>No rclone config found...</source>
+        <target state="needs-translation">No rclone config found...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="No rsync in path..." xml:space="preserve">
+        <source>No rsync in path...</source>
+        <target state="needs-translation">No rsync in path...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="No such local catalog for restore or set it in user config..." xml:space="preserve">
+        <source>No such local catalog for restore or set it in user config...</source>
+        <target state="needs-translation">No such local catalog for restore or set it in user config...</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Norwegian translation by: Thomas Evensen" xml:space="preserve">
+        <source>Norwegian translation by: Thomas Evensen</source>
+        <target state="needs-translation">Norwegian translation by: Thomas Evensen</target>
+        <note>norwegian</note>
+      </trans-unit>
+      <trans-unit id="Not a remote task, use Finder to copy files..." xml:space="preserve">
+        <source>Not a remote task, use Finder to copy files...</source>
+        <target state="needs-translation">Not a remote task, use Finder to copy files...</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Not a snapshot task..." xml:space="preserve">
+        <source>Not a snapshot task...</source>
+        <target state="needs-translation">Not a snapshot task...</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Number of configurations:" xml:space="preserve">
+        <source>Number of configurations:</source>
+        <target state="needs-translation">Number of configurations:</target>
+        <note>AllProfiles</note>
+      </trans-unit>
+      <trans-unit id="Number of logs:" xml:space="preserve">
+        <source>Number of logs:</source>
+        <target state="needs-translation">Number of logs:</target>
+        <note>Logg</note>
+      </trans-unit>
+      <trans-unit id="Number of tasks to estimate:" xml:space="preserve">
+        <source>Number of tasks to estimate:</source>
+        <target state="needs-translation">Number of tasks to estimate:</target>
+        <note>Remote info</note>
+      </trans-unit>
+      <trans-unit id="Number remote files:" xml:space="preserve">
+        <source>Number remote files:</source>
+        <target state="needs-translation">Number remote files:</target>
+        <note>Copy files</note>
+      </trans-unit>
+      <trans-unit id="Number snapshots:" xml:space="preserve">
+        <source>Number snapshots:</source>
+        <target state="needs-translation">Number snapshots:</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Only valid for backup, snapshot and combined tasks..." xml:space="preserve">
+        <source>Only valid for backup, snapshot and combined tasks...</source>
+        <target state="needs-translation">Only valid for backup, snapshot and combined tasks...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Please select a task in Execute ..." xml:space="preserve">
+        <source>Please select a task in Execute ...</source>
+        <target state="needs-translation">Please select a task in Execute ...</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Possible error logging..." xml:space="preserve">
+        <source>Possible error logging...</source>
+        <target state="needs-translation">Possible error logging...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Profile:" xml:space="preserve">
+        <source>Profile:</source>
+        <target state="needs-translation">Profile:</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Profile: please wait..." xml:space="preserve">
+        <source>Profile: please wait...</source>
+        <target state="needs-translation">Profile: please wait...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Remote catalog:" xml:space="preserve">
+        <source>Remote catalog:</source>
+        <target state="needs-translation">Remote catalog:</target>
+        <note>Tooltip</note>
+      </trans-unit>
+      <trans-unit id="Restore" xml:space="preserve">
+        <source>Restore</source>
+        <target state="needs-translation">Restore</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Saturday" xml:space="preserve">
+        <source>Saturday</source>
+        <target state="needs-translation">Saturday</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="Save" xml:space="preserve">
+        <source>Save</source>
+        <target state="needs-translation">Save</target>
+        <note>Profile
+   Userconfig</note>
+      </trans-unit>
+      <trans-unit id="Scheduled tasks in menu app..." xml:space="preserve">
+        <source>Scheduled tasks in menu app...</source>
+        <target state="needs-translation">Scheduled tasks in menu app...</target>
+        <note>Schedules</note>
+      </trans-unit>
+      <trans-unit id="Seems not to be connected..." xml:space="preserve">
+        <source>Seems not to be connected...</source>
+        <target state="needs-translation">Seems not to be connected...</target>
+        <note>Copy files
+   Remote Info
+   Verify</note>
+      </trans-unit>
+      <trans-unit id="Select a task...." xml:space="preserve">
+        <source>Select a task....</source>
+        <target state="needs-translation">Select a task....</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Selected logs:" xml:space="preserve">
+        <source>Selected logs:</source>
+        <target state="needs-translation">Selected logs:</target>
+        <note>Logg</note>
+      </trans-unit>
+      <trans-unit id="Selection out of range - aborting" xml:space="preserve">
+        <source>Selection out of range - aborting</source>
+        <target state="needs-translation">Selection out of range - aborting</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="Seriously, enter a real number..." xml:space="preserve">
+        <source>Seriously, enter a real number...</source>
+        <target state="needs-translation">Seriously, enter a real number...</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="Source catalog:" xml:space="preserve">
+        <source>Source catalog:</source>
+        <target state="needs-translation">Source catalog:</target>
+        <note>Tooltip</note>
+      </trans-unit>
+      <trans-unit id="Start restore?" xml:space="preserve">
+        <source>Start restore?</source>
+        <target state="needs-translation">Start restore?</target>
+        <note>Restore</note>
+      </trans-unit>
+      <trans-unit id="Sunday" xml:space="preserve">
+        <source>Sunday</source>
+        <target state="needs-translation">Sunday</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="The menu app" xml:space="preserve">
+        <source>The menu app</source>
+        <target state="needs-translation">The menu app</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="There seems to be nothing to do..." xml:space="preserve">
+        <source>There seems to be nothing to do...</source>
+        <target state="needs-translation">There seems to be nothing to do...</target>
+        <note>Quickbackup</note>
+      </trans-unit>
+      <trans-unit id="This is a combined task, execute by ⌘R..." xml:space="preserve">
+        <source>This is a combined task, execute by ⌘R...</source>
+        <target state="needs-translation">This is a combined task, execute by ⌘R...</target>
+        <note>Execute</note>
+      </trans-unit>
+      <trans-unit id="This is added before?" xml:space="preserve">
+        <source>This is added before?</source>
+        <target state="needs-translation">This is added before?</target>
+        <note>New</note>
+      </trans-unit>
+      <trans-unit id="Thursday" xml:space="preserve">
+        <source>Thursday</source>
+        <target state="needs-translation">Thursday</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="Tuesday" xml:space="preserve">
+        <source>Tuesday</source>
+        <target state="needs-translation">Tuesday</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="Verifying, please wait..." xml:space="preserve">
+        <source>Verifying, please wait...</source>
+        <target state="needs-translation">Verifying, please wait...</target>
+        <note>Verify</note>
+      </trans-unit>
+      <trans-unit id="Wednesday" xml:space="preserve">
+        <source>Wednesday</source>
+        <target state="needs-translation">Wednesday</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="You cannot delete that many, max are" xml:space="preserve">
+        <source>You cannot delete that many, max are</source>
+        <target state="needs-translation">You cannot delete that many, max are</target>
+        <note>Snapshots</note>
+      </trans-unit>
+      <trans-unit id="You have the latest ..." xml:space="preserve">
+        <source>You have the latest ...</source>
+        <target state="needs-translation">You have the latest ...</target>
+        <note>About</note>
+      </trans-unit>
+      <trans-unit id="daily" xml:space="preserve">
+        <source>daily</source>
+        <target state="needs-translation">daily</target>
+        <note>main</note>
+      </trans-unit>
+      <trans-unit id="days" xml:space="preserve">
+        <source>days</source>
+        <target state="needs-translation">days</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="earlier months" xml:space="preserve">
+        <source>earlier months</source>
+        <target state="needs-translation">earlier months</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="every" xml:space="preserve">
+        <source>every</source>
+        <target state="needs-translation">every</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="h" xml:space="preserve">
+        <source>h</source>
+        <target state="needs-translation">h</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="hours" xml:space="preserve">
+        <source>hours</source>
+        <target state="needs-translation">hours</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="last" xml:space="preserve">
+        <source>last</source>
+        <target state="needs-translation">last</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="manuel" xml:space="preserve">
+        <source>manuel</source>
+        <target state="needs-translation">manuel</target>
+        <note>main</note>
+      </trans-unit>
+      <trans-unit id="mins" xml:space="preserve">
+        <source>mins</source>
+        <target state="needs-translation">mins</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="no startdate" xml:space="preserve">
+        <source>no startdate</source>
+        <target state="needs-translation">no startdate</target>
+        <note>Schedule details</note>
+      </trans-unit>
+      <trans-unit id="no stopdate" xml:space="preserve">
+        <source>no stopdate</source>
+        <target state="needs-translation">no stopdate</target>
+        <note>Schedule details</note>
+      </trans-unit>
+      <trans-unit id="none" xml:space="preserve">
+        <source>none</source>
+        <target state="needs-translation">none</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="once" xml:space="preserve">
+        <source>once</source>
+        <target state="needs-translation">once</target>
+        <note>main</note>
+      </trans-unit>
+      <trans-unit id="previous month" xml:space="preserve">
+        <source>previous month</source>
+        <target state="needs-translation">previous month</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="secs" xml:space="preserve">
+        <source>secs</source>
+        <target state="needs-translation">secs</target>
+        <note>datetime</note>
+      </trans-unit>
+      <trans-unit id="stopped" xml:space="preserve">
+        <source>stopped</source>
+        <target state="needs-translation">stopped</target>
+        <note>main</note>
+      </trans-unit>
+      <trans-unit id="this month" xml:space="preserve">
+        <source>this month</source>
+        <target state="needs-translation">this month</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="this week" xml:space="preserve">
+        <source>this week</source>
+        <target state="needs-translation">this week</target>
+        <note>plan</note>
+      </trans-unit>
+      <trans-unit id="weekly" xml:space="preserve">
+        <source>weekly</source>
+        <target state="needs-translation">weekly</target>
+        <note>main</note>
+      </trans-unit>
+      <trans-unit id="⌘A to abort or wait..." xml:space="preserve">
+        <source>⌘A to abort or wait...</source>
+        <target state="needs-translation">⌘A to abort or wait...</target>
+        <note>Execute</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
