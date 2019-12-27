@@ -191,9 +191,8 @@
       </trans-unit>
       <trans-unit id="5TL-a2-yBQ.headerCell.title" xml:space="preserve">
         <source>Stop schedule</source>
-        <target state="needs-translation">Stop schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "5TL-a2-yBQ";</note>
-      </trans-unit>
+      <target state="needs-translation">Stop schedule</target></trans-unit>
       <trans-unit id="5Zv-SY-8nT.title" xml:space="preserve">
         <source>remove --delete</source>
         <target state="needs-translation">remove --delete</target>
@@ -291,9 +290,8 @@
       </trans-unit>
       <trans-unit id="12y-cd-eEQ.headerCell.title" xml:space="preserve">
         <source>Active</source>
-        <target state="needs-translation">Active</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "12y-cd-eEQ";</note>
-      </trans-unit>
+      <target state="needs-translation">Active</target></trans-unit>
       <trans-unit id="27J-nn-5gh.headerCell.title" xml:space="preserve">
         <source>Local catalog</source>
         <target state="needs-translation">Local catalog</target>
@@ -411,9 +409,8 @@
       </trans-unit>
       <trans-unit id="AIr-rt-OLN.headerCell.title" xml:space="preserve">
         <source>Stop date schedule</source>
-        <target state="needs-translation">Stop date schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stop date schedule"; ObjectID = "AIr-rt-OLN";</note>
-      </trans-unit>
+      <target state="needs-translation">Stop date schedule</target></trans-unit>
       <trans-unit id="AMs-qg-ohN.title" xml:space="preserve">
         <source>Either double click on row or select row and Load button</source>
         <target state="needs-translation">Either double click on row or select row and Load button</target>
@@ -511,9 +508,8 @@
       </trans-unit>
       <trans-unit id="BrN-3s-w3t.headerCell.title" xml:space="preserve">
         <source>Logs</source>
-        <target state="needs-translation">Logs</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Logs"; ObjectID = "BrN-3s-w3t";</note>
-      </trans-unit>
+      <target state="needs-translation">Logs</target></trans-unit>
       <trans-unit id="Bu5-79-2AR.title" xml:space="preserve">
         <source>Text Cell</source>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Bu5-79-2AR";</note>
@@ -690,9 +686,8 @@
       </trans-unit>
       <trans-unit id="Fpf-1W-JiM.headerCell.title" xml:space="preserve">
         <source>Delete schedule</source>
-        <target state="needs-translation">Delete schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Delete schedule"; ObjectID = "Fpf-1W-JiM";</note>
-      </trans-unit>
+      <target state="needs-translation">Delete schedule</target></trans-unit>
       <trans-unit id="FrI-lc-qcT.title" xml:space="preserve">
         <source>Number of days</source>
         <target state="needs-translation">Number of days</target>
@@ -998,14 +993,12 @@
       </trans-unit>
       <trans-unit id="NC7-Ka-Wgs.title" xml:space="preserve">
         <source>days older</source>
-        <target state="needs-translation">days older</target>
         <note>Class = "NSTextFieldCell"; title = "days older"; ObjectID = "NC7-Ka-Wgs";</note>
-      </trans-unit>
+      <target state="needs-translation">days older</target></trans-unit>
       <trans-unit id="NDf-8B-idO.title" xml:space="preserve">
         <source>Task</source>
-        <target state="needs-translation">Task</target>
         <note>Class = "NSBox"; title = "Task"; ObjectID = "NDf-8B-idO";</note>
-      </trans-unit>
+      <target state="needs-translation">Task</target></trans-unit>
       <trans-unit id="NFc-sB-jWP.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -1246,9 +1239,8 @@
       </trans-unit>
       <trans-unit id="SH2-9k-XFZ.title" xml:space="preserve">
         <source>Most recent schedule on top...</source>
-        <target state="needs-translation">Most recent schedule on top...</target>
         <note>Class = "NSTextFieldCell"; title = "Most recent schedule on top..."; ObjectID = "SH2-9k-XFZ";</note>
-      </trans-unit>
+      <target state="needs-translation">Most recent schedule on top...</target></trans-unit>
       <trans-unit id="SHi-wp-O4D.title" xml:space="preserve">
         <source>Remote info</source>
         <target state="needs-translation">Remote info</target>
@@ -1340,9 +1332,8 @@
       </trans-unit>
       <trans-unit id="Uvm-NK-TNr.title" xml:space="preserve">
         <source>Delete all</source>
-        <target state="needs-translation">Delete all</target>
         <note>Class = "NSButtonCell"; title = "Delete all"; ObjectID = "Uvm-NK-TNr";</note>
-      </trans-unit>
+      <target state="needs-translation">Delete all</target></trans-unit>
       <trans-unit id="Uye-5c-buD.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -1405,9 +1396,8 @@
       </trans-unit>
       <trans-unit id="WMA-Xf-UcN.title" xml:space="preserve">
         <source>Don´t add trailing /</source>
-        <target state="needs-translation">Don´t add trailing /</target>
         <note>Class = "NSButtonCell"; title = "Don´t add trailing /"; ObjectID = "WMA-Xf-UcN";</note>
-      </trans-unit>
+      <target state="needs-translation">Don´t add trailing /</target></trans-unit>
       <trans-unit id="WVf-5Q-8C4.title" xml:space="preserve">
         <source>Optional</source>
         <target state="needs-translation">Optional</target>
@@ -1434,9 +1424,8 @@
       </trans-unit>
       <trans-unit id="WkQ-b5-iVL.title" xml:space="preserve">
         <source>Update</source>
-        <target state="needs-translation">Update</target>
         <note>Class = "NSButtonCell"; title = "Update"; ObjectID = "WkQ-b5-iVL";</note>
-      </trans-unit>
+      <target state="needs-translation">Update</target></trans-unit>
       <trans-unit id="WlH-m8-C35.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -1519,9 +1508,8 @@
       </trans-unit>
       <trans-unit id="Z6c-BQ-VEV.title" xml:space="preserve">
         <source>Norwegian</source>
-        <target state="needs-translation">Norwegian</target>
         <note>Class = "NSTextFieldCell"; title = "Norwegian"; ObjectID = "Z6c-BQ-VEV";</note>
-      </trans-unit>
+      <target state="needs-translation">Norwegian</target></trans-unit>
       <trans-unit id="Z8Z-vX-Z7f.title" xml:space="preserve">
         <source>Table View Cell</source>
         <target state="needs-translation">Table View Cell</target>
@@ -1860,14 +1848,12 @@
       </trans-unit>
       <trans-unit id="gfR-hu-CuQ.headerCell.title" xml:space="preserve">
         <source>Day in week</source>
-        <target state="needs-translation">Day in week</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Day in week"; ObjectID = "gfR-hu-CuQ";</note>
-      </trans-unit>
+      <target state="needs-translation">Day in week</target></trans-unit>
       <trans-unit id="gih-MT-omN.title" xml:space="preserve">
         <source>Stop all</source>
-        <target state="needs-translation">Stop all</target>
         <note>Class = "NSButtonCell"; title = "Stop all"; ObjectID = "gih-MT-omN";</note>
-      </trans-unit>
+      <target state="needs-translation">Stop all</target></trans-unit>
       <trans-unit id="goN-EU-g61.title" xml:space="preserve">
         <source>Check rsa</source>
         <target state="needs-translation">Check rsa</target>
@@ -1919,9 +1905,8 @@
       </trans-unit>
       <trans-unit id="hpD-hN-6Xb.title" xml:space="preserve">
         <source>Enable environment</source>
-        <target state="needs-translation">Enable environment</target>
         <note>Class = "NSButtonCell"; title = "Enable environment"; ObjectID = "hpD-hN-6Xb";</note>
-      </trans-unit>
+      <target state="needs-translation">Enable environment</target></trans-unit>
       <trans-unit id="hq8-Fq-pip.title" xml:space="preserve">
         <source>Check dsa</source>
         <target state="needs-translation">Check dsa</target>
@@ -2004,9 +1989,8 @@
       </trans-unit>
       <trans-unit id="j1s-jO-7Gs.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="needs-translation">Task</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "j1s-jO-7Gs";</note>
-      </trans-unit>
+      <target state="needs-translation">Task</target></trans-unit>
       <trans-unit id="jTS-YA-55S.title" xml:space="preserve">
         <source>verify</source>
         <target state="needs-translation">verify</target>
@@ -2019,9 +2003,8 @@
       </trans-unit>
       <trans-unit id="jjS-gu-o5C.title" xml:space="preserve">
         <source>Check data</source>
-        <target state="needs-translation">Check data</target>
         <note>Class = "NSButtonCell"; title = "Check data"; ObjectID = "jjS-gu-o5C";</note>
-      </trans-unit>
+      <target state="needs-translation">Check data</target></trans-unit>
       <trans-unit id="k2Y-Hy-jMj.title" xml:space="preserve">
         <source>Abort</source>
         <target state="needs-translation">Abort</target>
@@ -2154,9 +2137,8 @@
       </trans-unit>
       <trans-unit id="obo-Qd-fRN.title" xml:space="preserve">
         <source>Estimate</source>
-        <target state="needs-translation">Estimate</target>
         <note>Class = "NSButtonCell"; title = "Estimate"; ObjectID = "obo-Qd-fRN";</note>
-      </trans-unit>
+      <target state="needs-translation">Estimate</target></trans-unit>
       <trans-unit id="of4-qq-ykX.title" xml:space="preserve">
         <source>Number of snapshots:</source>
         <target state="needs-translation">Number of snapshots:</target>
@@ -2174,9 +2156,8 @@
       </trans-unit>
       <trans-unit id="p7O-cs-wwA.headerCell.title" xml:space="preserve">
         <source>Start date schedule</source>
-        <target state="needs-translation">Start date schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "p7O-cs-wwA";</note>
-      </trans-unit>
+      <target state="needs-translation">Start date schedule</target></trans-unit>
       <trans-unit id="p9L-16-Icv.title" xml:space="preserve">
         <source>Parameters</source>
         <target state="needs-translation">Parameters</target>
@@ -2229,14 +2210,12 @@
       </trans-unit>
       <trans-unit id="rFc-o9-SOW.title" xml:space="preserve">
         <source>Check data when loading</source>
-        <target state="needs-translation">Check data when loading</target>
         <note>Class = "NSBox"; title = "Check data when loading"; ObjectID = "rFc-o9-SOW";</note>
-      </trans-unit>
+      <target state="needs-translation">Check data when loading</target></trans-unit>
       <trans-unit id="rMD-o2-QB4.headerCell.title" xml:space="preserve">
         <source>ID</source>
-        <target state="needs-translation">ID</target>
         <note>Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "rMD-o2-QB4";</note>
-      </trans-unit>
+      <target state="needs-translation">ID</target></trans-unit>
       <trans-unit id="rSn-oB-WbC.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -2434,9 +2413,8 @@
       </trans-unit>
       <trans-unit id="vls-wI-lPQ.headerCell.title" xml:space="preserve">
         <source>Schedule</source>
-        <target state="needs-translation">Schedule</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Schedule"; ObjectID = "vls-wI-lPQ";</note>
-      </trans-unit>
+      <target state="needs-translation">Schedule</target></trans-unit>
       <trans-unit id="w6i-hq-pcc.title" xml:space="preserve">
         <source>Required</source>
         <target state="needs-translation">Required</target>
@@ -2524,9 +2502,8 @@
       </trans-unit>
       <trans-unit id="xz5-2j-E51.title" xml:space="preserve">
         <source>Chinese</source>
-        <target state="needs-translation">Chinese</target>
         <note>Class = "NSTextFieldCell"; title = "Chinese"; ObjectID = "xz5-2j-E51";</note>
-      </trans-unit>
+      <target state="needs-translation">Chinese</target></trans-unit>
       <trans-unit id="yCU-73-EqR.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -2620,9 +2597,8 @@
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
         <source>RsyncOSX</source>
-        <target state="needs-translation">RsyncOSX</target>
         <note>Bundle name</note>
-      </trans-unit>
+      <target state="needs-translation">RsyncOSX</target></trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2019 Thomas Evensen. All rights reserved.</source>
         <target state="needs-translation">Copyright © 2019 Thomas Evensen. All rights reserved.</target>
@@ -2663,9 +2639,8 @@
       </trans-unit>
       <trans-unit id="Add config?" xml:space="preserve">
         <source>Add config?</source>
-        <target state="needs-translation">Add config?</target>
         <note>New</note>
-      </trans-unit>
+      <target state="needs-translation">Add config?</target></trans-unit>
       <trans-unit id="Batchtasks completed, close view..." xml:space="preserve">
         <source>Batchtasks completed, close view...</source>
         <target state="needs-translation">Batchtasks completed, close view...</target>
@@ -2701,20 +2676,17 @@
       </trans-unit>
       <trans-unit id="Cannot copy from a syncremote task..." xml:space="preserve">
         <source>Cannot copy from a syncremote task...</source>
-        <target state="needs-translation">Cannot copy from a syncremote task...</target>
         <note>Copy files
    Remote Info</note>
-      </trans-unit>
+      <target state="needs-translation">Cannot copy from a syncremote task...</target></trans-unit>
       <trans-unit id="Cannot verify a syncremote task..." xml:space="preserve">
         <source>Cannot verify a syncremote task...</source>
-        <target state="needs-translation">Cannot verify a syncremote task...</target>
         <note>Verify</note>
-      </trans-unit>
+      <target state="needs-translation">Cannot verify a syncremote task...</target></trans-unit>
       <trans-unit id="Chinese (Simplified) translation by: StringKe" xml:space="preserve">
         <source>Chinese (Simplified) translation by: StringKe</source>
-        <target state="needs-translation">Chinese (Simplified) translation by: StringKe</target>
         <note>chinese</note>
-      </trans-unit>
+      <target state="needs-translation">Chinese (Simplified) translation by: StringKe</target></trans-unit>
       <trans-unit id="Close" xml:space="preserve">
         <source>Close</source>
         <target state="needs-translation">Close</target>
@@ -2742,9 +2714,8 @@
       </trans-unit>
       <trans-unit id="Copyright ©2019 Thomas Evensen" xml:space="preserve">
         <source>Copyright ©2019 Thomas Evensen</source>
-        <target state="needs-translation">Copyright ©2019 Thomas Evensen</target>
         <note>copyright</note>
-      </trans-unit>
+      <target state="needs-translation">Copyright ©2019 Thomas Evensen</target></trans-unit>
       <trans-unit id="Date last backup:" xml:space="preserve">
         <source>Date last backup:</source>
         <target state="needs-translation">Date last backup:</target>
@@ -2788,9 +2759,8 @@
       </trans-unit>
       <trans-unit id="Destination catalog:" xml:space="preserve">
         <source>Destination catalog:</source>
-        <target state="needs-translation">Destination catalog:</target>
         <note>Tooltip</note>
-      </trans-unit>
+      <target state="needs-translation">Destination catalog:</target></trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?" xml:space="preserve">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
         <target state="needs-translation">Do you REALLY want to DELETE selected snapshots?</target>
@@ -2864,9 +2834,8 @@
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor" xml:space="preserve">
         <source>Icon by: Zsolt Sándor</source>
-        <target state="needs-translation">Icon by: Zsolt Sándor</target>
         <note>icon</note>
-      </trans-unit>
+      <target state="needs-translation">Icon by: Zsolt Sándor</target></trans-unit>
       <trans-unit id="Keep" xml:space="preserve">
         <source>Keep</source>
         <target state="needs-translation">Keep</target>
@@ -2885,9 +2854,8 @@
       </trans-unit>
       <trans-unit id="Local catalog:" xml:space="preserve">
         <source>Local catalog:</source>
-        <target state="needs-translation">Local catalog:</target>
         <note>Tooltip</note>
-      </trans-unit>
+      <target state="needs-translation">Local catalog:</target></trans-unit>
       <trans-unit id="Local or remote catalog cannot be empty..." xml:space="preserve">
         <source>Local or remote catalog cannot be empty...</source>
         <target state="needs-translation">Local or remote catalog cannot be empty...</target>
@@ -2905,14 +2873,12 @@
       </trans-unit>
       <trans-unit id="New version is available - see About" xml:space="preserve">
         <source>New version is available - see About</source>
-        <target state="needs-translation">New version is available - see About</target>
         <note>Execute</note>
-      </trans-unit>
+      <target state="needs-translation">New version is available - see About</target></trans-unit>
       <trans-unit id="New version is available:" xml:space="preserve">
         <source>New version is available:</source>
-        <target state="needs-translation">New version is available:</target>
         <note>About</note>
-      </trans-unit>
+      <target state="needs-translation">New version is available:</target></trans-unit>
       <trans-unit id="No rclone config found..." xml:space="preserve">
         <source>No rclone config found...</source>
         <target state="needs-translation">No rclone config found...</target>
@@ -2930,9 +2896,8 @@
       </trans-unit>
       <trans-unit id="Norwegian translation by: Thomas Evensen" xml:space="preserve">
         <source>Norwegian translation by: Thomas Evensen</source>
-        <target state="needs-translation">Norwegian translation by: Thomas Evensen</target>
         <note>norwegian</note>
-      </trans-unit>
+      <target state="needs-translation">Norwegian translation by: Thomas Evensen</target></trans-unit>
       <trans-unit id="Not a remote task, use Finder to copy files..." xml:space="preserve">
         <source>Not a remote task, use Finder to copy files...</source>
         <target state="needs-translation">Not a remote task, use Finder to copy files...</target>
@@ -2995,9 +2960,8 @@
       </trans-unit>
       <trans-unit id="Remote catalog:" xml:space="preserve">
         <source>Remote catalog:</source>
-        <target state="needs-translation">Remote catalog:</target>
         <note>Tooltip</note>
-      </trans-unit>
+      <target state="needs-translation">Remote catalog:</target></trans-unit>
       <trans-unit id="Restore" xml:space="preserve">
         <source>Restore</source>
         <target state="needs-translation">Restore</target>
@@ -3048,9 +3012,8 @@
       </trans-unit>
       <trans-unit id="Source catalog:" xml:space="preserve">
         <source>Source catalog:</source>
-        <target state="needs-translation">Source catalog:</target>
         <note>Tooltip</note>
-      </trans-unit>
+      <target state="needs-translation">Source catalog:</target></trans-unit>
       <trans-unit id="Start restore?" xml:space="preserve">
         <source>Start restore?</source>
         <target state="needs-translation">Start restore?</target>
@@ -3077,9 +3040,8 @@
       </trans-unit>
       <trans-unit id="This is added before?" xml:space="preserve">
         <source>This is added before?</source>
-        <target state="needs-translation">This is added before?</target>
         <note>New</note>
-      </trans-unit>
+      <target state="needs-translation">This is added before?</target></trans-unit>
       <trans-unit id="Thursday" xml:space="preserve">
         <source>Thursday</source>
         <target state="needs-translation">Thursday</target>
@@ -3122,9 +3084,8 @@
       </trans-unit>
       <trans-unit id="earlier months" xml:space="preserve">
         <source>earlier months</source>
-        <target state="needs-translation">earlier months</target>
         <note>plan</note>
-      </trans-unit>
+      <target state="needs-translation">earlier months</target></trans-unit>
       <trans-unit id="every" xml:space="preserve">
         <source>every</source>
         <target state="needs-translation">every</target>
@@ -3162,9 +3123,8 @@
       </trans-unit>
       <trans-unit id="no stopdate" xml:space="preserve">
         <source>no stopdate</source>
-        <target state="needs-translation">no stopdate</target>
         <note>Schedule details</note>
-      </trans-unit>
+      <target state="needs-translation">no stopdate</target></trans-unit>
       <trans-unit id="none" xml:space="preserve">
         <source>none</source>
         <target state="needs-translation">none</target>
@@ -3177,9 +3137,8 @@
       </trans-unit>
       <trans-unit id="previous month" xml:space="preserve">
         <source>previous month</source>
-        <target state="needs-translation">previous month</target>
         <note>plan</note>
-      </trans-unit>
+      <target state="needs-translation">previous month</target></trans-unit>
       <trans-unit id="secs" xml:space="preserve">
         <source>secs</source>
         <target state="needs-translation">secs</target>
@@ -3187,9 +3146,8 @@
       </trans-unit>
       <trans-unit id="stopped" xml:space="preserve">
         <source>stopped</source>
-        <target state="needs-translation">stopped</target>
         <note>main</note>
-      </trans-unit>
+      <target state="needs-translation">stopped</target></trans-unit>
       <trans-unit id="this month" xml:space="preserve">
         <source>this month</source>
         <target state="needs-translation">this month</target>
