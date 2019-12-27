@@ -3077,8 +3077,9 @@
       </trans-unit>
       <trans-unit id="The menu app" xml:space="preserve">
         <source>The menu app</source>
+        <target state="needs-translation">The menu app</target>
         <note>Execute</note>
-      <target state="needs-translation">The menu app</target></trans-unit>
+      </trans-unit>
       <trans-unit id="There seems to be nothing to do..." xml:space="preserve">
         <source>There seems to be nothing to do...</source>
         <target state="needs-translation">There seems to be nothing to do...</target>
