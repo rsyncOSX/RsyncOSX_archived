@@ -303,7 +303,7 @@ extension ViewControllerMain: Count {
 
 extension ViewControllerMain: MenuappChanged {
     func menuappchanged() {
-        self.enablemenuappbutton()
+        self.menuappicons()
     }
 }
 

@@ -49,9 +49,13 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func rsyncosxsched(_: NSButton) {
+        let running = Running()
+        guard running.rsyncOSXschedisrunning == false else {
+            self.info.stringValue = Infoexecute().info(num: 5)
+            return
+        }
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
-        self.rsyncosxschedbutton.isEnabled = false
         NSApp.terminate(self)
     }
 
@@ -177,6 +181,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.scheduletabledetails.delegate = self
         self.scheduletabledetails.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
+        self.rsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
     }
 
     override func viewDidAppear() {
@@ -195,7 +200,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.starttime.dateValue = Date()
         self.reloadtabledata()
         self.delayWithSeconds(0.5) {
-            self.enablemenuappbutton()
+            self.menuappicons()
         }
     }
 
@@ -220,18 +225,16 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         }
     }
 
-    private func enablemenuappbutton() {
+    func menuappicons() {
         globalMainQueue.async { () -> Void in
             let running = Running()
             guard running.enablemenuappbutton == true else {
-                self.rsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                    self.info.stringValue = Infoschedule().info(num: 5)
+                    self.info.stringValue = Infoexecute().info(num: 5)
                 }
                 return
             }
-            self.rsyncosxschedbutton.isEnabled = true
             self.menuappisrunning.image = #imageLiteral(resourceName: "red")
         }
     }
