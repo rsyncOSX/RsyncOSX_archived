@@ -1,3 +1,0 @@
-files:
-  - source: RsyncOSX/*.lproj/*.strings
-    translation: l10n/%two_letters_code%_%original_file_name%
