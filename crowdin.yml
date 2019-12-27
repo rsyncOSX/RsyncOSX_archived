@@ -1,3 +1,0 @@
-files:
-  - source: '*.lproj/'
-    translation: '%original_file_name%'

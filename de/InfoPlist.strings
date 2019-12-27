@@ -1,5 +1,0 @@
-/* Bundle name */
-"CFBundleName" = "RsyncOSX";
-
-/* Copyright (human-readable) */
-"NSHumanReadableCopyright" = "© 2019 Thomas Evensen.";
