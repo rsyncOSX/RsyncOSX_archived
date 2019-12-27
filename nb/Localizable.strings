@@ -1,348 +1,293 @@
 /* Restore */
-" ... set in User configuration ..." = "... sett i bruker preferanser...";
+" ... set in User configuration ..." = "设置用户配置";
 
 /* Ssh */
-"... no remote server ..." = "...ingen ekstern server...";
+"... no remote server ..." = "没有远程服务器";
 
 /* Execute */
-"⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
+"⌘A to abort or wait..." = "⌘A中止或等待......";
 
 /* Snapshots */
-"Aborting delete operation..." = "Avslutter slette operasjon...";
+"Aborting delete operation..." = "停止删除操作";
 
 /* Add schedule
    New */
-"Add" = "Legg til";
-
-/* New */
-"Add config?" = "Legge til?";
+"Add" = "添加";
 
 /* Add schedule */
-"Add Schedule?" = "Legg til oppgave?";
+"Add Schedule?" = "添加定时任务";
 
 /* Batch */
-"Batchtasks completed, close view..." = "Batch oppgaver ferdig, lukker...";
+"Batchtasks completed, close view..." = "BathTasks 完成，关闭界面";
 
 /* Tooltip */
-"By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp filstier.";
+"By using Finder drag and drop filepaths." = "使用 Finder 拽拖文件路径";
 
 /* Cancel NSAlert */
-"Cancel" = "Kanseler";
+"Cancel" = "取消";
 
 /* Add schedule */
-"Cancel or Add" = "Kanseler eller legg til";
+"Cancel or Add" = "取消或添加";
 
 /* Execute
    Logg
    Profiles
    Snapshots */
-"Cancel or Delete" = "Kanseler eller slett";
+"Cancel or Delete" = "取消活删除";
 
 /* Restore */
-"Cancel or Restore" = "Kanseler eller kopier";
-
-/* Copy files
-   Remote Info */
-"Cannot copy from a syncremote task..." = "Kan ikke kopiere fra syncremote...";
-
-/* Verify */
-"Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
-
-/* chinese */
-"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
+"Cancel or Restore" = "取消或恢复";
 
 /* Close NSAlert */
-"Close" = "Lukk";
+"Close" = "取消";
 
 /* Remote info */
-"Completed" = "Utført";
+"Completed" = "完成";
 
 /* Verify */
-"Completed ..." = "Utført";
+"Completed ..." = "完成...";
 
 /* Verify */
-"Computing changed, please wait..." = "Beregning endret, vennligst vent...";
+"Computing changed, please wait..." = "计算更改，请稍后...";
 
 /* Restore */
-"Copy single files or directory?" = "Kopier fil eller katalog?";
-
-/* copyright */
-"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
+"Copy single files or directory?" = "复制单个文件或目录？";
 
 /* main */
-"daily" = "daglig";
+"daily" = "每天";
 
 /* Remote Info
    Verify */
-"Date last backup:" = "Dato siste backup:";
+"Date last backup:" = "上次备份日期：";
 
 /* datetime */
-"days" = "dager";
+"days" = "天数";
 
 /* Remote Info
    Verify */
-"Days since last backup:" = "Dager siden siste backup:";
+"Days since last backup:" = "上次备份后的天数：";
 
 /* default profile */
-"Default profile" = "Default profil";
+"Default profile" = "默认配置";
 
 /* Execute
    Logg
    plan
    Profiles
    Snapshots */
-"Delete" = "Slett";
+"Delete" = "删除";
 
 /* Snapshots */
-"Delete operation completed..." = "Slette operasjon gjennomført...";
+"Delete operation completed..." = "删除完成操作";
 
 /* Profiles */
-"Delete profile:" = "Slett profil:";
+"Delete profile:" = "删除配置";
 
 /* Execute */
-"Delete selected task?" = "Slett valgte oppgave?";
-
-/* Tooltip */
-"Destination catalog:" = "Lokal katalog:";
+"Delete selected task?" = "删除定制任务";
 
 /* Snapshots */
-"Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
+"Do you REALLY want to DELETE selected snapshots?" = "你真的要删除这个快照么？";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPI?";
+"Do you REALLY want to start a RESTORE ?" = "你真的要启动恢复？";
 
 /* Snapshots */
-"Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
-
-/* plan */
-"earlier months" = "tidligere måned";
+"Dont change the snapshot num if you don´t know what you are doing..." = "不要修改快照数量，如果你不知道您正在做什么";
 
 /* Error rsync */
-"ERROR: no rsync in" = "FEIL: ingen rsync i";
+"ERROR: no rsync in" = "错误：no rsync in";
 
 /* Error rsync */
-"ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
+"ERROR: no rsync in /usr/local/bin" = "错误：no rsync in /usr/local/bin";
 
 /* Batch */
-"Estimation completed, you can start batch..." = "Estimering utført, start batch...";
+"Estimation completed, you can start batch..." = "估计完成后，你可以开始批量...";
 
 /* plan */
-"every" = "alle";
+"every" = "一切";
 
 /* Restore */
-"Executing restore..." = "Utfører kopi...";
+"Executing restore..." = "执行恢复...";
 
 /* plan */
-"Friday" = "fredag";
+"Friday" = "星期五";
 
 /* Restore */
-"Getting info, please wait..." = "Henter informasjon, vennligst vent...";
+"Getting info, please wait..." = "获取信息，请稍候......";
 
 /* Verify */
-"Getting information, please wait ..." = "Henter informasjon, vennligst vent";
+"Getting information, please wait ..." = "获取信息，请稍候......";
 
 /* Loggdata */
-"Got index from Execute and listing logs for one configuration..." = "Hentet indeks fra Utfør og lister logg for en konfigurasjon ";
+"Got index from Execute and listing logs for one configuration..." = "从Execute获取索引并列出一个配置的日志...";
 
 /* Schedules */
-"Got index from Execute..." = "Hentet indeks fra Utfør";
+"Got index from Execute..." = "从Execute获得索引...";
 
 /* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Hentet indeks fra Snapshots og lister logg for en konfigurasjon ";
+"Got index from Snapshots and listing logs for one configuration..." = "从一个配置的快照和列表日志获得索引...";
 
 /* Remote Info
    Restore */
-"Got it..." = "Info hentet...";
+"Got it..." = "已经获取...";
 
 /* datetime */
-"h" = "t";
+"h" = "H";
 
 /* datetime */
-"hours" = "timer";
-
-/* icon */
-"Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+"hours" = "小时";
 
 /* plan */
-"Keep" = "Behold";
+"Keep" = "保持";
 
 /* plan */
-"last" = "siste";
+"last" = "持续";
 
 /* Profile */
-"Load" = "Last";
+"Load" = "加载";
 
 /* Remote info
    Remote Info */
-"Loaded cached data..." = "Lastet cached info...";
-
-/* Tooltip */
-"Local catalog:" = "Lokal katalog:";
+"Loaded cached data..." = "加载的缓存数据......";
 
 /* Copy files */
-"Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
+"Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";
 
 /* main */
-"manuel" = "manuell";
+"manuel" = "文档";
 
 /* Execute */
-"Menu app is running..." = "Meny appen kjører...";
+"Menu app is running..." = "菜单应用正在运行...";
 
 /* datetime */
-"mins" = "min";
+"mins" = "分钟";
 
 /* plan */
-"Monday" = "mandag";
+"Monday" = "星期一";
 
 /* Execute */
-"New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
-
-/* About */
-"New version is available:" = "Ny versjon er tilgjengelig:";
+"No rclone config found..." = "找不到rclone配置...";
 
 /* Execute */
-"No rclone config found..." = "Ingen rclone konfigurasjon funnet";
-
-/* Execute */
-"No rsync in path..." = "Ingen rsync i sti...";
+"No rsync in path..." = "路径中没有rsync ...";
 
 /* Schedule details */
-"no startdate" = "ingen startdato";
-
-/* Schedule details */
-"no stopdate" = "ingen stopp dato";
+"no startdate" = "没有开始";
 
 /* Copy files */
-"No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
+"No such local catalog for restore or set it in user config..." = "没有这样的本地目录还原或在用户配置中设置它...";
 
 /* plan */
-"none" = "ingen";
-
-/* norwegian */
-"Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
+"none" = "没有";
 
 /* Copy files */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
+"Not a remote task, use Finder to copy files..." = "不是远程任务，使用Finder复制文件...";
 
 /* Snapshots */
-"Not a snapshot task..." = "Ikke en snapshot oppgave...";
+"Not a snapshot task..." = "不是快照任务......";
 
 /* AllProfiles */
-"Number of configurations:" = "Antall konfigurasjoner:";
+"Number of configurations:" = "配置数量：";
 
 /* Logg */
-"Number of logs:" = "Antall logger:";
+"Number of logs:" = "日志数量：";
 
 /* Remote info */
-"Number of tasks to estimate:" = "Antall oppgaver å estimere:";
+"Number of tasks to estimate:" = "要估算的任务数量：";
 
 /* Copy files */
-"Number remote files:" = "Antall filer:";
+"Number remote files:" = "数字远程文件：";
 
 /* Snapshots */
-"Number snapshots:" = "Antall snapshots:";
+"Number snapshots:" = "数字快照：";
 
 /* main */
-"once" = "engang";
+"once" = "一次";
 
 /* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
+"Only valid for backup, snapshot and combined tasks..." = "仅对备份，快照和组合任务有效...";
 
 /* Verify */
-"Please select a task in Execute ..." = "Velg en oppgave i Utfør";
+"Please select a task in Execute ..." = "请在执行中选择一项任务...";
 
 /* Execute */
-"Possible error logging..." = "Mulig feil logging...";
-
-/* plan */
-"previous month" = "forrige måned";
+"Possible error logging..." = "可能的错误记录......";
 
 /* Execute */
-"Profile:" = "Profil:";
+"Profile:" = "配置：";
 
 /* Execute */
-"Profile: please wait..." = "Profil: vennligst vent...";
-
-/* Tooltip */
-"Remote catalog:" = "Ekstern katalog:";
+"Profile: please wait..." = "配置：请稍候......";
 
 /* Restore */
-"Restore" = "Kopi";
+"Restore" = "恢复";
 
 /* plan */
-"Saturday" = "lørdag";
+"Saturday" = "星期六";
 
 /* Profile
    Userconfig */
-"Save" = "Lagre";
+"Save" = "保存";
 
 /* Schedules */
-"Scheduled tasks in menu app..." = "Planlagte oppgaver i meny app...";
+"Scheduled tasks in menu app..." = "菜单应用中的预定任务...";
 
 /* datetime */
-"secs" = "sek";
+"secs" = "秒";
 
 /* Copy files
    Remote Info
    Verify */
-"Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
+"Seems not to be connected..." = "似乎无法链接......";
 
 /* Execute */
-"Select a task...." = "Velg en oppgave...";
+"Select a task...." = "选择任务....";
 
 /* Logg */
-"Selected logs:" = "Valgte logger:";
+"Selected logs:" = "选定的日志：";
 
 /* Execute */
-"Selection out of range - aborting" = "Utvalg ikke mulig - avslutter";
+"Selection out of range - aborting" = "选择超出范围 - 中止";
 
 /* Snapshots */
-"Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
-
-/* Tooltip */
-"Source catalog:" = "Ekstern katalog:";
+"Seriously, enter a real number..." = "请输入一个h数字...";
 
 /* Restore */
-"Start restore?" = "Start kopi?";
-
-/* main */
-"stopped" = "stoppet";
+"Start restore?" = "开始恢复？";
 
 /* plan */
-"Sunday" = "søndag";
+"Sunday" = "星期日";
 
 /* Quickbackup */
-"There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
+"There seems to be nothing to do..." = "好像什么都没有做......";
 
 /* Execute */
-"This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
-
-/* New */
-"This is added before?" = "Denne er lagt til tidligere?";
+"This is a combined task, execute by ⌘R..." = "这是一个组合任务，按⌘R执行...";
 
 /* plan */
-"this month" = "denne måned";
+"this month" = "本月";
 
 /* plan */
-"this week" = "denne uke";
+"this week" = "本周";
 
 /* plan */
-"Thursday" = "torsdag";
+"Thursday" = "星期四";
 
 /* plan */
-"Tuesday" = "tirsdag";
+"Tuesday" = "星期二";
 
 /* Verify */
-"Verifying, please wait..." = "Verifiserer, vennligst vent...";
+"Verifying, please wait..." = "正在验证，请稍候......";
 
 /* plan */
-"Wednesday" = "onsdag";
+"Wednesday" = "星期三";
 
 /* main */
-"weekly" = "ukentlig";
+"weekly" = "每周";
 
 /* Snapshots */
-"You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
+"You cannot delete that many, max are" = "无法删除，最多";
 
 /* About */
-"You have the latest ..." = "Du har siste versjon...";
+"You have the latest ..." = "发现新版本......";
