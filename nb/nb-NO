@@ -157,9 +157,8 @@
       </trans-unit>
       <trans-unit id="4fh-oN-1Ue.title" xml:space="preserve">
         <source>lastorevery</source>
-        <target state="needs-translation">lastorevery</target>
         <note>Class = "NSTextFieldCell"; title = "lastorevery"; ObjectID = "4fh-oN-1Ue";</note>
-      </trans-unit>
+      <target state="needs-translation">lastorevery</target></trans-unit>
       <trans-unit id="4rw-XH-Spd.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -517,9 +516,8 @@
       </trans-unit>
       <trans-unit id="Bu5-79-2AR.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Bu5-79-2AR";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="Byb-kM-Mpk.headerCell.title" xml:space="preserve">
         <source>Batch</source>
         <target state="needs-translation">Batch</target>
@@ -902,9 +900,8 @@
       </trans-unit>
       <trans-unit id="KPx-Pg-dAk.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "KPx-Pg-dAk";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
         <source>Show All</source>
         <target state="needs-translation">Show All</target>
@@ -977,9 +974,8 @@
       </trans-unit>
       <trans-unit id="MWF-sp-vNQ.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "MWF-sp-vNQ";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="Md7-8G-z2y.title" xml:space="preserve">
         <source>minimum log</source>
         <target state="needs-translation">minimum log</target>
@@ -1147,9 +1143,8 @@
       </trans-unit>
       <trans-unit id="QOZ-8g-24B.title" xml:space="preserve">
         <source>dayofweek</source>
-        <target state="needs-translation">dayofweek</target>
         <note>Class = "NSTextFieldCell"; title = "dayofweek"; ObjectID = "QOZ-8g-24B";</note>
-      </trans-unit>
+      <target state="needs-translation">dayofweek</target></trans-unit>
       <trans-unit id="QPs-xd-DDF.title" xml:space="preserve">
         <source>add suffix Linux</source>
         <target state="needs-translation">add suffix Linux</target>
@@ -1217,9 +1212,8 @@
       </trans-unit>
       <trans-unit id="RhH-4H-aT8.title" xml:space="preserve">
         <source>selectedstart</source>
-        <target state="needs-translation">selectedstart</target>
         <note>Class = "NSTextFieldCell"; title = "selectedstart"; ObjectID = "RhH-4H-aT8";</note>
-      </trans-unit>
+      <target state="needs-translation">selectedstart</target></trans-unit>
       <trans-unit id="Rq7-8F-bHb.headerCell.title" xml:space="preserve">
         <source>Snap</source>
         <target state="needs-translation">Snap</target>
@@ -1277,9 +1271,8 @@
       </trans-unit>
       <trans-unit id="Sdh-u9-bH2.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Sdh-u9-bH2";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="Sr3-1q-P2Q.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -1427,9 +1420,8 @@
       </trans-unit>
       <trans-unit id="WWj-MW-4MO.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WWj-MW-4MO";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="WYK-hg-6Bv.title" xml:space="preserve">
         <source>Delete</source>
         <target state="needs-translation">Delete</target>
@@ -1622,9 +1614,8 @@
       </trans-unit>
       <trans-unit id="bVT-KQ-Buk.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "bVT-KQ-Buk";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="bgh-eQ-3ly.headerCell.title" xml:space="preserve">
         <source>Used (GB)</source>
         <target state="needs-translation">Used (GB)</target>
@@ -1662,9 +1653,8 @@
       </trans-unit>
       <trans-unit id="d42-5A-02m.title" xml:space="preserve">
         <source>Connections</source>
-        <target state="needs-translation">Connections</target>
         <note>Class = "NSMenuItem"; title = "Connections"; ObjectID = "d42-5A-02m";</note>
-      </trans-unit>
+      <target state="needs-translation">Connections</target></trans-unit>
       <trans-unit id="dDj-C3-nB5.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="needs-translation">Text Cell</target>
@@ -1687,9 +1677,8 @@
       </trans-unit>
       <trans-unit id="dqv-MZ-kBF.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "dqv-MZ-kBF";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="dsn-9I-wI5.title" xml:space="preserve">
         <source> detailed logging</source>
         <target state="needs-translation"> detailed logging</target>
@@ -1747,9 +1736,8 @@
       </trans-unit>
       <trans-unit id="eSz-E4-xy1.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eSz-E4-xy1";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="ecv-vl-IKk.headerCell.title" xml:space="preserve">
         <source>Server</source>
         <target state="needs-translation">Server</target>
@@ -1917,9 +1905,8 @@
       </trans-unit>
       <trans-unit id="hLU-yg-gB8.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hLU-yg-gB8";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="hTP-NL-EPM.title" xml:space="preserve">
         <source>Number of files:</source>
         <target state="needs-translation">Number of files:</target>
@@ -2557,9 +2544,8 @@
       </trans-unit>
       <trans-unit id="yWQ-Wj-w1t.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">Text Cell</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yWQ-Wj-w1t";</note>
-      </trans-unit>
+      <target state="needs-translation">Text Cell</target></trans-unit>
       <trans-unit id="ydG-5b-K3r.title" xml:space="preserve">
         <source>Close</source>
         <target state="needs-translation">Close</target>
@@ -3077,9 +3063,8 @@
       </trans-unit>
       <trans-unit id="The menu app" xml:space="preserve">
         <source>The menu app</source>
-        <target state="needs-translation">The menu app</target>
         <note>Execute</note>
-      </trans-unit>
+      <target state="needs-translation">The menu app</target></trans-unit>
       <trans-unit id="There seems to be nothing to do..." xml:space="preserve">
         <source>There seems to be nothing to do...</source>
         <target state="needs-translation">There seems to be nothing to do...</target>
