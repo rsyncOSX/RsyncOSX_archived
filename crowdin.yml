@@ -1,0 +1,3 @@
+files:
+  - source: '*.strings'
+    translation: '%original_file_name%'
