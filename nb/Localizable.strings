@@ -142,13 +142,13 @@
 "Getting information, please wait ..." = "Henter informasjon, vennligst vent";
 
 /* Loggdata */
-"Got index from Execute and listing logs for one configuration..." = "Hentet indeks fra Utfør og lister logg for en konfigurasjon ";
+"Got index from Execute and listing logs for one configuration..." = "Hentet index fra Utfør og lister logg for en konfigurasjon ";
 
 /* Schedules */
-"Got index from Execute..." = "Hentet indeks fra Utfør";
+"Got index from Execute..." = "Hentet index fra Utfør";
 
 /* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Hentet indeks fra Snapshots og lister logg for en konfigurasjon ";
+"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon ";
 
 /* Remote Info
    Restore */
