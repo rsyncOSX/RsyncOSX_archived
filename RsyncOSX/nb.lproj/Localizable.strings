@@ -58,7 +58,7 @@
 "Completed" = "Utført";
 
 /* Verify */
-"Completed ..." = "Utført";
+"Completed ..." = "Utført ...";
 
 /* Verify */
 "Computing changed, please wait..." = "Beregning endret, vennligst vent...";
@@ -67,7 +67,7 @@
 "Copy single files or directory?" = "Kopier fil eller katalog?";
 
 /* copyright */
-"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
+"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen";
 
 /* main */
 "daily" = "daglig";
@@ -148,7 +148,7 @@
 "Got index from Execute..." = "Hentet index fra Utfør";
 
 /* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon ";
+"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon...";
 
 /* Remote Info
    Restore */
@@ -249,7 +249,7 @@
 "Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
 
 /* Verify */
-"Please select a task in Execute ..." = "Velg en oppgave i Utfør";
+"Please select a task in Execute ..." = "Velg en oppgave i Utfør ...";
 
 /* Execute */
 "Possible error logging..." = "Mulig feil logging...";
@@ -310,6 +310,9 @@
 
 /* plan */
 "Sunday" = "søndag";
+
+/* Execute */
+"The menu app" = "The menu app";
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
