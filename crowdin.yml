@@ -1,3 +1,3 @@
 files:
-  - source: '*.strings'
+  - source: '*.lproj/'
     translation: '%original_file_name%'
