@@ -24,11 +24,11 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
 - German - by [Andre](https://github.com/andre68723)
 - Norwegian - by me
-- English - the base language of RsyncOSX
+- English - by me, the base language of RsyncOSX
 
 Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx) to translate the xliff files which are imported into Xcode when translated. [Crowdin is free for open source projects](https://crowdin.com/page/open-source-project-setup-request).
 
-The German translation is work in progress, will be released sometime in January 2020.
+The German translation is work in progress. The Chinese (Simplified) and Norwegian translations are also being updated. A new updated release will be available in January 2020.
 
 ### Version of rsync
 
