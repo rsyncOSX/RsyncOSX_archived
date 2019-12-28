@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-protocol SetRemoteInfo: class {
+protocol SetRemoteInfo: AnyObject {
     func setremoteinfo(remoteinfotask: RemoteinfoEstimation?)
     func getremoteinfo() -> RemoteinfoEstimation?
 }

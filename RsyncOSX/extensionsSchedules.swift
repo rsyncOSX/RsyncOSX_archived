@@ -24,7 +24,7 @@ extension SetSchedules {
 }
 
 // Protocol for returning object configurations data
-protocol GetSchedulesObject: class {
+protocol GetSchedulesObject: AnyObject {
     func getschedulesobject() -> Schedules?
     func createschedulesobject(profile: String?) -> Schedules?
     func reloadschedulesobject()

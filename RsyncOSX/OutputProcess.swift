@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol RsyncError: class {
+protocol RsyncError: AnyObject {
     func rsyncerror()
 }
 

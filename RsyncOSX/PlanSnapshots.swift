@@ -9,7 +9,7 @@
 
 import Foundation
 
-protocol GetSnapshotsLoggData: class {
+protocol GetSnapshotsLoggData: AnyObject {
     func getsnapshotsloggdata() -> SnapshotsLoggData?
 }
 

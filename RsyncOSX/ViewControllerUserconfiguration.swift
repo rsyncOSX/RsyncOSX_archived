@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-protocol MenuappChanged: class {
+protocol MenuappChanged: AnyObject {
     func menuappchanged()
 }
 

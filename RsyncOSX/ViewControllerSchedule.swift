@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-protocol SetProfileinfo: class {
+protocol SetProfileinfo: AnyObject {
     func setprofile(profile: String, color: NSColor)
 }
 

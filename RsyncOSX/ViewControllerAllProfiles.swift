@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-protocol ReloadTableAllProfiles: class {
+protocol ReloadTableAllProfiles: AnyObject {
     func reloadtable()
 }
 

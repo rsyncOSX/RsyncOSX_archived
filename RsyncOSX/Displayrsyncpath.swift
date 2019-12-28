@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Setinfoaboutrsync: class {
+protocol Setinfoaboutrsync: AnyObject {
     func setinfoaboutrsync()
 }
 

@@ -10,7 +10,7 @@ import Cocoa
 import Foundation
 
 // Protocol for adding new profiles
-protocol NewProfile: class {
+protocol NewProfile: AnyObject {
     func newProfile(profile: String?)
     func enableselectprofile()
 }

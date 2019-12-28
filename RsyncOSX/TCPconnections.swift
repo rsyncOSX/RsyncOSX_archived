@@ -10,7 +10,7 @@
 import Foundation
 
 // Protocol for doing a refresh in main view after testing for connectivity
-protocol Connections: class {
+protocol Connections: AnyObject {
     func displayConnections()
 }
 

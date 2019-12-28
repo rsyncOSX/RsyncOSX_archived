@@ -12,13 +12,13 @@ import Cocoa
 import Foundation
 
 // protocol for returning if userparams is updated or not
-protocol RsyncUserParams: class {
+protocol RsyncUserParams: AnyObject {
     func rsyncuserparamsupdated()
 }
 
 // Protocol for sending selected index in tableView
 // The protocol is implemented in ViewControllertabMain
-protocol GetSelecetedIndex: class {
+protocol GetSelecetedIndex: AnyObject {
     func getindex() -> Int?
 }
 

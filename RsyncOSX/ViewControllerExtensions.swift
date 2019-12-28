@@ -112,7 +112,7 @@ extension VcMain {
 }
 
 // Protocol for dismissing a viewcontroller
-protocol DismissViewController: class {
+protocol DismissViewController: AnyObject {
     func dismiss_view(viewcontroller: NSViewController)
 }
 
@@ -181,7 +181,7 @@ extension SetDismisser {
 }
 
 // Protocol for deselecting rowtable
-protocol DeselectRowTable: class {
+protocol DeselectRowTable: AnyObject {
     func deselect()
 }
 
@@ -266,7 +266,7 @@ extension Connected {
     }
 }
 
-protocol Abort: class {
+protocol Abort: AnyObject {
     func abort()
 }
 
@@ -277,7 +277,7 @@ extension Abort {
     }
 }
 
-protocol GetOutput: class {
+protocol GetOutput: AnyObject {
     func getoutput() -> [String]
 }
 
@@ -295,7 +295,7 @@ extension OutPut {
     }
 }
 
-protocol RsyncIsChanged: class {
+protocol RsyncIsChanged: AnyObject {
     func rsyncischanged()
 }
 
@@ -327,7 +327,7 @@ extension ChangeTemporaryRestorePath {
     }
 }
 
-protocol Createandreloadconfigurations: class {
+protocol Createandreloadconfigurations: AnyObject {
     func createandreloadconfigurations()
 }
 
@@ -392,7 +392,7 @@ extension Sorting {
     }
 }
 
-protocol Allerrors: class {
+protocol Allerrors: AnyObject {
     func allerrors(outputprocess: OutputProcess?)
     func getoutputerrors() -> OutputErrors?
 }

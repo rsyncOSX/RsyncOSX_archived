@@ -10,7 +10,7 @@
 import Cocoa
 
 // Protocol for progress indicator
-protocol Count: class {
+protocol Count: AnyObject {
     func maxCount() -> Int
     func inprogressCount() -> Int
 }
