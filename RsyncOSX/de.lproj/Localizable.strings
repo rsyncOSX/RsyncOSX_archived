@@ -311,6 +311,9 @@
 /* plan */
 "Sunday" = "søndag";
 
+/* Execute */
+"The menu app" = "The menu app";
+
 /* Quickbackup */
 "There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
 

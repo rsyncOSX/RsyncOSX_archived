@@ -738,9 +738,9 @@
         <target state="translated">Filer</target>
         <note>Class = "NSViewController"; title = "Files"; ObjectID = "GJH-xK-5LY";</note>
       </trans-unit>
-      <trans-unit id="GKP-F2-XbX.title" xml:space="preserve">
+      <trans-unit id="GKP-F2-XbX.title" xml:space="preserve" approved="yes">
         <source>temporary path restore:</source>
-        <target state="translated"> midlertidig sti kopi:</target>
+        <target state="final"> midlertidig sti kopi:</target>
         <note>Class = "NSTextFieldCell"; title = "temporary path restore:"; ObjectID = "GKP-F2-XbX";</note>
       </trans-unit>
       <trans-unit id="GYz-8J-WDp.label" xml:space="preserve">
@@ -2811,9 +2811,9 @@
         <target state="translated">FEIL: ingen rsync i</target>
         <note>Error rsync</note>
       </trans-unit>
-      <trans-unit id="ERROR: no rsync in /usr/local/bin" xml:space="preserve">
+      <trans-unit id="ERROR: no rsync in /usr/local/bin" xml:space="preserve" approved="yes">
         <source>ERROR: no rsync in /usr/local/bin</source>
-        <target state="translated">FEIL: ingen rsync i /usr/local/bin</target>
+        <target state="final">FEIL: ingen rsync i /usr/local/bin</target>
         <note>Error rsync</note>
       </trans-unit>
       <trans-unit id="Estimation completed, you can start batch..." xml:space="preserve">
@@ -2826,9 +2826,9 @@
         <target state="translated">Utfører kopi...</target>
         <note>Restore</note>
       </trans-unit>
-      <trans-unit id="Friday" xml:space="preserve">
+      <trans-unit id="Friday" xml:space="preserve" approved="yes">
         <source>Friday</source>
-        <target state="translated">fredag</target>
+        <target state="final">fredag</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="Getting info, please wait..." xml:space="preserve">
@@ -2836,21 +2836,21 @@
         <target state="translated">Henter informasjon, vennligst vent...</target>
         <note>Restore</note>
       </trans-unit>
-      <trans-unit id="Getting information, please wait ..." xml:space="preserve">
+      <trans-unit id="Getting information, please wait ..." xml:space="preserve" approved="yes">
         <source>Getting information, please wait ...</source>
-        <target state="translated">Henter informasjon, vennligst vent</target>
+        <target state="final">Henter informasjon, vennligst vent ...</target>
         <note>Verify</note>
-      </trans-unit>
-      <trans-unit id="Got index from Execute and listing logs for one configuration..." xml:space="preserve">
+      <alt-trans><target>Henter informasjon, vennligst vent</target></alt-trans></trans-unit>
+      <trans-unit id="Got index from Execute and listing logs for one configuration..." xml:space="preserve" approved="yes">
         <source>Got index from Execute and listing logs for one configuration...</source>
-        <target state="translated">Hentet index fra Utfør og lister logg for en konfigurasjon </target>
+        <target state="final">Hentet index fra Utfør og lister logg for en konfigurasjon...</target>
         <note>Loggdata</note>
-      </trans-unit>
-      <trans-unit id="Got index from Execute..." xml:space="preserve">
+      <alt-trans><target>Hentet index fra Utfør og lister logg for en konfigurasjon </target></alt-trans></trans-unit>
+      <trans-unit id="Got index from Execute..." xml:space="preserve" approved="yes">
         <source>Got index from Execute...</source>
-        <target state="translated">Hentet index fra Utfør</target>
+        <target state="final">Hentet index fra Utfør...</target>
         <note>Schedules</note>
-      </trans-unit>
+      <alt-trans><target>Hentet index fra Utfør</target></alt-trans></trans-unit>
       <trans-unit id="Got index from Snapshots and listing logs for one configuration..." xml:space="preserve" approved="yes">
         <source>Got index from Snapshots and listing logs for one configuration...</source>
         <target state="final">Hentet index fra Snapshots og lister logg for en konfigurasjon...</target>

@@ -14,6 +14,9 @@
    New */
 "Add" = "添加";
 
+/* New */
+"Add config?" = "Add config?";
+
 /* Add schedule */
 "Add Schedule?" = "添加定时任务";
 
@@ -38,6 +41,16 @@
 /* Restore */
 "Cancel or Restore" = "取消或恢复";
 
+/* Copy files
+   Remote Info */
+"Cannot copy from a syncremote task..." = "Cannot copy from a syncremote task...";
+
+/* Verify */
+"Cannot verify a syncremote task..." = "Cannot verify a syncremote task...";
+
+/* chinese */
+"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) translation by: StringKe";
+
 /* Close NSAlert */
 "Close" = "取消";
 
@@ -52,6 +65,9 @@
 
 /* Restore */
 "Copy single files or directory?" = "复制单个文件或目录？";
+
+/* copyright */
+"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen";
 
 /* main */
 "daily" = "每天";
@@ -86,6 +102,9 @@
 /* Execute */
 "Delete selected task?" = "删除定制任务";
 
+/* Tooltip */
+"Destination catalog:" = "Destination catalog:";
+
 /* Snapshots */
 "Do you REALLY want to DELETE selected snapshots?" = "你真的要删除这个快照么？";
 
@@ -94,6 +113,9 @@
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "不要修改快照数量，如果你不知道您正在做什么";
+
+/* plan */
+"earlier months" = "earlier months";
 
 /* Error rsync */
 "ERROR: no rsync in" = "错误：no rsync in";
@@ -138,6 +160,9 @@
 /* datetime */
 "hours" = "小时";
 
+/* icon */
+"Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
+
 /* plan */
 "Keep" = "保持";
 
@@ -150,6 +175,9 @@
 /* Remote info
    Remote Info */
 "Loaded cached data..." = "加载的缓存数据......";
+
+/* Tooltip */
+"Local catalog:" = "Local catalog:";
 
 /* Copy files */
 "Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";
@@ -167,6 +195,12 @@
 "Monday" = "星期一";
 
 /* Execute */
+"New version is available - see About" = "New version is available - see About";
+
+/* About */
+"New version is available:" = "New version is available:";
+
+/* Execute */
 "No rclone config found..." = "找不到rclone配置...";
 
 /* Execute */
@@ -175,11 +209,17 @@
 /* Schedule details */
 "no startdate" = "没有开始";
 
+/* Schedule details */
+"no stopdate" = "no stopdate";
+
 /* Copy files */
 "No such local catalog for restore or set it in user config..." = "没有这样的本地目录还原或在用户配置中设置它...";
 
 /* plan */
 "none" = "没有";
+
+/* norwegian */
+"Norwegian translation by: Thomas Evensen" = "Norwegian translation by: Thomas Evensen";
 
 /* Copy files */
 "Not a remote task, use Finder to copy files..." = "不是远程任务，使用Finder复制文件...";
@@ -214,11 +254,17 @@
 /* Execute */
 "Possible error logging..." = "可能的错误记录......";
 
+/* plan */
+"previous month" = "previous month";
+
 /* Execute */
 "Profile:" = "配置：";
 
 /* Execute */
 "Profile: please wait..." = "配置：请稍候......";
+
+/* Tooltip */
+"Remote catalog:" = "Remote catalog:";
 
 /* Restore */
 "Restore" = "恢复";
@@ -253,17 +299,29 @@
 /* Snapshots */
 "Seriously, enter a real number..." = "请输入一个h数字...";
 
+/* Tooltip */
+"Source catalog:" = "Source catalog:";
+
 /* Restore */
 "Start restore?" = "开始恢复？";
 
+/* main */
+"stopped" = "stopped";
+
 /* plan */
 "Sunday" = "星期日";
+
+/* Execute */
+"The menu app" = "The menu app";
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "好像什么都没有做......";
 
 /* Execute */
 "This is a combined task, execute by ⌘R..." = "这是一个组合任务，按⌘R执行...";
+
+/* New */
+"This is added before?" = "This is added before?";
 
 /* plan */
 "this month" = "本月";
