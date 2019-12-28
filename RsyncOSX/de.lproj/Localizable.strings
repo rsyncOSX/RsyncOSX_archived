@@ -136,10 +136,10 @@
 "Friday" = "fredag";
 
 /* Restore */
-"Getting info, please wait..." = "Henter informasjon, vennligst vent...";
+"Getting info, please wait..." = "Informationen werden abgerufen, bitte warten...";
 
 /* Verify */
-"Getting information, please wait ..." = "Henter informasjon, vennligst vent";
+"Getting information, please wait ..." = "Informationen werden abgerufen, bitte warten ...";
 
 /* Loggdata */
 "Got index from Execute and listing logs for one configuration..." = "Hentet index fra Utfør og lister logg for en konfigurasjon ";
@@ -161,7 +161,7 @@
 "hours" = "timer";
 
 /* icon */
-"Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+"Icon by: Zsolt Sándor" = "Ikone von: Zsolt Sándor";
 
 /* plan */
 "Keep" = "Behold";

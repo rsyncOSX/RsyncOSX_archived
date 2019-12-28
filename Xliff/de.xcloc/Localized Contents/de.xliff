@@ -112,9 +112,9 @@
       </trans-unit>
       <trans-unit id="2zQ-iW-vbk.title" xml:space="preserve">
         <source>remove -e ssh</source>
-        <target state="translated">remove -e ssh</target>
+        <target state="translated">entfernen -e ssh</target>
         <note>Class = "NSButtonCell"; title = "remove -e ssh"; ObjectID = "2zQ-iW-vbk";</note>
-      </trans-unit>
+      <alt-trans><target>remove -e ssh</target></alt-trans></trans-unit>
       <trans-unit id="3Ch-5Q-dft.title" xml:space="preserve">
         <source>Edit</source>
         <target state="translated">Bearbeiten</target>
@@ -197,9 +197,9 @@
       </trans-unit>
       <trans-unit id="5Zv-SY-8nT.title" xml:space="preserve">
         <source>remove --delete</source>
-        <target state="translated">remove --delete</target>
+        <target state="translated">entfernen --delete</target>
         <note>Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT";</note>
-      </trans-unit>
+      <alt-trans><target>remove --delete</target></alt-trans></trans-unit>
       <trans-unit id="5cK-IB-eA3.title" xml:space="preserve">
         <source>Files to be transferred:</source>
         <target state="translated">Zu übertragende Dateien:</target>
@@ -1402,9 +1402,9 @@
       </trans-unit>
       <trans-unit id="Vnu-mV-aob.title" xml:space="preserve">
         <source>icon</source>
-        <target state="translated">Icon</target>
+        <target state="translated">ikone</target>
         <note>Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob";</note>
-      </trans-unit>
+      <alt-trans><target>Icon</target></alt-trans></trans-unit>
       <trans-unit id="W3l-xH-fMA.title" xml:space="preserve">
         <source>New files:</source>
         <target state="translated">Neue Dateien:</target>
@@ -2577,9 +2577,9 @@
       </trans-unit>
       <trans-unit id="zF8-9O-ajg.title" xml:space="preserve">
         <source>remove --compress</source>
-        <target state="translated">remove --compress</target>
+        <target state="translated">entferne --compress</target>
         <note>Class = "NSButtonCell"; title = "remove --compress"; ObjectID = "zF8-9O-ajg";</note>
-      </trans-unit>
+      <alt-trans><target>remove --compress</target></alt-trans></trans-unit>
       <trans-unit id="zFx-cJ-7DI.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="translated">Textzelle</target>
@@ -2847,14 +2847,14 @@
       </trans-unit>
       <trans-unit id="Getting info, please wait..." xml:space="preserve">
         <source>Getting info, please wait...</source>
-        <target state="translated">Henter informasjon, vennligst vent...</target>
+        <target state="translated">Informationen werden abgerufen, bitte warten...</target>
         <note>Restore</note>
-      </trans-unit>
+      <alt-trans><target>Henter informasjon, vennligst vent...</target></alt-trans></trans-unit>
       <trans-unit id="Getting information, please wait ..." xml:space="preserve">
         <source>Getting information, please wait ...</source>
-        <target state="translated">Henter informasjon, vennligst vent</target>
+        <target state="translated">Informationen werden abgerufen, bitte warten ...</target>
         <note>Verify</note>
-      </trans-unit>
+      <alt-trans><target>Henter informasjon, vennligst vent</target></alt-trans></trans-unit>
       <trans-unit id="Got index from Execute and listing logs for one configuration..." xml:space="preserve">
         <source>Got index from Execute and listing logs for one configuration...</source>
         <target state="translated">Hentet index fra Utfør og lister logg for en konfigurasjon </target>
@@ -2878,9 +2878,9 @@
       </trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor" xml:space="preserve">
         <source>Icon by: Zsolt Sándor</source>
-        <target state="translated">Icon av: Zsolt Sándor</target>
+        <target state="translated">Ikone von: Zsolt Sándor</target>
         <note>icon</note>
-      </trans-unit>
+      <alt-trans><target>Icon av: Zsolt Sándor</target></alt-trans></trans-unit>
       <trans-unit id="Keep" xml:space="preserve">
         <source>Keep</source>
         <target state="translated">Behold</target>
