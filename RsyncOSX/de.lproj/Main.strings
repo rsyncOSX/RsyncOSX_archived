@@ -62,7 +62,7 @@
 "2W2-3F-urP.title" = "Zu übertragende KB:";
 
 /* Class = "NSButtonCell"; title = "remove -e ssh"; ObjectID = "2zQ-iW-vbk"; */
-"2zQ-iW-vbk.title" = "remove -e ssh";
+"2zQ-iW-vbk.title" = "entfernen -e ssh";
 
 /* Class = "NSButtonCell"; title = "Edit"; ObjectID = "3Ch-5Q-dft"; */
 "3Ch-5Q-dft.title" = "Bearbeiten";
@@ -122,7 +122,7 @@
 "5zk-w0-I3D.title" = "Textzelle";
 
 /* Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT"; */
-"5Zv-SY-8nT.title" = "remove --delete";
+"5Zv-SY-8nT.title" = "entfernen --delete";
 
 /* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB"; */
 "6rO-sZ-edB.title" = "Remote-Katalog:";
@@ -1358,7 +1358,7 @@
 "vls-wI-lPQ.headerCell.title" = "Zeitplan";
 
 /* Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob"; */
-"Vnu-mV-aob.title" = "Icon";
+"Vnu-mV-aob.title" = "ikone";
 
 /* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "vQn-ev-3Ai"; */
 "vQn-ev-3Ai.title" = "ID:";
@@ -1529,7 +1529,7 @@
 "Z8Z-vX-Z7f.title" = "Tabellenansichtszelle";
 
 /* Class = "NSButtonCell"; title = "remove --compress"; ObjectID = "zF8-9O-ajg"; */
-"zF8-9O-ajg.title" = "remove --compress";
+"zF8-9O-ajg.title" = "entferne --compress";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "zFx-cJ-7DI"; */
 "zFx-cJ-7DI.title" = "Textzelle";
