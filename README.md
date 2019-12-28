@@ -22,8 +22,11 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 
 [RsyncOSX speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
+- German - by [Andre](https://github.com/andre68723)
 - Norwegian - by me
 - English - the base language of RsyncOSX
+
+Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx) to translate the xliff files which are imported into Xcode when translated. [Crowdin is free for open source projects](https://crowdin.com/page/open-source-project-setup-request).
 
 ### Version of rsync
 
@@ -101,10 +104,6 @@ There are about 130 classes with 14,900 lines of code in RsyncOSX.
 To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page and replace with your own credentials in `Signing`, or disable Signing.
 
 There are two ways to compile, either utilize `make` or compile by Xcode. `make release` will compile the `RsyncOSX.app` and `make dmg` will make a dmg file to be released.  The build of dmg files are by utilizing [andreyvit](https://github.com/andreyvit/create-dmg) script for creating dmg and [syncthing-macos](https://github.com/syncthing/syncthing-macos) setup.
-
-### Xliff and translating
-
-Translating RsyncOSX is done by utilizing the [Xlifftool](https://github.com/remuslazar/osx-xliff-tool). The tool reads a xliff file. The xliff file is imported into RsyncOSX by Xcode.
 
 ### XCTest
 

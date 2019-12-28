@@ -12,8 +12,8 @@ import Foundation
 final class Running {
     let rsyncOSX = "no.blogspot.RsyncOSX"
     let rsyncOSXsched = "no.blogspot.RsyncOSXsched"
-    private var rsyncOSXisrunning: Bool = false
-    private var rsyncOSXschedisrunning: Bool = false
+    var rsyncOSXisrunning: Bool = false
+    var rsyncOSXschedisrunning: Bool = false
     var menuappnoconfig: Bool = true
 
     var enablemenuappbutton: Bool {

@@ -59,9 +59,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var outputerrors: OutputErrors?
 
     @IBAction func rsyncosxsched(_: NSButton) {
+        let running = Running()
+        guard running.rsyncOSXschedisrunning == false else {
+            self.info.stringValue = Infoexecute().info(num: 5)
+            return
+        }
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
-        self.pathtorsyncosxschedbutton.isEnabled = false
         NSApp.terminate(self)
     }
 
@@ -231,6 +235,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
+        self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
     }
 
     override func viewDidAppear() {
@@ -248,7 +253,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.rsyncischanged()
         self.displayProfile()
         self.delayWithSeconds(0.5) {
-            self.enablemenuappbutton()
+            self.menuappicons()
         }
     }
 
@@ -262,18 +267,16 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.setNumbers(outputprocess: nil)
     }
 
-    func enablemenuappbutton() {
+    func menuappicons() {
         globalMainQueue.async { () -> Void in
             let running = Running()
             guard running.enablemenuappbutton == true else {
-                self.pathtorsyncosxschedbutton.isEnabled = false
                 if running.menuappnoconfig == false {
                     self.menuappisrunning.image = #imageLiteral(resourceName: "green")
                     self.info.stringValue = Infoexecute().info(num: 5)
                 }
                 return
             }
-            self.pathtorsyncosxschedbutton.isEnabled = true
             self.menuappisrunning.image = #imageLiteral(resourceName: "red")
         }
     }
