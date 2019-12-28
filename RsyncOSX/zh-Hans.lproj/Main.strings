@@ -89,7 +89,7 @@
 "4cL-gF-geP.headerCell.title" = "计划任务：";
 
 /* Class = "NSTextFieldCell"; title = "lastorevery"; ObjectID = "4fh-oN-1Ue"; */
-"4fh-oN-1Ue.title" = "lastorevery";
+"4fh-oN-1Ue.title" = "最后一次";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "4rw-XH-Spd"; */
 "4rw-XH-Spd.title" = "Text Cell";
@@ -101,13 +101,13 @@
 "5A9-Q1-SN9.title" = "编辑";
 
 /* Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "5cK-IB-eA3"; */
-"5cK-IB-eA3.title" = "需要传输文件：";
+"5cK-IB-eA3.title" = "要传输的文件：";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5Ha-1J-UqF"; */
 "5Ha-1J-UqF.title" = "Text Cell";
 
 /* Class = "NSMenuItem"; title = "About RsyncOSX"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "关于RsyncOSX";
+"5kV-Vb-QxS.title" = "关于 RsyncOSX";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5PJ-QW-PyL"; */
 "5PJ-QW-PyL.title" = "Text Cell";
@@ -116,10 +116,10 @@
 "5SJ-qh-z2I.title" = "获取信息，请稍候......";
 
 /* Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "5TL-a2-yBQ"; */
-"5TL-a2-yBQ.headerCell.title" = "Stop schedule";
+"5TL-a2-yBQ.headerCell.title" = "停止定时计划";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5zk-w0-I3D"; */
-"5zk-w0-I3D.title" = "Text Cell";
+"5zk-w0-I3D.title" = "文本单元";
 
 /* Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT"; */
 "5Zv-SY-8nT.title" = "移除 --remove";
@@ -170,7 +170,7 @@
 "12s-Z1-kRl.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "12y-cd-eEQ"; */
-"12y-cd-eEQ.headerCell.title" = "Active";
+"12y-cd-eEQ.headerCell.title" = "激活";
 
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "27J-nn-5gh"; */
 "27J-nn-5gh.headerCell.title" = "本地目录";
@@ -254,7 +254,7 @@
 "aHy-27-4y5.title" = "Table View Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Stop date schedule"; ObjectID = "AIr-rt-OLN"; */
-"AIr-rt-OLN.headerCell.title" = "Stop date schedule";
+"AIr-rt-OLN.headerCell.title" = "停止定时计划";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "AkJ-MA-346"; */
 "AkJ-MA-346.headerCell.title" = "任务";
@@ -344,7 +344,7 @@
 "bPV-Wb-DGM.headerCell.title" = "任务";
 
 /* Class = "NSTableColumn"; headerCell.title = "Logs"; ObjectID = "BrN-3s-w3t"; */
-"BrN-3s-w3t.headerCell.title" = "Logs";
+"BrN-3s-w3t.headerCell.title" = "日志";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Bu5-79-2AR"; */
 "Bu5-79-2AR.title" = "Text Cell";
@@ -548,7 +548,7 @@
 "fnk-Kq-6LU.headerCell.title" = "远程目录";
 
 /* Class = "NSTableColumn"; headerCell.title = "Delete schedule"; ObjectID = "Fpf-1W-JiM"; */
-"Fpf-1W-JiM.headerCell.title" = "Delete schedule";
+"Fpf-1W-JiM.headerCell.title" = "删除定时计划";
 
 /* Class = "NSBox"; title = "Number of days"; ObjectID = "FrI-lc-qcT"; */
 "FrI-lc-qcT.title" = "天数";
@@ -788,7 +788,7 @@
 "Izt-dc-ZBW.headerCell.title" = "远程目录";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "j1s-jO-7Gs"; */
-"j1s-jO-7Gs.headerCell.title" = "Task";
+"j1s-jO-7Gs.headerCell.title" = "任务";
 
 /* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "J3H-wG-sas"; */
 "J3H-wG-sas.title" = "本地目录：";
@@ -803,7 +803,7 @@
 "Jil-HV-f4r.title" = "Text Cell";
 
 /* Class = "NSButtonCell"; title = "Check data"; ObjectID = "jjS-gu-o5C"; */
-"jjS-gu-o5C.title" = "Check data";
+"jjS-gu-o5C.title" = "检查数据";
 
 /* Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV"; */
 "JKJ-Kp-IuV.title" = "双击选择一行或者按下⌘R执行任务或者⌘I获取信息";
@@ -941,10 +941,10 @@
 "Nbe-Ck-Oeu.title" = "删除文件：";
 
 /* Class = "NSTextFieldCell"; title = "days older"; ObjectID = "NC7-Ka-Wgs"; */
-"NC7-Ka-Wgs.title" = "days older";
+"NC7-Ka-Wgs.title" = "以前";
 
 /* Class = "NSBox"; title = "Task"; ObjectID = "NDf-8B-idO"; */
-"NDf-8B-idO.title" = "Task";
+"NDf-8B-idO.title" = "任务";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "NFc-sB-jWP"; */
 "NFc-sB-jWP.title" = "Text Cell";
@@ -983,7 +983,7 @@
 "oar-D1-pfu.title" = "关";
 
 /* Class = "NSButtonCell"; title = "Estimate"; ObjectID = "obo-Qd-fRN"; */
-"obo-Qd-fRN.title" = "Estimate";
+"obo-Qd-fRN.title" = "预计";
 
 /* Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX"; */
 "of4-qq-ykX.title" = "快照数量:";
@@ -1037,7 +1037,7 @@
 "P5d-qB-XWj.title" = "服务器：";
 
 /* Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "p7O-cs-wwA"; */
-"p7O-cs-wwA.headerCell.title" = "Start date schedule";
+"p7O-cs-wwA.headerCell.title" = "开始定时计划";
 
 /* Class = "NSMenuItem"; title = "Parameters"; ObjectID = "p9L-16-Icv"; */
 "p9L-16-Icv.title" = "参数";
@@ -1058,7 +1058,7 @@
 "pql-cs-AEK.headerCell.title" = "ID";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "prA-0K-uny"; */
-"prA-0K-uny.title" = "Text Cell";
+"prA-0K-uny.title" = "文本单元格";
 
 /* Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO"; */
 "Psw-ga-cgO.title" = "查看控制器配置";
@@ -1103,7 +1103,7 @@
 "QmL-ZM-Xc4.toolTip" = "立即执行所有任务......";
 
 /* Class = "NSTextFieldCell"; title = "dayofweek"; ObjectID = "QOZ-8g-24B"; */
-"QOZ-8g-24B.title" = "dayofweek";
+"QOZ-8g-24B.title" = "星期几";
 
 /* Class = "NSButtonCell"; title = "add suffix Linux"; ObjectID = "QPs-xd-DDF"; */
 "QPs-xd-DDF.title" = "添加 Linux 后缀";
@@ -1124,7 +1124,7 @@
 "RDZ-vd-MTb.headerCell.title" = "本地目录";
 
 /* Class = "NSBox"; title = "Check data when loading"; ObjectID = "rFc-o9-SOW"; */
-"rFc-o9-SOW.title" = "Check data when loading";
+"rFc-o9-SOW.title" = "加载时检查数据";
 
 /* Class = "NSTextFieldCell"; title = "copyright"; ObjectID = "RFG-uU-oRD"; */
 "RFG-uU-oRD.title" = "版权";
@@ -1223,7 +1223,7 @@
 "sTj-Zm-1Dz.title" = "Text Cell";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "svl-UN-wQe"; */
-"svl-UN-wQe.title" = "Box";
+"svl-UN-wQe.title" = "盒子";
 
 /* Class = "NSTableColumn"; headerCell.title = "Size (kB)"; ObjectID = "SWF-DA-TlU"; */
 "SWF-DA-TlU.headerCell.title" = "大小（KB）";
@@ -1250,7 +1250,7 @@
 "TG2-kC-9mp.headerCell.title" = "输出";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "tIo-dN-yJ3"; */
-"tIo-dN-yJ3.title" = "Table View Cell";
+"tIo-dN-yJ3.title" = "表视图单元格";
 
 /* Class = "NSButtonCell"; title = "Info"; ObjectID = "tjU-bB-LEK"; */
 "tjU-bB-LEK.title" = "信息";
@@ -1355,13 +1355,13 @@
 "vJI-G9-Mbp.title" = "远程信息";
 
 /* Class = "NSTableColumn"; headerCell.title = "Schedule"; ObjectID = "vls-wI-lPQ"; */
-"vls-wI-lPQ.headerCell.title" = "Schedule";
+"vls-wI-lPQ.headerCell.title" = "计划任务";
 
 /* Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob"; */
 "Vnu-mV-aob.title" = "图标";
 
 /* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "vQn-ev-3Ai"; */
-"vQn-ev-3Ai.title" = "ID:";
+"vQn-ev-3Ai.title" = "ID：";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VWl-UA-V1i"; */
 "VWl-UA-V1i.title" = "Text Cell";
@@ -1472,7 +1472,7 @@
 "xXy-oY-7zq.title" = "查找自动备份任务，请稍候...";
 
 /* Class = "NSTextFieldCell"; title = "Chinese"; ObjectID = "xz5-2j-E51"; */
-"xz5-2j-E51.title" = "Chinese";
+"xz5-2j-E51.title" = "简体中文";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "xZ6-fW-WQl"; */
 "xZ6-fW-WQl.title" = "Table View Cell";
