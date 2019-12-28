@@ -1,5 +1,5 @@
 /* Restore */
-" ... set in User configuration ..." = "... sett i bruker preferanser...";
+" ... set in User configuration ..." = " ... in der Benutzerkonfiguration gesetzt ...";
 
 /* Ssh */
 "... no remote server ..." = "...ingen ekstern server...";
@@ -49,7 +49,7 @@
 "Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
 
 /* chinese */
-"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
+"Chinese (Simplified) translation by: StringKe" = "Chinesisch (vereinfacht) Übersetzung von: StringKe";
 
 /* Close NSAlert */
 "Close" = "Lukk";
@@ -74,14 +74,14 @@
 
 /* Remote Info
    Verify */
-"Date last backup:" = "Dato siste backup:";
+"Date last backup:" = "Letztes Backup Datum:";
 
 /* datetime */
-"days" = "dager";
+"days" = "tage";
 
 /* Remote Info
    Verify */
-"Days since last backup:" = "Dager siden siste backup:";
+"Days since last backup:" = "Tage seit letzter Sicherung:";
 
 /* default profile */
 "Default profile" = "Default profil";
@@ -106,7 +106,7 @@
 "Destination catalog:" = "Lokal katalog:";
 
 /* Snapshots */
-"Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
+"Do you REALLY want to DELETE selected snapshots?" = "Möchten Sie die ausgewählten Schnappschüsse LÖSCHEN?";
 
 /* Restore */
 "Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPI?";
@@ -195,7 +195,7 @@
 "Monday" = "mandag";
 
 /* Execute */
-"New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
+"New version is available - see About" = "Neue Version ist verfügbar - siehe Über";
 
 /* About */
 "New version is available:" = "Ny versjon er tilgjengelig:";
@@ -207,19 +207,19 @@
 "No rsync in path..." = "Ingen rsync i sti...";
 
 /* Schedule details */
-"no startdate" = "ingen startdato";
+"no startdate" = "kein Startdatum";
 
 /* Schedule details */
-"no stopdate" = "ingen stopp dato";
+"no stopdate" = "kein Stopdatum";
 
 /* Copy files */
-"No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
+"No such local catalog for restore or set it in user config..." = "Kein solcher lokaler Katalog für die Wiederherstellung oder setzen Sie ihn in der Benutzerkonfiguration...";
 
 /* plan */
 "none" = "ingen";
 
 /* norwegian */
-"Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
+"Norwegian translation by: Thomas Evensen" = "Norwegische Übersetzung von: Thomas Evensen";
 
 /* Copy files */
 "Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
@@ -228,19 +228,19 @@
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
 
 /* AllProfiles */
-"Number of configurations:" = "Antall konfigurasjoner:";
+"Number of configurations:" = "Anzahl Konfigurationen:";
 
 /* Logg */
-"Number of logs:" = "Antall logger:";
+"Number of logs:" = "Anzahl Logs:";
 
 /* Remote info */
-"Number of tasks to estimate:" = "Antall oppgaver å estimere:";
+"Number of tasks to estimate:" = "Anzahl zu berechnender Aufgaben:";
 
 /* Copy files */
 "Number remote files:" = "Antall filer:";
 
 /* Snapshots */
-"Number snapshots:" = "Antall snapshots:";
+"Number snapshots:" = "Anzahl Schnappschüsse:";
 
 /* main */
 "once" = "engang";
@@ -249,7 +249,7 @@
 "Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
 
 /* Verify */
-"Please select a task in Execute ..." = "Velg en oppgave i Utfør";
+"Please select a task in Execute ..." = "Bitte wählen Sie eine Aufgabe in Ausführung ...";
 
 /* Execute */
 "Possible error logging..." = "Mulig feil logging...";
@@ -288,10 +288,10 @@
 "Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
 
 /* Execute */
-"Select a task...." = "Velg en oppgave...";
+"Select a task...." = "Aufgabe auswählen....";
 
 /* Logg */
-"Selected logs:" = "Valgte logger:";
+"Selected logs:" = "Ausgewählte Protokolle:";
 
 /* Execute */
 "Selection out of range - aborting" = "Utvalg ikke mulig - avslutter";
@@ -348,5 +348,5 @@
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
 
 /* About */
-"You have the latest ..." = "Du har siste versjon...";
+"You have the latest ..." = "Sie haben die neueste ...";
 

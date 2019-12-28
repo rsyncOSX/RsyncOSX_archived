@@ -2651,9 +2651,9 @@
     <body>
       <trans-unit id=" ... set in User configuration ..." xml:space="preserve">
         <source> ... set in User configuration ...</source>
-        <target state="translated">... sett i bruker preferanser...</target>
+        <target state="translated"> ... in der Benutzerkonfiguration gesetzt ...</target>
         <note>Restore</note>
-      </trans-unit>
+      <alt-trans><target>... sett i bruker preferanser...</target></alt-trans></trans-unit>
       <trans-unit id="... no remote server ..." xml:space="preserve">
         <source>... no remote server ...</source>
         <target state="translated">...ingen ekstern server...</target>
@@ -2726,9 +2726,9 @@
       </trans-unit>
       <trans-unit id="Chinese (Simplified) translation by: StringKe" xml:space="preserve">
         <source>Chinese (Simplified) translation by: StringKe</source>
-        <target state="translated">Chinese (Simplified) oversettelse av: StringKe</target>
+        <target state="translated">Chinesisch (vereinfacht) Übersetzung von: StringKe</target>
         <note>chinese</note>
-      </trans-unit>
+      <alt-trans><target>Chinese (Simplified) oversettelse av: StringKe</target></alt-trans></trans-unit>
       <trans-unit id="Close" xml:space="preserve">
         <source>Close</source>
         <target state="translated">Lukk</target>
@@ -2761,16 +2761,16 @@
       </trans-unit>
       <trans-unit id="Date last backup:" xml:space="preserve">
         <source>Date last backup:</source>
-        <target state="translated">Dato siste backup:</target>
+        <target state="translated">Letztes Backup Datum:</target>
         <note>Remote Info
    Verify</note>
-      </trans-unit>
+      <alt-trans><target>Dato siste backup:</target></alt-trans></trans-unit>
       <trans-unit id="Days since last backup:" xml:space="preserve">
         <source>Days since last backup:</source>
-        <target state="translated">Dager siden siste backup:</target>
+        <target state="translated">Tage seit letzter Sicherung:</target>
         <note>Remote Info
    Verify</note>
-      </trans-unit>
+      <alt-trans><target>Dager siden siste backup:</target></alt-trans></trans-unit>
       <trans-unit id="Default profile" xml:space="preserve">
         <source>Default profile</source>
         <target state="translated">Default profil</target>
@@ -2807,9 +2807,9 @@
       </trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?" xml:space="preserve">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
-        <target state="translated">Vil du VIRKELIG SLETTE valgte snapshot?</target>
+        <target state="translated">Möchten Sie die ausgewählten Schnappschüsse LÖSCHEN?</target>
         <note>Snapshots</note>
-      </trans-unit>
+      <alt-trans><target>Vil du VIRKELIG SLETTE valgte snapshot?</target></alt-trans></trans-unit>
       <trans-unit id="Do you REALLY want to start a RESTORE ?" xml:space="preserve">
         <source>Do you REALLY want to start a RESTORE ?</source>
         <target state="translated">Vil du VIRKELIG utføre en KOPI?</target>
@@ -2919,9 +2919,9 @@
       </trans-unit>
       <trans-unit id="New version is available - see About" xml:space="preserve">
         <source>New version is available - see About</source>
-        <target state="translated">Ny versjon er tilgjengelig - se Om</target>
+        <target state="translated">Neue Version ist verfügbar - siehe Über</target>
         <note>Execute</note>
-      </trans-unit>
+      <alt-trans><target>Ny versjon er tilgjengelig - se Om</target></alt-trans></trans-unit>
       <trans-unit id="New version is available:" xml:space="preserve">
         <source>New version is available:</source>
         <target state="translated">Ny versjon er tilgjengelig:</target>
@@ -2939,14 +2939,14 @@
       </trans-unit>
       <trans-unit id="No such local catalog for restore or set it in user config..." xml:space="preserve">
         <source>No such local catalog for restore or set it in user config...</source>
-        <target state="translated">Ingen slik lokal katalog for restore eller sett den i bruker preferanser...</target>
+        <target state="translated">Kein solcher lokaler Katalog für die Wiederherstellung oder setzen Sie ihn in der Benutzerkonfiguration...</target>
         <note>Copy files</note>
-      </trans-unit>
+      <alt-trans><target>Ingen slik lokal katalog for restore eller sett den i bruker preferanser...</target></alt-trans></trans-unit>
       <trans-unit id="Norwegian translation by: Thomas Evensen" xml:space="preserve">
         <source>Norwegian translation by: Thomas Evensen</source>
-        <target state="translated">Norsk oversettelse av: Thomas Evensen</target>
+        <target state="translated">Norwegische Übersetzung von: Thomas Evensen</target>
         <note>norwegian</note>
-      </trans-unit>
+      <alt-trans><target>Norsk oversettelse av: Thomas Evensen</target></alt-trans></trans-unit>
       <trans-unit id="Not a remote task, use Finder to copy files..." xml:space="preserve">
         <source>Not a remote task, use Finder to copy files...</source>
         <target state="translated">Ikke en ekstern oppgave, bruk Finder for å kopiere filer...</target>
@@ -2959,19 +2959,19 @@
       </trans-unit>
       <trans-unit id="Number of configurations:" xml:space="preserve">
         <source>Number of configurations:</source>
-        <target state="translated">Antall konfigurasjoner:</target>
+        <target state="translated">Anzahl Konfigurationen:</target>
         <note>AllProfiles</note>
-      </trans-unit>
+      <alt-trans><target>Antall konfigurasjoner:</target></alt-trans></trans-unit>
       <trans-unit id="Number of logs:" xml:space="preserve">
         <source>Number of logs:</source>
-        <target state="translated">Antall logger:</target>
+        <target state="translated">Anzahl Logs:</target>
         <note>Logg</note>
-      </trans-unit>
+      <alt-trans><target>Antall logger:</target></alt-trans></trans-unit>
       <trans-unit id="Number of tasks to estimate:" xml:space="preserve">
         <source>Number of tasks to estimate:</source>
-        <target state="translated">Antall oppgaver å estimere:</target>
+        <target state="translated">Anzahl zu berechnender Aufgaben:</target>
         <note>Remote info</note>
-      </trans-unit>
+      <alt-trans><target>Antall oppgaver å estimere:</target></alt-trans></trans-unit>
       <trans-unit id="Number remote files:" xml:space="preserve">
         <source>Number remote files:</source>
         <target state="translated">Antall filer:</target>
@@ -2979,9 +2979,9 @@
       </trans-unit>
       <trans-unit id="Number snapshots:" xml:space="preserve">
         <source>Number snapshots:</source>
-        <target state="translated">Antall snapshots:</target>
+        <target state="translated">Anzahl Schnappschüsse:</target>
         <note>Snapshots</note>
-      </trans-unit>
+      <alt-trans><target>Antall snapshots:</target></alt-trans></trans-unit>
       <trans-unit id="Only valid for backup, snapshot and combined tasks..." xml:space="preserve">
         <source>Only valid for backup, snapshot and combined tasks...</source>
         <target state="translated">Kun gyldig for backup, snapshot og kombinerte oppgaver...</target>
@@ -2989,9 +2989,9 @@
       </trans-unit>
       <trans-unit id="Please select a task in Execute ..." xml:space="preserve">
         <source>Please select a task in Execute ...</source>
-        <target state="translated">Velg en oppgave i Utfør</target>
+        <target state="translated">Bitte wählen Sie eine Aufgabe in Ausführung ...</target>
         <note>Verify</note>
-      </trans-unit>
+      <alt-trans><target>Velg en oppgave i Utfør</target></alt-trans></trans-unit>
       <trans-unit id="Possible error logging..." xml:space="preserve">
         <source>Possible error logging...</source>
         <target state="translated">Mulig feil logging...</target>
@@ -3042,14 +3042,14 @@
       </trans-unit>
       <trans-unit id="Select a task...." xml:space="preserve">
         <source>Select a task....</source>
-        <target state="translated">Velg en oppgave...</target>
+        <target state="translated">Aufgabe auswählen....</target>
         <note>Execute</note>
-      </trans-unit>
+      <alt-trans><target>Velg en oppgave...</target></alt-trans></trans-unit>
       <trans-unit id="Selected logs:" xml:space="preserve">
         <source>Selected logs:</source>
-        <target state="translated">Valgte logger:</target>
+        <target state="translated">Ausgewählte Protokolle:</target>
         <note>Logg</note>
-      </trans-unit>
+      <alt-trans><target>Valgte logger:</target></alt-trans></trans-unit>
       <trans-unit id="Selection out of range - aborting" xml:space="preserve">
         <source>Selection out of range - aborting</source>
         <target state="translated">Utvalg ikke mulig - avslutter</target>
@@ -3121,9 +3121,9 @@
       </trans-unit>
       <trans-unit id="You have the latest ..." xml:space="preserve">
         <source>You have the latest ...</source>
-        <target state="translated">Du har siste versjon...</target>
+        <target state="translated">Sie haben die neueste ...</target>
         <note>About</note>
-      </trans-unit>
+      <alt-trans><target>Du har siste versjon...</target></alt-trans></trans-unit>
       <trans-unit id="daily" xml:space="preserve">
         <source>daily</source>
         <target state="translated">daglig</target>
@@ -3131,9 +3131,9 @@
       </trans-unit>
       <trans-unit id="days" xml:space="preserve">
         <source>days</source>
-        <target state="translated">dager</target>
+        <target state="translated">tage</target>
         <note>datetime</note>
-      </trans-unit>
+      <alt-trans><target>dager</target></alt-trans></trans-unit>
       <trans-unit id="earlier months" xml:space="preserve">
         <source>earlier months</source>
         <target state="translated">tidligere måned</target>
@@ -3171,14 +3171,14 @@
       </trans-unit>
       <trans-unit id="no startdate" xml:space="preserve">
         <source>no startdate</source>
-        <target state="translated">ingen startdato</target>
+        <target state="translated">kein Startdatum</target>
         <note>Schedule details</note>
-      </trans-unit>
+      <alt-trans><target>ingen startdato</target></alt-trans></trans-unit>
       <trans-unit id="no stopdate" xml:space="preserve">
         <source>no stopdate</source>
-        <target state="translated">ingen stopp dato</target>
+        <target state="translated">kein Stopdatum</target>
         <note>Schedule details</note>
-      </trans-unit>
+      <alt-trans><target>ingen stopp dato</target></alt-trans></trans-unit>
       <trans-unit id="none" xml:space="preserve">
         <source>none</source>
         <target state="translated">ingen</target>
