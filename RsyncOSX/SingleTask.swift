@@ -10,14 +10,14 @@
 import Foundation
 
 // Protocols for instruction start/stop progressviewindicator
-protocol StartStopProgressIndicatorSingleTask: class {
+protocol StartStopProgressIndicatorSingleTask: AnyObject {
     func startIndicator()
     func startIndicatorExecuteTaskNow()
     func stopIndicator()
 }
 
 // Protocol functions implemented in main view
-protocol SingleTaskProcess: class {
+protocol SingleTaskProcess: AnyObject {
     func presentViewProgress()
     func presentViewInformation(outputprocess: OutputProcess?)
     func terminateProgressProcess()

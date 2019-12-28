@@ -11,7 +11,7 @@ import Cocoa
 import Foundation
 
 // Protocol for progress indicator
-protocol CountRemoteEstimatingNumberoftasks: class {
+protocol CountRemoteEstimatingNumberoftasks: AnyObject {
     func maxCount() -> Int
     func inprogressCount() -> Int
 }

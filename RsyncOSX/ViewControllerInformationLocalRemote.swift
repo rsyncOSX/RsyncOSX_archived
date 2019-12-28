@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-protocol SetLocalRemoteInfo: class {
+protocol SetLocalRemoteInfo: AnyObject {
     func setlocalremoteinfo(info: NSMutableDictionary?)
     func getlocalremoteinfo(index: Int) -> [NSDictionary]?
 }

@@ -11,11 +11,11 @@ import Cocoa
 import Foundation
 
 // Dismiss view when rsync error
-protocol ReportonandhaltonError: class {
+protocol ReportonandhaltonError: AnyObject {
     func reportandhaltonerror()
 }
 
-protocol Attributedestring: class {
+protocol Attributedestring: AnyObject {
     func attributedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString
 }
 

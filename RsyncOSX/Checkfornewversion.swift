@@ -9,7 +9,7 @@
 
 import Foundation
 
-protocol NewVersionDiscovered: class {
+protocol NewVersionDiscovered: AnyObject {
     func notifyNewVersion()
 }
 

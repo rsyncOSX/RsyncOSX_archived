@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-protocol QuickBackupCompleted: class {
+protocol QuickBackupCompleted: AnyObject {
     func quickbackupcompleted()
 }
 

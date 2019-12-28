@@ -10,7 +10,7 @@ import Cocoa
 import Foundation
 
 // Protocol for returning object Configurations
-protocol GetConfigurationsObject: class {
+protocol GetConfigurationsObject: AnyObject {
     func getconfigurationsobject() -> Configurations?
     func createconfigurationsobject(profile: String?) -> Configurations?
     func reloadconfigurationsobject()
@@ -36,7 +36,7 @@ extension SetConfigurations {
 }
 
 // Protocol for doing a refresh of tabledata
-protocol Reloadandrefresh: class {
+protocol Reloadandrefresh: AnyObject {
     func reloadtabledata()
 }
 
