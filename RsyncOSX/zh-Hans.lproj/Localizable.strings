@@ -15,7 +15,7 @@
 "Add" = "添加";
 
 /* New */
-"Add config?" = "Add config?";
+"Add config?" = "添加配置？";
 
 /* Add schedule */
 "Add Schedule?" = "添加定时任务";
@@ -43,13 +43,13 @@
 
 /* Copy files
    Remote Info */
-"Cannot copy from a syncremote task..." = "Cannot copy from a syncremote task...";
+"Cannot copy from a syncremote task..." = "无法从同步任务复制...";
 
 /* Verify */
-"Cannot verify a syncremote task..." = "Cannot verify a syncremote task...";
+"Cannot verify a syncremote task..." = "无法验证同步任务...";
 
 /* chinese */
-"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) translation by: StringKe";
+"Chinese (Simplified) translation by: StringKe" = "翻译中文(简体)：StringKe";
 
 /* Close NSAlert */
 "Close" = "取消";
@@ -67,7 +67,7 @@
 "Copy single files or directory?" = "复制单个文件或目录？";
 
 /* copyright */
-"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen";
+"Copyright ©2019 Thomas Evensen" = "版权所有 ©2019 Thomas Evensen";
 
 /* main */
 "daily" = "每天";
@@ -103,7 +103,7 @@
 "Delete selected task?" = "删除定制任务";
 
 /* Tooltip */
-"Destination catalog:" = "Destination catalog:";
+"Destination catalog:" = "目标目录：";
 
 /* Snapshots */
 "Do you REALLY want to DELETE selected snapshots?" = "你真的要删除这个快照么？";
@@ -177,7 +177,7 @@
 "Loaded cached data..." = "加载的缓存数据......";
 
 /* Tooltip */
-"Local catalog:" = "Local catalog:";
+"Local catalog:" = "本地目录：";
 
 /* Copy files */
 "Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";

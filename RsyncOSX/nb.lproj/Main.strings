@@ -203,7 +203,7 @@
 "55G-cO-jYL.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "60W-M7-Vqr"; */
-"60W-M7-Vqr.title" = "Profile :";
+"60W-M7-Vqr.title" = "Profil :";
 
 /* Class = "NSButtonCell"; title = "Estimate"; ObjectID = "65j-NR-wz6"; */
 "65j-NR-wz6.title" = "Estimer";
@@ -413,7 +413,7 @@
 "dDj-C3-nB5.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Information"; ObjectID = "DDM-6v-WfN"; */
-"DDM-6v-WfN.headerCell.title" = "Information";
+"DDM-6v-WfN.headerCell.title" = "Informasjon";
 
 /* Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "dEW-Mo-F8C"; */
 "dEW-Mo-F8C.title" = "Velg tmp: ";
@@ -668,7 +668,7 @@
 "H79-tQ-7yT.headerCell.title" = "Tilgjengelig(%)";
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "Hah-L7-Bvj"; */
-"Hah-L7-Bvj.title" = "Cut";
+"Hah-L7-Bvj.title" = "Kutt";
 
 /* Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo"; */
 "hBf-gt-Mxo.title" = "Ekstern bruker:";
@@ -731,7 +731,7 @@
 "i8f-03-7XY.title" = "Total størrelse (kB):";
 
 /* Class = "NSTextFieldCell"; title = "All rights reserved."; ObjectID = "I48-tD-2H3"; */
-"I48-tD-2H3.title" = "All rights reserved.";
+"I48-tD-2H3.title" = "Alle rettigheter forbeholdt.";
 
 /* Class = "NSMenuItem"; title = "Profiles"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Profiler";
@@ -827,7 +827,7 @@
 "K9c-yf-VMY.title" = "RsyncOSX parametre";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
-"Kd2-mp-pUS.title" = "Show All";
+"Kd2-mp-pUS.title" = "Vis alle";
 
 /* Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ"; */
 "kFc-LP-RkZ.title" = "Ekstern katalog : ";
