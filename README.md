@@ -28,6 +28,8 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 
 Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx) to translate the xliff files which are imported into Xcode when translated. [Crowdin is free for open source projects](https://crowdin.com/page/open-source-project-setup-request).
 
+The German translation is work in progress, will be released sometime in January 2020.
+
 ### Version of rsync
 
 RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
