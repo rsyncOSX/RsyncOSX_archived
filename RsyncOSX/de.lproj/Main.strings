@@ -53,7 +53,7 @@
 "2Kr-a7-U09.title" = "ID:";
 
 /* Class = "NSTextFieldCell"; title = "Required"; ObjectID = "2sX-ek-QE0"; */
-"2sX-ek-QE0.title" = "Erforderlich";
+"2sX-ek-QE0.title" = "Pflichtfeld";
 
 /* Class = "NSButtonCell"; title = "synchronize"; ObjectID = "2tH-gF-ycx"; */
 "2tH-gF-ycx.title" = "synchronisieren";
@@ -323,7 +323,7 @@
 "bgh-eQ-3ly.headerCell.title" = "Verwendet (GB)";
 
 /* Class = "NSButtonCell"; title = "Clear"; ObjectID = "BGM-Kg-KGO"; */
-"BGM-Kg-KGO.title" = "Filter aufheben";
+"BGM-Kg-KGO.title" = "Löschen";
 
 /* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
 "bib-Uj-vzu.title" = "Datei";

@@ -115,13 +115,13 @@
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
 
 /* plan */
-"earlier months" = "tidligere måned";
+"earlier months" = "frühere Monate";
 
 /* Error rsync */
-"ERROR: no rsync in" = "FEIL: ingen rsync i";
+"ERROR: no rsync in" = "FEHLER: kein rsync in";
 
 /* Error rsync */
-"ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
+"ERROR: no rsync in /usr/local/bin" = "FEHLER: kein rsync in /usr/local/bin";
 
 /* Batch */
 "Estimation completed, you can start batch..." = "Estimering utført, start batch...";
@@ -133,7 +133,7 @@
 "Executing restore..." = "Utfører kopi...";
 
 /* plan */
-"Friday" = "fredag";
+"Friday" = "Freitag";
 
 /* Restore */
 "Getting info, please wait..." = "Informationen werden abgerufen, bitte warten...";
@@ -164,7 +164,7 @@
 "Icon by: Zsolt Sándor" = "Ikone von: Zsolt Sándor";
 
 /* plan */
-"Keep" = "Behold";
+"Keep" = "Behalten";
 
 /* plan */
 "last" = "siste";
@@ -192,7 +192,7 @@
 "mins" = "min";
 
 /* plan */
-"Monday" = "mandag";
+"Monday" = "Montag";
 
 /* Execute */
 "New version is available - see About" = "Neue Version ist verfügbar - siehe Über";
@@ -252,7 +252,7 @@
 "Please select a task in Execute ..." = "Bitte wählen Sie eine Aufgabe in Ausführung ...";
 
 /* Execute */
-"Possible error logging..." = "Mulig feil logging...";
+"Possible error logging..." = "Mögliche Fehlerprotokollierung...";
 
 /* plan */
 "previous month" = "forrige måned";
@@ -270,7 +270,7 @@
 "Restore" = "Kopi";
 
 /* plan */
-"Saturday" = "lørdag";
+"Saturday" = "Samstag";
 
 /* Profile
    Userconfig */
@@ -309,7 +309,7 @@
 "stopped" = "stoppet";
 
 /* plan */
-"Sunday" = "søndag";
+"Sunday" = "Sonntag";
 
 /* Execute */
 "The menu app" = "Die Menü-App";
@@ -321,25 +321,25 @@
 "This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
 
 /* New */
-"This is added before?" = "Denne er lagt til tidligere?";
+"This is added before?" = "Dies wird vorher hinzugefügt?";
 
 /* plan */
 "this month" = "denne måned";
 
 /* plan */
-"this week" = "denne uke";
+"this week" = "diese Woche";
 
 /* plan */
-"Thursday" = "torsdag";
+"Thursday" = "Donnerstag";
 
 /* plan */
-"Tuesday" = "tirsdag";
+"Tuesday" = "Dienstag";
 
 /* Verify */
 "Verifying, please wait..." = "Verifiserer, vennligst vent...";
 
 /* plan */
-"Wednesday" = "onsdag";
+"Wednesday" = "Mittwoch";
 
 /* main */
 "weekly" = "ukentlig";

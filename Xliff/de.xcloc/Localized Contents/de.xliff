@@ -102,9 +102,9 @@
       </trans-unit>
       <trans-unit id="2sX-ek-QE0.title" xml:space="preserve">
         <source>Required</source>
-        <target state="translated">Erforderlich</target>
+        <target state="translated">Pflichtfeld</target>
         <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "2sX-ek-QE0";</note>
-      </trans-unit>
+      <alt-trans><target>Erforderlich</target></alt-trans></trans-unit>
       <trans-unit id="2tH-gF-ycx.title" xml:space="preserve">
         <source>synchronize</source>
         <target state="translated">synchronisieren</target>
@@ -487,9 +487,9 @@
       </trans-unit>
       <trans-unit id="BGM-Kg-KGO.title" xml:space="preserve">
         <source>Clear</source>
-        <target state="translated">Filter aufheben</target>
+        <target state="translated">Löschen</target>
         <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "BGM-Kg-KGO";</note>
-      </trans-unit>
+      <alt-trans><target>Filter aufheben</target></alt-trans></trans-unit>
       <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
         <source>Preferences…</source>
         <target state="translated">Voreinstellungen…</target>
@@ -2822,14 +2822,14 @@
       </trans-unit>
       <trans-unit id="ERROR: no rsync in" xml:space="preserve">
         <source>ERROR: no rsync in</source>
-        <target state="translated">FEIL: ingen rsync i</target>
+        <target state="translated">FEHLER: kein rsync in</target>
         <note>Error rsync</note>
-      </trans-unit>
+      <alt-trans><target>FEIL: ingen rsync i</target></alt-trans></trans-unit>
       <trans-unit id="ERROR: no rsync in /usr/local/bin" xml:space="preserve">
         <source>ERROR: no rsync in /usr/local/bin</source>
-        <target state="translated">FEIL: ingen rsync i /usr/local/bin</target>
+        <target state="translated">FEHLER: kein rsync in /usr/local/bin</target>
         <note>Error rsync</note>
-      </trans-unit>
+      <alt-trans><target>FEIL: ingen rsync i /usr/local/bin</target></alt-trans></trans-unit>
       <trans-unit id="Estimation completed, you can start batch..." xml:space="preserve">
         <source>Estimation completed, you can start batch...</source>
         <target state="translated">Estimering utført, start batch...</target>
@@ -2842,9 +2842,9 @@
       </trans-unit>
       <trans-unit id="Friday" xml:space="preserve">
         <source>Friday</source>
-        <target state="translated">fredag</target>
+        <target state="translated">Freitag</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>fredag</target></alt-trans></trans-unit>
       <trans-unit id="Getting info, please wait..." xml:space="preserve">
         <source>Getting info, please wait...</source>
         <target state="translated">Informationen werden abgerufen, bitte warten...</target>
@@ -2883,9 +2883,9 @@
       <alt-trans><target>Icon av: Zsolt Sándor</target></alt-trans></trans-unit>
       <trans-unit id="Keep" xml:space="preserve">
         <source>Keep</source>
-        <target state="translated">Behold</target>
+        <target state="translated">Behalten</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>Behold</target></alt-trans></trans-unit>
       <trans-unit id="Load" xml:space="preserve">
         <source>Load</source>
         <target state="translated">Last</target>
@@ -2914,9 +2914,9 @@
       </trans-unit>
       <trans-unit id="Monday" xml:space="preserve">
         <source>Monday</source>
-        <target state="translated">mandag</target>
+        <target state="translated">Montag</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>mandag</target></alt-trans></trans-unit>
       <trans-unit id="New version is available - see About" xml:space="preserve">
         <source>New version is available - see About</source>
         <target state="translated">Neue Version ist verfügbar - siehe Über</target>
@@ -2994,9 +2994,9 @@
       <alt-trans><target>Velg en oppgave i Utfør</target></alt-trans></trans-unit>
       <trans-unit id="Possible error logging..." xml:space="preserve">
         <source>Possible error logging...</source>
-        <target state="translated">Mulig feil logging...</target>
+        <target state="translated">Mögliche Fehlerprotokollierung...</target>
         <note>Execute</note>
-      </trans-unit>
+      <alt-trans><target>Mulig feil logging...</target></alt-trans></trans-unit>
       <trans-unit id="Profile:" xml:space="preserve">
         <source>Profile:</source>
         <target state="translated">Profil:</target>
@@ -3019,9 +3019,9 @@
       </trans-unit>
       <trans-unit id="Saturday" xml:space="preserve">
         <source>Saturday</source>
-        <target state="translated">lørdag</target>
+        <target state="translated">Samstag</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>lørdag</target></alt-trans></trans-unit>
       <trans-unit id="Save" xml:space="preserve">
         <source>Save</source>
         <target state="translated">Lagre</target>
@@ -3072,9 +3072,9 @@
       </trans-unit>
       <trans-unit id="Sunday" xml:space="preserve">
         <source>Sunday</source>
-        <target state="translated">søndag</target>
+        <target state="translated">Sonntag</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>søndag</target></alt-trans></trans-unit>
       <trans-unit id="The menu app" xml:space="preserve">
         <source>The menu app</source>
         <note>Execute</note>
@@ -3091,19 +3091,19 @@
       </trans-unit>
       <trans-unit id="This is added before?" xml:space="preserve">
         <source>This is added before?</source>
-        <target state="translated">Denne er lagt til tidligere?</target>
+        <target state="translated">Dies wird vorher hinzugefügt?</target>
         <note>New</note>
-      </trans-unit>
+      <alt-trans><target>Denne er lagt til tidligere?</target></alt-trans></trans-unit>
       <trans-unit id="Thursday" xml:space="preserve">
         <source>Thursday</source>
-        <target state="translated">torsdag</target>
+        <target state="translated">Donnerstag</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>torsdag</target></alt-trans></trans-unit>
       <trans-unit id="Tuesday" xml:space="preserve">
         <source>Tuesday</source>
-        <target state="translated">tirsdag</target>
+        <target state="translated">Dienstag</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>tirsdag</target></alt-trans></trans-unit>
       <trans-unit id="Verifying, please wait..." xml:space="preserve">
         <source>Verifying, please wait...</source>
         <target state="translated">Verifiserer, vennligst vent...</target>
@@ -3111,9 +3111,9 @@
       </trans-unit>
       <trans-unit id="Wednesday" xml:space="preserve">
         <source>Wednesday</source>
-        <target state="translated">onsdag</target>
+        <target state="translated">Mittwoch</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>onsdag</target></alt-trans></trans-unit>
       <trans-unit id="You cannot delete that many, max are" xml:space="preserve">
         <source>You cannot delete that many, max are</source>
         <target state="translated">Du kan ikke slette så mange, max er</target>
@@ -3136,9 +3136,9 @@
       <alt-trans><target>dager</target></alt-trans></trans-unit>
       <trans-unit id="earlier months" xml:space="preserve">
         <source>earlier months</source>
-        <target state="translated">tidligere måned</target>
+        <target state="translated">frühere Monate</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>tidligere måned</target></alt-trans></trans-unit>
       <trans-unit id="every" xml:space="preserve">
         <source>every</source>
         <target state="translated">alle</target>
@@ -3211,9 +3211,9 @@
       </trans-unit>
       <trans-unit id="this week" xml:space="preserve">
         <source>this week</source>
-        <target state="translated">denne uke</target>
+        <target state="translated">diese Woche</target>
         <note>plan</note>
-      </trans-unit>
+      <alt-trans><target>denne uke</target></alt-trans></trans-unit>
       <trans-unit id="weekly" xml:space="preserve">
         <source>weekly</source>
         <target state="translated">ukentlig</target>
