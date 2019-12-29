@@ -2857,25 +2857,25 @@
       <alt-trans><target>Henter informasjon, vennligst vent</target></alt-trans></trans-unit>
       <trans-unit id="Got index from Execute and listing logs for one configuration..." xml:space="preserve">
         <source>Got index from Execute and listing logs for one configuration...</source>
-        <target state="translated">Hentet index fra Utfør og lister logg for en konfigurasjon </target>
+        <target state="translated">Index aus Ausführen und Auflistung von Protokollen für eine Konfiguration...</target>
         <note>Loggdata</note>
-      </trans-unit>
+      <alt-trans><target>Hentet index fra Utfør og lister logg for en konfigurasjon </target></alt-trans></trans-unit>
       <trans-unit id="Got index from Execute..." xml:space="preserve">
         <source>Got index from Execute...</source>
-        <target state="translated">Hentet index fra Utfør</target>
+        <target state="translated">Index aus der Ausführung erhalten...</target>
         <note>Schedules</note>
-      </trans-unit>
+      <alt-trans><target>Hentet index fra Utfør</target></alt-trans></trans-unit>
       <trans-unit id="Got index from Snapshots and listing logs for one configuration..." xml:space="preserve">
         <source>Got index from Snapshots and listing logs for one configuration...</source>
-        <target state="translated">Hentet index fra Snapshots og lister logg for en konfigurasjon </target>
+        <target state="translated">Index aus Ausführen und Auflistung von Protokollen für eine Konfiguration...</target>
         <note>Loggdata</note>
-      </trans-unit>
+      <alt-trans><target>Hentet index fra Snapshots og lister logg for en konfigurasjon </target></alt-trans></trans-unit>
       <trans-unit id="Got it..." xml:space="preserve">
         <source>Got it...</source>
-        <target state="translated">Info hentet...</target>
+        <target state="translated">Info heruntergeladen...</target>
         <note>Remote Info
    Restore</note>
-      </trans-unit>
+      <alt-trans><target>Info hentet...</target></alt-trans></trans-unit>
       <trans-unit id="Icon by: Zsolt Sándor" xml:space="preserve">
         <source>Icon by: Zsolt Sándor</source>
         <target state="translated">Ikone von: Zsolt Sándor</target>
@@ -3035,11 +3035,11 @@
       </trans-unit>
       <trans-unit id="Seems not to be connected..." xml:space="preserve">
         <source>Seems not to be connected...</source>
-        <target state="translated">Synes ikke å være tilgjengelig...</target>
+        <target state="translated">Scheint nicht zu verbinden...</target>
         <note>Copy files
    Remote Info
    Verify</note>
-      </trans-unit>
+      <alt-trans><target>Synes ikke å være tilgjengelig...</target></alt-trans></trans-unit>
       <trans-unit id="Select a task...." xml:space="preserve">
         <source>Select a task....</source>
         <target state="translated">Aufgabe auswählen....</target>
@@ -3126,9 +3126,9 @@
       <alt-trans><target>Du har siste versjon...</target></alt-trans></trans-unit>
       <trans-unit id="daily" xml:space="preserve">
         <source>daily</source>
-        <target state="translated">daglig</target>
+        <target state="translated">täglich</target>
         <note>main</note>
-      </trans-unit>
+      <alt-trans><target>daglig</target></alt-trans></trans-unit>
       <trans-unit id="days" xml:space="preserve">
         <source>days</source>
         <target state="translated">tage</target>
@@ -3216,9 +3216,9 @@
       <alt-trans><target>denne uke</target></alt-trans></trans-unit>
       <trans-unit id="weekly" xml:space="preserve">
         <source>weekly</source>
-        <target state="translated">ukentlig</target>
+        <target state="translated">wöchentlich</target>
         <note>main</note>
-      </trans-unit>
+      <alt-trans><target>ukentlig</target></alt-trans></trans-unit>
       <trans-unit id="⌘A to abort or wait..." xml:space="preserve">
         <source>⌘A to abort or wait...</source>
         <target state="translated">⌘A for å avslutte eller vent...</target>

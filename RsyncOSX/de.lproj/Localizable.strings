@@ -70,7 +70,7 @@
 "Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen.";
 
 /* main */
-"daily" = "daglig";
+"daily" = "täglich";
 
 /* Remote Info
    Verify */
@@ -142,17 +142,17 @@
 "Getting information, please wait ..." = "Informationen werden abgerufen, bitte warten ...";
 
 /* Loggdata */
-"Got index from Execute and listing logs for one configuration..." = "Hentet index fra Utfør og lister logg for en konfigurasjon ";
+"Got index from Execute and listing logs for one configuration..." = "Index aus Ausführen und Auflistung von Protokollen für eine Konfiguration...";
 
 /* Schedules */
-"Got index from Execute..." = "Hentet index fra Utfør";
+"Got index from Execute..." = "Index aus der Ausführung erhalten...";
 
 /* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon ";
+"Got index from Snapshots and listing logs for one configuration..." = "Index aus Ausführen und Auflistung von Protokollen für eine Konfiguration...";
 
 /* Remote Info
    Restore */
-"Got it..." = "Info hentet...";
+"Got it..." = "Info heruntergeladen...";
 
 /* datetime */
 "h" = "t";
@@ -285,7 +285,7 @@
 /* Copy files
    Remote Info
    Verify */
-"Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
+"Seems not to be connected..." = "Scheint nicht zu verbinden...";
 
 /* Execute */
 "Select a task...." = "Aufgabe auswählen....";
@@ -342,7 +342,7 @@
 "Wednesday" = "Mittwoch";
 
 /* main */
-"weekly" = "ukentlig";
+"weekly" = "wöchentlich";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
