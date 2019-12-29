@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="00G-Ps-GJD.title" xml:space="preserve">
         <source>Local catalog : </source>
-        <target state="translated">Lokaler Katalog : </target>
+        <target state="translated">Lokaler Katalog: </target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD";</note>
       </trans-unit>
       <trans-unit id="0KI-B9-ezl.headerCell.title" xml:space="preserve">
@@ -37,17 +37,17 @@
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.label" xml:space="preserve">
         <source>All</source>
-        <target state="translated">Alles</target>
+        <target state="translated">Alle</target>
         <note>Class = "NSToolbarItem"; label = "All"; ObjectID = "1Xq-6O-MUE";</note>
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.paletteLabel" xml:space="preserve">
         <source>All</source>
-        <target state="translated">Alles</target>
+        <target state="translated">Alle</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "All"; ObjectID = "1Xq-6O-MUE";</note>
       </trans-unit>
       <trans-unit id="1Xq-6O-MUE.toolTip" xml:space="preserve">
         <source>List all profiles and configurations...</source>
-        <target state="translated">Alle Profile und Konfigurationen anzeigen...</target>
+        <target state="translated">Alle Profile und Konfigurationen auflisten...</target>
         <note>Class = "NSToolbarItem"; toolTip = "List all profiles and configurations..."; ObjectID = "1Xq-6O-MUE";</note>
       </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
@@ -57,7 +57,7 @@
       </trans-unit>
       <trans-unit id="01g-QQ-yHM.headerCell.title" xml:space="preserve">
         <source>Date executed</source>
-        <target state="translated">Ausführungdatum</target>
+        <target state="translated">Ausführungsdatum</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "01g-QQ-yHM";</note>
       </trans-unit>
       <trans-unit id="1o3-wD-XkY.headerCell.title" xml:space="preserve">
@@ -72,7 +72,7 @@
       </trans-unit>
       <trans-unit id="1xY-fG-SDm.title" xml:space="preserve">
         <source>Remote catalog :</source>
-        <target state="translated">Remote-Katalog:</target>
+        <target state="translated">Externer Katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog :"; ObjectID = "1xY-fG-SDm";</note>
       </trans-unit>
       <trans-unit id="2Cv-Hb-dy9.title" xml:space="preserve">
@@ -92,7 +92,7 @@
       </trans-unit>
       <trans-unit id="2W2-3F-urP.title" xml:space="preserve">
         <source>KB to be transferred:</source>
-        <target state="translated">Zu übertragende KB:</target>
+        <target state="translated">KB zu übertragen:</target>
         <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "2W2-3F-urP";</note>
       </trans-unit>
       <trans-unit id="2eK-ib-h9A.title" xml:space="preserve">
@@ -102,19 +102,19 @@
       </trans-unit>
       <trans-unit id="2sX-ek-QE0.title" xml:space="preserve">
         <source>Required</source>
-        <target state="translated">Erforderlich</target>
+        <target state="translated">Benötigt</target>
         <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "2sX-ek-QE0";</note>
       </trans-unit>
       <trans-unit id="2tH-gF-ycx.title" xml:space="preserve">
         <source>synchronize</source>
-        <target state="translated">synchronisieren</target>
+        <target state="translated">synchronize</target>
         <note>Class = "NSButtonCell"; title = "synchronize"; ObjectID = "2tH-gF-ycx";</note>
       </trans-unit>
       <trans-unit id="2zQ-iW-vbk.title" xml:space="preserve">
         <source>remove -e ssh</source>
-        <target state="translated">entfernen -e ssh</target>
+        <target state="translated">-e ssh entfernen</target>
         <note>Class = "NSButtonCell"; title = "remove -e ssh"; ObjectID = "2zQ-iW-vbk";</note>
-      <alt-trans><target>remove -e ssh</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="3Ch-5Q-dft.title" xml:space="preserve">
         <source>Edit</source>
         <target state="translated">Bearbeiten</target>
@@ -122,12 +122,12 @@
       </trans-unit>
       <trans-unit id="3LC-v7-7Pz.title" xml:space="preserve">
         <source>Rsync command (--dry-run)</source>
-        <target state="translated">Rsync Befehl (--dry-run)</target>
+        <target state="translated">Rsync-Befehl (--dry-run)</target>
         <note>Class = "NSBox"; title = "Rsync command (--dry-run)"; ObjectID = "3LC-v7-7Pz";</note>
       </trans-unit>
       <trans-unit id="3Td-g5-CaS.title" xml:space="preserve">
         <source>Total size (kB):</source>
-        <target state="translated">Gesamtgröße in KB:</target>
+        <target state="translated">Total size (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "3Td-g5-CaS";</note>
       </trans-unit>
       <trans-unit id="3lN-qc-jYH.title" xml:space="preserve">
@@ -137,12 +137,12 @@
       </trans-unit>
       <trans-unit id="3pw-4t-6v9.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "3pw-4t-6v9";</note>
       </trans-unit>
       <trans-unit id="3xI-3C-guU.title" xml:space="preserve">
         <source>Add</source>
-        <target state="translated">Hinzufügen</target>
+        <target state="translated">Neu</target>
         <note>Class = "NSViewController"; title = "Add"; ObjectID = "3xI-3C-guU";</note>
       </trans-unit>
       <trans-unit id="4bI-2z-3J9.title" xml:space="preserve">
@@ -152,12 +152,12 @@
       </trans-unit>
       <trans-unit id="4cL-gF-geP.headerCell.title" xml:space="preserve">
         <source>Sched</source>
-        <target state="translated">Geplant</target>
+        <target state="translated">Schröder</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "4cL-gF-geP";</note>
       </trans-unit>
       <trans-unit id="4fh-oN-1Ue.title" xml:space="preserve">
         <source>lastorevery</source>
-        <target state="translated">lastorevery</target>
+        <target state="translated">lastorjede</target>
         <note>Class = "NSTextFieldCell"; title = "lastorevery"; ObjectID = "4fh-oN-1Ue";</note>
       </trans-unit>
       <trans-unit id="4rw-XH-Spd.title" xml:space="preserve">
@@ -192,14 +192,14 @@
       </trans-unit>
       <trans-unit id="5TL-a2-yBQ.headerCell.title" xml:space="preserve">
         <source>Stop schedule</source>
-        <target state="translated">Zeitplan beenden</target>
+        <target state="translated">Zeitplan stoppen</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "5TL-a2-yBQ";</note>
       </trans-unit>
       <trans-unit id="5Zv-SY-8nT.title" xml:space="preserve">
         <source>remove --delete</source>
         <target state="translated">entfernen --delete</target>
         <note>Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT";</note>
-      <alt-trans><target>remove --delete</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="5cK-IB-eA3.title" xml:space="preserve">
         <source>Files to be transferred:</source>
         <target state="translated">Zu übertragende Dateien:</target>
@@ -227,7 +227,7 @@
       </trans-unit>
       <trans-unit id="6rO-sZ-edB.title" xml:space="preserve">
         <source>Remote catalog:</source>
-        <target state="translated">Remote-Katalog:</target>
+        <target state="translated">Entfernter Katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB";</note>
       </trans-unit>
       <trans-unit id="7KY-LK-D7K.title" xml:space="preserve">
@@ -237,22 +237,22 @@
       </trans-unit>
       <trans-unit id="7w4-6r-ai5.label" xml:space="preserve">
         <source>abort</source>
-        <target state="translated">Abbrechen</target>
+        <target state="translated">abbrechen</target>
         <note>Class = "NSToolbarItem"; label = "abort"; ObjectID = "7w4-6r-ai5";</note>
       </trans-unit>
       <trans-unit id="7w4-6r-ai5.paletteLabel" xml:space="preserve">
         <source>abort</source>
-        <target state="translated">Abbrechen</target>
+        <target state="translated">abbrechen</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "abort"; ObjectID = "7w4-6r-ai5";</note>
       </trans-unit>
       <trans-unit id="7w4-6r-ai5.toolTip" xml:space="preserve">
         <source>Abort task...</source>
-        <target state="translated">Task abbrechen...</target>
+        <target state="translated">Aufgabe abbrechen...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Abort task..."; ObjectID = "7w4-6r-ai5";</note>
       </trans-unit>
       <trans-unit id="8YP-GO-G5h.title" xml:space="preserve">
         <source>files :</source>
-        <target state="translated">Dateien :</target>
+        <target state="translated">dateien:</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "8YP-GO-G5h";</note>
       </trans-unit>
       <trans-unit id="8ml-tx-gzW.title" xml:space="preserve">
@@ -312,7 +312,7 @@
       </trans-unit>
       <trans-unit id="37m-qS-TRa.headerCell.title" xml:space="preserve">
         <source>Avail(%)</source>
-        <target state="translated">Verfügbar (GB)</target>
+        <target state="translated">Avail(%)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "37m-qS-TRa";</note>
       </trans-unit>
       <trans-unit id="39A-da-zAW.title" xml:space="preserve">
@@ -332,7 +332,7 @@
       </trans-unit>
       <trans-unit id="52M-g3-zq9.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "52M-g3-zq9";</note>
       </trans-unit>
       <trans-unit id="55D-T2-yld.title" xml:space="preserve">
@@ -347,17 +347,17 @@
       </trans-unit>
       <trans-unit id="60W-M7-Vqr.title" xml:space="preserve">
         <source>Profile :</source>
-        <target state="translated">Profil :</target>
+        <target state="translated">Profil:</target>
         <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "60W-M7-Vqr";</note>
       </trans-unit>
       <trans-unit id="65j-NR-wz6.title" xml:space="preserve">
         <source>Estimate</source>
-        <target state="translated">Geschätzt</target>
+        <target state="translated">Schätzung</target>
         <note>Class = "NSButtonCell"; title = "Estimate"; ObjectID = "65j-NR-wz6";</note>
       </trans-unit>
       <trans-unit id="66b-7r-iey.title" xml:space="preserve">
         <source>Number of directories:</source>
-        <target state="translated">Anzahl Verzeichnisse:</target>
+        <target state="translated">Anzahl der Verzeichnisse:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "66b-7r-iey";</note>
       </trans-unit>
       <trans-unit id="75g-jk-ycD.title" xml:space="preserve">
@@ -392,7 +392,7 @@
       </trans-unit>
       <trans-unit id="857-EY-QrY.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "857-EY-QrY";</note>
       </trans-unit>
       <trans-unit id="ACw-EV-vDL.title" xml:space="preserve">
@@ -402,22 +402,22 @@
       </trans-unit>
       <trans-unit id="AEh-Gt-Awg.title" xml:space="preserve">
         <source>Number of files:</source>
-        <target state="translated">Anzahl Dateien</target>
+        <target state="translated">Anzahl der Dateien:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "AEh-Gt-Awg";</note>
       </trans-unit>
       <trans-unit id="AGP-WH-AJy.title" xml:space="preserve">
         <source>Save</source>
-        <target state="translated">Sichern</target>
+        <target state="translated">Speichern</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "AGP-WH-AJy";</note>
       </trans-unit>
       <trans-unit id="AIr-rt-OLN.headerCell.title" xml:space="preserve">
         <source>Stop date schedule</source>
-        <target state="translated">Stoppdatum Zeitplan</target>
+        <target state="translated">Zeitplan stoppen</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stop date schedule"; ObjectID = "AIr-rt-OLN";</note>
       </trans-unit>
       <trans-unit id="AMs-qg-ohN.title" xml:space="preserve">
         <source>Either double click on row or select row and Load button</source>
-        <target state="translated">Doppelklicken Sie auf die Zeile oder wählen Sie Zeile und Laden</target>
+        <target state="translated">Doppelklicken Sie auf die Zeile oder wählen Sie Zeile und Lade</target>
         <note>Class = "NSTextFieldCell"; title = "Either double click on row or select row and Load button"; ObjectID = "AMs-qg-ohN";</note>
       </trans-unit>
       <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
@@ -442,17 +442,17 @@
       </trans-unit>
       <trans-unit id="AlG-Cw-Xi9.title" xml:space="preserve">
         <source>Logs</source>
-        <target state="translated">Protokolle</target>
+        <target state="translated">Logs</target>
         <note>Class = "NSViewController"; title = "Logs"; ObjectID = "AlG-Cw-Xi9";</note>
       </trans-unit>
       <trans-unit id="Am3-Ji-1Ox.title" xml:space="preserve">
         <source>add suffix FreeBSD </source>
-        <target state="translated">suffix FreeBSD hinzufügen </target>
+        <target state="translated">Suffix FreeBSD hinzufügen </target>
         <note>Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox";</note>
       </trans-unit>
       <trans-unit id="B2y-Kc-2LJ.title" xml:space="preserve">
         <source>Remote catalog : </source>
-        <target state="translated">Remote-Katalog : </target>
+        <target state="translated">Externer Katalog: </target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "B2y-Kc-2LJ";</note>
       </trans-unit>
       <trans-unit id="B5v-j0-w2F.title" xml:space="preserve">
@@ -462,42 +462,42 @@
       </trans-unit>
       <trans-unit id="B9V-8v-Aba.title" xml:space="preserve">
         <source>Ssh</source>
-        <target state="translated">Ssh</target>
+        <target state="translated">Schutt</target>
         <note>Class = "NSViewController"; title = "Ssh"; ObjectID = "B9V-8v-Aba";</note>
       </trans-unit>
       <trans-unit id="B39-H6-802.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "B39-H6-802";</note>
       </trans-unit>
       <trans-unit id="BDO-Nt-D9h.title" xml:space="preserve">
         <source>Estimating task, please wait...</source>
-        <target state="translated">Task wird geschätzt, bitte warten...</target>
+        <target state="translated">Aufgabe wird geschätzt, bitte warten...</target>
         <note>Class = "NSTextFieldCell"; title = "Estimating task, please wait..."; ObjectID = "BDO-Nt-D9h";</note>
       </trans-unit>
       <trans-unit id="BEH-BV-PWu.title" xml:space="preserve">
         <source>ssh port:</source>
-        <target state="translated">ssh-Port:</target>
+        <target state="translated">ssh Port:</target>
         <note>Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "BEH-BV-PWu";</note>
       </trans-unit>
       <trans-unit id="BG6-Wq-kSc.title" xml:space="preserve">
         <source>Automatic execution of local configurations</source>
-        <target state="translated">Automatische Ausführung der lokalen Konfigurationen</target>
+        <target state="translated">Automatische Ausführung lokaler Konfigurationen</target>
         <note>Class = "NSButtonCell"; title = "Automatic execution of local configurations"; ObjectID = "BG6-Wq-kSc";</note>
       </trans-unit>
       <trans-unit id="BGM-Kg-KGO.title" xml:space="preserve">
         <source>Clear</source>
-        <target state="translated">Filter aufheben</target>
+        <target state="translated">Leeren</target>
         <note>Class = "NSButtonCell"; title = "Clear"; ObjectID = "BGM-Kg-KGO";</note>
       </trans-unit>
       <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
         <source>Preferences…</source>
-        <target state="translated">Voreinstellungen…</target>
+        <target state="translated">Einstellungen…</target>
         <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
       </trans-unit>
       <trans-unit id="BVb-Fw-C80.headerCell.title" xml:space="preserve">
         <source>Snap</source>
-        <target state="translated">Snap</target>
+        <target state="translated">Einrasten</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "BVb-Fw-C80";</note>
       </trans-unit>
       <trans-unit id="Bb6-iv-DYc.title" xml:space="preserve">
@@ -512,7 +512,7 @@
       </trans-unit>
       <trans-unit id="BrN-3s-w3t.headerCell.title" xml:space="preserve">
         <source>Logs</source>
-        <target state="translated">Protokolle</target>
+        <target state="translated">Logs</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Logs"; ObjectID = "BrN-3s-w3t";</note>
       </trans-unit>
       <trans-unit id="Bu5-79-2AR.title" xml:space="preserve">
@@ -522,7 +522,7 @@
       </trans-unit>
       <trans-unit id="Byb-kM-Mpk.headerCell.title" xml:space="preserve">
         <source>Batch</source>
-        <target state="translated">Batch</target>
+        <target state="translated">Stapel</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Batch"; ObjectID = "Byb-kM-Mpk";</note>
       </trans-unit>
       <trans-unit id="C7v-tI-RMe.title" xml:space="preserve">
@@ -547,17 +547,17 @@
       </trans-unit>
       <trans-unit id="Can-2K-epd.headerCell.title" xml:space="preserve">
         <source>Total dir</source>
-        <target state="translated">Gesamtes Verzeichnis</target>
+        <target state="translated">Gesamtverzeichnis</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Total dir"; ObjectID = "Can-2K-epd";</note>
       </trans-unit>
       <trans-unit id="CcG-h4-w76.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "CcG-h4-w76";</note>
       </trans-unit>
       <trans-unit id="Cg6-Ym-xzl.title" xml:space="preserve">
         <source>Days since last backup:</source>
-        <target state="translated">Tage seit letzter Sicherung:</target>
+        <target state="translated">Tage seit dem letzten Backup:</target>
         <note>Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "Cg6-Ym-xzl";</note>
       </trans-unit>
       <trans-unit id="CiR-sD-XpQ.headerCell.title" xml:space="preserve">
@@ -572,7 +572,7 @@
       </trans-unit>
       <trans-unit id="CwH-vm-SWF.title" xml:space="preserve">
         <source>Total size (kB):</source>
-        <target state="translated">Gesamtgröße in KB:</target>
+        <target state="translated">Total size (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "CwH-vm-SWF";</note>
       </trans-unit>
       <trans-unit id="D7f-Cg-ZtW.title" xml:space="preserve">
@@ -582,7 +582,7 @@
       </trans-unit>
       <trans-unit id="DDM-6v-WfN.headerCell.title" xml:space="preserve">
         <source>Information</source>
-        <target state="translated">Information</target>
+        <target state="translated">Informationen</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Information"; ObjectID = "DDM-6v-WfN";</note>
       </trans-unit>
       <trans-unit id="DH3-Cj-gh5.title" xml:space="preserve">
@@ -597,7 +597,7 @@
       </trans-unit>
       <trans-unit id="Dl6-i6-oA7.title" xml:space="preserve">
         <source>status</source>
-        <target state="translated">Status</target>
+        <target state="translated">status</target>
         <note>Class = "NSTextFieldCell"; title = "status"; ObjectID = "Dl6-i6-oA7";</note>
       </trans-unit>
       <trans-unit id="E9g-tP-EaI.headerCell.title" xml:space="preserve">
@@ -607,7 +607,7 @@
       </trans-unit>
       <trans-unit id="EH0-Ty-cyz.title" xml:space="preserve">
         <source>Catalog parameters (use Finder to drag and drop paths)</source>
-        <target state="translated">Katalogparameter (verwenden Sie Finder um Pfade zu verschieben)</target>
+        <target state="translated">Katalogparameter (verwenden Sie Finder zum Ziehen und Ablegen von Pfaden)</target>
         <note>Class = "NSBox"; title = "Catalog parameters (use Finder to drag and drop paths)"; ObjectID = "EH0-Ty-cyz";</note>
       </trans-unit>
       <trans-unit id="EU9-bF-96n.title" xml:space="preserve">
@@ -632,7 +632,7 @@
       </trans-unit>
       <trans-unit id="EeS-fZ-csl.title" xml:space="preserve">
         <source>Dsa public key is found.</source>
-        <target state="translated">Öffentlicher Dsa Schlüssel gefunden.</target>
+        <target state="translated">Dsa öffentlicher Schlüssel wurde gefunden.</target>
         <note>Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl";</note>
       </trans-unit>
       <trans-unit id="EiP-tC-Ve8.title" xml:space="preserve">
@@ -642,7 +642,7 @@
       </trans-unit>
       <trans-unit id="Emj-io-EGu.headerCell.title" xml:space="preserve">
         <source>Date executed</source>
-        <target state="translated">Ausführungdatum</target>
+        <target state="translated">Ausführungsdatum</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "Emj-io-EGu";</note>
       </trans-unit>
       <trans-unit id="ExZ-72-tbq.headerCell.title" xml:space="preserve">
@@ -657,12 +657,12 @@
       </trans-unit>
       <trans-unit id="F9T-gx-oeJ.title" xml:space="preserve">
         <source>configuration ID:</source>
-        <target state="translated">konfigurationsID:</target>
+        <target state="translated">konfiguration ID:</target>
         <note>Class = "NSTextFieldCell"; title = "configuration ID:"; ObjectID = "F9T-gx-oeJ";</note>
       </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
         <source>RsyncOSX Help</source>
-        <target state="translated">RsyncOSX Hilfe</target>
+        <target state="translated">RsyncOSX Help</target>
         <note>Class = "NSMenuItem"; title = "RsyncOSX Help"; ObjectID = "FKE-Sm-Kum";</note>
       </trans-unit>
       <trans-unit id="FSh-WF-QKH.title" xml:space="preserve">
@@ -672,7 +672,7 @@
       </trans-unit>
       <trans-unit id="FW3-kS-er7.title" xml:space="preserve">
         <source>kB to be transferred:</source>
-        <target state="translated">zu übertragende KB:</target>
+        <target state="translated">kB zu übertragen:</target>
         <note>Class = "NSTextFieldCell"; title = "kB to be transferred:"; ObjectID = "FW3-kS-er7";</note>
       </trans-unit>
       <trans-unit id="FXq-M1-hKG.headerCell.title" xml:space="preserve">
@@ -697,7 +697,7 @@
       </trans-unit>
       <trans-unit id="FrI-lc-qcT.title" xml:space="preserve">
         <source>Number of days</source>
-        <target state="translated">Anzahl Tage</target>
+        <target state="translated">Anzahl der Tage</target>
         <note>Class = "NSBox"; title = "Number of days"; ObjectID = "FrI-lc-qcT";</note>
       </trans-unit>
       <trans-unit id="Fry-AD-Rmf.headerCell.title" xml:space="preserve">
@@ -707,7 +707,7 @@
       </trans-unit>
       <trans-unit id="FyK-Vx-KC3.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "FyK-Vx-KC3";</note>
       </trans-unit>
       <trans-unit id="Fzm-Cm-ENf.title" xml:space="preserve">
@@ -722,12 +722,12 @@
       </trans-unit>
       <trans-unit id="G8q-vp-nPf.title" xml:space="preserve">
         <source>Total size (kB) :</source>
-        <target state="translated">Gesamtgröße in KB:</target>
+        <target state="translated">Total size (kB) :</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB) :"; ObjectID = "G8q-vp-nPf";</note>
       </trans-unit>
       <trans-unit id="G43-jD-Ptq.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "G43-jD-Ptq";</note>
       </trans-unit>
       <trans-unit id="GF9-Lf-PIQ.headerCell.title" xml:space="preserve">
@@ -747,12 +747,12 @@
       </trans-unit>
       <trans-unit id="GYz-8J-WDp.label" xml:space="preserve">
         <source>info</source>
-        <target state="translated">Info</target>
+        <target state="translated">info</target>
         <note>Class = "NSToolbarItem"; label = "info"; ObjectID = "GYz-8J-WDp";</note>
       </trans-unit>
       <trans-unit id="GYz-8J-WDp.paletteLabel" xml:space="preserve">
         <source>info</source>
-        <target state="translated">Info</target>
+        <target state="translated">info</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "info"; ObjectID = "GYz-8J-WDp";</note>
       </trans-unit>
       <trans-unit id="GYz-8J-WDp.toolTip" xml:space="preserve">
@@ -772,12 +772,12 @@
       </trans-unit>
       <trans-unit id="Gw5-qa-AvW.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Gw5-qa-AvW";</note>
       </trans-unit>
       <trans-unit id="H79-tQ-7yT.headerCell.title" xml:space="preserve">
         <source>Avail(%)</source>
-        <target state="translated">Verfügbar (%)</target>
+        <target state="translated">Avail(%)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "H79-tQ-7yT";</note>
       </trans-unit>
       <trans-unit id="HEg-kc-zdY.headerCell.title" xml:space="preserve">
@@ -792,9 +792,9 @@
       </trans-unit>
       <trans-unit id="HQE-mN-lgx.title" xml:space="preserve">
         <source>Number of files:</source>
-        <target state="translated">Anzahl Dateien:</target>
+        <target state="translated">Anzahl der Dateien:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "HQE-mN-lgx";</note>
-      <alt-trans><target>Anzahl Dateien</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="HXz-ee-7v0.title" xml:space="preserve">
         <source>Select</source>
         <target state="translated">Auswählen</target>
@@ -802,7 +802,7 @@
       </trans-unit>
       <trans-unit id="Hah-L7-Bvj.title" xml:space="preserve">
         <source>Cut</source>
-        <target state="translated">Ausschneiden</target>
+        <target state="translated">Schneide</target>
         <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "Hah-L7-Bvj";</note>
       </trans-unit>
       <trans-unit id="I5D-Dq-PRZ.title" xml:space="preserve">
@@ -817,12 +817,12 @@
       </trans-unit>
       <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
         <source>Profiles</source>
-        <target state="translated">Profile</target>
+        <target state="translated">Profiles</target>
         <note>Class = "NSMenuItem"; title = "Profiles"; ObjectID = "IAo-SY-fd9";</note>
       </trans-unit>
       <trans-unit id="IDs-zU-XOw.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "IDs-zU-XOw";</note>
       </trans-unit>
       <trans-unit id="IMJ-3e-rYJ.title" xml:space="preserve">
@@ -832,22 +832,22 @@
       </trans-unit>
       <trans-unit id="Icw-Qm-VbA.headerCell.title" xml:space="preserve">
         <source>files copied</source>
-        <target state="translated">Dateien kopiert</target>
+        <target state="translated">kopierte Dateien</target>
         <note>Class = "NSTableColumn"; headerCell.title = "files copied"; ObjectID = "Icw-Qm-VbA";</note>
       </trans-unit>
       <trans-unit id="Ien-PS-8Dv.title" xml:space="preserve">
         <source>no log</source>
-        <target state="translated">kein Protokoll</target>
+        <target state="translated">kein Log</target>
         <note>Class = "NSButtonCell"; title = "no log"; ObjectID = "Ien-PS-8Dv";</note>
       </trans-unit>
       <trans-unit id="IiK-OB-SY0.title" xml:space="preserve">
         <source>New profile name </source>
-        <target state="translated">Neuer Profilname</target>
+        <target state="translated">Neuer Profilname </target>
         <note>Class = "NSTextFieldCell"; title = "New profile name "; ObjectID = "IiK-OB-SY0";</note>
       </trans-unit>
       <trans-unit id="Iii-2E-YHF.title" xml:space="preserve">
         <source>reset next snapshot number</source>
-        <target state="translated">nächsten Snapshot-Nummer zurücksetzen</target>
+        <target state="translated">nächste Snapshot-Nummer zurücksetzen</target>
         <note>Class = "NSButtonCell"; title = "reset next snapshot number"; ObjectID = "Iii-2E-YHF";</note>
       </trans-unit>
       <trans-unit id="ImR-R8-DPA.title" xml:space="preserve">
@@ -857,7 +857,7 @@
       </trans-unit>
       <trans-unit id="Izt-dc-ZBW.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "Izt-dc-ZBW";</note>
       </trans-unit>
       <trans-unit id="J3H-wG-sas.title" xml:space="preserve">
@@ -877,9 +877,9 @@
       </trans-unit>
       <trans-unit id="JKJ-Kp-IuV.title" xml:space="preserve">
         <source>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</source>
-        <target state="translated">Auf Zeile Doppelklicken oder Tastenkürzel ⌘R für Task Ausführen oder ⌘I für Informationen ...</target>
+        <target state="translated">Doppelklicken Sie auf Zeile oder Tastenkürzel ⌘R zum Ausführen der Aufgabe oder ⌘I zum Informationen zu erhalten ...</target>
         <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
-      </trans-unit>
+      <alt-trans><target>Doppelklicken Sie auf Zeile oder Tastenkürzel &lt;unk&gt; R zum Ausführen der Aufgabe oder &lt;unk&gt; Ich zu Informationen zu erhalten ...</target></alt-trans></trans-unit>
       <trans-unit id="Jil-HV-f4r.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="translated">Textzelle</target>
@@ -892,7 +892,7 @@
       </trans-unit>
       <trans-unit id="K9c-yf-VMY.title" xml:space="preserve">
         <source>RsyncOSX parameters</source>
-        <target state="translated">RsyncOSX Parameter</target>
+        <target state="translated">RsyncOSX-Parameter</target>
         <note>Class = "NSViewController"; title = "RsyncOSX parameters"; ObjectID = "K9c-yf-VMY";</note>
       </trans-unit>
       <trans-unit id="KIJ-hF-wBF.title" xml:space="preserve">
@@ -907,7 +907,7 @@
       </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
         <source>Show All</source>
-        <target state="translated">Alles anzeigen</target>
+        <target state="translated">Alle anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
       </trans-unit>
       <trans-unit id="KfP-cj-1yp.headerCell.title" xml:space="preserve">
@@ -922,17 +922,17 @@
       </trans-unit>
       <trans-unit id="L5g-6S-at9.title" xml:space="preserve">
         <source>Save</source>
-        <target state="translated">Sichern</target>
+        <target state="translated">Speichern</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "L5g-6S-at9";</note>
       </trans-unit>
       <trans-unit id="LD6-1k-P7V.headerCell.title" xml:space="preserve">
         <source>Stat</source>
-        <target state="translated">Statistik</target>
+        <target state="translated">Wert</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Stat"; ObjectID = "LD6-1k-P7V";</note>
       </trans-unit>
       <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
         <source>Bring All to Front</source>
-        <target state="translated">Alle in den Vordergrund bringen</target>
+        <target state="translated">Alles nach vorne bringen</target>
         <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
       </trans-unit>
       <trans-unit id="LGQ-8V-u3e.title" xml:space="preserve">
@@ -962,9 +962,9 @@
       </trans-unit>
       <trans-unit id="LtM-4s-IJ1.title" xml:space="preserve">
         <source>Dsa key</source>
-        <target state="translated">Dsa Key</target>
+        <target state="translated">Dsa Schlüssel</target>
         <note>Class = "NSButtonCell"; title = "Dsa key"; ObjectID = "LtM-4s-IJ1";</note>
-      </trans-unit>
+      <alt-trans><target>Dsa Taste</target></alt-trans></trans-unit>
       <trans-unit id="Lur-Sd-kBP.headerCell.title" xml:space="preserve">
         <source>Result</source>
         <target state="translated">Ergebnis</target>
@@ -972,7 +972,7 @@
       </trans-unit>
       <trans-unit id="MVn-QH-6i5.title" xml:space="preserve">
         <source>Executing task, please wait...</source>
-        <target state="translated">Task wird ausgeführt, bitte warten...</target>
+        <target state="translated">Aufgabe wird ausgeführt, bitte warten...</target>
         <note>Class = "NSTextFieldCell"; title = "Executing task, please wait..."; ObjectID = "MVn-QH-6i5";</note>
       </trans-unit>
       <trans-unit id="MWF-sp-vNQ.title" xml:space="preserve">
@@ -982,22 +982,22 @@
       </trans-unit>
       <trans-unit id="Md7-8G-z2y.title" xml:space="preserve">
         <source>minimum log</source>
-        <target state="translated">kurzes Protokoll</target>
+        <target state="translated">minimales Log</target>
         <note>Class = "NSButtonCell"; title = "minimum log"; ObjectID = "Md7-8G-z2y";</note>
-      <alt-trans><target>minimales Protokoll</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Ml3-CP-4eZ.title" xml:space="preserve">
         <source>Estimating progress</source>
-        <target state="translated">Schätzung des Fortschritts</target>
+        <target state="translated">Schätzungsfortschritt</target>
         <note>Class = "NSViewController"; title = "Estimating progress"; ObjectID = "Ml3-CP-4eZ";</note>
       </trans-unit>
       <trans-unit id="MmU-sA-BEQ.title" xml:space="preserve">
         <source>output</source>
-        <target state="translated">Ausgabe</target>
+        <target state="translated">ausgeben</target>
         <note>Class = "NSTextFieldCell"; title = "output"; ObjectID = "MmU-sA-BEQ";</note>
       </trans-unit>
       <trans-unit id="Mn8-vX-I59.title" xml:space="preserve">
         <source>Configuration snapshot</source>
-        <target state="translated">Konfiguration Snapshot</target>
+        <target state="translated">Konfiguration Schnappschuss</target>
         <note>Class = "NSBox"; title = "Configuration snapshot"; ObjectID = "Mn8-vX-I59";</note>
       </trans-unit>
       <trans-unit id="NC7-Ka-Wgs.title" xml:space="preserve">
@@ -1017,22 +1017,22 @@
       </trans-unit>
       <trans-unit id="NMo-mM-awS.title" xml:space="preserve">
         <source>Intro</source>
-        <target state="translated">Einführung</target>
+        <target state="translated">Einleitung</target>
         <note>Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS";</note>
       </trans-unit>
       <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
         <source>Services</source>
-        <target state="translated">Services</target>
+        <target state="translated">Dienste</target>
         <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
       </trans-unit>
       <trans-unit id="NQS-NB-OI2.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2";</note>
       </trans-unit>
       <trans-unit id="Nbe-Ck-Oeu.title" xml:space="preserve">
         <source>Delete files:</source>
-        <target state="translated">Datei löschen</target>
+        <target state="translated">Dateien löschen:</target>
         <note>Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "Nbe-Ck-Oeu";</note>
       </trans-unit>
       <trans-unit id="NhR-OP-Eqo.title" xml:space="preserve">
@@ -1057,12 +1057,12 @@
       </trans-unit>
       <trans-unit id="OS5-Kb-1ct.title" xml:space="preserve">
         <source>Params</source>
-        <target state="translated">Parameter</target>
+        <target state="translated">Params</target>
         <note>Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct";</note>
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
         <source>Minimize</source>
-        <target state="translated">Minimieren</target>
+        <target state="translated">Minimize</target>
         <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
       </trans-unit>
       <trans-unit id="OlM-9W-pxf.title" xml:space="preserve">
@@ -1072,27 +1072,27 @@
       </trans-unit>
       <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
         <source>Hide RsyncOSX</source>
-        <target state="translated">RsyncOSX verstecken</target>
+        <target state="translated">RsyncOSX ausblenden</target>
         <note>Class = "NSMenuItem"; title = "Hide RsyncOSX"; ObjectID = "Olw-nP-bQN";</note>
       </trans-unit>
       <trans-unit id="OrH-Ty-gyv.label" xml:space="preserve">
         <source>batch</source>
-        <target state="translated">Batch</target>
+        <target state="translated">stapeln</target>
         <note>Class = "NSToolbarItem"; label = "batch"; ObjectID = "OrH-Ty-gyv";</note>
       </trans-unit>
       <trans-unit id="OrH-Ty-gyv.paletteLabel" xml:space="preserve">
         <source>batch</source>
-        <target state="translated">Batch</target>
+        <target state="translated">stapeln</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "batch"; ObjectID = "OrH-Ty-gyv";</note>
       </trans-unit>
       <trans-unit id="OrH-Ty-gyv.toolTip" xml:space="preserve">
         <source>Execute tasks marked for batch...</source>
-        <target state="translated">Für Batch markierte Aufgaben ausführen...</target>
+        <target state="translated">Aufgaben ausführen, die für den Stapel markiert sind...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv";</note>
-      </trans-unit>
+      <alt-trans><target>Für Batch markierte Aufgaben ausfhren...</target></alt-trans></trans-unit>
       <trans-unit id="Ow3-Wv-2WC.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "Ow3-Wv-2WC";</note>
       </trans-unit>
       <trans-unit id="P4M-Uu-xLy.title" xml:space="preserve">
@@ -1102,17 +1102,17 @@
       </trans-unit>
       <trans-unit id="P5d-qB-XWj.title" xml:space="preserve">
         <source>Server :</source>
-        <target state="translated">Server :</target>
+        <target state="translated">Server:</target>
         <note>Class = "NSTextFieldCell"; title = "Server :"; ObjectID = "P5d-qB-XWj";</note>
       </trans-unit>
       <trans-unit id="PIK-cY-cmQ.title" xml:space="preserve">
         <source>File or catalog to restore</source>
-        <target state="translated">Datei oder Katalog zum Wiederherstellen</target>
+        <target state="translated">Datei oder Katalog wiederherstellen</target>
         <note>Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ";</note>
       </trans-unit>
       <trans-unit id="PkH-9i-AY6.title" xml:space="preserve">
         <source>Select a start date and then a schedule </source>
-        <target state="translated">Wählen Sie ein Startdatum und einen Zeitplan aus </target>
+        <target state="translated">Wählen Sie ein Startdatum und dann einen Zeitplan </target>
         <note>Class = "NSBox"; title = "Select a start date and then a schedule "; ObjectID = "PkH-9i-AY6";</note>
       </trans-unit>
       <trans-unit id="PqI-jS-0y7.headerCell.title" xml:space="preserve">
@@ -1122,7 +1122,7 @@
       </trans-unit>
       <trans-unit id="Psw-ga-cgO.title" xml:space="preserve">
         <source>View Controller Configuration</source>
-        <target state="translated">Controller-Konfiguration</target>
+        <target state="translated">Controller-Konfiguration anzeigen</target>
         <note>Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO";</note>
       </trans-unit>
       <trans-unit id="Pt7-g0-FoN.headerCell.title" xml:space="preserve">
@@ -1142,12 +1142,12 @@
       </trans-unit>
       <trans-unit id="QCj-5P-T2N.title" xml:space="preserve">
         <source>Once</source>
-        <target state="translated">Einmalig</target>
+        <target state="translated">Einmal</target>
         <note>Class = "NSButtonCell"; title = "Once"; ObjectID = "QCj-5P-T2N";</note>
       </trans-unit>
       <trans-unit id="QOZ-8g-24B.title" xml:space="preserve">
         <source>dayofweek</source>
-        <target state="translated">Wochentag</target>
+        <target state="translated">tagwoche</target>
         <note>Class = "NSTextFieldCell"; title = "dayofweek"; ObjectID = "QOZ-8g-24B";</note>
       </trans-unit>
       <trans-unit id="QPs-xd-DDF.title" xml:space="preserve">
@@ -1162,17 +1162,17 @@
       </trans-unit>
       <trans-unit id="QdJ-n1-Mtr.title" xml:space="preserve">
         <source>Process info</source>
-        <target state="translated">Prozessinfo</target>
+        <target state="translated">Prozess-Info</target>
         <note>Class = "NSBox"; title = "Process info"; ObjectID = "QdJ-n1-Mtr";</note>
       </trans-unit>
       <trans-unit id="QmL-ZM-Xc4.label" xml:space="preserve">
         <source>backupnow</source>
-        <target state="translated">Jetzt sichern</target>
+        <target state="translated">sichern</target>
         <note>Class = "NSToolbarItem"; label = "backupnow"; ObjectID = "QmL-ZM-Xc4";</note>
       </trans-unit>
       <trans-unit id="QmL-ZM-Xc4.paletteLabel" xml:space="preserve">
         <source>backupnow</source>
-        <target state="translated">Jetzt sichern</target>
+        <target state="translated">sichern</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "backupnow"; ObjectID = "QmL-ZM-Xc4";</note>
       </trans-unit>
       <trans-unit id="QmL-ZM-Xc4.toolTip" xml:space="preserve">
@@ -1187,7 +1187,7 @@
       </trans-unit>
       <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
         <source>Zoom</source>
-        <target state="translated">Vergrößern</target>
+        <target state="translated">Zoom</target>
         <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
       </trans-unit>
       <trans-unit id="RDZ-vd-MTb.headerCell.title" xml:space="preserve">
@@ -1197,37 +1197,41 @@
       </trans-unit>
       <trans-unit id="RFG-uU-oRD.title" xml:space="preserve">
         <source>copyright</source>
-        <target state="translated">Copyright</target>
+        <target state="translated">Urheberrecht</target>
         <note>Class = "NSTextFieldCell"; title = "copyright"; ObjectID = "RFG-uU-oRD";</note>
       </trans-unit>
       <trans-unit id="RPd-mi-bp4.title" xml:space="preserve">
         <source>Default params</source>
-        <target state="translated">Standardparameter</target>
+        <target state="translated">Default params</target>
         <note>Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4";</note>
       </trans-unit>
+      <trans-unit id="RUJ-ix-qfo.title" xml:space="preserve">
+        <source>German</source>
+        <note>Class = "NSTextFieldCell"; title = "German"; ObjectID = "RUJ-ix-qfo";</note>
+      <target state="translated">Deutsch</target></trans-unit>
       <trans-unit id="RVB-9H-LQM.title" xml:space="preserve">
         <source>Local info</source>
-        <target state="translated">Lokale Informationen</target>
+        <target state="translated">Lokale Info</target>
         <note>Class = "NSBox"; title = "Local info"; ObjectID = "RVB-9H-LQM";</note>
       </trans-unit>
       <trans-unit id="RX2-fV-dtX.title" xml:space="preserve">
         <source>estimating</source>
-        <target state="translated">schätze</target>
+        <target state="translated">schätzt</target>
         <note>Class = "NSTextFieldCell"; title = "estimating"; ObjectID = "RX2-fV-dtX";</note>
       </trans-unit>
       <trans-unit id="RhH-4H-aT8.title" xml:space="preserve">
         <source>selectedstart</source>
-        <target state="translated">gewählter Start</target>
+        <target state="translated">selectedstart</target>
         <note>Class = "NSTextFieldCell"; title = "selectedstart"; ObjectID = "RhH-4H-aT8";</note>
       </trans-unit>
       <trans-unit id="Rq7-8F-bHb.headerCell.title" xml:space="preserve">
         <source>Snap</source>
-        <target state="translated">Snap</target>
+        <target state="translated">Einrasten</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "Rq7-8F-bHb";</note>
       </trans-unit>
       <trans-unit id="Rtk-Je-8N1.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Rtk-Je-8N1";</note>
       </trans-unit>
       <trans-unit id="Rv2-24-MJh.title" xml:space="preserve">
@@ -1242,17 +1246,17 @@
       </trans-unit>
       <trans-unit id="S9g-HX-Qf6.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "S9g-HX-Qf6";</note>
       </trans-unit>
       <trans-unit id="SBO-UN-kMy.title" xml:space="preserve">
         <source>Number of remote files: 0 </source>
-        <target state="translated">Anzahl Remote-Dateien: 0 </target>
+        <target state="translated">Anzahl der entfernten Dateien: 0 </target>
         <note>Class = "NSTextFieldCell"; title = "Number of remote files: 0 "; ObjectID = "SBO-UN-kMy";</note>
       </trans-unit>
       <trans-unit id="SH2-9k-XFZ.title" xml:space="preserve">
         <source>Most recent schedule on top...</source>
-        <target state="translated">Aktuellster Zeitplan oben...</target>
+        <target state="translated">Neuester Zeitplan oben...</target>
         <note>Class = "NSTextFieldCell"; title = "Most recent schedule on top..."; ObjectID = "SH2-9k-XFZ";</note>
       </trans-unit>
       <trans-unit id="SHi-wp-O4D.title" xml:space="preserve">
@@ -1267,12 +1271,12 @@
       </trans-unit>
       <trans-unit id="STf-VO-dOL.headerCell.title" xml:space="preserve">
         <source>Last run</source>
-        <target state="translated">Letzte Ausführung</target>
+        <target state="translated">Letzter Lauf</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "STf-VO-dOL";</note>
       </trans-unit>
       <trans-unit id="SWF-DA-TlU.headerCell.title" xml:space="preserve">
         <source>Size (kB)</source>
-        <target state="translated">Größe (kB)</target>
+        <target state="translated">Size (kB)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Size (kB)"; ObjectID = "SWF-DA-TlU";</note>
       </trans-unit>
       <trans-unit id="Sdh-u9-bH2.title" xml:space="preserve">
@@ -1297,12 +1301,12 @@
       </trans-unit>
       <trans-unit id="TG2-kC-9mp.headerCell.title" xml:space="preserve">
         <source>Output</source>
-        <target state="translated">Ausgabe</target>
+        <target state="translated">Ausgang</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "TG2-kC-9mp";</note>
       </trans-unit>
       <trans-unit id="TTa-S0-fjX.title" xml:space="preserve">
         <source>Numbers remote</source>
-        <target state="translated">Anzahl Remote</target>
+        <target state="translated">Nummern entfernt</target>
         <note>Class = "NSBox"; title = "Numbers remote"; ObjectID = "TTa-S0-fjX";</note>
       </trans-unit>
       <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
@@ -1312,12 +1316,12 @@
       </trans-unit>
       <trans-unit id="TdE-t5-FjR.title" xml:space="preserve">
         <source>number of days last backup:</source>
-        <target state="translated">Tage seit letzter Sicherung:</target>
+        <target state="translated">Anzahl der Tage letztes Backup:</target>
         <note>Class = "NSTextFieldCell"; title = "number of days last backup:"; ObjectID = "TdE-t5-FjR";</note>
-      <alt-trans><target>Tage seit letzer Sicherung:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Tes-Z8-BIj.title" xml:space="preserve">
         <source>scp dsa pub key:</source>
-        <target state="translated">scp dsa pub Schlüssel:</target>
+        <target state="translated">scp dsa Pub Schlüssel:</target>
         <note>Class = "NSTextFieldCell"; title = "scp dsa pub key:"; ObjectID = "Tes-Z8-BIj";</note>
       </trans-unit>
       <trans-unit id="Tp7-5c-5Ii.title" xml:space="preserve">
@@ -1327,7 +1331,7 @@
       </trans-unit>
       <trans-unit id="TqG-6l-QwU.title" xml:space="preserve">
         <source>Profile :</source>
-        <target state="translated">Profile :</target>
+        <target state="translated">Profil:</target>
         <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "TqG-6l-QwU";</note>
       </trans-unit>
       <trans-unit id="U4F-fe-c48.title" xml:space="preserve">
@@ -1337,7 +1341,7 @@
       </trans-unit>
       <trans-unit id="UZO-oe-ZyD.title" xml:space="preserve">
         <source>ssh port:</source>
-        <target state="translated">ssh-Port:</target>
+        <target state="translated">ssh Port:</target>
         <note>Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "UZO-oe-ZyD";</note>
       </trans-unit>
       <trans-unit id="UbI-k2-XjL.title" xml:space="preserve">
@@ -1347,7 +1351,7 @@
       </trans-unit>
       <trans-unit id="Uvm-NK-TNr.title" xml:space="preserve">
         <source>Delete all</source>
-        <target state="translated">Alles löschen</target>
+        <target state="translated">Alle löschen</target>
         <note>Class = "NSButtonCell"; title = "Delete all"; ObjectID = "Uvm-NK-TNr";</note>
       </trans-unit>
       <trans-unit id="Uye-5c-buD.title" xml:space="preserve">
@@ -1357,12 +1361,12 @@
       </trans-unit>
       <trans-unit id="V8a-eh-20b.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "V8a-eh-20b";</note>
       </trans-unit>
       <trans-unit id="VBk-Qe-g0o.title" xml:space="preserve">
         <source>backup (uses two last user selected parameters)</source>
-        <target state="translated">sichern (Verwendet die 2 letzten benutzerdefinierten Parameter)</target>
+        <target state="translated">sichern (verwendet zwei zuletzt ausgewählte Parameter)</target>
         <note>Class = "NSButtonCell"; title = "backup (uses two last user selected parameters)"; ObjectID = "VBk-Qe-g0o";</note>
       </trans-unit>
       <trans-unit id="VFf-HQ-GLW.headerCell.title" xml:space="preserve">
@@ -1402,9 +1406,9 @@
       </trans-unit>
       <trans-unit id="Vnu-mV-aob.title" xml:space="preserve">
         <source>icon</source>
-        <target state="translated">ikone</target>
+        <target state="translated">symbol</target>
         <note>Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob";</note>
-      <alt-trans><target>Icon</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="W3l-xH-fMA.title" xml:space="preserve">
         <source>New files:</source>
         <target state="translated">Neue Dateien:</target>
@@ -1412,7 +1416,7 @@
       </trans-unit>
       <trans-unit id="WMA-Xf-UcN.title" xml:space="preserve">
         <source>Don´t add trailing /</source>
-        <target state="translated">kein nachfolgendes / hinzufügen </target>
+        <target state="translated">Nicht nacheinander hinzufügen /</target>
         <note>Class = "NSButtonCell"; title = "Don´t add trailing /"; ObjectID = "WMA-Xf-UcN";</note>
       </trans-unit>
       <trans-unit id="WVf-5Q-8C4.title" xml:space="preserve">
@@ -1452,12 +1456,12 @@
       </trans-unit>
       <trans-unit id="Woh-4u-GUH.title" xml:space="preserve">
         <source>Number of directories:</source>
-        <target state="translated">Anzahl Verzeichnisse:</target>
+        <target state="translated">Anzahl der Verzeichnisse:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "Woh-4u-GUH";</note>
       </trans-unit>
       <trans-unit id="X2U-4M-dkS.title" xml:space="preserve">
         <source>Required if remote server</source>
-        <target state="translated">Erforderlich wenn Remote-Server</target>
+        <target state="translated">Erforderlich wenn entfernter Server</target>
         <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "X2U-4M-dkS";</note>
       </trans-unit>
       <trans-unit id="X6b-BG-uCr.title" xml:space="preserve">
@@ -1467,7 +1471,7 @@
       </trans-unit>
       <trans-unit id="XAM-h1-StD.title" xml:space="preserve">
         <source>Docs</source>
-        <target state="translated">Dokumente</target>
+        <target state="translated">Texte</target>
         <note>Class = "NSButtonCell"; title = "Docs"; ObjectID = "XAM-h1-StD";</note>
       </trans-unit>
       <trans-unit id="XIS-9x-9Gh.title" xml:space="preserve">
@@ -1482,12 +1486,12 @@
       </trans-unit>
       <trans-unit id="XjB-Sb-slI.title" xml:space="preserve">
         <source>path RsyncOSXsched:</source>
-        <target state="translated">Pfad RsyncOSXsched:</target>
+        <target state="translated">pfad RsyncOSXsched:</target>
         <note>Class = "NSTextFieldCell"; title = "path RsyncOSXsched:"; ObjectID = "XjB-Sb-slI";</note>
       </trans-unit>
       <trans-unit id="Y5P-iP-A70.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Y5P-iP-A70";</note>
       </trans-unit>
       <trans-unit id="YCX-qU-avh.title" xml:space="preserve">
@@ -1514,7 +1518,7 @@
         <source>Date last backup:</source>
         <target state="translated">Letztes Backup Datum:</target>
         <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "YaD-4f-lEl";</note>
-      <alt-trans><target>Datum der letzten Sicherung</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="YdX-1p-DZ9.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="translated">Textzelle</target>
@@ -1532,7 +1536,7 @@
       </trans-unit>
       <trans-unit id="Z8Z-vX-Z7f.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Z8Z-vX-Z7f";</note>
       </trans-unit>
       <trans-unit id="ZJm-XI-lka.title" xml:space="preserve">
@@ -1547,12 +1551,12 @@
       </trans-unit>
       <trans-unit id="Zsa-We-CKZ.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Zsa-We-CKZ";</note>
       </trans-unit>
       <trans-unit id="a0m-Z1-grn.title" xml:space="preserve">
         <source>Rsa public key is found.</source>
-        <target state="translated">Öffentlicher Rsa Schlüssel gefunden.</target>
+        <target state="translated">Öffentlicher Rsa Schlüssel wurde gefunden.</target>
         <note>Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn";</note>
       </trans-unit>
       <trans-unit id="aCU-js-shc.title" xml:space="preserve">
@@ -1562,7 +1566,7 @@
       </trans-unit>
       <trans-unit id="aHy-27-4y5.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "aHy-27-4y5";</note>
       </trans-unit>
       <trans-unit id="aO0-eB-xFM.title" xml:space="preserve">
@@ -1582,7 +1586,7 @@
       </trans-unit>
       <trans-unit id="aye-JD-U1q.title" xml:space="preserve">
         <source>Number of logs:</source>
-        <target state="translated">Anzahl der Protokolle:</target>
+        <target state="translated">Anzahl der Logs:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of logs:"; ObjectID = "aye-JD-U1q";</note>
       </trans-unit>
       <trans-unit id="b5N-g5-vv6.title" xml:space="preserve">
@@ -1597,17 +1601,17 @@
       </trans-unit>
       <trans-unit id="bCH-Oe-dEC.title" xml:space="preserve">
         <source>Backup all now</source>
-        <target state="translated">Sicherung jetzt starten</target>
+        <target state="translated">Alle jetzt sichern</target>
         <note>Class = "NSMenuItem"; title = "Backup all now"; ObjectID = "bCH-Oe-dEC";</note>
       </trans-unit>
       <trans-unit id="bMD-bn-iZW.title" xml:space="preserve">
         <source>Remote catalog:</source>
-        <target state="translated">Remote-Katalog:</target>
+        <target state="translated">Entfernter Katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "bMD-bn-iZW";</note>
       </trans-unit>
       <trans-unit id="bPV-Wb-DGM.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "bPV-Wb-DGM";</note>
       </trans-unit>
       <trans-unit id="bPa-Pw-blK.title" xml:space="preserve">
@@ -1647,12 +1651,12 @@
       </trans-unit>
       <trans-unit id="cKa-xb-U4B.headerCell.title" xml:space="preserve">
         <source>Select file or catalog to restore (and double click to copy in one go)</source>
-        <target state="translated">Datei oder Katalog zum Wiederherstellen auswählen (und doppelklicken zum Kopieren in einem Schritt)</target>
+        <target state="translated">Datei oder Katalog zum Wiederherstellen auswählen (und doppelklicken um es auf einmal zu kopieren)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Select file or catalog to restore (and double click to copy in one go)"; ObjectID = "cKa-xb-U4B";</note>
       </trans-unit>
       <trans-unit id="ceM-Kt-SJU.title" xml:space="preserve">
         <source>Details about files</source>
-        <target state="translated">Dateiinformationen</target>
+        <target state="translated">Details zu Dateien</target>
         <note>Class = "NSViewController"; title = "Details about files"; ObjectID = "ceM-Kt-SJU";</note>
       </trans-unit>
       <trans-unit id="cpU-CN-ZOm.title" xml:space="preserve">
@@ -1682,7 +1686,7 @@
       </trans-unit>
       <trans-unit id="dTX-H7-8VC.title" xml:space="preserve">
         <source>Profile :</source>
-        <target state="translated">Profile :</target>
+        <target state="translated">Profil:</target>
         <note>Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC";</note>
       </trans-unit>
       <trans-unit id="dqv-MZ-kBF.title" xml:space="preserve">
@@ -1692,12 +1696,12 @@
       </trans-unit>
       <trans-unit id="dsn-9I-wI5.title" xml:space="preserve">
         <source> detailed logging</source>
-        <target state="translated">Detaillierte Protokollierung</target>
+        <target state="translated"> detaillierte Protokollierung</target>
         <note>Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5";</note>
       </trans-unit>
       <trans-unit id="dtI-40-Iqi.headerCell.title" xml:space="preserve">
         <source>When</source>
-        <target state="translated">Wenn</target>
+        <target state="translated">Wann</target>
         <note>Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi";</note>
       </trans-unit>
       <trans-unit id="dti-GW-qCA.title" xml:space="preserve">
@@ -1707,7 +1711,7 @@
       </trans-unit>
       <trans-unit id="e0Y-OG-qu5.headerCell.title" xml:space="preserve">
         <source>Snap</source>
-        <target state="translated">Snap</target>
+        <target state="translated">Einrasten</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "e0Y-OG-qu5";</note>
       </trans-unit>
       <trans-unit id="e1h-Yf-46N.title" xml:space="preserve">
@@ -1717,7 +1721,7 @@
       </trans-unit>
       <trans-unit id="e5v-pd-xF9.title" xml:space="preserve">
         <source>Details about files</source>
-        <target state="translated">Dateiinformationen</target>
+        <target state="translated">Details zu Dateien</target>
         <note>Class = "NSViewController"; title = "Details about files"; ObjectID = "e5v-pd-xF9";</note>
       </trans-unit>
       <trans-unit id="eAP-VY-l6H.title" xml:space="preserve">
@@ -1732,7 +1736,7 @@
       </trans-unit>
       <trans-unit id="eIC-WC-dFt.title" xml:space="preserve">
         <source>Select snapshots to keep</source>
-        <target state="translated">Schnappschüsse zum Behalten auswählen</target>
+        <target state="translated">Wähle Schnappschüsse zum Behalten</target>
         <note>Class = "NSBox"; title = "Select snapshots to keep"; ObjectID = "eIC-WC-dFt";</note>
       </trans-unit>
       <trans-unit id="eLp-YO-ses.title" xml:space="preserve">
@@ -1757,7 +1761,7 @@
       </trans-unit>
       <trans-unit id="egX-mx-3Br.title" xml:space="preserve">
         <source>full log</source>
-        <target state="translated">vollständiges Protokoll</target>
+        <target state="translated">ganzes Log</target>
         <note>Class = "NSButtonCell"; title = "full log"; ObjectID = "egX-mx-3Br";</note>
       </trans-unit>
       <trans-unit id="egt-C3-u4G.title" xml:space="preserve">
@@ -1777,7 +1781,7 @@
       </trans-unit>
       <trans-unit id="f6o-pt-x0z.title" xml:space="preserve">
         <source>v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin</source>
-        <target state="translated">v 3.1.2 oder 3.1.3 rsync - optionalen Pfad setzen, wenn NICHT in /usr/local/bin</target>
+        <target state="translated">v 3.1.2 oder 3.1.3 rsync - optionaler Pfad setzen, wenn NICHT in /usr/local/bin</target>
         <note>Class = "NSButtonCell"; title = "v 3.1.2 or 3.1.3 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z";</note>
       </trans-unit>
       <trans-unit id="f8w-ZJ-YZg.title" xml:space="preserve">
@@ -1797,17 +1801,17 @@
       </trans-unit>
       <trans-unit id="fiO-Ux-xlw.title" xml:space="preserve">
         <source>Snapshots</source>
-        <target state="translated">Snapshots</target>
+        <target state="translated">Schnappschüsse</target>
         <note>Class = "NSViewController"; title = "Snapshots"; ObjectID = "fiO-Ux-xlw";</note>
       </trans-unit>
       <trans-unit id="fnk-Kq-6LU.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "fnk-Kq-6LU";</note>
       </trans-unit>
       <trans-unit id="fwm-ch-a0w.headerCell.title" xml:space="preserve">
         <source>Total num</source>
-        <target state="translated">Gesamtzahl</target>
+        <target state="translated">Gesamtsumme</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Total num"; ObjectID = "fwm-ch-a0w";</note>
       </trans-unit>
       <trans-unit id="fyc-hd-Fqh.title" xml:space="preserve">
@@ -1817,22 +1821,22 @@
       </trans-unit>
       <trans-unit id="fyt-XU-Mpu.title" xml:space="preserve">
         <source>Default</source>
-        <target state="translated">Standardwerte</target>
+        <target state="translated">Standard</target>
         <note>Class = "NSButtonCell"; title = "Default"; ObjectID = "fyt-XU-Mpu";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.label" xml:space="preserve">
         <source>info</source>
-        <target state="translated">Info</target>
+        <target state="translated">info</target>
         <note>Class = "NSToolbarItem"; label = "info"; ObjectID = "g1a-zY-Mpq";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.paletteLabel" xml:space="preserve">
         <source>info</source>
-        <target state="translated">Info</target>
+        <target state="translated">info</target>
         <note>Class = "NSToolbarItem"; paletteLabel = "info"; ObjectID = "g1a-zY-Mpq";</note>
       </trans-unit>
       <trans-unit id="g1a-zY-Mpq.toolTip" xml:space="preserve">
         <source>Display output from rsync singletasks...</source>
-        <target state="translated">Ausgabe von rsync-Einzeltask anzeigen...</target>
+        <target state="translated">Ausgabe von rsync-Singletaschen anzeigen...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Display output from rsync singletasks..."; ObjectID = "g1a-zY-Mpq";</note>
       </trans-unit>
       <trans-unit id="gCo-mB-zNc.title" xml:space="preserve">
@@ -1847,7 +1851,7 @@
       </trans-unit>
       <trans-unit id="gKi-ca-sia.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gKi-ca-sia";</note>
       </trans-unit>
       <trans-unit id="gRY-vZ-99W.title" xml:space="preserve">
@@ -1857,7 +1861,7 @@
       </trans-unit>
       <trans-unit id="gVQ-92-htT.title" xml:space="preserve">
         <source>Total size (kB):</source>
-        <target state="translated">Gesamtgröße in KB:</target>
+        <target state="translated">Total size (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "gVQ-92-htT";</note>
       </trans-unit>
       <trans-unit id="gXW-nt-e2S.title" xml:space="preserve">
@@ -1872,22 +1876,22 @@
       </trans-unit>
       <trans-unit id="gfR-hu-CuQ.headerCell.title" xml:space="preserve">
         <source>Day in week</source>
-        <target state="translated">Wochentage</target>
+        <target state="translated">Wochentag</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Day in week"; ObjectID = "gfR-hu-CuQ";</note>
       </trans-unit>
       <trans-unit id="gih-MT-omN.title" xml:space="preserve">
         <source>Stop all</source>
-        <target state="translated">Alles anhalten</target>
+        <target state="translated">Alle stoppen</target>
         <note>Class = "NSButtonCell"; title = "Stop all"; ObjectID = "gih-MT-omN";</note>
       </trans-unit>
       <trans-unit id="goN-EU-g61.title" xml:space="preserve">
         <source>Check rsa</source>
-        <target state="translated">Rsa prüfen</target>
+        <target state="translated">Überprüfe rsa</target>
         <note>Class = "NSButtonCell"; title = "Check rsa"; ObjectID = "goN-EU-g61";</note>
       </trans-unit>
       <trans-unit id="gsP-5c-DW5.title" xml:space="preserve">
         <source>delete :  </source>
-        <target state="translated">löschen :  </target>
+        <target state="translated">löschen:  </target>
         <note>Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5";</note>
       </trans-unit>
       <trans-unit id="h4F-dN-GN0.title" xml:space="preserve">
@@ -1922,7 +1926,7 @@
       </trans-unit>
       <trans-unit id="hTP-NL-EPM.title" xml:space="preserve">
         <source>Number of files:</source>
-        <target state="translated">Anzahl Dateien:</target>
+        <target state="translated">Anzahl der Dateien:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "hTP-NL-EPM";</note>
       </trans-unit>
       <trans-unit id="hXq-5p-KS7.title" xml:space="preserve">
@@ -1937,9 +1941,9 @@
       </trans-unit>
       <trans-unit id="hq8-Fq-pip.title" xml:space="preserve">
         <source>Check dsa</source>
-        <target state="translated">Dsa prüfen</target>
+        <target state="translated">Überprüfe dsa</target>
         <note>Class = "NSButtonCell"; title = "Check dsa"; ObjectID = "hq8-Fq-pip";</note>
-      </trans-unit>
+      <alt-trans><target>Check dsa</target></alt-trans></trans-unit>
       <trans-unit id="hrN-sQ-oUZ.title" xml:space="preserve">
         <source>Edit</source>
         <target state="translated">Bearbeiten</target>
@@ -1957,7 +1961,7 @@
       </trans-unit>
       <trans-unit id="hwk-s3-pSJ.title" xml:space="preserve">
         <source>output</source>
-        <target state="translated">Ausgabe</target>
+        <target state="translated">ausgeben</target>
         <note>Class = "NSTextFieldCell"; title = "output"; ObjectID = "hwk-s3-pSJ";</note>
       </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
@@ -1967,14 +1971,14 @@
       </trans-unit>
       <trans-unit id="i8f-03-7XY.title" xml:space="preserve">
         <source>Total size (kB):</source>
-        <target state="translated">Gesamtgröße in KB:</target>
+        <target state="translated">Total size (kB):</target>
         <note>Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "i8f-03-7XY";</note>
       </trans-unit>
       <trans-unit id="iEk-Zm-Qpb.title" xml:space="preserve">
         <source>dir :</source>
-        <target state="translated">Verzeichnis:</target>
+        <target state="translated">dir :</target>
         <note>Class = "NSTextFieldCell"; title = "dir :"; ObjectID = "iEk-Zm-Qpb";</note>
-      <alt-trans><target>Verzeichniss:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="iEn-jH-KFP.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="translated">Textzelle</target>
@@ -1982,7 +1986,7 @@
       </trans-unit>
       <trans-unit id="iLe-BY-z0B.title" xml:space="preserve">
         <source>Paths for RsyncOSX and RsyncOSXsched</source>
-        <target state="translated">Pfad für RsyncOSX und RsyncOSXsched</target>
+        <target state="translated">Pfade für RsyncOSX und RsyncOSXsched</target>
         <note>Class = "NSBox"; title = "Paths for RsyncOSX and RsyncOSXsched"; ObjectID = "iLe-BY-z0B";</note>
       </trans-unit>
       <trans-unit id="iS6-br-dsn.title" xml:space="preserve">
@@ -1997,12 +2001,12 @@
       </trans-unit>
       <trans-unit id="ifc-VC-OWD.title" xml:space="preserve">
         <source>Number of directories:</source>
-        <target state="translated">Anzahl Verzeichnisse:</target>
+        <target state="translated">Anzahl der Verzeichnisse:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "ifc-VC-OWD";</note>
       </trans-unit>
       <trans-unit id="ipH-US-wgO.title" xml:space="preserve">
         <source> port: </source>
-        <target state="translated"> Port: </target>
+        <target state="translated"> port: </target>
         <note>Class = "NSTextFieldCell"; title = " port: "; ObjectID = "ipH-US-wgO";</note>
       </trans-unit>
       <trans-unit id="irb-Gi-c2A.title" xml:space="preserve">
@@ -2012,12 +2016,12 @@
       </trans-unit>
       <trans-unit id="iu4-bN-FAI.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "iu4-bN-FAI";</note>
       </trans-unit>
       <trans-unit id="j1s-jO-7Gs.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "j1s-jO-7Gs";</note>
       </trans-unit>
       <trans-unit id="jTS-YA-55S.title" xml:space="preserve">
@@ -2047,12 +2051,12 @@
       </trans-unit>
       <trans-unit id="kFc-LP-RkZ.title" xml:space="preserve">
         <source>Remote catalog : </source>
-        <target state="translated">Remote-Katalog : </target>
+        <target state="translated">Externer Katalog: </target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ";</note>
       </trans-unit>
       <trans-unit id="kNR-NX-OzR.title" xml:space="preserve">
         <source>files :</source>
-        <target state="translated">Dateien :</target>
+        <target state="translated">dateien:</target>
         <note>Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR";</note>
       </trans-unit>
       <trans-unit id="kUC-cs-Fc2.title" xml:space="preserve">
@@ -2062,7 +2066,7 @@
       </trans-unit>
       <trans-unit id="lBk-94-nYF.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "lBk-94-nYF";</note>
       </trans-unit>
       <trans-unit id="lGN-As-q21.title" xml:space="preserve">
@@ -2082,7 +2086,7 @@
       </trans-unit>
       <trans-unit id="lvl-UW-J6U.title" xml:space="preserve">
         <source>Date last backup:</source>
-        <target state="translated">Datum der letzten Sicherung</target>
+        <target state="translated">Letztes Backup Datum:</target>
         <note>Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U";</note>
       </trans-unit>
       <trans-unit id="lzX-Ie-xTz.title" xml:space="preserve">
@@ -2097,12 +2101,12 @@
       </trans-unit>
       <trans-unit id="mEQ-aD-Owg.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "mEQ-aD-Owg";</note>
       </trans-unit>
       <trans-unit id="mJ2-R8-Fa6.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "mJ2-R8-Fa6";</note>
       </trans-unit>
       <trans-unit id="mal-sc-mlY.title" xml:space="preserve">
@@ -2117,12 +2121,12 @@
       </trans-unit>
       <trans-unit id="mry-vG-0Hd.title" xml:space="preserve">
         <source>Doubleclick on row to get remote capacity...</source>
-        <target state="translated">Zeile doppelklicken für Remote-Kapazität...</target>
+        <target state="translated">Doppelklicken Sie auf die Zeile, um entfernte Kapazität zu erhalten...</target>
         <note>Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd";</note>
       </trans-unit>
       <trans-unit id="n1z-ZA-mQN.title" xml:space="preserve">
         <source>Number of directories:</source>
-        <target state="translated">Anzahl Verzeichnisse:</target>
+        <target state="translated">Anzahl der Verzeichnisse:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "n1z-ZA-mQN";</note>
       </trans-unit>
       <trans-unit id="nHu-Ph-Td8.title" xml:space="preserve">
@@ -2157,7 +2161,7 @@
       </trans-unit>
       <trans-unit id="oUI-Az-UAI.title" xml:space="preserve">
         <source>Number of files:</source>
-        <target state="translated">Anzahl Dateien:</target>
+        <target state="translated">Anzahl der Dateien:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "oUI-Az-UAI";</note>
       </trans-unit>
       <trans-unit id="oar-D1-pfu.title" xml:space="preserve">
@@ -2167,17 +2171,17 @@
       </trans-unit>
       <trans-unit id="obo-Qd-fRN.title" xml:space="preserve">
         <source>Estimate</source>
-        <target state="translated">Geschätzt</target>
+        <target state="translated">Schätzung</target>
         <note>Class = "NSButtonCell"; title = "Estimate"; ObjectID = "obo-Qd-fRN";</note>
       </trans-unit>
       <trans-unit id="of4-qq-ykX.title" xml:space="preserve">
         <source>Number of snapshots:</source>
-        <target state="translated">Anzahl Schnappschüsse:</target>
+        <target state="translated">Anzahl der Schnappschüsse:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX";</note>
       </trans-unit>
       <trans-unit id="oqO-Td-7wg.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "oqO-Td-7wg";</note>
       </trans-unit>
       <trans-unit id="ozI-GG-cgX.title" xml:space="preserve">
@@ -2187,7 +2191,7 @@
       </trans-unit>
       <trans-unit id="p7O-cs-wwA.headerCell.title" xml:space="preserve">
         <source>Start date schedule</source>
-        <target state="translated">Startdatum Zeitplan</target>
+        <target state="translated">Startdatum</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "p7O-cs-wwA";</note>
       </trans-unit>
       <trans-unit id="p9L-16-Icv.title" xml:space="preserve">
@@ -2197,7 +2201,7 @@
       </trans-unit>
       <trans-unit id="p56-o9-HcO.title" xml:space="preserve">
         <source>Info all</source>
-        <target state="translated">Alle Infos</target>
+        <target state="translated">Info alle</target>
         <note>Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO";</note>
       </trans-unit>
       <trans-unit id="pZb-i1-xyG.headerCell.title" xml:space="preserve">
@@ -2222,12 +2226,12 @@
       </trans-unit>
       <trans-unit id="qat-Dj-4j6.title" xml:space="preserve">
         <source>Days since last backup:</source>
-        <target state="translated">Tage seit letzter Sicherung:</target>
+        <target state="translated">Tage seit dem letzten Backup:</target>
         <note>Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "qat-Dj-4j6";</note>
       </trans-unit>
       <trans-unit id="qfC-8t-e7C.headerCell.title" xml:space="preserve">
         <source>Task</source>
-        <target state="translated">Task</target>
+        <target state="translated">Aufgabe</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "qfC-8t-e7C";</note>
       </trans-unit>
       <trans-unit id="qq5-4q-5kV.title" xml:space="preserve">
@@ -2237,12 +2241,12 @@
       </trans-unit>
       <trans-unit id="qvy-yX-V6C.headerCell.title" xml:space="preserve">
         <source>Last run</source>
-        <target state="translated">Letzte Ausführung</target>
+        <target state="translated">Letzter Lauf</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "qvy-yX-V6C";</note>
       </trans-unit>
       <trans-unit id="rFc-o9-SOW.title" xml:space="preserve">
         <source>Check data when loading</source>
-        <target state="translated">Daten beim Laden prüfen</target>
+        <target state="translated">Daten beim Laden überprüfen</target>
         <note>Class = "NSBox"; title = "Check data when loading"; ObjectID = "rFc-o9-SOW";</note>
       </trans-unit>
       <trans-unit id="rMD-o2-QB4.headerCell.title" xml:space="preserve">
@@ -2257,7 +2261,7 @@
       </trans-unit>
       <trans-unit id="rXA-1B-Zpu.headerCell.title" xml:space="preserve">
         <source>When</source>
-        <target state="translated">Wenn</target>
+        <target state="translated">Wann</target>
         <note>Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "rXA-1B-Zpu";</note>
       </trans-unit>
       <trans-unit id="rYt-b4-jmF.title" xml:space="preserve">
@@ -2267,7 +2271,7 @@
       </trans-unit>
       <trans-unit id="rfy-TN-1YB.headerCell.title" xml:space="preserve">
         <source>Sched</source>
-        <target state="translated">Geplant</target>
+        <target state="translated">Schröder</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "rfy-TN-1YB";</note>
       </trans-unit>
       <trans-unit id="rht-JI-asq.title" xml:space="preserve">
@@ -2277,7 +2281,7 @@
       </trans-unit>
       <trans-unit id="rol-5e-w2X.title" xml:space="preserve">
         <source>Local catalog :</source>
-        <target state="translated">Lokaler Katalog :</target>
+        <target state="translated">Lokaler Katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Local catalog :"; ObjectID = "rol-5e-w2X";</note>
       </trans-unit>
       <trans-unit id="ru1-fS-UXD.title" xml:space="preserve">
@@ -2292,7 +2296,7 @@
       </trans-unit>
       <trans-unit id="sBt-QN-KGK.title" xml:space="preserve">
         <source>Number of configurations:</source>
-        <target state="translated">Anzahl Konfigurationen:</target>
+        <target state="translated">Anzahl der Konfigurationen:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of configurations:"; ObjectID = "sBt-QN-KGK";</note>
       </trans-unit>
       <trans-unit id="sDH-LN-0H4.title" xml:space="preserve">
@@ -2302,7 +2306,7 @@
       </trans-unit>
       <trans-unit id="sE6-n6-Lin.title" xml:space="preserve">
         <source>Add</source>
-        <target state="translated">Hinzufügen</target>
+        <target state="translated">Neu</target>
         <note>Class = "NSButtonCell"; title = "Add"; ObjectID = "sE6-n6-Lin";</note>
       </trans-unit>
       <trans-unit id="sKa-Hn-USH.title" xml:space="preserve">
@@ -2322,7 +2326,7 @@
       </trans-unit>
       <trans-unit id="svl-UN-wQe.title" xml:space="preserve">
         <source>Box</source>
-        <target state="translated">Box</target>
+        <target state="translated">Kiste</target>
         <note>Class = "NSBox"; title = "Box"; ObjectID = "svl-UN-wQe";</note>
       </trans-unit>
       <trans-unit id="tBD-wX-XO5.headerCell.title" xml:space="preserve">
@@ -2332,7 +2336,7 @@
       </trans-unit>
       <trans-unit id="tIo-dN-yJ3.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "tIo-dN-yJ3";</note>
       </trans-unit>
       <trans-unit id="tNA-hi-kYT.headerCell.title" xml:space="preserve">
@@ -2342,12 +2346,12 @@
       </trans-unit>
       <trans-unit id="tQD-0V-0FQ.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "tQD-0V-0FQ";</note>
       </trans-unit>
       <trans-unit id="tRO-2l-LW7.title" xml:space="preserve">
         <source>number of</source>
-        <target state="translated">Anzahl der</target>
+        <target state="translated">anzahl von</target>
         <note>Class = "NSTextFieldCell"; title = "number of"; ObjectID = "tRO-2l-LW7";</note>
       </trans-unit>
       <trans-unit id="tT2-Hu-JSP.headerCell.title" xml:space="preserve">
@@ -2367,12 +2371,12 @@
       </trans-unit>
       <trans-unit id="uAb-Pv-NUT.title" xml:space="preserve">
         <source>Number of directories:</source>
-        <target state="translated">Anzahl Verzeichnisse:</target>
+        <target state="translated">Anzahl der Verzeichnisse:</target>
         <note>Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT";</note>
       </trans-unit>
       <trans-unit id="uBc-LG-TjQ.title" xml:space="preserve">
         <source>KB to be transferred:</source>
-        <target state="translated">Zu übertragende KB:</target>
+        <target state="translated">KB zu übertragen:</target>
         <note>Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "uBc-LG-TjQ";</note>
       </trans-unit>
       <trans-unit id="uCb-Gb-mwj.headerCell.title" xml:space="preserve">
@@ -2397,7 +2401,7 @@
       </trans-unit>
       <trans-unit id="uUH-RU-JKF.title" xml:space="preserve">
         <source>Remove parameters</source>
-        <target state="translated">Parameter löschen?</target>
+        <target state="translated">Parameter entfernen</target>
         <note>Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF";</note>
       </trans-unit>
       <trans-unit id="ufF-c0-esL.headerCell.title" xml:space="preserve">
@@ -2407,7 +2411,7 @@
       </trans-unit>
       <trans-unit id="v3T-Yl-fut.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "v3T-Yl-fut";</note>
       </trans-unit>
       <trans-unit id="v12-7x-cig.label" xml:space="preserve">
@@ -2422,14 +2426,14 @@
       </trans-unit>
       <trans-unit id="v12-7x-cig.toolTip" xml:space="preserve">
         <source>Execute estimate and quickbackup for all tasks...</source>
-        <target state="translated">Schätzung und schnelle Sicherung für alle Aufgaben ausführen...</target>
+        <target state="translated">Schätzung und Schnellsicherung für alle Aufgaben ausführen...</target>
         <note>Class = "NSToolbarItem"; toolTip = "Execute estimate and quickbackup for all tasks..."; ObjectID = "v12-7x-cig";</note>
       </trans-unit>
       <trans-unit id="vDS-vt-fgh.title" xml:space="preserve">
         <source>Changelog</source>
         <target state="translated">Liste der Änderungen</target>
         <note>Class = "NSButtonCell"; title = "Changelog"; ObjectID = "vDS-vt-fgh";</note>
-      </trans-unit>
+      <alt-trans><target>Changelog</target></alt-trans></trans-unit>
       <trans-unit id="vJI-G9-Mbp.title" xml:space="preserve">
         <source>Remote info</source>
         <target state="translated">Remote-Info</target>
@@ -2444,7 +2448,7 @@
         <source>Rsync</source>
         <target state="translated">Rsync</target>
         <note>Class = "NSBox"; title = "Rsync"; ObjectID = "vgF-FF-cIJ";</note>
-      </trans-unit>
+      <alt-trans><target>RSync</target></alt-trans></trans-unit>
       <trans-unit id="vls-wI-lPQ.headerCell.title" xml:space="preserve">
         <source>Schedule</source>
         <target state="translated">Zeitplan</target>
@@ -2452,12 +2456,12 @@
       </trans-unit>
       <trans-unit id="w6i-hq-pcc.title" xml:space="preserve">
         <source>Required</source>
-        <target state="translated">Pflichtfeld</target>
+        <target state="translated">Benötigt</target>
         <note>Class = "NSTextFieldCell"; title = "Required"; ObjectID = "w6i-hq-pcc";</note>
       </trans-unit>
       <trans-unit id="wD5-vA-j0P.title" xml:space="preserve">
         <source>Remote server parameters</source>
-        <target state="translated">Remoteserver-Parameter</target>
+        <target state="translated">Remote-Server-Parameter</target>
         <note>Class = "NSBox"; title = "Remote server parameters"; ObjectID = "wD5-vA-j0P";</note>
       </trans-unit>
       <trans-unit id="wIa-4f-wP2.title" xml:space="preserve">
@@ -2477,14 +2481,14 @@
       </trans-unit>
       <trans-unit id="wh3-18-AJ4.headerCell.title" xml:space="preserve">
         <source>Output</source>
-        <target state="translated">Ausgabe</target>
+        <target state="translated">Ausgang</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "wh3-18-AJ4";</note>
       </trans-unit>
       <trans-unit id="wmz-CK-ZzC.title" xml:space="preserve">
         <source>Rsa key</source>
-        <target state="translated">Rsa Schlüssel</target>
+        <target state="translated">Rsa key</target>
         <note>Class = "NSButtonCell"; title = "Rsa key"; ObjectID = "wmz-CK-ZzC";</note>
-      </trans-unit>
+      <alt-trans><target>Rsa-Taste</target></alt-trans></trans-unit>
       <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
         <source>Help</source>
         <target state="translated">Hilfe</target>
@@ -2492,7 +2496,7 @@
       </trans-unit>
       <trans-unit id="wrj-tn-Y3v.title" xml:space="preserve">
         <source>path RsyncOSX: </source>
-        <target state="translated">Pfad zu RsyncOSX: </target>
+        <target state="translated">pfad RsyncOSX: </target>
         <note>Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v";</note>
       </trans-unit>
       <trans-unit id="wrk-73-4cu.title" xml:space="preserve">
@@ -2512,7 +2516,7 @@
       </trans-unit>
       <trans-unit id="xUg-0M-AYM.title" xml:space="preserve">
         <source>Remote catalog:</source>
-        <target state="translated">Remote-Katalog:</target>
+        <target state="translated">Entfernter Katalog:</target>
         <note>Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "xUg-0M-AYM";</note>
       </trans-unit>
       <trans-unit id="xXy-oY-7zq.title" xml:space="preserve">
@@ -2522,12 +2526,12 @@
       </trans-unit>
       <trans-unit id="xZ6-fW-WQl.title" xml:space="preserve">
         <source>Table View Cell</source>
-        <target state="translated">Tabellenansichtszelle</target>
+        <target state="translated">Tabellenansicht Zelle</target>
         <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "xZ6-fW-WQl";</note>
       </trans-unit>
       <trans-unit id="xnI-Se-9HL.title" xml:space="preserve">
         <source>Save</source>
-        <target state="translated">Sichern</target>
+        <target state="translated">Speichern</target>
         <note>Class = "NSButtonCell"; title = "Save"; ObjectID = "xnI-Se-9HL";</note>
       </trans-unit>
       <trans-unit id="xsi-tM-sv9.title" xml:space="preserve">
@@ -2572,14 +2576,14 @@
       </trans-unit>
       <trans-unit id="ypE-IB-6gc.title" xml:space="preserve">
         <source>Local info</source>
-        <target state="translated">Lokale Informationen</target>
+        <target state="translated">Lokale Info</target>
         <note>Class = "NSBox"; title = "Local info"; ObjectID = "ypE-IB-6gc";</note>
       </trans-unit>
       <trans-unit id="zF8-9O-ajg.title" xml:space="preserve">
         <source>remove --compress</source>
         <target state="translated">entferne --compress</target>
         <note>Class = "NSButtonCell"; title = "remove --compress"; ObjectID = "zF8-9O-ajg";</note>
-      <alt-trans><target>remove --compress</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="zFx-cJ-7DI.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="translated">Textzelle</target>
@@ -2607,12 +2611,12 @@
       </trans-unit>
       <trans-unit id="znZ-ht-M5x.title" xml:space="preserve">
         <source>Required if remote server</source>
-        <target state="translated">Pflichtfeld für Remote-Server</target>
+        <target state="translated">Erforderlich wenn entfernter Server</target>
         <note>Class = "NSTextFieldCell"; title = "Required if remote server"; ObjectID = "znZ-ht-M5x";</note>
       </trans-unit>
       <trans-unit id="zoV-D2-sU8.headerCell.title" xml:space="preserve">
         <source>Total size (kB)</source>
-        <target state="translated">Gesamtgröße in KB:</target>
+        <target state="translated">Total size (kB)</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Total size (kB)"; ObjectID = "zoV-D2-sU8";</note>
       </trans-unit>
       <trans-unit id="zv2-BP-T5J.headerCell.title" xml:space="preserve">
@@ -2622,7 +2626,7 @@
       </trans-unit>
       <trans-unit id="zzK-ZO-wvj.headerCell.title" xml:space="preserve">
         <source>Remote catalog</source>
-        <target state="translated">Remote-Katalog</target>
+        <target state="translated">Externer Katalog</target>
         <note>Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj";</note>
       </trans-unit>
     </body>
@@ -2639,7 +2643,7 @@
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2019 Thomas Evensen. All rights reserved.</source>
-        <target state="translated">© 2019 Thomas Evensen.</target>
+        <target state="translated">Copyright © 2019 Thomas Evensen. Alle Rechte vorbehalten.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
@@ -2653,56 +2657,56 @@
         <source> ... set in User configuration ...</source>
         <target state="translated"> ... in der Benutzerkonfiguration gesetzt ...</target>
         <note>Restore</note>
-      <alt-trans><target>... sett i bruker preferanser...</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="... no remote server ..." xml:space="preserve">
         <source>... no remote server ...</source>
-        <target state="translated">...ingen ekstern server...</target>
+        <target state="translated">... kein entfernter Server ...</target>
         <note>Ssh</note>
       </trans-unit>
       <trans-unit id="Aborting delete operation..." xml:space="preserve">
         <source>Aborting delete operation...</source>
-        <target state="translated">Avslutter slette operasjon...</target>
+        <target state="translated">Löschvorgang wird abgebrochen...</target>
         <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Add" xml:space="preserve">
         <source>Add</source>
-        <target state="translated">Legg til</target>
+        <target state="translated">Neu</target>
         <note>Add schedule
    New</note>
       </trans-unit>
       <trans-unit id="Add Schedule?" xml:space="preserve">
         <source>Add Schedule?</source>
-        <target state="translated">Legg til oppgave?</target>
+        <target state="translated">Zeitplan hinzufügen?</target>
         <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Add config?" xml:space="preserve">
         <source>Add config?</source>
-        <target state="translated">Legge til?</target>
+        <target state="translated">Konfiguration hinzufügen?</target>
         <note>New</note>
       </trans-unit>
       <trans-unit id="Batchtasks completed, close view..." xml:space="preserve">
         <source>Batchtasks completed, close view...</source>
-        <target state="translated">Batch oppgaver ferdig, lukker...</target>
+        <target state="translated">Batchaufgaben erledigt, Ansicht schließen...</target>
         <note>Batch</note>
-      </trans-unit>
+      <alt-trans><target>Batchtasks abgeschlossen, Ansicht schließen...</target></alt-trans></trans-unit>
       <trans-unit id="By using Finder drag and drop filepaths." xml:space="preserve">
         <source>By using Finder drag and drop filepaths.</source>
-        <target state="translated">Bruk Finder for dra og slipp filstier.</target>
+        <target state="translated">Durch Verwendung von Finder Drag and Drop Dateipfaden.</target>
         <note>Tooltip</note>
       </trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source>
-        <target state="translated">Kanseler</target>
+        <target state="translated">Abbrechen</target>
         <note>Cancel NSAlert</note>
       </trans-unit>
       <trans-unit id="Cancel or Add" xml:space="preserve">
         <source>Cancel or Add</source>
-        <target state="translated">Kanseler eller legg til</target>
+        <target state="translated">Abbrechen oder hinzufügen</target>
         <note>Add schedule</note>
       </trans-unit>
       <trans-unit id="Cancel or Delete" xml:space="preserve">
         <source>Cancel or Delete</source>
-        <target state="translated">Kanseler eller slett</target>
+        <target state="translated">Abbrechen oder Löschen</target>
         <note>Execute
    Logg
    Profiles
@@ -2710,53 +2714,53 @@
       </trans-unit>
       <trans-unit id="Cancel or Restore" xml:space="preserve">
         <source>Cancel or Restore</source>
-        <target state="translated">Kanseler eller kopier</target>
+        <target state="translated">Abbrechen oder Wiederherstellen</target>
         <note>Restore</note>
       </trans-unit>
       <trans-unit id="Cannot copy from a syncremote task..." xml:space="preserve">
         <source>Cannot copy from a syncremote task...</source>
-        <target state="translated">Kan ikke kopiere fra syncremote...</target>
+        <target state="translated">Kann nicht von einer syncremote Aufgabe kopieren...</target>
         <note>Copy files
    Remote Info</note>
       </trans-unit>
       <trans-unit id="Cannot verify a syncremote task..." xml:space="preserve">
         <source>Cannot verify a syncremote task...</source>
-        <target state="translated">Kan ikke verifisere syncremote...</target>
+        <target state="translated">Kann eine syncremote Aufgabe nicht überprüfen...</target>
         <note>Verify</note>
       </trans-unit>
       <trans-unit id="Chinese (Simplified) translation by: StringKe" xml:space="preserve">
         <source>Chinese (Simplified) translation by: StringKe</source>
         <target state="translated">Chinesisch (vereinfacht) Übersetzung von: StringKe</target>
         <note>chinese</note>
-      <alt-trans><target>Chinese (Simplified) oversettelse av: StringKe</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Close" xml:space="preserve">
         <source>Close</source>
-        <target state="translated">Lukk</target>
+        <target state="translated">Schließen</target>
         <note>Close NSAlert</note>
       </trans-unit>
       <trans-unit id="Completed" xml:space="preserve">
         <source>Completed</source>
-        <target state="translated">Utført</target>
+        <target state="translated">Abgeschlossen</target>
         <note>Remote info</note>
       </trans-unit>
       <trans-unit id="Completed ..." xml:space="preserve">
         <source>Completed ...</source>
-        <target state="translated">Utført</target>
+        <target state="translated">Abgeschlossen ...</target>
         <note>Verify</note>
       </trans-unit>
       <trans-unit id="Computing changed, please wait..." xml:space="preserve">
         <source>Computing changed, please wait...</source>
-        <target state="translated">Beregning endret, vennligst vent...</target>
+        <target state="translated">Berechnung geändert, bitte warten...</target>
         <note>Verify</note>
       </trans-unit>
       <trans-unit id="Copy single files or directory?" xml:space="preserve">
         <source>Copy single files or directory?</source>
-        <target state="translated">Kopier fil eller katalog?</target>
+        <target state="translated">Einzelne Dateien oder Ordner kopieren?</target>
         <note>Restore</note>
       </trans-unit>
       <trans-unit id="Copyright ©2019 Thomas Evensen" xml:space="preserve">
         <source>Copyright ©2019 Thomas Evensen</source>
-        <target state="translated">Copyright ©2019 Thomas Evensen.</target>
+        <target state="translated">Copyright ©2019 Thomas Evensen</target>
         <note>copyright</note>
       </trans-unit>
       <trans-unit id="Date last backup:" xml:space="preserve">
@@ -2764,21 +2768,21 @@
         <target state="translated">Letztes Backup Datum:</target>
         <note>Remote Info
    Verify</note>
-      <alt-trans><target>Dato siste backup:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Days since last backup:" xml:space="preserve">
         <source>Days since last backup:</source>
-        <target state="translated">Tage seit letzter Sicherung:</target>
+        <target state="translated">Tage seit dem letzten Backup:</target>
         <note>Remote Info
    Verify</note>
-      <alt-trans><target>Dager siden siste backup:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Default profile" xml:space="preserve">
         <source>Default profile</source>
-        <target state="translated">Default profil</target>
+        <target state="translated">Standardprofil</target>
         <note>default profile</note>
       </trans-unit>
       <trans-unit id="Delete" xml:space="preserve">
         <source>Delete</source>
-        <target state="translated">Slett</target>
+        <target state="translated">Löschen</target>
         <note>Execute
    Logg
    plan
@@ -2787,92 +2791,96 @@
       </trans-unit>
       <trans-unit id="Delete operation completed..." xml:space="preserve">
         <source>Delete operation completed...</source>
-        <target state="translated">Slette operasjon gjennomført...</target>
+        <target state="translated">Löschvorgang abgeschlossen...</target>
         <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Delete profile:" xml:space="preserve">
         <source>Delete profile:</source>
-        <target state="translated">Slett profil:</target>
+        <target state="translated">Profil löschen:</target>
         <note>Profiles</note>
       </trans-unit>
       <trans-unit id="Delete selected task?" xml:space="preserve">
         <source>Delete selected task?</source>
-        <target state="translated">Slett valgte oppgave?</target>
+        <target state="translated">Ausgewählte Aufgabe löschen?</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="Destination catalog:" xml:space="preserve">
         <source>Destination catalog:</source>
-        <target state="translated">Lokal katalog:</target>
+        <target state="translated">Zielkatalog:</target>
         <note>Tooltip</note>
       </trans-unit>
       <trans-unit id="Do you REALLY want to DELETE selected snapshots?" xml:space="preserve">
         <source>Do you REALLY want to DELETE selected snapshots?</source>
         <target state="translated">Möchten Sie die ausgewählten Schnappschüsse LÖSCHEN?</target>
         <note>Snapshots</note>
-      <alt-trans><target>Vil du VIRKELIG SLETTE valgte snapshot?</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Do you REALLY want to start a RESTORE ?" xml:space="preserve">
         <source>Do you REALLY want to start a RESTORE ?</source>
-        <target state="translated">Vil du VIRKELIG utføre en KOPI?</target>
+        <target state="translated">Willst du EIN RESTORE starten?</target>
         <note>Restore</note>
       </trans-unit>
       <trans-unit id="Dont change the snapshot num if you don´t know what you are doing..." xml:space="preserve">
         <source>Dont change the snapshot num if you don´t know what you are doing...</source>
-        <target state="translated">Ikke endre snapshot nummer hvis du ikke vet hva du gjør...</target>
+        <target state="translated">Ändern Sie nicht das Snapshot-Num, wenn Sie nicht wissen, was Sie tun...</target>
         <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="ERROR: no rsync in" xml:space="preserve">
         <source>ERROR: no rsync in</source>
-        <target state="translated">FEIL: ingen rsync i</target>
+        <target state="translated">FEHLER: kein rsync in</target>
         <note>Error rsync</note>
       </trans-unit>
       <trans-unit id="ERROR: no rsync in /usr/local/bin" xml:space="preserve">
         <source>ERROR: no rsync in /usr/local/bin</source>
-        <target state="translated">FEIL: ingen rsync i /usr/local/bin</target>
+        <target state="translated">FEHLER: kein rsync in /usr/local/bin</target>
         <note>Error rsync</note>
       </trans-unit>
       <trans-unit id="Estimation completed, you can start batch..." xml:space="preserve">
         <source>Estimation completed, you can start batch...</source>
-        <target state="translated">Estimering utført, start batch...</target>
+        <target state="translated">Schätzung abgeschlossen, Sie können Batch starten...</target>
         <note>Batch</note>
       </trans-unit>
       <trans-unit id="Executing restore..." xml:space="preserve">
         <source>Executing restore...</source>
-        <target state="translated">Utfører kopi...</target>
+        <target state="translated">Wiederherstellung wird ausgeführt...</target>
         <note>Restore</note>
       </trans-unit>
       <trans-unit id="Friday" xml:space="preserve">
         <source>Friday</source>
-        <target state="translated">fredag</target>
+        <target state="translated">Freitag</target>
         <note>plan</note>
       </trans-unit>
+      <trans-unit id="German translation by: Andre" xml:space="preserve">
+        <source>German translation by: Andre</source>
+        <note>german</note>
+      <target state="translated">Deutsche Übersetzung von: Andre</target></trans-unit>
       <trans-unit id="Getting info, please wait..." xml:space="preserve">
         <source>Getting info, please wait...</source>
-        <target state="translated">Informationen werden abgerufen, bitte warten...</target>
+        <target state="translated">Info wird abgerufen, bitte warten...</target>
         <note>Restore</note>
-      <alt-trans><target>Henter informasjon, vennligst vent...</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Getting information, please wait ..." xml:space="preserve">
         <source>Getting information, please wait ...</source>
         <target state="translated">Informationen werden abgerufen, bitte warten ...</target>
         <note>Verify</note>
-      <alt-trans><target>Henter informasjon, vennligst vent</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Got index from Execute and listing logs for one configuration..." xml:space="preserve">
         <source>Got index from Execute and listing logs for one configuration...</source>
-        <target state="translated">Hentet index fra Utfør og lister logg for en konfigurasjon </target>
+        <target state="translated">Index aus Ausführen und Auflistung von Logs für eine Konfiguration...</target>
         <note>Loggdata</note>
       </trans-unit>
       <trans-unit id="Got index from Execute..." xml:space="preserve">
         <source>Got index from Execute...</source>
-        <target state="translated">Hentet index fra Utfør</target>
+        <target state="translated">Index von Execute...</target>
         <note>Schedules</note>
       </trans-unit>
       <trans-unit id="Got index from Snapshots and listing logs for one configuration..." xml:space="preserve">
         <source>Got index from Snapshots and listing logs for one configuration...</source>
-        <target state="translated">Hentet index fra Snapshots og lister logg for en konfigurasjon </target>
+        <target state="translated">Index aus Snapshots und Listing-Logs für eine Konfiguration...</target>
         <note>Loggdata</note>
       </trans-unit>
       <trans-unit id="Got it..." xml:space="preserve">
         <source>Got it...</source>
-        <target state="translated">Info hentet...</target>
+        <target state="translated">Verstand...</target>
         <note>Remote Info
    Restore</note>
       </trans-unit>
@@ -2880,121 +2888,121 @@
         <source>Icon by: Zsolt Sándor</source>
         <target state="translated">Ikone von: Zsolt Sándor</target>
         <note>icon</note>
-      <alt-trans><target>Icon av: Zsolt Sándor</target></alt-trans></trans-unit>
+      <alt-trans><target>Icon by: Zsolt Sándor</target></alt-trans></trans-unit>
       <trans-unit id="Keep" xml:space="preserve">
         <source>Keep</source>
-        <target state="translated">Behold</target>
+        <target state="translated">Behalten</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="Load" xml:space="preserve">
         <source>Load</source>
-        <target state="translated">Last</target>
+        <target state="translated">Laden</target>
         <note>Profile</note>
       </trans-unit>
       <trans-unit id="Loaded cached data..." xml:space="preserve">
         <source>Loaded cached data...</source>
-        <target state="translated">Lastet cached info...</target>
+        <target state="translated">Lade zwischengespeicherte Daten...</target>
         <note>Remote info
    Remote Info</note>
       </trans-unit>
       <trans-unit id="Local catalog:" xml:space="preserve">
         <source>Local catalog:</source>
-        <target state="translated">Lokal katalog:</target>
+        <target state="translated">Lokaler Katalog:</target>
         <note>Tooltip</note>
       </trans-unit>
       <trans-unit id="Local or remote catalog cannot be empty..." xml:space="preserve">
         <source>Local or remote catalog cannot be empty...</source>
-        <target state="translated">Lokal og ekstern må fylles ut...</target>
+        <target state="translated">Lokaler oder Remote-Katalog darf nicht leer sein...</target>
         <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Menu app is running..." xml:space="preserve">
         <source>Menu app is running...</source>
-        <target state="translated">Meny appen kjører...</target>
+        <target state="translated">Menü-App läuft...</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="Monday" xml:space="preserve">
         <source>Monday</source>
-        <target state="translated">mandag</target>
+        <target state="translated">Montag</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="New version is available - see About" xml:space="preserve">
         <source>New version is available - see About</source>
         <target state="translated">Neue Version ist verfügbar - siehe Über</target>
         <note>Execute</note>
-      <alt-trans><target>Ny versjon er tilgjengelig - se Om</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="New version is available:" xml:space="preserve">
         <source>New version is available:</source>
-        <target state="translated">Ny versjon er tilgjengelig:</target>
+        <target state="translated">Neue Version ist verfügbar:</target>
         <note>About</note>
       </trans-unit>
       <trans-unit id="No rclone config found..." xml:space="preserve">
         <source>No rclone config found...</source>
-        <target state="translated">Ingen rclone konfigurasjon funnet</target>
+        <target state="translated">Keine rclone Konfiguration gefunden...</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="No rsync in path..." xml:space="preserve">
         <source>No rsync in path...</source>
-        <target state="translated">Ingen rsync i sti...</target>
+        <target state="translated">Kein rsync im Pfad...</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="No such local catalog for restore or set it in user config..." xml:space="preserve">
         <source>No such local catalog for restore or set it in user config...</source>
         <target state="translated">Kein solcher lokaler Katalog für die Wiederherstellung oder setzen Sie ihn in der Benutzerkonfiguration...</target>
         <note>Copy files</note>
-      <alt-trans><target>Ingen slik lokal katalog for restore eller sett den i bruker preferanser...</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Norwegian translation by: Thomas Evensen" xml:space="preserve">
         <source>Norwegian translation by: Thomas Evensen</source>
         <target state="translated">Norwegische Übersetzung von: Thomas Evensen</target>
         <note>norwegian</note>
-      <alt-trans><target>Norsk oversettelse av: Thomas Evensen</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Not a remote task, use Finder to copy files..." xml:space="preserve">
         <source>Not a remote task, use Finder to copy files...</source>
-        <target state="translated">Ikke en ekstern oppgave, bruk Finder for å kopiere filer...</target>
+        <target state="translated">Keine entfernte Aufgabe, verwenden Sie Finder um Dateien zu kopieren...</target>
         <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Not a snapshot task..." xml:space="preserve">
         <source>Not a snapshot task...</source>
-        <target state="translated">Ikke en snapshot oppgave...</target>
+        <target state="translated">Not a snapshot task...</target>
         <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Number of configurations:" xml:space="preserve">
         <source>Number of configurations:</source>
-        <target state="translated">Anzahl Konfigurationen:</target>
+        <target state="translated">Anzahl der Konfigurationen:</target>
         <note>AllProfiles</note>
-      <alt-trans><target>Antall konfigurasjoner:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Number of logs:" xml:space="preserve">
         <source>Number of logs:</source>
-        <target state="translated">Anzahl Logs:</target>
+        <target state="translated">Anzahl der Logs:</target>
         <note>Logg</note>
-      <alt-trans><target>Antall logger:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Number of tasks to estimate:" xml:space="preserve">
         <source>Number of tasks to estimate:</source>
-        <target state="translated">Anzahl zu berechnender Aufgaben:</target>
+        <target state="translated">Anzahl der zu berechnenden Aufgaben:</target>
         <note>Remote info</note>
-      <alt-trans><target>Antall oppgaver å estimere:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Number remote files:" xml:space="preserve">
         <source>Number remote files:</source>
-        <target state="translated">Antall filer:</target>
+        <target state="translated">Anzahl entfernter Dateien:</target>
         <note>Copy files</note>
       </trans-unit>
       <trans-unit id="Number snapshots:" xml:space="preserve">
         <source>Number snapshots:</source>
-        <target state="translated">Anzahl Schnappschüsse:</target>
+        <target state="translated">Anzahl Momentaufnahmen:</target>
         <note>Snapshots</note>
-      <alt-trans><target>Antall snapshots:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Only valid for backup, snapshot and combined tasks..." xml:space="preserve">
         <source>Only valid for backup, snapshot and combined tasks...</source>
-        <target state="translated">Kun gyldig for backup, snapshot og kombinerte oppgaver...</target>
+        <target state="translated">Nur gültig für Backup, Schnappschuss und kombinierte Aufgaben...</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="Please select a task in Execute ..." xml:space="preserve">
         <source>Please select a task in Execute ...</source>
         <target state="translated">Bitte wählen Sie eine Aufgabe in Ausführung ...</target>
         <note>Verify</note>
-      <alt-trans><target>Velg en oppgave i Utfør</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Possible error logging..." xml:space="preserve">
         <source>Possible error logging...</source>
-        <target state="translated">Mulig feil logging...</target>
+        <target state="translated">Mögliche Fehlermeldung...</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="Profile:" xml:space="preserve">
@@ -3004,38 +3012,38 @@
       </trans-unit>
       <trans-unit id="Profile: please wait..." xml:space="preserve">
         <source>Profile: please wait...</source>
-        <target state="translated">Profil: vennligst vent...</target>
+        <target state="translated">Profil: Bitte warten...</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="Remote catalog:" xml:space="preserve">
         <source>Remote catalog:</source>
-        <target state="translated">Ekstern katalog:</target>
+        <target state="translated">Entfernter Katalog:</target>
         <note>Tooltip</note>
       </trans-unit>
       <trans-unit id="Restore" xml:space="preserve">
         <source>Restore</source>
-        <target state="translated">Kopi</target>
+        <target state="translated">Wiederherstellen</target>
         <note>Restore</note>
       </trans-unit>
       <trans-unit id="Saturday" xml:space="preserve">
         <source>Saturday</source>
-        <target state="translated">lørdag</target>
+        <target state="translated">Samstag</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
         <source>Save</source>
-        <target state="translated">Lagre</target>
+        <target state="translated">Speichern</target>
         <note>Profile
    Userconfig</note>
       </trans-unit>
       <trans-unit id="Scheduled tasks in menu app..." xml:space="preserve">
         <source>Scheduled tasks in menu app...</source>
-        <target state="translated">Planlagte oppgaver i meny app...</target>
+        <target state="translated">Geplante Aufgaben in der Menü-App...</target>
         <note>Schedules</note>
       </trans-unit>
       <trans-unit id="Seems not to be connected..." xml:space="preserve">
         <source>Seems not to be connected...</source>
-        <target state="translated">Synes ikke å være tilgjengelig...</target>
+        <target state="translated">Scheint nicht verbunden zu sein...</target>
         <note>Copy files
    Remote Info
    Verify</note>
@@ -3044,119 +3052,120 @@
         <source>Select a task....</source>
         <target state="translated">Aufgabe auswählen....</target>
         <note>Execute</note>
-      <alt-trans><target>Velg en oppgave...</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Selected logs:" xml:space="preserve">
         <source>Selected logs:</source>
-        <target state="translated">Ausgewählte Protokolle:</target>
+        <target state="translated">Ausgewählte Logs:</target>
         <note>Logg</note>
-      <alt-trans><target>Valgte logger:</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="Selection out of range - aborting" xml:space="preserve">
         <source>Selection out of range - aborting</source>
-        <target state="translated">Utvalg ikke mulig - avslutter</target>
+        <target state="translated">Auswahl außerhalb des Bereichs - Abbruch</target>
         <note>Execute</note>
       </trans-unit>
       <trans-unit id="Seriously, enter a real number..." xml:space="preserve">
         <source>Seriously, enter a real number...</source>
-        <target state="translated">Seriøst, legg inn et nummer...</target>
+        <target state="translated">Ernsthaft, geben Sie eine echte Zahl ein...</target>
         <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="Source catalog:" xml:space="preserve">
         <source>Source catalog:</source>
-        <target state="translated">Ekstern katalog:</target>
+        <target state="translated">Quellkatalog:</target>
         <note>Tooltip</note>
       </trans-unit>
       <trans-unit id="Start restore?" xml:space="preserve">
         <source>Start restore?</source>
-        <target state="translated">Start kopi?</target>
+        <target state="translated">Wiederherstellen?</target>
         <note>Restore</note>
       </trans-unit>
       <trans-unit id="Sunday" xml:space="preserve">
         <source>Sunday</source>
-        <target state="translated">søndag</target>
+        <target state="translated">Sonntag</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="The menu app" xml:space="preserve">
         <source>The menu app</source>
+        <target state="translated">Die Menü-App</target>
         <note>Execute</note>
-      <target state="translated">Die Menü-App</target></trans-unit>
+      </trans-unit>
       <trans-unit id="There seems to be nothing to do..." xml:space="preserve">
         <source>There seems to be nothing to do...</source>
-        <target state="translated">Her er det ikke noe å gjøre...</target>
+        <target state="translated">Es scheint nichts zu tun...</target>
         <note>Quickbackup</note>
       </trans-unit>
       <trans-unit id="This is a combined task, execute by ⌘R..." xml:space="preserve">
         <source>This is a combined task, execute by ⌘R...</source>
-        <target state="translated">Kombinert oppgave, kjør med ⌘R</target>
+        <target state="translated">Dies ist eine kombinierte Aufgabe, die von ⌘R...</target>
         <note>Execute</note>
-      </trans-unit>
+      <alt-trans><target>Dies ist eine kombinierte Aufgabe, die von &lt;unk&gt; R...</target></alt-trans></trans-unit>
       <trans-unit id="This is added before?" xml:space="preserve">
         <source>This is added before?</source>
-        <target state="translated">Denne er lagt til tidligere?</target>
+        <target state="translated">Dies wird vorher hinzugefügt?</target>
         <note>New</note>
       </trans-unit>
       <trans-unit id="Thursday" xml:space="preserve">
         <source>Thursday</source>
-        <target state="translated">torsdag</target>
+        <target state="translated">Donnerstag</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="Tuesday" xml:space="preserve">
         <source>Tuesday</source>
-        <target state="translated">tirsdag</target>
+        <target state="translated">Dienstag</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="Verifying, please wait..." xml:space="preserve">
         <source>Verifying, please wait...</source>
-        <target state="translated">Verifiserer, vennligst vent...</target>
+        <target state="translated">Überprüfe, bitte warten...</target>
         <note>Verify</note>
       </trans-unit>
       <trans-unit id="Wednesday" xml:space="preserve">
         <source>Wednesday</source>
-        <target state="translated">onsdag</target>
+        <target state="translated">Mittwoch</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="You cannot delete that many, max are" xml:space="preserve">
         <source>You cannot delete that many, max are</source>
-        <target state="translated">Du kan ikke slette så mange, max er</target>
+        <target state="translated">Du kannst nicht so viele löschen, maximal</target>
         <note>Snapshots</note>
       </trans-unit>
       <trans-unit id="You have the latest ..." xml:space="preserve">
         <source>You have the latest ...</source>
         <target state="translated">Sie haben die neueste ...</target>
         <note>About</note>
-      <alt-trans><target>Du har siste versjon...</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="daily" xml:space="preserve">
         <source>daily</source>
-        <target state="translated">daglig</target>
+        <target state="translated">täglich</target>
         <note>main</note>
       </trans-unit>
       <trans-unit id="days" xml:space="preserve">
         <source>days</source>
         <target state="translated">tage</target>
         <note>datetime</note>
-      <alt-trans><target>dager</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="earlier months" xml:space="preserve">
         <source>earlier months</source>
-        <target state="translated">tidligere måned</target>
+        <target state="translated">frühere Monate</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="every" xml:space="preserve">
         <source>every</source>
-        <target state="translated">alle</target>
+        <target state="translated">jede</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="h" xml:space="preserve">
         <source>h</source>
-        <target state="translated">t</target>
+        <target state="translated">h</target>
         <note>datetime</note>
       </trans-unit>
       <trans-unit id="hours" xml:space="preserve">
         <source>hours</source>
-        <target state="translated">timer</target>
+        <target state="translated">std</target>
         <note>datetime</note>
       </trans-unit>
       <trans-unit id="last" xml:space="preserve">
         <source>last</source>
-        <target state="translated">siste</target>
+        <target state="translated">zuletzt</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="manuel" xml:space="preserve">
@@ -3173,25 +3182,25 @@
         <source>no startdate</source>
         <target state="translated">kein Startdatum</target>
         <note>Schedule details</note>
-      <alt-trans><target>ingen startdato</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="no stopdate" xml:space="preserve">
         <source>no stopdate</source>
         <target state="translated">kein Stopdatum</target>
         <note>Schedule details</note>
-      <alt-trans><target>ingen stopp dato</target></alt-trans></trans-unit>
+      </trans-unit>
       <trans-unit id="none" xml:space="preserve">
         <source>none</source>
-        <target state="translated">ingen</target>
+        <target state="translated">keine</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="once" xml:space="preserve">
         <source>once</source>
-        <target state="translated">engang</target>
+        <target state="translated">einmal</target>
         <note>main</note>
       </trans-unit>
       <trans-unit id="previous month" xml:space="preserve">
         <source>previous month</source>
-        <target state="translated">forrige måned</target>
+        <target state="translated">vorheriger Monat</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="secs" xml:space="preserve">
@@ -3201,29 +3210,29 @@
       </trans-unit>
       <trans-unit id="stopped" xml:space="preserve">
         <source>stopped</source>
-        <target state="translated">stoppet</target>
+        <target state="translated">gestoppt</target>
         <note>main</note>
       </trans-unit>
       <trans-unit id="this month" xml:space="preserve">
         <source>this month</source>
-        <target state="translated">denne måned</target>
+        <target state="translated">in diesem Monat</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="this week" xml:space="preserve">
         <source>this week</source>
-        <target state="translated">denne uke</target>
+        <target state="translated">diese Woche</target>
         <note>plan</note>
       </trans-unit>
       <trans-unit id="weekly" xml:space="preserve">
         <source>weekly</source>
-        <target state="translated">ukentlig</target>
+        <target state="translated">wöchentlich</target>
         <note>main</note>
       </trans-unit>
       <trans-unit id="⌘A to abort or wait..." xml:space="preserve">
         <source>⌘A to abort or wait...</source>
-        <target state="translated">⌘A for å avslutte eller vent...</target>
+        <target state="translated">⌘A zum Abbrechen oder Warten...</target>
         <note>Execute</note>
-      </trans-unit>
+      <alt-trans><target>&lt;unk&gt; A zum Abbrechen oder Warten...</target></alt-trans></trans-unit>
     </body>
   </file>
 </xliff>
