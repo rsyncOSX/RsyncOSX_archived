@@ -4915,13 +4915,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="4si-Va-MGS">
-                                <rect key="frame" x="20" y="20" width="1052" height="348"/>
+                                <rect key="frame" x="20" y="20" width="1052" height="349"/>
                                 <clipView key="contentView" id="29P-hv-Gg8">
-                                    <rect key="frame" x="2" y="2" width="1048" height="344"/>
+                                    <rect key="frame" x="2" y="2" width="1048" height="345"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="fIH-nS-o0n" id="6oZ-QC-ZpY">
-                                            <rect key="frame" x="0.0" y="0.0" width="1048" height="321"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1048" height="322"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -5100,23 +5100,24 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-Xj-BBF">
-                                <rect key="frame" x="20" y="376" width="270" height="23"/>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" ambiguous="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-Xj-BBF">
+                                <rect key="frame" x="20" y="377" width="270" height="22"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="gYX-od-fRr">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yDe-Qf-aYa">
-                                <rect key="frame" x="816" y="372" width="235" height="14"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Doubleclick on row to get remote capacity..." id="mry-vG-0Hd">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yDe-Qf-aYa">
+                                <rect key="frame" x="568" y="372" width="483" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Doubleclick on row to get remote capacity..." id="mry-vG-0Hd">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmI-Sk-Sce">
+                            <button ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmI-Sk-Sce">
                                 <rect key="frame" x="303" y="377" width="23" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="23" id="f0u-zE-ZMs"/>
@@ -5129,44 +5130,31 @@ DQ
                                     <action selector="sortdirection:" target="ngh-0r-Hwj" id="opO-mh-vGC"/>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GA9-dR-KjB">
-                                <rect key="frame" x="795" y="376" width="16" height="17"/>
-                            </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PM5-1z-ONT">
-                                <rect key="frame" x="332" y="376" width="173" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="U6c-WU-vgK"/>
-                                    <constraint firstAttribute="width" constant="169" id="sOC-B2-Nev"/>
-                                </constraints>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PM5-1z-ONT">
+                                <rect key="frame" x="332" y="377" width="243" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Number of configurations:" id="sBt-QN-KGK">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GA9-dR-KjB">
+                                <rect key="frame" x="1056" y="371" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="GGh-Xj-BBF" firstAttribute="top" secondItem="k7m-Fj-vKH" secondAttribute="top" constant="8" id="47Q-gZ-a8Z"/>
-                            <constraint firstItem="PM5-1z-ONT" firstAttribute="top" secondItem="GA9-dR-KjB" secondAttribute="top" id="6YT-Ox-rmz"/>
                             <constraint firstAttribute="trailing" secondItem="4si-Va-MGS" secondAttribute="trailing" constant="20" id="9PM-l1-EHa"/>
                             <constraint firstItem="bmI-Sk-Sce" firstAttribute="leading" secondItem="GGh-Xj-BBF" secondAttribute="trailing" constant="13" id="Cqz-Ip-O39"/>
                             <constraint firstAttribute="bottom" secondItem="4si-Va-MGS" secondAttribute="bottom" constant="20" id="FI5-xW-Cmw"/>
-                            <constraint firstItem="4si-Va-MGS" firstAttribute="top" secondItem="GA9-dR-KjB" secondAttribute="bottom" constant="8" id="G24-v1-5UG"/>
-                            <constraint firstItem="PM5-1z-ONT" firstAttribute="centerY" secondItem="GA9-dR-KjB" secondAttribute="centerY" id="Qeq-30-BYu"/>
-                            <constraint firstItem="yDe-Qf-aYa" firstAttribute="top" secondItem="k7m-Fj-vKH" secondAttribute="top" constant="21" id="Qj0-r0-jZI"/>
-                            <constraint firstItem="PM5-1z-ONT" firstAttribute="leading" secondItem="bmI-Sk-Sce" secondAttribute="trailing" constant="8" symbolic="YES" id="Ykw-6R-BqU"/>
-                            <constraint firstItem="yDe-Qf-aYa" firstAttribute="leading" secondItem="GA9-dR-KjB" secondAttribute="trailing" constant="7" id="ayr-8M-4tP"/>
-                            <constraint firstItem="4si-Va-MGS" firstAttribute="top" secondItem="yDe-Qf-aYa" secondAttribute="bottom" constant="4" id="ba3-Uy-yC1"/>
+                            <constraint firstItem="4si-Va-MGS" firstAttribute="top" secondItem="GA9-dR-KjB" secondAttribute="bottom" constant="2" id="G24-v1-5UG"/>
                             <constraint firstItem="GGh-Xj-BBF" firstAttribute="leading" secondItem="k7m-Fj-vKH" secondAttribute="leading" constant="20" id="gVX-3K-1ok"/>
-                            <constraint firstItem="PM5-1z-ONT" firstAttribute="leading" secondItem="k7m-Fj-vKH" secondAttribute="leading" constant="334" id="h7P-qU-gd8"/>
-                            <constraint firstItem="GA9-dR-KjB" firstAttribute="leading" secondItem="PM5-1z-ONT" secondAttribute="trailing" constant="292" id="iqF-Du-HlN"/>
                             <constraint firstItem="bmI-Sk-Sce" firstAttribute="centerY" secondItem="GGh-Xj-BBF" secondAttribute="centerY" id="jVi-VK-Wrs"/>
                             <constraint firstItem="bmI-Sk-Sce" firstAttribute="top" secondItem="GGh-Xj-BBF" secondAttribute="top" id="nRp-ii-tJc"/>
-                            <constraint firstItem="4si-Va-MGS" firstAttribute="top" secondItem="yDe-Qf-aYa" secondAttribute="bottom" constant="4" id="nhw-6a-0om"/>
                             <constraint firstItem="4si-Va-MGS" firstAttribute="top" secondItem="GGh-Xj-BBF" secondAttribute="bottom" constant="8" id="tCO-dj-9Lc"/>
                             <constraint firstItem="4si-Va-MGS" firstAttribute="leading" secondItem="k7m-Fj-vKH" secondAttribute="leading" constant="20" id="tzr-FH-8IH"/>
-                            <constraint firstItem="yDe-Qf-aYa" firstAttribute="leading" secondItem="GA9-dR-KjB" secondAttribute="trailing" constant="7" id="xIz-Ef-xcC"/>
-                            <constraint firstItem="GA9-dR-KjB" firstAttribute="top" secondItem="k7m-Fj-vKH" secondAttribute="top" constant="14" id="xOz-YX-Y1P"/>
+                            <constraint firstItem="GA9-dR-KjB" firstAttribute="top" secondItem="k7m-Fj-vKH" secondAttribute="top" constant="20" id="xOz-YX-Y1P"/>
                         </constraints>
                     </view>
                     <connections>
