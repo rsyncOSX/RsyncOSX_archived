@@ -2851,6 +2851,7 @@
       </trans-unit>
       <trans-unit id="German translation by: Andre" xml:space="preserve">
         <source>German translation by: Andre</source>
+        <target>Tysk oversettelse av: Andre</target>
         <note>german</note>
       </trans-unit>
       <trans-unit id="Getting info, please wait..." xml:space="preserve">

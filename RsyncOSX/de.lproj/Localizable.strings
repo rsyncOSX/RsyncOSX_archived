@@ -127,7 +127,7 @@
 "Estimation completed, you can start batch..." = "Schätzung abgeschlossen, Sie können Batch starten...";
 
 /* plan */
-"every" = "alle";
+"every" = "alles";
 
 /* Restore */
 "Executing restore..." = "Utfører kopi...";
@@ -201,10 +201,10 @@
 "New version is available:" = "Ny versjon er tilgjengelig:";
 
 /* Execute */
-"No rclone config found..." = "Ingen rclone konfigurasjon funnet";
+"No rclone config found..." = "Keine rclone Konfiguration gefunden...";
 
 /* Execute */
-"No rsync in path..." = "Ingen rsync i sti...";
+"No rsync in path..." = "Kein rsync im Pfad...";
 
 /* Schedule details */
 "no startdate" = "kein Startdatum";
