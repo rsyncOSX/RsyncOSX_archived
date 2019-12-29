@@ -695,7 +695,7 @@
 "hpD-hN-6Xb.title" = "Umgebung aktivieren";
 
 /* Class = "NSButtonCell"; title = "Check dsa"; ObjectID = "hq8-Fq-pip"; */
-"hq8-Fq-pip.title" = "Überprüfe dsa";
+"hq8-Fq-pip.title" = "Check dsa";
 
 /* Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "HQE-mN-lgx"; */
 "HQE-mN-lgx.title" = "Anzahl der Dateien:";
@@ -884,7 +884,7 @@
 "lsc-bT-MTr.title" = "Textzelle";
 
 /* Class = "NSButtonCell"; title = "Dsa key"; ObjectID = "LtM-4s-IJ1"; */
-"LtM-4s-IJ1.title" = "Dsa Schlüssel";
+"LtM-4s-IJ1.title" = "Dsa Taste";
 
 /* Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "Lur-Sd-kBP"; */
 "Lur-Sd-kBP.headerCell.title" = "Ergebnis";
@@ -1010,7 +1010,7 @@
 "OrH-Ty-gyv.paletteLabel" = "stapeln";
 
 /* Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv"; */
-"OrH-Ty-gyv.toolTip" = "Aufgaben ausführen, die für den Stapel markiert sind...";
+"OrH-Ty-gyv.toolTip" = "Für Batch markierte Aufgaben ausführen...";
 
 /* Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct"; */
 "OS5-Kb-1ct.title" = "Params";
@@ -1346,13 +1346,13 @@
 "Vdr-fp-XzO.title" = "Andere ausblenden";
 
 /* Class = "NSButtonCell"; title = "Changelog"; ObjectID = "vDS-vt-fgh"; */
-"vDS-vt-fgh.title" = "Liste der Änderungen";
+"vDS-vt-fgh.title" = "Änderungsprotokoll";
 
 /* Class = "NSTableColumn"; headerCell.title = "Period"; ObjectID = "VFf-HQ-GLW"; */
 "VFf-HQ-GLW.headerCell.title" = "Zeitraum";
 
 /* Class = "NSBox"; title = "Rsync"; ObjectID = "vgF-FF-cIJ"; */
-"vgF-FF-cIJ.title" = "Rsync";
+"vgF-FF-cIJ.title" = "RSync";
 
 /* Class = "NSBox"; title = "Remote info"; ObjectID = "vJI-G9-Mbp"; */
 "vJI-G9-Mbp.title" = "Remote-Info";
@@ -1412,7 +1412,7 @@
 "WMA-Xf-UcN.title" = "Nicht nacheinander hinzufügen /";
 
 /* Class = "NSButtonCell"; title = "Rsa key"; ObjectID = "wmz-CK-ZzC"; */
-"wmz-CK-ZzC.title" = "Rsa key";
+"wmz-CK-ZzC.title" = "Rsa-Taste";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "Woh-4u-GUH"; */
 "Woh-4u-GUH.title" = "Anzahl der Verzeichnisse:";
