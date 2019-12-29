@@ -21,7 +21,7 @@
 "Add Schedule?" = "Zeitplan hinzufügen?";
 
 /* Batch */
-"Batchtasks completed, close view..." = "Batchaufgaben erledigt, Ansicht schließen...";
+"Batchtasks completed, close view..." = "Batchtasks abgeschlossen, Ansicht schließen...";
 
 /* Tooltip */
 "By using Finder drag and drop filepaths." = "Durch Verwendung von Finder Drag and Drop Dateipfaden.";
@@ -148,7 +148,7 @@
 "Got index from Execute and listing logs for one configuration..." = "Index aus Ausführen und Auflistung von Logs für eine Konfiguration...";
 
 /* Schedules */
-"Got index from Execute..." = "Index von Execute...";
+"Got index from Execute..." = "Index von Ausführen...";
 
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Index aus Snapshots und Listing-Logs für eine Konfiguration...";
@@ -164,7 +164,7 @@
 "hours" = "std";
 
 /* icon */
-"Icon by: Zsolt Sándor" = "Ikone von: Zsolt Sándor";
+"Icon by: Zsolt Sándor" = "Icon von: Zsolt Sándor";
 
 /* plan */
 "Keep" = "Behalten";
@@ -321,7 +321,7 @@
 "There seems to be nothing to do..." = "Es scheint nichts zu tun...";
 
 /* Execute */
-"This is a combined task, execute by ⌘R..." = "Dies ist eine kombinierte Aufgabe, die von ⌘R...";
+"This is a combined task, execute by ⌘R..." = "Dies ist eine kombinierte Aufgabe, die von⌘R...";
 
 /* New */
 "This is added before?" = "Dies wird vorher hinzugefügt?";

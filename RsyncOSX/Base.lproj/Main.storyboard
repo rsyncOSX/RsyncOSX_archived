@@ -5100,8 +5100,11 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" ambiguous="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-Xj-BBF">
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-Xj-BBF">
                                 <rect key="frame" x="20" y="377" width="270" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="270" id="gZ0-tD-Yka"/>
+                                </constraints>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="gYX-od-fRr">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -5117,7 +5120,7 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmI-Sk-Sce">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bmI-Sk-Sce">
                                 <rect key="frame" x="303" y="377" width="23" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="23" id="f0u-zE-ZMs"/>
@@ -5130,9 +5133,8 @@ DQ
                                     <action selector="sortdirection:" target="ngh-0r-Hwj" id="opO-mh-vGC"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PM5-1z-ONT">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PM5-1z-ONT">
                                 <rect key="frame" x="332" y="377" width="243" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Number of configurations:" id="sBt-QN-KGK">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -5149,7 +5151,9 @@ DQ
                             <constraint firstItem="bmI-Sk-Sce" firstAttribute="leading" secondItem="GGh-Xj-BBF" secondAttribute="trailing" constant="13" id="Cqz-Ip-O39"/>
                             <constraint firstAttribute="bottom" secondItem="4si-Va-MGS" secondAttribute="bottom" constant="20" id="FI5-xW-Cmw"/>
                             <constraint firstItem="4si-Va-MGS" firstAttribute="top" secondItem="GA9-dR-KjB" secondAttribute="bottom" constant="2" id="G24-v1-5UG"/>
+                            <constraint firstItem="GGh-Xj-BBF" firstAttribute="bottom" secondItem="PM5-1z-ONT" secondAttribute="bottom" id="bYS-d6-AIZ"/>
                             <constraint firstItem="GGh-Xj-BBF" firstAttribute="leading" secondItem="k7m-Fj-vKH" secondAttribute="leading" constant="20" id="gVX-3K-1ok"/>
+                            <constraint firstItem="GGh-Xj-BBF" firstAttribute="baseline" secondItem="PM5-1z-ONT" secondAttribute="firstBaseline" id="ip7-S1-p3J"/>
                             <constraint firstItem="bmI-Sk-Sce" firstAttribute="centerY" secondItem="GGh-Xj-BBF" secondAttribute="centerY" id="jVi-VK-Wrs"/>
                             <constraint firstItem="bmI-Sk-Sce" firstAttribute="top" secondItem="GGh-Xj-BBF" secondAttribute="top" id="nRp-ii-tJc"/>
                             <constraint firstItem="4si-Va-MGS" firstAttribute="top" secondItem="GGh-Xj-BBF" secondAttribute="bottom" constant="8" id="tCO-dj-9Lc"/>
