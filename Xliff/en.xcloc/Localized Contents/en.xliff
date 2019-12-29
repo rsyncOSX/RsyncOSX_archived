@@ -1205,6 +1205,11 @@
         <target>Default params</target>
         <note>Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4";</note>
       </trans-unit>
+      <trans-unit id="RUJ-ix-qfo.title" xml:space="preserve">
+        <source>German</source>
+        <target>German</target>
+        <note>Class = "NSTextFieldCell"; title = "German"; ObjectID = "RUJ-ix-qfo";</note>
+      </trans-unit>
       <trans-unit id="RVB-9H-LQM.title" xml:space="preserve">
         <source>Local info</source>
         <target>Local info</target>
@@ -2844,6 +2849,11 @@
         <source>Friday</source>
         <target>Friday</target>
         <note>plan</note>
+      </trans-unit>
+      <trans-unit id="German translation by: Andre" xml:space="preserve">
+        <source>German translation by: Andre</source>
+        <target>German translation by: Andre</target>
+        <note>german</note>
       </trans-unit>
       <trans-unit id="Getting info, please wait..." xml:space="preserve">
         <source>Getting info, please wait...</source>
