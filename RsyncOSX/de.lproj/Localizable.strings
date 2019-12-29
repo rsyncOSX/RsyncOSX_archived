@@ -2,13 +2,13 @@
 " ... set in User configuration ..." = " ... in der Benutzerkonfiguration gesetzt ...";
 
 /* Ssh */
-"... no remote server ..." = "... keine remote-Server ...";
+"... no remote server ..." = "...ingen ekstern server...";
 
 /* Execute */
 "⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
 
 /* Snapshots */
-"Aborting delete operation..." = "Avslutter slette operasjon...";
+"Aborting delete operation..." = "Löschvorgang wird abgebrochen...";
 
 /* Add schedule
    New */
@@ -18,7 +18,7 @@
 "Add config?" = "Konfiguration hinzufügen?";
 
 /* Add schedule */
-"Add Schedule?" = "Zeitplan hinzufügen?";
+"Add Schedule?" = "Legg til oppgave?";
 
 /* Batch */
 "Batchtasks completed, close view..." = "Batchtasks abgeschlossen, Ansicht schließen...";
@@ -27,7 +27,7 @@
 "By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp filstier.";
 
 /* Cancel NSAlert */
-"Cancel" = "Abbrechen";
+"Cancel" = "Kanseler";
 
 /* Add schedule */
 "Cancel or Add" = "Abbrechen oder hinzufügen";
@@ -51,17 +51,14 @@
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "Chinesisch (vereinfacht) Übersetzung von: StringKe";
 
-/* german */
-"German translation by: Andre" = "Deutsche Übersetzung von: Andre";
-
 /* Close NSAlert */
 "Close" = "Schließen";
 
 /* Remote info */
-"Completed" = "Utført";
+"Completed" = "Abgeschlossen";
 
 /* Verify */
-"Completed ..." = "Utført";
+"Completed ..." = "Abgeschlossen ...";
 
 /* Verify */
 "Computing changed, please wait..." = "Beregning endret, vennligst vent...";
@@ -94,13 +91,13 @@
    plan
    Profiles
    Snapshots */
-"Delete" = "Slett";
+"Delete" = "Löschen";
 
 /* Snapshots */
-"Delete operation completed..." = "Slette operasjon gjennomført...";
+"Delete operation completed..." = "Lösche Operation abgeschlossen...";
 
 /* Profiles */
-"Delete profile:" = "Slett profil:";
+"Delete profile:" = "Profil löschen:";
 
 /* Execute */
 "Delete selected task?" = "Slett valgte oppgave?";
@@ -127,7 +124,7 @@
 "ERROR: no rsync in /usr/local/bin" = "FEHLER: kein rsync in /usr/local/bin";
 
 /* Batch */
-"Estimation completed, you can start batch..." = "Estimering utført, start batch...";
+"Estimation completed, you can start batch..." = "Schätzung abgeschlossen, Sie können Batch starten...";
 
 /* plan */
 "every" = "alle";
@@ -201,7 +198,7 @@
 "New version is available - see About" = "Neue Version ist verfügbar - siehe Über";
 
 /* About */
-"New version is available:" = "Neue Version ist verfügbar:";
+"New version is available:" = "Ny versjon er tilgjengelig:";
 
 /* Execute */
 "No rclone config found..." = "Ingen rclone konfigurasjon funnet";
@@ -219,7 +216,7 @@
 "No such local catalog for restore or set it in user config..." = "Kein solcher lokaler Katalog für die Wiederherstellung oder setzen Sie ihn in der Benutzerkonfiguration...";
 
 /* plan */
-"none" = "keine";
+"none" = "ingen";
 
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Norwegische Übersetzung von: Thomas Evensen";
@@ -246,7 +243,7 @@
 "Number snapshots:" = "Anzahl Schnappschüsse:";
 
 /* main */
-"once" = "einmalig";
+"once" = "engang";
 
 /* Execute */
 "Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
@@ -348,7 +345,7 @@
 "weekly" = "wöchentlich";
 
 /* Snapshots */
-"You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
+"You cannot delete that many, max are" = "Du kannst nicht so viele löschen, max sind";
 
 /* About */
 "You have the latest ..." = "Sie haben die neueste ...";

@@ -1467,14 +1467,14 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Select snapshots to keep" translatesAutoresizingMaskIntoConstraints="NO" id="eIC-WC-dFt">
-                                <rect key="frame" x="17" y="16" width="154" height="54"/>
+                                <rect key="frame" x="17" y="16" width="172" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="6im-Da-AYX">
-                                    <rect key="frame" x="3" y="3" width="148" height="36"/>
+                                    <rect key="frame" x="3" y="3" width="166" height="36"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIT-11-DzH">
-                                            <rect key="frame" x="8" y="5" width="75" height="26"/>
+                                            <rect key="frame" x="8" y="5" width="88" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="DTJ-Gc-ILX">
                                                 <font key="font" metaFont="system"/>
@@ -1483,7 +1483,7 @@
                                             </comboBoxCell>
                                         </comboBox>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yc7-4i-U6Z">
-                                            <rect key="frame" x="82" y="5" width="63" height="26"/>
+                                            <rect key="frame" x="101" y="5" width="63" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="2En-fo-pee">
                                                 <font key="font" metaFont="system"/>
@@ -1495,10 +1495,10 @@
                                 </view>
                             </box>
                             <box fixedFrame="YES" title="Select to delete" translatesAutoresizingMaskIntoConstraints="NO" id="zGR-lC-3fH">
-                                <rect key="frame" x="180" y="16" width="226" height="82"/>
+                                <rect key="frame" x="191" y="16" width="215" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="xEQ-RE-oqQ">
-                                    <rect key="frame" x="3" y="3" width="220" height="64"/>
+                                    <rect key="frame" x="3" y="3" width="209" height="64"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPi-Xv-Xr2">
@@ -1510,7 +1510,7 @@
                                             </connections>
                                         </slider>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-CX-EDa">
-                                            <rect key="frame" x="171" y="12" width="41" height="22"/>
+                                            <rect key="frame" x="163" y="12" width="41" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" bezelStyle="round" id="5Ve-ra-V9b">
                                                 <font key="font" metaFont="system"/>
@@ -1527,7 +1527,7 @@
                                             </connections>
                                         </slider>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RoD-gk-Zpc">
-                                            <rect key="frame" x="171" y="35" width="41" height="22"/>
+                                            <rect key="frame" x="163" y="35" width="41" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="right" bezelStyle="round" id="uWO-KW-vuL">
                                                 <font key="font" metaFont="system"/>
@@ -1631,7 +1631,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jM4-au-Qun">
-                                <rect key="frame" x="15" y="66" width="78" height="32"/>
+                                <rect key="frame" x="15" y="66" width="92" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AGP-WH-AJy">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
