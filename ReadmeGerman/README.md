@@ -94,7 +94,7 @@ Es gibt zwei kurze YouTube-Videos von RsyncOSX:
 
 #### SwiftLint und SwiftFormat
 
-Ich benutze [SwiftLint](https://github.com/realm/SwiftLint) als Werkzeug, um lesbaren Code zu schreiben. Ich benutze auch die [Schnell-Skripte](https://github.com/PaulTaykalo/swift-scripts) von Paul Taykalo, um nicht verwendeten Code zu finden und zu löschen. Ein weiteres Werkzeug ist [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) um schnellen Code zu formatieren.
+Ich benutze [SwiftLint](https://github.com/realm/SwiftLint) als Werkzeug, um lesbaren Code zu schreiben. Ich benutze auch die [swift-scripts](https://github.com/PaulTaykalo/swift-scripts) von Paul Taykalo, um nicht verwendeten Code zu finden und zu löschen. Ein weiteres Werkzeug ist [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) um schnellen Code zu formatieren.
 
 Es gibt etwa 130 Klassen mit 14.900 Codezeilen in RsyncOSX.
 

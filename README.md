@@ -20,8 +20,6 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 
 ### Localization
 
-There is a [German readme here](https://github.com/rsyncOSX/RsyncOSX/tree/version-6.1.0/ReadmeGerman/README.md).
-
 [RsyncOSX speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
 - German - by [Andre](https://github.com/andre68723) (is completed but not yet released)
@@ -30,7 +28,7 @@ There is a [German readme here](https://github.com/rsyncOSX/RsyncOSX/tree/versio
 
 Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx) to translate the xliff files which are imported into Xcode when translated. [Crowdin is free for open source projects](https://crowdin.com/page/open-source-project-setup-request).
 
-The German translation is work in progress. The Chinese (Simplified) and Norwegian translations are also being updated. A new updated release will be available in January 2020.
+The German translation is work in progress. The Chinese (Simplified) and Norwegian translations are also being updated. A new updated release will be available in January 2020. There is a [German readme here](https://github.com/rsyncOSX/RsyncOSX/tree/version-6.1.0/ReadmeGerman/README.md).
 
 ### Version of rsync
 
