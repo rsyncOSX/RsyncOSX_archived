@@ -304,6 +304,7 @@ extension ViewControllerVerify: NSTableViewDelegate {
 
 extension ViewControllerVerify: UpdateProgress {
     func processTermination() {
+        self.processRefererence = nil
         if self.gotremoteinfo == false {
             if self.complete == false {
                 self.publishnumbers(outputprocess: self.outputprocess, local: true)
@@ -326,7 +327,6 @@ extension ViewControllerVerify: UpdateProgress {
             let gotit: String = NSLocalizedString("Completed ...", comment: "Verify")
             self.gotit.stringValue = gotit
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.processRefererence = nil
         }
     }
 
