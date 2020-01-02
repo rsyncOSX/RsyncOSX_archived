@@ -77,14 +77,16 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     @IBAction func verify(_: NSButton) {
+        guard self.processRefererence == nil else {
+            print("running")
+            return
+        }
         if let index = self.index() {
+            self.estimatedindex = self.index()
             self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: index, display: .verify).displayrsyncpath ?? ""
-            self.verifyradiobutton.state = .on
-            self.changedradiobutton.state = .off
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
             let gotit: String = NSLocalizedString("Verifying, please wait...", comment: "Verify")
             self.gotit.stringValue = gotit
-            self.enabledisablebuttons(enable: false)
             self.working.startAnimation(nil)
             if let arguments = self.configurations?.arguments4verify(index: index) {
                 self.outputprocess = OutputProcess()
@@ -95,14 +97,16 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     @IBAction func changed(_: NSButton) {
+        guard self.processRefererence == nil else {
+            print("running")
+            return
+        }
         if let index = self.index() {
+            self.estimatedindex = self.index()
             self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: index, display: .restore).displayrsyncpath ?? ""
-            self.changedradiobutton.state = .on
-            self.verifyradiobutton.state = .off
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
             let gotit: String = NSLocalizedString("Computing changed, please wait...", comment: "Verify")
             self.gotit.stringValue = gotit
-            self.enabledisablebuttons(enable: false)
             self.working.startAnimation(nil)
             if let arguments = self.configurations?.arguments4restore(index: index, argtype: .argdryRun) {
                 self.outputprocess = OutputProcess()
@@ -139,6 +143,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     // Abort button
     @IBAction func abort(_: NSButton) {
         self.processRefererence?.abortProcess()
+        self.processRefererence = nil
     }
 
     override func viewDidLoad() {
@@ -154,11 +159,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         if self.index() != nil, self.reload() {
             self.resetinfo()
             self.setinfo()
-            self.enabledisablebuttons(enable: false)
-            self.estimatedindex = self.index()
-            let gotit: String = NSLocalizedString("Getting information, please wait ...", comment: "Verify")
-            self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.gotit.stringValue = gotit
             self.gotremoteinfo = false
             self.complete = false
             let datelastbackup = self.configurations?.getConfigurations()[self.index()!].dateRun ?? ""
@@ -171,7 +171,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             }
             let numberlastbackup = self.configurations?.getConfigurations()[self.index()!].dayssincelastbackup ?? ""
             self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
-            self.estimateremoteinfo(index: self.index()!, local: true)
         } else {
             _ = self.reload()
         }
@@ -184,8 +183,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
                 let message: String = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
                 self.gotit.stringValue = message
-                self.verifybutton.isEnabled = false
-                self.changedbutton.isEnabled = false
                 self.resetinfo()
                 return false
             }
@@ -193,8 +190,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
                 let dontgotit: String = NSLocalizedString("Seems not to be connected...", comment: "Verify")
                 self.gotit.stringValue = dontgotit
-                self.verifybutton.isEnabled = false
-                self.changedbutton.isEnabled = false
                 self.resetinfo()
                 return false
             }
@@ -211,17 +206,13 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             }
             guard self.index() != nil else { return false }
         }
+        self.gotit.stringValue = ""
         return true
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.lastindex = self.index()
-    }
-
-    private func enabledisablebuttons(enable: Bool) {
-        self.verifybutton.isEnabled = enable
-        self.changedbutton.isEnabled = enable
     }
 
     private func estimateremoteinfo(index: Int, local: Bool) {
@@ -313,13 +304,13 @@ extension ViewControllerVerify: NSTableViewDelegate {
 
 extension ViewControllerVerify: UpdateProgress {
     func processTermination() {
+        self.processRefererence = nil
         if self.gotremoteinfo == false {
             if self.complete == false {
                 self.publishnumbers(outputprocess: self.outputprocess, local: true)
             } else {
                 self.gotremoteinfo = true
                 self.publishnumbers(outputprocess: self.outputprocess, local: false)
-                self.enabledisablebuttons(enable: true)
             }
             if let index = self.index() {
                 if self.complete == false {
@@ -336,8 +327,6 @@ extension ViewControllerVerify: UpdateProgress {
             let gotit: String = NSLocalizedString("Completed ...", comment: "Verify")
             self.gotit.stringValue = gotit
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.changedbutton.isEnabled = true
-            self.verifybutton.isEnabled = true
         }
     }
 
