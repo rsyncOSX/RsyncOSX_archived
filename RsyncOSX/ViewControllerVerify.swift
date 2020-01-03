@@ -77,12 +77,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     @IBAction func verify(_: NSButton) {
-        guard self.processRefererence == nil else {
-            print("running")
-            return
-        }
+        guard self.processRefererence == nil else { return }
         if let index = self.index() {
-            self.estimatedindex = self.index()
+            self.estimatedindex = index
             self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: index, display: .verify).displayrsyncpath ?? ""
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
             let gotit: String = NSLocalizedString("Verifying, please wait...", comment: "Verify")
@@ -97,12 +94,9 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     @IBAction func changed(_: NSButton) {
-        guard self.processRefererence == nil else {
-            print("running")
-            return
-        }
+        guard self.processRefererence == nil else { return }
         if let index = self.index() {
-            self.estimatedindex = self.index()
+            self.estimatedindex = index
             self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: index, display: .restore).displayrsyncpath ?? ""
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .white)
             let gotit: String = NSLocalizedString("Computing changed, please wait...", comment: "Verify")
