@@ -95,7 +95,7 @@ There are two short YouTube videos of RsyncOSX:
   - the video also shows how to create the two local ssh certificates for password less logins to remote server
 - [adding and executing the first backup](https://youtu.be/8oe1lKgiDx8)
 
-#### SwiftLint and SwiftFormat
+### SwiftLint and SwiftFormat
 
 I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. I am also using Paul Taykalo´s [swift-scripts](https://github.com/PaulTaykalo/swift-scripts) to find and delete not used code. Another tool is [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) for formatting swift code.
 
