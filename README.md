@@ -22,7 +22,8 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 
 [RsyncOSX speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
-- German - by [Andre](https://github.com/andre68723) (is completed but not yet released)
+- German - by [Andre](https://github.com/andre68723), is completed and released as release candidate
+- French - work in progress, translated by [crowdin](https://crowdin.com/project/rsyncosx) and needs proofreading
 - Norwegian - by me
 - English - by me, the base language of RsyncOSX
 
