@@ -64,7 +64,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.info.stringValue = Infoexecute().info(num: 5)
             return
         }
-        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
+        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/" + ViewControllerReference.shared.namersyncosssched
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
         NSApp.terminate(self)
     }
