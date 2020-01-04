@@ -232,6 +232,9 @@
 		E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageAllprofilesAPI.swift; sourceTree = "<group>"; };
 		E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSsh.swift; sourceTree = "<group>"; };
 		E905EDB31FED05B10044234E /* QuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickBackup.swift; sourceTree = "<group>"; };
+		E908EF2F23BF58F900491EE1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		E908EF3023BF58F900491EE1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E908EF3123BF58F900491EE1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSnapshots.swift; sourceTree = "<group>"; };
 		E912020622B3CFD90056AEFE /* Remotefilelist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remotefilelist.swift; sourceTree = "<group>"; };
 		E914B7712131197B00FFE398 /* extensionsSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsSchedules.swift; sourceTree = "<group>"; };
@@ -925,6 +928,7 @@
 				nb,
 				"zh-Hans",
 				de,
+				fr,
 			);
 			mainGroup = A04492791D658EE800B3CE17;
 			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
@@ -1174,6 +1178,7 @@
 				E92FD72922732134009A6042 /* nb */,
 				E92037AF22741D9900CC3EE5 /* zh-Hans */,
 				E94C935723B636CA00C1968D /* de */,
+				E908EF2F23BF58F900491EE1 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1184,6 +1189,7 @@
 				E9DF6DD4227976030083405C /* nb */,
 				E96604E5228A7FAB00BE6161 /* zh-Hans */,
 				E94C935923B636CA00C1968D /* de */,
+				E908EF3123BF58F900491EE1 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1194,6 +1200,7 @@
 				E9DF6DD7227976030083405C /* nb */,
 				E9DE2CCE228A835C003BC663 /* zh-Hans */,
 				E94C935823B636CA00C1968D /* de */,
+				E908EF3023BF58F900491EE1 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
