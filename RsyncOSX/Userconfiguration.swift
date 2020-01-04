@@ -54,10 +54,18 @@ struct Userconfiguration {
         }
         // Paths rsyncOSX and RsyncOSXsched
         if let pathrsyncosx = dict.value(forKey: "pathrsyncosx") as? String {
-            ViewControllerReference.shared.pathrsyncosx = pathrsyncosx
+            if pathrsyncosx.isEmpty == true {
+                ViewControllerReference.shared.pathrsyncosx = nil
+            } else {
+                ViewControllerReference.shared.pathrsyncosx = pathrsyncosx
+            }
         }
         if let pathrsyncosxsched = dict.value(forKey: "pathrsyncosxsched") as? String {
-            ViewControllerReference.shared.pathrsyncosxsched = pathrsyncosxsched
+            if pathrsyncosxsched.isEmpty == true {
+                ViewControllerReference.shared.pathrsyncosxsched = nil
+            } else {
+                ViewControllerReference.shared.pathrsyncosxsched = pathrsyncosxsched
+            }
         }
         // No logging, minimum logging or full logging
         if let minimumlogging = dict.value(forKey: "minimumlogging") as? Int {
