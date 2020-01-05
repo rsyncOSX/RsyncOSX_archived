@@ -52,9 +52,11 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else {
             self.info.stringValue = Infoexecute().info(num: 5)
+            self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             return
         }
-        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched! + ViewControllerReference.shared.namersyncosssched
+        let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/" + ViewControllerReference.shared.namersyncosssched
+        guard running.verifypatexists(pathorfilename: pathtorsyncosxschedapp) == true else { return }
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
         NSApp.terminate(self)
     }
@@ -228,14 +230,13 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     func menuappicons() {
         globalMainQueue.async { () -> Void in
             let running = Running()
-            guard running.enablemenuappbutton == true else {
-                if running.menuappnoconfig == false {
-                    self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                    self.info.stringValue = Infoexecute().info(num: 5)
-                }
-                return
+            if running.rsyncOSXschedisrunning == true {
+                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
+                self.info.stringValue = Infoexecute().info(num: 5)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+            } else {
+                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
-            self.menuappisrunning.image = #imageLiteral(resourceName: "red")
         }
     }
 }
