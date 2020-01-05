@@ -62,6 +62,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else {
             self.info.stringValue = Infoexecute().info(num: 5)
+            self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             return
         }
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/" + ViewControllerReference.shared.namersyncosssched
@@ -271,14 +272,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func menuappicons() {
         globalMainQueue.async { () -> Void in
             let running = Running()
-            guard running.enablemenuappbutton == true else {
-                if running.menuappnoconfig == false {
-                    self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                    self.info.stringValue = Infoexecute().info(num: 5)
-                }
-                return
+            if running.rsyncOSXschedisrunning == true {
+                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
+                self.info.stringValue = Infoexecute().info(num: 5)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+            } else {
+                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
-            self.menuappisrunning.image = #imageLiteral(resourceName: "red")
         }
     }
 

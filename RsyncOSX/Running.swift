@@ -16,24 +16,6 @@ final class Running {
     var rsyncOSXschedisrunning: Bool = false
     var menuappnoconfig: Bool = true
 
-    var enablemenuappbutton: Bool {
-        // Check the flags
-        guard ViewControllerReference.shared.pathrsyncosxsched != nil else {
-            self.menuappnoconfig = true
-            return false
-        }
-        guard ViewControllerReference.shared.pathrsyncosxsched!.isEmpty == false else {
-            self.menuappnoconfig = true
-            return false
-        }
-        self.menuappnoconfig = false
-        if self.rsyncOSXschedisrunning == true {
-            return false
-        } else {
-            return true
-        }
-    }
-
     func verifypatexists(pathorfilename: String) -> Bool {
         let fileManager = FileManager.default
         guard fileManager.fileExists(atPath: pathorfilename) else { return false }
