@@ -34,6 +34,12 @@ final class Running {
         }
     }
 
+    func verifypatexists(pathorfilename: String) -> Bool {
+        let fileManager = FileManager.default
+        guard fileManager.fileExists(atPath: pathorfilename) else { return false }
+        return true
+    }
+
     init() {
         // Get all running applications
         let workspace = NSWorkspace.shared
