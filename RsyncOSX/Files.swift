@@ -77,7 +77,10 @@ class Files: ReportFileerror {
         case .profileRoot:
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let docuDir = (paths.firstObject as? String)!
-            let profilePath = docuDir + self.configpath! + Macserialnumber().getMacSerialNumber()!
+            if ViewControllerReference.shared.macserialnumber == nil {
+                ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
+            }
+            let profilePath = docuDir + self.configpath! + (ViewControllerReference.shared.macserialnumber ?? "")
             self.rootpath = profilePath
         case .sshRoot:
             self.rootpath = NSHomeDirectory() + "/.ssh/"
