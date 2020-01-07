@@ -806,7 +806,7 @@
 "jjS-gu-o5C.title" = "Vérifier les données";
 
 /* Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV"; */
-"JKJ-Kp-IuV.title" = "Double-cliquez sur la ligne ou le raccourci <unk> R pour exécuter la tâche ou <unk> I pour obtenir des infos ...";
+"JKJ-Kp-IuV.title" = "Double-cliquez sur la ligne ou le raccourci ⌘R pour exécuter la tâche ou ⌘I pour obtenir des infos ...";
 
 /* Class = "NSButtonCell"; title = "verify"; ObjectID = "jTS-YA-55S"; */
 "jTS-YA-55S.title" = "vérifier";
@@ -1307,7 +1307,7 @@
 "uQy-DD-JDr.title" = "RsyncOSX";
 
 /* Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "uRN-6L-8Nq"; */
-"uRN-6L-8Nq.title" = "Ko :";
+"uRN-6L-8Nq.title" = "kB :";
 
 /* Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF"; */
 "uUH-RU-JKF.title" = "Supprimer les paramètres";
