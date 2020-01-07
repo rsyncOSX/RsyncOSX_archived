@@ -56,7 +56,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             return
         }
         let pathtorsyncosxschedapp: String = ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/" + ViewControllerReference.shared.namersyncosssched
-        guard running.verifypatexists(pathorfilename: pathtorsyncosxschedapp) == true else { return }
+        guard running.verifypathexists(pathorfilename: pathtorsyncosxschedapp) == true else { return }
         NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
         NSApp.terminate(self)
     }
