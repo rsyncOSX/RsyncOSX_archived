@@ -877,9 +877,9 @@
       </trans-unit>
       <trans-unit id="JKJ-Kp-IuV.title" xml:space="preserve">
         <source>Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ...</source>
-        <target state="translated">Double-cliquez sur la ligne ou le raccourci &lt;unk&gt; R pour exécuter la tâche ou &lt;unk&gt; I pour obtenir des infos ...</target>
+        <target state="translated">Double-cliquez sur la ligne ou le raccourci ⌘R pour exécuter la tâche ou ⌘I pour obtenir des infos ...</target>
         <note>Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV";</note>
-      </trans-unit>
+      <alt-trans><target>Double-cliquez sur la ligne ou le raccourci &lt;unk&gt; R pour exécuter la tâche ou &lt;unk&gt; I pour obtenir des infos ...</target></alt-trans></trans-unit>
       <trans-unit id="Jil-HV-f4r.title" xml:space="preserve">
         <source>Text Cell</source>
         <target state="translated">Cellule de texte</target>
@@ -2397,9 +2397,9 @@
       </trans-unit>
       <trans-unit id="uRN-6L-8Nq.title" xml:space="preserve">
         <source>kB :</source>
-        <target state="translated">Ko :</target>
+        <target state="translated">kB :</target>
         <note>Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "uRN-6L-8Nq";</note>
-      </trans-unit>
+      <alt-trans><target>Ko :</target></alt-trans></trans-unit>
       <trans-unit id="uUH-RU-JKF.title" xml:space="preserve">
         <source>Remove parameters</source>
         <target state="translated">Supprimer les paramètres</target>
@@ -3227,9 +3227,9 @@
       </trans-unit>
       <trans-unit id="⌘A to abort or wait..." xml:space="preserve">
         <source>⌘A to abort or wait...</source>
-        <target state="translated">&lt;unk&gt; A interrompre ou attendre...</target>
+        <target state="translated">⌘A interrompre ou attendre...</target>
         <note>Execute</note>
-      </trans-unit>
+      <alt-trans><target>&lt;unk&gt; A interrompre ou attendre...</target></alt-trans></trans-unit>
     </body>
   </file>
 </xliff>
