@@ -261,9 +261,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             }
         }
         guard Validatenewconfigs(dict: dict).validated == true else { return }
-        self.configurations!.addNewConfigurations(dict)
+        self.configurations?.addNewConfigurations(dict)
         self.newconfigurations?.appendnewConfigurations(dict: dict)
-        self.tabledata = self.newconfigurations!.getnewConfigurations()
+        self.tabledata = self.newconfigurations?.getnewConfigurations()
         globalMainQueue.async { () -> Void in
             self.addtable.reloadData()
         }
