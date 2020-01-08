@@ -16,7 +16,7 @@ final class Running {
     var rsyncOSXschedisrunning: Bool = false
     var menuappnoconfig: Bool = true
 
-    func verifypatexists(pathorfilename: String) -> Bool {
+    func verifypathexists(pathorfilename: String) -> Bool {
         let fileManager = FileManager.default
         guard fileManager.fileExists(atPath: pathorfilename) else { return false }
         return true

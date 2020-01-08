@@ -19,6 +19,7 @@ struct ConvertOneConfig {
             "hiddenID": self.config!.hiddenID,
             "localCatalogCellID": self.config!.localCatalog,
             "offsiteCatalogCellID": self.config!.offsiteCatalog,
+            "offsiteUsernameID": self.config!.offsiteUsername,
             "offsiteServerCellID": self.config!.offsiteServer,
             "backupIDCellID": self.config!.backupID,
             "runDateCellID": self.config!.dateRun ?? "",

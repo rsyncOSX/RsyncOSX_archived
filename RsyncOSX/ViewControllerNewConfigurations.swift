@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length line_length cyclomatic_complexity trailing_comma type_body_length
+//  swiftlint:disable function_body_length line_length cyclomatic_complexity trailing_comma
 
 import Cocoa
 import Foundation
@@ -224,17 +224,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             "singleFile": 0,
             "batch": 0,
         ]
-        if self.backuptypeselected == .snapshots {
-            dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
-            dict.setValue(1, forKey: "snapshotnum")
-            self.outputprocess = OutputProcess()
-            self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
-        } else if self.backuptypeselected == .syncremote {
-            guard self.offsiteServer.stringValue.isEmpty == false else { return }
-            dict.setValue(ViewControllerReference.shared.syncremote, forKey: "task")
-        } else if self.backuptypeselected == .singlefile {
-            dict.setValue(1, forKey: "singleFile")
-        }
         if !self.localCatalog.stringValue.hasSuffix("/"), self.backuptypeselected != .singlefile, self.addingtrailingbackslash.state == .off {
             self.localCatalog.stringValue += "/"
             dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
@@ -248,16 +237,17 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                 dict.setObject(port, forKey: "sshport" as NSCopying)
             }
         }
-        // If add button is selected without any values
-        guard self.localCatalog.stringValue != "/" else {
-            self.offsiteCatalog.stringValue = ""
-            self.localCatalog.stringValue = ""
-            return
-        }
-        guard self.offsiteCatalog.stringValue != "/" else {
-            self.offsiteCatalog.stringValue = ""
-            self.localCatalog.stringValue = ""
-            return
+        if self.backuptypeselected == .snapshots {
+            dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
+            dict.setValue(1, forKey: "snapshotnum")
+            guard Validatenewconfigs(dict: dict).validated == true else { return }
+            self.outputprocess = OutputProcess()
+            self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
+        } else if self.backuptypeselected == .syncremote {
+            guard self.offsiteServer.stringValue.isEmpty == false else { return }
+            dict.setValue(ViewControllerReference.shared.syncremote, forKey: "task")
+        } else if self.backuptypeselected == .singlefile {
+            dict.setValue(1, forKey: "singleFile")
         }
         if ViewControllerReference.shared.checkinput {
             let config: Configuration = Configuration(dictionary: dict)
@@ -270,9 +260,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                 guard answer == true else { return }
             }
         }
-        self.configurations!.addNewConfigurations(dict)
+        guard Validatenewconfigs(dict: dict).validated == true else { return }
+        self.configurations?.addNewConfigurations(dict)
         self.newconfigurations?.appendnewConfigurations(dict: dict)
-        self.tabledata = self.newconfigurations!.getnewConfigurations()
+        self.tabledata = self.newconfigurations?.getnewConfigurations()
         globalMainQueue.async { () -> Void in
             self.addtable.reloadData()
         }
