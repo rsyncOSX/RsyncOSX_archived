@@ -67,7 +67,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
             config[self.index!].snapshotnum = Int(self.snapshotnum.stringValue)
         }
         let dict = ConvertOneConfig(config: config[self.index!]).dict
-        guard Validatenewconfigs(dict: dict).validated == true else { return }
+        guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
         self.configurations!.updateConfigurations(config[self.index!], index: self.index!)
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
