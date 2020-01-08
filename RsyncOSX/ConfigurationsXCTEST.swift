@@ -39,6 +39,7 @@ class ConfigurationsXCTEST: Configurations {
         dict.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
         dict.removeObject(forKey: "singleFile")
         array.append(dict)
+        guard Validatenewconfigs(dict: dict).validated == true else { return }
         self.appendconfigurationstomemory(dict: array[array.count - 1])
     }
 
