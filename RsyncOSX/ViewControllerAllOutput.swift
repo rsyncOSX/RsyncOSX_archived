@@ -44,6 +44,7 @@ extension ViewControllerAllOutput: NSTableViewDataSource {
 extension ViewControllerAllOutput: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "outputID"), owner: nil) as? NSTableCellView {
+            guard row < self.getoutputDelegate?.getalloutput().count ?? 0 else { return nil }
             cell.textField?.stringValue = self.getoutputDelegate?.getalloutput()[row] ?? ""
             return cell
         } else {
