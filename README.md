@@ -14,7 +14,9 @@ Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled t
 
 ### Remote servers
 
-RsyncOSX is dependent on [setting up password less logins for remote servers](https://rsyncosx.github.io/Remotelogins). Both ssh-keys and rsync daemon setup are possible. It is advised utilizing ssh-keys because communication between source and destination (client and server) is encrypted.
+If destination is a **remote server**, RsyncOSX is dependent on [setting up password-less logins](https://rsyncosx.github.io/Remotelogins). Both ssh-keys and rsync daemon setup are possible. It is advised utilizing ssh-keys because communication between source and destination (client and server) is encrypted.
+
+If destination is a **local attached volume**, the above is not relevant.
 
 ### Signing and notarizing
 
