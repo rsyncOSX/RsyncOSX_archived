@@ -12,7 +12,7 @@ RsyncOSX is compiled with support for **macOS El Capitan version 10.11 - macOS C
 
 Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://github.com/rsyncOSX/RsyncOSXsched).
 
-## Remote servers
+### Remote servers
 
 RsyncOSX is dependent on [setting up password less logins for remote servers](https://rsyncosx.github.io/Remotelogins). Both ssh-keys and rsync daemon setup are possible. It is advised utilizing ssh-keys because communication between source and destination (client and server) is encrypted.
 
