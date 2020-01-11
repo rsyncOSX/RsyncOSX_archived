@@ -26,7 +26,7 @@ final class Macserialnumber {
         // (so we're not responsible for releasing it)
         // and pass it back as a String or, if it fails, an empty string
         // return (serialNumberAsCFString!.takeUnretainedValue() as? String) ?? ""
-        return (serialNumberAsCFString!.takeRetainedValue() as? String) ?? ""
+        return (serialNumberAsCFString?.takeRetainedValue() as? String) ?? "C00123456789"
     }
 
     // Function for returning the MacSerialNumber
