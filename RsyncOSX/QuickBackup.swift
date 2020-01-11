@@ -141,7 +141,12 @@ extension QuickBackup: UpdateProgress {
 
     func fileHandler() {
         weak var localprocessupdateDelegate: Reloadandrefresh?
+        weak var outputeverythingDelegate: ViewOutputDetails?
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
         localprocessupdateDelegate?.reloadtabledata()
+        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.reloadtable()
+        }
     }
 }
