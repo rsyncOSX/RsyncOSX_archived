@@ -119,7 +119,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         }
         if secondstostart > 60 {
             self.selectedstart.isHidden = false
-            self.selectedstart.stringValue = startime.localized_string_from_date()
+            self.selectedstart.stringValue = startime.localized_string_from_date() + " " + String(secondstostart)
             self.selectedstart.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             self.weeklybutton.isEnabled = true
             self.dailybutton.isEnabled = true
