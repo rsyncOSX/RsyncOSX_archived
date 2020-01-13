@@ -120,6 +120,7 @@ extension ViewControllerMain: RsyncError {
         globalMainQueue.async { () -> Void in
             self.seterrorinfo(info: "Error")
             self.showrsynccommandmainview()
+            guard ViewControllerReference.shared.haltonerror == true else { return }
             self.deselect()
             // Abort any operations
             if let process = self.process {

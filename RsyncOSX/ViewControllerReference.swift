@@ -97,6 +97,8 @@ final class ViewControllerReference {
     var environmentvalue: String?
     // Check input when loading schedules and adding config
     var checkinput: Bool = false
+    // Halt on error
+    var haltonerror: Bool = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
