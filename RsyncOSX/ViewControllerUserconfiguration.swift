@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length cyclomatic_complexity
+// swiftlint:disable line_length type_body_length cyclomatic_complexity file_length
 
 import Cocoa
 import Foundation
@@ -42,6 +42,18 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet var environmentvalue: NSTextField!
     @IBOutlet var enableenvironment: NSButton!
     @IBOutlet var togglecheckdatabutton: NSButton!
+    @IBOutlet var haltonerror: NSButton!
+
+    @IBAction func togglehaltonerror(_: NSButton) {
+        if ViewControllerReference.shared.haltonerror {
+            self.haltonerror.state = .off
+            ViewControllerReference.shared.haltonerror = false
+        } else {
+            self.haltonerror.state = .on
+            ViewControllerReference.shared.haltonerror = true
+        }
+        self.setdirty()
+    }
 
     @IBAction func togglecheckdata(_: NSButton) {
         if ViewControllerReference.shared.checkinput {
@@ -64,6 +76,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         default:
             return
         }
+        self.setdirty()
     }
 
     @IBAction func toggleautomaticexecutelocalvolumes(_: NSButton) {
@@ -297,26 +310,16 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     override func viewDidAppear() {
         super.viewDidAppear()
         self.dirty = false
-        self.checkUserConfig()
-        self.verifyrsync()
         self.marknumberofdayssince.stringValue = String(ViewControllerReference.shared.marknumberofdayssince)
         self.reload = false
         self.pathRsyncOSXsched.stringValue = ViewControllerReference.shared.pathrsyncosxsched ?? ""
         self.pathRsyncOSX.stringValue = ViewControllerReference.shared.pathrsyncosx ?? ""
+        self.checkUserConfig()
+        self.verifyrsync()
         self.statuslighttemppath.isHidden = true
         self.statuslightpathrsync.isHidden = true
         self.statuslightpathrsyncosx.isHidden = true
         self.statuslightpathrsyncosxsched.isHidden = true
-        if ViewControllerReference.shared.automaticexecutelocalvolumes {
-            self.automaticexecutelocalvolumes.state = .on
-        } else {
-            self.automaticexecutelocalvolumes.state = .off
-        }
-        if ViewControllerReference.shared.checkinput {
-            self.togglecheckdatabutton.state = .on
-        } else {
-            self.togglecheckdatabutton.state = .off
-        }
     }
 
     // Function for check and set user configuration
@@ -356,6 +359,21 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.environmentvalue.stringValue = ViewControllerReference.shared.environmentvalue!
         } else {
             self.environmentvalue.stringValue = ""
+        }
+        if ViewControllerReference.shared.automaticexecutelocalvolumes {
+            self.automaticexecutelocalvolumes.state = .on
+        } else {
+            self.automaticexecutelocalvolumes.state = .off
+        }
+        if ViewControllerReference.shared.checkinput {
+            self.togglecheckdatabutton.state = .on
+        } else {
+            self.togglecheckdatabutton.state = .off
+        }
+        if ViewControllerReference.shared.haltonerror {
+            self.haltonerror.state = .on
+        } else {
+            self.haltonerror.state = .off
         }
     }
 }

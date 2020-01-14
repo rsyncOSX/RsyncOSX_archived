@@ -95,6 +95,13 @@ struct Userconfiguration {
         if let environmentvalue = dict.value(forKey: "environmentvalue") as? String {
             ViewControllerReference.shared.environmentvalue = environmentvalue
         }
+        if let haltonerror = dict.value(forKey: "haltonerror") as? Int {
+            if haltonerror == 1 {
+                ViewControllerReference.shared.haltonerror = true
+            } else {
+                ViewControllerReference.shared.haltonerror = false
+            }
+        }
     }
 
     init(userconfigRsyncOSX: [NSDictionary]) {
