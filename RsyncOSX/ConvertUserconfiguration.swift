@@ -21,6 +21,7 @@ struct ConvertUserconfiguration {
         var restorepath: String?
         var marknumberofdayssince: String?
         var automaticexecutelocalvolumes: Int?
+        var haltonerror: Int?
         var array = [NSMutableDictionary]()
 
         if ViewControllerReference.shared.rsyncversion3 {
@@ -54,6 +55,11 @@ struct ConvertUserconfiguration {
         } else {
             automaticexecutelocalvolumes = 0
         }
+        if ViewControllerReference.shared.haltonerror == true {
+            haltonerror = 1
+        } else {
+            haltonerror = 0
+        }
         marknumberofdayssince = String(ViewControllerReference.shared.marknumberofdayssince)
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync ?? 0 as Int,
@@ -62,6 +68,7 @@ struct ConvertUserconfiguration {
             "fulllogging": fulllogging! as Int,
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
             "automaticexecutelocalvolumes": automaticexecutelocalvolumes! as Int,
+            "haltonerror": haltonerror ?? 0 as Int,
         ]
         if rsyncpath != nil {
             dict.setObject(rsyncpath!, forKey: "rsyncPath" as NSCopying)
@@ -87,6 +94,7 @@ struct ConvertUserconfiguration {
         if ViewControllerReference.shared.environmentvalue != nil {
             dict.setObject(ViewControllerReference.shared.environmentvalue!, forKey: "environmentvalue" as NSCopying)
         }
+
         array.append(dict)
         self.userconfiguration = array
     }
