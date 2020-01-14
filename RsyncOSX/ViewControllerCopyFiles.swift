@@ -204,6 +204,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
             let indexes = myTableViewFromNotification.selectedRowIndexes
             self.commandString.stringValue = ""
             if let index = indexes.first {
+                self.copyfiles = nil
                 guard self.getremotefiles(index: index) == true else { return }
                 self.info.stringValue = Infocopyfiles().info(num: 0)
                 self.restorebutton.title = "Estimate"
