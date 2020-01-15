@@ -17,8 +17,6 @@ struct ConvertUserconfiguration {
         var detailedlogging: Int?
         var minimumlogging: Int?
         var fulllogging: Int?
-        var rsyncpath: String?
-        var restorepath: String?
         var marknumberofdayssince: String?
         var automaticexecutelocalvolumes: Int?
         var haltonerror: Int?
@@ -44,12 +42,6 @@ struct ConvertUserconfiguration {
         } else {
             fulllogging = 0
         }
-        if ViewControllerReference.shared.localrsyncpath != nil {
-            rsyncpath = ViewControllerReference.shared.localrsyncpath!
-        }
-        if ViewControllerReference.shared.restorePath != nil {
-            restorepath = ViewControllerReference.shared.restorePath!
-        }
         if ViewControllerReference.shared.automaticexecutelocalvolumes {
             automaticexecutelocalvolumes = 1
         } else {
@@ -70,31 +62,30 @@ struct ConvertUserconfiguration {
             "automaticexecutelocalvolumes": automaticexecutelocalvolumes! as Int,
             "haltonerror": haltonerror ?? 0 as Int,
         ]
-        if rsyncpath != nil {
-            dict.setObject(rsyncpath!, forKey: "rsyncPath" as NSCopying)
+        if let rsyncpath = ViewControllerReference.shared.localrsyncpath {
+            dict.setObject(rsyncpath, forKey: "rsyncPath" as NSCopying)
         }
-        if restorepath != nil {
-            dict.setObject(restorepath!, forKey: "restorePath" as NSCopying)
+        if let restorepath = ViewControllerReference.shared.restorePath {
+            dict.setObject(restorepath, forKey: "restorePath" as NSCopying)
         } else {
             dict.setObject("", forKey: "restorePath" as NSCopying)
         }
-        if ViewControllerReference.shared.pathrsyncosx != nil {
-            dict.setObject(ViewControllerReference.shared.pathrsyncosx!, forKey: "pathrsyncosx" as NSCopying)
-        } else {
-            dict.setObject("", forKey: "pathrsyncosx" as NSCopying)
+        if let pathrsyncosx = ViewControllerReference.shared.pathrsyncosx {
+            if pathrsyncosx.isEmpty == false {
+                dict.setObject(pathrsyncosx, forKey: "pathrsyncosx" as NSCopying)
+            }
         }
-        if ViewControllerReference.shared.pathrsyncosxsched != nil {
-            dict.setObject(ViewControllerReference.shared.pathrsyncosxsched!, forKey: "pathrsyncosxsched" as NSCopying)
-        } else {
-            dict.setObject("", forKey: "pathrsyncosxsched" as NSCopying)
+        if let pathrsyncosxsched = ViewControllerReference.shared.pathrsyncosxsched {
+            if pathrsyncosxsched.isEmpty == false {
+                dict.setObject(pathrsyncosxsched, forKey: "pathrsyncosxsched" as NSCopying)
+            }
         }
-        if ViewControllerReference.shared.environment != nil {
-            dict.setObject(ViewControllerReference.shared.environment!, forKey: "environment" as NSCopying)
+        if let environment = ViewControllerReference.shared.environment {
+            dict.setObject(environment, forKey: "environment" as NSCopying)
         }
-        if ViewControllerReference.shared.environmentvalue != nil {
-            dict.setObject(ViewControllerReference.shared.environmentvalue!, forKey: "environmentvalue" as NSCopying)
+        if let environmentvalue = ViewControllerReference.shared.environmentvalue {
+            dict.setObject(environmentvalue, forKey: "environmentvalue" as NSCopying)
         }
-
         array.append(dict)
         self.userconfiguration = array
     }
