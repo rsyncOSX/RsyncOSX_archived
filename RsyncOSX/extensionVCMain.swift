@@ -329,25 +329,6 @@ extension ViewControllerMain: SetLocalRemoteInfo {
     }
 }
 
-extension ViewControllerMain: Allerrors {
-    func allerrors(outputprocess: OutputProcess?) {
-        globalMainQueue.async { () -> Void in
-            self.seterrorinfo(info: "Error")
-        }
-        self.outputprocess = nil
-        if self.outputerrors == nil {
-            self.outputerrors = OutputErrors()
-        }
-        for i in 0 ..< (outputprocess?.getOutput()?.count ?? 0) {
-            self.outputerrors!.addLine(str: outputprocess!.getOutput()![i])
-        }
-    }
-
-    func getoutputerrors() -> OutputErrors? {
-        return self.outputerrors
-    }
-}
-
 extension ViewControllerMain: ViewOutputDetails {
     func getalloutput() -> [String] {
         return self.outputprocess?.getrawOutput() ?? []
