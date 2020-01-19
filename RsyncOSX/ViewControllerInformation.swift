@@ -14,7 +14,6 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
     @IBOutlet var detailsTable: NSTableView!
 
     var output: [String]?
-    @IBOutlet var errormessagesbutton: NSButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
