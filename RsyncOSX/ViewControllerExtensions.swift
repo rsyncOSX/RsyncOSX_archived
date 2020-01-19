@@ -391,8 +391,3 @@ extension Sorting {
         }
     }
 }
-
-protocol Allerrors: AnyObject {
-    func allerrors(outputprocess: OutputProcess?)
-    func getoutputerrors() -> OutputErrors?
-}
