@@ -63,7 +63,7 @@ the result before executing a real run. If you by accident set an empty catalog 
 RsyncOSX (rsync) will delete all files in the destination.
 ```
 To save deleted and changes files either [utilize snapshots](https://rsyncosx.github.io/Snapshots)
-or the [`--backup` feature](https://rsyncosx.github.io/Parameters).
+or [the --backup parameter](https://rsyncosx.github.io/Parameters).
 
 The --delete parameter and other default parameters might be deleted if wanted.
 
