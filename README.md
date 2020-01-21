@@ -2,7 +2,7 @@
 
 ![](icon/rsyncosx.png)
 
-Please [read the Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss changes or report bugs please create an [Issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+[The Changelog](https://rsyncosx.github.io/Changelog). If you want to discuss [changes or report bugs please create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
 
@@ -61,12 +61,12 @@ in the source.
 Every time you add a new task to RsyncOSX, execute an estimation run (--dry-run) and inspect
 the result before executing a real run. If you by accident set an empty catalog as source
 RsyncOSX (rsync) will delete all files in the destination.
-
-To save deleted and changes files either utilize snapshots (https://rsyncosx.github.io/Snapshots)
-or the `--backup` feature (https://rsyncosx.github.io/Parameters).
+```
+To save deleted and changes files either [utilize snapshots](https://rsyncosx.github.io/Snapshots)
+or the [`--backup` feature](https://rsyncosx.github.io/Parameters).
 
 The --delete parameter and other default parameters might be deleted if wanted.
-```
+
 ### Main view
 
 The main view of RsyncOSX.
