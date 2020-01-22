@@ -75,6 +75,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     }
 
     @IBAction func remotecapacity(_: NSButton) {
+        guard self.configurations?.getConfigurationsDataSource() != nil else { return }
+        guard (self.configurations?.getConfigurations().count ?? -1) > 0 else { return }
         self.remotecapacitybutton.isEnabled = false
         self.remote = RemoteCapacity(object: self)
     }
