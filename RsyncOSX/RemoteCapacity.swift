@@ -25,21 +25,23 @@ final class RemoteCapacity: SetConfigurations, Connected {
 
     private func getremotesizes(index: Int) {
         self.outputprocess = OutputProcess()
-        let config = self.configurations!.getConfigurations()[index]
-        if self.connected(config: config) == true, config.offsiteServer.isEmpty == false {
-            let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
-            guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
-            let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
-            task.setdelegate(object: self.object!)
-            task.executeProcess(outputprocess: self.outputprocess)
-            self.process = task.getprocess()
-        } else {
-            self.processTermination()
+        if let config = self.configurations?.getConfigurations()[index] {
+            if self.connected(config: config) == true, config.offsiteServer.isEmpty == false {
+                let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
+                guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
+                let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
+                task.setdelegate(object: self.object!)
+                task.executeProcess(outputprocess: self.outputprocess)
+                self.process = task.getprocess()
+            } else {
+                self.processTermination()
+            }
         }
     }
 
     init(object: UpdateProgress) {
         guard self.configurations?.getConfigurationsDataSource() != nil else { return }
+        guard (self.configurations?.getConfigurations().count ?? -1) > 0 else { return }
         self.object = object
         self.remotecapacity = [NSMutableDictionary]()
         self.index = 0
