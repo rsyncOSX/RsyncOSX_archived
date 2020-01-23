@@ -63,9 +63,7 @@ the result before executing a real run. If you by accident set an empty catalog 
 RsyncOSX (rsync) will delete all files in the destination.
 ```
 To save deleted and changes files either utilize [snapshots](https://rsyncosx.github.io/Snapshots)
-or [the --backup parameter](https://rsyncosx.github.io/Parameters).
-
-The --delete parameter and other default parameters might be deleted if wanted.
+or [the --backup parameter](https://rsyncosx.github.io/Parameters). The --delete parameter and other default parameters might be deleted if wanted.
 
 ### Main view
 
@@ -78,13 +76,13 @@ Prepare for synchronizing tasks.
 
 [There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.github.io/RsyncGUIChangelog). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
 
-### About bugs and crash?
+### About bugs?
 
-What happens [if bugs occurs during execution of tasks in RsyncOSX?](https://rsyncosx.github.io/Bugs). Fighting bugs are difficult. I am not able to test RsyncOSX for all possible user interactions and use. From time to time I discover new bugs. But I also need support from other users discovering bugs or not expected results. If you discover a bug please use the [issues](https://github.com/rsyncOSX/RsyncOSX/issues) and report it.
+ Over the years most bugs are smoked out. Thanks to users who reports bugs. Fighting bugs are difficult. I am not able to test RsyncOSX for all possible user interactions and use. I need support from other users discovering bugs or not expected results. If you discover a bug [please report it](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 ### About restoring files to a temporary restore catalog
 
-If you do a **restore** from the `remote` to the `source`, some files in the source might be deleted. This is due to how rsync works in `synchronize` mode. As a precaution **never** do a restore directly from the `remote` to the `source`, always do a restore to a temporary restore catalog.
+If you do a restore from the `remote` to the `source`, some files in the source might be deleted. This is due to how rsync works in `synchronize` mode. As a precaution **never** do a restore directly from the `remote` to the `source`, always do a restore to a temporary restore catalog.
 
 ### Application icon
 
