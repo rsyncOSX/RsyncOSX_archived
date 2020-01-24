@@ -13,7 +13,7 @@ import Foundation
 class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var schedulesNSDictionary: [NSDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
-    private var expandedData = [NSDictionary]()
+    private var expandedData: [NSDictionary]?
     private var sortedschedules: [NSDictionary]?
 
     // Calculate daily schedules
@@ -32,7 +32,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "timetostart": time,
                     "profilename": profilename,
                 ]
-                self.expandedData.append(dictSchedule)
+                self.expandedData!.append(dictSchedule)
             }
         }
     }
@@ -53,7 +53,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "timetostart": time,
                     "profilename": profilename,
                 ]
-                self.expandedData.append(dictSchedule)
+                self.expandedData!.append(dictSchedule)
             }
         }
     }
@@ -81,7 +81,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         "timetostart": time,
                         "profilename": profilename,
                     ]
-                    self.expandedData.append(dict)
+                    self.expandedData!.append(dict)
                 case "daily":
                     self.daily(dateStart: dateStart, schedule: schedule, dict: dict)
                 case "weekly":
@@ -90,7 +90,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     break
                 }
             }
-            self.sortedschedules = self.expandedData.sorted { (di1, di2) -> Bool in
+            self.sortedschedules = self.expandedData!.sorted { (di1, di2) -> Bool in
                 if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!) > 0 {
                     return false
                 } else {
@@ -161,15 +161,16 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     init() {
         // Getting the Schedule and expanding all the jobs
-        if self.schedules != nil {
-            self.scheduleConfiguration = self.schedules!.getSchedule()
-            self.setallscheduledtasksNSDictionary()
-            self.sortAndExpandScheduleTasks()
-        }
+        guard self.schedules != nil else { return }
+        self.expandedData = [NSDictionary]()
+        self.scheduleConfiguration = self.schedules?.getSchedule()
+        self.setallscheduledtasksNSDictionary()
+        self.sortAndExpandScheduleTasks()
     }
 
     init(allschedules: Allschedules?) {
         guard allschedules != nil else { return }
+        self.expandedData = [NSDictionary]()
         self.scheduleConfiguration = allschedules!.getallschedules()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
@@ -177,6 +178,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // For XCtest
     init(schedules: Schedules?) {
+        self.expandedData = [NSDictionary]()
         self.scheduleConfiguration = schedules?.getSchedule()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
