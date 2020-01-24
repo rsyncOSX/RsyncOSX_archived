@@ -13,6 +13,10 @@ protocol SendProcessreference: AnyObject {
     func sendoutputprocessreference(outputprocess: OutputProcess?)
 }
 
+protocol GetProcessreference: AnyObject {
+    func getprocessreference() -> Process?
+}
+
 class OperationFactory {
     init() {
         _ = QuickbackupDispatch()
