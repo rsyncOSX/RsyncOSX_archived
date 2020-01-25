@@ -791,7 +791,7 @@
                                             <rect key="frame" x="-2" y="25" width="111" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="status" id="Dl6-i6-oA7">
-                                                <font key="font" metaFont="system" size="12"/>
+                                                <font key="font" metaFont="cellTitle"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -918,7 +918,7 @@
                             <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-WV-OB6">
                                 <rect key="frame" x="963" y="389" width="111" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="Esk-bF-GFr" id="C4G-cF-gUf">
+                                <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" transparent="YES" imageScaling="proportionallyDown" inset="2" selectedItem="Esk-bF-GFr" id="C4G-cF-gUf">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="11" name="HelveticaNeue"/>
                                     <menu key="menu" id="mQY-j9-EsN">
@@ -2901,7 +2901,7 @@
                                             <rect key="frame" x="268" y="-28" width="165" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Required if remote server" id="znZ-ht-M5x">
-                                                <font key="font" metaFont="system" size="12"/>
+                                                <font key="font" metaFont="cellTitle"/>
                                                 <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -2910,7 +2910,7 @@
                                             <rect key="frame" x="268" y="-59" width="165" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Optional" id="WVf-5Q-8C4">
-                                                <font key="font" metaFont="system" size="12"/>
+                                                <font key="font" metaFont="cellTitle"/>
                                                 <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -2919,7 +2919,7 @@
                                             <rect key="frame" x="371" y="59" width="65" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Required" id="w6i-hq-pcc">
-                                                <font key="font" metaFont="system" size="12"/>
+                                                <font key="font" metaFont="cellTitle"/>
                                                 <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -2928,7 +2928,7 @@
                                             <rect key="frame" x="371" y="36" width="65" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Required" id="2sX-ek-QE0">
-                                                <font key="font" metaFont="system" size="12"/>
+                                                <font key="font" metaFont="cellTitle"/>
                                                 <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -3272,7 +3272,7 @@ DQ
                                             <rect key="frame" x="228" y="86" width="209" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Required if remote server" id="X2U-4M-dkS">
-                                                <font key="font" metaFont="system" size="12"/>
+                                                <font key="font" metaFont="cellTitle"/>
                                                 <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -3281,7 +3281,7 @@ DQ
                                             <rect key="frame" x="281" y="38" width="148" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Optional" id="dti-GW-qCA">
-                                                <font key="font" metaFont="system" size="12"/>
+                                                <font key="font" metaFont="cellTitle"/>
                                                 <color key="textColor" name="knobColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -3327,13 +3327,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="171"/>
+                                <rect key="frame" x="20" y="61" width="656" height="125"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="170"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="124"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="147"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="101"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -5181,7 +5181,7 @@ DQ
                             </progressIndicator>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="DSS-G7-ibm">
                                 <rect key="frame" x="966" y="370" width="106" height="18"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="wW4-ui-Vxe" id="AI1-O6-UI2">
+                                <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" transparent="YES" imageScaling="proportionallyDown" inset="2" selectedItem="wW4-ui-Vxe" id="AI1-O6-UI2">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                     <menu key="menu" id="EIh-0P-F23">
