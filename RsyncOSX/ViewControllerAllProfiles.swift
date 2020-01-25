@@ -37,6 +37,17 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         self.process = nil
     }
 
+    @IBAction func loadprofile(_: NSButton) {
+        var profile: String?
+        if let dict = self.allprofiles?.allconfigurationsasdictionary?[self.index ?? 0] {
+            profile = dict.value(forKey: "profile") as? String
+            if profile == "Default profile" {
+                profile = nil
+            }
+            _ = Selectprofile(profile: profile)
+        }
+    }
+
     @IBAction func sortdirection(_: NSButton) {
         if self.sortascending == true {
             self.sortascending = false
@@ -130,12 +141,12 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
         let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
         let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
-        let profilename = object.value(forKey: "profile") as? String ?? NSLocalizedString("Default profile", comment: "default profile")
+        let profile = object.value(forKey: "profile") as? String ?? NSLocalizedString("Default profile", comment: "default profile")
         if tableColumn!.identifier.rawValue == "intime" {
-            let taskintime: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: true)
+            let taskintime: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profile, number: true)
             return taskintime ?? ""
         } else if tableColumn!.identifier.rawValue == "schedule" {
-            let schedule: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profilename, number: false)
+            let schedule: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profile, number: false)
             switch schedule {
             case "once":
                 return NSLocalizedString("once", comment: "main")
@@ -226,9 +237,9 @@ extension ViewControllerAllProfiles: UpdateProgress {
         guard self.process != nil else { return }
         self.process = nil
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
-        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getused(), forKey: "used")
-        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getavail(), forKey: "avail")
-        self.allprofiles!.allconfigurationsasdictionary?[self.index!].setValue(numbers.getpercentavaliable(), forKey: "availpercent")
+        self.allprofiles?.allconfigurationsasdictionary?[self.index ?? 0].setValue(numbers.getused(), forKey: "used")
+        self.allprofiles?.allconfigurationsasdictionary?[self.index ?? 0].setValue(numbers.getavail(), forKey: "avail")
+        self.allprofiles?.allconfigurationsasdictionary?[self.index ?? 0].setValue(numbers.getpercentavaliable(), forKey: "availpercent")
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
