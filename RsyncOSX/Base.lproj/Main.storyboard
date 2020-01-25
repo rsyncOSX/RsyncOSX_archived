@@ -915,6 +915,24 @@
                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-WV-OB6">
+                                <rect key="frame" x="963" y="388" width="111" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="Esk-bF-GFr" id="C4G-cF-gUf">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="12" name="HelveticaNeue"/>
+                                    <menu key="menu" id="mQY-j9-EsN">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="Esk-bF-GFr"/>
+                                            <menuItem title="Item 2" id="Eol-qW-iFp"/>
+                                            <menuItem title="Item 3" id="ULX-F5-gk5"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="selectprofile:" target="egt-C3-u4G" id="AzD-Ed-Y05"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="74N-MA-FWg" secondAttribute="trailing" constant="20" symbolic="YES" id="21c-tD-Jvk"/>
@@ -956,6 +974,7 @@
                         <outlet property="newfiles" destination="AyX-Ou-VvT" id="NmE-4m-2Rs"/>
                         <outlet property="pathtorsyncosxschedbutton" destination="Tk3-A0-aHr" id="vMw-5e-wEk"/>
                         <outlet property="profilInfo" destination="Gg2-se-FkF" id="XIe-l3-YkS"/>
+                        <outlet property="profilepopupbutton" destination="PpM-WV-OB6" id="bqc-10-qbR"/>
                         <outlet property="restoredryrun" destination="nqR-tu-PxX" id="gdh-SN-KpO"/>
                         <outlet property="rsyncCommand" destination="7n8-es-jH6" id="bH0-3W-ECU"/>
                         <outlet property="rsyncversionshort" destination="n3L-Il-K5w" id="5oc-tn-kTn"/>
@@ -3308,13 +3327,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="263"/>
+                                <rect key="frame" x="20" y="61" width="656" height="217"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="262"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="216"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="239"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="193"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
