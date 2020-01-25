@@ -40,6 +40,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var info: NSTextField!
     @IBOutlet var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet var menuappisrunning: NSButton!
+    @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     // Reference to Configurations and Schedules object
     var configurations: Configurations?
@@ -254,6 +255,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.rsyncischanged()
         self.displayProfile()
+        self.initpopupbutton(button: self.profilepopupbutton)
         self.delayWithSeconds(0.5) {
             self.menuappicons()
         }
@@ -372,5 +374,22 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         if let reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles {
             reloadDelegate.reloadtable()
         }
+    }
+
+    private func initpopupbutton(button: NSPopUpButton) {
+        var profilestrings: [String]?
+        profilestrings = CatalogProfile().getDirectorysStrings()
+        profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
+        button.removeAllItems()
+        button.addItems(withTitles: profilestrings ?? [])
+        button.selectItem(at: 0)
+    }
+
+    @IBAction func selectprofile(_: NSButton) {
+        var profile = self.profilepopupbutton.titleOfSelectedItem
+        if profile == NSLocalizedString("Default profile", comment: "default profile") {
+            profile = nil
+        }
+        _ = Selectprofile(profile: profile)
     }
 }
