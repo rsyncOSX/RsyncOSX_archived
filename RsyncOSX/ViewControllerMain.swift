@@ -386,6 +386,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func selectprofile(_: NSButton) {
-        let selecteditem = self.profilepopupbutton.selectedItem
+        var profile = self.profilepopupbutton.titleOfSelectedItem
+        if profile == NSLocalizedString("Default profile", comment: "default profile") {
+            profile = nil
+        }
+        _ = Selectprofile(profile: profile)
     }
 }
