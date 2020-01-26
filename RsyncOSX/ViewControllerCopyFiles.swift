@@ -301,14 +301,12 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
 extension ViewControllerCopyFiles: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.restoretableView {
-            let numberofrows: String = NSLocalizedString("Number remote files:", comment: "Copy files")
             guard self.restoretabledata != nil else {
-                self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-                self.info.stringValue = numberofrows
+                self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
                 return 0
             }
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = numberofrows + String(self.restoretabledata!.count)
+            self.info.stringValue = NSLocalizedString("Number remote files:", comment: "Copy files") + String(self.restoretabledata!.count)
             return self.restoretabledata!.count
         } else {
             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
