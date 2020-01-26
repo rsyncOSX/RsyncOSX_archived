@@ -18,7 +18,7 @@ protocol Updateremotefilelist: AnyObject {
     func updateremotefilelist()
 }
 
-class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync {
+class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
     var copyfiles: CopyFiles?
     var remotefilelist: Remotefilelist?
     var rsyncindex: Int?
@@ -28,7 +28,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
     var outputprocess: OutputProcess?
     private var maxcount: Int = 0
 
-    @IBOutlet var numberofrows: NSTextField!
     @IBOutlet var server: NSTextField!
     @IBOutlet var rcatalog: NSTextField!
     @IBOutlet var info: NSTextField!
@@ -82,6 +81,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
     // Do the work
     @IBAction func restore(_: NSButton) {
         guard self.remoteCatalog.stringValue.isEmpty == false, self.restorecatalog.stringValue.isEmpty == false else {
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
             self.info.stringValue = Infocopyfiles().info(num: 3)
             return
         }
@@ -167,6 +167,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
 
     private func verifylocalCatalog() {
         let fileManager = FileManager.default
+        self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
         if fileManager.fileExists(atPath: self.restorecatalog.stringValue) == false {
             self.info.stringValue = Infocopyfiles().info(num: 1)
         } else {
@@ -186,6 +187,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         if myTableViewFromNotification == self.restoretableView {
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
             self.info.stringValue = Infocopyfiles().info(num: 0)
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
@@ -206,6 +208,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
             if let index = indexes.first {
                 self.copyfiles = nil
                 guard self.getremotefiles(index: index) == true else { return }
+                self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
                 self.info.stringValue = Infocopyfiles().info(num: 0)
                 self.restorebutton.title = "Estimate"
                 self.restorebutton.isEnabled = false
@@ -237,10 +240,12 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
         let config = self.configurations!.getConfigurations()[index]
         guard self.connected(config: config) == true else {
             self.restorebutton.isEnabled = false
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
             self.info.stringValue = Infocopyfiles().info(num: 4)
             return false
         }
         guard config.task != ViewControllerReference.shared.syncremote else {
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
             self.info.stringValue = Infocopyfiles().info(num: 5)
             self.restoretabledata = nil
             globalMainQueue.async { () -> Void in
@@ -298,10 +303,12 @@ extension ViewControllerCopyFiles: NSTableViewDataSource {
         if tableView == self.restoretableView {
             let numberofrows: String = NSLocalizedString("Number remote files:", comment: "Copy files")
             guard self.restoretabledata != nil else {
-                self.numberofrows.stringValue = numberofrows
+                self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+                self.info.stringValue = numberofrows
                 return 0
             }
-            self.numberofrows.stringValue = numberofrows + String(self.restoretabledata!.count)
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+            self.info.stringValue = numberofrows + String(self.restoretabledata!.count)
             return self.restoretabledata!.count
         } else {
             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
@@ -340,6 +347,8 @@ extension ViewControllerCopyFiles: UpdateProgress {
         } else {
             self.restorebutton.title = "Restore"
             self.restorebutton.isEnabled = true
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+            self.info.stringValue = NSLocalizedString("Number remote files:", comment: "Copy files") + " " + String(self.maxcount)
         }
         self.working.stopAnimation(nil)
     }
