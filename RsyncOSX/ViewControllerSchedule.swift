@@ -373,6 +373,23 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
         }
         return nil
     }
+
+    func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == "deleteCellID" {
+            var stop: Int = (self.scheduledetails![row].value(forKey: "stopCellID") as? Int)!
+            var delete: Int = (self.scheduledetails![row].value(forKey: "deleteCellID") as? Int)!
+            if stop == 0 { stop = 1 } else if stop == 1 { stop = 0 }
+            if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
+            switch tableColumn!.identifier.rawValue {
+            case "stopCellID":
+                self.scheduledetails![row].setValue(stop, forKey: "stopCellID")
+            case "deleteCellID":
+                self.scheduledetails![row].setValue(delete, forKey: "deleteCellID")
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension ViewControllerSchedule: DismissViewController {
