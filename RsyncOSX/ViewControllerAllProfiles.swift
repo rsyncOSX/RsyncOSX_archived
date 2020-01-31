@@ -46,12 +46,11 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
             self.sortascending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
-        guard self.filterby != nil else { return }
-        switch self.filterby! {
+        switch self.filterby ?? .localcatalog {
         case .executedate:
             self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortascending)
         default:
-            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortby: self.filterby!, sortdirection: self.sortascending)
+            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortby: self.filterby ?? .localcatalog, sortdirection: self.sortascending)
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
