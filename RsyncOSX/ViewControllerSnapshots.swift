@@ -212,7 +212,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else {
+        guard (self.snapshotsloggdata?.remotecatalogstodelete?.count ?? -1) > 0 else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
@@ -223,10 +223,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if self.snapshotsloggdata!.remotecatalogstodelete!.count == 0 {
             self.snapshotsloggdata!.remotecatalogstodelete = nil
         }
-        arguments = SnapshotDeleteCatalogsArguments(config: self.config!, remotecatalog: remotecatalog)
-        deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
-        deletecommand?.setdelegate(object: self)
-        deletecommand?.executeProcess(outputprocess: nil)
+        if let config = self.config {
+            arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
+            deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
+            deletecommand?.setdelegate(object: self)
+            deletecommand?.executeProcess(outputprocess: nil)
+        }
     }
 
     // setting which table row is selected
@@ -235,27 +237,29 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if myTableViewFromNotification == self.snapshotstableView {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                let dict = self.snapshotsloggdata!.snapshotslogs![index]
-                self.hiddenID = dict.value(forKey: "hiddenID") as? Int
-                guard self.hiddenID != nil else { return }
-                self.index = self.configurations?.getIndex(hiddenID!)
+                if let dict = self.snapshotsloggdata?.snapshotslogs?[index] {
+                    self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+                    guard self.hiddenID != nil else { return }
+                    self.index = self.configurations?.getIndex(hiddenID!)
+                }
             } else {
                 self.index = nil
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                let config = self.configurations!.getConfigurations()[index]
-                guard self.connected(config: config) == true else {
-                    self.info.stringValue = Infosnapshots().info(num: 6)
-                    return
+                if let config = self.configurations?.getConfigurations()[index] {
+                    guard self.connected(config: config) == true else {
+                        self.info.stringValue = Infosnapshots().info(num: 6)
+                        return
+                    }
+                    self.selectplan.isEnabled = false
+                    self.selectdayofweek.isEnabled = false
+                    self.info.stringValue = Infosnapshots().info(num: 0)
+                    let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int ?? -1
+                    self.index = self.configurations?.getIndex(hiddenID)
+                    self.getsourcebyindex(index: hiddenID)
                 }
-                self.selectplan.isEnabled = false
-                self.selectdayofweek.isEnabled = false
-                self.info.stringValue = Infosnapshots().info(num: 0)
-                let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
-                self.index = self.configurations?.getIndex(hiddenID)
-                self.getSourceindex(index: hiddenID)
             } else {
                 self.selectplan.isEnabled = false
                 self.selectdayofweek.isEnabled = false
@@ -270,7 +274,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    func getSourceindex(index: Int) {
+    func getsourcebyindex(index: Int) {
         self.hiddenID = index
         self.config = self.configurations?.getConfigurations()[self.configurations?.getIndex(index) ?? -1]
         guard self.config?.task == ViewControllerReference.shared.snapshot else {
@@ -278,13 +282,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.index = nil
             return
         }
-        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, getsnapshots: true)
-        self.localCatalog.stringValue = self.config!.localCatalog
-        self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
-        self.offsiteUsername.stringValue = self.config!.offsiteUsername
-        self.backupID.stringValue = self.config!.backupID
-        self.info.stringValue = Infosnapshots().info(num: 0)
-        self.gettinglogs.startAnimation(nil)
+        if let config = self.config {
+            self.snapshotsloggdata = SnapshotsLoggData(config: config, getsnapshots: true)
+            self.localCatalog.stringValue = config.localCatalog
+            self.offsiteCatalog.stringValue = config.offsiteCatalog
+            self.offsiteUsername.stringValue = config.offsiteUsername
+            self.backupID.stringValue = config.backupID
+            self.info.stringValue = Infosnapshots().info(num: 0)
+            self.gettinglogs.startAnimation(nil)
+        }
     }
 
     private func preselectcomboboxes() {
