@@ -128,7 +128,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
             if self.connected(config: config!) {
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
-                self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
+                self.snapshotsloggdata = SnapshotsLoggData(config: config!, getsnapshots: false)
             }
             if self.indexfromwhere() == .vcsnapshot {
                 self.info.stringValue = Infologgdata().info(num: 2)
@@ -271,7 +271,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
             if self.connected(config: config!) {
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
-                self.snapshotsloggdata = SnapshotsLoggData(config: config!, insnapshot: false)
+                self.snapshotsloggdata = SnapshotsLoggData(config: config!, getsnapshots: false)
             }
         } else {
             self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)

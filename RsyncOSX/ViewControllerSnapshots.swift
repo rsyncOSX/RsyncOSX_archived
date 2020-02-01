@@ -11,13 +11,13 @@ import Cocoa
 import Foundation
 
 class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
-    private var hiddenID: Int?
-    private var config: Configuration?
-    private var snapshotsloggdata: SnapshotsLoggData?
-    private var delete: Bool = false
-    private var numbersinsequencetodelete: Int?
-    private var snapshotstodelete: Double = 0
-    private var index: Int?
+    var hiddenID: Int?
+    var config: Configuration?
+    var snapshotsloggdata: SnapshotsLoggData?
+    var delete: Bool = false
+    var numbersinsequencetodelete: Int?
+    var snapshotstodelete: Double = 0
+    var index: Int?
     weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
     // Reference to which plan in combox
@@ -272,13 +272,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     func getSourceindex(index: Int) {
         self.hiddenID = index
-        self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
-        guard self.config!.task == ViewControllerReference.shared.snapshot else {
+        self.config = self.configurations?.getConfigurations()[self.configurations?.getIndex(index) ?? -1]
+        guard self.config?.task == ViewControllerReference.shared.snapshot else {
             self.info.stringValue = Infosnapshots().info(num: 1)
             self.index = nil
             return
         }
-        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
+        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, getsnapshots: true)
         self.localCatalog.stringValue = self.config!.localCatalog
         self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
         self.offsiteUsername.stringValue = self.config!.offsiteUsername
@@ -334,7 +334,7 @@ extension ViewControllerSnapshots: UpdateProgress {
                     self.deletebutton.isEnabled = true
                     self.deletesnapshots.isEnabled = true
                     self.info.stringValue = Infosnapshots().info(num: 3)
-                    self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, insnapshot: true)
+                    self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, getsnapshots: true)
                     if self.abort == true {
                         self.abort = false
                     } else {
