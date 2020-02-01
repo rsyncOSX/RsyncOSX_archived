@@ -136,8 +136,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func markfordelete(numberstomark: Int) {
-        guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count - 1 {
+        for i in 0 ..< (self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1 {
             if i <= numberstomark {
                 self.snapshotsloggdata?.snapshotslogs![i].setValue(1, forKey: "selectCellID")
             } else {
@@ -294,9 +293,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func preselectcomboboxes() {
-        guard self.config?.snaplast != nil, self.config?.snapdayoffweek != nil else { return }
-        self.selectdayofweek.selectItem(withObjectValue: NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek"))
-        if self.config!.snaplast == 1 {
+        self.selectdayofweek.selectItem(withObjectValue: NSLocalizedString(self.config?.snapdayoffweek ?? "Sunday", comment: "dayofweek"))
+        if self.config?.snaplast ?? 1 == 1 {
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
         } else {
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("last", comment: "plan"))
@@ -304,13 +302,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func setlabeldayofweekandlast() {
-        guard self.config?.snaplast != nil, self.config?.snapdayoffweek != nil else { return }
         self.dayofweek.textColor = self.setcolor(nsviewcontroller: self, color: .green)
         self.lastorevery.textColor = self.setcolor(nsviewcontroller: self, color: .green)
         self.dayofweek.isHidden = false
         self.lastorevery.isHidden = false
-        self.dayofweek.stringValue = NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek")
-        if self.config!.snaplast == 1 {
+        self.dayofweek.stringValue = NSLocalizedString(self.config?.snapdayoffweek ?? "Sunday", comment: "dayofweek")
+        if self.config?.snaplast ?? 1 == 1 {
             self.lastorevery.stringValue = NSLocalizedString("every", comment: "plan")
         } else {
             self.lastorevery.stringValue = NSLocalizedString("last", comment: "plan")
