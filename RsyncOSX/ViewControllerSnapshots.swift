@@ -136,8 +136,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func markfordelete(numberstomark: Int) {
-        guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count - 1 {
+        for i in 0 ..< (self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1 {
             if i <= numberstomark {
                 self.snapshotsloggdata?.snapshotslogs![i].setValue(1, forKey: "selectCellID")
             } else {
@@ -160,8 +159,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             self.info.stringValue = Infosnapshots().info(num: 0)
-            self.snapshotsloggdata!.preparecatalogstodelete()
-            guard self.snapshotsloggdata!.remotecatalogstodelete != nil else { return }
+            self.snapshotsloggdata?.preparecatalogstodelete()
+            guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return }
             self.presentAsSheet(self.viewControllerProgress!)
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
@@ -212,7 +211,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        guard self.snapshotsloggdata!.remotecatalogstodelete!.count > 0 else {
+        guard (self.snapshotsloggdata?.remotecatalogstodelete?.count ?? -1) > 0 else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
@@ -223,10 +222,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if self.snapshotsloggdata!.remotecatalogstodelete!.count == 0 {
             self.snapshotsloggdata!.remotecatalogstodelete = nil
         }
-        arguments = SnapshotDeleteCatalogsArguments(config: self.config!, remotecatalog: remotecatalog)
-        deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
-        deletecommand?.setdelegate(object: self)
-        deletecommand?.executeProcess(outputprocess: nil)
+        if let config = self.config {
+            arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
+            deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
+            deletecommand?.setdelegate(object: self)
+            deletecommand?.executeProcess(outputprocess: nil)
+        }
     }
 
     // setting which table row is selected
@@ -235,27 +236,29 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if myTableViewFromNotification == self.snapshotstableView {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                let dict = self.snapshotsloggdata!.snapshotslogs![index]
-                self.hiddenID = dict.value(forKey: "hiddenID") as? Int
-                guard self.hiddenID != nil else { return }
-                self.index = self.configurations?.getIndex(hiddenID!)
+                if let dict = self.snapshotsloggdata?.snapshotslogs?[index] {
+                    self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+                    guard self.hiddenID != nil else { return }
+                    self.index = self.configurations?.getIndex(hiddenID!)
+                }
             } else {
                 self.index = nil
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                let config = self.configurations!.getConfigurations()[index]
-                guard self.connected(config: config) == true else {
-                    self.info.stringValue = Infosnapshots().info(num: 6)
-                    return
+                if let config = self.configurations?.getConfigurations()[index] {
+                    guard self.connected(config: config) == true else {
+                        self.info.stringValue = Infosnapshots().info(num: 6)
+                        return
+                    }
+                    self.selectplan.isEnabled = false
+                    self.selectdayofweek.isEnabled = false
+                    self.info.stringValue = Infosnapshots().info(num: 0)
+                    let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int ?? -1
+                    self.index = self.configurations?.getIndex(hiddenID)
+                    self.getsourcebyindex(index: hiddenID)
                 }
-                self.selectplan.isEnabled = false
-                self.selectdayofweek.isEnabled = false
-                self.info.stringValue = Infosnapshots().info(num: 0)
-                let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
-                self.index = self.configurations?.getIndex(hiddenID)
-                self.getSourceindex(index: hiddenID)
             } else {
                 self.selectplan.isEnabled = false
                 self.selectdayofweek.isEnabled = false
@@ -270,7 +273,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    func getSourceindex(index: Int) {
+    func getsourcebyindex(index: Int) {
         self.hiddenID = index
         self.config = self.configurations?.getConfigurations()[self.configurations?.getIndex(index) ?? -1]
         guard self.config?.task == ViewControllerReference.shared.snapshot else {
@@ -278,19 +281,20 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.index = nil
             return
         }
-        self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, getsnapshots: true)
-        self.localCatalog.stringValue = self.config!.localCatalog
-        self.offsiteCatalog.stringValue = self.config!.offsiteCatalog
-        self.offsiteUsername.stringValue = self.config!.offsiteUsername
-        self.backupID.stringValue = self.config!.backupID
-        self.info.stringValue = Infosnapshots().info(num: 0)
-        self.gettinglogs.startAnimation(nil)
+        if let config = self.config {
+            self.snapshotsloggdata = SnapshotsLoggData(config: config, getsnapshots: true)
+            self.localCatalog.stringValue = config.localCatalog
+            self.offsiteCatalog.stringValue = config.offsiteCatalog
+            self.offsiteUsername.stringValue = config.offsiteUsername
+            self.backupID.stringValue = config.backupID
+            self.info.stringValue = Infosnapshots().info(num: 0)
+            self.gettinglogs.startAnimation(nil)
+        }
     }
 
     private func preselectcomboboxes() {
-        guard self.config?.snaplast != nil, self.config?.snapdayoffweek != nil else { return }
-        self.selectdayofweek.selectItem(withObjectValue: NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek"))
-        if self.config!.snaplast == 1 {
+        self.selectdayofweek.selectItem(withObjectValue: NSLocalizedString(self.config?.snapdayoffweek ?? "Sunday", comment: "dayofweek"))
+        if self.config?.snaplast ?? 1 == 1 {
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
         } else {
             self.selectplan.selectItem(withObjectValue: NSLocalizedString("last", comment: "plan"))
@@ -298,13 +302,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func setlabeldayofweekandlast() {
-        guard self.config?.snaplast != nil, self.config?.snapdayoffweek != nil else { return }
         self.dayofweek.textColor = self.setcolor(nsviewcontroller: self, color: .green)
         self.lastorevery.textColor = self.setcolor(nsviewcontroller: self, color: .green)
         self.dayofweek.isHidden = false
         self.lastorevery.isHidden = false
-        self.dayofweek.stringValue = NSLocalizedString(self.config!.snapdayoffweek!, comment: "dayofweek")
-        if self.config!.snaplast == 1 {
+        self.dayofweek.stringValue = NSLocalizedString(self.config?.snapdayoffweek ?? "Sunday", comment: "dayofweek")
+        if self.config?.snaplast ?? 1 == 1 {
             self.lastorevery.stringValue = NSLocalizedString("every", comment: "plan")
         } else {
             self.lastorevery.stringValue = NSLocalizedString("last", comment: "plan")
