@@ -13,14 +13,14 @@ final class SnapshotsLoggData {
     var snapshotslogs: [NSMutableDictionary]?
     var config: Configuration?
     var outputprocess: OutputProcess?
-    private var catalogs: [String]?
+    var catalogs: [String]?
     var remotecatalogstodelete: [String]?
-    var insnapshot: Bool = true
+    var getsnapshots: Bool = true
 
-    private func getremotecataloginfo(insnapshots: Bool) {
+    private func getremotecataloginfo(getsnapshots: Bool) {
         self.outputprocess = OutputProcess()
         let arguments = CopyFilesArguments(task: .snapshotcatalogs, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
-        if insnapshots {
+        if getsnapshots {
             let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
             object.executeProcess(outputprocess: self.outputprocess)
         } else {
@@ -29,10 +29,9 @@ final class SnapshotsLoggData {
         }
     }
 
-    private func getsnapshotlogs() {
-        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata?.filter { ($0.value(forKey: "hiddenID") as? Int)! == config?.hiddenID }
-        guard self.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotslogs!.count {
+    private func reducetosnapshotlogs() {
+        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata?.filter { ($0.value(forKey: "hiddenID") as? Int)! == self.config?.hiddenID }
+        for i in 0 ..< (self.snapshotslogs?.count ?? 0) {
             if let dateRun = self.snapshotslogs![i].object(forKey: "dateExecuted") {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun as? String ?? "") {
                     let dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
@@ -43,8 +42,7 @@ final class SnapshotsLoggData {
     }
 
     private func mergeremotecatalogsandlogs() {
-        guard self.catalogs != nil else { return }
-        for i in 0 ..< self.catalogs!.count {
+        for i in 0 ..< (self.catalogs?.count ?? 0) {
             if self.catalogs![i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
                 let filter = self.snapshotslogs?.filter { ($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum) }
@@ -63,9 +61,9 @@ final class SnapshotsLoggData {
             let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
             let num2 = Int(str2?.dropFirst(2) ?? "") ?? 0
             if num1 <= num2 {
-                return self.insnapshot
+                return self.getsnapshots
             } else {
-                return !self.insnapshot
+                return !self.getsnapshots
             }
         }
         self.snapshotslogs = sorted.filter { ($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false }
@@ -102,12 +100,12 @@ final class SnapshotsLoggData {
         return j - 1
     }
 
-    init(config: Configuration, insnapshot: Bool) {
+    init(config: Configuration, getsnapshots: Bool) {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
-        self.insnapshot = insnapshot
-        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata
+        self.getsnapshots = getsnapshots
         self.config = config
-        self.getremotecataloginfo(insnapshots: insnapshot)
+        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata
+        self.getremotecataloginfo(getsnapshots: getsnapshots)
     }
 }
 
@@ -121,7 +119,7 @@ extension SnapshotsLoggData: UpdateProgress {
                 self.catalogs?.remove(at: 0)
             }
         }
-        self.getsnapshotlogs()
+        self.reducetosnapshotlogs()
         self.mergeremotecatalogsandlogs()
     }
 
