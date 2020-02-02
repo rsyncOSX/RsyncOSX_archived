@@ -127,14 +127,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()[index] {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
-                if self.connected(config: config) {
-                    guard config.task == ViewControllerReference.shared.snapshot else {
-                        self.info.stringValue = Infologgdata().info(num: 1)
-                        globalMainQueue.async { () -> Void in
-                            self.scheduletable.reloadData()
-                        }
-                        return
-                    }
+                if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
                     self.working.startAnimation(nil)
                     self.snapshotsloggdata = SnapshotsLoggData(config: config, getsnapshots: false)
                 }
@@ -144,7 +137,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                     self.info.stringValue = Infologgdata().info(num: 1)
                 }
             }
-
         } else {
             self.info.stringValue = Infologgdata().info(num: 0)
             self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
