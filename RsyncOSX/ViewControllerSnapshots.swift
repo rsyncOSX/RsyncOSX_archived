@@ -123,7 +123,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
-        self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(self.deletesnapshotsdays.intValue)
+        self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(self.deletesnapshots.intValue)
         self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
     }
 
