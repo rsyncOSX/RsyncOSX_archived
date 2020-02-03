@@ -11,7 +11,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync {
+class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor {
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotsloggdata: SnapshotsLoggData?
     private var filterby: Sortandfilter?
@@ -120,20 +120,22 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
         self.index = self.index()
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
-            let config = self.configurations?.getConfigurations()[index]
-            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
-            if self.connected(config: config!) {
-                if config?.task == "snapshot" { self.working.startAnimation(nil) }
-                self.snapshotsloggdata = SnapshotsLoggData(config: config!, getsnapshots: false)
-            }
-            if self.indexfromwhere() == .vcsnapshot {
-                self.info.stringValue = Infologgdata().info(num: 2)
-            } else {
-                self.info.stringValue = Infologgdata().info(num: 1)
+            if let config = self.configurations?.getConfigurations()[index] {
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
+                if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
+                    self.working.startAnimation(nil)
+                    self.snapshotsloggdata = SnapshotsLoggData(config: config, getsnapshots: false)
+                }
+                if self.indexfromwhere() == .vcsnapshot {
+                    self.info.stringValue = Infologgdata().info(num: 2)
+                } else {
+                    self.info.stringValue = Infologgdata().info(num: 1)
+                }
             }
         } else {
             self.info.stringValue = Infologgdata().info(num: 0)
