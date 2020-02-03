@@ -1,14 +1,14 @@
 /* Restore */
-" ... set in User configuration ..." = "设置用户配置";
+" ... set in User configuration ..." = " 在用户配置中设置...";
 
 /* Ssh */
-"... no remote server ..." = "没有远程服务器";
+"... no remote server ..." = "... 没有远程服务器...";
 
 /* Execute */
-"⌘A to abort or wait..." = "⌘A中止或等待......";
+"⌘A to abort or wait..." = "zA 要中止或等待...";
 
 /* Snapshots */
-"Aborting delete operation..." = "停止删除操作";
+"Aborting delete operation..." = "正在中止删除操作...";
 
 /* Add schedule
    New */
@@ -18,13 +18,13 @@
 "Add config?" = "添加配置？";
 
 /* Add schedule */
-"Add Schedule?" = "添加定时任务";
+"Add Schedule?" = "添加日程安排？";
 
 /* Batch */
-"Batchtasks completed, close view..." = "BathTasks 完成，关闭界面";
+"Batchtasks completed, close view..." = "已完成批处理任务，关闭视图...";
 
 /* Tooltip */
-"By using Finder drag and drop filepaths." = "使用 Finder 拽拖文件路径";
+"By using Finder drag and drop filepaths." = "使用 Finder 拖放文件路径。";
 
 /* Cancel NSAlert */
 "Cancel" = "取消";
@@ -36,7 +36,7 @@
    Logg
    Profiles
    Snapshots */
-"Cancel or Delete" = "取消活删除";
+"Cancel or Delete" = "取消或删除";
 
 /* Restore */
 "Cancel or Restore" = "取消或恢复";
@@ -52,39 +52,39 @@
 "Chinese (Simplified) translation by: StringKe" = "翻译中文(简体)：StringKe";
 
 /* Close NSAlert */
-"Close" = "取消";
+"Close" = "关闭";
 
 /* Remote info */
-"Completed" = "完成";
+"Completed" = "已完成";
 
 /* Verify */
-"Completed ..." = "完成...";
+"Completed ..." = "已完成...";
 
 /* Verify */
-"Computing changed, please wait..." = "计算更改，请稍后...";
+"Computing changed, please wait..." = "计算更改中，请稍候...";
 
 /* Restore */
 "Copy single files or directory?" = "复制单个文件或目录？";
 
 /* copyright */
-"Copyright ©2019 Thomas Evensen" = "版权所有 ©2019 Thomas Evensen";
+"Copyright ©2019 Thomas Evensen" = "版权 ©2019 Thomas Evensen";
 
 /* main */
 "daily" = "每天";
 
 /* Remote Info
    Verify */
-"Date last backup:" = "上次备份日期：";
+"Date last backup:" = "最后备份日期:";
 
 /* datetime */
-"days" = "天数";
+"days" = "天";
 
 /* Remote Info
    Verify */
-"Days since last backup:" = "上次备份后的天数：";
+"Days since last backup:" = "自上次备份以来的天数：";
 
 /* default profile */
-"Default profile" = "默认配置";
+"Default profile" = "默认配置文件";
 
 /* Execute
    Logg
@@ -93,69 +93,75 @@
    Snapshots */
 "Delete" = "删除";
 
+/* plan */
+"Delete number of snapshots:" = "删除快照数量：";
+
 /* Snapshots */
-"Delete operation completed..." = "删除完成操作";
+"Delete operation completed..." = "删除操作完成...";
 
 /* Profiles */
-"Delete profile:" = "删除配置";
+"Delete profile:" = "删除配置文件：";
 
 /* Execute */
-"Delete selected task?" = "删除定制任务";
+"Delete selected task?" = "删除选定的任务吗？";
+
+/* plan */
+"Delete snapshots older than:" = "删除早于以下时间的快照：";
 
 /* Tooltip */
 "Destination catalog:" = "目标目录：";
 
 /* Snapshots */
-"Do you REALLY want to DELETE selected snapshots?" = "你真的要删除这个快照么？";
+"Do you REALLY want to DELETE selected snapshots?" = "您是否希望删除选中的快照？";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "你真的要启动恢复？";
+"Do you REALLY want to start a RESTORE ?" = "你真的想要重新开始吗？";
 
 /* Snapshots */
-"Dont change the snapshot num if you don´t know what you are doing..." = "不要修改快照数量，如果你不知道您正在做什么";
+"Dont change the snapshot num if you don´t know what you are doing..." = "如果您不知道正在做什么，请不要更改快照号码...";
 
 /* plan */
-"earlier months" = "earlier months";
+"earlier months" = "前几个月";
 
 /* Error rsync */
-"ERROR: no rsync in" = "错误：no rsync in";
+"ERROR: no rsync in" = "错误：没有 rsync";
 
 /* Error rsync */
-"ERROR: no rsync in /usr/local/bin" = "错误：no rsync in /usr/local/bin";
+"ERROR: no rsync in /usr/local/bin" = "错误：/usr/local/bin 中不同步";
 
 /* Batch */
-"Estimation completed, you can start batch..." = "估计完成后，你可以开始批量...";
+"Estimation completed, you can start batch..." = "估计已完成，您可以启动批次...";
 
 /* plan */
-"every" = "一切";
+"every" = "每";
 
 /* Restore */
-"Executing restore..." = "执行恢复...";
+"Executing restore..." = "正在执行还原...";
 
 /* plan */
 "Friday" = "星期五";
 
-/* Restore */
-"Getting info, please wait..." = "获取信息，请稍候......";
+/* german */
+"German translation by: Andre" = "德语翻译人：Andre";
 
-/* Verify */
-"Getting information, please wait ..." = "获取信息，请稍候......";
+/* Restore */
+"Getting info, please wait..." = "正在获取信息，请稍候...";
 
 /* Loggdata */
-"Got index from Execute and listing logs for one configuration..." = "从Execute获取索引并列出一个配置的日志...";
+"Got index from Execute and listing logs for one configuration..." = "从一个配置的执行和列表日志中获取索引...";
 
 /* Schedules */
-"Got index from Execute..." = "从Execute获得索引...";
+"Got index from Execute..." = "从执行中获取索引...";
 
 /* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "从一个配置的快照和列表日志获得索引...";
+"Got index from Snapshots and listing logs for one configuration..." = "从 Snapshots 获取索引并列出一个配置的日志...";
 
 /* Remote Info
    Restore */
-"Got it..." = "已经获取...";
+"Got it..." = "得到它...";
 
 /* datetime */
-"h" = "H";
+"h" = "小时";
 
 /* datetime */
 "hours" = "小时";
@@ -164,17 +170,17 @@
 "Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
 
 /* plan */
-"Keep" = "保持";
+"Keep" = "保留";
 
 /* plan */
-"last" = "持续";
+"last" = "最后一个";
 
 /* Profile */
-"Load" = "加载";
+"Load" = "负载";
 
 /* Remote info
    Remote Info */
-"Loaded cached data..." = "加载的缓存数据......";
+"Loaded cached data..." = "加载缓存数据...";
 
 /* Tooltip */
 "Local catalog:" = "本地目录：";
@@ -183,7 +189,7 @@
 "Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";
 
 /* main */
-"manuel" = "文档";
+"manuel" = "手动模式";
 
 /* Execute */
 "Menu app is running..." = "菜单应用正在运行...";
@@ -192,52 +198,52 @@
 "mins" = "分钟";
 
 /* plan */
-"Monday" = "星期一";
+"Monday" = "周一";
 
 /* Execute */
-"New version is available - see About" = "New version is available - see About";
+"New version is available - see About" = "新版本可用 - 请参阅关于";
 
 /* About */
-"New version is available:" = "New version is available:";
+"New version is available:" = "新版本可用：";
 
 /* Execute */
-"No rclone config found..." = "找不到rclone配置...";
+"No rclone config found..." = "找不到 rclone 配置...";
 
 /* Execute */
-"No rsync in path..." = "路径中没有rsync ...";
+"No rsync in path..." = "路径中没有rsync...";
 
 /* Schedule details */
-"no startdate" = "没有开始";
+"no startdate" = "没有开始日期";
 
 /* Schedule details */
-"no stopdate" = "no stopdate";
+"no stopdate" = "没有停止日期";
 
 /* Copy files */
-"No such local catalog for restore or set it in user config..." = "没有这样的本地目录还原或在用户配置中设置它...";
+"No such local catalog for restore or set it in user config..." = "没有这样的本地目录来还原或在用户配置中设置...";
 
 /* plan */
-"none" = "没有";
+"none" = "无";
 
 /* norwegian */
-"Norwegian translation by: Thomas Evensen" = "Norwegian translation by: Thomas Evensen";
+"Norwegian translation by: Thomas Evensen" = "Norwegian translation by Thomas Evensen";
 
 /* Copy files */
-"Not a remote task, use Finder to copy files..." = "不是远程任务，使用Finder复制文件...";
+"Not a remote task, use Finder to copy files..." = "不是一个远程任务，请使用 Finder 复制文件...";
 
 /* Snapshots */
-"Not a snapshot task..." = "不是快照任务......";
+"Not a snapshot task..." = "Not a snapshot task...";
 
 /* AllProfiles */
-"Number of configurations:" = "配置数量：";
+"Number of configurations:" = "配置数：";
 
 /* Logg */
-"Number of logs:" = "日志数量：";
+"Number of logs:" = "日志数：";
 
 /* Remote info */
-"Number of tasks to estimate:" = "要估算的任务数量：";
+"Number of tasks to estimate:" = "需要估计的任务数目：";
 
 /* Copy files */
-"Number remote files:" = "数字远程文件：";
+"Number remote files:" = "号码远程文件：";
 
 /* Snapshots */
 "Number snapshots:" = "数字快照：";
@@ -246,31 +252,31 @@
 "once" = "一次";
 
 /* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "仅对备份，快照和组合任务有效...";
+"Only valid for backup, snapshot and combined tasks..." = "仅适用于备份、快照和合并任务...";
 
 /* Verify */
-"Please select a task in Execute ..." = "请在执行中选择一项任务...";
+"Please select a task in Execute ..." = "请选择一个正在执行的任务...";
 
 /* Execute */
-"Possible error logging..." = "可能的错误记录......";
+"Possible error logging..." = "可能的错误记录...";
 
 /* plan */
-"previous month" = "previous month";
+"previous month" = "上月";
 
 /* Execute */
 "Profile:" = "配置：";
 
 /* Execute */
-"Profile: please wait..." = "配置：请稍候......";
+"Profile: please wait..." = "配置文件：请稍候...";
 
 /* Tooltip */
-"Remote catalog:" = "Remote catalog:";
+"Remote catalog:" = "远程目录：";
 
 /* Restore */
 "Restore" = "恢复";
 
 /* plan */
-"Saturday" = "星期六";
+"Saturday" = "周六";
 
 /* Profile
    Userconfig */
@@ -285,43 +291,44 @@
 /* Copy files
    Remote Info
    Verify */
-"Seems not to be connected..." = "似乎无法链接......";
+"Seems not to be connected..." = "看起来没有连接...";
 
 /* Execute */
-"Select a task...." = "选择任务....";
+"Select a task...." = "选择任务......";
 
 /* Logg */
-"Selected logs:" = "选定的日志：";
+"Selected logs:" = "选中的日志：";
 
 /* Execute */
 "Selection out of range - aborting" = "选择超出范围 - 中止";
 
 /* Snapshots */
-"Seriously, enter a real number..." = "请输入一个h数字...";
+"Seriously, enter a real number..." = "请输入一个真实号码...";
 
 /* Tooltip */
-"Source catalog:" = "Source catalog:";
+"Source catalog:" = "源目录：";
 
 /* Restore */
-"Start restore?" = "开始恢复？";
+"Start restore?" = "开始还原？";
 
 /* main */
-"stopped" = "stopped";
+"stopped" = "停止";
 
-/* plan */
-"Sunday" = "星期日";
+/* dayofweek
+   plan */
+"Sunday" = "周日";
 
 /* Execute */
-"The menu app" = "The menu app";
+"The menu app" = "菜单应用";
 
 /* Quickbackup */
-"There seems to be nothing to do..." = "好像什么都没有做......";
+"There seems to be nothing to do..." = "似乎没有什么事要做...";
 
 /* Execute */
-"This is a combined task, execute by ⌘R..." = "这是一个组合任务，按⌘R执行...";
+"This is a combined task, execute by ⌘R..." = "这是一个合并的任务，由 PRR 执行...";
 
 /* New */
-"This is added before?" = "This is added before?";
+"This is added before?" = "这是以前添加的吗？";
 
 /* plan */
 "this month" = "本月";
@@ -336,17 +343,17 @@
 "Tuesday" = "星期二";
 
 /* Verify */
-"Verifying, please wait..." = "正在验证，请稍候......";
+"Verifying, please wait..." = "正在校验，请稍候...";
 
 /* plan */
 "Wednesday" = "星期三";
 
 /* main */
-"weekly" = "每周";
+"weekly" = "每周的";
 
 /* Snapshots */
-"You cannot delete that many, max are" = "无法删除，最多";
+"You cannot delete that many, max are" = "你不能删除这么多, 最大是";
 
 /* About */
-"You have the latest ..." = "发现新版本......";
+"You have the latest ..." = "您有最新的...";
 

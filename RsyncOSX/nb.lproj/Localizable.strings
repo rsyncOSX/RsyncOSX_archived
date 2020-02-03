@@ -51,9 +51,6 @@
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
 
-/* german */
-"German translation by: Andre" = "Tysk oversettelse av: Andre";
-
 /* Close NSAlert */
 "Close" = "Lukk";
 
@@ -96,6 +93,9 @@
    Snapshots */
 "Delete" = "Slett";
 
+/* plan */
+"Delete number of snapshots:" = "Slett antall snapshots:";
+
 /* Snapshots */
 "Delete operation completed..." = "Slette operasjon gjennomført...";
 
@@ -104,6 +104,9 @@
 
 /* Execute */
 "Delete selected task?" = "Slett valgte oppgave?";
+
+/* plan */
+"Delete snapshots older than:" = "Slett snapshots eldre enn:";
 
 /* Tooltip */
 "Destination catalog:" = "Lokal katalog:";
@@ -138,11 +141,11 @@
 /* plan */
 "Friday" = "fredag";
 
+/* german */
+"German translation by: Andre" = "Tysk oversettelse av: Andre";
+
 /* Restore */
 "Getting info, please wait..." = "Henter informasjon, vennligst vent...";
-
-/* Verify */
-"Getting information, please wait ..." = "Henter informasjon, vennligst vent ...";
 
 /* Loggdata */
 "Got index from Execute and listing logs for one configuration..." = "Hentet index fra Utfør og lister logg for en konfigurasjon...";
@@ -311,7 +314,8 @@
 /* main */
 "stopped" = "stoppet";
 
-/* plan */
+/* dayofweek
+   plan */
 "Sunday" = "søndag";
 
 /* Execute */

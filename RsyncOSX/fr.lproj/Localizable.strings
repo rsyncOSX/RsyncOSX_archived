@@ -93,6 +93,9 @@
    Snapshots */
 "Delete" = "Supprimez";
 
+/* plan */
+"Delete number of snapshots:" = "Supprimer le nombre d'instantanés :";
+
 /* Snapshots */
 "Delete operation completed..." = "Opération de suppression terminée ...";
 
@@ -101,6 +104,9 @@
 
 /* Execute */
 "Delete selected task?" = "Supprimer la tâche sélectionnée ?";
+
+/* plan */
+"Delete snapshots older than:" = "Supprimer les instantanés plus anciens que:";
 
 /* Tooltip */
 "Destination catalog:" = "Catalogue de destination:";
@@ -308,7 +314,8 @@
 /* main */
 "stopped" = "arrêtée";
 
-/* plan */
+/* dayofweek
+   plan */
 "Sunday" = "Dimanche";
 
 /* Execute */
