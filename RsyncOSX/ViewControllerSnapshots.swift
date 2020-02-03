@@ -123,6 +123,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
+        self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(self.deletesnapshotsdays.intValue)
+        self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
     }
 
     @IBAction func updatedeletesnapshotsdays(_: NSSlider) {
@@ -133,6 +135,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
+        self.info.stringValue = NSLocalizedString("Delete snapshots older than:", comment: "plan") + " " + String(self.deletesnapshotsdays.intValue)
+        self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
     }
 
     private func markfordelete(numberstomark: Int) {
@@ -195,6 +199,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.dayofweek.isHidden = true
         self.lastorevery.isHidden = true
         self.reloadtabledata()
+        self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
     }
 
     override func viewDidDisappear() {
@@ -268,6 +273,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.offsiteCatalog.stringValue = ""
                 self.offsiteUsername.stringValue = ""
                 self.backupID.stringValue = ""
+                self.info.stringValue = ""
                 self.reloadtabledata()
             }
         }

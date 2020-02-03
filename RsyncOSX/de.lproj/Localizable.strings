@@ -93,6 +93,9 @@
    Snapshots */
 "Delete" = "Löschen";
 
+/* plan */
+"Delete number of snapshots:" = "Anzahl der Schnappschüsse löschen:";
+
 /* Snapshots */
 "Delete operation completed..." = "Löschvorgang abgeschlossen...";
 
@@ -101,6 +104,9 @@
 
 /* Execute */
 "Delete selected task?" = "Ausgewählte Aufgabe löschen?";
+
+/* plan */
+"Delete snapshots older than:" = "Lösche Snapshots älter als:";
 
 /* Tooltip */
 "Destination catalog:" = "Zielkatalog:";
@@ -140,9 +146,6 @@
 
 /* Restore */
 "Getting info, please wait..." = "Info wird abgerufen, bitte warten...";
-
-/* Verify */
-"Getting information, please wait ..." = "Informationen werden abgerufen, bitte warten ...";
 
 /* Loggdata */
 "Got index from Execute and listing logs for one configuration..." = "Index aus Ausführen und Auflistung von Logs für eine Konfiguration...";
@@ -311,7 +314,8 @@
 /* main */
 "stopped" = "gestoppt";
 
-/* plan */
+/* dayofweek
+   plan */
 "Sunday" = "Sonntag";
 
 /* Execute */

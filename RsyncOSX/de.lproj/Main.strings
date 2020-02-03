@@ -184,9 +184,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "37m-qS-TRa"; */
 "37m-qS-TRa.headerCell.title" = "Avail(%)";
 
-/* Class = "NSButtonCell"; title = "Show error messages..."; ObjectID = "39A-da-zAW"; */
-"39A-da-zAW.title" = "Fehlermeldungen anzeigen...";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "41i-nE-ZWF"; */
 "41i-nE-ZWF.title" = "Textzelle";
 
@@ -270,6 +267,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aO0-eB-xFM"; */
 "aO0-eB-xFM.title" = "Textzelle";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "Aru-qx-Bbf"; */
+"Aru-qx-Bbf.title" = "Element 3";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aT2-oA-ahR"; */
 "aT2-oA-ahR.title" = "Textzelle";
@@ -424,6 +424,9 @@
 /* Class = "NSTextFieldCell"; title = "status"; ObjectID = "Dl6-i6-oA7"; */
 "Dl6-i6-oA7.title" = "status";
 
+/* Class = "NSButtonCell"; title = "Halt on error"; ObjectID = "DlM-cv-4hL"; */
+"DlM-cv-4hL.title" = "Bei Fehler stoppen";
+
 /* Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ"; */
 "dMs-cI-mzQ.title" = "Datei";
 
@@ -444,6 +447,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC"; */
 "dTX-H7-8VC.title" = "Profil:";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "Dzo-0Z-Tko"; */
+"Dzo-0Z-Tko.title" = "Element 2";
 
 /* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "e0Y-OG-qu5"; */
 "e0Y-OG-qu5.headerCell.title" = "Einrasten";
@@ -498,6 +504,12 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eNk-N9-vVo"; */
 "eNk-N9-vVo.title" = "Textzelle";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "Eol-qW-iFp"; */
+"Eol-qW-iFp.title" = "Element 2";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "Esk-bF-GFr"; */
+"Esk-bF-GFr.title" = "Element 1";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eSz-E4-xy1"; */
 "eSz-E4-xy1.title" = "Textzelle";
@@ -1186,9 +1198,6 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "S9g-HX-Qf6"; */
 "S9g-HX-Qf6.title" = "Tabellenansicht Zelle";
 
-/* Class = "NSTextFieldCell"; title = "Number of remote files: 0 "; ObjectID = "SBO-UN-kMy"; */
-"SBO-UN-kMy.title" = "Anzahl der entfernten Dateien: 0 ";
-
 /* Class = "NSTextFieldCell"; title = "Number of configurations:"; ObjectID = "sBt-QN-KGK"; */
 "sBt-QN-KGK.title" = "Anzahl der Konfigurationen:";
 
@@ -1239,6 +1248,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "tBD-wX-XO5"; */
 "tBD-wX-XO5.headerCell.title" = "Lokaler Katalog";
+
+/* Class = "NSBox"; title = "Halt on error"; ObjectID = "Tci-Kw-MmY"; */
+"Tci-Kw-MmY.title" = "Bei Fehler stoppen";
 
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
 "Td7-aD-5lo.title" = "Fenster";
@@ -1302,6 +1314,9 @@
 
 /* Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "uJk-xr-MjU"; */
 "uJk-xr-MjU.title" = "Neue Dateien:";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "ULX-F5-gk5"; */
+"ULX-F5-gk5.title" = "Element 3";
 
 /* Class = "NSMenu"; title = "RsyncOSX"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "RsyncOSX";
@@ -1428,6 +1443,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "WVf-5Q-8C4"; */
 "WVf-5Q-8C4.title" = "Optional";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "wW4-ui-Vxe"; */
+"wW4-ui-Vxe.title" = "Element 1";
 
 /* Class = "NSTextFieldCell"; title = "scp rsa pub key:"; ObjectID = "WW7-sg-7Xq"; */
 "WW7-sg-7Xq.title" = "scp rsa pub key:";
