@@ -104,8 +104,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.deletesnapshotsdays.altIncrementValue = 1.0
         if let maxdaysold = self.snapshotsloggdata?.snapshotslogs?[0] {
             if let days = maxdaysold.value(forKey: "days") as? String {
-                self.deletesnapshotsdays.maxValue = Double(days) ?? 0.0
-                self.deletesnapshotsdays.intValue = 0
+                self.deletesnapshotsdays.maxValue = (Double(days) ?? 0.0) + 1
+                self.deletesnapshotsdays.intValue = Int32(self.deletesnapshotsdays.maxValue)
                 if let maxdaysoldstring = Double(maxdaysold.value(forKey: "days") as? String ?? "100") {
                     self.stringdeletesnapshotsdaysnum.stringValue = String(format: "%.0f", maxdaysoldstring)
                 }
