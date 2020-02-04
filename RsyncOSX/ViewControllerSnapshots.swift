@@ -106,7 +106,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             if let days = maxdaysold.value(forKey: "days") as? String {
                 self.deletesnapshotsdays.maxValue = Double(days) ?? 0.0
                 self.deletesnapshotsdays.intValue = 0
-                self.stringdeletesnapshotsdaysnum.stringValue = maxdaysold.value(forKey: "days") as? String ?? "100"
+                if let maxdaysoldstring = Double(maxdaysold.value(forKey: "days") as? String ?? "100") {
+                    self.stringdeletesnapshotsdaysnum.stringValue = String(format: "%.0f", maxdaysoldstring)
+                }
             }
         } else {
             self.deletesnapshotsdays.maxValue = 0.0
