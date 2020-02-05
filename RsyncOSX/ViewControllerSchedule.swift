@@ -31,6 +31,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var rsyncosxschedbutton: NSButton!
     @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var scheduletabledetails: NSTableView!
+    @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -200,6 +201,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
+        self.initpopupbutton(button: self.profilepopupbutton)
         self.reloadtabledata()
         self.delayWithSeconds(0.5) {
             self.menuappicons()
@@ -238,6 +240,23 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
                 self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
         }
+    }
+
+    private func initpopupbutton(button: NSPopUpButton) {
+        var profilestrings: [String]?
+        profilestrings = CatalogProfile().getDirectorysStrings()
+        profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
+        button.removeAllItems()
+        button.addItems(withTitles: profilestrings ?? [])
+        button.selectItem(at: 0)
+    }
+
+    @IBAction func selectprofile(_: NSButton) {
+        var profile = self.profilepopupbutton.titleOfSelectedItem
+        if profile == NSLocalizedString("Default profile", comment: "default profile") {
+            profile = nil
+        }
+        _ = Selectprofile(profile: profile)
     }
 }
 
