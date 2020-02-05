@@ -53,6 +53,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet var selectdayofweek: NSComboBox!
     @IBOutlet var dayofweek: NSTextField!
     @IBOutlet var lastorevery: NSTextField!
+    @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -210,6 +211,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.lastorevery.isHidden = true
         self.reloadtabledata()
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
+        self.initpopupbutton(button: self.profilepopupbutton)
     }
 
     override func viewDidDisappear() {
@@ -328,6 +330,23 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         } else {
             self.lastorevery.stringValue = NSLocalizedString("last", comment: "plan")
         }
+    }
+
+    private func initpopupbutton(button: NSPopUpButton) {
+        var profilestrings: [String]?
+        profilestrings = CatalogProfile().getDirectorysStrings()
+        profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
+        button.removeAllItems()
+        button.addItems(withTitles: profilestrings ?? [])
+        button.selectItem(at: 0)
+    }
+
+    @IBAction func selectprofile(_: NSButton) {
+        var profile = self.profilepopupbutton.titleOfSelectedItem
+        if profile == NSLocalizedString("Default profile", comment: "default profile") {
+            profile = nil
+        }
+        _ = Selectprofile(profile: profile)
     }
 }
 
