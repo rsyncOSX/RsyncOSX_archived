@@ -85,13 +85,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func savesnapdayofweek(_: NSButton) {
-        var configurations: [Configuration] = self.configurations!.getConfigurations()
-        guard configurations.count > 0 else { return }
+        var configurations = self.configurations?.getConfigurations()
+        guard configurations?.count ?? -1 > 0 else { return }
         if let index = self.index {
-            configurations[index].snapdayoffweek = self.config!.snapdayoffweek
-            configurations[index].snaplast = self.config!.snaplast
+            configurations![index].snapdayoffweek = self.config?.snapdayoffweek
+            configurations![index].snaplast = self.config?.snaplast
             // Update configuration in memory before saving
-            self.configurations!.updateConfigurations(configurations[index], index: index)
+            self.configurations?.updateConfigurations(configurations![index], index: index)
         }
     }
 
@@ -537,6 +537,7 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         default:
             self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
         }
+        self.info.stringValue = ""
         switch self.selectplan.indexOfSelectedItem {
         case 1:
             self.config!.snaplast = 1
