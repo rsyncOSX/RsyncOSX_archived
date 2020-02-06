@@ -62,11 +62,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// - parameter none: none
     /// - returns : Int
     func configurationsDataSourcecount() -> Int {
-        if self.configurationsDataSource == nil {
-            return 0
-        } else {
-            return self.configurationsDataSource!.count
-        }
+        return self.configurationsDataSource?.count ?? 0
     }
 
     /// Function for getting Configurations read into memory
