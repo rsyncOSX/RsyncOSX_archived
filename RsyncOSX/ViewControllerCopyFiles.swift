@@ -106,7 +106,7 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vccopyfiles, nsviewcontroller: self)
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
         self.restoretableView.delegate = self
         self.restoretableView.dataSource = self
         self.rsynctableView.delegate = self

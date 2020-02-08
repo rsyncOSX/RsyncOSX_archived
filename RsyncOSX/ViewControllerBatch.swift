@@ -60,7 +60,7 @@ class ViewControllerBatch: NSViewController, SetDismisser, Abort, SetConfigurati
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
         } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         } else if (self.presentingViewController as? ViewControllerSsh) != nil {

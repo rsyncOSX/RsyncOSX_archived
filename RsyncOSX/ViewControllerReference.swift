@@ -15,7 +15,7 @@ enum ViewController {
     case vcloggdata
     case vcnewconfigurations
     case vctabschedule
-    case vccopyfiles
+    case vcrestore
     case vcssh
     case vcsnapshot
     case vcverify
@@ -102,7 +102,7 @@ final class ViewControllerReference {
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
-    private var viewControllerCopyFiles: NSViewController?
+    private var viewControllerRestore: NSViewController?
     // Reference to the New tasks
     private var viewControllerNewConfigurations: NSViewController?
     // Reference to the  Schedule
@@ -144,8 +144,8 @@ final class ViewControllerReference {
             return self.viewControllerNewConfigurations
         case .vctabschedule:
             return self.viewControllertabSchedule
-        case .vccopyfiles:
-            return self.viewControllerCopyFiles
+        case .vcrestore:
+            return self.viewControllerRestore
         case .vcssh:
             return self.viewControllerSsh
         case .vcabout:
@@ -183,8 +183,8 @@ final class ViewControllerReference {
             self.viewControllerNewConfigurations = nsviewcontroller
         case .vctabschedule:
             self.viewControllertabSchedule = nsviewcontroller
-        case .vccopyfiles:
-            self.viewControllerCopyFiles = nsviewcontroller
+        case .vcrestore:
+            self.viewControllerRestore = nsviewcontroller
         case .vcssh:
             self.viewControllerSsh = nsviewcontroller
         case .vcabout:
