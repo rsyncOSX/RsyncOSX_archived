@@ -523,7 +523,6 @@
 				E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */,
 				E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */,
 				E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */,
-				E982BA2720CEB59F00E71918 /* RestoreTask.swift */,
 				E93A64832195E3BD0040B334 /* DuCommandSsh.swift */,
 				E91AF8F321AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift */,
 				E912020622B3CFD90056AEFE /* Remotefilelist.swift */,
@@ -534,6 +533,7 @@
 		A05275DB1D6F6E2C00D8ECBE /* Execution */ = {
 			isa = PBXGroup;
 			children = (
+				E95EFA3523EF5257005AFD73 /* Fullrestore */,
 				A091C6591D86A1F400278E74 /* CopyFiles */,
 				E9D0B3F623099570009ABB74 /* Estimating */,
 				E9D0B3F523099549009ABB74 /* Singletask */,
@@ -693,6 +693,14 @@
 				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
 			);
 			name = Mainprocess;
+			sourceTree = "<group>";
+		};
+		E95EFA3523EF5257005AFD73 /* Fullrestore */ = {
+			isa = PBXGroup;
+			children = (
+				E982BA2720CEB59F00E71918 /* RestoreTask.swift */,
+			);
+			name = Fullrestore;
 			sourceTree = "<group>";
 		};
 		E973B6F6238F1AC500B0FD12 /* Equal */ = {

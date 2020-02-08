@@ -18,8 +18,9 @@ protocol Updateremotefilelist: AnyObject {
     func updateremotefilelist()
 }
 
-class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor, Abort {
+class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
     var copyfiles: CopyFiles?
+    var restoretask: RestoreTask?
     var remotefilelist: Remotefilelist?
     var rsyncindex: Int?
     var estimated: Bool = false
@@ -27,7 +28,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var diddissappear: Bool = false
     var outputprocess: OutputProcess?
     private var maxcount: Int = 0
-    weak var sendprocess: SendProcessreference?
 
     @IBOutlet var info: NSTextField!
     @IBOutlet var restoretableView: NSTableView!
@@ -78,9 +78,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.working.stopAnimation(nil)
         self.restorefilesbutton.isEnabled = true
         self.copyfiles?.abort()
+        self.restoretask?.abort()
         self.estimatebutton.isEnabled = true
         self.restorebutton.isEnabled = false
-        self.abort()
     }
 
     // Do the work
@@ -95,12 +95,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restorefilesbutton.isEnabled = false
         if self.estimated == false {
             self.working.startAnimation(nil)
-            self.copyfiles!.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
+            self.copyfiles?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
             self.estimated = true
             self.outputprocess = self.copyfiles?.outputprocess
         } else {
             self.presentAsSheet(self.viewControllerProgress!)
-            self.copyfiles!.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
+            self.copyfiles?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
             self.estimated = false
         }
     }
@@ -117,7 +117,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.tmprestorepath.delegate = self
         self.remotefiles.delegate = self
         self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
-        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     override func viewDidAppear() {
@@ -258,15 +257,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.info.isHidden = false
             self.estimatebutton.isEnabled = false
             self.working.startAnimation(nil)
-            self.outputprocess = OutputProcess()
-            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-            if ViewControllerReference.shared.restorepath != nil && self.selecttmptorestore.state == .on {
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                tmprestore: true, updateprogress: self)
+            if ViewControllerReference.shared.restorepath != nil, self.selecttmptorestore.state == .on {
+                self.restoretask = RestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
+                self.outputprocess = self.restoretask?.outputprocess
             } else {
                 self.selecttmptorestore.state = .off
-                _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: true,
-                                tmprestore: false, updateprogress: self)
+                self.restoretask = RestoreTask(index: index, dryrun: true, tmprestore: false, updateprogress: self)
+                self.outputprocess = self.restoretask?.outputprocess
             }
         }
     }
@@ -303,17 +300,16 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.info.stringValue = gotit
                 self.info.isHidden = false
                 self.restorefilesbutton.isEnabled = false
-                self.outputprocess = OutputProcess()
                 globalMainQueue.async { () -> Void in
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
                 switch self.selecttmptorestore.state {
                 case .on:
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false,
-                                    tmprestore: true, updateprogress: self)
+                    self.restoretask = RestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
+                    self.outputprocess = self.restoretask?.outputprocess
                 case .off:
-                    _ = RestoreTask(index: index, outputprocess: self.outputprocess, dryrun: false,
-                                    tmprestore: false, updateprogress: self)
+                    self.restoretask = RestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
+                    self.outputprocess = self.restoretask?.outputprocess
                 default:
                     return
                 }
@@ -444,28 +440,6 @@ extension ViewControllerRestore: UpdateProgress {
             vc.fileHandler()
         }
     }
-
-    /*
-     extension ViewControllerRestore: UpdateProgress {
-         func processTermination() {
-             self.setNumbers(outputprocess: self.outputprocess)
-             self.maxcount = self.outputprocess?.getMaxcount() ?? 0
-             if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
-                 vc.processTermination()
-             }
-         }
-
-         func fileHandler() {
-             weak var outputeverythingDelegate: ViewOutputDetails?
-             outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-             if outputeverythingDelegate?.appendnow() ?? false {
-                 outputeverythingDelegate?.reloadtable()
-             }
-             if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
-                 vc.fileHandler()
-             }
-         }
-     }*/
 }
 
 extension ViewControllerRestore: Count {
@@ -474,13 +448,15 @@ extension ViewControllerRestore: Count {
     }
 
     func inprogressCount() -> Int {
-        return self.copyfiles?.outputprocess?.count() ?? 0
+        return self.outputprocess?.count() ?? 0
     }
 }
 
 extension ViewControllerRestore: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
+        self.copyfiles?.abort()
+        self.restoretask?.abort()
     }
 }
 
