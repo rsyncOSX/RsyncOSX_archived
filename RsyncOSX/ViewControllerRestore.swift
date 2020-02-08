@@ -130,11 +130,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         globalMainQueue.async { () -> Void in
             self.rsynctableView.reloadData()
         }
+        self.restorefilesbutton.isEnabled = false
         self.restorebutton.isEnabled = false
         self.estimatebutton.isEnabled = false
-        self.settmp()
+        self.settmprestorepathfromuserconfig()
 
-        self.verifylocalCatalog()
+        self.verifytmprestorepath()
     }
 
     override func viewDidDisappear() {
@@ -156,7 +157,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    private func verifylocalCatalog() {
+    private func verifytmprestorepath() {
         let fileManager = FileManager.default
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
         if fileManager.fileExists(atPath: self.tmprestore.stringValue) == false {
@@ -319,7 +320,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    private func settmp() {
+    private func settmprestorepathfromuserconfig() {
         let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
         self.tmprestore.stringValue = ViewControllerReference.shared.restorepath ?? setuserconfig
         if (ViewControllerReference.shared.restorepath ?? "").isEmpty == true {
@@ -354,10 +355,10 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
                     }
                 }
             }
-            self.verifylocalCatalog()
+            self.verifytmprestorepath()
         } else {
             self.delayWithSeconds(0.25) {
-                self.verifylocalCatalog()
+                self.verifytmprestorepath()
                 self.restorefilesbutton.title = "Estimate"
                 self.restorefilesbutton.isEnabled = true
                 self.estimated = false
@@ -480,8 +481,8 @@ extension ViewControllerRestore: DismissViewController {
 
 extension ViewControllerRestore: TemporaryRestorePath {
     func temporaryrestorepath() {
-        self.verifylocalCatalog()
-        self.settmp()
+        self.verifytmprestorepath()
+        self.settmprestorepathfromuserconfig()
     }
 }
 
