@@ -32,14 +32,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBOutlet var info: NSTextField!
     @IBOutlet var restoretableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
-    @IBOutlet var remoteCatalog: NSTextField!
+    @IBOutlet var remotefiles: NSTextField!
     // @IBOutlet var restorecatalog: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var search: NSSearchField!
     @IBOutlet var restorefilesbutton: NSButton!
     // Full restore part
     @IBOutlet var restorebutton: NSButton!
-    @IBOutlet var tmprestore: NSTextField!
+    @IBOutlet var tmprestorepath: NSTextField!
     @IBOutlet var selecttmptorestore: NSButton!
     @IBOutlet var estimatebutton: NSButton!
 
@@ -84,8 +84,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     // Do the work
-    @IBAction func restore(_: NSButton) {
-        guard self.remoteCatalog.stringValue.isEmpty == false, self.tmprestore.stringValue.isEmpty == false else {
+    @IBAction func executerestorefiles(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        guard self.remotefiles.stringValue.isEmpty == false, self.tmprestorepath.stringValue.isEmpty == false else {
             self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
             self.info.stringValue = Infocopyfiles().info(num: 3)
             return
@@ -94,12 +95,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restorefilesbutton.isEnabled = false
         if self.estimated == false {
             self.working.startAnimation(nil)
-            self.copyfiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.tmprestore!.stringValue, dryrun: true, updateprogress: self)
+            self.copyfiles!.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
             self.estimated = true
             self.outputprocess = self.copyfiles?.outputprocess
         } else {
             self.presentAsSheet(self.viewControllerProgress!)
-            self.copyfiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.tmprestore!.stringValue, dryrun: false, updateprogress: self)
+            self.copyfiles!.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
             self.estimated = false
         }
     }
@@ -113,8 +114,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.rsynctableView.dataSource = self
         self.working.usesThreadedAnimation = true
         self.search.delegate = self
-        self.tmprestore.delegate = self
-        self.remoteCatalog.delegate = self
+        self.tmprestorepath.delegate = self
+        self.remotefiles.delegate = self
         self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
         self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
@@ -134,7 +135,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restorebutton.isEnabled = false
         self.estimatebutton.isEnabled = false
         self.settmprestorepathfromuserconfig()
-
         self.verifytmprestorepath()
     }
 
@@ -144,8 +144,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
-        guard self.remoteCatalog.stringValue.isEmpty == false else { return }
-        guard self.tmprestore.stringValue.isEmpty == false else { return }
+        guard self.remotefiles.stringValue.isEmpty == false else { return }
+        guard self.tmprestorepath.stringValue.isEmpty == false else { return }
         let question: String = NSLocalizedString("Copy single files or directory?", comment: "Restore")
         let text: String = NSLocalizedString("Start restore?", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
@@ -153,14 +153,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         if answer {
             self.restorefilesbutton.isEnabled = false
             self.working.startAnimation(nil)
-            self.copyfiles!.executecopyfiles(remotefile: remoteCatalog!.stringValue, localCatalog: tmprestore!.stringValue, dryrun: false, updateprogress: self)
+            self.copyfiles!.executecopyfiles(remotefile: remotefiles!.stringValue, localCatalog: tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
         }
     }
 
     private func verifytmprestorepath() {
         let fileManager = FileManager.default
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-        if fileManager.fileExists(atPath: self.tmprestore.stringValue) == false {
+        if fileManager.fileExists(atPath: self.tmprestorepath.stringValue) == false {
             self.info.stringValue = Infocopyfiles().info(num: 1)
         } else {
             self.info.stringValue = Infocopyfiles().info(num: 0)
@@ -184,8 +184,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 guard self.restoretabledata != nil else { return }
-                self.remoteCatalog.stringValue = self.restoretabledata![index]
-                guard self.remoteCatalog.stringValue.isEmpty == false, self.tmprestore.stringValue.isEmpty == false else {
+                self.remotefiles.stringValue = self.restoretabledata![index]
+                guard self.remotefiles.stringValue.isEmpty == false, self.tmprestorepath.stringValue.isEmpty == false else {
                     self.info.stringValue = Infocopyfiles().info(num: 3)
                     return
                 }
@@ -202,14 +202,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.info.stringValue = Infocopyfiles().info(num: 0)
                 self.restorefilesbutton.title = "Estimate"
                 self.restorefilesbutton.isEnabled = false
-                self.remoteCatalog.stringValue = ""
+                self.remotefiles.stringValue = ""
                 self.rsyncindex = index
                 let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
                 self.copyfiles = CopyFiles(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
                 // Check for full restore
-                if self.dorestore() {
+                if self.checkforfullrestore() {
                     self.estimatebutton.isEnabled = true
                 }
             } else {
@@ -249,9 +249,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         return true
     }
 
-    @IBAction func prepareforrestore(_: NSButton) {
+    @IBAction func prepareforfullrestore(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
         if let index = self.rsyncindex {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .white)
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
             let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
             self.info.stringValue = gotit
             self.info.isHidden = false
@@ -270,7 +271,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    private func dorestore() -> Bool {
+    private func checkforfullrestore() -> Bool {
         if let index = self.rsyncindex {
             guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
                 self.info.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
@@ -289,7 +290,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         return true
     }
 
-    @IBAction func fullrestore(_: NSButton) {
+    @IBAction func executefullrestore(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
@@ -322,7 +323,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     private func settmprestorepathfromuserconfig() {
         let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
-        self.tmprestore.stringValue = ViewControllerReference.shared.restorepath ?? setuserconfig
+        self.tmprestorepath.stringValue = ViewControllerReference.shared.restorepath ?? setuserconfig
         if (ViewControllerReference.shared.restorepath ?? "").isEmpty == true {
             self.selecttmptorestore.state = .off
         } else {
@@ -362,7 +363,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
                 self.restorefilesbutton.title = "Estimate"
                 self.restorefilesbutton.isEnabled = true
                 self.estimated = false
-                guard self.remoteCatalog.stringValue.count > 0 else { return }
+                guard self.remotefiles.stringValue.count > 0 else { return }
             }
         }
     }
@@ -420,9 +421,13 @@ extension ViewControllerRestore: UpdateProgress {
             vc.processTermination()
             self.restorefilesbutton.isEnabled = false
             self.restorefilesbutton.title = "Estimate"
+            self.estimatebutton.isEnabled = true
+            self.restorebutton.isEnabled = false
         } else {
             self.restorefilesbutton.title = "Restore"
             self.restorefilesbutton.isEnabled = true
+            self.estimatebutton.isEnabled = false
+            self.restorebutton.isEnabled = true
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.info.stringValue = NSLocalizedString("Number remote files:", comment: "Copy files") + " " + String(self.maxcount)
         }
