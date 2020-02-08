@@ -28,7 +28,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         case is ViewControllerSnapshots:
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        case is ViewControllerCopyFiles:
+        case is ViewControllerRestore:
             self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         default:
             return
@@ -43,8 +43,8 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
             if let pvc = (self.presentingViewController as? ViewControllerMain)?.singletask {
                 self.countDelegate = pvc
             }
-        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
-            self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerCopyFiles
+        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+            self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         }
@@ -83,7 +83,7 @@ extension ViewControllerProgressProcess: UpdateProgress {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         case is ViewControllerSnapshots:
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        case is ViewControllerCopyFiles:
+        case is ViewControllerRestore:
             self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         default:
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)

@@ -70,7 +70,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
+        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
@@ -112,8 +112,8 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerCopyFiles
+        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         } else if (self.presentingViewController as? ViewControllerSsh) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
         } else if (self.presentingViewController as? ViewControllerVerify) != nil {

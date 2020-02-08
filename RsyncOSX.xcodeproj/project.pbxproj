@@ -56,7 +56,7 @@
 		A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */; };
 		A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0762A1E1DB4A8F000538CE9 /* CatalogProfile.swift */; };
 		A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */; };
-		A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */; };
+		A091C6581D86A0A800278E74 /* ViewControllerRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C6571D86A0A800278E74 /* ViewControllerRestore.swift */; };
 		A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C65A1D86A59500278E74 /* CopyFiles.swift */; };
 		A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */; };
 		A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */; };
@@ -126,7 +126,7 @@
 		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
-		E975284520CEAADC0029B027 /* ViewControllerRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975284420CEAADB0029B027 /* ViewControllerRestore.swift */; };
+		E975284520CEAADC0029B027 /* ViewControllerRestoreOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E975284420CEAADB0029B027 /* ViewControllerRestoreOld.swift */; };
 		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
 		E97C09A71EFAFBC400E86999 /* ExecuteBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* ExecuteBatch.swift */; };
@@ -217,7 +217,7 @@
 		A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
 		A0762A1E1DB4A8F000538CE9 /* CatalogProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogProfile.swift; sourceTree = "<group>"; };
 		A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProgressProcess.swift; sourceTree = "<group>"; };
-		A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCopyFiles.swift; sourceTree = "<group>"; };
+		A091C6571D86A0A800278E74 /* ViewControllerRestore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRestore.swift; sourceTree = "<group>"; };
 		A091C65A1D86A59500278E74 /* CopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFiles.swift; sourceTree = "<group>"; };
 		A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRsyncParameters.swift; sourceTree = "<group>"; };
 		A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBatch.swift; sourceTree = "<group>"; };
@@ -298,7 +298,7 @@
 		E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuArgumentsSsh.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E973B6F7238F1AF600B0FD12 /* Equal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equal.swift; sourceTree = "<group>"; };
-		E975284420CEAADB0029B027 /* ViewControllerRestore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRestore.swift; sourceTree = "<group>"; };
+		E975284420CEAADB0029B027 /* ViewControllerRestoreOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRestoreOld.swift; sourceTree = "<group>"; };
 		E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllConfigurations.swift; sourceTree = "<group>"; };
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* ExecuteBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteBatch.swift; sourceTree = "<group>"; };
@@ -589,8 +589,8 @@
 		E8EF5EB8231A86FE00444F9E /* Tabviews */ = {
 			isa = PBXGroup;
 			children = (
-				E975284420CEAADB0029B027 /* ViewControllerRestore.swift */,
-				A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */,
+				E975284420CEAADB0029B027 /* ViewControllerRestoreOld.swift */,
+				A091C6571D86A0A800278E74 /* ViewControllerRestore.swift */,
 				E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */,
 				E96059A92109B63D00DFA08E /* ViewControllerVerify.swift */,
 				E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */,
@@ -1137,10 +1137,10 @@
 				E99D18722304199A003F1796 /* Socket.swift in Sources */,
 				E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */,
 				E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */,
-				E975284520CEAADC0029B027 /* ViewControllerRestore.swift in Sources */,
+				E975284520CEAADC0029B027 /* ViewControllerRestoreOld.swift in Sources */,
 				E94BCEF421C63F0800DB8EA2 /* RemoteCapacity.swift in Sources */,
 				E95AE70721A5B88B00B2420B /* OperationFactory.swift in Sources */,
-				A091C6581D86A0A800278E74 /* ViewControllerCopyFiles.swift in Sources */,
+				A091C6581D86A0A800278E74 /* ViewControllerRestore.swift in Sources */,
 				E9235E7A201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift in Sources */,
 				A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */,
 				E903FF39221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift in Sources */,
