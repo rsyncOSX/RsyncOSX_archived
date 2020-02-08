@@ -30,8 +30,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         case is ViewControllerCopyFiles:
             self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
-        case is ViewControllerRestore:
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         default:
             return
         }
@@ -49,8 +47,6 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
             self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.countDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         }
         self.initiateProgressbar()
         self.abort.isEnabled = true

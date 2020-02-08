@@ -144,8 +144,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.dismissview(viewcontroller: self, vcontroller: .vcverify)
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         }
         _ = RsyncVersionString()
     }
@@ -183,12 +181,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         if self.restorePath.stringValue.isEmpty == false {
             if restorePath.stringValue.hasSuffix("/") == false {
                 restorePath.stringValue += "/"
-                ViewControllerReference.shared.restorePath = restorePath.stringValue
+                ViewControllerReference.shared.restorepath = restorePath.stringValue
             } else {
-                ViewControllerReference.shared.restorePath = restorePath.stringValue
+                ViewControllerReference.shared.restorepath = restorePath.stringValue
             }
         } else {
-            ViewControllerReference.shared.restorePath = nil
+            ViewControllerReference.shared.restorepath = nil
         }
         self.setdirty()
     }
@@ -339,8 +337,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             self.rsyncPath.stringValue = ""
         }
-        if ViewControllerReference.shared.restorePath != nil {
-            self.restorePath.stringValue = ViewControllerReference.shared.restorePath!
+        if ViewControllerReference.shared.restorepath != nil {
+            self.restorePath.stringValue = ViewControllerReference.shared.restorepath!
         } else {
             self.restorePath.stringValue = ""
         }

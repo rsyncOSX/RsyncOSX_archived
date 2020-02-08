@@ -590,9 +590,9 @@
 			isa = PBXGroup;
 			children = (
 				E975284420CEAADB0029B027 /* ViewControllerRestore.swift */,
+				A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */,
 				E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */,
 				E96059A92109B63D00DFA08E /* ViewControllerVerify.swift */,
-				A091C6571D86A0A800278E74 /* ViewControllerCopyFiles.swift */,
 				E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */,
 				A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */,
 				A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */,

@@ -27,7 +27,6 @@ enum ViewController {
     case vcallprofiles
     case vcestimatingtasks
     case vcinfolocalremote
-    case vcrestore
     case vcalloutput
 }
 
@@ -59,7 +58,7 @@ final class ViewControllerReference {
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
-    var restorePath: String?
+    var restorepath: String?
     var completeoperation: CompleteQuickbackupTask?
     // Loggfile
     var minimumlogging: Bool = false
@@ -130,8 +129,6 @@ final class ViewControllerReference {
     private var viewControllerEstimatingTasks: NSViewController?
     // Local and remote info
     private var viewControllerInfoLocalRemote: NSViewController?
-    // Restore
-    private var viewControllerRestore: NSViewController?
     // Verify
     private var viewControllerVerify: NSViewController?
     // Alloutput
@@ -169,8 +166,6 @@ final class ViewControllerReference {
             return self.viewControllerEstimatingTasks
         case .vcinfolocalremote:
             return self.viewControllerInfoLocalRemote
-        case .vcrestore:
-            return self.viewControllerRestore
         case .vcverify:
             return self.viewControllerVerify
         case .vcalloutput:
@@ -210,8 +205,6 @@ final class ViewControllerReference {
             self.viewControllerEstimatingTasks = nsviewcontroller
         case .vcinfolocalremote:
             self.viewControllerInfoLocalRemote = nsviewcontroller
-        case .vcrestore:
-            self.viewControllerRestore = nsviewcontroller
         case .vcverify:
             self.viewControllerVerify = nsviewcontroller
         case .vcalloutput:
