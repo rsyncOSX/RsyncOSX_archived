@@ -1752,14 +1752,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxh-xf-YyG">
-                                <rect key="frame" x="584" y="55" width="488" height="320"/>
+                                <rect key="frame" x="584" y="50" width="488" height="325"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="WTA-QY-0f4">
-                                    <rect key="frame" x="1" y="0.0" width="486" height="319"/>
+                                    <rect key="frame" x="1" y="0.0" width="486" height="324"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="HZa-Yo-Yau" viewBased="YES" id="FOY-xS-bUA">
-                                            <rect key="frame" x="0.0" y="0.0" width="486" height="296"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="486" height="301"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1816,7 +1816,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField identifier="remote" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-5z-SmE">
-                                <rect key="frame" x="137" y="26" width="194" height="22"/>
+                                <rect key="frame" x="137" y="26" width="214" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="eSi-jg-7RW">
                                     <font key="font" metaFont="system"/>
@@ -1843,10 +1843,10 @@
                                 </searchFieldCell>
                             </searchField>
                             <box verticalHuggingPriority="249" fixedFrame="YES" title="File or catalog to restore" translatesAutoresizingMaskIntoConstraints="NO" id="PIK-cY-cmQ">
-                                <rect key="frame" x="17" y="16" width="324" height="54"/>
+                                <rect key="frame" x="17" y="16" width="345" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="PXY-Lz-PCz">
-                                    <rect key="frame" x="3" y="3" width="318" height="36"/>
+                                    <rect key="frame" x="3" y="3" width="339" height="36"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -2027,14 +2027,14 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Restore to tmp catalog" translatesAutoresizingMaskIntoConstraints="NO" id="NLG-RX-DcT">
-                                <rect key="frame" x="17" y="68" width="324" height="53"/>
+                                <rect key="frame" x="17" y="68" width="345" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="1ef-3n-U44">
-                                    <rect key="frame" x="3" y="3" width="318" height="35"/>
+                                    <rect key="frame" x="3" y="3" width="339" height="35"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jqa-Xq-QT6">
-                                            <rect key="frame" x="117" y="7" width="194" height="22"/>
+                                            <rect key="frame" x="117" y="7" width="215" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="lYJ-6d-Wr1">
                                                 <font key="font" metaFont="system"/>
@@ -2055,7 +2055,7 @@
                                 </view>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HOi-jC-glY">
-                                <rect key="frame" x="352" y="37" width="82" height="32"/>
+                                <rect key="frame" x="370" y="48" width="82" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Restore" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8bK-3Q-Asl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2066,7 +2066,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1l3-nd-dti">
-                                <rect key="frame" x="352" y="13" width="82" height="32"/>
+                                <rect key="frame" x="370" y="22" width="82" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Estimate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1AI-lW-SBZ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2077,7 +2077,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fm0-Sw-gRd">
-                                <rect key="frame" x="356" y="78" width="93" height="18"/>
+                                <rect key="frame" x="367" y="78" width="93" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Select tmp: " bezelStyle="regularSquare" imagePosition="right" alignment="right" state="on" inset="2" id="Rfo-bd-8hM">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2088,7 +2088,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-lg-JjX">
-                                <rect key="frame" x="491" y="37" width="83" height="32"/>
+                                <rect key="frame" x="484" y="22" width="83" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Estimate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="65j-NR-wz6">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2098,6 +2098,22 @@
                                     <action selector="restore:" target="GJH-xK-5LY" id="gbR-Fq-rOj"/>
                                 </connections>
                             </button>
+                            <box fixedFrame="YES" title="Restore files" translatesAutoresizingMaskIntoConstraints="NO" id="nYz-Yf-udR">
+                                <rect key="frame" x="473" y="16" width="106" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="Ik2-0K-WFW">
+                                    <rect key="frame" x="3" y="3" width="100" height="87"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
+                            <box fixedFrame="YES" title="Full restore" translatesAutoresizingMaskIntoConstraints="NO" id="Ayw-io-R1h">
+                                <rect key="frame" x="364" y="16" width="107" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="caJ-WL-07u">
+                                    <rect key="frame" x="3" y="3" width="101" height="87"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -3364,18 +3380,18 @@ DQ
         <scene sceneID="GIT-ED-d2h">
             <objects>
                 <viewController title="Details about files" storyboardIdentifier="StoryboardInformationID" id="ceM-Kt-SJU" customClass="ViewControllerInformation" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="KBL-J8-CuF">
-                        <rect key="frame" x="0.0" y="0.0" width="696" height="298"/>
+                    <view key="view" misplaced="YES" id="KBL-J8-CuF">
+                        <rect key="frame" x="0.0" y="0.0" width="696" height="275"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="217"/>
+                                <rect key="frame" x="20" y="61" width="656" height="171"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="216"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="170"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="193"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="147"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
