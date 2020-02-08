@@ -28,12 +28,9 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
     var outputprocess: OutputProcess?
     private var maxcount: Int = 0
 
-    @IBOutlet var server: NSTextField!
-    @IBOutlet var rcatalog: NSTextField!
     @IBOutlet var info: NSTextField!
     @IBOutlet var restoretableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
-    @IBOutlet var commandString: NSTextField!
     @IBOutlet var remoteCatalog: NSTextField!
     @IBOutlet var restorecatalog: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
@@ -96,20 +93,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
             self.presentAsSheet(self.viewControllerProgress!)
             self.copyfiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: false, updateprogress: self)
             self.estimated = false
-        }
-    }
-
-    private func displayRemoteserver(index: Int?) {
-        guard index != nil else {
-            self.server.stringValue = ""
-            self.rcatalog.stringValue = ""
-            return
-        }
-        let hiddenID = self.configurations!.gethiddenID(index: index!)
-        guard hiddenID > -1 else { return }
-        globalMainQueue.async { () -> Void in
-            self.server.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-            self.rcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
         }
     }
 
@@ -197,14 +180,12 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
                     self.info.stringValue = Infocopyfiles().info(num: 3)
                     return
                 }
-                self.commandString.stringValue = self.copyfiles!.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.restorecatalog.stringValue)
                 self.estimated = false
                 self.restorebutton.title = "Estimate"
                 self.restorebutton.isEnabled = true
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
-            self.commandString.stringValue = ""
             if let index = indexes.first {
                 self.copyfiles = nil
                 guard self.getremotefiles(index: index) == true else { return }
@@ -218,7 +199,6 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
                 self.copyfiles = CopyFiles(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
-                self.displayRemoteserver(index: index)
             } else {
                 self.rsyncindex = nil
                 self.restoretabledata = nil
@@ -284,7 +264,6 @@ extension ViewControllerCopyFiles: NSSearchFieldDelegate {
                 self.restorebutton.isEnabled = true
                 self.estimated = false
                 guard self.remoteCatalog.stringValue.count > 0 else { return }
-                self.commandString.stringValue = self.copyfiles?.getCommandDisplayinView(remotefile: self.remoteCatalog.stringValue, localCatalog: self.restorecatalog.stringValue) ?? ""
             }
         }
     }
