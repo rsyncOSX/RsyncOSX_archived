@@ -132,11 +132,14 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
         } else {
             self.restorecatalog.stringValue = ""
         }
-        self.verifylocalCatalog()
-        self.settmp()
         globalMainQueue.async { () -> Void in
             self.rsynctableView.reloadData()
         }
+        self.restorebutton.isEnabled = false
+        self.estimatebutton.isEnabled = false
+        self.settmp()
+
+        self.verifylocalCatalog()
     }
 
     override func viewDidDisappear() {
@@ -209,6 +212,10 @@ class ViewControllerCopyFiles: NSViewController, SetConfigurations, Delay, Conne
                 self.copyfiles = CopyFiles(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
+                // Check for full restore
+                if self.dorestore() {
+                    self.estimatebutton.isEnabled = true
+                }
             } else {
                 self.rsyncindex = nil
                 self.restoretabledata = nil
