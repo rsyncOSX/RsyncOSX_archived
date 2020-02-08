@@ -33,7 +33,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBOutlet var restoretableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
     @IBOutlet var remoteCatalog: NSTextField!
-    @IBOutlet var restorecatalog: NSTextField!
+    // @IBOutlet var restorecatalog: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var search: NSSearchField!
     @IBOutlet var restorefilesbutton: NSButton!
@@ -85,7 +85,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     // Do the work
     @IBAction func restore(_: NSButton) {
-        guard self.remoteCatalog.stringValue.isEmpty == false, self.restorecatalog.stringValue.isEmpty == false else {
+        guard self.remoteCatalog.stringValue.isEmpty == false, self.tmprestore.stringValue.isEmpty == false else {
             self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
             self.info.stringValue = Infocopyfiles().info(num: 3)
             return
@@ -94,12 +94,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restorefilesbutton.isEnabled = false
         if self.estimated == false {
             self.working.startAnimation(nil)
-            self.copyfiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: true, updateprogress: self)
+            self.copyfiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.tmprestore!.stringValue, dryrun: true, updateprogress: self)
             self.estimated = true
             self.outputprocess = self.copyfiles?.outputprocess
         } else {
             self.presentAsSheet(self.viewControllerProgress!)
-            self.copyfiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.restorecatalog!.stringValue, dryrun: false, updateprogress: self)
+            self.copyfiles!.executecopyfiles(remotefile: self.remoteCatalog!.stringValue, localCatalog: self.tmprestore!.stringValue, dryrun: false, updateprogress: self)
             self.estimated = false
         }
     }
@@ -113,7 +113,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.rsynctableView.dataSource = self
         self.working.usesThreadedAnimation = true
         self.search.delegate = self
-        self.restorecatalog.delegate = self
+        self.tmprestore.delegate = self
         self.remoteCatalog.delegate = self
         self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
         self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
@@ -126,11 +126,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.rsynctableView.reloadData()
             }
             return
-        }
-        if let restorepath = ViewControllerReference.shared.restorepath {
-            self.restorecatalog.stringValue = restorepath
-        } else {
-            self.restorecatalog.stringValue = ""
         }
         globalMainQueue.async { () -> Void in
             self.rsynctableView.reloadData()
@@ -149,7 +144,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         guard self.remoteCatalog.stringValue.isEmpty == false else { return }
-        guard self.restorecatalog.stringValue.isEmpty == false else { return }
+        guard self.tmprestore.stringValue.isEmpty == false else { return }
         let question: String = NSLocalizedString("Copy single files or directory?", comment: "Restore")
         let text: String = NSLocalizedString("Start restore?", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
@@ -157,14 +152,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         if answer {
             self.restorefilesbutton.isEnabled = false
             self.working.startAnimation(nil)
-            self.copyfiles!.executecopyfiles(remotefile: remoteCatalog!.stringValue, localCatalog: restorecatalog!.stringValue, dryrun: false, updateprogress: self)
+            self.copyfiles!.executecopyfiles(remotefile: remoteCatalog!.stringValue, localCatalog: tmprestore!.stringValue, dryrun: false, updateprogress: self)
         }
     }
 
     private func verifylocalCatalog() {
         let fileManager = FileManager.default
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-        if fileManager.fileExists(atPath: self.restorecatalog.stringValue) == false {
+        if fileManager.fileExists(atPath: self.tmprestore.stringValue) == false {
             self.info.stringValue = Infocopyfiles().info(num: 1)
         } else {
             self.info.stringValue = Infocopyfiles().info(num: 0)
@@ -189,7 +184,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             if let index = indexes.first {
                 guard self.restoretabledata != nil else { return }
                 self.remoteCatalog.stringValue = self.restoretabledata![index]
-                guard self.remoteCatalog.stringValue.isEmpty == false, self.restorecatalog.stringValue.isEmpty == false else {
+                guard self.remoteCatalog.stringValue.isEmpty == false, self.tmprestore.stringValue.isEmpty == false else {
                     self.info.stringValue = Infocopyfiles().info(num: 3)
                     return
                 }
@@ -485,11 +480,6 @@ extension ViewControllerRestore: DismissViewController {
 
 extension ViewControllerRestore: TemporaryRestorePath {
     func temporaryrestorepath() {
-        if let restorePath = ViewControllerReference.shared.restorepath {
-            self.restorecatalog.stringValue = restorePath
-        } else {
-            self.restorecatalog.stringValue = ""
-        }
         self.verifylocalCatalog()
         self.settmp()
     }
