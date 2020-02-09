@@ -115,7 +115,7 @@
 "Do you REALLY want to DELETE selected snapshots?" = "Möchten Sie die ausgewählten Schnappschüsse LÖSCHEN?";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Willst du EIN RESTORE starten?";
+"Do you REALLY want to start a RESTORE ?" = "Willst du EIN WIEDERHERSTELLEN starten?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ändern Sie nicht das Snapshot-Num, wenn Sie nicht wissen, was Sie tun...";
@@ -156,8 +156,7 @@
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Index aus Snapshots und Listing-Logs für eine Konfiguration...";
 
-/* Remote Info
-   Restore */
+/* Remote Info */
 "Got it..." = "Verstand...";
 
 /* datetime */
@@ -238,6 +237,9 @@
 
 /* Logg */
 "Number of logs:" = "Anzahl der Logs:";
+
+/* Copy files */
+"Number of remote files:" = "Anzahl der entfernten Dateien:";
 
 /* Remote info */
 "Number of tasks to estimate:" = "Anzahl der zu berechnenden Aufgaben:";

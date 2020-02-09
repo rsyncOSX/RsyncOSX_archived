@@ -156,8 +156,7 @@
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "从 Snapshots 获取索引并列出一个配置的日志...";
 
-/* Remote Info
-   Restore */
+/* Remote Info */
 "Got it..." = "得到它...";
 
 /* datetime */
@@ -238,6 +237,9 @@
 
 /* Logg */
 "Number of logs:" = "日志数：";
+
+/* Copy files */
+"Number of remote files:" = "远程文件数量：";
 
 /* Remote info */
 "Number of tasks to estimate:" = "需要估计的任务数目：";

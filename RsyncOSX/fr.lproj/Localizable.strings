@@ -156,8 +156,7 @@
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Obtenir l'index des Snapshots et lister les logs pour une configuration...";
 
-/* Remote Info
-   Restore */
+/* Remote Info */
 "Got it..." = "Compris...";
 
 /* datetime */
@@ -238,6 +237,9 @@
 
 /* Logg */
 "Number of logs:" = "Nombre de logs :";
+
+/* Copy files */
+"Number of remote files:" = "Nombre de fichiers distants :";
 
 /* Remote info */
 "Number of tasks to estimate:" = "Nombre de tâches à estimer:";
