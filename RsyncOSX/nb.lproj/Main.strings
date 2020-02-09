@@ -128,7 +128,7 @@
 "5Zv-SY-8nT.title" = "slett --delete";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "6ep-mT-HcP"; */
-"6ep-mT-HcP.title" = "Gjenopprett";
+"6ep-mT-HcP.title" = "Kopier";
 
 /* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB"; */
 "6rO-sZ-edB.title" = "Ekstern katalog:";
@@ -146,7 +146,7 @@
 "7w4-6r-ai5.toolTip" = "Avslutt oppgave...";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "8bK-3Q-Asl"; */
-"8bK-3Q-Asl.title" = "Gjenopprett";
+"8bK-3Q-Asl.title" = "Kopier";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "8ml-tx-gzW"; */
 "8ml-tx-gzW.title" = "Text Cell";
@@ -234,6 +234,9 @@
 
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "Rsa offentlig nøkkel.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "Dager";
 
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Open";
@@ -626,13 +629,13 @@
 "gJb-lQ-0wt.title" = "Text Cell";
 
 /* Class = "NSViewController"; title = "Restore"; ObjectID = "GJH-xK-5LY"; */
-"GJH-xK-5LY.title" = "Gjenopprett";
+"GJH-xK-5LY.title" = "Kopier";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gKi-ca-sia"; */
 "gKi-ca-sia.title" = "Table View Cell";
 
 /* Class = "NSTextFieldCell"; title = "temporary path restore:"; ObjectID = "GKP-F2-XbX"; */
-"GKP-F2-XbX.title" = " midlertidig sti kopi:";
+"GKP-F2-XbX.title" = "midlertidig sti gjenopprett:";
 
 /* Class = "NSButtonCell"; title = "Check rsa"; ObjectID = "goN-EU-g61"; */
 "goN-EU-g61.title" = "Sjekk rsa";
@@ -743,7 +746,7 @@
 "ibW-Po-vbR.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "files copied"; ObjectID = "Icw-Qm-VbA"; */
-"Icw-Qm-VbA.headerCell.title" = "filer gjenopprettett";
+"Icw-Qm-VbA.headerCell.title" = "filer kopiert";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "IDs-zU-XOw"; */
 "IDs-zU-XOw.headerCell.title" = "Oppgave";
@@ -944,7 +947,7 @@
 "nHu-Ph-Td8.title" = "Ekstern bruker:";
 
 /* Class = "NSBox"; title = "Restore to tmp catalog"; ObjectID = "NLG-RX-DcT"; */
-"NLG-RX-DcT.title" = "Gjenopprett til tmp katalog";
+"NLG-RX-DcT.title" = "Kopier til tmp katalog";
 
 /* Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS"; */
 "NMo-mM-awS.title" = "Intro";
@@ -1557,7 +1560,4 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "Ekstern katalog";
-
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "Dager";
 
