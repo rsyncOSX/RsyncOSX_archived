@@ -39,11 +39,11 @@
 "Cancel or Delete" = "Kanseler eller slett";
 
 /* Restore */
-"Cancel or Restore" = "Kanseler eller kopier";
+"Cancel or Restore" = "Kanseler eller gjenopprett";
 
 /* Copy files
    Remote Info */
-"Cannot copy from a syncremote task..." = "Kan ikke kopiere fra syncremote...";
+"Cannot copy from a syncremote task..." = "Kan ikke gjenopprette fra syncremote...";
 
 /* Verify */
 "Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
@@ -64,7 +64,7 @@
 "Computing changed, please wait..." = "Beregning endret, vennligst vent...";
 
 /* Restore */
-"Copy single files or directory?" = "Kopier fil eller katalog?";
+"Copy single files or directory?" = "Gjenopprett fil eller katalog?";
 
 /* copyright */
 "Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen";
@@ -156,8 +156,7 @@
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon...";
 
-/* Remote Info
-   Restore */
+/* Remote Info */
 "Got it..." = "Info hentet...";
 
 /* datetime */
@@ -219,7 +218,7 @@
 "no stopdate" = "ingen stopp dato";
 
 /* Copy files */
-"No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
+"No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for å gjenopprette eller sett den i bruker preferanser...";
 
 /* plan */
 "none" = "ingen";
@@ -228,7 +227,7 @@
 "Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
 /* Copy files */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
 
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
@@ -238,6 +237,9 @@
 
 /* Logg */
 "Number of logs:" = "Antall logger:";
+
+/* Copy files */
+"Number of remote files:" = "Antall eksterne filer:";
 
 /* Remote info */
 "Number of tasks to estimate:" = "Antall oppgaver å estimere:";
@@ -273,7 +275,7 @@
 "Remote catalog:" = "Ekstern katalog:";
 
 /* Restore */
-"Restore" = "Kopi";
+"Restore" = "Gjenopprett";
 
 /* plan */
 "Saturday" = "lørdag";
