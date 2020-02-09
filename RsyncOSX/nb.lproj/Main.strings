@@ -128,7 +128,7 @@
 "5Zv-SY-8nT.title" = "slett --delete";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "6ep-mT-HcP"; */
-"6ep-mT-HcP.title" = "Kopier";
+"6ep-mT-HcP.title" = "Gjenopprett";
 
 /* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB"; */
 "6rO-sZ-edB.title" = "Ekstern katalog:";
@@ -146,7 +146,7 @@
 "7w4-6r-ai5.toolTip" = "Avslutt oppgave...";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "8bK-3Q-Asl"; */
-"8bK-3Q-Asl.title" = "Kopier";
+"8bK-3Q-Asl.title" = "Gjenopprett";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "8ml-tx-gzW"; */
 "8ml-tx-gzW.title" = "Text Cell";
@@ -629,7 +629,7 @@
 "gJb-lQ-0wt.title" = "Text Cell";
 
 /* Class = "NSViewController"; title = "Restore"; ObjectID = "GJH-xK-5LY"; */
-"GJH-xK-5LY.title" = "Kopier";
+"GJH-xK-5LY.title" = "Gjenopprett";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gKi-ca-sia"; */
 "gKi-ca-sia.title" = "Table View Cell";
@@ -746,7 +746,7 @@
 "ibW-Po-vbR.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "files copied"; ObjectID = "Icw-Qm-VbA"; */
-"Icw-Qm-VbA.headerCell.title" = "filer kopiert";
+"Icw-Qm-VbA.headerCell.title" = "filer gjenopprettet";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "IDs-zU-XOw"; */
 "IDs-zU-XOw.headerCell.title" = "Oppgave";
@@ -947,7 +947,7 @@
 "nHu-Ph-Td8.title" = "Ekstern bruker:";
 
 /* Class = "NSBox"; title = "Restore to tmp catalog"; ObjectID = "NLG-RX-DcT"; */
-"NLG-RX-DcT.title" = "Kopier til tmp katalog";
+"NLG-RX-DcT.title" = "Gjenopprett til tmp katalog";
 
 /* Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS"; */
 "NMo-mM-awS.title" = "Intro";
