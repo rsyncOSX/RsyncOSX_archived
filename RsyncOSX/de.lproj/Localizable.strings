@@ -138,6 +138,9 @@
 /* Restore */
 "Executing restore..." = "Wiederherstellung wird ausgeführt...";
 
+/* Restore */
+"Filelist for snapshot tasks might be huge?" = "Die Liste für Snapshot-Aufgaben könnte enorm sein?";
+
 /* plan */
 "Friday" = "Freitag";
 
@@ -238,13 +241,13 @@
 /* Logg */
 "Number of logs:" = "Anzahl der Logs:";
 
-/* Copy files */
+/* Restore */
 "Number of remote files:" = "Anzahl der entfernten Dateien:";
 
 /* Remote info */
 "Number of tasks to estimate:" = "Anzahl der zu berechnenden Aufgaben:";
 
-/* Copy files */
+/* Restore */
 "Number remote files:" = "Anzahl entfernter Dateien:";
 
 /* Snapshots */
@@ -309,6 +312,12 @@
 
 /* Tooltip */
 "Source catalog:" = "Quellkatalog:";
+
+/* Restore */
+"Start" = "Start";
+
+/* Restore */
+"Start getting files?" = "Starte das Abrufen von Dateien?";
 
 /* Restore */
 "Start restore?" = "Wiederherstellen?";

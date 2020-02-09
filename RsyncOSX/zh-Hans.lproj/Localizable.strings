@@ -138,6 +138,9 @@
 /* Restore */
 "Executing restore..." = "正在执行还原...";
 
+/* Restore */
+"Filelist for snapshot tasks might be huge?" = "快照任务的文件列表可能是巨大的吗？";
+
 /* plan */
 "Friday" = "星期五";
 
@@ -238,13 +241,13 @@
 /* Logg */
 "Number of logs:" = "日志数：";
 
-/* Copy files */
+/* Restore */
 "Number of remote files:" = "远程文件数量：";
 
 /* Remote info */
 "Number of tasks to estimate:" = "需要估计的任务数目：";
 
-/* Copy files */
+/* Restore */
 "Number remote files:" = "号码远程文件：";
 
 /* Snapshots */
@@ -309,6 +312,12 @@
 
 /* Tooltip */
 "Source catalog:" = "源目录：";
+
+/* Restore */
+"Start" = "开始";
+
+/* Restore */
+"Start getting files?" = "开始获取文件？";
 
 /* Restore */
 "Start restore?" = "开始还原？";
