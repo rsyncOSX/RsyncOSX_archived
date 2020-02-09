@@ -57,7 +57,7 @@ extension ViewControllerRestore: NSTableViewDataSource {
                 return 0
             }
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Number remote files:", comment: "Restore") + String(self.restoretabledata!.count)
+            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.restoretabledata?.count ?? 0), number: NumberFormatter.Style.decimal)
             return self.restoretabledata!.count
         } else {
             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
@@ -101,7 +101,7 @@ extension ViewControllerRestore: UpdateProgress {
                 self.restorebutton.isEnabled = true
             }
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + String(self.maxcount)
+            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal)
         }
         self.working.stopAnimation(nil)
     }
