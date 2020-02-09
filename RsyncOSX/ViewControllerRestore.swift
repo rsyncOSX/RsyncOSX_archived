@@ -27,6 +27,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var diddissappear: Bool = false
     var outputprocess: OutputProcess?
     private var maxcount: Int = 0
+    weak var outputeverythingDelegate: ViewOutputDetails?
 
     @IBOutlet var info: NSTextField!
     @IBOutlet var restoretableView: NSTableView!
@@ -115,6 +116,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
+        self.outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.restoretableView.delegate = self
         self.restoretableView.dataSource = self
         self.rsynctableView.delegate = self
@@ -445,9 +447,7 @@ extension ViewControllerRestore: UpdateProgress {
     }
 
     func fileHandler() {
-        weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        if outputeverythingDelegate?.appendnow() ?? false {
+        if self.outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
