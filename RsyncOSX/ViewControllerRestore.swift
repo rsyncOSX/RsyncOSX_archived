@@ -19,8 +19,8 @@ protocol Updateremotefilelist: AnyObject {
 }
 
 class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
-    var restorefilestask: CopyFiles?
-    var fullrestoretask: RestoreTask?
+    var restorefilestask: RestorefilesTask?
+    var fullrestoretask: FullrestoreTask?
     var remotefilelist: Remotefilelist?
     var rsyncindex: Int?
     var estimated: Bool = false
@@ -205,7 +205,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.remotefiles.stringValue = ""
                 self.rsyncindex = index
                 let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
-                self.restorefilestask = CopyFiles(hiddenID: hiddenID)
+                self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
                 // Check for full restore
@@ -259,11 +259,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.estimatebutton.isEnabled = false
             self.working.startAnimation(nil)
             if ViewControllerReference.shared.restorepath != nil, self.selecttmptorestore.state == .on {
-                self.fullrestoretask = RestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
+                self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
                 self.outputprocess = self.fullrestoretask?.outputprocess
             } else {
                 self.selecttmptorestore.state = .off
-                self.fullrestoretask = RestoreTask(index: index, dryrun: true, tmprestore: false, updateprogress: self)
+                self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: false, updateprogress: self)
                 self.outputprocess = self.fullrestoretask?.outputprocess
             }
         }
@@ -307,10 +307,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 }
                 switch self.selecttmptorestore.state {
                 case .on:
-                    self.fullrestoretask = RestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
+                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                 case .off:
-                    self.fullrestoretask = RestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
+                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                 default:
                     return

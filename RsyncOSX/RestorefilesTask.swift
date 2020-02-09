@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class CopyFiles: SetConfigurations {
+final class RestorefilesTask: SetConfigurations {
     private var index: Int?
     private var config: Configuration?
     private var commandDisplay: String?

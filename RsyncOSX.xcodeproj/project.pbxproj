@@ -57,7 +57,7 @@
 		A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0762A1E1DB4A8F000538CE9 /* CatalogProfile.swift */; };
 		A08110671D6DA7D8009444D3 /* ViewControllerProgressProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */; };
 		A091C6581D86A0A800278E74 /* ViewControllerRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C6571D86A0A800278E74 /* ViewControllerRestore.swift */; };
-		A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C65A1D86A59500278E74 /* CopyFiles.swift */; };
+		A091C65B1D86A59500278E74 /* RestorefilesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C65A1D86A59500278E74 /* RestorefilesTask.swift */; };
 		A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */; };
 		A0AA33811D6F926A00DF4C77 /* ViewControllerBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */; };
 		A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */; };
@@ -130,7 +130,7 @@
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
 		E97C09A71EFAFBC400E86999 /* ExecuteBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C09A61EFAFBC400E86999 /* ExecuteBatch.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
-		E982BA2820CEB59F00E71918 /* RestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* RestoreTask.swift */; };
+		E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */; };
 		E989CE961EF948D0000CB7C2 /* ChmodPubKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */; };
 		E98DA4C220EC12F4007CBDEF /* OutputErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DA4C120EC12F4007CBDEF /* OutputErrors.swift */; };
 		E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994B7C922A39D7A00B435AB /* Environment.swift */; };
@@ -217,7 +217,7 @@
 		A0762A1E1DB4A8F000538CE9 /* CatalogProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogProfile.swift; sourceTree = "<group>"; };
 		A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProgressProcess.swift; sourceTree = "<group>"; };
 		A091C6571D86A0A800278E74 /* ViewControllerRestore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRestore.swift; sourceTree = "<group>"; };
-		A091C65A1D86A59500278E74 /* CopyFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyFiles.swift; sourceTree = "<group>"; };
+		A091C65A1D86A59500278E74 /* RestorefilesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestorefilesTask.swift; sourceTree = "<group>"; };
 		A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRsyncParameters.swift; sourceTree = "<group>"; };
 		A0AA33801D6F926A00DF4C77 /* ViewControllerBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBatch.swift; sourceTree = "<group>"; };
 		A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMain.swift; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		E97C09A61EFAFBC400E86999 /* ExecuteBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteBatch.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
-		E982BA2720CEB59F00E71918 /* RestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreTask.swift; sourceTree = "<group>"; };
+		E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullrestoreTask.swift; sourceTree = "<group>"; };
 		E989CE951EF948D0000CB7C2 /* ChmodPubKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChmodPubKey.swift; sourceTree = "<group>"; };
 		E98DA4C120EC12F4007CBDEF /* OutputErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputErrors.swift; sourceTree = "<group>"; };
 		E994B7C922A39D7A00B435AB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -533,8 +533,7 @@
 		A05275DB1D6F6E2C00D8ECBE /* Execution */ = {
 			isa = PBXGroup;
 			children = (
-				E95EFA3523EF5257005AFD73 /* Fullrestore */,
-				A091C6591D86A1F400278E74 /* CopyFiles */,
+				E95EFA3523EF5257005AFD73 /* Restore */,
 				E9D0B3F623099570009ABB74 /* Estimating */,
 				E9D0B3F523099549009ABB74 /* Singletask */,
 				E958BB2623070B8A00349C81 /* Batch */,
@@ -543,14 +542,6 @@
 				E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */,
 			);
 			name = Execution;
-			sourceTree = "<group>";
-		};
-		A091C6591D86A1F400278E74 /* CopyFiles */ = {
-			isa = PBXGroup;
-			children = (
-				A091C65A1D86A59500278E74 /* CopyFiles.swift */,
-			);
-			name = CopyFiles;
 			sourceTree = "<group>";
 		};
 		A0BAA5F21D70C33A003BE69F /* Configurations */ = {
@@ -695,12 +686,13 @@
 			name = Mainprocess;
 			sourceTree = "<group>";
 		};
-		E95EFA3523EF5257005AFD73 /* Fullrestore */ = {
+		E95EFA3523EF5257005AFD73 /* Restore */ = {
 			isa = PBXGroup;
 			children = (
-				E982BA2720CEB59F00E71918 /* RestoreTask.swift */,
+				A091C65A1D86A59500278E74 /* RestorefilesTask.swift */,
+				E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */,
 			);
-			name = Fullrestore;
+			name = Restore;
 			sourceTree = "<group>";
 		};
 		E973B6F6238F1AC500B0FD12 /* Equal */ = {
@@ -1068,7 +1060,7 @@
 				A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */,
 				E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */,
-				E982BA2820CEB59F00E71918 /* RestoreTask.swift in Sources */,
+				E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */,
 				E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */,
 				E91AF8F421AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift in Sources */,
 				E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */,
@@ -1117,7 +1109,7 @@
 				E9C30B4B201623B00079C63D /* SnapshotsLoggData.swift in Sources */,
 				E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */,
 				E9F068F21F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift in Sources */,
-				A091C65B1D86A59500278E74 /* CopyFiles.swift in Sources */,
+				A091C65B1D86A59500278E74 /* RestorefilesTask.swift in Sources */,
 				E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */,
 				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
 				E92276E422995B3500F7D2B6 /* ConvertOneConfig.swift in Sources */,

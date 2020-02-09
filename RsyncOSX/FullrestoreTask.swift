@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RestoreTask: SetConfigurations {
+final class FullrestoreTask: SetConfigurations {
     var arguments: [String]?
     weak var sendprocess: SendProcessreference?
     var process: ProcessCmd?
