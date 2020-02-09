@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length file_length type_body_length
+//  swiftlint:disable line_length file_length type_body_length function_body_length
 
 import Cocoa
 import Foundation
@@ -210,9 +210,23 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.remotefiles.stringValue = ""
                 self.rsyncindex = index
                 let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
-                self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
-                self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
-                self.working.startAnimation(nil)
+                if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
+                    self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
+                    self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                    self.working.startAnimation(nil)
+                } else {
+                    let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
+                    let text: String = NSLocalizedString("Start getting files?", comment: "Restore")
+                    let dialog: String = NSLocalizedString("Start", comment: "Restore")
+                    let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                    if answer {
+                        self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
+                        self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                        self.working.startAnimation(nil)
+                    } else {
+                        self.reset()
+                    }
+                }
             } else {
                 self.reset()
                 globalMainQueue.async { () -> Void in
@@ -397,7 +411,7 @@ extension ViewControllerRestore: NSTableViewDataSource {
                 return 0
             }
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Number remote files:", comment: "Copy files") + String(self.restoretabledata!.count)
+            self.info.stringValue = NSLocalizedString("Number remote files:", comment: "Restore") + String(self.restoretabledata!.count)
             return self.restoretabledata!.count
         } else {
             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
@@ -441,7 +455,7 @@ extension ViewControllerRestore: UpdateProgress {
                 self.restorebutton.isEnabled = true
             }
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Copy files") + " " + String(self.maxcount)
+            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + String(self.maxcount)
         }
         self.working.stopAnimation(nil)
     }
