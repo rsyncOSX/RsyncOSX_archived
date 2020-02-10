@@ -376,6 +376,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.estimatebutton.isEnabled = true
         } else {
             self.reset()
+            self.info.stringValue = Infocopyfiles().info(num: 1)
         }
     }
 

@@ -219,8 +219,8 @@
 /* Schedule details */
 "no stopdate" = "ingen stopp dato";
 
-/* Copy files */
-"No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for gjenopprett eller sett den i bruker preferanser...";
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "Ingen temporær katalog for gjenopprett, sett den i bruker preferanser.";
 
 /* plan */
 "none" = "ingen";
