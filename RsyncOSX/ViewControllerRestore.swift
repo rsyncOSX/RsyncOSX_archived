@@ -271,7 +271,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.info.isHidden = false
                 return false
             }
-            guard self.verifytmprestorepath() == true else { return false }
+            if self.selecttmptorestore.state == .on {
+                guard self.verifytmprestorepath() == true else { return false }
+            }
         }
         return true
     }
