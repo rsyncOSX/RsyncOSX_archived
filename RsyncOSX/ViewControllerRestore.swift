@@ -22,7 +22,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var restorefilestask: RestorefilesTask?
     var fullrestoretask: FullrestoreTask?
     var remotefilelist: Remotefilelist?
-    var rsyncindex: Int?
+    var index: Int?
     var restoretabledata: [String]?
     var diddissappear: Bool = false
     var outputprocess: OutputProcess?
@@ -82,38 +82,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.reset()
     }
 
-    // Restore files
-    @IBAction func executerestorefiles(_: NSButton) {
-        guard self.checkforrestorefiles() == true else { return }
-        self.estimatefilesbutton.isEnabled = false
-        self.presentAsSheet(self.viewControllerProgress!)
-        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
-        self.outputprocess = self.restorefilestask?.outputprocess
-    }
-
-    @IBAction func estimaterestorefiles(_: NSButton) {
-        guard self.restorefilestask != nil else {
-            self.reset()
-            return
-        }
-        guard self.verifytmprestorepath() == true else { return }
-        self.working.startAnimation(nil)
-        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
-        self.outputprocess = self.restorefilestask?.outputprocess
-    }
-
-    private func checkforrestorefiles() -> Bool {
-        self.fullrestoretask = nil
-        guard self.checkforrsync() == false else { return false }
-        guard self.remotefiles.stringValue.isEmpty == false, self.tmprestorepath.stringValue.isEmpty == false else {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            self.info.stringValue = Infocopyfiles().info(num: 3)
-            return false
-        }
-        guard self.restorefilestask != nil else { return false }
-        return true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
@@ -150,6 +118,38 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.diddissappear = true
     }
 
+    // Restore files
+    @IBAction func executerestorefiles(_: NSButton) {
+        guard self.checkforrestorefiles() == true else { return }
+        self.estimatefilesbutton.isEnabled = false
+        self.presentAsSheet(self.viewControllerProgress!)
+        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
+        self.outputprocess = self.restorefilestask?.outputprocess
+    }
+
+    @IBAction func estimaterestorefiles(_: NSButton) {
+        guard self.restorefilestask != nil else {
+            self.reset()
+            return
+        }
+        guard self.verifytmprestorepath() == true else { return }
+        self.working.startAnimation(nil)
+        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
+        self.outputprocess = self.restorefilestask?.outputprocess
+    }
+
+    private func checkforrestorefiles() -> Bool {
+        self.fullrestoretask = nil
+        guard self.checkforrsync() == false else { return false }
+        guard self.remotefiles.stringValue.isEmpty == false, self.tmprestorepath.stringValue.isEmpty == false else {
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
+            self.info.stringValue = Infocopyfiles().info(num: 3)
+            return false
+        }
+        guard self.restorefilestask != nil else { return false }
+        return true
+    }
+
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         if myTableViewFromNotification == self.restoretableView {
@@ -171,12 +171,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
+                self.index = index
                 self.restorefilestask = nil
-                guard self.getremotefiles(index: index) == true else { return }
-                self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
+                guard self.checkforgetremotefiles() == true else { return }
                 self.info.stringValue = Infocopyfiles().info(num: 0)
                 self.remotefiles.stringValue = ""
-                self.rsyncindex = index
                 let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
                 if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
                     self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
@@ -219,7 +218,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func reset() {
-        self.rsyncindex = nil
+        self.index = nil
         self.restoretabledata = nil
         self.restorefilestask = nil
         self.fullrestoretask = nil
@@ -230,30 +229,58 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.estimatebutton.isEnabled = false
     }
 
-    func getremotefiles(index: Int) -> Bool {
-        let config = self.configurations!.getConfigurations()[index]
-        guard self.connected(config: config) == true else {
-            self.estimatefilesbutton.isEnabled = false
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            self.info.stringValue = Infocopyfiles().info(num: 4)
-            return false
-        }
-        guard config.task != ViewControllerReference.shared.syncremote else {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            self.info.stringValue = Infocopyfiles().info(num: 5)
-            self.restoretabledata = nil
-            globalMainQueue.async { () -> Void in
-                self.restoretableView.reloadData()
+    func checkforgetremotefiles() -> Bool {
+        if let index = self.index {
+            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
+                self.info.stringValue = Infocopyfiles().info(num: 4)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                return false
             }
-            return false
+            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+                self.estimatebutton.isEnabled = false
+                self.estimatefilesbutton.isEnabled = false
+                self.info.stringValue = Infocopyfiles().info(num: 5)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                self.restoretabledata = nil
+                globalMainQueue.async { () -> Void in
+                    self.restoretableView.reloadData()
+                }
+                return false
+            }
+            return true
+        }
+        return false
+    }
+
+    func checkforfullrestore() -> Bool {
+        self.restorefilestask = nil
+        if let index = self.index {
+            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
+                self.info.stringValue = Infocopyfiles().info(num: 4)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                return false
+            }
+            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+                self.estimatebutton.isEnabled = false
+                self.estimatefilesbutton.isEnabled = false
+                self.info.stringValue = Infocopyfiles().info(num: 5)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                return false
+            }
+            guard self.verifytmprestorepath() == true else { return false }
         }
         return true
     }
 
+    // Full restore
     @IBAction func prepareforfullrestore(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         guard self.checkforfullrestore() == true else { return }
-        if let index = self.rsyncindex {
+        if let index = self.index {
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
             let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
             self.info.stringValue = gotit
@@ -271,27 +298,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    func checkforfullrestore() -> Bool {
-        self.restorefilestask = nil
-        if let index = self.rsyncindex {
-            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
-                self.info.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.info.isHidden = false
-                return false
-            }
-            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
-                self.estimatebutton.isEnabled = false
-                self.info.stringValue = NSLocalizedString("Cannot copy from a syncremote task...", comment: "Remote Info")
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.info.isHidden = false
-                return false
-            }
-            guard self.verifytmprestorepath() == true else { return false }
-        }
-        return true
-    }
-
     @IBAction func executefullrestore(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         guard self.checkforfullrestore() == true else { return }
@@ -300,7 +306,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            if let index = self.rsyncindex {
+            if let index = self.index {
                 self.info.textColor = setcolor(nsviewcontroller: self, color: .white)
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.info.stringValue = gotit
