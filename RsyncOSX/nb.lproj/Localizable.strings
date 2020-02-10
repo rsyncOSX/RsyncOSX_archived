@@ -41,8 +41,8 @@
 /* Restore */
 "Cancel or Restore" = "Kanseler eller gjenopprett";
 
-/* Copy files */
-"Cannot copy from a syncremote task..." = "Kan ikke kopiere fra syncremote...";
+/* Restore */
+"Cannot copy from a syncremote task..." = "Kan ikke gjenopprette fra syncremote...";
 
 /* Verify */
 "Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
@@ -186,7 +186,7 @@
 /* Tooltip */
 "Local catalog:" = "Lokal katalog:";
 
-/* Copy files */
+/* Restore */
 "Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
 
 /* main */
@@ -220,7 +220,7 @@
 "no stopdate" = "ingen stopp dato";
 
 /* Restore */
-"No such temporay catalog for restore, set it in user config." = "Ingen temporær katalog for gjenopprett, sett den i bruker preferanser.";
+"No such temporay catalog for restore, set it in user config." = "Ingen slik lokal katalog for gjenopprett, sett den i bruker preferanser.";
 
 /* plan */
 "none" = "ingen";
@@ -228,8 +228,8 @@
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
-/* Copy files */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
+/* Restore */
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
 
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
@@ -251,9 +251,6 @@
 
 /* main */
 "once" = "engang";
-
-/* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
 
 /* Verify */
 "Please select a task in Execute ..." = "Velg en oppgave i Utfør ...";

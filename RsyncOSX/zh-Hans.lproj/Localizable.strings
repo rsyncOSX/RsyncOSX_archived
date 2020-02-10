@@ -256,9 +256,6 @@
 /* main */
 "once" = "一次";
 
-/* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "仅适用于备份、快照和合并任务...";
-
 /* Verify */
 "Please select a task in Execute ..." = "请选择一个正在执行的任务...";
 

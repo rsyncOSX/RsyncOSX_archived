@@ -256,9 +256,6 @@
 /* main */
 "once" = "une fois";
 
-/* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "Valable uniquement pour la sauvegarde, la capture instantanée et les tâches combinées...";
-
 /* Verify */
 "Please select a task in Execute ..." = "Veuillez sélectionner une tâche dans Exécuter ...";
 
