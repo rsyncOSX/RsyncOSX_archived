@@ -29,14 +29,6 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
                     }
                 }
             }
-            // self.verifytmprestorepath()
-        } else {
-            self.delayWithSeconds(0.25) {
-                // self.verifytmprestorepath()
-                self.estimatefilesbutton.isEnabled = true
-                self.restorefilesbutton.isEnabled = false
-                guard self.remotefiles.stringValue.count > 0 else { return }
-            }
         }
     }
 
@@ -93,13 +85,8 @@ extension ViewControllerRestore: UpdateProgress {
             vc.processTermination()
             self.reset()
         } else {
-            if self.restorefilestask != nil {
-                self.restorefilesbutton.isEnabled = true
-                self.estimatefilesbutton.isEnabled = false
-            } else {
-                self.estimatebutton.isEnabled = false
-                self.restorebutton.isEnabled = true
-            }
+            self.restorebutton.isEnabled = true
+            self.estimatebutton.isEnabled = false
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal)
         }
@@ -137,7 +124,6 @@ extension ViewControllerRestore: DismissViewController {
 
 extension ViewControllerRestore: TemporaryRestorePath {
     func temporaryrestorepath() {
-        // self.verifytmprestorepath()
         self.settmprestorepathfromuserconfig()
     }
 }

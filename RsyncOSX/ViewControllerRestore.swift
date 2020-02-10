@@ -36,13 +36,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // @IBOutlet var restorecatalog: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var search: NSSearchField!
-    @IBOutlet var estimatefilesbutton: NSButton!
-    @IBOutlet var restorefilesbutton: NSButton!
-    // Full restore part
+    @IBOutlet var estimatebutton: NSButton!
     @IBOutlet var restorebutton: NSButton!
+    @IBOutlet var fullrestoreradiobutton: NSButton!
+    @IBOutlet var filesrestoreradiobutton: NSButton!
     @IBOutlet var tmprestorepath: NSTextField!
     @IBOutlet var selecttmptorestore: NSButton!
-    @IBOutlet var estimatebutton: NSButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -108,9 +107,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         globalMainQueue.async { () -> Void in
             self.rsynctableView.reloadData()
         }
-        self.reset()
         self.settmprestorepathfromuserconfig()
-        // self.verifytmprestorepath()
+        self.reset()
     }
 
     override func viewDidDisappear() {
@@ -119,15 +117,15 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     // Restore files
-    @IBAction func executerestorefiles(_: NSButton) {
+    func executerestorefiles() {
         guard self.checkforrestorefiles() == true else { return }
-        self.estimatefilesbutton.isEnabled = false
+        self.estimatebutton.isEnabled = false
         self.presentAsSheet(self.viewControllerProgress!)
         self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
         self.outputprocess = self.restorefilestask?.outputprocess
     }
 
-    @IBAction func estimaterestorefiles(_: NSButton) {
+    func estimaterestorefiles() {
         guard self.restorefilestask != nil else {
             self.reset()
             return
@@ -163,9 +161,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     self.info.stringValue = Infocopyfiles().info(num: 3)
                     return
                 }
-                self.estimatefilesbutton.isEnabled = true
-                self.restorefilesbutton.isEnabled = false
-                self.estimatebutton.isEnabled = false
+                self.estimatebutton.isEnabled = true
                 self.restorebutton.isEnabled = false
             }
         } else {
@@ -211,7 +207,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            self.estimatefilesbutton.isEnabled = false
+            self.estimatebutton.isEnabled = false
+            self.restorebutton.isEnabled = false
             self.working.startAnimation(nil)
             self.restorefilestask!.executecopyfiles(remotefile: remotefiles!.stringValue, localCatalog: tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
         }
@@ -223,8 +220,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restorefilestask = nil
         self.fullrestoretask = nil
         self.info.stringValue = ""
-        self.estimatefilesbutton.isEnabled = false
-        self.restorefilesbutton.isEnabled = false
         self.restorebutton.isEnabled = false
         self.estimatebutton.isEnabled = false
     }
@@ -239,7 +234,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             }
             guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
                 self.estimatebutton.isEnabled = false
-                self.estimatefilesbutton.isEnabled = false
+                self.estimatebutton.isEnabled = false
                 self.info.stringValue = Infocopyfiles().info(num: 5)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
@@ -249,6 +244,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 }
                 return false
             }
+            guard self.filesrestoreradiobutton.state == .on else { return false }
             return true
         }
         return false
@@ -265,12 +261,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             }
             guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
                 self.estimatebutton.isEnabled = false
-                self.estimatefilesbutton.isEnabled = false
+                self.estimatebutton.isEnabled = false
                 self.info.stringValue = Infocopyfiles().info(num: 5)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
                 return false
             }
+            guard self.fullrestoreradiobutton.state == .on else { return false }
             if self.selecttmptorestore.state == .on {
                 guard self.verifytmprestorepath() == true else { return false }
             }
@@ -279,7 +276,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     // Full restore
-    @IBAction func prepareforfullrestore(_: NSButton) {
+    func prepareforfullrestore() {
         guard self.checkforrsync() == false else { return }
         guard self.checkforfullrestore() == true else { return }
         if let index = self.index {
@@ -300,7 +297,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func executefullrestore(_: NSButton) {
+    func executefullrestore() {
         guard self.checkforrsync() == false else { return }
         guard self.checkforfullrestore() == true else { return }
         let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
@@ -313,7 +310,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.info.stringValue = gotit
                 self.info.isHidden = false
-                self.estimatefilesbutton.isEnabled = false
+                self.estimatebutton.isEnabled = false
                 globalMainQueue.async { () -> Void in
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
@@ -359,7 +356,31 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.selecttmptorestore.state = .off
             return
         }
-        self.estimatebutton.isEnabled = true
-        self.restorebutton.isEnabled = false
+    }
+
+    @IBAction func togglewhichtypeofrestore(_: NSButton) {
+        if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
+            if self.verifytmprestorepath() == true {
+                self.estimatebutton.isEnabled = true
+            }
+        } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
+            if self.verifytmprestorepath() == true {
+                self.estimatebutton.isEnabled = true
+            }
+        } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .off {
+            self.estimatebutton.isEnabled = true
+        } else {
+            self.reset()
+        }
+    }
+
+    @IBAction func restore(_: NSButton) {
+        if self.fullrestoreradiobutton.state == .on {
+        } else {}
+    }
+
+    @IBAction func estimate(_: NSButton) {
+        if self.fullrestoreradiobutton.state == .on {
+        } else {}
     }
 }
