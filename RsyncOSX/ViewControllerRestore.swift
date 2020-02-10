@@ -223,6 +223,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.info.stringValue = ""
         self.restorebutton.isEnabled = false
         self.estimatebutton.isEnabled = false
+        self.filesrestoreradiobutton.state = .off
+        self.fullrestoreradiobutton.state = .off
     }
 
     func checkforgetremotefiles() -> Bool {
@@ -355,6 +357,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBAction func toggletmprestore(_: NSButton) {
         guard self.verifytmprestorepath() == true else {
             self.selecttmptorestore.state = .off
+            self.fullrestoreradiobutton.state = .off
+            self.filesrestoreradiobutton.state = .off
             return
         }
     }
