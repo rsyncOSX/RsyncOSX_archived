@@ -41,9 +41,8 @@
 /* Restore */
 "Cancel or Restore" = "Kanseler eller gjenopprett";
 
-/* Copy files
-   Remote Info */
-"Cannot copy from a syncremote task..." = "Kan ikke gjenopprette fra syncremote...";
+/* Copy files */
+"Cannot copy from a syncremote task..." = "Kan ikke kopiere fra syncremote...";
 
 /* Verify */
 "Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
@@ -230,7 +229,7 @@
 "Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
 /* Copy files */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
 
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
@@ -246,9 +245,6 @@
 
 /* Remote info */
 "Number of tasks to estimate:" = "Antall oppgaver å estimere:";
-
-/* Restore */
-"Number remote files:" = "Antall filer:";
 
 /* Snapshots */
 "Number snapshots:" = "Antall snapshots:";

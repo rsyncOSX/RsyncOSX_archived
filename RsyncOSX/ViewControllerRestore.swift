@@ -201,7 +201,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         guard self.remotefiles.stringValue.isEmpty == false else { return }
-        guard self.tmprestorepath.stringValue.isEmpty == false else { return }
+        guard self.verifytmprestorepath() == true else { return }
+        self.filesrestoreradiobutton.state = .on
         let question: String = NSLocalizedString("Copy single files or directory?", comment: "Restore")
         let text: String = NSLocalizedString("Start restore?", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
