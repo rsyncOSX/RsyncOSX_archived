@@ -130,7 +130,7 @@ extension SetDismisser {
     }
 
     var dismissDelegateCopyFiles: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
     }
 
     var dismissDelegateNewConfigurations: DismissViewController? {
@@ -153,16 +153,12 @@ extension SetDismisser {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
 
-    var dismissDelegateRestore: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
-    }
-
     func dismissview(viewcontroller _: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vctabschedule {
             self.dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vccopyfiles {
+        } else if vcontroller == .vcrestore {
             self.dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcnewconfigurations {
             self.dismissDelegateNewConfigurations?.dismiss_view(viewcontroller: (self as? NSViewController)!)
@@ -174,8 +170,6 @@ extension SetDismisser {
             self.dismissDelegateVerify?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcloggdata {
             self.dismissDelegateLoggData?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vcrestore {
-            self.dismissDelegateRestore?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         }
     }
 }
@@ -320,10 +314,8 @@ protocol ChangeTemporaryRestorePath {
 
 extension ChangeTemporaryRestorePath {
     func changetemporaryrestorepath() {
-        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         view?.temporaryrestorepath()
-        let view2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
-        view2?.temporaryrestorepath()
     }
 }
 

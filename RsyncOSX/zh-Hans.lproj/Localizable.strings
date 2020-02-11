@@ -41,8 +41,7 @@
 /* Restore */
 "Cancel or Restore" = "取消或恢复";
 
-/* Copy files
-   Remote Info */
+/* Restore */
 "Cannot copy from a syncremote task..." = "无法从同步任务复制...";
 
 /* Verify */
@@ -138,6 +137,9 @@
 /* Restore */
 "Executing restore..." = "正在执行还原...";
 
+/* Restore */
+"Filelist for snapshot tasks might be huge?" = "快照任务的文件列表可能是巨大的吗？";
+
 /* plan */
 "Friday" = "星期五";
 
@@ -156,8 +158,7 @@
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "从 Snapshots 获取索引并列出一个配置的日志...";
 
-/* Remote Info
-   Restore */
+/* Remote Info */
 "Got it..." = "得到它...";
 
 /* datetime */
@@ -185,7 +186,7 @@
 /* Tooltip */
 "Local catalog:" = "本地目录：";
 
-/* Copy files */
+/* Restore */
 "Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";
 
 /* main */
@@ -207,9 +208,6 @@
 "New version is available:" = "新版本可用：";
 
 /* Execute */
-"No rclone config found..." = "找不到 rclone 配置...";
-
-/* Execute */
 "No rsync in path..." = "路径中没有rsync...";
 
 /* Schedule details */
@@ -218,8 +216,8 @@
 /* Schedule details */
 "no stopdate" = "没有停止日期";
 
-/* Copy files */
-"No such local catalog for restore or set it in user config..." = "没有这样的本地目录来还原或在用户配置中设置...";
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "没有这样的临时目录来恢复，请在用户配置中设置它。";
 
 /* plan */
 "none" = "无";
@@ -227,7 +225,7 @@
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Norwegian translation by Thomas Evensen";
 
-/* Copy files */
+/* Restore */
 "Not a remote task, use Finder to copy files..." = "不是一个远程任务，请使用 Finder 复制文件...";
 
 /* Snapshots */
@@ -239,20 +237,17 @@
 /* Logg */
 "Number of logs:" = "日志数：";
 
+/* Restore */
+"Number of remote files:" = "远程文件数量：";
+
 /* Remote info */
 "Number of tasks to estimate:" = "需要估计的任务数目：";
-
-/* Copy files */
-"Number remote files:" = "号码远程文件：";
 
 /* Snapshots */
 "Number snapshots:" = "数字快照：";
 
 /* main */
 "once" = "一次";
-
-/* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "仅适用于备份、快照和合并任务...";
 
 /* Verify */
 "Please select a task in Execute ..." = "请选择一个正在执行的任务...";
@@ -309,6 +304,12 @@
 "Source catalog:" = "源目录：";
 
 /* Restore */
+"Start" = "开始";
+
+/* Restore */
+"Start getting files?" = "开始获取文件？";
+
+/* Restore */
 "Start restore?" = "开始还原？";
 
 /* main */
@@ -323,9 +324,6 @@
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "似乎没有什么事要做...";
-
-/* Execute */
-"This is a combined task, execute by ⌘R..." = "这是一个合并的任务，由 PRR 执行...";
 
 /* New */
 "This is added before?" = "这是以前添加的吗？";

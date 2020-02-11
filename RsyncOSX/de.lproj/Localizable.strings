@@ -41,8 +41,7 @@
 /* Restore */
 "Cancel or Restore" = "Abbrechen oder Wiederherstellen";
 
-/* Copy files
-   Remote Info */
+/* Restore */
 "Cannot copy from a syncremote task..." = "Kann nicht von einer syncremote Aufgabe kopieren...";
 
 /* Verify */
@@ -115,7 +114,7 @@
 "Do you REALLY want to DELETE selected snapshots?" = "Möchten Sie die ausgewählten Schnappschüsse LÖSCHEN?";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Willst du EIN RESTORE starten?";
+"Do you REALLY want to start a RESTORE ?" = "Willst du EIN WIEDERHERSTELLEN starten?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ändern Sie nicht das Snapshot-Num, wenn Sie nicht wissen, was Sie tun...";
@@ -138,6 +137,9 @@
 /* Restore */
 "Executing restore..." = "Wiederherstellung wird ausgeführt...";
 
+/* Restore */
+"Filelist for snapshot tasks might be huge?" = "Die Liste für Snapshot-Aufgaben könnte enorm sein?";
+
 /* plan */
 "Friday" = "Freitag";
 
@@ -156,8 +158,7 @@
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Index aus Snapshots und Listing-Logs für eine Konfiguration...";
 
-/* Remote Info
-   Restore */
+/* Remote Info */
 "Got it..." = "Verstand...";
 
 /* datetime */
@@ -185,7 +186,7 @@
 /* Tooltip */
 "Local catalog:" = "Lokaler Katalog:";
 
-/* Copy files */
+/* Restore */
 "Local or remote catalog cannot be empty..." = "Lokaler oder Remote-Katalog darf nicht leer sein...";
 
 /* main */
@@ -207,9 +208,6 @@
 "New version is available:" = "Neue Version ist verfügbar:";
 
 /* Execute */
-"No rclone config found..." = "Keine rclone Konfiguration gefunden...";
-
-/* Execute */
 "No rsync in path..." = "Kein rsync im Pfad...";
 
 /* Schedule details */
@@ -218,8 +216,8 @@
 /* Schedule details */
 "no stopdate" = "kein Stopdatum";
 
-/* Copy files */
-"No such local catalog for restore or set it in user config..." = "Kein solcher lokaler Katalog für die Wiederherstellung oder setzen Sie ihn in der Benutzerkonfiguration...";
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "Kein solcher temporärer Katalog für die Wiederherstellung, setzen Sie ihn in der Benutzer-Konfiguration.";
 
 /* plan */
 "none" = "keine";
@@ -227,7 +225,7 @@
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Norwegische Übersetzung von: Thomas Evensen";
 
-/* Copy files */
+/* Restore */
 "Not a remote task, use Finder to copy files..." = "Keine entfernte Aufgabe, verwenden Sie Finder um Dateien zu kopieren...";
 
 /* Snapshots */
@@ -239,20 +237,17 @@
 /* Logg */
 "Number of logs:" = "Anzahl der Logs:";
 
+/* Restore */
+"Number of remote files:" = "Anzahl der entfernten Dateien:";
+
 /* Remote info */
 "Number of tasks to estimate:" = "Anzahl der zu berechnenden Aufgaben:";
-
-/* Copy files */
-"Number remote files:" = "Anzahl entfernter Dateien:";
 
 /* Snapshots */
 "Number snapshots:" = "Anzahl Momentaufnahmen:";
 
 /* main */
 "once" = "einmal";
-
-/* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "Nur gültig für Backup, Schnappschuss und kombinierte Aufgaben...";
 
 /* Verify */
 "Please select a task in Execute ..." = "Bitte wählen Sie eine Aufgabe in Ausführung ...";
@@ -309,6 +304,12 @@
 "Source catalog:" = "Quellkatalog:";
 
 /* Restore */
+"Start" = "Start";
+
+/* Restore */
+"Start getting files?" = "Starte das Abrufen von Dateien?";
+
+/* Restore */
 "Start restore?" = "Wiederherstellen?";
 
 /* main */
@@ -323,9 +324,6 @@
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "Es scheint nichts zu tun...";
-
-/* Execute */
-"This is a combined task, execute by ⌘R..." = "Dies ist eine kombinierte Aufgabe, die von⌘R...";
 
 /* New */
 "This is added before?" = "Dies wird vorher hinzugefügt?";

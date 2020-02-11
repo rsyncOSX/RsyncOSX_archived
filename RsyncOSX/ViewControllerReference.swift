@@ -15,7 +15,7 @@ enum ViewController {
     case vcloggdata
     case vcnewconfigurations
     case vctabschedule
-    case vccopyfiles
+    case vcrestore
     case vcssh
     case vcsnapshot
     case vcverify
@@ -27,7 +27,6 @@ enum ViewController {
     case vcallprofiles
     case vcestimatingtasks
     case vcinfolocalremote
-    case vcrestore
     case vcalloutput
 }
 
@@ -59,7 +58,7 @@ final class ViewControllerReference {
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
-    var restorePath: String?
+    var restorepath: String?
     var completeoperation: CompleteQuickbackupTask?
     // Loggfile
     var minimumlogging: Bool = false
@@ -103,7 +102,7 @@ final class ViewControllerReference {
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
-    private var viewControllerCopyFiles: NSViewController?
+    private var viewControllerRestore: NSViewController?
     // Reference to the New tasks
     private var viewControllerNewConfigurations: NSViewController?
     // Reference to the  Schedule
@@ -130,8 +129,6 @@ final class ViewControllerReference {
     private var viewControllerEstimatingTasks: NSViewController?
     // Local and remote info
     private var viewControllerInfoLocalRemote: NSViewController?
-    // Restore
-    private var viewControllerRestore: NSViewController?
     // Verify
     private var viewControllerVerify: NSViewController?
     // Alloutput
@@ -147,8 +144,8 @@ final class ViewControllerReference {
             return self.viewControllerNewConfigurations
         case .vctabschedule:
             return self.viewControllertabSchedule
-        case .vccopyfiles:
-            return self.viewControllerCopyFiles
+        case .vcrestore:
+            return self.viewControllerRestore
         case .vcssh:
             return self.viewControllerSsh
         case .vcabout:
@@ -169,8 +166,6 @@ final class ViewControllerReference {
             return self.viewControllerEstimatingTasks
         case .vcinfolocalremote:
             return self.viewControllerInfoLocalRemote
-        case .vcrestore:
-            return self.viewControllerRestore
         case .vcverify:
             return self.viewControllerVerify
         case .vcalloutput:
@@ -188,8 +183,8 @@ final class ViewControllerReference {
             self.viewControllerNewConfigurations = nsviewcontroller
         case .vctabschedule:
             self.viewControllertabSchedule = nsviewcontroller
-        case .vccopyfiles:
-            self.viewControllerCopyFiles = nsviewcontroller
+        case .vcrestore:
+            self.viewControllerRestore = nsviewcontroller
         case .vcssh:
             self.viewControllerSsh = nsviewcontroller
         case .vcabout:
@@ -210,8 +205,6 @@ final class ViewControllerReference {
             self.viewControllerEstimatingTasks = nsviewcontroller
         case .vcinfolocalremote:
             self.viewControllerInfoLocalRemote = nsviewcontroller
-        case .vcrestore:
-            self.viewControllerRestore = nsviewcontroller
         case .vcverify:
             self.viewControllerVerify = nsviewcontroller
         case .vcalloutput:

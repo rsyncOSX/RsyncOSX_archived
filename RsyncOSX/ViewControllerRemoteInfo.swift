@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 22.12.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length cyclomatic_complexity
+// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
@@ -40,8 +40,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
                 } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-                } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+                } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
                 } else if (self.presentingViewController as? ViewControllerSsh) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 } else if (self.presentingViewController as? ViewControllerVerify) != nil {
@@ -50,8 +50,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
                 } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-                } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
                 }
                 openDelegate?.openquickbackup()
             }
@@ -75,8 +73,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         } else if (self.presentingViewController as? ViewControllerSsh) != nil {
@@ -85,8 +83,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             self.dismissview(viewcontroller: self, vcontroller: .vcverify)
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         }
     }
 

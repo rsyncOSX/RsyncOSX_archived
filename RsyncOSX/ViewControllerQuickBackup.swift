@@ -43,8 +43,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerCopyFiles) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vccopyfiles)
+        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
+            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         } else if (self.presentingViewController as? ViewControllerSsh) != nil {
@@ -53,8 +53,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             self.dismissview(viewcontroller: self, vcontroller: .vcverify)
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
         }
     }
 
