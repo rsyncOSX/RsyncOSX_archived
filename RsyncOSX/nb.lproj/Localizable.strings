@@ -39,11 +39,10 @@
 "Cancel or Delete" = "Kanseler eller slett";
 
 /* Restore */
-"Cancel or Restore" = "Kanseler eller kopier";
+"Cancel or Restore" = "Kanseler eller gjenopprett";
 
-/* Copy files
-   Remote Info */
-"Cannot copy from a syncremote task..." = "Kan ikke kopiere fra syncremote...";
+/* Restore */
+"Cannot copy from a syncremote task..." = "Kan ikke gjenopprette fra syncremote...";
 
 /* Verify */
 "Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
@@ -64,7 +63,7 @@
 "Computing changed, please wait..." = "Beregning endret, vennligst vent...";
 
 /* Restore */
-"Copy single files or directory?" = "Kopier fil eller katalog?";
+"Copy single files or directory?" = "Gjenopprett fil eller katalog?";
 
 /* copyright */
 "Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen";
@@ -115,7 +114,7 @@
 "Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en KOPI?";
+"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en GJENOPPRETT?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
@@ -136,7 +135,10 @@
 "every" = "alle";
 
 /* Restore */
-"Executing restore..." = "Utfører kopi...";
+"Executing restore..." = "Utfører gjenopprett...";
+
+/* Restore */
+"Filelist for snapshot tasks might be huge?" = "Liste over filer i snapshot oppgaver kan være stor?";
 
 /* plan */
 "Friday" = "fredag";
@@ -156,8 +158,7 @@
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon...";
 
-/* Remote Info
-   Restore */
+/* Remote Info */
 "Got it..." = "Info hentet...";
 
 /* datetime */
@@ -185,7 +186,7 @@
 /* Tooltip */
 "Local catalog:" = "Lokal katalog:";
 
-/* Copy files */
+/* Restore */
 "Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
 
 /* main */
@@ -218,8 +219,8 @@
 /* Schedule details */
 "no stopdate" = "ingen stopp dato";
 
-/* Copy files */
-"No such local catalog for restore or set it in user config..." = "Ingen slik lokal katalog for restore eller sett den i bruker preferanser...";
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "Ingen slik lokal katalog for gjenopprett, sett den i bruker preferanser.";
 
 /* plan */
 "none" = "ingen";
@@ -227,8 +228,8 @@
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
-/* Copy files */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
+/* Restore */
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
 
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
@@ -239,20 +240,17 @@
 /* Logg */
 "Number of logs:" = "Antall logger:";
 
+/* Restore */
+"Number of remote files:" = "Antall eksterne filer:";
+
 /* Remote info */
 "Number of tasks to estimate:" = "Antall oppgaver å estimere:";
-
-/* Copy files */
-"Number remote files:" = "Antall filer:";
 
 /* Snapshots */
 "Number snapshots:" = "Antall snapshots:";
 
 /* main */
 "once" = "engang";
-
-/* Execute */
-"Only valid for backup, snapshot and combined tasks..." = "Kun gyldig for backup, snapshot og kombinerte oppgaver...";
 
 /* Verify */
 "Please select a task in Execute ..." = "Velg en oppgave i Utfør ...";
@@ -273,7 +271,7 @@
 "Remote catalog:" = "Ekstern katalog:";
 
 /* Restore */
-"Restore" = "Kopi";
+"Restore" = "Gjenopprett";
 
 /* plan */
 "Saturday" = "lørdag";
@@ -309,7 +307,13 @@
 "Source catalog:" = "Ekstern katalog:";
 
 /* Restore */
-"Start restore?" = "Start kopi?";
+"Start" = "Start";
+
+/* Restore */
+"Start getting files?" = "Hente filer?";
+
+/* Restore */
+"Start restore?" = "Start gjenopprett?";
 
 /* main */
 "stopped" = "stoppet";

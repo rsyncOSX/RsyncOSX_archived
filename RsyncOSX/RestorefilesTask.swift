@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class CopyFiles: SetConfigurations {
+final class RestorefilesTask: SetConfigurations {
     private var index: Int?
     private var config: Configuration?
     private var commandDisplay: String?
@@ -21,8 +21,7 @@ final class CopyFiles: SetConfigurations {
     }
 
     func abort() {
-        guard self.process != nil else { return }
-        self.process!.abortProcess()
+        self.process?.abortProcess()
     }
 
     func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool, updateprogress: UpdateProgress) {
@@ -35,13 +34,6 @@ final class CopyFiles: SetConfigurations {
         self.process = ProcessCmd(command: nil, arguments: arguments)
         self.process?.setupdateDelegate(object: updateprogress)
         self.process?.executeProcess(outputprocess: self.outputprocess)
-    }
-
-    func getCommandDisplayinView(remotefile: String, localCatalog: String) -> String {
-        guard self.config != nil else { return "" }
-        self.commandDisplay = CopyFilesArguments(task: .rsync, config: self.config!, remoteFile: remotefile,
-                                                 localCatalog: localCatalog, drynrun: true).getcommandDisplay()
-        return self.commandDisplay ?? ""
     }
 
     init(hiddenID: Int) {

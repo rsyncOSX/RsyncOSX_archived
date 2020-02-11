@@ -8,15 +8,24 @@
 
 import Foundation
 
-final class RestoreTask: SetConfigurations {
+final class FullrestoreTask: SetConfigurations {
     var arguments: [String]?
-    init(index: Int, outputprocess: OutputProcess?, dryrun: Bool, tmprestore: Bool, updateprogress: UpdateProgress?) {
+    weak var sendprocess: SendProcessreference?
+    var process: ProcessCmd?
+    var outputprocess: OutputProcess?
+
+    func abort() {
+        self.process?.abortProcess()
+    }
+
+    init(index: Int, dryrun: Bool, tmprestore: Bool, updateprogress: UpdateProgress) {
+        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if dryrun {
             if tmprestore {
                 self.arguments = self.configurations?.arguments4tmprestore(index: index, argtype: .argdryRun)
                 let lastindex = (self.arguments?.count ?? 0) - 1
                 guard lastindex > -1 else { return }
-                self.arguments?[lastindex] = ViewControllerReference.shared.restorePath ?? ""
+                self.arguments?[lastindex] = ViewControllerReference.shared.restorepath ?? ""
             } else {
                 self.arguments = self.configurations?.arguments4restore(index: index, argtype: .argdryRun)
             }
@@ -25,18 +34,16 @@ final class RestoreTask: SetConfigurations {
                 self.arguments = self.configurations?.arguments4tmprestore(index: index, argtype: .arg)
                 let lastindex = (self.arguments?.count ?? 0) - 1
                 guard lastindex > -1 else { return }
-                self.arguments?[lastindex] = ViewControllerReference.shared.restorePath ?? ""
+                self.arguments?[lastindex] = ViewControllerReference.shared.restorepath ?? ""
             } else {
                 self.arguments = self.configurations?.arguments4restore(index: index, argtype: .arg)
             }
         }
-        guard arguments != nil else { return }
-        let process = Rsync(arguments: self.arguments)
-        process.setdelegate(object: updateprogress)
-        process.executeProcess(outputprocess: outputprocess)
-        // For cancel process
-        weak var setprocessDelegate: SendProcessreference?
-        setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        setprocessDelegate?.sendprocessreference(process: process.getProcess())
+        guard self.arguments != nil else { return }
+        self.process = ProcessCmd(command: nil, arguments: self.arguments)
+        self.outputprocess = OutputProcess()
+        self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
+        self.process?.setupdateDelegate(object: updateprogress)
+        self.process?.executeProcess(outputprocess: outputprocess)
     }
 }

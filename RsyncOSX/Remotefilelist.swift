@@ -14,18 +14,24 @@ class Remotefilelist: ProcessCmd, SetConfigurations {
     var config: Configuration?
     var remotefilelist: [String]?
     weak var setremotefilelistDelegate: Updateremotefilelist?
+    weak var outputeverythingDelegate: ViewOutputDetails?
+    weak var sendprocess: SendProcessreference?
 
     init(hiddenID: Int) {
         super.init(command: nil, arguments: nil)
+        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        self.setremotefilelistDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+        self.outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         let index = self.configurations?.getIndex(hiddenID) ?? -1
         self.config = self.configurations!.getConfigurations()[index]
         self.outputprocess = OutputProcess()
+        self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
         self.arguments = CopyFilesArguments(task: .rsyncfilelistings, config: self.config!,
                                             remoteFile: nil, localCatalog: nil, drynrun: nil).getArguments()
         self.command = CopyFilesArguments(task: .rsyncfilelistings, config: self.config!,
                                           remoteFile: nil, localCatalog: nil, drynrun: nil).getCommand()
         self.setupdateDelegate(object: self)
-        self.setremotefilelistDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vccopyfiles) as? ViewControllerCopyFiles
+
         self.executeProcess(outputprocess: self.outputprocess)
     }
 }
@@ -37,6 +43,8 @@ extension Remotefilelist: UpdateProgress {
     }
 
     func fileHandler() {
-        // nothing
+        if self.outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.reloadtable()
+        }
     }
 }
