@@ -396,16 +396,21 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.prepareforfilesrestoreandandgetremotefilelist()
             }
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
+            self.restoretabledata = nil
             if self.verifytmprestorepath() == true {
                 self.estimatebutton.isEnabled = true
                 self.restorebutton.isEnabled = false
             }
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .off {
+            self.restoretabledata = nil
             self.estimatebutton.isEnabled = true
             self.restorebutton.isEnabled = false
         } else {
             self.reset()
             self.info.stringValue = Infocopyfiles().info(num: 1)
+        }
+        globalMainQueue.async { () -> Void in
+            self.restoretableView.reloadData()
         }
     }
 
