@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length type_body_length function_body_length
+//  swiftlint:disable line_length type_body_length file_length
 
 import Cocoa
 import Foundation
@@ -168,32 +168,38 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 self.index = index
-                self.restorefilestask = nil
-                guard self.checkforgetremotefiles() == true else { return }
-                self.info.stringValue = Infocopyfiles().info(num: 0)
-                self.remotefiles.stringValue = ""
-                let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
-                if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
-                    self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
-                    self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
-                    self.working.startAnimation(nil)
-                } else {
-                    let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
-                    let text: String = NSLocalizedString("Start getting files?", comment: "Restore")
-                    let dialog: String = NSLocalizedString("Start", comment: "Restore")
-                    let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-                    if answer {
-                        self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
-                        self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
-                        self.working.startAnimation(nil)
-                    } else {
-                        self.reset()
-                    }
-                }
+                self.prepareforfilesrestore()
             } else {
                 self.reset()
                 globalMainQueue.async { () -> Void in
                     self.restoretableView.reloadData()
+                }
+            }
+        }
+    }
+
+    func prepareforfilesrestore() {
+        if let index = self.index {
+            self.restorefilestask = nil
+            guard self.checkforgetremotefiles() == true else { return }
+            self.info.stringValue = Infocopyfiles().info(num: 0)
+            self.remotefiles.stringValue = ""
+            let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
+            if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
+                self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
+                self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                self.working.startAnimation(nil)
+            } else {
+                let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
+                let text: String = NSLocalizedString("Start getting files?", comment: "Restore")
+                let dialog: String = NSLocalizedString("Start", comment: "Restore")
+                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                if answer {
+                    self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
+                    self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                    self.working.startAnimation(nil)
+                } else {
+                    self.reset()
                 }
             }
         }
@@ -229,6 +235,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     func checkforgetremotefiles() -> Bool {
         if let index = self.index {
+            self.info.stringValue = ""
             guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
                 self.info.stringValue = Infocopyfiles().info(num: 4)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
@@ -255,6 +262,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     func checkforfullrestore() -> Bool {
         self.restorefilestask = nil
+        self.info.stringValue = ""
         if let index = self.index {
             guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
                 self.info.stringValue = Infocopyfiles().info(num: 4)
@@ -367,13 +375,17 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             if self.verifytmprestorepath() == true {
                 self.estimatebutton.isEnabled = true
+                self.restorebutton.isEnabled = false
+                self.prepareforfilesrestore()
             }
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             if self.verifytmprestorepath() == true {
                 self.estimatebutton.isEnabled = true
+                self.restorebutton.isEnabled = false
             }
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .off {
             self.estimatebutton.isEnabled = true
+            self.restorebutton.isEnabled = false
         } else {
             self.reset()
             self.info.stringValue = Infocopyfiles().info(num: 1)
@@ -387,6 +399,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     @IBAction func estimate(_: NSButton) {
         if self.fullrestoreradiobutton.state == .on {
-        } else {}
+            self.prepareforfullrestore()
+        } else {
+            self.estimaterestorefiles()
+        }
     }
 }
