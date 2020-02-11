@@ -158,6 +158,5 @@ extension ViewControllerRestore: Updateremotefilelist {
         }
         self.working.stopAnimation(nil)
         self.remotefilelist = nil
-        self.estimatebutton.isEnabled = true
     }
 }

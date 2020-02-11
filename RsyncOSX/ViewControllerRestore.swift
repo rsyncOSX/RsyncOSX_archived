@@ -363,18 +363,25 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @IBAction func toggletmprestore(_: NSButton) {
-        guard self.verifytmprestorepath() == true else {
-            self.selecttmptorestore.state = .off
-            self.fullrestoreradiobutton.state = .off
-            self.filesrestoreradiobutton.state = .off
-            return
+        if self.selecttmptorestore.state == .on {
+            if self.verifytmprestorepath() == false {
+                self.selecttmptorestore.state = .off
+                self.fullrestoreradiobutton.state = .off
+                self.filesrestoreradiobutton.state = .off
+            } else {
+                self.estimatebutton.isEnabled = false
+                self.restorebutton.isEnabled = false
+            }
+        } else {
+            self.estimatebutton.isEnabled = false
+            self.restorebutton.isEnabled = false
         }
     }
 
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             if self.verifytmprestorepath() == true {
-                self.estimatebutton.isEnabled = true
+                self.estimatebutton.isEnabled = false
                 self.restorebutton.isEnabled = false
                 self.prepareforfilesrestore()
             }
