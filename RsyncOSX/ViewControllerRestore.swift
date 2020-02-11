@@ -145,6 +145,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             return false
         }
         guard self.restorefilestask != nil else { return false }
+        guard self.verifytmprestorepath() == true else {
+            self.selecttmptorestore.state = .off
+            return false
+        }
         return true
     }
 
@@ -161,6 +165,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     self.info.stringValue = Infocopyfiles().info(num: 3)
                     return
                 }
+                guard self.checkforrestorefiles() == true else { return }
                 self.estimatebutton.isEnabled = true
                 self.restorebutton.isEnabled = false
             }
@@ -168,7 +173,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 self.index = index
-                self.prepareforfilesrestore()
+                self.prepareforfilesrestoreandandgetremotefilelist()
             } else {
                 self.reset()
                 globalMainQueue.async { () -> Void in
@@ -178,7 +183,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    func prepareforfilesrestore() {
+    func prepareforfilesrestoreandandgetremotefilelist() {
         if let index = self.index {
             self.restorefilestask = nil
             guard self.checkforgetremotefiles() == true else { return }
@@ -255,6 +260,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 return false
             }
             guard self.filesrestoreradiobutton.state == .on else { return false }
+            guard self.verifytmprestorepath() == true else {
+                self.selecttmptorestore.state = .off
+                return false
+            }
             return true
         }
         return false
@@ -351,6 +360,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func verifytmprestorepath() -> Bool {
+        guard self.selecttmptorestore.state == .on else { return false }
         let fileManager = FileManager.default
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
         if fileManager.fileExists(atPath: self.tmprestorepath.stringValue) == false {
@@ -383,7 +393,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             if self.verifytmprestorepath() == true {
                 self.estimatebutton.isEnabled = false
                 self.restorebutton.isEnabled = false
-                self.prepareforfilesrestore()
+                self.prepareforfilesrestoreandandgetremotefilelist()
             }
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             if self.verifytmprestorepath() == true {
