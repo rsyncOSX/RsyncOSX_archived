@@ -119,8 +119,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Restore files
     func executerestorefiles() {
         guard self.checkforrestorefiles() == true else { return }
-        self.estimatebutton.isEnabled = false
-        self.presentAsSheet(self.viewControllerProgress!)
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerProgress!)
+        }
         self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
         self.outputprocess = self.restorefilestask?.outputprocess
     }
@@ -132,6 +133,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
         guard self.verifytmprestorepath() == true else { return }
         self.working.startAnimation(nil)
+        self.enabledisableradiobuttons(enable: false)
         self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
         self.outputprocess = self.restorefilestask?.outputprocess
     }
@@ -191,18 +193,22 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.remotefiles.stringValue = ""
             let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
             if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
+                self.enabledisableradiobuttons(enable: false)
                 self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
+                self.enabledisableradiobuttons(enable: false)
             } else {
                 let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
                 let text: String = NSLocalizedString("Start getting files?", comment: "Restore")
                 let dialog: String = NSLocalizedString("Start", comment: "Restore")
                 let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
                 if answer {
+                    self.enabledisableradiobuttons(enable: false)
                     self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                     self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                     self.working.startAnimation(nil)
+                    self.enabledisableradiobuttons(enable: false)
                 } else {
                     self.reset()
                 }
@@ -222,6 +228,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.estimatebutton.isEnabled = false
             self.restorebutton.isEnabled = false
             self.working.startAnimation(nil)
+            self.enabledisableradiobuttons(enable: false)
             self.restorefilestask!.executecopyfiles(remotefile: remotefiles!.stringValue, localCatalog: tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
         }
     }
@@ -306,6 +313,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.info.isHidden = false
             self.estimatebutton.isEnabled = false
             self.working.startAnimation(nil)
+            self.enabledisableradiobuttons(enable: false)
             if ViewControllerReference.shared.restorepath != nil, self.selecttmptorestore.state == .on {
                 self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
                 self.outputprocess = self.fullrestoretask?.outputprocess
@@ -330,7 +338,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 self.info.stringValue = gotit
                 self.info.isHidden = false
-                self.estimatebutton.isEnabled = false
                 globalMainQueue.async { () -> Void in
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
@@ -416,7 +423,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     @IBAction func restore(_: NSButton) {
         if self.fullrestoreradiobutton.state == .on {
-        } else {}
+            self.executefullrestore()
+        } else {
+            self.executerestorefiles()
+        }
     }
 
     @IBAction func estimate(_: NSButton) {
@@ -425,5 +435,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         } else {
             self.estimaterestorefiles()
         }
+    }
+
+    func enabledisableradiobuttons(enable: Bool) {
+        self.fullrestoreradiobutton.isEnabled = enable
+        self.filesrestoreradiobutton.isEnabled = enable
     }
 }
