@@ -41,8 +41,7 @@
 /* Restore */
 "Cancel or Restore" = "取消或恢复";
 
-/* Copy files
-   Remote Info */
+/* Restore */
 "Cannot copy from a syncremote task..." = "无法从同步任务复制...";
 
 /* Verify */
@@ -187,7 +186,7 @@
 /* Tooltip */
 "Local catalog:" = "本地目录：";
 
-/* Copy files */
+/* Restore */
 "Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";
 
 /* main */
@@ -209,9 +208,6 @@
 "New version is available:" = "新版本可用：";
 
 /* Execute */
-"No rclone config found..." = "找不到 rclone 配置...";
-
-/* Execute */
 "No rsync in path..." = "路径中没有rsync...";
 
 /* Schedule details */
@@ -220,8 +216,8 @@
 /* Schedule details */
 "no stopdate" = "没有停止日期";
 
-/* Copy files */
-"No such local catalog for restore or set it in user config..." = "没有这样的本地目录来还原或在用户配置中设置...";
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "没有这样的临时目录来恢复，请在用户配置中设置它。";
 
 /* plan */
 "none" = "无";
@@ -229,7 +225,7 @@
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Norwegian translation by Thomas Evensen";
 
-/* Copy files */
+/* Restore */
 "Not a remote task, use Finder to copy files..." = "不是一个远程任务，请使用 Finder 复制文件...";
 
 /* Snapshots */
@@ -246,9 +242,6 @@
 
 /* Remote info */
 "Number of tasks to estimate:" = "需要估计的任务数目：";
-
-/* Restore */
-"Number remote files:" = "号码远程文件：";
 
 /* Snapshots */
 "Number snapshots:" = "数字快照：";
@@ -331,9 +324,6 @@
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "似乎没有什么事要做...";
-
-/* Execute */
-"This is a combined task, execute by ⌘R..." = "这是一个合并的任务，由 PRR 执行...";
 
 /* New */
 "This is added before?" = "这是以前添加的吗？";

@@ -41,8 +41,7 @@
 /* Restore */
 "Cancel or Restore" = "Abbrechen oder Wiederherstellen";
 
-/* Copy files
-   Remote Info */
+/* Restore */
 "Cannot copy from a syncremote task..." = "Kann nicht von einer syncremote Aufgabe kopieren...";
 
 /* Verify */
@@ -187,7 +186,7 @@
 /* Tooltip */
 "Local catalog:" = "Lokaler Katalog:";
 
-/* Copy files */
+/* Restore */
 "Local or remote catalog cannot be empty..." = "Lokaler oder Remote-Katalog darf nicht leer sein...";
 
 /* main */
@@ -209,9 +208,6 @@
 "New version is available:" = "Neue Version ist verfügbar:";
 
 /* Execute */
-"No rclone config found..." = "Keine rclone Konfiguration gefunden...";
-
-/* Execute */
 "No rsync in path..." = "Kein rsync im Pfad...";
 
 /* Schedule details */
@@ -220,8 +216,8 @@
 /* Schedule details */
 "no stopdate" = "kein Stopdatum";
 
-/* Copy files */
-"No such local catalog for restore or set it in user config..." = "Kein solcher lokaler Katalog für die Wiederherstellung oder setzen Sie ihn in der Benutzerkonfiguration...";
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "Kein solcher temporärer Katalog für die Wiederherstellung, setzen Sie ihn in der Benutzer-Konfiguration.";
 
 /* plan */
 "none" = "keine";
@@ -229,7 +225,7 @@
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Norwegische Übersetzung von: Thomas Evensen";
 
-/* Copy files */
+/* Restore */
 "Not a remote task, use Finder to copy files..." = "Keine entfernte Aufgabe, verwenden Sie Finder um Dateien zu kopieren...";
 
 /* Snapshots */
@@ -247,15 +243,11 @@
 /* Remote info */
 "Number of tasks to estimate:" = "Anzahl der zu berechnenden Aufgaben:";
 
-/* Restore */
-"Number remote files:" = "Anzahl entfernter Dateien:";
-
 /* Snapshots */
 "Number snapshots:" = "Anzahl Momentaufnahmen:";
 
 /* main */
 "once" = "einmal";
-
 
 /* Verify */
 "Please select a task in Execute ..." = "Bitte wählen Sie eine Aufgabe in Ausführung ...";
@@ -332,9 +324,6 @@
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "Es scheint nichts zu tun...";
-
-/* Execute */
-"This is a combined task, execute by ⌘R..." = "Dies ist eine kombinierte Aufgabe, die von⌘R...";
 
 /* New */
 "This is added before?" = "Dies wird vorher hinzugefügt?";

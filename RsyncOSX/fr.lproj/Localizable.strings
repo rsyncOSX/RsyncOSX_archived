@@ -41,8 +41,7 @@
 /* Restore */
 "Cancel or Restore" = "Annuler ou restaurer";
 
-/* Copy files
-   Remote Info */
+/* Restore */
 "Cannot copy from a syncremote task..." = "Impossible de copier à partir d'une tâche de syncrémote...";
 
 /* Verify */
@@ -187,7 +186,7 @@
 /* Tooltip */
 "Local catalog:" = "Catalogue local :";
 
-/* Copy files */
+/* Restore */
 "Local or remote catalog cannot be empty..." = "Le catalogue local ou distant ne peut pas être vide...";
 
 /* main */
@@ -209,9 +208,6 @@
 "New version is available:" = "Une nouvelle version est disponible :";
 
 /* Execute */
-"No rclone config found..." = "Aucune configuration de rclone trouvée...";
-
-/* Execute */
 "No rsync in path..." = "Pas de rsync dans le chemin...";
 
 /* Schedule details */
@@ -220,8 +216,8 @@
 /* Schedule details */
 "no stopdate" = "pas de date d'arrêt";
 
-/* Copy files */
-"No such local catalog for restore or set it in user config..." = "Aucun catalogue local pour la restauration ou la mise en place dans la configuration de l'utilisateur...";
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "Aucun catalogue temporay de ce type pour la restauration, le définir dans la configuration de l'utilisateur.";
 
 /* plan */
 "none" = "aucun";
@@ -229,7 +225,7 @@
 /* norwegian */
 "Norwegian translation by: Thomas Evensen" = "Traduction norvégienne par : Thomas Evensen";
 
-/* Copy files */
+/* Restore */
 "Not a remote task, use Finder to copy files..." = "Ce n'est pas une tâche distante, utilisez Finder pour copier des fichiers...";
 
 /* Snapshots */
@@ -246,9 +242,6 @@
 
 /* Remote info */
 "Number of tasks to estimate:" = "Nombre de tâches à estimer:";
-
-/* Restore */
-"Number remote files:" = "Nombre de fichiers distants :";
 
 /* Snapshots */
 "Number snapshots:" = "Nombre d'instantanés :";
@@ -331,9 +324,6 @@
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "Il semble qu'il n'y ait rien à faire...";
-
-/* Execute */
-"This is a combined task, execute by ⌘R..." = "Il s'agit d'une tâche combinée, exécutée par le r...";
 
 /* New */
 "This is added before?" = "Ceci est ajouté avant ?";
