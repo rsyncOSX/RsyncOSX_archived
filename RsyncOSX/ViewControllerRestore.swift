@@ -1,5 +1,5 @@
 //
-//  ViewControllerCopyFiles.swift
+//  ViewControllerRestore.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 12/09/2016.
