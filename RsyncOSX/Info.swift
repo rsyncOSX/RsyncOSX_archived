@@ -56,8 +56,8 @@ struct Infologgdata {
     }
 }
 
-struct Infocopyfiles {
-    // Copy files
+struct Inforestore {
+    // Restore
     let info31: String = NSLocalizedString("No such temporay catalog for restore, set it in user config.", comment: "Restore")
     let info32: String = NSLocalizedString("Not a remote task, use Finder to copy files...", comment: "Restore")
     let info33: String = NSLocalizedString("Local or remote catalog cannot be empty...", comment: "Restore")

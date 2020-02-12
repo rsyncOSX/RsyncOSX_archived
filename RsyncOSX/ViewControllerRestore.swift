@@ -143,7 +143,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         guard self.checkforrsync() == false else { return false }
         guard self.remotefiles.stringValue.isEmpty == false, self.tmprestorepath.stringValue.isEmpty == false else {
             self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            self.info.stringValue = Infocopyfiles().info(num: 3)
+            self.info.stringValue = Inforestore().info(num: 3)
             return false
         }
         guard self.restorefilestask != nil else { return false }
@@ -158,13 +158,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         if myTableViewFromNotification == self.restoretableView {
             self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            self.info.stringValue = Infocopyfiles().info(num: 0)
+            self.info.stringValue = Inforestore().info(num: 0)
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 guard self.restoretabledata != nil else { return }
                 self.remotefiles.stringValue = self.restoretabledata![index]
                 guard self.remotefiles.stringValue.isEmpty == false, self.tmprestorepath.stringValue.isEmpty == false else {
-                    self.info.stringValue = Infocopyfiles().info(num: 3)
+                    self.info.stringValue = Inforestore().info(num: 3)
                     return
                 }
                 guard self.checkforrestorefiles() == true else { return }
@@ -189,7 +189,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         if let index = self.index {
             self.restorefilestask = nil
             guard self.checkforgetremotefiles() == true else { return }
-            self.info.stringValue = Infocopyfiles().info(num: 0)
+            self.info.stringValue = Inforestore().info(num: 0)
             self.remotefiles.stringValue = ""
             let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
             if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
@@ -249,7 +249,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         if let index = self.index {
             self.info.stringValue = ""
             guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
-                self.info.stringValue = Infocopyfiles().info(num: 4)
+                self.info.stringValue = Inforestore().info(num: 4)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
                 return false
@@ -257,7 +257,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
                 self.estimatebutton.isEnabled = false
                 self.estimatebutton.isEnabled = false
-                self.info.stringValue = Infocopyfiles().info(num: 5)
+                self.info.stringValue = Inforestore().info(num: 5)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
                 self.restoretabledata = nil
@@ -281,7 +281,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.info.stringValue = ""
         if let index = self.index {
             guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
-                self.info.stringValue = Infocopyfiles().info(num: 4)
+                self.info.stringValue = Inforestore().info(num: 4)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
                 return false
@@ -289,7 +289,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
                 self.estimatebutton.isEnabled = false
                 self.estimatebutton.isEnabled = false
-                self.info.stringValue = Infocopyfiles().info(num: 5)
+                self.info.stringValue = Inforestore().info(num: 5)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
                 return false
@@ -371,10 +371,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         let fileManager = FileManager.default
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
         if fileManager.fileExists(atPath: self.tmprestorepath.stringValue) == false {
-            self.info.stringValue = Infocopyfiles().info(num: 1)
+            self.info.stringValue = Inforestore().info(num: 1)
             return false
         } else {
-            self.info.stringValue = Infocopyfiles().info(num: 0)
+            self.info.stringValue = Inforestore().info(num: 0)
             return true
         }
     }
@@ -414,7 +414,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restorebutton.isEnabled = false
         } else {
             self.reset()
-            self.info.stringValue = Infocopyfiles().info(num: 1)
+            self.info.stringValue = Inforestore().info(num: 1)
         }
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
