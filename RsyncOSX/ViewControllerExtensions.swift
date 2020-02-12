@@ -54,13 +54,6 @@ extension VcMain {
             as? NSViewController)
     }
 
-    // New version window
-    // self.presentViewControllerAsSheet(self.newVersionViewController)
-    var newVersionViewController: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardnewVersionID")
-            as? NSViewController)
-    }
-
     // Edit
     // self.presentViewControllerAsSheet(self.editViewController)
     var editViewController: NSViewController? {

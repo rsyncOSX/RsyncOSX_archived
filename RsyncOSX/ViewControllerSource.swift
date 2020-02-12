@@ -14,7 +14,6 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
     @IBOutlet var selectButton: NSButton!
 
     weak var getSourceDelegateSsh: ViewControllerSsh?
-    weak var getSourceDelegateSnapshots: ViewControllerSnapshots?
     private var index: Int?
 
     private func dismissview() {
