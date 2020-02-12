@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity
+//  swiftlint:disable cyclomatic_complexity
 
 import Cocoa
 import Foundation
@@ -77,8 +77,9 @@ class Configurations: ReloadTable, SetSchedules {
     /// - parameter none: none
     /// - returns : Array of NSDictionary
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter { ($0.task == ViewControllerReference.shared.synchronize ||
-                $0.task == ViewControllerReference.shared.snapshot || $0.task == ViewControllerReference.shared.syncremote) }
+        var configurations: [Configuration] = self.configurations!.filter {
+            ViewControllerReference.shared.synctasks.contains($0.task)
+        }
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
@@ -99,8 +100,7 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
-        return self.configurations!.filter { ($0.task == ViewControllerReference.shared.synchronize ||
-                $0.task == ViewControllerReference.shared.snapshot) && ($0.batch == 1) }
+         return self.configurations!.filter { ViewControllerReference.shared.synctasks.contains($0.task) && ($0.batch == 1) }
     }
 
     /// Function computes arguments for rsync, either arguments for
