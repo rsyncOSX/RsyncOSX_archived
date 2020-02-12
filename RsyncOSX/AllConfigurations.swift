@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 04.03.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length trailing_comma
+// swiftlint:disable trailing_comma
 
 import Foundation
 
@@ -37,9 +37,9 @@ final class AllConfigurations: Sorting {
 
     private func setConfigurationsDataSourcecountBackupSnapshot() {
         guard self.allconfigurations != nil else { return }
-        var configurations: [Configuration] = self.allconfigurations!.filter { ($0.task == ViewControllerReference.shared.synchronize ||
-                $0.task == ViewControllerReference.shared.snapshot ||
-                $0.task == ViewControllerReference.shared.syncremote) }
+        var configurations: [Configuration] = self.allconfigurations!.filter {
+            ViewControllerReference.shared.synctasks.contains($0.task)
+        }
         var data = [NSMutableDictionary]()
         for i in 0 ..< configurations.count {
             if configurations[i].offsiteServer.isEmpty == true {
