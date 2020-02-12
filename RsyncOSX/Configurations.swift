@@ -100,7 +100,9 @@ class Configurations: ReloadTable, SetSchedules {
     /// Function returns all Configurations marked for backup.
     /// - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
-         return self.configurations!.filter { ViewControllerReference.shared.synctasks.contains($0.task) && ($0.batch == 1) }
+        return self.configurations!.filter { ViewControllerReference.shared.synctasks.contains($0.task) &&
+            ($0.batch == 1)
+        }
     }
 
     /// Function computes arguments for rsync, either arguments for
