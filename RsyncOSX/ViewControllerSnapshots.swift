@@ -18,7 +18,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var numbersinsequencetodelete: Int?
     var snapshotstodelete: Double = 0
     var index: Int?
-    weak var processterminationDelegate: UpdateProgress?
     var abort: Bool = false
     // Reference to which plan in combox
     var combovalueslast = [NSLocalizedString("none", comment: "plan"),

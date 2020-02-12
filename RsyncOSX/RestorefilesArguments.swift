@@ -15,7 +15,7 @@ enum Enumscopyfiles {
     case snapshotcatalogs
 }
 
-final class CopyFilesArguments: ProcessArguments {
+final class RestorefilesArguments: ProcessArguments {
     private var arguments: [String]?
     private var argdisplay: String?
     private var command: String?
@@ -27,11 +27,6 @@ final class CopyFilesArguments: ProcessArguments {
 
     func getCommand() -> String? {
         return self.command
-    }
-
-    func getcommandDisplay() -> String {
-        guard self.argdisplay != nil else { return "" }
-        return self.argdisplay!
     }
 
     init(task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {

@@ -56,8 +56,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var outputprocess: OutputProcess?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
-    // Keep track of all errors
-    var outputerrors: OutputErrors?
 
     @IBAction func rsyncosxsched(_: NSButton) {
         let running = Running()
