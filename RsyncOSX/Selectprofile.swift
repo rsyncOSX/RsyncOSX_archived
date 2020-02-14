@@ -13,8 +13,8 @@ final class Selectprofile {
     var profile: String?
     weak var newProfileDelegate: NewProfile?
     weak var snapshotnewProfileDelegate: NewProfile?
-    weak var copyfilesnewProfileDelegate: NewProfile?
     weak var loggdataProfileDelegate: NewProfile?
+    weak var restoreProfileDelegate: NewProfile?
 
     init(profile: String?) {
         weak var getprocess: GetProcessreference?
@@ -23,15 +23,15 @@ final class Selectprofile {
         self.profile = profile
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        self.copyfilesnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         self.loggdataProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        self.restoreProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         if self.profile == NSLocalizedString("Default profile", comment: "default profile") {
             newProfileDelegate?.newProfile(profile: nil)
         } else {
             newProfileDelegate?.newProfile(profile: self.profile)
         }
         self.snapshotnewProfileDelegate?.newProfile(profile: nil)
-        self.copyfilesnewProfileDelegate?.newProfile(profile: nil)
         self.loggdataProfileDelegate?.newProfile(profile: nil)
+        self.restoreProfileDelegate?.newProfile(profile: nil)
     }
 }
