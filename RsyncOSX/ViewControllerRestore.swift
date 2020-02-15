@@ -231,7 +231,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restorebutton.isEnabled = false
             self.working.startAnimation(nil)
             self.enabledisableradiobuttons(enable: false)
-            self.restorefilestask!.executecopyfiles(remotefile: remotefiles!.stringValue, localCatalog: tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
+            self.restorefilestask?.executecopyfiles(remotefile: remotefiles?.stringValue ?? "", localCatalog: tmprestorepath?.stringValue ?? "", dryrun: false, updateprogress: self)
         }
     }
 
