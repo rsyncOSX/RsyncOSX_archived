@@ -42,6 +42,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBOutlet var filesrestoreradiobutton: NSButton!
     @IBOutlet var tmprestorepath: NSTextField!
     @IBOutlet var selecttmptorestore: NSButton!
+    @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -107,6 +108,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         globalMainQueue.async { () -> Void in
             self.rsynctableView.reloadData()
         }
+        self.initpopupbutton(button: self.profilepopupbutton)
         self.settmprestorepathfromuserconfig()
         self.reset()
     }
@@ -229,7 +231,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restorebutton.isEnabled = false
             self.working.startAnimation(nil)
             self.enabledisableradiobuttons(enable: false)
-            self.restorefilestask!.executecopyfiles(remotefile: remotefiles!.stringValue, localCatalog: tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
+            self.restorefilestask?.executecopyfiles(remotefile: remotefiles?.stringValue ?? "", localCatalog: tmprestorepath?.stringValue ?? "", dryrun: false, updateprogress: self)
         }
     }
 
@@ -440,5 +442,22 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func enabledisableradiobuttons(enable: Bool) {
         self.fullrestoreradiobutton.isEnabled = enable
         self.filesrestoreradiobutton.isEnabled = enable
+    }
+
+    private func initpopupbutton(button: NSPopUpButton) {
+        var profilestrings: [String]?
+        profilestrings = CatalogProfile().getDirectorysStrings()
+        profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
+        button.removeAllItems()
+        button.addItems(withTitles: profilestrings ?? [])
+        button.selectItem(at: 0)
+    }
+
+    @IBAction func selectprofile(_: NSButton) {
+        var profile = self.profilepopupbutton.titleOfSelectedItem
+        if profile == NSLocalizedString("Default profile", comment: "default profile") {
+            profile = nil
+        }
+        _ = Selectprofile(profile: profile)
     }
 }
