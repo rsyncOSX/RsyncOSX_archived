@@ -95,7 +95,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         }
     }
 
-    func intersect(snapshotaloggdata: SnapshotsLoggData?) {
+    func align(snapshotaloggdata: SnapshotsLoggData?) {
         guard snapshotaloggdata?.snapshotslogs != nil else { return }
         guard self.loggdata != nil else { return }
         for i in 0 ..< self.loggdata!.count {

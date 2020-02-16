@@ -288,7 +288,7 @@ extension ViewControllerLoggData: UpdateProgress {
     func processTermination() {
         self.snapshotsloggdata?.processTermination()
         guard self.snapshotsloggdata?.outputprocess?.error == false else { return }
-        self.scheduleloggdata?.intersect(snapshotaloggdata: self.snapshotsloggdata)
+        self.scheduleloggdata?.align(snapshotaloggdata: self.snapshotsloggdata)
         self.working.stopAnimation(nil)
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()

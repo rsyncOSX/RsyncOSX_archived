@@ -162,7 +162,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // Abort button
     @IBAction func abort(_: NSButton) {
         self.info.stringValue = Infosnapshots().info(num: 2)
-        self.snapshotsloggdata?.remotecatalogstodelete = nil
+        self.snapshotsloggdata?.snapshotcatalogstodelete = nil
     }
 
     @IBAction func delete(_: NSButton) {
@@ -174,7 +174,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if answer {
             self.info.stringValue = Infosnapshots().info(num: 0)
             self.snapshotsloggdata?.preparecatalogstodelete()
-            guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return }
+            guard self.snapshotsloggdata?.snapshotcatalogstodelete != nil else { return }
             self.presentAsSheet(self.viewControllerProgress!)
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
@@ -221,22 +221,22 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func deletesnapshotcatalogs() {
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
+        guard self.snapshotsloggdata?.snapshotcatalogstodelete != nil else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        guard (self.snapshotsloggdata?.remotecatalogstodelete?.count ?? -1) > 0 else {
+        guard (self.snapshotsloggdata?.snapshotcatalogstodelete?.count ?? -1) > 0 else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        let remotecatalog = self.snapshotsloggdata!.remotecatalogstodelete![0]
-        self.snapshotsloggdata!.remotecatalogstodelete!.remove(at: 0)
-        if self.snapshotsloggdata!.remotecatalogstodelete!.count == 0 {
-            self.snapshotsloggdata!.remotecatalogstodelete = nil
+        let remotecatalog = self.snapshotsloggdata!.snapshotcatalogstodelete![0]
+        self.snapshotsloggdata!.snapshotcatalogstodelete!.remove(at: 0)
+        if self.snapshotsloggdata!.snapshotcatalogstodelete!.count == 0 {
+            self.snapshotsloggdata!.snapshotcatalogstodelete = nil
         }
         if let config = self.config {
             arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
@@ -352,8 +352,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 extension ViewControllerSnapshots: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        if self.snapshotsloggdata?.remotecatalogstodelete != nil {
-            self.snapshotsloggdata?.remotecatalogstodelete = nil
+        if self.snapshotsloggdata?.snapshotcatalogstodelete != nil {
+            self.snapshotsloggdata?.snapshotcatalogstodelete = nil
             self.info.stringValue = Infosnapshots().info(num: 2)
             self.abort = true
         }
@@ -366,7 +366,7 @@ extension ViewControllerSnapshots: UpdateProgress {
         self.selectdayofweek.isEnabled = true
         if delete {
             if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
-                if self.snapshotsloggdata?.remotecatalogstodelete == nil {
+                if self.snapshotsloggdata?.snapshotcatalogstodelete == nil {
                     self.delete = false
                     self.deletebutton.isEnabled = true
                     self.deletesnapshots.isEnabled = true
@@ -403,13 +403,13 @@ extension ViewControllerSnapshots: UpdateProgress {
 
 extension ViewControllerSnapshots: Count {
     func maxCount() -> Int {
-        let max = self.snapshotsloggdata?.remotecatalogstodelete?.count ?? 0
+        let max = self.snapshotsloggdata?.snapshotcatalogstodelete?.count ?? 0
         self.snapshotstodelete = Double(max)
         return max
     }
 
     func inprogressCount() -> Int {
-        let progress = Int(self.snapshotstodelete) - (self.snapshotsloggdata?.remotecatalogstodelete?.count ?? 0)
+        let progress = Int(self.snapshotstodelete) - (self.snapshotsloggdata?.snapshotcatalogstodelete?.count ?? 0)
         return progress
     }
 }
