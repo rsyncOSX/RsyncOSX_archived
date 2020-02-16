@@ -104,7 +104,7 @@ final class SnapshotsLoggData {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.getsnapshots = getsnapshots
         self.config = config
-        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata
+        self.snapshotslogs = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true).loggdata
         self.getremotecataloginfo(getsnapshots: getsnapshots)
     }
 }
@@ -112,7 +112,7 @@ final class SnapshotsLoggData {
 extension SnapshotsLoggData: UpdateProgress {
     func processTermination() {
         _ = self.outputprocess?.trimoutput(trim: .two)
-        guard outputprocess!.error == false else { return }
+        guard outputprocess?.error == false else { return }
         self.catalogs = self.outputprocess?.trimoutput(trim: .one)
         if self.catalogs?.count ?? 0 > 1 {
             if self.catalogs![0] == "./." {

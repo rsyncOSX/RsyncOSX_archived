@@ -9,10 +9,6 @@
 
 import Foundation
 
-protocol GetSnapshotsLoggData: AnyObject {
-    func getsnapshotsloggdata() -> SnapshotsLoggData?
-}
-
 enum NumDayofweek: Int {
     case Monday = 2
     case Tuesday = 3
@@ -43,7 +39,6 @@ class PlanSnapshots {
                         NSLocalizedString("Thursday", comment: "plan"),
                         NSLocalizedString("Friday", comment: "plan"),
                         NSLocalizedString("Saturday", comment: "plan")]
-    weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
     weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
     private var numberoflogs: Int?
@@ -81,8 +76,8 @@ class PlanSnapshots {
 
     private func markfordelete() {
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotsloggdata!.snapshotslogs!.count {
-            let index = self.snapshotsloggdata!.snapshotslogs!.count - 1 - i
+        for i in 0 ..< (self.snapshotsloggdata?.snapshotslogs?.count ?? 0) {
+            let index = (self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1 - i
             if self.currentweek(index: index) {
                 self.snapshotsloggdata?.snapshotslogs![index].setValue(0, forKey: "selectCellID")
             } else if self.currentdaymonth(index: index) {
@@ -98,13 +93,13 @@ class PlanSnapshots {
 
     // Keep all snapshots current week.
     private func currentweek(index: Int) -> Bool {
-        let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        let datesnapshotstring = (self.snapshotsloggdata?.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).weekOfYear ==
             self.datecomponentsfromstring(datestringlocalized: self.now).weekOfYear,
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year ==
             self.datecomponentsfromstring(datestringlocalized: self.now).year {
             let tag = NSLocalizedString("Keep", comment: "plan") + " " + NSLocalizedString("this week", comment: "plan")
-            self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+            self.snapshotsloggdata?.snapshotslogs?[index].setValue(tag, forKey: "period")
             return true
         }
         return false
@@ -112,7 +107,7 @@ class PlanSnapshots {
 
     // Keep snapshots every choosen day this month ex current week
     private func currentdaymonth(index: Int) -> Bool {
-        let datesnapshotstring = (self.snapshotsloggdata!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        let datesnapshotstring = (self.snapshotsloggdata?.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month ==
@@ -120,11 +115,11 @@ class PlanSnapshots {
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentsfromstring(datestringlocalized: self.now).year {
             if self.datefromstring(datestringlocalized: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
                 let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("this month", comment: "plan")
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs?[index].setValue(tag, forKey: "period")
                 return true
             } else {
                 let tag = NSLocalizedString("Keep", comment: "plan") + " " + month + " " + self.daylocalized[self.day!.rawValue - 1] + " " + NSLocalizedString("this month", comment: "plan")
-                self.snapshotsloggdata?.snapshotslogs![index].setValue(tag, forKey: "period")
+                self.snapshotsloggdata?.snapshotslogs?[index].setValue(tag, forKey: "period")
                 return false
             }
         }
@@ -218,7 +213,7 @@ class PlanSnapshots {
         }
     }
 
-    init(plan: Int, snapdayoffweek: String) {
+    init(plan: Int, snapdayoffweek: String, snapshotsloggdata: SnapshotsLoggData?) {
         // which plan to apply
         if plan == 1 {
             self.keepallselcteddayofweek = true
@@ -226,9 +221,8 @@ class PlanSnapshots {
             self.keepallselcteddayofweek = false
         }
         self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
-        self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggdata()
+        self.snapshotsloggdata = snapshotsloggdata
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.now = Date().localized_string_from_date()

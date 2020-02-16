@@ -366,7 +366,7 @@ extension ViewControllerSnapshots: UpdateProgress {
         self.selectdayofweek.isEnabled = true
         if delete {
             if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
-                if self.snapshotsloggdata!.remotecatalogstodelete == nil {
+                if self.snapshotsloggdata?.remotecatalogstodelete == nil {
                     self.delete = false
                     self.deletebutton.isEnabled = true
                     self.deletesnapshots.isEnabled = true
@@ -389,7 +389,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
             self.preselectcomboboxes()
-            _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue)
+            _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotsloggdata)
             globalMainQueue.async { () -> Void in
                 self.snapshotstableView.reloadData()
             }
@@ -510,12 +510,6 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
     }
 }
 
-extension ViewControllerSnapshots: GetSnapshotsLoggData {
-    func getsnapshotsloggdata() -> SnapshotsLoggData? {
-        return self.snapshotsloggdata
-    }
-}
-
 extension ViewControllerSnapshots: NewProfile {
     func newProfile(profile _: String?) {
         self.snapshotsloggdata = nil
@@ -559,10 +553,10 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         switch self.selectplan.indexOfSelectedItem {
         case 1:
             self.config!.snaplast = 1
-            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue)
+            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotsloggdata)
         case 2:
             self.config!.snaplast = 2
-            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue)
+            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotsloggdata)
         default:
             return
         }
