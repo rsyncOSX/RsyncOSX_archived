@@ -8,12 +8,7 @@
 
 import Foundation
 
-protocol ProcessArguments {
-    func getArguments() -> [String]?
-    func getCommand() -> String?
-}
-
-final class GetRemoteFileListingsArguments: ProcessArguments {
+final class GetRemoteFileListingsArguments {
     private var config: Configuration?
     private var args: [String]?
 
@@ -51,12 +46,7 @@ final class GetRemoteFileListingsArguments: ProcessArguments {
     }
 
     func getArguments() -> [String]? {
-        guard self.args != nil else { return nil }
         return self.args
-    }
-
-    func getCommand() -> String? {
-        return nil
     }
 
     init(config: Configuration, recursive: Bool) {

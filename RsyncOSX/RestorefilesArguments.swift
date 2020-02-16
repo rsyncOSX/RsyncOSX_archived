@@ -15,7 +15,7 @@ enum Enumrestorefiles {
     case snapshotcatalogs
 }
 
-final class RestorefilesArguments: ProcessArguments {
+final class RestorefilesArguments {
     private var arguments: [String]?
     private var argdisplay: String?
     private var command: String?
@@ -41,11 +41,11 @@ final class RestorefilesArguments: ProcessArguments {
         case .rsyncfilelistings:
             let arguments = GetRemoteFileListingsArguments(config: config, recursive: true)
             self.arguments = arguments.getArguments()
-            self.command = arguments.getCommand()
+            self.command = nil
         case .snapshotcatalogs:
             let arguments = GetRemoteFileListingsArguments(config: config, recursive: false)
             self.arguments = arguments.getArguments()
-            self.command = arguments.getCommand()
+            self.command = nil
         }
     }
 }

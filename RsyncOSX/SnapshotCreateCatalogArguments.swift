@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class SnapshotCreateCatalogArguments: ProcessArguments {
+final class SnapshotCreateCatalogArguments {
     private var config: Configuration?
     private var args: [String]?
     private var command: String?
