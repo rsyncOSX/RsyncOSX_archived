@@ -13,7 +13,7 @@ import Foundation
 
 class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor {
     private var scheduleloggdata: ScheduleLoggData?
-    private var snapshotsloggdata: SnapshotsLoggData?
+    private var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
     private var filterby: Sortandfilter?
     private var index: Int?
     private var sortedascending: Bool = true
@@ -129,7 +129,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
                     self.working.startAnimation(nil)
-                    self.snapshotsloggdata = SnapshotsLoggData(config: config, getsnapshots: false)
+                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: false)
                 }
                 if self.indexfromwhere() == .vcsnapshot {
                     self.info.stringValue = Infologgdata().info(num: 2)
@@ -149,7 +149,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.scheduleloggdata = nil
-        self.snapshotsloggdata = nil
+        self.snapshotlogsandcatalogs = nil
         self.working.stopAnimation(nil)
         self.selectbutton.state = .off
     }
@@ -273,7 +273,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
             self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
             if self.connected(config: config!) {
                 if config?.task == "snapshot" { self.working.startAnimation(nil) }
-                self.snapshotsloggdata = SnapshotsLoggData(config: config!, getsnapshots: false)
+                self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config!, getsnapshots: false)
             }
         } else {
             self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
@@ -286,9 +286,9 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
 extension ViewControllerLoggData: UpdateProgress {
     func processTermination() {
-        self.snapshotsloggdata?.processTermination()
-        guard self.snapshotsloggdata?.outputprocess?.error == false else { return }
-        self.scheduleloggdata?.align(snapshotaloggdata: self.snapshotsloggdata)
+        self.snapshotlogsandcatalogs?.processTermination()
+        guard self.snapshotlogsandcatalogs?.outputprocess?.error == false else { return }
+        self.scheduleloggdata?.align(snapshotlogsandcatalogs: self.snapshotlogsandcatalogs)
         self.working.stopAnimation(nil)
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()

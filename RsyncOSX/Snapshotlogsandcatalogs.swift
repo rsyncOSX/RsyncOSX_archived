@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class SnapshotsLoggData {
+final class Snapshotlogsandcatalogs {
     var snapshotslogs: [NSMutableDictionary]?
     var config: Configuration?
     var outputprocess: OutputProcess?
@@ -30,7 +30,6 @@ final class SnapshotsLoggData {
     }
 
     private func reducetosnapshotlogs() {
-        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata?.filter { ($0.value(forKey: "hiddenID") as? Int)! == self.config?.hiddenID }
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) {
             if let dateRun = self.snapshotslogs![i].object(forKey: "dateExecuted") {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun as? String ?? "") {
@@ -109,7 +108,7 @@ final class SnapshotsLoggData {
     }
 }
 
-extension SnapshotsLoggData: UpdateProgress {
+extension Snapshotlogsandcatalogs: UpdateProgress {
     func processTermination() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }

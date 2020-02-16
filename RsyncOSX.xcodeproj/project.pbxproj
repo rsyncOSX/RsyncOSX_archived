@@ -147,7 +147,7 @@
 		E9B04CFC2388489E0072DA41 /* Reorgschedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B04CFB2388489E0072DA41 /* Reorgschedule.swift */; };
 		E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9CCA521BC46B00042D5CE /* extensionDate.swift */; };
 		E9BC4DE7230277A10058CB52 /* ExecuteTaskNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */; };
-		E9C30B4B201623B00079C63D /* SnapshotsLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */; };
+		E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4A201623B00079C63D /* Snapshotlogsandcatalogs.swift */; };
 		E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */; };
 		E9C4A40D2353017400BCF1C4 /* ArgumentsSynchronize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A40C2353017400BCF1C4 /* ArgumentsSynchronize.swift */; };
 		E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A40E23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift */; };
@@ -319,7 +319,7 @@
 		E9B04CFB2388489E0072DA41 /* Reorgschedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reorgschedule.swift; sourceTree = "<group>"; };
 		E9B9CCA521BC46B00042D5CE /* extensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionDate.swift; sourceTree = "<group>"; };
 		E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskNow.swift; sourceTree = "<group>"; };
-		E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotsLoggData.swift; sourceTree = "<group>"; };
+		E9C30B4A201623B00079C63D /* Snapshotlogsandcatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshotlogsandcatalogs.swift; sourceTree = "<group>"; };
 		E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCommandSubCatalogs.swift; sourceTree = "<group>"; };
 		E9C4A40C2353017400BCF1C4 /* ArgumentsSynchronize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsSynchronize.swift; sourceTree = "<group>"; };
 		E9C4A40E23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsLocalcatalogInfo.swift; sourceTree = "<group>"; };
@@ -635,7 +635,7 @@
 			children = (
 				A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */,
 				E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */,
-				E9C30B4A201623B00079C63D /* SnapshotsLoggData.swift */,
+				E9C30B4A201623B00079C63D /* Snapshotlogsandcatalogs.swift */,
 			);
 			name = Loggdata;
 			sourceTree = "<group>";
@@ -1114,7 +1114,7 @@
 				E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */,
 				E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */,
 				E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */,
-				E9C30B4B201623B00079C63D /* SnapshotsLoggData.swift in Sources */,
+				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
 				E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */,
 				E9F068F21F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift in Sources */,
 				A091C65B1D86A59500278E74 /* RestorefilesTask.swift in Sources */,
