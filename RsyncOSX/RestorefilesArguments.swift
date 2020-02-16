@@ -9,7 +9,7 @@
 
 import Foundation
 
-enum Enumscopyfiles {
+enum Enumrestorefiles {
     case rsync
     case rsyncfilelistings
     case snapshotcatalogs
@@ -29,7 +29,7 @@ final class RestorefilesArguments: ProcessArguments {
         return self.command
     }
 
-    init(task: Enumscopyfiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
+    init(task: Enumrestorefiles, config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
         self.arguments = [String]()
         self.config = config
         switch task {
