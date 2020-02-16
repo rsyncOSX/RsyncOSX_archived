@@ -366,7 +366,7 @@ extension ViewControllerSnapshots: UpdateProgress {
         self.selectdayofweek.isEnabled = true
         if delete {
             if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
-                if self.snapshotsloggdata!.remotecatalogstodelete == nil {
+                if self.snapshotsloggdata?.remotecatalogstodelete == nil {
                     self.delete = false
                     self.deletebutton.isEnabled = true
                     self.deletesnapshots.isEnabled = true

@@ -43,7 +43,7 @@ class PlanSnapshots {
                         NSLocalizedString("Thursday", comment: "plan"),
                         NSLocalizedString("Friday", comment: "plan"),
                         NSLocalizedString("Saturday", comment: "plan")]
-    weak var SnapshotsLoggDataDelegate: GetSnapshotsLoggData?
+    weak var snapshotsloggdataDelegate: GetSnapshotsLoggData?
     weak var reloadDelegate: Reloadandrefresh?
     var snapshotsloggdata: SnapshotsLoggData?
     private var numberoflogs: Int?
@@ -226,9 +226,9 @@ class PlanSnapshots {
             self.keepallselcteddayofweek = false
         }
         self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
-        self.SnapshotsLoggDataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        self.snapshotsloggdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        self.snapshotsloggdata = self.SnapshotsLoggDataDelegate?.getsnapshotsloggdata()
+        self.snapshotsloggdata = self.snapshotsloggdataDelegate?.getsnapshotsloggdata()
         guard self.snapshotsloggdata?.snapshotslogs != nil else { return }
         self.numberoflogs = self.snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.now = Date().localized_string_from_date()
