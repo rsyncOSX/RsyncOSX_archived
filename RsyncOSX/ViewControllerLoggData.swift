@@ -225,10 +225,12 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         switch column {
         case 0:
             self.filterby = .task
-        case 3:
+        case 2:
             self.filterby = .backupid
-        case 4:
+        case 3:
             self.filterby = .localcatalog
+        case 4:
+            self.filterby = .offsitecatalog
         case 5:
             self.filterby = .offsiteserver
         case 6:

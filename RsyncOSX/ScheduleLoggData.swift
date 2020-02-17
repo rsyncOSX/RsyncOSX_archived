@@ -51,6 +51,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 }
                 let logdetail: NSMutableDictionary = [
                     "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                    "remoteCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog),
                     "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                     "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
                     "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
