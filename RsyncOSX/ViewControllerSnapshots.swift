@@ -299,13 +299,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             return
         }
         if let config = self.config {
-            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true)
             self.localCatalog.stringValue = config.localCatalog
             self.offsiteCatalog.stringValue = config.offsiteCatalog
             self.offsiteUsername.stringValue = config.offsiteUsername
             self.backupID.stringValue = config.backupID
             self.info.stringValue = Infosnapshots().info(num: 0)
             self.gettinglogs.startAnimation(nil)
+            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true)
         }
     }
 
@@ -389,7 +389,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
             self.preselectcomboboxes()
-            _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
+            _ = Tagsnapshotsforplans(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
             globalMainQueue.async { () -> Void in
                 self.snapshotstableView.reloadData()
             }
@@ -553,10 +553,10 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         switch self.selectplan.indexOfSelectedItem {
         case 1:
             self.config!.snaplast = 1
-            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
+            _ = Tagsnapshotsforplans(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         case 2:
             self.config!.snaplast = 2
-            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
+            _ = Tagsnapshotsforplans(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         default:
             return
         }

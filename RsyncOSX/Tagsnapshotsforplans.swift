@@ -29,7 +29,7 @@ enum StringDayofweek: String {
     case Sunday
 }
 
-class PlanSnapshots {
+class Tagsnapshotsforplans {
     var day: NumDayofweek?
     var nameofday: StringDayofweek?
     var daylocalized = [NSLocalizedString("Sunday", comment: "plan"),
