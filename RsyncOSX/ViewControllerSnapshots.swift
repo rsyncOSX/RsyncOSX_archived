@@ -13,7 +13,7 @@ import Foundation
 class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
     var hiddenID: Int?
     var config: Configuration?
-    var snapshotsloggdata: SnapshotsLoggData?
+    var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
     var delete: Bool = false
     var numbersinsequencetodelete: Int?
     var snapshotstodelete: Double = 0
@@ -97,12 +97,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func initslidersdeletesnapshots() {
         self.deletesnapshots.altIncrementValue = 1.0
-        self.deletesnapshots.maxValue = Double(self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1.0
+        self.deletesnapshots.maxValue = Double(self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) - 1.0
         self.deletesnapshots.minValue = 0.0
         self.deletesnapshots.intValue = 0
         self.stringdeletesnapshotsnum.stringValue = "0"
         self.deletesnapshotsdays.altIncrementValue = 1.0
-        if let maxdaysold = self.snapshotsloggdata?.snapshotslogs?[0] {
+        if let maxdaysold = self.snapshotlogsandcatalogs?.snapshotslogs?[0] {
             if let days = maxdaysold.value(forKey: "days") as? String {
                 self.deletesnapshotsdays.maxValue = (Double(days) ?? 0.0) + 1
                 self.deletesnapshotsdays.intValue = Int32(self.deletesnapshotsdays.maxValue)
@@ -140,7 +140,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBAction func updatedeletesnapshotsdays(_: NSSlider) {
         guard self.index != nil else { return }
         self.stringdeletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
-        self.numbersinsequencetodelete = self.snapshotsloggdata?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
+        self.numbersinsequencetodelete = self.snapshotlogsandcatalogs?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
@@ -150,11 +150,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func markfordelete(numberstomark: Int) {
-        for i in 0 ..< (self.snapshotsloggdata?.snapshotslogs?.count ?? 0) - 1 {
+        for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) - 1 {
             if i <= numberstomark {
-                self.snapshotsloggdata?.snapshotslogs![i].setValue(1, forKey: "selectCellID")
+                self.snapshotlogsandcatalogs?.snapshotslogs![i].setValue(1, forKey: "selectCellID")
             } else {
-                self.snapshotsloggdata?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
+                self.snapshotlogsandcatalogs?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
             }
         }
     }
@@ -162,19 +162,19 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // Abort button
     @IBAction func abort(_: NSButton) {
         self.info.stringValue = Infosnapshots().info(num: 2)
-        self.snapshotsloggdata?.remotecatalogstodelete = nil
+        self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
     }
 
     @IBAction func delete(_: NSButton) {
-        guard self.snapshotsloggdata != nil else { return }
+        guard self.snapshotlogsandcatalogs != nil else { return }
         let question: String = NSLocalizedString("Do you REALLY want to DELETE selected snapshots?", comment: "Snapshots")
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
         let dialog: String = NSLocalizedString("Delete", comment: "Snapshots")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             self.info.stringValue = Infosnapshots().info(num: 0)
-            self.snapshotsloggdata?.preparecatalogstodelete()
-            guard self.snapshotsloggdata?.remotecatalogstodelete != nil else { return }
+            self.snapshotlogsandcatalogs?.preparecatalogstodelete()
+            guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
             self.presentAsSheet(self.viewControllerProgress!)
             self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
@@ -205,7 +205,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
         self.selectplan.isEnabled = false
         self.selectdayofweek.isEnabled = false
-        self.snapshotsloggdata = nil
+        self.snapshotlogsandcatalogs = nil
         self.dayofweek.isHidden = true
         self.lastorevery.isHidden = true
         self.reloadtabledata()
@@ -221,22 +221,22 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func deletesnapshotcatalogs() {
         var arguments: SnapshotDeleteCatalogsArguments?
         var deletecommand: SnapshotCommandDeleteCatalogs?
-        guard self.snapshotsloggdata?.remotecatalogstodelete != nil else {
+        guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        guard (self.snapshotsloggdata?.remotecatalogstodelete?.count ?? -1) > 0 else {
+        guard (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? -1) > 0 else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        let remotecatalog = self.snapshotsloggdata!.remotecatalogstodelete![0]
-        self.snapshotsloggdata!.remotecatalogstodelete!.remove(at: 0)
-        if self.snapshotsloggdata!.remotecatalogstodelete!.count == 0 {
-            self.snapshotsloggdata!.remotecatalogstodelete = nil
+        let remotecatalog = self.snapshotlogsandcatalogs!.snapshotcatalogstodelete![0]
+        self.snapshotlogsandcatalogs!.snapshotcatalogstodelete!.remove(at: 0)
+        if self.snapshotlogsandcatalogs!.snapshotcatalogstodelete!.count == 0 {
+            self.snapshotlogsandcatalogs!.snapshotcatalogstodelete = nil
         }
         if let config = self.config {
             arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
@@ -252,7 +252,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if myTableViewFromNotification == self.snapshotstableView {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                if let dict = self.snapshotsloggdata?.snapshotslogs?[index] {
+                if let dict = self.snapshotlogsandcatalogs?.snapshotslogs?[index] {
                     self.hiddenID = dict.value(forKey: "hiddenID") as? Int
                     guard self.hiddenID != nil else { return }
                     self.index = self.configurations?.getIndex(hiddenID!)
@@ -278,7 +278,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             } else {
                 self.selectplan.isEnabled = false
                 self.selectdayofweek.isEnabled = false
-                self.snapshotsloggdata = nil
+                self.snapshotlogsandcatalogs = nil
                 self.index = nil
                 self.localCatalog.stringValue = ""
                 self.offsiteCatalog.stringValue = ""
@@ -299,13 +299,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             return
         }
         if let config = self.config {
-            self.snapshotsloggdata = SnapshotsLoggData(config: config, getsnapshots: true)
             self.localCatalog.stringValue = config.localCatalog
             self.offsiteCatalog.stringValue = config.offsiteCatalog
             self.offsiteUsername.stringValue = config.offsiteUsername
             self.backupID.stringValue = config.backupID
             self.info.stringValue = Infosnapshots().info(num: 0)
             self.gettinglogs.startAnimation(nil)
+            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true)
         }
     }
 
@@ -352,8 +352,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 extension ViewControllerSnapshots: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        if self.snapshotsloggdata?.remotecatalogstodelete != nil {
-            self.snapshotsloggdata?.remotecatalogstodelete = nil
+        if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil {
+            self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
             self.info.stringValue = Infosnapshots().info(num: 2)
             self.abort = true
         }
@@ -366,12 +366,12 @@ extension ViewControllerSnapshots: UpdateProgress {
         self.selectdayofweek.isEnabled = true
         if delete {
             if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
-                if self.snapshotsloggdata?.remotecatalogstodelete == nil {
+                if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
                     self.delete = false
                     self.deletebutton.isEnabled = true
                     self.deletesnapshots.isEnabled = true
                     self.info.stringValue = Infosnapshots().info(num: 3)
-                    self.snapshotsloggdata = SnapshotsLoggData(config: self.config!, getsnapshots: true)
+                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: self.config!, getsnapshots: true)
                     if self.abort == true {
                         self.abort = false
                     } else {
@@ -384,12 +384,12 @@ extension ViewControllerSnapshots: UpdateProgress {
             }
         } else {
             self.deletebutton.isEnabled = true
-            self.snapshotsloggdata?.processTermination()
+            self.snapshotlogsandcatalogs?.processTermination()
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
             self.preselectcomboboxes()
-            _ = PlanSnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotsloggdata)
+            _ = Tagsnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
             globalMainQueue.async { () -> Void in
                 self.snapshotstableView.reloadData()
             }
@@ -403,13 +403,13 @@ extension ViewControllerSnapshots: UpdateProgress {
 
 extension ViewControllerSnapshots: Count {
     func maxCount() -> Int {
-        let max = self.snapshotsloggdata?.remotecatalogstodelete?.count ?? 0
+        let max = self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0
         self.snapshotstodelete = Double(max)
         return max
     }
 
     func inprogressCount() -> Int {
-        let progress = Int(self.snapshotstodelete) - (self.snapshotsloggdata?.remotecatalogstodelete?.count ?? 0)
+        let progress = Int(self.snapshotstodelete) - (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0)
         return progress
     }
 }
@@ -418,12 +418,12 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.snapshotstableView {
             let numberofsnaps: String = NSLocalizedString("Number snapshots:", comment: "Snapshots")
-            guard self.snapshotsloggdata?.snapshotslogs != nil else {
+            guard self.snapshotlogsandcatalogs?.snapshotslogs != nil else {
                 self.numberOflogfiles.stringValue = numberofsnaps + " "
                 return 0
             }
-            self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotsloggdata?.snapshotslogs?.count ?? 0)
-            return self.snapshotsloggdata?.snapshotslogs?.count ?? 0
+            self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0)
+            return self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0
         } else {
             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
@@ -438,8 +438,8 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
             let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
             return object[tableColumn!.identifier] as? String
         } else {
-            guard row < self.snapshotsloggdata?.snapshotslogs!.count ?? 0 else { return nil }
-            let object: NSDictionary = self.snapshotsloggdata!.snapshotslogs![row]
+            guard row < self.snapshotlogsandcatalogs?.snapshotslogs!.count ?? 0 else { return nil }
+            let object: NSDictionary = self.snapshotlogsandcatalogs!.snapshotslogs![row]
             if tableColumn!.identifier.rawValue == "selectCellID" {
                 return object[tableColumn!.identifier] as? Int
             } else {
@@ -451,10 +451,10 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard tableView == self.snapshotstableView else { return }
         if tableColumn!.identifier.rawValue == "selectCellID" {
-            var select: Int = (self.snapshotsloggdata?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
+            var select: Int = (self.snapshotlogsandcatalogs?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            guard row < self.snapshotsloggdata!.snapshotslogs!.count - 1 else { return }
-            self.snapshotsloggdata?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
+            guard row < self.snapshotlogsandcatalogs!.snapshotslogs!.count - 1 else { return }
+            self.snapshotlogsandcatalogs?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
         }
     }
 }
@@ -472,13 +472,13 @@ extension ViewControllerSnapshots: Reloadandrefresh {
 extension ViewControllerSnapshots: NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
         self.delayWithSeconds(0.5) {
-            guard self.snapshotsloggdata != nil else { return }
+            guard self.snapshotlogsandcatalogs != nil else { return }
             if (notification.object as? NSTextField)! == self.stringdeletesnapshotsnum {
                 if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
                     if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
                         self.info.stringValue = Infosnapshots().info(num: 0)
-                        if num > self.snapshotsloggdata?.snapshotslogs?.count ?? 0 {
-                            self.deletesnapshots.intValue = Int32((self.snapshotsloggdata?.snapshotslogs?.count)! - 1)
+                        if num > self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0 {
+                            self.deletesnapshots.intValue = Int32((self.snapshotlogsandcatalogs?.snapshotslogs?.count)! - 1)
                             self.info.stringValue = Infosnapshots().info(num: 5)
                         } else {
                             self.deletesnapshots.intValue = Int32(num)
@@ -496,7 +496,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 if self.stringdeletesnapshotsdaysnum.stringValue.isEmpty == false {
                     if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
                         self.deletesnapshotsdays.intValue = Int32(num)
-                        self.numbersinsequencetodelete = self.snapshotsloggdata!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
+                        self.numbersinsequencetodelete = self.snapshotlogsandcatalogs!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
                         self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
                         globalMainQueue.async { () -> Void in
                             self.snapshotstableView.reloadData()
@@ -512,7 +512,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
 
 extension ViewControllerSnapshots: NewProfile {
     func newProfile(profile _: String?) {
-        self.snapshotsloggdata = nil
+        self.snapshotlogsandcatalogs = nil
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
@@ -553,10 +553,10 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         switch self.selectplan.indexOfSelectedItem {
         case 1:
             self.config!.snaplast = 1
-            _ = PlanSnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotsloggdata)
+            _ = Tagsnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         case 2:
             self.config!.snaplast = 2
-            _ = PlanSnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotsloggdata)
+            _ = Tagsnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         default:
             return
         }

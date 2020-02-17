@@ -51,6 +51,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 }
                 let logdetail: NSMutableDictionary = [
                     "localCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog),
+                    "remoteCatalog": self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog),
                     "offsiteServer": self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer),
                     "task": self.configurations!.getResourceConfiguration(hiddenID, resource: .task),
                     "backupID": self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid),
@@ -95,12 +96,12 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         }
     }
 
-    func intersect(snapshotaloggdata: SnapshotsLoggData?) {
-        guard snapshotaloggdata?.snapshotslogs != nil else { return }
+    func align(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
+        guard snapshotlogsandcatalogs?.snapshotslogs != nil else { return }
         guard self.loggdata != nil else { return }
-        for i in 0 ..< self.loggdata!.count {
-            for j in 0 ..< snapshotaloggdata!.snapshotslogs!.count where
-                self.compare(snapshotaloggdata!.snapshotslogs![j], self.loggdata![i]) {
+        for i in 0 ..< (self.loggdata?.count ?? 0) {
+            for j in 0 ..< (snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) where
+                self.compare(snapshotlogsandcatalogs!.snapshotslogs![j], self.loggdata![i]) {
                 self.loggdata![i].setValue(1, forKey: "snapCellID")
             }
             if self.loggdata![i].value(forKey: "snapCellID") as? Int == 1 {

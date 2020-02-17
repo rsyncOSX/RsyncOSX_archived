@@ -9,12 +9,12 @@
 
 import Foundation
 
-final class SnapshotsLoggData {
+final class Snapshotlogsandcatalogs {
     var snapshotslogs: [NSMutableDictionary]?
     var config: Configuration?
     var outputprocess: OutputProcess?
-    var catalogs: [String]?
-    var remotecatalogstodelete: [String]?
+    var snapshotcatalogs: [String]?
+    var snapshotcatalogstodelete: [String]?
     var getsnapshots: Bool = true
 
     private func getremotecataloginfo(getsnapshots: Bool) {
@@ -30,7 +30,6 @@ final class SnapshotsLoggData {
     }
 
     private func reducetosnapshotlogs() {
-        self.snapshotslogs = ScheduleLoggData(sortascending: true).loggdata?.filter { ($0.value(forKey: "hiddenID") as? Int)! == self.config?.hiddenID }
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) {
             if let dateRun = self.snapshotslogs![i].object(forKey: "dateExecuted") {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun as? String ?? "") {
@@ -42,14 +41,14 @@ final class SnapshotsLoggData {
     }
 
     private func mergeremotecatalogsandlogs() {
-        for i in 0 ..< (self.catalogs?.count ?? 0) {
-            if self.catalogs![i].contains(".DS_Store") == false {
-                let snapshotnum = "(" + self.catalogs![i].dropFirst(2) + ")"
+        for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
+            if self.snapshotcatalogs![i].contains(".DS_Store") == false {
+                let snapshotnum = "(" + self.snapshotcatalogs![i].dropFirst(2) + ")"
                 let filter = self.snapshotslogs?.filter { ($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum) }
                 if filter!.count == 1 {
-                    filter![0].setObject(self.catalogs![i], forKey: "snapshotCatalog" as NSCopying)
+                    filter![0].setObject(self.snapshotcatalogs![i], forKey: "snapshotCatalog" as NSCopying)
                 } else {
-                    let dict: NSMutableDictionary = ["snapshotCatalog": self.catalogs![i],
+                    let dict: NSMutableDictionary = ["snapshotCatalog": self.snapshotcatalogs![i],
                                                      "dateExecuted": "no log"]
                     self.snapshotslogs!.append(dict)
                 }
@@ -80,10 +79,10 @@ final class SnapshotsLoggData {
         guard self.snapshotslogs != nil else { return }
         for i in 0 ..< self.snapshotslogs!.count - 1 {
             if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
-                if self.remotecatalogstodelete == nil { self.remotecatalogstodelete = [] }
+                if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
                 let snaproot = self.config!.offsiteCatalog
                 let snapcatalog = self.snapshotslogs![i].value(forKey: "snapshotCatalog") as? String
-                self.remotecatalogstodelete!.append(snaproot + snapcatalog!.dropFirst(2))
+                self.snapshotcatalogstodelete!.append(snaproot + snapcatalog!.dropFirst(2))
             }
         }
     }
@@ -109,14 +108,14 @@ final class SnapshotsLoggData {
     }
 }
 
-extension SnapshotsLoggData: UpdateProgress {
+extension Snapshotlogsandcatalogs: UpdateProgress {
     func processTermination() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
-        self.catalogs = self.outputprocess?.trimoutput(trim: .one)
-        if self.catalogs?.count ?? 0 > 1 {
-            if self.catalogs![0] == "./." {
-                self.catalogs?.remove(at: 0)
+        self.snapshotcatalogs = self.outputprocess?.trimoutput(trim: .one)
+        if self.snapshotcatalogs?.count ?? 0 > 1 {
+            if self.snapshotcatalogs![0] == "./." {
+                self.snapshotcatalogs?.remove(at: 0)
             }
         }
         self.reducetosnapshotlogs()

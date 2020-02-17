@@ -176,6 +176,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
+                if index != self.index {
+                    self.reset()
+                    globalMainQueue.async { () -> Void in
+                        self.restoretableView.reloadData()
+                    }
+                }
                 self.index = index
                 self.prepareforfilesrestoreandandgetremotefilelist()
             } else {

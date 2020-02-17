@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class SnapshotDeleteCatalogsArguments: ProcessArguments {
+final class SnapshotDeleteCatalogsArguments {
     private var config: Configuration?
     private var args: [String]?
     private var command: String?
