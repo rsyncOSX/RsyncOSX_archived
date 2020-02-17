@@ -1,5 +1,5 @@
 //
-//  PlanSnapshots.swift
+//  Tagsnapshots.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 09/12/2018.
@@ -29,7 +29,7 @@ enum StringDayofweek: String {
     case Sunday
 }
 
-class Tagsnapshotsforplans {
+class Tagsnapshots {
     var day: NumDayofweek?
     var nameofday: StringDayofweek?
     var daylocalized = [NSLocalizedString("Sunday", comment: "plan"),
@@ -179,8 +179,8 @@ class Tagsnapshotsforplans {
     }
 
     private func reset() {
-        for i in 0 ..< (self.snapshotlogsandcatalogs!.snapshotslogs?.count ?? 0) {
-            self.snapshotlogsandcatalogs?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
+        for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) {
+            self.snapshotlogsandcatalogs?.snapshotslogs?[i].setValue(0, forKey: "selectCellID")
         }
     }
 
@@ -223,8 +223,8 @@ class Tagsnapshotsforplans {
         self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotlogsandcatalogs = snapshotsloggdata
-        guard self.snapshotlogsandcatalogs?.snapshotslogs != nil else { return }
-        self.numberoflogs = self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0
+        guard snapshotsloggdata?.snapshotslogs != nil else { return }
+        self.numberoflogs = snapshotsloggdata?.snapshotslogs?.count ?? 0
         self.now = Date().localized_string_from_date()
         self.reset()
         self.markfordelete()
