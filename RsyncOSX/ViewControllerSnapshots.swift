@@ -35,10 +35,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBOutlet var snapshotstableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
-    @IBOutlet var localCatalog: NSTextField!
-    @IBOutlet var offsiteCatalog: NSTextField!
-    @IBOutlet var offsiteUsername: NSTextField!
-    @IBOutlet var backupID: NSTextField!
     @IBOutlet var info: NSTextField!
     @IBOutlet var deletebutton: NSButton!
     @IBOutlet var numberOflogfiles: NSTextField!
@@ -280,10 +276,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.selectdayofweek.isEnabled = false
                 self.snapshotlogsandcatalogs = nil
                 self.index = nil
-                self.localCatalog.stringValue = ""
-                self.offsiteCatalog.stringValue = ""
-                self.offsiteUsername.stringValue = ""
-                self.backupID.stringValue = ""
                 self.info.stringValue = ""
                 self.reloadtabledata()
             }
@@ -299,10 +291,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             return
         }
         if let config = self.config {
-            self.localCatalog.stringValue = config.localCatalog
-            self.offsiteCatalog.stringValue = config.offsiteCatalog
-            self.offsiteUsername.stringValue = config.offsiteUsername
-            self.backupID.stringValue = config.backupID
             self.info.stringValue = Infosnapshots().info(num: 0)
             self.gettinglogs.startAnimation(nil)
             self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true)
@@ -516,10 +504,6 @@ extension ViewControllerSnapshots: NewProfile {
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
-        self.localCatalog.stringValue = ""
-        self.offsiteCatalog.stringValue = ""
-        self.offsiteUsername.stringValue = ""
-        self.backupID.stringValue = ""
     }
 
     func enableselectprofile() {
