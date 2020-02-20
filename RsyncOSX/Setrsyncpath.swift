@@ -15,21 +15,21 @@ struct Setrsyncpath {
     init() {
         self.setinfoaboutrsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         let fileManager = FileManager.default
-        let path: String?
+        let rsyncpath: String?
         // If not in /usr/bin or /usr/local/bin, rsyncPath is set if none of the above
-        if let rsyncPath = ViewControllerReference.shared.localrsyncpath {
-            path = rsyncPath + ViewControllerReference.shared.rsync
+        if let pathforrsync = ViewControllerReference.shared.localrsyncpath {
+            rsyncpath = pathforrsync + ViewControllerReference.shared.rsync
         } else if ViewControllerReference.shared.rsyncversion3 {
-            path = "/usr/local/bin/" + ViewControllerReference.shared.rsync
+            rsyncpath = "/usr/local/bin/" + ViewControllerReference.shared.rsync
         } else {
-            path = "/usr/bin/" + ViewControllerReference.shared.rsync
+            rsyncpath = "/usr/bin/" + ViewControllerReference.shared.rsync
         }
         guard ViewControllerReference.shared.rsyncversion3 == true else {
             ViewControllerReference.shared.norsync = false
             self.setinfoaboutrsyncDelegate?.setinfoaboutrsync()
             return
         }
-        if fileManager.fileExists(atPath: path!) == false {
+        if fileManager.fileExists(atPath: rsyncpath ?? "") == false {
             ViewControllerReference.shared.norsync = true
         } else {
             ViewControllerReference.shared.norsync = false
