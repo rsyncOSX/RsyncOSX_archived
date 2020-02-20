@@ -29,7 +29,7 @@ struct Setrsyncpath {
             self.setinfoaboutrsyncDelegate?.setinfoaboutrsync()
             return
         }
-        if fileManager.fileExists(atPath: rsyncpath ?? "") == false {
+        if fileManager.isExecutableFile(atPath: rsyncpath ?? "") == false {
             ViewControllerReference.shared.norsync = true
         } else {
             ViewControllerReference.shared.norsync = false
