@@ -73,14 +73,14 @@
 
 /* Remote Info
    Verify */
-"Date last backup:" = "Date de la dernière sauvegarde:";
+"Date last synchronize:" = "Date last synchronize:";
 
 /* datetime */
 "days" = "Jours";
 
 /* Remote Info
    Verify */
-"Days since last backup:" = "Jours depuis la dernière sauvegarde :";
+"Days since last synchronize:" = "Jours écoulés depuis la dernière synchronisation :";
 
 /* default profile */
 "Default profile" = "Profil par défaut";
@@ -150,10 +150,10 @@
 "Getting info, please wait..." = "Récupération des informations, veuillez patienter...";
 
 /* Loggdata */
-"Got index from Execute and listing logs for one configuration..." = "Obtenir l'index de Exécuter et lister les logs pour une configuration...";
+"Got index from Synchronize and listing logs for one configuration..." = "Obtenir l'index de Exécuter et lister les logs pour une configuration...";
 
 /* Schedules */
-"Got index from Execute..." = "Récupération de l'index de l'exécution...";
+"Got index from Synchronize..." = "Récupération de l'index de l'exécution...";
 
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Obtenir l'index des Snapshots et lister les logs pour une configuration...";
@@ -250,7 +250,7 @@
 "once" = "une fois";
 
 /* Verify */
-"Please select a task in Execute ..." = "Veuillez sélectionner une tâche dans Exécuter ...";
+"Please select a task in Synchronize ..." = "Veuillez sélectionner une tâche dans Synchroniser ...";
 
 /* Execute */
 "Possible error logging..." = "Enregistrement possible des erreurs...";

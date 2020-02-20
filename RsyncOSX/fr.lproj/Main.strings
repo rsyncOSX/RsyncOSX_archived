@@ -37,6 +37,9 @@
 /* Class = "NSMenuItem"; title = "RsyncOSX"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "RsyncOSX";
 
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "1Yh-6C-SGM"; */
+"1Yh-6C-SGM.title" = "Point 3";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2Cv-Hb-dy9"; */
 "2Cv-Hb-dy9.title" = "Cellule de texte";
 
@@ -109,6 +112,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5Ha-1J-UqF"; */
 "5Ha-1J-UqF.title" = "Cellule de texte";
 
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5hS-2Z-RaG"; */
+"5hS-2Z-RaG.title" = "Cellule de texte";
+
 /* Class = "NSMenuItem"; title = "About RsyncOSX"; ObjectID = "5kV-Vb-QxS"; */
 "5kV-Vb-QxS.title" = "À propos de RsyncOSX";
 
@@ -127,9 +133,6 @@
 /* Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT"; */
 "5Zv-SY-8nT.title" = "supprimer --delete";
 
-/* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB"; */
-"6rO-sZ-edB.title" = "Catalogue distant :";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "7KY-LK-D7K"; */
 "7KY-LK-D7K.title" = "Cellule de texte";
 
@@ -141,6 +144,9 @@
 
 /* Class = "NSToolbarItem"; toolTip = "Abort task..."; ObjectID = "7w4-6r-ai5"; */
 "7w4-6r-ai5.toolTip" = "Abandonner la tâche...";
+
+/* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "8bT-Zz-3AD"; */
+"8bT-Zz-3AD.headerCell.title" = "Catalogue distant";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "8ml-tx-gzW"; */
 "8ml-tx-gzW.title" = "Cellule de texte";
@@ -162,6 +168,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9lf-HS-UMZ"; */
 "9lf-HS-UMZ.title" = "Cellule de texte";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9Mv-yV-TZr"; */
+"9Mv-yV-TZr.title" = "Cellule de texte";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "12s-Z1-kRl"; */
 "12s-Z1-kRl.title" = "Cellule de texte";
@@ -298,8 +307,8 @@
 /* Class = "NSViewController"; title = "Verify"; ObjectID = "Bb6-iv-DYc"; */
 "Bb6-iv-DYc.title" = "Vérifier";
 
-/* Class = "NSMenuItem"; title = "Backup all now"; ObjectID = "bCH-Oe-dEC"; */
-"bCH-Oe-dEC.title" = "Tout sauvegarder maintenant";
+/* Class = "NSMenuItem"; title = "Synchronize all now"; ObjectID = "bCH-Oe-dEC"; */
+"bCH-Oe-dEC.title" = "Tout synchroniser maintenant";
 
 /* Class = "NSTextFieldCell"; title = "Estimating task, please wait..."; ObjectID = "BDO-Nt-D9h"; */
 "BDO-Nt-D9h.title" = "Estimation de la tâche, veuillez patienter...";
@@ -370,8 +379,8 @@
 /* Class = "NSViewController"; title = "Details about files"; ObjectID = "ceM-Kt-SJU"; */
 "ceM-Kt-SJU.title" = "Détails sur les fichiers";
 
-/* Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "Cg6-Ym-xzl"; */
-"Cg6-Ym-xzl.title" = "Jours depuis la dernière sauvegarde :";
+/* Class = "NSTextFieldCell"; title = "Days since last synchronize:"; ObjectID = "Cg6-Ym-xzl"; */
+"Cg6-Ym-xzl.title" = "Jours écoulés depuis la dernière synchronisation :";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "CIR-Jz-Krc"; */
 "CIR-Jz-Krc.title" = "Cellule de texte";
@@ -405,9 +414,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Information"; ObjectID = "DDM-6v-WfN"; */
 "DDM-6v-WfN.headerCell.title" = "Information";
-
-/* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "DH3-Cj-gh5"; */
-"DH3-Cj-gh5.title" = "Catalogue local :";
 
 /* Class = "NSTextFieldCell"; title = "status"; ObjectID = "Dl6-i6-oA7"; */
 "Dl6-i6-oA7.title" = "statuts";
@@ -460,8 +466,8 @@
 /* Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl"; */
 "EeS-fZ-csl.title" = "La clé publique Dsa est trouvée.";
 
-/* Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G"; */
-"egt-C3-u4G.title" = "Exécuter";
+/* Class = "NSViewController"; title = "Synchronize"; ObjectID = "egt-C3-u4G"; */
+"egt-C3-u4G.title" = "Synchronize";
 
 /* Class = "NSButtonCell"; title = "full log"; ObjectID = "egX-mx-3Br"; */
 "egX-mx-3Br.title" = "log complet";
@@ -523,8 +529,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "f8w-ZJ-YZg"; */
 "f8w-ZJ-YZg.title" = "Cellule de texte";
 
-/* Class = "NSTextFieldCell"; title = "configuration ID:"; ObjectID = "F9T-gx-oeJ"; */
-"F9T-gx-oeJ.title" = "ID de configuration :";
+/* Class = "NSTextFieldCell"; title = "Synchronize ID:"; ObjectID = "F9T-gx-oeJ"; */
+"F9T-gx-oeJ.title" = "Synchronize ID:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo"; */
 "fAL-TO-qxo.headerCell.title" = "Serveur distant";
@@ -850,9 +856,6 @@
 /* Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21"; */
 "lGN-As-q21.title" = "Ajouter des paramètres";
 
-/* Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa"; */
-"Lkc-8f-opa.title" = "Nom d'utilisateur distant :";
-
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "LNh-Ch-4lY"; */
 "LNh-Ch-4lY.title" = "Fermer";
 
@@ -903,9 +906,6 @@
 
 /* Class = "NSTextFieldCell"; title = "output"; ObjectID = "MmU-sA-BEQ"; */
 "MmU-sA-BEQ.title" = "Sortie";
-
-/* Class = "NSBox"; title = "Configuration snapshot"; ObjectID = "Mn8-vX-I59"; */
-"Mn8-vX-I59.title" = "Instantané de configuration";
 
 /* Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd"; */
 "mry-vG-0Hd.title" = "Doublez sur la ligne pour obtenir la capacité à distance...";
@@ -966,6 +966,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX"; */
 "of4-qq-ykX.title" = "Nombre d'instantanés:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "Ogb-tX-IMk"; */
+"Ogb-tX-IMk.headerCell.title" = "Catalogue distant";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OIG-cZ-jQ9"; */
 "OIG-cZ-jQ9.title" = "Cellule de texte";
@@ -1042,8 +1045,8 @@
 /* Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO"; */
 "Psw-ga-cgO.title" = "Voir la configuration du contrôleur";
 
-/* Class = "NSTableColumn"; headerCell.title = "Backup ID"; ObjectID = "Pt7-g0-FoN"; */
-"Pt7-g0-FoN.headerCell.title" = "ID de sauvegarde";
+/* Class = "NSTableColumn"; headerCell.title = "Synchronize ID"; ObjectID = "Pt7-g0-FoN"; */
+"Pt7-g0-FoN.headerCell.title" = "Synchronize ID";
 
 /* Class = "NSBox"; title = "Remote server"; ObjectID = "Pty-Sm-7R1"; */
 "Pty-Sm-7R1.title" = "Serveur distant";
@@ -1120,6 +1123,9 @@
 /* Class = "NSTextFieldCell"; title = "selectedstart"; ObjectID = "RhH-4H-aT8"; */
 "RhH-4H-aT8.title" = "selectedstart";
 
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "rHl-gg-hvT"; */
+"rHl-gg-hvT.title" = "Point 1";
+
 /* Class = "NSViewController"; title = "Schedule"; ObjectID = "rht-JI-asq"; */
 "rht-JI-asq.title" = "Planifier";
 
@@ -1128,9 +1134,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4"; */
 "RPd-mi-bp4.title" = "Default params";
-
-/* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "Rq7-8F-bHb"; */
-"Rq7-8F-bHb.headerCell.title" = "Aligner";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rSn-oB-WbC"; */
 "rSn-oB-WbC.title" = "Cellule de texte";
@@ -1342,9 +1345,6 @@
 /* Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob"; */
 "Vnu-mV-aob.title" = "icône";
 
-/* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "vQn-ev-3Ai"; */
-"vQn-ev-3Ai.title" = "ID:";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VWl-UA-V1i"; */
 "VWl-UA-V1i.title" = "Cellule de texte";
 
@@ -1402,8 +1402,8 @@
 /* Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v"; */
 "wrj-tn-Y3v.title" = "chemin RsyncOSX : ";
 
-/* Class = "NSMenuItem"; title = "Backup now"; ObjectID = "wrk-73-4cu"; */
-"wrk-73-4cu.title" = "Sauvegarder maintenant";
+/* Class = "NSMenuItem"; title = "Synchronize now"; ObjectID = "wrk-73-4cu"; */
+"wrk-73-4cu.title" = "Synchroniser maintenant";
 
 /* Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "WVf-5Q-8C4"; */
 "WVf-5Q-8C4.title" = "Optionnel";
@@ -1450,8 +1450,8 @@
 /* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "xUg-0M-AYM"; */
 "xUg-0M-AYM.title" = "Catalogue distant :";
 
-/* Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq"; */
-"xXy-oY-7zq.title" = "Recherche des tâches pour la sauvegarde automatique, veuillez patienter...";
+/* Class = "NSTextFieldCell"; title = "Finding tasks for automatic synchronize, please wait..."; ObjectID = "xXy-oY-7zq"; */
+"xXy-oY-7zq.title" = "Recherche des tâches pour la synchronisation automatique, veuillez patienter...";
 
 /* Class = "NSTextFieldCell"; title = "Chinese"; ObjectID = "xz5-2j-E51"; */
 "xz5-2j-E51.title" = "Chinois";
@@ -1462,8 +1462,8 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Y5P-iP-A70"; */
 "Y5P-iP-A70.title" = "Cellule d'affichage du tableau";
 
-/* Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "YaD-4f-lEl"; */
-"YaD-4f-lEl.title" = "Date de la dernière sauvegarde:";
+/* Class = "NSTextFieldCell"; title = "Date last synchronize:"; ObjectID = "YaD-4f-lEl"; */
+"YaD-4f-lEl.title" = "Date last synchronize:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "YCe-8d-WsE"; */
 "YCe-8d-WsE.headerCell.title" = "Serveur distant";
@@ -1500,6 +1500,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yUA-PJ-sOA"; */
 "yUA-PJ-sOA.title" = "Cellule de texte";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "yuJ-90-GfH"; */
+"yuJ-90-GfH.title" = "Point 2";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yWQ-Wj-w1t"; */
 "yWQ-Wj-w1t.title" = "Cellule de texte";

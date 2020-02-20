@@ -37,6 +37,9 @@
 /* Class = "NSMenuItem"; title = "RsyncOSX"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "RsyncOSX";
 
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "1Yh-6C-SGM"; */
+"1Yh-6C-SGM.title" = "项目3";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2Cv-Hb-dy9"; */
 "2Cv-Hb-dy9.title" = "文本单元格";
 
@@ -109,6 +112,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5Ha-1J-UqF"; */
 "5Ha-1J-UqF.title" = "文本单元格";
 
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5hS-2Z-RaG"; */
+"5hS-2Z-RaG.title" = "文本单元格";
+
 /* Class = "NSMenuItem"; title = "About RsyncOSX"; ObjectID = "5kV-Vb-QxS"; */
 "5kV-Vb-QxS.title" = "关于 RsyncOSX";
 
@@ -127,9 +133,6 @@
 /* Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT"; */
 "5Zv-SY-8nT.title" = "删除 --delete";
 
-/* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "6rO-sZ-edB"; */
-"6rO-sZ-edB.title" = "远程目录：";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "7KY-LK-D7K"; */
 "7KY-LK-D7K.title" = "文本单元格";
 
@@ -141,6 +144,9 @@
 
 /* Class = "NSToolbarItem"; toolTip = "Abort task..."; ObjectID = "7w4-6r-ai5"; */
 "7w4-6r-ai5.toolTip" = "中止任务...";
+
+/* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "8bT-Zz-3AD"; */
+"8bT-Zz-3AD.headerCell.title" = "远程目录";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "8ml-tx-gzW"; */
 "8ml-tx-gzW.title" = "文本单元格";
@@ -162,6 +168,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9lf-HS-UMZ"; */
 "9lf-HS-UMZ.title" = "文本单元格";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9Mv-yV-TZr"; */
+"9Mv-yV-TZr.title" = "文本单元格";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "12s-Z1-kRl"; */
 "12s-Z1-kRl.title" = "文本单元格";
@@ -298,8 +307,8 @@
 /* Class = "NSViewController"; title = "Verify"; ObjectID = "Bb6-iv-DYc"; */
 "Bb6-iv-DYc.title" = "验证";
 
-/* Class = "NSMenuItem"; title = "Backup all now"; ObjectID = "bCH-Oe-dEC"; */
-"bCH-Oe-dEC.title" = "立即备份所有";
+/* Class = "NSMenuItem"; title = "Synchronize all now"; ObjectID = "bCH-Oe-dEC"; */
+"bCH-Oe-dEC.title" = "正在同步所有";
 
 /* Class = "NSTextFieldCell"; title = "Estimating task, please wait..."; ObjectID = "BDO-Nt-D9h"; */
 "BDO-Nt-D9h.title" = "正在估计任务，请稍候...";
@@ -370,8 +379,8 @@
 /* Class = "NSViewController"; title = "Details about files"; ObjectID = "ceM-Kt-SJU"; */
 "ceM-Kt-SJU.title" = "关于文件的详细信息";
 
-/* Class = "NSTextFieldCell"; title = "Days since last backup:"; ObjectID = "Cg6-Ym-xzl"; */
-"Cg6-Ym-xzl.title" = "自上次备份以来的天数：";
+/* Class = "NSTextFieldCell"; title = "Days since last synchronize:"; ObjectID = "Cg6-Ym-xzl"; */
+"Cg6-Ym-xzl.title" = "自上次同步以来的天数：";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "CIR-Jz-Krc"; */
 "CIR-Jz-Krc.title" = "文本单元格";
@@ -405,9 +414,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Information"; ObjectID = "DDM-6v-WfN"; */
 "DDM-6v-WfN.headerCell.title" = "信息";
-
-/* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "DH3-Cj-gh5"; */
-"DH3-Cj-gh5.title" = "本地目录：";
 
 /* Class = "NSTextFieldCell"; title = "status"; ObjectID = "Dl6-i6-oA7"; */
 "Dl6-i6-oA7.title" = "状态";
@@ -460,8 +466,8 @@
 /* Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl"; */
 "EeS-fZ-csl.title" = "找到Dsa公钥。";
 
-/* Class = "NSViewController"; title = "Execute"; ObjectID = "egt-C3-u4G"; */
-"egt-C3-u4G.title" = "执行";
+/* Class = "NSViewController"; title = "Synchronize"; ObjectID = "egt-C3-u4G"; */
+"egt-C3-u4G.title" = "Synchronize";
 
 /* Class = "NSButtonCell"; title = "full log"; ObjectID = "egX-mx-3Br"; */
 "egX-mx-3Br.title" = "完整日志";
@@ -523,8 +529,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "f8w-ZJ-YZg"; */
 "f8w-ZJ-YZg.title" = "文本单元格";
 
-/* Class = "NSTextFieldCell"; title = "configuration ID:"; ObjectID = "F9T-gx-oeJ"; */
-"F9T-gx-oeJ.title" = "配置 ID：";
+/* Class = "NSTextFieldCell"; title = "Synchronize ID:"; ObjectID = "F9T-gx-oeJ"; */
+"F9T-gx-oeJ.title" = "Synchronize ID:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo"; */
 "fAL-TO-qxo.headerCell.title" = "远程服务器";
@@ -850,9 +856,6 @@
 /* Class = "NSBox"; title = "Add parameters"; ObjectID = "lGN-As-q21"; */
 "lGN-As-q21.title" = "添加参数";
 
-/* Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "Lkc-8f-opa"; */
-"Lkc-8f-opa.title" = "远程用户名：";
-
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "LNh-Ch-4lY"; */
 "LNh-Ch-4lY.title" = "关闭";
 
@@ -903,9 +906,6 @@
 
 /* Class = "NSTextFieldCell"; title = "output"; ObjectID = "MmU-sA-BEQ"; */
 "MmU-sA-BEQ.title" = "输出";
-
-/* Class = "NSBox"; title = "Configuration snapshot"; ObjectID = "Mn8-vX-I59"; */
-"Mn8-vX-I59.title" = "配置快照";
 
 /* Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "mry-vG-0Hd"; */
 "mry-vG-0Hd.title" = "双击获取远程容量...";
@@ -966,6 +966,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX"; */
 "of4-qq-ykX.title" = "快照数量：";
+
+/* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "Ogb-tX-IMk"; */
+"Ogb-tX-IMk.headerCell.title" = "远程目录";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OIG-cZ-jQ9"; */
 "OIG-cZ-jQ9.title" = "文本单元格";
@@ -1042,8 +1045,8 @@
 /* Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO"; */
 "Psw-ga-cgO.title" = "查看控制器配置";
 
-/* Class = "NSTableColumn"; headerCell.title = "Backup ID"; ObjectID = "Pt7-g0-FoN"; */
-"Pt7-g0-FoN.headerCell.title" = "备份 ID";
+/* Class = "NSTableColumn"; headerCell.title = "Synchronize ID"; ObjectID = "Pt7-g0-FoN"; */
+"Pt7-g0-FoN.headerCell.title" = "Synchronize ID";
 
 /* Class = "NSBox"; title = "Remote server"; ObjectID = "Pty-Sm-7R1"; */
 "Pty-Sm-7R1.title" = "远程服务器";
@@ -1120,6 +1123,9 @@
 /* Class = "NSTextFieldCell"; title = "selectedstart"; ObjectID = "RhH-4H-aT8"; */
 "RhH-4H-aT8.title" = "selectedstart";
 
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "rHl-gg-hvT"; */
+"rHl-gg-hvT.title" = "项目1";
+
 /* Class = "NSViewController"; title = "Schedule"; ObjectID = "rht-JI-asq"; */
 "rht-JI-asq.title" = "日程安排";
 
@@ -1128,9 +1134,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4"; */
 "RPd-mi-bp4.title" = "Default params";
-
-/* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "Rq7-8F-bHb"; */
-"Rq7-8F-bHb.headerCell.title" = "吸附";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rSn-oB-WbC"; */
 "rSn-oB-WbC.title" = "文本单元格";
@@ -1342,9 +1345,6 @@
 /* Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob"; */
 "Vnu-mV-aob.title" = "图标";
 
-/* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "vQn-ev-3Ai"; */
-"vQn-ev-3Ai.title" = "ID:";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VWl-UA-V1i"; */
 "VWl-UA-V1i.title" = "文本单元格";
 
@@ -1402,8 +1402,8 @@
 /* Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v"; */
 "wrj-tn-Y3v.title" = "路径 RsyncOSX： ";
 
-/* Class = "NSMenuItem"; title = "Backup now"; ObjectID = "wrk-73-4cu"; */
-"wrk-73-4cu.title" = "立即备份";
+/* Class = "NSMenuItem"; title = "Synchronize now"; ObjectID = "wrk-73-4cu"; */
+"wrk-73-4cu.title" = "立即同步";
 
 /* Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "WVf-5Q-8C4"; */
 "WVf-5Q-8C4.title" = "可选的";
@@ -1450,8 +1450,8 @@
 /* Class = "NSTextFieldCell"; title = "Remote catalog:"; ObjectID = "xUg-0M-AYM"; */
 "xUg-0M-AYM.title" = "远程目录：";
 
-/* Class = "NSTextFieldCell"; title = "Finding tasks for automatic backup, please wait..."; ObjectID = "xXy-oY-7zq"; */
-"xXy-oY-7zq.title" = "正在查找自动备份任务，请稍候...";
+/* Class = "NSTextFieldCell"; title = "Finding tasks for automatic synchronize, please wait..."; ObjectID = "xXy-oY-7zq"; */
+"xXy-oY-7zq.title" = "正在查找自动同步任务，请稍候...";
 
 /* Class = "NSTextFieldCell"; title = "Chinese"; ObjectID = "xz5-2j-E51"; */
 "xz5-2j-E51.title" = "中文";
@@ -1462,8 +1462,8 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Y5P-iP-A70"; */
 "Y5P-iP-A70.title" = "表格视图单元格";
 
-/* Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "YaD-4f-lEl"; */
-"YaD-4f-lEl.title" = "最后备份日期:";
+/* Class = "NSTextFieldCell"; title = "Date last synchronize:"; ObjectID = "YaD-4f-lEl"; */
+"YaD-4f-lEl.title" = "Date last synchronize:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "YCe-8d-WsE"; */
 "YCe-8d-WsE.headerCell.title" = "远程服务器";
@@ -1500,6 +1500,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yUA-PJ-sOA"; */
 "yUA-PJ-sOA.title" = "文本单元格";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "yuJ-90-GfH"; */
+"yuJ-90-GfH.title" = "项目2";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yWQ-Wj-w1t"; */
 "yWQ-Wj-w1t.title" = "文本单元格";

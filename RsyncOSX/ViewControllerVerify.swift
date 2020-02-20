@@ -17,8 +17,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     var gotremoteinfo: Bool = false
     private var complete: Bool = false
     private var processRefererence: ProcessCmd?
-    let lastdate: String = NSLocalizedString("Date last backup:", comment: "Verify")
-    let dayssince: String = NSLocalizedString("Days since last backup:", comment: "Verify")
+    let lastdate: String = NSLocalizedString("Date last synchronize:", comment: "Verify")
+    let dayssince: String = NSLocalizedString("Days since last synchronize:", comment: "Verify")
 
     @IBOutlet var outputtable: NSTableView!
     @IBOutlet var working: NSProgressIndicator!
@@ -158,10 +158,10 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             let datelastbackup = self.configurations?.getConfigurations()[self.index()!].dateRun ?? ""
             if datelastbackup.isEmpty == false {
                 let date = datelastbackup.en_us_date_from_string()
-                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
                     + " " + date.localized_string_from_date()
             } else {
-                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
             }
             let numberlastbackup = self.configurations?.getConfigurations()[self.index()!].dayssincelastbackup ?? ""
             self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
@@ -191,7 +191,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             guard self.estimatedindex ?? -1 != index else { return false }
         } else {
             self.gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
-            let task: String = NSLocalizedString("Please select a task in Execute ...", comment: "Verify")
+            let task: String = NSLocalizedString("Please select a task in Synchronize ...", comment: "Verify")
             self.gotit.stringValue = task
             self.outputprocess = nil
             self.resetinfo()

@@ -41,7 +41,7 @@ struct Infoexecute {
 
 struct Infologgdata {
     // Loggdata
-    let info21: String = NSLocalizedString("Got index from Execute and listing logs for one configuration...", comment: "Loggdata")
+    let info21: String = NSLocalizedString("Got index from Synchronize and listing logs for one configuration...", comment: "Loggdata")
     let info22: String = NSLocalizedString("Got index from Snapshots and listing logs for one configuration...", comment: "Loggdata")
 
     func info(num: Int) -> String {
@@ -86,7 +86,7 @@ struct Infoschedule {
     // Schedules
     let info11: String = NSLocalizedString("Select a task....", comment: "Execute")
     let info42: String = NSLocalizedString("Scheduled tasks in menu app...", comment: "Schedules")
-    let info43: String = NSLocalizedString("Got index from Execute...", comment: "Schedules")
+    let info43: String = NSLocalizedString("Got index from Synchronize...", comment: "Schedules")
 
     func info(num: Int) -> String {
         switch num {
