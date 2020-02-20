@@ -150,10 +150,10 @@
 "Getting info, please wait..." = "正在获取信息，请稍候...";
 
 /* Loggdata */
-"Got index from Execute and listing logs for one configuration..." = "从一个配置的执行和列表日志中获取索引...";
+"Got index from Synchronize and listing logs for one configuration..." = "从一个配置的执行和列表日志中获取索引...";
 
 /* Schedules */
-"Got index from Execute..." = "从执行中获取索引...";
+"Got index from Synchronize..." = "从执行中获取索引...";
 
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "从 Snapshots 获取索引并列出一个配置的日志...";

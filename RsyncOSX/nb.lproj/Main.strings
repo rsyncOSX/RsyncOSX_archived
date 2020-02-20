@@ -794,7 +794,7 @@
 "jjS-gu-o5C.title" = "Sjekke data";
 
 /* Class = "NSTextFieldCell"; title = "Double click  on row or shortcut ⌘R to execute task or ⌘I to get info ..."; ObjectID = "JKJ-Kp-IuV"; */
-"JKJ-Kp-IuV.title" = "Dobbel klikk på rad eller  ⌘R for å utføre eller ⌘I for info ...";
+"JKJ-Kp-IuV.title" = "Dobbel klikk på rad eller ⌘R for å utføre eller ⌘I for info ...";
 
 /* Class = "NSButtonCell"; title = "verify"; ObjectID = "jTS-YA-55S"; */
 "jTS-YA-55S.title" = "verifiser";

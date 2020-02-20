@@ -150,10 +150,10 @@
 "Getting info, please wait..." = "Henter informasjon, vennligst vent...";
 
 /* Loggdata */
-"Got index from Execute and listing logs for one configuration..." = "Hentet index fra Utfør og lister logg for en konfigurasjon...";
+"Got index from Synchronize and listing logs for one configuration..." = "Hentet index fra Synkroniser og lister logg for en konfigurasjon...";
 
 /* Schedules */
-"Got index from Execute..." = "Hentet index fra Utfør...";
+"Got index from Synchronize..." = "Hentet index fra Synkroniser...";
 
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon...";
