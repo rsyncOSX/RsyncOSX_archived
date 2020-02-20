@@ -73,14 +73,14 @@
 
 /* Remote Info
    Verify */
-"Date last backup:" = "Date de la dernière sauvegarde:";
+"Date last synchronize:" = "Date last synchronize:";
 
 /* datetime */
 "days" = "Jours";
 
 /* Remote Info
    Verify */
-"Days since last backup:" = "Jours depuis la dernière sauvegarde :";
+"Days since last synchronize:" = "Jours écoulés depuis la dernière synchronisation :";
 
 /* default profile */
 "Default profile" = "Profil par défaut";
@@ -248,9 +248,6 @@
 
 /* main */
 "once" = "une fois";
-
-/* Verify */
-"Please select a task in Execute ..." = "Veuillez sélectionner une tâche dans Exécuter ...";
 
 /* Execute */
 "Possible error logging..." = "Enregistrement possible des erreurs...";

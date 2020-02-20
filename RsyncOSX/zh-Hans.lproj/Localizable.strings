@@ -73,14 +73,14 @@
 
 /* Remote Info
    Verify */
-"Date last backup:" = "最后备份日期:";
+"Date last synchronize:" = "Date last synchronize:";
 
 /* datetime */
 "days" = "天";
 
 /* Remote Info
    Verify */
-"Days since last backup:" = "自上次备份以来的天数：";
+"Days since last synchronize:" = "自上次同步以来的天数：";
 
 /* default profile */
 "Default profile" = "默认配置文件";
@@ -248,9 +248,6 @@
 
 /* main */
 "once" = "一次";
-
-/* Verify */
-"Please select a task in Execute ..." = "请选择一个正在执行的任务...";
 
 /* Execute */
 "Possible error logging..." = "可能的错误记录...";
