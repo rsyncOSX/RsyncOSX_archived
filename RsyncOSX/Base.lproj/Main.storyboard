@@ -86,12 +86,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Il2-Y3-lKm"/>
-                                        <menuItem title="Backup now" keyEquivalent="r" id="wrk-73-4cu">
+                                        <menuItem title="Synchronize now" keyEquivalent="r" id="wrk-73-4cu">
                                             <connections>
                                                 <action selector="executetasknow:" target="Ady-hI-5gd" id="iNN-Ju-Agc"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Backup all now" keyEquivalent="b" id="bCH-Oe-dEC" userLabel="Backup all now">
+                                        <menuItem title="Synchronize all now" keyEquivalent="b" id="bCH-Oe-dEC">
                                             <connections>
                                                 <action selector="automaticbackup:" target="Ady-hI-5gd" id="5xL-uk-hhv"/>
                                             </connections>
@@ -397,10 +397,10 @@
             </objects>
             <point key="canvasLocation" x="-454" y="-12"/>
         </scene>
-        <!--Execute-->
+        <!--Synchronize-->
         <scene sceneID="84s-6a-t0v">
             <objects>
-                <viewController title="Execute" storyboardIdentifier="ViewControllertabMain" id="egt-C3-u4G" customClass="ViewControllerMain" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Synchronize" storyboardIdentifier="ViewControllertabMain" id="egt-C3-u4G" customClass="ViewControllerMain" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="akQ-LR-eTv">
                         <rect key="frame" x="0.0" y="0.0" width="1091" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2096,7 +2096,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="Fqx-LM-aMt" id="VmR-YZ-iuN">
-                                            <rect key="frame" x="0.0" y="0.0" width="1048" height="303"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1059" height="303"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2127,8 +2127,8 @@
                                                     </buttonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="backupID" width="74.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pt7-g0-FoN">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Backup ID">
+                                                <tableColumn identifier="backupID" width="87" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pt7-g0-FoN">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Synchronize ID">
                                                         <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2209,7 +2209,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="keS-k2-fw7">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="keS-k2-fw7">
                                     <rect key="frame" x="2" y="312" width="1048" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2218,7 +2218,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="Fqx-LM-aMt">
-                                    <rect key="frame" x="0.0" y="0.0" width="1048" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1059" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -3327,18 +3327,18 @@ DQ
         <scene sceneID="GIT-ED-d2h">
             <objects>
                 <viewController title="Details about files" storyboardIdentifier="StoryboardInformationID" id="ceM-Kt-SJU" customClass="ViewControllerInformation" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="KBL-J8-CuF">
+                    <view key="view" id="KBL-J8-CuF">
                         <rect key="frame" x="0.0" y="0.0" width="696" height="359"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="71"/>
+                                <rect key="frame" x="20" y="61" width="656" height="278"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="70"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="277"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="254"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4160,7 +4160,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJ9-5X-ZlV">
                                 <rect key="frame" x="18" y="105" width="118" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="configuration ID:" id="F9T-gx-oeJ">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Synchronize ID:" id="F9T-gx-oeJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -5353,7 +5353,7 @@ DQ
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-a1-7q9">
                                             <rect key="frame" x="4" y="103" width="271" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Date last backup:" id="YaD-4f-lEl">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Date last synchronize:" id="YaD-4f-lEl">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -5362,7 +5362,7 @@ DQ
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iay-fm-j0D">
                                             <rect key="frame" x="4" y="84" width="271" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Days since last backup:" id="Cg6-Ym-xzl">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Days since last synchronize:" id="Cg6-Ym-xzl">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -6851,22 +6851,22 @@ DQ
             <objects>
                 <viewController title="Estimating progress" storyboardIdentifier="StoryboardEstimatingID" id="Ml3-CP-4eZ" customClass="ViewControllerEstimatingTasks" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yLQ-8T-D0v">
-                        <rect key="frame" x="0.0" y="0.0" width="408" height="67"/>
+                        <rect key="frame" x="0.0" y="0.0" width="439" height="67"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zG8-Uf-fQC">
-                                <rect key="frame" x="53" y="38" width="303" height="16"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Finding tasks for automatic backup, please wait..." id="xXy-oY-7zq">
+                                <rect key="frame" x="54" y="38" width="332" height="16"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Finding tasks for automatic synchronize, please wait..." id="xXy-oY-7zq">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="eMf-J4-Wbw">
-                                <rect key="frame" x="20" y="11" width="368" height="20"/>
+                                <rect key="frame" x="20" y="11" width="399" height="20"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-hJ-qlv">
-                                <rect key="frame" x="362" y="34" width="31" height="25"/>
+                                <rect key="frame" x="388" y="34" width="31" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xPl-Ob-O18">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -6892,7 +6892,7 @@ DQ
                 </viewController>
                 <customObject id="dgD-Px-NZ3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1414" y="1697.5"/>
+            <point key="canvasLocation" x="-1468.5" y="1699.5"/>
         </scene>
     </scenes>
     <resources>

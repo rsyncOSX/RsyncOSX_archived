@@ -50,13 +50,13 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
             if datelastbackup.isEmpty == false {
                 let date = datelastbackup.en_us_date_from_string()
-                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
                     + " " + date.localized_string_from_date()
             } else {
-                self.datelastbackup.stringValue = NSLocalizedString("Date last backup:", comment: "Remote Info")
+                self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
             }
             let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
-            self.dayslastbackup.stringValue = NSLocalizedString("Days since last backup:", comment: "Remote Info")
+            self.dayslastbackup.stringValue = NSLocalizedString("Days since last synchronize:", comment: "Remote Info")
                 + " " + numberlastbackup
             if self.localremoteinfoDelegate?.getlocalremoteinfo(index: index)?.count ?? 0 > 0 {
                 self.setcachedNumbers(dict: self.localremoteinfoDelegate?.getlocalremoteinfo(index: index))
