@@ -2,7 +2,7 @@
 " ... set in User configuration ..." = "... sett i bruker preferanser...";
 
 /* Ssh */
-"... no remote server ..." = "...ingen ekstern server...";
+"... no remote server ..." = "...ingen ekstern tjener...";
 
 /* Execute */
 "⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
@@ -208,9 +208,6 @@
 "New version is available:" = "Ny versjon er tilgjengelig:";
 
 /* Execute */
-"No rclone config found..." = "Ingen rclone konfigurasjon funnet";
-
-/* Execute */
 "No rsync in path..." = "Ingen rsync i sti...";
 
 /* Schedule details */
@@ -220,7 +217,7 @@
 "no stopdate" = "ingen stopp dato";
 
 /* Restore */
-"No such temporay catalog for restore, set it in user config." = "Ingen slik lokal katalog for gjenopprett, sett den i bruker preferanser.";
+"No such temporay catalog for restore, set it in user config." = "Ingen slik lokal katalog for gjenopprett eller sett den i bruker preferanser.";
 
 /* plan */
 "none" = "ingen";
@@ -229,7 +226,7 @@
 "Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
 /* Restore */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
 
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
@@ -327,9 +324,6 @@
 
 /* Quickbackup */
 "There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
-
-/* Execute */
-"This is a combined task, execute by ⌘R..." = "Kombinert oppgave, kjør med ⌘R";
 
 /* New */
 "This is added before?" = "Denne er lagt til tidligere?";
