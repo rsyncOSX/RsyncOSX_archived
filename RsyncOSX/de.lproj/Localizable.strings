@@ -249,6 +249,9 @@
 /* main */
 "once" = "einmal";
 
+/* Verify */
+"Please select a task in Synchronize ..." = "Bitte wählen Sie eine Aufgabe in Synchronisieren ...";
+
 /* Execute */
 "Possible error logging..." = "Mögliche Fehlermeldung...";
 

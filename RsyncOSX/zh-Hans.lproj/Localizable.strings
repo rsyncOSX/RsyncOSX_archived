@@ -249,6 +249,9 @@
 /* main */
 "once" = "一次";
 
+/* Verify */
+"Please select a task in Synchronize ..." = "请选择同步任务...";
+
 /* Execute */
 "Possible error logging..." = "可能的错误记录...";
 
