@@ -56,7 +56,7 @@
 "2sX-ek-QE0.title" = "Benötigt";
 
 /* Class = "NSButtonCell"; title = "synchronize"; ObjectID = "2tH-gF-ycx"; */
-"2tH-gF-ycx.title" = "synchronize";
+"2tH-gF-ycx.title" = "synchronisier";
 
 /* Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "2W2-3F-urP"; */
 "2W2-3F-urP.title" = "KB zu übertragen:";
@@ -467,7 +467,7 @@
 "EeS-fZ-csl.title" = "Dsa öffentlicher Schlüssel wurde gefunden.";
 
 /* Class = "NSViewController"; title = "Synchronize"; ObjectID = "egt-C3-u4G"; */
-"egt-C3-u4G.title" = "Synchronize";
+"egt-C3-u4G.title" = "Synchronisier";
 
 /* Class = "NSButtonCell"; title = "full log"; ObjectID = "egX-mx-3Br"; */
 "egX-mx-3Br.title" = "ganzes Log";
@@ -530,7 +530,7 @@
 "f8w-ZJ-YZg.title" = "Textzelle";
 
 /* Class = "NSTextFieldCell"; title = "Synchronize ID:"; ObjectID = "F9T-gx-oeJ"; */
-"F9T-gx-oeJ.title" = "Synchronize ID:";
+"F9T-gx-oeJ.title" = "Synchronisier ID:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo"; */
 "fAL-TO-qxo.headerCell.title" = "Remote-Server";
@@ -1046,7 +1046,7 @@
 "Psw-ga-cgO.title" = "Controller-Konfiguration anzeigen";
 
 /* Class = "NSTableColumn"; headerCell.title = "Synchronize ID"; ObjectID = "Pt7-g0-FoN"; */
-"Pt7-g0-FoN.headerCell.title" = "Synchronize ID";
+"Pt7-g0-FoN.headerCell.title" = "Synchronisier ID";
 
 /* Class = "NSBox"; title = "Remote server"; ObjectID = "Pty-Sm-7R1"; */
 "Pty-Sm-7R1.title" = "Remote-Server";
@@ -1463,7 +1463,7 @@
 "Y5P-iP-A70.title" = "Tabellenansicht Zelle";
 
 /* Class = "NSTextFieldCell"; title = "Date last synchronize:"; ObjectID = "YaD-4f-lEl"; */
-"YaD-4f-lEl.title" = "Date last synchronize:";
+"YaD-4f-lEl.title" = "Datum der letzten Synchronisierung:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "YCe-8d-WsE"; */
 "YCe-8d-WsE.headerCell.title" = "Remote-Server";

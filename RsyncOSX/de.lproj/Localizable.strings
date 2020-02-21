@@ -150,10 +150,10 @@
 "Getting info, please wait..." = "Info wird abgerufen, bitte warten...";
 
 /* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "Index aus Ausführen und Auflistung von Logs für eine Konfiguration...";
+"Got index from Synchronize and listing logs for one configuration..." = "Index aus Synchronisier und Auflistung von Logs für eine Konfiguration...";
 
 /* Schedules */
-"Got index from Synchronize..." = "Index von Ausführen...";
+"Got index from Synchronize..." = "Index von Synchronisier...";
 
 /* Loggdata */
 "Got index from Snapshots and listing logs for one configuration..." = "Index aus Snapshots und Listing-Logs für eine Konfiguration...";
