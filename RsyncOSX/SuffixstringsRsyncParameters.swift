@@ -24,6 +24,7 @@ struct SuffixstringsRsyncParameters {
         ("--backup", 0),
         ("--backup-dir", 1),
         ("--exclude-from", 1),
+        ("--exclude", 1),
         ("--include-from", 1),
         ("--files-from", 1),
         ("--max-size", 1),
