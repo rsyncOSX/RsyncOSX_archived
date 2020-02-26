@@ -226,7 +226,7 @@
 "Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
 
 /* Restore */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å kopiere filer...";
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
 
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
