@@ -196,11 +196,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        let task = self.configurations!.getConfigurations()[self.index!].task
-        guard ViewControllerReference.shared.synctasks.contains(task) else {
-            return
+        if let task = self.configurations?.getConfigurations()[self.index!].task {
+            guard ViewControllerReference.shared.synctasks.contains(task) else {
+                return
+            }
+            self.executetasknow = ExecuteTaskNow(index: self.index!)
         }
-        self.executetasknow = ExecuteTaskNow(index: self.index!)
     }
 
     // Function for display rsync command
@@ -344,7 +345,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.schedules = Schedules(profile: nil)
             return
         }
-        if let profile = self.configurations!.getProfile() {
+        if let profile = self.configurations?.getProfile() {
             self.schedules = nil
             self.schedules = Schedules(profile: profile)
         } else {
@@ -359,7 +360,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.configurations = Configurations(profile: nil)
             return
         }
-        if let profile = self.configurations!.getProfile() {
+        if let profile = self.configurations?.getProfile() {
             self.configurations = nil
             self.configurations = Configurations(profile: profile)
         } else {
