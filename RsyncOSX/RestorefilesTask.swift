@@ -9,7 +9,6 @@
 import Foundation
 
 final class RestorefilesTask: SetConfigurations {
-    private var index: Int?
     private var config: Configuration?
     private var commandDisplay: String?
     var process: ProcessCmd?
@@ -25,20 +24,22 @@ final class RestorefilesTask: SetConfigurations {
     }
 
     func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool, updateprogress: UpdateProgress) {
-        var arguments: [String]?
-        guard self.config != nil else { return }
-        arguments = RestorefilesArguments(task: .rsync, config: self.config!, remoteFile: remotefile,
-                                          localCatalog: localCatalog, drynrun: dryrun).getArguments()
-        self.outputprocess = OutputProcess()
-        self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-        self.process = ProcessCmd(command: nil, arguments: arguments)
-        self.process?.setupdateDelegate(object: updateprogress)
-        self.process?.executeProcess(outputprocess: self.outputprocess)
+        if let config = self.config {
+            var arguments: [String]?
+            arguments = RestorefilesArguments(task: .rsync, config: config, remoteFile: remotefile,
+                                              localCatalog: localCatalog, drynrun: dryrun).getArguments()
+            self.outputprocess = OutputProcess()
+            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            self.process = ProcessCmd(command: nil, arguments: arguments)
+            self.process?.setupdateDelegate(object: updateprogress)
+            self.process?.executeProcess(outputprocess: self.outputprocess)
+        }
     }
 
     init(hiddenID: Int) {
         self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.index = self.configurations?.getIndex(hiddenID)
-        self.config = self.configurations!.getConfigurations()[self.index!]
+        if let index = self.configurations?.getIndex(hiddenID) {
+            self.config = self.configurations?.getConfigurations()[index]
+        }
     }
 }
