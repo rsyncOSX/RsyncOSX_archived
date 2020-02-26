@@ -19,7 +19,7 @@ final class Snapshotlogsandcatalogs {
 
     private func getremotecataloginfo(getsnapshots: Bool) {
         self.outputprocess = OutputProcess()
-        let arguments = RestorefilesArguments(task: .snapshotcatalogs, config: self.config!, remoteFile: nil, localCatalog: nil, drynrun: nil)
+        let arguments = RestorefilesArguments(task: .snapshotcatalogs, config: self.config, remoteFile: nil, localCatalog: nil, drynrun: nil)
         if getsnapshots {
             let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
             object.executeProcess(outputprocess: self.outputprocess)
