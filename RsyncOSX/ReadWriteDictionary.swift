@@ -54,6 +54,8 @@ class ReadWriteDictionary {
             self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.plistname!
         } else {
             // no profile
+            let profilePath = CatalogProfile()
+            profilePath.createDirectory()
             self.filename = docuDir + self.configpath! + macserialnumber! + self.plistname!
             self.filepath = self.configpath! + macserialnumber! + "/"
         }
