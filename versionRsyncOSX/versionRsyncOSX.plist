@@ -3,18 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>6.0.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.1.7/RsyncOSX-6.1.7.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
 	<key>6.0.1</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.1.7/RsyncOSX-6.1.7.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
 	<key>6.0.5</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.1.7/RsyncOSX-6.1.7.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
 	<key>6.1.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.1.7/RsyncOSX-6.1.7.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
 	<key>6.1.1</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.1.7/RsyncOSX-6.1.7.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
 	<key>6.1.5</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.1.7/RsyncOSX-6.1.7.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
 	<key>6.1.6</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.1.7/RsyncOSX-6.1.7.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
+	<key>6.1.7</key>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.2.0/RsyncOSX-6.2.0.dmg</string>
 </dict>
 </plist>
