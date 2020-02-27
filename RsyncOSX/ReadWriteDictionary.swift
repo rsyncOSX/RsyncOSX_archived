@@ -45,8 +45,6 @@ class ReadWriteDictionary {
             ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
         }
         let macserialnumber = ViewControllerReference.shared.macserialnumber
-        let profilePath = CatalogProfile()
-        profilePath.createDirectory()
         if let profile = self.profile {
             // Use profile
             guard profile.isEmpty == false else { return }
