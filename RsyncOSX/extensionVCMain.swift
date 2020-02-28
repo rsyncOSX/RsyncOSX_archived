@@ -136,13 +136,18 @@ extension ViewControllerMain: RsyncError {
 extension ViewControllerMain: Fileerror {
     func errormessage(errorstr: String, errortype: Fileerrortype) {
         globalMainQueue.async { () -> Void in
+            if self.outputprocess == nil {
+                self.outputprocess = OutputProcess()
+            }
             if errortype == .openlogfile {
-                self.rsyncCommand.stringValue = self.errordescription(errortype: errortype)
+                self.seterrorinfo(info: "Warning")
+                self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype))
             } else if errortype == .filesize {
-                self.rsyncCommand.stringValue = self.errordescription(errortype: errortype) + ": filesize = " + errorstr
+                self.seterrorinfo(info: "Warning")
+                self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + ": filesize = " + errorstr)
             } else {
                 self.seterrorinfo(info: "Error")
-                self.rsyncCommand.stringValue = self.errordescription(errortype: errortype) + "\n" + errorstr
+                self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + "\n" + errorstr)
             }
         }
     }
@@ -261,6 +266,7 @@ extension ViewControllerMain: ErrorOutput {
 }
 
 extension ViewControllerMain: Createandreloadconfigurations {
+    // function is defined in ViewControllerMain
     // func reateandreloadconfigurations()
 }
 

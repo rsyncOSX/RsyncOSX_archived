@@ -77,8 +77,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
     }
 
     func error() {
-        guard self.workload != nil else { return }
-        self.workload!.error()
+        self.workload?.error()
     }
 
     init(index: Int) {
