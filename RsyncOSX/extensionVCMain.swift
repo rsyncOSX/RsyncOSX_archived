@@ -136,6 +136,9 @@ extension ViewControllerMain: RsyncError {
 extension ViewControllerMain: Fileerror {
     func errormessage(errorstr: String, errortype: Fileerrortype) {
         globalMainQueue.async { () -> Void in
+            if self.outputprocess == nil {
+                self.outputprocess = OutputProcess()
+            }
             if errortype == .openlogfile {
                 self.seterrorinfo(info: "Warning")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype))
@@ -144,7 +147,6 @@ extension ViewControllerMain: Fileerror {
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + ": filesize = " + errorstr)
             } else {
                 self.seterrorinfo(info: "Error")
-                self.outputprocess = OutputProcess()
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + "\n" + errorstr)
             }
         }
