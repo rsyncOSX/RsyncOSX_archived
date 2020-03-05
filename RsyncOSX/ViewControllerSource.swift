@@ -90,8 +90,7 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
 
 extension ViewControllerSource: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        guard self.configurations != nil else { return 0 }
-        return self.configurations!.getConfigurationsDataSourceSynchronize()?.count ?? 0
+        return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
     }
 }
 

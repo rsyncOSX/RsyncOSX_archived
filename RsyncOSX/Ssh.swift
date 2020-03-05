@@ -136,11 +136,6 @@ class Ssh: Files {
         return self.outputprocess?.getOutput()
     }
 
-    // Open Terminal.app
-    func openTerminal() {
-        NSWorkspace.shared.open(URL(fileURLWithPath: "/Applications/Utilities/Terminal.app"))
-    }
-
     init(outputprocess: OutputProcess?) {
         super.init(whichroot: .sshRoot, configpath: ViewControllerReference.shared.configpath)
         self.outputprocess = outputprocess
