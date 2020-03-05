@@ -80,23 +80,24 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         self.selectButton.isEnabled = true
         if let index = indexes.first {
-            let object = self.configurations!.getConfigurationsDataSourceSynchronize()![index]
-            let hiddenID = object.value(forKey: "hiddenID") as? Int
-            guard hiddenID != nil else { return }
-            self.index = hiddenID!
+            if let object = self.configurations?.uniqueserversandlogins()?[index] {
+                if let hiddenID = object.value(forKey: "hiddenID") as? Int {
+                    self.index = hiddenID
+                }
+            }
         }
     }
 }
 
 extension ViewControllerSource: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+        return self.configurations?.uniqueserversandlogins()?.count ?? 0
     }
 }
 
 extension ViewControllerSource: NSTableViewDelegate {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
+        let object: NSDictionary = self.configurations!.uniqueserversandlogins()![row]
         return object[tableColumn!.identifier] as? String
     }
 }
