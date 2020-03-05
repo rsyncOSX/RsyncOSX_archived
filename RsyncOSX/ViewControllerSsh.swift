@@ -117,19 +117,17 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 
     func scpRsaPubKey() {
-        guard self.hiddenID != nil else { return }
-        guard self.sshcmd != nil else { return }
-        self.sshcmd!.scpPubKey(key: "rsa", hiddenID: self.hiddenID!)
-        guard sshcmd!.commandCopyPasteTermninal != nil else { return }
-        self.scpRsaCopyPasteCommand.stringValue = sshcmd!.commandCopyPasteTermninal!
+        if let hiddenID = self.hiddenID {
+            self.sshcmd?.scpPubKey(key: "rsa", hiddenID: hiddenID)
+            self.scpRsaCopyPasteCommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
+        }
     }
 
     func scpDsaPubKey() {
-        guard self.hiddenID != nil else { return }
-        guard self.sshcmd != nil else { return }
-        self.sshcmd!.scpPubKey(key: "dsa", hiddenID: self.hiddenID!)
-        guard sshcmd!.commandCopyPasteTermninal != nil else { return }
-        self.scpDsaCopyPasteCommand.stringValue = sshcmd!.commandCopyPasteTermninal!
+        if let hiddenID = self.hiddenID {
+            self.sshcmd?.scpPubKey(key: "dsa", hiddenID: hiddenID)
+            self.scpDsaCopyPasteCommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
+        }
     }
 
     @IBAction func checkRsaPubKey(_: NSButton) {
