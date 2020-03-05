@@ -420,7 +420,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="taskCellID" width="79.703125" minWidth="40" maxWidth="1000" id="AkJ-MA-346">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -433,7 +433,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="snapCellID" width="40" minWidth="40" maxWidth="1000" id="e0Y-OG-qu5">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Snap">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -446,7 +446,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="schedCellID" width="44" minWidth="40" maxWidth="1000" id="rfy-TN-1YB" userLabel="Schedule">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Sched">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -455,7 +455,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="statCellID" width="40" minWidth="40" maxWidth="1000" id="LD6-1k-P7V">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Stat">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -464,7 +464,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="batchCellID" editable="NO" width="40.06640625" minWidth="10" maxWidth="3.4028234663852886e+38" id="Byb-kM-Mpk" userLabel="Batch">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Batch">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -476,7 +476,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="localCatalogCellID" width="186.97265625" minWidth="40" maxWidth="1000" id="35g-px-ZH6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Local catalog">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -489,7 +489,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="offsiteCatalogCellID" width="160.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="zzK-ZO-wvj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote catalog">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -502,7 +502,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="offsiteServerCellID" width="63.3515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="fAL-TO-qxo" userLabel="Offsite server">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote server">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -515,7 +515,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="backupIDCellID" width="64.4453125" minWidth="10" maxWidth="3.4028234663852886e+38" id="pql-cs-AEK" userLabel="ID">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="ID">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -528,7 +528,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="daysID" width="48.58203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Aa2-8Q-PPo" userLabel="Days">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Days">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -541,7 +541,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="runDateCellID" width="122.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="qvy-yX-V6C">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Last run">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -3320,13 +3320,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="186"/>
+                                <rect key="frame" x="20" y="61" width="656" height="140"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="185"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="139"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="162"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="116"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -6121,50 +6121,37 @@ DQ
             <objects>
                 <viewController storyboardIdentifier="CopyFilesID" id="EOK-1X-FQE" customClass="ViewControllerSource" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Kzb-MX-sbu">
-                        <rect key="frame" x="0.0" y="0.0" width="494" height="322"/>
+                        <rect key="frame" x="0.0" y="0.0" width="306" height="235"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="86u-4S-Owq">
-                                <rect key="frame" x="20" y="61" width="454" height="235"/>
+                                <rect key="frame" x="20" y="61" width="266" height="148"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="95M-J2-8qz">
-                                    <rect key="frame" x="2" y="2" width="450" height="231"/>
+                                    <rect key="frame" x="2" y="2" width="262" height="144"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="CUr-A9-TBh" id="EPR-q7-sUM">
-                                            <rect key="frame" x="0.0" y="0.0" width="450" height="208"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="262" height="121"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="taskCellID" width="80.703125" minWidth="40" maxWidth="1000" id="mJ2-R8-Fa6">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
+                                                <tableColumn identifier="offsiteUsernameID" width="121.97265625" minWidth="40" maxWidth="1000" id="RId-ga-w1R" userLabel="User">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="User">
                                                         <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" title="Text Cell" id="ozI-GG-cgX">
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" title="Text Cell" id="U9D-uu-6jC">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="localCatalogCellID" width="258.97265625" minWidth="40" maxWidth="1000" id="eys-24-pCG">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Local catalog">
-                                                        <font key="font" metaFont="message" size="11"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" title="Text Cell" id="YGi-oe-yDr">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                </tableColumn>
-                                                <tableColumn identifier="offsiteServerCellID" width="101.3515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="T8X-dP-h3a" userLabel="Offsite server">
+                                                <tableColumn identifier="offsiteServerCellID" width="133.8515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="T8X-dP-h3a" userLabel="Offsite server">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote server">
                                                         <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -6182,7 +6169,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="3SK-jz-Z3o">
-                                    <rect key="frame" x="2" y="223" width="450" height="16"/>
+                                    <rect key="frame" x="2" y="217" width="222" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="uek-iY-Vmk">
@@ -6190,12 +6177,21 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="CUr-A9-TBh">
-                                    <rect key="frame" x="0.0" y="0.0" width="450" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="262" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaY-25-Oi1">
+                                <rect key="frame" x="18" y="208" width="458" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Either double click on row or select Load button" id="AMs-qg-ohN">
+                                    <font key="font" metaFont="message" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dnA-SO-98k">
-                                <rect key="frame" x="410" y="13" width="70" height="32"/>
+                                <rect key="frame" x="222" y="13" width="70" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Load" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h4F-dN-GN0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -6209,7 +6205,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="api-tn-NSo">
-                                <rect key="frame" x="328" y="13" width="89" height="32"/>
+                                <rect key="frame" x="140" y="13" width="89" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hF2-vi-oTK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -6219,15 +6215,6 @@ DQ
                                     <action selector="close:" target="EOK-1X-FQE" id="yNd-I1-GPu"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaY-25-Oi1">
-                                <rect key="frame" x="18" y="295" width="458" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Either double click on row or select row and Load button" id="AMs-qg-ohN">
-                                    <font key="font" metaFont="message" size="11"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -6237,7 +6224,7 @@ DQ
                 </viewController>
                 <customObject id="mDL-yc-AmA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1369" y="2692"/>
+            <point key="canvasLocation" x="-1463" y="2648.5"/>
         </scene>
         <!--Details about files-->
         <scene sceneID="YH7-XV-N0K">

@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable cyclomatic_complexity
+//  swiftlint:disable cyclomatic_complexity line_length
 
 import Cocoa
 import Foundation
@@ -93,6 +93,25 @@ class Configurations: ReloadTable, SetSchedules {
                 }
             }
             data.append(row)
+        }
+        return data
+    }
+
+    func uniqueserversandlogins() -> [NSDictionary]? {
+        var configurations: [Configuration] = self.configurations!.filter {
+            ViewControllerReference.shared.synctasks.contains($0.task)
+        }
+        var data = [NSDictionary]()
+        for i in 0 ..< configurations.count {
+            if configurations[i].offsiteServer.isEmpty == true {
+                configurations[i].offsiteServer = "localhost"
+            }
+            let row: NSDictionary = ConvertOneConfig(config: self.configurations![i]).dict
+            let server = configurations[i].offsiteServer
+            let user = configurations[i].offsiteUsername
+            if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
+                data.append(row)
+            }
         }
         return data
     }
