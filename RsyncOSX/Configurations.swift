@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable cyclomatic_complexity line_length
+//  swiftlint:disable cyclomatic_complexity line_length type_body_length
 
 import Cocoa
 import Foundation
@@ -39,43 +39,43 @@ class Configurations: ReloadTable, SetSchedules {
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
 
-    /// Function for getting the profile
+    // Function for getting the profile
     func getProfile() -> String? {
         return self.profile
     }
 
-    /// Function for getting Configurations read into memory
-    /// - parameter none: none
-    /// - returns : Array of configurations
+    // Function for getting Configurations read into memory
+    // - parameter none: none
+    // - returns : Array of configurations
     func getConfigurations() -> [Configuration] {
         return self.configurations ?? []
     }
 
-    /// Function for getting arguments for all Configurations read into memory
-    /// - parameter none: none
-    /// - returns : Array of arguments
+    // Function for getting arguments for all Configurations read into memory
+    // - parameter none: none
+    // - returns : Array of arguments
     func getargumentAllConfigurations() -> [ArgumentsOneConfiguration] {
         return self.argumentAllConfigurations ?? []
     }
 
-    /// Function for getting the number of configurations used in NSTableViews
-    /// - parameter none: none
-    /// - returns : Int
+    // Function for getting the number of configurations used in NSTableViews
+    // - parameter none: none
+    // - returns : Int
     func configurationsDataSourcecount() -> Int {
         return self.configurationsDataSource?.count ?? 0
     }
 
-    /// Function for getting Configurations read into memory
-    /// as datasource for tableViews
-    /// - parameter none: none
-    /// - returns : Array of Configurations
+    // Function for getting Configurations read into memory
+    // as datasource for tableViews
+    // - parameter none: none
+    // - returns : Array of Configurations
     func getConfigurationsDataSource() -> [NSDictionary]? {
         return self.configurationsDataSource
     }
 
-    /// Function for getting all Configurations
-    /// - parameter none: none
-    /// - returns : Array of NSDictionary
+    // Function for getting all Configurations
+    // - parameter none: none
+    // - returns : Array of NSDictionary
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
         var configurations: [Configuration] = self.configurations!.filter {
             ViewControllerReference.shared.synctasks.contains($0.task)
@@ -118,19 +118,19 @@ class Configurations: ReloadTable, SetSchedules {
         return data
     }
 
-    /// Function returns all Configurations marked for backup.
-    /// - returns : array of Configurations
+    // Function returns all Configurations marked for backup.
+    // - returns : array of Configurations
     func getConfigurationsBatch() -> [Configuration] {
         return self.configurations!.filter { ViewControllerReference.shared.synctasks.contains($0.task) &&
             ($0.batch == 1)
         }
     }
 
-    /// Function computes arguments for rsync, either arguments for
-    /// real runn or arguments for --dry-run for Configuration at selected index
-    /// - parameter index: index of Configuration
-    /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
-    /// - returns : array of Strings holding all computed arguments
+    // Function computes arguments for rsync, either arguments for
+    // real runn or arguments for --dry-run for Configuration at selected index
+    // - parameter index: index of Configuration
+    // - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
+    // - returns : array of Strings holding all computed arguments
     func arguments4rsync(index: Int, argtype: ArgumentsRsync) -> [String] {
         let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
@@ -143,11 +143,11 @@ class Configurations: ReloadTable, SetSchedules {
         }
     }
 
-    /// Function computes arguments for rsync, either arguments for
-    /// real runn or arguments for --dry-run for Configuration at selected index
-    /// - parameter index: index of Configuration
-    /// - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
-    /// - returns : array of Strings holding all computed arguments
+    // Function computes arguments for rsync, either arguments for
+    // real runn or arguments for --dry-run for Configuration at selected index
+    // - parameter index: index of Configuration
+    // - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
+    // - returns : array of Strings holding all computed arguments
     func arguments4restore(index: Int, argtype: ArgumentsRsync) -> [String] {
         let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
@@ -177,8 +177,8 @@ class Configurations: ReloadTable, SetSchedules {
         return allarguments.verify ?? []
     }
 
-    /// Function is adding new Configurations to existing in memory.
-    /// - parameter dict : new record configuration
+    // Function is adding new Configurations to existing in memory.
+    // - parameter dict : new record configuration
     func appendconfigurationstomemory(dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
         self.configurations!.append(config)
@@ -201,30 +201,30 @@ class Configurations: ReloadTable, SetSchedules {
         _ = Logging(outputprocess: outputprocess)
     }
 
-    /// Function is updating Configurations in memory (by record) and
-    /// then saves updated Configurations from memory to persistent store
-    /// - parameter config: updated configuration
-    /// - parameter index: index to Configuration to replace by config
+    // Function is updating Configurations in memory (by record) and
+    // then saves updated Configurations from memory to persistent store
+    // - parameter config: updated configuration
+    // - parameter index: index to Configuration to replace by config
     func updateConfigurations(_ config: Configuration, index: Int) {
         self.configurations![index] = config
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
-    /// Function deletes Configuration in memory at hiddenID and
-    /// then saves updated Configurations from memory to persistent store.
-    /// Function computes index by hiddenID.
-    /// - parameter hiddenID: hiddenID which is unique for every Configuration
+    // Function deletes Configuration in memory at hiddenID and
+    // then saves updated Configurations from memory to persistent store.
+    // Function computes index by hiddenID.
+    // - parameter hiddenID: hiddenID which is unique for every Configuration
     func deleteConfigurationsByhiddenID(hiddenID: Int) {
         let index = self.getIndex(hiddenID)
         self.configurations!.remove(at: index)
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
-    /// Function toggles Configurations for batch or no
-    /// batch. Function updates Configuration in memory
-    /// and stores Configuration i memory to
-    /// persisten store
-    /// - parameter index: index of Configuration to toogle batch on/off
+    // Function toggles Configurations for batch or no
+    // batch. Function updates Configuration in memory
+    // and stores Configuration i memory to
+    // persisten store
+    // - parameter index: index of Configuration to toogle batch on/off
     func togglebatch(_ index: Int) {
         if self.configurations![index].batch == 1 {
             self.configurations![index].batch = 0
@@ -235,9 +235,9 @@ class Configurations: ReloadTable, SetSchedules {
         self.reloadtable(vcontroller: .vctabmain)
     }
 
-    /// Function return the reference to object holding data and methods
-    /// for batch execution of Configurations.
-    /// - returns : reference to to object holding data and methods
+    // Function return the reference to object holding data and methods
+    // for batch execution of Configurations.
+    // - returns : reference to to object holding data and methods
     func getbatchQueue() -> BatchTaskWorkQueu? {
         if self.batchQueue == nil {
             self.batchQueue = BatchTaskWorkQueu(configurations: self)
@@ -245,8 +245,8 @@ class Configurations: ReloadTable, SetSchedules {
         return self.batchQueue
     }
 
-    /// Function is getting the number of rows batchDataQueue
-    /// - returns : the number of rows
+    // Function is getting the number of rows batchDataQueue
+    // - returns : the number of rows
     func batchQueuecount() -> Int {
         return self.batchQueue?.getbatchtaskstodocount() ?? 0
     }
