@@ -149,7 +149,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         super.viewDidAppear()
         self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
-        self.createKeys.isEnabled = false
+        self.checkforPrivateandPublicKeypair()
     }
 
     override func viewDidDisappear() {
@@ -159,14 +159,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshCreateRemoteCatalog.stringValue = ""
     }
 
-    @IBAction func commencecheck(_: NSButton) {
-        self.checkPrivatePublicKey()
-    }
-
-    private func checkPrivatePublicKey() {
+    private func checkforPrivateandPublicKeypair() {
         self.sshcmd = Ssh(outputprocess: nil)
-        self.sshcmd!.checkForLocalPubKeys()
-        if self.sshcmd!.rsaPubKeyExist {
+        if self.sshcmd?.rsaPubKeyExist ?? false {
             self.rsaCheck.state = .on
             self.createKeys.isEnabled = false
             self.createRsaKey.state = .off
@@ -175,7 +170,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
             self.createKeys.isEnabled = true
             self.createRsaKey.state = .on
         }
-        if self.sshcmd!.dsaPubKeyExist {
+        if self.sshcmd?.dsaPubKeyExist ?? false {
             self.dsaCheck.state = .on
             self.createKeys.isEnabled = false
             self.createDsaKey.state = .off
@@ -232,7 +227,7 @@ extension ViewControllerSsh: NSTableViewDelegate {
 extension ViewControllerSsh: UpdateProgress {
     func processTermination() {
         globalMainQueue.async { () -> Void in
-            self.checkPrivatePublicKey()
+            self.checkforPrivateandPublicKeypair()
         }
         guard self.sshcmd != nil else { return }
         guard self.sshcmd!.chmod != nil else { return }

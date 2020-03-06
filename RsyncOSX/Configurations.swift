@@ -109,8 +109,10 @@ class Configurations: ReloadTable, SetSchedules {
             let row: NSDictionary = ConvertOneConfig(config: self.configurations![i]).dict
             let server = configurations[i].offsiteServer
             let user = configurations[i].offsiteUsername
-            if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
-                data.append(row)
+            if server != "localhost" {
+                if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
+                    data.append(row)
+                }
             }
         }
         return data
