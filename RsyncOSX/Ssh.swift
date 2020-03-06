@@ -99,14 +99,14 @@ class Ssh: Files {
         switch key {
         case "rsa":
             guard self.rsaStringPath != nil else { return }
-            self.arguments = scpArguments!.getArguments(operation: .checkKey, key: key, path: nil)
+            self.arguments = scpArguments?.getArguments(operation: .checkKey, key: key, path: nil)
         case "dsa":
             guard self.dsaStringPath != nil else { return }
-            self.arguments = scpArguments!.getArguments(operation: .checkKey, key: key, path: nil)
+            self.arguments = scpArguments?.getArguments(operation: .checkKey, key: key, path: nil)
         default:
             break
         }
-        self.command = self.scpArguments!.getCommand()
+        self.command = self.scpArguments?.getCommand()
     }
 
     // Create remote ssh directory
