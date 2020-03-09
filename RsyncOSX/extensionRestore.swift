@@ -81,15 +81,16 @@ extension ViewControllerRestore: NSTableViewDelegate {
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
         self.enabledisableradiobuttons(enable: true)
-        self.maxcount = self.outputprocess?.getMaxcount() ?? 0
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.processTermination()
             self.reset()
         } else {
+            let number = Numbers(outputprocess: self.outputprocess)
+            self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
             self.restorebutton.isEnabled = true
             self.estimatebutton.isEnabled = false
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal)
+            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal) + ", " + NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal) + " kB"
         }
         self.working.stopAnimation(nil)
     }
