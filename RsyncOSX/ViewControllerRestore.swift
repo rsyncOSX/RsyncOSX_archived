@@ -28,6 +28,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var outputprocess: OutputProcess?
     var maxcount: Int = 0
     weak var outputeverythingDelegate: ViewOutputDetails?
+    var process: Process?
 
     @IBOutlet var info: NSTextField!
     @IBOutlet var restoretableView: NSTableView!
@@ -77,8 +78,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Abort button
     @IBAction func abort(_: NSButton) {
         self.working.stopAnimation(nil)
-        self.restorefilestask?.abort()
-        self.fullrestoretask?.abort()
+        self.process?.terminate()
         self.reset()
     }
 
@@ -204,6 +204,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.enabledisableradiobuttons(enable: false)
                 self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                self.process = self.remotefilelist?.getProcess()
                 self.working.startAnimation(nil)
                 self.enabledisableradiobuttons(enable: false)
             } else {
@@ -215,6 +216,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     self.enabledisableradiobuttons(enable: false)
                     self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                     self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                    self.process = remotefilelist?.getProcess()
                     self.working.startAnimation(nil)
                     self.enabledisableradiobuttons(enable: false)
                 } else {
@@ -325,10 +327,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             if ViewControllerReference.shared.restorepath != nil, self.selecttmptorestore.state == .on {
                 self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
                 self.outputprocess = self.fullrestoretask?.outputprocess
+                self.process = fullrestoretask?.getProcess()
             } else {
                 self.selecttmptorestore.state = .off
                 self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: false, updateprogress: self)
                 self.outputprocess = self.fullrestoretask?.outputprocess
+                self.process = fullrestoretask?.getProcess()
             }
         }
     }
@@ -353,9 +357,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 case .on:
                     self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
+                    self.process = fullrestoretask?.getProcess()
                 case .off:
                     self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
+                    self.process = fullrestoretask?.getProcess()
                 default:
                     return
                 }
