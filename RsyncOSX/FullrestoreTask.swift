@@ -14,8 +14,8 @@ final class FullrestoreTask: SetConfigurations {
     var process: ProcessCmd?
     var outputprocess: OutputProcess?
 
-    func abort() {
-        self.process?.abortProcess()
+    func getProcess() -> Process? {
+        return self.process?.getProcess()
     }
 
     init(index: Int, dryrun: Bool, tmprestore: Bool, updateprogress: UpdateProgress) {

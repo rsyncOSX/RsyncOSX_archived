@@ -117,8 +117,7 @@ extension ViewControllerRestore: Count {
 extension ViewControllerRestore: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.restorefilestask?.abort()
-        self.fullrestoretask?.abort()
+        self.process?.terminate()
         self.reset()
     }
 }
