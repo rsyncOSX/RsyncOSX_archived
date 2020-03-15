@@ -39,11 +39,12 @@ final class FullrestoreTask: SetConfigurations {
                 self.arguments = self.configurations?.arguments4restore(index: index, argtype: .arg)
             }
         }
-        guard self.arguments != nil else { return }
-        self.process = ProcessCmd(command: nil, arguments: self.arguments)
-        self.outputprocess = OutputProcess()
-        self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-        self.process?.setupdateDelegate(object: updateprogress)
-        self.process?.executeProcess(outputprocess: outputprocess)
+        if let arguments = self.arguments {
+            self.process = ProcessCmd(command: nil, arguments: arguments)
+            self.outputprocess = OutputProcess()
+            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            self.process?.setupdateDelegate(object: updateprogress)
+            self.process?.executeProcess(outputprocess: outputprocess)
+        }
     }
 }
