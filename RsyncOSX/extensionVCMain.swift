@@ -45,7 +45,10 @@ extension ViewControllerMain: GetSelecetedIndex {
 // New profile is loaded.
 extension ViewControllerMain: NewProfile {
     // Function is called from profiles when new or default profiles is seleceted
-    func newProfile(profile: String?) {
+    func newProfile(profile: String?, selectedindex: Int?) {
+        if let index = selectedindex {
+            self.profilepopupbutton.selectItem(at: index)
+        }
         self.reset()
         self.showrsynccommandmainview()
         self.deselect()

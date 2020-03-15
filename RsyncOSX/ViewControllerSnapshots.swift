@@ -335,7 +335,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             profile = nil
         }
         self.profilepopupbutton.selectItem(at: selectedindex)
-        _ = Selectprofile(profile: profile)
+        _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 }
 
@@ -501,7 +501,10 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
 }
 
 extension ViewControllerSnapshots: NewProfile {
-    func newProfile(profile _: String?) {
+    func newProfile(profile _: String?, selectedindex: Int?) {
+        if let index = selectedindex {
+            self.profilepopupbutton.selectItem(at: index)
+        }
         self.snapshotlogsandcatalogs = nil
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()

@@ -16,7 +16,7 @@ final class Selectprofile {
     weak var loggdataProfileDelegate: NewProfile?
     weak var restoreProfileDelegate: NewProfile?
 
-    init(profile: String?) {
+    init(profile: String?, selectedindex: Int?) {
         weak var getprocess: GetProcessreference?
         getprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         guard getprocess?.getprocessreference() == nil else { return }
@@ -26,12 +26,12 @@ final class Selectprofile {
         self.loggdataProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         self.restoreProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         if self.profile == NSLocalizedString("Default profile", comment: "default profile") {
-            newProfileDelegate?.newProfile(profile: nil)
+            newProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
         } else {
-            newProfileDelegate?.newProfile(profile: self.profile)
+            newProfileDelegate?.newProfile(profile: self.profile, selectedindex: selectedindex)
         }
-        self.snapshotnewProfileDelegate?.newProfile(profile: nil)
-        self.loggdataProfileDelegate?.newProfile(profile: nil)
-        self.restoreProfileDelegate?.newProfile(profile: nil)
+        self.snapshotnewProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
+        self.loggdataProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
+        self.restoreProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
     }
 }

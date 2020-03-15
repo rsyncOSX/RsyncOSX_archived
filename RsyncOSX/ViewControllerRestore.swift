@@ -472,6 +472,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             profile = nil
         }
         self.profilepopupbutton.selectItem(at: selectedindex)
-        _ = Selectprofile(profile: profile)
+        _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 }

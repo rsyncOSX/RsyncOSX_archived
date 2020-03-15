@@ -391,6 +391,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             profile = nil
         }
         self.profilepopupbutton.selectItem(at: selectedindex)
-        _ = Selectprofile(profile: profile)
+        _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 }
