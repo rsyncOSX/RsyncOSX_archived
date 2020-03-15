@@ -192,6 +192,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.selectdayofweek.delegate = self
         self.savebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
+        self.initpopupbutton(button: self.profilepopupbutton)
     }
 
     override func viewDidAppear() {
@@ -206,7 +207,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.lastorevery.isHidden = true
         self.reloadtabledata()
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-        self.initpopupbutton(button: self.profilepopupbutton)
     }
 
     override func viewDidDisappear() {

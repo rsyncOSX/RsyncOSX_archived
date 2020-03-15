@@ -238,6 +238,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.createandreloadconfigurations()
         self.createandreloadschedules()
         self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
+        self.initpopupbutton(button: self.profilepopupbutton)
     }
 
     override func viewDidAppear() {
@@ -254,7 +255,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.rsyncischanged()
         self.displayProfile()
-        self.initpopupbutton(button: self.profilepopupbutton)
         self.delayWithSeconds(0.5) {
             self.menuappicons()
         }

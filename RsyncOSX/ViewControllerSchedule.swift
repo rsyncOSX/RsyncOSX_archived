@@ -185,6 +185,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.scheduletabledetails.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
         self.rsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
+        self.initpopupbutton(button: self.profilepopupbutton)
     }
 
     override func viewDidAppear() {
@@ -201,7 +202,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
-        self.initpopupbutton(button: self.profilepopupbutton)
         self.reloadtabledata()
         self.delayWithSeconds(0.5) {
             self.menuappicons()

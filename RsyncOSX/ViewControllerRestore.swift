@@ -95,6 +95,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.tmprestorepath.delegate = self
         self.remotefiles.delegate = self
         self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
+        self.initpopupbutton(button: self.profilepopupbutton)
     }
 
     override func viewDidAppear() {
@@ -108,7 +109,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         globalMainQueue.async { () -> Void in
             self.rsynctableView.reloadData()
         }
-        self.initpopupbutton(button: self.profilepopupbutton)
         self.settmprestorepathfromuserconfig()
         self.reset()
     }
