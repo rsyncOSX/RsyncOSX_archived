@@ -330,9 +330,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func selectprofile(_: NSButton) {
         var profile = self.profilepopupbutton.titleOfSelectedItem
+        let selectedindex = self.profilepopupbutton.indexOfSelectedItem
         if profile == NSLocalizedString("Default profile", comment: "default profile") {
             profile = nil
         }
+        self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile)
     }
 }
