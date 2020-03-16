@@ -133,6 +133,8 @@ extension ViewControllerRestore: NewProfile {
     func newProfile(profile _: String?, selectedindex: Int?) {
         if let index = selectedindex {
             self.profilepopupbutton.selectItem(at: index)
+        } else {
+            self.initpopupbutton()
         }
         self.restoretabledata = nil
         self.reset()

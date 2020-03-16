@@ -192,7 +192,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.selectdayofweek.delegate = self
         self.savebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
-        self.initpopupbutton(button: self.profilepopupbutton)
+        self.initpopupbutton()
     }
 
     override func viewDidAppear() {
@@ -319,13 +319,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    private func initpopupbutton(button: NSPopUpButton) {
+    func initpopupbutton() {
         var profilestrings: [String]?
         profilestrings = CatalogProfile().getDirectorysStrings()
         profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
-        button.removeAllItems()
-        button.addItems(withTitles: profilestrings ?? [])
-        button.selectItem(at: 0)
+        self.profilepopupbutton.removeAllItems()
+        self.profilepopupbutton.addItems(withTitles: profilestrings ?? [])
+        self.profilepopupbutton.selectItem(at: 0)
     }
 
     @IBAction func selectprofile(_: NSButton) {
@@ -504,6 +504,8 @@ extension ViewControllerSnapshots: NewProfile {
     func newProfile(profile _: String?, selectedindex: Int?) {
         if let index = selectedindex {
             self.profilepopupbutton.selectItem(at: index)
+        } else {
+            self.initpopupbutton()
         }
         self.snapshotlogsandcatalogs = nil
         globalMainQueue.async { () -> Void in

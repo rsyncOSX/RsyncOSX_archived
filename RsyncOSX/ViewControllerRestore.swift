@@ -95,7 +95,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.tmprestorepath.delegate = self
         self.remotefiles.delegate = self
         self.restoretableView.doubleAction = #selector(self.tableViewDoubleClick(sender:))
-        self.initpopupbutton(button: self.profilepopupbutton)
+        self.initpopupbutton()
     }
 
     override func viewDidAppear() {
@@ -456,13 +456,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.filesrestoreradiobutton.isEnabled = enable
     }
 
-    private func initpopupbutton(button: NSPopUpButton) {
+    func initpopupbutton() {
         var profilestrings: [String]?
         profilestrings = CatalogProfile().getDirectorysStrings()
         profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
-        button.removeAllItems()
-        button.addItems(withTitles: profilestrings ?? [])
-        button.selectItem(at: 0)
+        self.profilepopupbutton.removeAllItems()
+        self.profilepopupbutton.addItems(withTitles: profilestrings ?? [])
+        self.profilepopupbutton.selectItem(at: 0)
     }
 
     @IBAction func selectprofile(_: NSButton) {

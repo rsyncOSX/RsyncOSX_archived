@@ -48,6 +48,8 @@ extension ViewControllerMain: NewProfile {
     func newProfile(profile: String?, selectedindex: Int?) {
         if let index = selectedindex {
             self.profilepopupbutton.selectItem(at: index)
+        } else {
+            self.initpopupbutton()
         }
         self.reset()
         self.showrsynccommandmainview()
