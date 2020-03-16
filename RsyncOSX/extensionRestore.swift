@@ -130,7 +130,12 @@ extension ViewControllerRestore: TemporaryRestorePath {
 }
 
 extension ViewControllerRestore: NewProfile {
-    func newProfile(profile _: String?) {
+    func newProfile(profile _: String?, selectedindex: Int?) {
+        if let index = selectedindex {
+            self.profilepopupbutton.selectItem(at: index)
+        } else {
+            self.initpopupbutton()
+        }
         self.restoretabledata = nil
         self.reset()
         globalMainQueue.async { () -> Void in

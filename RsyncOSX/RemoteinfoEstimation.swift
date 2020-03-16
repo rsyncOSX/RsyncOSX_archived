@@ -30,9 +30,9 @@ final class RemoteinfoEstimation: SetConfigurations {
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = [Row]()
-        for i in 0 ..< self.configurations!.getConfigurations().count {
-            let task = self.configurations!.getConfigurations()[i].task
-            if ViewControllerReference.shared.synctasks.contains(task) {
+        for i in 0 ..< (self.configurations?.getConfigurations().count ?? 0) {
+            let task = self.configurations?.getConfigurations()[i].task
+            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
                 if self.inbatch ?? false {
                     if self.configurations!.getConfigurations()[i].batch == 1 {
                         self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
@@ -47,10 +47,10 @@ final class RemoteinfoEstimation: SetConfigurations {
 
     func selectalltaskswithnumbers(deselect: Bool) {
         guard self.records != nil else { return }
-        for i in 0 ..< self.records!.count {
+        for i in 0 ..< (self.records?.count ?? 0) {
             let number = (self.records![i].value(forKey: "transferredNumber") as? String) ?? "0"
             let delete = (self.records![i].value(forKey: "deletefiles") as? String) ?? "0"
-            if Int(number)! > 0 || Int(delete)! > 0 {
+            if Int(number) ?? 0 > 0 || Int(delete) ?? 0 > 0 {
                 if deselect {
                     self.records![i].setValue(0, forKey: "select")
                 } else {
@@ -70,30 +70,32 @@ final class RemoteinfoEstimation: SetConfigurations {
     func setbackuplist() {
         guard self.records != nil else { return }
         self.configurations?.quickbackuplist = [Int]()
-        for i in 0 ..< self.records!.count {
+        for i in 0 ..< (self.records?.count ?? 0) {
             if self.records![i].value(forKey: "select") as? Int == 1 {
-                self.configurations?.quickbackuplist!.append((self.records![i].value(forKey: "hiddenID") as? Int)!)
+                self.configurations?.quickbackuplist?.append((self.records![i].value(forKey: "hiddenID") as? Int)!)
             }
         }
     }
 
     private func startestimation() {
-        guard self.stackoftasktobeestimated!.count > 0 else { return }
-        self.outputprocess = OutputProcess()
-        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
-        self.startstopProgressIndicatorDelegate?.start()
-        _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
+        guard (self.stackoftasktobeestimated?.count ?? 0) > 0 else { return }
+        if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
+            self.index = index
+            self.outputprocess = OutputProcess()
+            self.startstopProgressIndicatorDelegate?.start()
+            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)
+        }
     }
 
-    init(viewvcontroller: NSViewController) {
-        self.updateprogressDelegate = viewvcontroller as? UpdateProgress
-        self.startstopProgressIndicatorDelegate = viewvcontroller as? StartStopProgressIndicator
-        if viewvcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch {
+    init(viewcontroller: NSViewController) {
+        self.updateprogressDelegate = viewcontroller as? UpdateProgress
+        self.startstopProgressIndicatorDelegate = viewcontroller as? StartStopProgressIndicator
+        if viewcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch {
             self.inbatch = true
         }
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
-        self.configurations!.estimatedlist = [NSMutableDictionary]()
+        self.configurations?.estimatedlist = [NSMutableDictionary]()
         self.startestimation()
     }
 }
@@ -130,8 +132,10 @@ extension RemoteinfoEstimation: UpdateProgress {
         // Update View
         self.updateprogressDelegate?.processTermination()
         self.outputprocess = OutputProcess()
-        self.index = self.stackoftasktobeestimated?.remove(at: 0).1
-        _ = EstimateremoteInformationOnetask(index: self.index!, outputprocess: self.outputprocess, local: false, updateprogress: self)
+        if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
+            self.index = index
+            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)
+        }
     }
 
     func fileHandler() {

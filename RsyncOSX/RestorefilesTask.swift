@@ -25,9 +25,8 @@ final class RestorefilesTask: SetConfigurations {
 
     func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool, updateprogress: UpdateProgress) {
         if let config = self.config {
-            var arguments: [String]?
-            arguments = RestorefilesArguments(task: .rsync, config: config, remoteFile: remotefile,
-                                              localCatalog: localCatalog, drynrun: dryrun).getArguments()
+            let arguments = RestorefilesArguments(task: .rsync, config: config, remoteFile: remotefile,
+                                                  localCatalog: localCatalog, drynrun: dryrun).getArguments()
             self.outputprocess = OutputProcess()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             self.process = ProcessCmd(command: nil, arguments: arguments)
