@@ -85,10 +85,12 @@ final class RsyncParametersSingleFilesArguments {
         return nil
     }
 
-    init(config: Configuration, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
-        self.config = config
-        self.args = [String]()
-        self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
-        self.argumentstodisplay()
+    init(config: Configuration?, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
+        if let config = config {
+            self.config = config
+            self.args = [String]()
+            self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
+            self.argumentstodisplay()
+        }
     }
 }
