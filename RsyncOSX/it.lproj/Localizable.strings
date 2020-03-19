@@ -1,357 +1,357 @@
 /* Restore */
-" ... set in User configuration ..." = "... sett i bruker preferanser...";
+" ... set in User configuration ..." = " ... imposta nella configurazione utente...";
 
 /* Ssh */
-"... no remote server ..." = "...ingen ekstern tjener...";
+"... no remote server ..." = "... nessun server remoto...";
 
 /* Execute */
-"⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
+"⌘A to abort or wait..." = "⌘A per interrompere oppure attendere...";
 
 /* Snapshots */
-"Aborting delete operation..." = "Avslutter slette operasjon...";
+"Aborting delete operation..." = "Interruzione operazione di cancellazione...";
 
 /* Add schedule
    New */
-"Add" = "Legg til";
+"Add" = "Aggiungi";
 
 /* New */
-"Add config?" = "Legge til?";
+"Add config?" = "Aggiungere configurazione?";
 
 /* Add schedule */
-"Add Schedule?" = "Legg til oppgave?";
+"Add Schedule?" = "Aggiungi una pianificazione?";
 
 /* Batch */
-"Batchtasks completed, close view..." = "Batch oppgaver ferdig, lukker...";
+"Batchtasks completed, close view..." = "Batchtasks completati, chiudi finestra...";
 
 /* Tooltip */
-"By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp filstier.";
+"By using Finder drag and drop filepaths." = "Utilizzando Finder trascina e rilascia i percorsi.";
 
 /* Cancel NSAlert */
-"Cancel" = "Kanseler";
+"Cancel" = "Annulla";
 
 /* Add schedule */
-"Cancel or Add" = "Kanseler eller legg til";
+"Cancel or Add" = "Annulla o aggiungi";
 
 /* Execute
    Logg
    Profiles
    Snapshots */
-"Cancel or Delete" = "Kanseler eller slett";
+"Cancel or Delete" = "Annulla oppure elimina";
 
 /* Restore */
-"Cancel or Restore" = "Kanseler eller gjenopprett";
+"Cancel or Restore" = "Cancel or Restore";
 
 /* Restore */
-"Cannot copy from a syncremote task..." = "Kan ikke gjenopprett fra syncremote...";
+"Cannot copy from a syncremote task..." = "Impossibile copiare da un'attività di syncremote...";
 
 /* Verify */
-"Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
+"Cannot verify a syncremote task..." = "Impossibile verificare da un'attività sync remota...";
 
 /* chinese */
-"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
+"Chinese (Simplified) translation by: StringKe" = "Traduzione cinese (Semplificata) da: StringKe";
 
 /* Close NSAlert */
-"Close" = "Lukk";
+"Close" = "Chiudi";
 
 /* Remote info */
-"Completed" = "Utført";
+"Completed" = "Completato";
 
 /* Verify */
-"Completed ..." = "Utført ...";
+"Completed ..." = "Completato ...";
 
 /* Verify */
-"Computing changed, please wait..." = "Beregning endret, vennligst vent...";
+"Computing changed, please wait..." = "Calcolo modifiche, attendere prego...";
 
 /* Restore */
-"Copy single files or directory?" = "Gjenopprett fil eller katalog?";
+"Copy single files or directory?" = "Copiare file singoli o directory?";
 
 /* copyright */
 "Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen";
 
 /* main */
-"daily" = "daglig";
+"daily" = "daily";
 
 /* Remote Info
    Verify */
-"Date last synchronize:" = "Dato siste synkronisering:";
+"Date last synchronize:" = "Data ultima sincronizzazione:";
 
 /* datetime */
-"days" = "dager";
+"days" = "days";
 
 /* Remote Info
    Verify */
-"Days since last synchronize:" = "Dager siden sist synkronisering:";
+"Days since last synchronize:" = "Giorni dall'ultima sincronizzazione:";
 
 /* default profile */
-"Default profile" = "Default profil";
+"Default profile" = "Profilo predefinito";
 
 /* Execute
    Logg
    plan
    Profiles
    Snapshots */
-"Delete" = "Slett";
+"Delete" = "Elimina";
 
 /* plan */
-"Delete number of snapshots:" = "Slett antall snapshots:";
+"Delete number of snapshots:" = "Elimina il numero di istantanee:";
 
 /* Snapshots */
-"Delete operation completed..." = "Slette operasjon gjennomført...";
+"Delete operation completed..." = "Eliminazione operazione completata...";
 
 /* Profiles */
-"Delete profile:" = "Slett profil:";
+"Delete profile:" = "Elimina il profilo:";
 
 /* Execute */
-"Delete selected task?" = "Slett valgte oppgave?";
+"Delete selected task?" = "Eliminare le attività selezionate?";
 
 /* plan */
-"Delete snapshots older than:" = "Slett snapshots eldre enn:";
+"Delete snapshots older than:" = "Elimina istantanee più vecchie di:";
 
 /* Tooltip */
-"Destination catalog:" = "Lokal katalog:";
+"Destination catalog:" = "Cartella di destinazione:";
 
 /* Snapshots */
-"Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
+"Do you REALLY want to DELETE selected snapshots?" = "Vuoi VERAMENTE ELIMINARE le istantanee selezionate?";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en GJENOPPRETT?";
+"Do you REALLY want to start a RESTORE ?" = "Vuoi VERAMENTE AVVIARE il RIPRISTINO?";
 
 /* Snapshots */
-"Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
+"Dont change the snapshot num if you don´t know what you are doing..." = "Non cambiare il numero istantanee se non sai cosa stai facendo...";
 
 /* plan */
-"earlier months" = "tidligere måned";
+"earlier months" = "earlier months";
 
 /* Error rsync */
-"ERROR: no rsync in" = "FEIL: ingen rsync i";
+"ERROR: no rsync in" = "ERRORE: nessun rsync in";
 
 /* Error rsync */
-"ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
+"ERROR: no rsync in /usr/local/bin" = "ERRORE: non trovo rsync in /usr/local/bin";
 
 /* Batch */
-"Estimation completed, you can start batch..." = "Estimering utført, start batch...";
+"Estimation completed, you can start batch..." = "Stima completata, è possibile avviare la batch...";
 
 /* plan */
-"every" = "alle";
+"every" = "every";
 
 /* Restore */
-"Executing restore..." = "Utfører gjenopprett...";
+"Executing restore..." = "Esecuzione del ripristino...";
 
 /* Restore */
-"Filelist for snapshot tasks might be huge?" = "Liste over filer i snapshot oppgaver kan være stor?";
+"Filelist for snapshot tasks might be huge?" = "La lista dei file per le attività istantanee potrebbe essere enorme?";
 
 /* plan */
-"Friday" = "fredag";
+"Friday" = "Venerdì";
 
 /* german */
-"German translation by: Andre" = "Tysk oversettelse av: Andre";
+"German translation by: Andre" = "Traduzione in tedesco da: Andre";
 
 /* Restore */
-"Getting info, please wait..." = "Henter informasjon, vennligst vent...";
+"Getting info, please wait..." = "Ricezione delle informazioni, attendere prego...";
 
 /* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "Hentet index fra Synkroniser og lister logg for en konfigurasjon...";
+"Got index from Snapshots and listing logs for one configuration..." = "Ricevo indice da Instantanea e elenco dei log per una configurazione...";
+
+/* Loggdata */
+"Got index from Synchronize and listing logs for one configuration..." = "Ricevo indice da Instantanea e elenco dei log per una configurazione...";
 
 /* Schedules */
-"Got index from Synchronize..." = "Hentet index fra Synkroniser...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon...";
+"Got index from Synchronize..." = "Ottenuto indice da Sincronizzazione...";
 
 /* Remote Info */
-"Got it..." = "Info hentet...";
+"Got it..." = "Capito...";
 
 /* datetime */
-"h" = "t";
+"h" = "h";
 
 /* datetime */
-"hours" = "timer";
+"hours" = "hours";
 
 /* icon */
-"Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+"Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
 
 /* plan */
-"Keep" = "Behold";
+"Keep" = "Mantieni";
 
 /* plan */
-"last" = "siste";
+"last" = "last";
 
 /* Profile */
-"Load" = "Last";
+"Load" = "Carica";
 
 /* Remote info
    Remote Info */
-"Loaded cached data..." = "Lastet cached info...";
+"Loaded cached data..." = "Dati caricati nella cache...";
 
 /* Tooltip */
-"Local catalog:" = "Lokal katalog:";
+"Local catalog:" = "Percorso locale:";
 
 /* Restore */
-"Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
+"Local or remote catalog cannot be empty..." = "Il campo cartella locale o remoto non può essere vuoto...";
 
 /* main */
-"manuel" = "manuell";
+"manuel" = "manuel";
 
 /* Execute */
-"Menu app is running..." = "Meny appen kjører...";
+"Menu app is running..." = "Menu applicazione in esecuzione...";
 
 /* datetime */
-"mins" = "min";
+"mins" = "mins";
 
 /* plan */
-"Monday" = "mandag";
+"Monday" = "Lunedì";
 
 /* Execute */
-"New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
+"New version is available - see About" = "È disponibile una nuova versione - vai nel menu About";
 
 /* About */
-"New version is available:" = "Ny versjon er tilgjengelig:";
+"New version is available:" = "È disponibile la nuova versione:";
 
 /* Execute */
-"No rsync in path..." = "Ingen rsync i sti...";
+"No rsync in path..." = "Nessun rsync nel percorso...";
 
 /* Schedule details */
-"no startdate" = "ingen startdato";
+"no startdate" = "no startdate";
 
 /* Schedule details */
-"no stopdate" = "ingen stopp dato";
+"no stopdate" = "no stopdate";
 
 /* Restore */
-"No such temporay catalog for restore, set it in user config." = "Ingen slik lokal katalog for gjenopprett eller sett den i bruker preferanser.";
+"No such temporay catalog for restore, set it in user config." = "Nessun cartella temporanea per il ripristino, impostato nella configurazione utente.";
 
 /* plan */
-"none" = "ingen";
+"none" = "none";
 
 /* norwegian */
-"Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
+"Norwegian translation by: Thomas Evensen" = "Traduzione norvegese da: Thomas Evensen";
 
 /* Restore */
-"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
+"Not a remote task, use Finder to copy files..." = "Non è una attività remota, usa Finder per copiare i file...";
 
 /* Snapshots */
-"Not a snapshot task..." = "Ikke en snapshot oppgave...";
+"Not a snapshot task..." = "Non è un'attività di istantanea...";
 
 /* AllProfiles */
-"Number of configurations:" = "Antall konfigurasjoner:";
+"Number of configurations:" = "Numero di configurazioni:";
 
 /* Logg */
-"Number of logs:" = "Antall logger:";
+"Number of logs:" = "Number of logs:";
 
 /* Restore */
-"Number of remote files:" = "Antall eksterne filer:";
+"Number of remote files:" = "Number of remote files:";
 
 /* Remote info */
-"Number of tasks to estimate:" = "Antall oppgaver å estimere:";
+"Number of tasks to estimate:" = "Number of tasks to estimate:";
 
 /* Snapshots */
-"Number snapshots:" = "Antall snapshots:";
+"Number snapshots:" = "Number snapshots:";
 
 /* main */
-"once" = "engang";
+"once" = "once";
 
 /* Verify */
-"Please select a task in Synchronize ..." = "Velg en oppgave i Synkroniser ...";
+"Please select a task in Synchronize ..." = "Please select a task in Synchronize ...";
 
 /* Execute */
-"Possible error logging..." = "Mulig feil logging...";
+"Possible error logging..." = "Possible error logging...";
 
 /* plan */
-"previous month" = "forrige måned";
+"previous month" = "previous month";
 
 /* Execute */
-"Profile:" = "Profil:";
+"Profile:" = "Profile:";
 
 /* Execute */
-"Profile: please wait..." = "Profil: vennligst vent...";
+"Profile: please wait..." = "Profile: please wait...";
 
 /* Tooltip */
-"Remote catalog:" = "Ekstern katalog:";
+"Remote catalog:" = "Remote catalog:";
 
 /* Restore */
-"Restore" = "Gjenopprett";
+"Restore" = "Restore";
 
 /* plan */
-"Saturday" = "lørdag";
+"Saturday" = "Saturday";
 
 /* Profile
    Userconfig */
-"Save" = "Lagre";
+"Save" = "Save";
 
 /* Schedules */
-"Scheduled tasks in menu app..." = "Planlagte oppgaver i meny app...";
+"Scheduled tasks in menu app..." = "Scheduled tasks in menu app...";
 
 /* datetime */
-"secs" = "sek";
+"secs" = "secs";
 
 /* Copy files
    Remote Info
    Verify */
-"Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
+"Seems not to be connected..." = "Seems not to be connected...";
 
 /* Execute */
-"Select a task...." = "Velg en oppgave...";
+"Select a task...." = "Select a task....";
 
 /* Logg */
-"Selected logs:" = "Valgte logger:";
+"Selected logs:" = "Selected logs:";
 
 /* Execute */
-"Selection out of range - aborting" = "Utvalg ikke mulig - avslutter";
+"Selection out of range - aborting" = "Selection out of range - aborting";
 
 /* Snapshots */
-"Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
+"Seriously, enter a real number..." = "Seriously, enter a real number...";
 
 /* Tooltip */
-"Source catalog:" = "Ekstern katalog:";
+"Source catalog:" = "Source catalog:";
 
 /* Restore */
 "Start" = "Start";
 
 /* Restore */
-"Start getting files?" = "Hente filer?";
+"Start getting files?" = "Start getting files?";
 
 /* Restore */
-"Start restore?" = "Start gjenopprett?";
+"Start restore?" = "Start restore?";
 
 /* main */
-"stopped" = "stoppet";
+"stopped" = "stopped";
 
 /* dayofweek
    plan */
-"Sunday" = "søndag";
+"Sunday" = "Sunday";
 
 /* Execute */
-"The menu app" = "Meny app";
+"The menu app" = "The menu app";
 
 /* Quickbackup */
-"There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
+"There seems to be nothing to do..." = "There seems to be nothing to do...";
 
 /* New */
-"This is added before?" = "Denne er lagt til tidligere?";
+"This is added before?" = "This is added before?";
 
 /* plan */
-"this month" = "denne måned";
+"this month" = "this month";
 
 /* plan */
-"this week" = "denne uke";
+"this week" = "questa settimana";
 
 /* plan */
-"Thursday" = "torsdag";
+"Thursday" = "Thursday";
 
 /* plan */
-"Tuesday" = "tirsdag";
+"Tuesday" = "Tuesday";
 
 /* Verify */
-"Verifying, please wait..." = "Verifiserer, vennligst vent...";
+"Verifying, please wait..." = "Verifying, please wait...";
 
 /* plan */
-"Wednesday" = "onsdag";
+"Wednesday" = "Wednesday";
 
 /* main */
-"weekly" = "ukentlig";
+"weekly" = "settimanale";
 
 /* Snapshots */
-"You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
+"You cannot delete that many, max are" = "You cannot delete that many, max are";
 
 /* About */
-"You have the latest ..." = "Du har siste versjon...";
+"You have the latest ..." = "You have the latest ...";
 
