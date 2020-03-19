@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable cyclomatic_complexity line_length type_body_length
+//  swiftlint:disable cyclomatic_complexity line_length
 
 import Cocoa
 import Foundation
@@ -118,14 +118,6 @@ class Configurations: ReloadTable, SetSchedules {
         return data
     }
 
-    // Function returns all Configurations marked for backup.
-    // - returns : array of Configurations
-    func getConfigurationsBatch() -> [Configuration] {
-        return self.configurations!.filter { ViewControllerReference.shared.synctasks.contains($0.task) &&
-            ($0.batch == 1)
-        }
-    }
-
     // Function computes arguments for rsync, either arguments for
     // real runn or arguments for --dry-run for Configuration at selected index
     // - parameter index: index of Configuration
@@ -218,21 +210,6 @@ class Configurations: ReloadTable, SetSchedules {
         let index = self.getIndex(hiddenID)
         self.configurations!.remove(at: index)
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
-    }
-
-    // Function toggles Configurations for batch or no
-    // batch. Function updates Configuration in memory
-    // and stores Configuration i memory to
-    // persisten store
-    // - parameter index: index of Configuration to toogle batch on/off
-    func togglebatch(_ index: Int) {
-        if self.configurations![index].batch == 1 {
-            self.configurations![index].batch = 0
-        } else {
-            self.configurations![index].batch = 1
-        }
-        _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
-        self.reloadtable(vcontroller: .vctabmain)
     }
 
     // Function return the reference to object holding data and methods

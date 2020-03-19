@@ -86,17 +86,6 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         return nil
     }
 
-    // Toggling batch
-    func tableView(_: NSTableView, setObjectValue _: Any?, for _: NSTableColumn?, row: Int) {
-        if self.process != nil {
-            self.abortOperations()
-        }
-        let task = self.configurations!.getConfigurations()[row].task
-        if ViewControllerReference.shared.synctasks.contains(task) {
-            self.configurations!.togglebatch(row)
-        }
-    }
-
     // when row is selected
     // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {

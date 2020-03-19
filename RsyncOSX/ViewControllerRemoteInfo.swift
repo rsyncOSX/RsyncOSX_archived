@@ -20,7 +20,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     @IBOutlet var executebutton: NSButton!
     @IBOutlet var abortbutton: NSButton!
     @IBOutlet var count: NSTextField!
-    @IBOutlet var selectalltaskswithfilestobackupbutton: NSButton!
 
     // remote info tasks
     private var remoteinfotask: RemoteinfoEstimation?
@@ -86,19 +85,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         }
     }
 
-    @IBAction func selectalltaskswithfilestobackup(_: NSButton) {
-        self.remoteinfotask?.selectalltaskswithnumbers(deselect: self.selected)
-        if self.selected == true {
-            self.selected = false
-        } else {
-            self.selected = true
-        }
-        globalMainQueue.async { () -> Void in
-            self.mainTableView.reloadData()
-        }
-        self.enableexecutebutton()
-    }
-
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,11 +115,8 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         }
         self.count.stringValue = self.number()
         self.enableexecutebutton()
-        if self.loaded {
-            self.selectalltaskswithfilestobackupbutton.isEnabled = true
-        } else {
+        if self.loaded == false {
             self.initiateProgressbar()
-            self.selectalltaskswithfilestobackupbutton.isEnabled = false
         }
     }
 
@@ -251,7 +234,6 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
         self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")
         self.count.textColor = setcolor(nsviewcontroller: self, color: .green)
         self.selected = true
-        self.selectalltaskswithfilestobackupbutton.isEnabled = true
         self.enableexecutebutton()
     }
 

@@ -28,7 +28,6 @@ struct ConvertConfigurations: SetConfigurations {
             "backupID": config.backupID,
             "localCatalog": config.localCatalog,
             "offsiteCatalog": config.offsiteCatalog,
-            "batch": config.batch,
             "offsiteServer": config.offsiteServer,
             "offsiteUsername": config.offsiteUsername,
             "parameter1": config.parameter1,
