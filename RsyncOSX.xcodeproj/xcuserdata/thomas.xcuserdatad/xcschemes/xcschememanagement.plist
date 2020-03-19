@@ -24,6 +24,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>RsyncOSX - italiensk.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>RsyncOSX - norsk.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
