@@ -19,12 +19,14 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     @IBOutlet var chinese: NSTextField!
     @IBOutlet var norwegian: NSTextField!
     @IBOutlet var german: NSTextField!
+    @IBOutlet var italian: NSTextField!
 
-    var copyrigthstring: String = NSLocalizedString("Copyright ©2019 Thomas Evensen", comment: "copyright")
+    var copyrigthstring: String = NSLocalizedString("Copyright ©2020 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
     var chinesestring: String = NSLocalizedString("Chinese (Simplified) translation by: StringKe", comment: "chinese")
     var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
     var germanstring: String = NSLocalizedString("German translation by: Andre", comment: "german")
+    var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle", comment: "italian")
 
     var resource: Resources?
     var outputprocess: OutputProcess?
@@ -87,6 +89,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
         self.chinese.stringValue = self.chinesestring
         self.norwegian.stringValue = self.norwegianstring
         self.german.stringValue = self.germanstring
+        self.italian.stringValue = self.italianstring
         self.resource = Resources()
     }
 
