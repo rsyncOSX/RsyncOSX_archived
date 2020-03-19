@@ -30,7 +30,7 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 - French - translated by [crowdin](https://crowdin.com/project/rsyncosx)
 - Norwegian - by me
 - English - by me, the base language of RsyncOSX
-- Italian - by [Stefano Steve Cutelle'](https://github.com/stefanocutelle)
+- Italian - by [Stefano Steve Cutelle](https://github.com/stefanocutelle)
   - Italian localization will be released in version 6.2.5
 
 Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx) to translate the xliff files which are imported into Xcode after translating. Xcode then creates the required language strings. [Crowdin is free for open source projects](https://crowdin.com/page/open-source-project-setup-request).
