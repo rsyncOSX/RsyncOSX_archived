@@ -65,9 +65,6 @@
 /* Restore */
 "Copy single files or directory?" = "复制单个文件或目录？";
 
-/* copyright */
-"Copyright ©2019 Thomas Evensen" = "版权 ©2019 Thomas Evensen";
-
 /* main */
 "daily" = "每天";
 
@@ -146,17 +143,20 @@
 /* german */
 "German translation by: Andre" = "德语翻译人：Andre";
 
+/* italian */
+"Italian translation by: Stefano Steve Cutelle" = "意大利语翻译：Stefano Steve Cutelle";
+
 /* Restore */
 "Getting info, please wait..." = "正在获取信息，请稍候...";
+
+/* Loggdata */
+"Got index from Snapshots and listing logs for one configuration..." = "从 Snapshots 获取索引并列出一个配置的日志...";
 
 /* Loggdata */
 "Got index from Synchronize and listing logs for one configuration..." = "从一个配置的执行和列表日志中获取索引...";
 
 /* Schedules */
 "Got index from Synchronize..." = "从执行中获取索引...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "从 Snapshots 获取索引并列出一个配置的日志...";
 
 /* Remote Info */
 "Got it..." = "得到它...";

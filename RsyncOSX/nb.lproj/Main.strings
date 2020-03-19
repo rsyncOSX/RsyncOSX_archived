@@ -265,7 +265,7 @@
 /* Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox"; */
 "Am3-Ji-1Ox.title" = "legg til suffix FreeBSD ";
 
-/* Class = "NSTextFieldCell"; title = "Either double click on row or select row and Load button"; ObjectID = "AMs-qg-ohN"; */
+/* Class = "NSTextFieldCell"; title = "Either double click on row or select Load button"; ObjectID = "AMs-qg-ohN"; */
 "AMs-qg-ohN.title" = "Enten dobbel klikk på rad eller velg rad og velg last";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aO0-eB-xFM"; */
@@ -354,9 +354,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "BVb-Fw-C80"; */
 "BVb-Fw-C80.headerCell.title" = "Snap";
-
-/* Class = "NSTableColumn"; headerCell.title = "Batch"; ObjectID = "Byb-kM-Mpk"; */
-"Byb-kM-Mpk.headerCell.title" = "Batch";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c3e-f5-7YK"; */
 "c3e-f5-7YK.title" = "Text Cell";
@@ -514,9 +511,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "ExZ-72-tbq"; */
 "ExZ-72-tbq.headerCell.title" = "Slett";
 
-/* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "eys-24-pCG"; */
-"eys-24-pCG.headerCell.title" = "Lokal katalog";
-
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "EZS-oJ-mKt"; */
 "EZS-oJ-mKt.headerCell.title" = "Lokal katalog";
 
@@ -643,18 +637,6 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Gw5-qa-AvW"; */
 "Gw5-qa-AvW.title" = "Table View Cell";
 
-/* Class = "NSButtonCell"; title = "Check"; ObjectID = "gXW-nt-e2S"; */
-"gXW-nt-e2S.title" = "Sjekk";
-
-/* Class = "NSToolbarItem"; label = "info"; ObjectID = "GYz-8J-WDp"; */
-"GYz-8J-WDp.label" = "info";
-
-/* Class = "NSToolbarItem"; paletteLabel = "info"; ObjectID = "GYz-8J-WDp"; */
-"GYz-8J-WDp.paletteLabel" = "info";
-
-/* Class = "NSToolbarItem"; toolTip = "Display output from rsync..."; ObjectID = "GYz-8J-WDp"; */
-"GYz-8J-WDp.toolTip" = "Vis output fra rsync...";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "GZS-gl-N62"; */
 "GZS-gl-N62.title" = "Text Cell";
 
@@ -711,9 +693,6 @@
 
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7"; */
 "hXq-5p-KS7.title" = "Last";
-
-/* Class = "NSButtonCell"; title = "Select"; ObjectID = "HXz-ee-7v0"; */
-"HXz-ee-7v0.title" = "Velg";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
 "hz9-B4-Xy5.title" = "Tjenester";
@@ -871,9 +850,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "Lur-Sd-kBP"; */
 "Lur-Sd-kBP.headerCell.title" = "Resultat";
 
-/* Class = "NSButtonCell"; title = "Terminal.App"; ObjectID = "lV3-TO-Uao"; */
-"lV3-TO-Uao.title" = "Terminal.App";
-
 /* Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U"; */
 "lvl-UW-J6U.title" = "Dato siste backup:";
 
@@ -894,9 +870,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "mEQ-aD-Owg"; */
 "mEQ-aD-Owg.title" = "Table View Cell";
-
-/* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "mJ2-R8-Fa6"; */
-"mJ2-R8-Fa6.headerCell.title" = "Oppgave";
 
 /* Class = "NSButtonCell"; title = "restore"; ObjectID = "mkb-9F-CQR"; */
 "mkb-9F-CQR.title" = "gjenopprett";
@@ -1011,9 +984,6 @@
 
 /* Class = "NSButtonCell"; title = "Restore files"; ObjectID = "oyb-5K-nwz"; */
 "oyb-5K-nwz.title" = "Gjenopprett filer";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ozI-GG-cgX"; */
-"ozI-GG-cgX.title" = "Text Cell";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "P4M-Uu-xLy"; */
 "P4M-Uu-xLy.title" = "Copy";
@@ -1479,9 +1449,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YdX-1p-DZ9"; */
 "YdX-1p-DZ9.title" = "Text Cell";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YGi-oe-yDr"; */
-"YGi-oe-yDr.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ygQ-aZ-NXY"; */
 "ygQ-aZ-NXY.title" = "Text Cell";

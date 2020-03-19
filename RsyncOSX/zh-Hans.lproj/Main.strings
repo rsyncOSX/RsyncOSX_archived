@@ -265,7 +265,7 @@
 /* Class = "NSButtonCell"; title = "add suffix FreeBSD "; ObjectID = "Am3-Ji-1Ox"; */
 "Am3-Ji-1Ox.title" = "添加后缀FreeBSD ";
 
-/* Class = "NSTextFieldCell"; title = "Either double click on row or select row and Load button"; ObjectID = "AMs-qg-ohN"; */
+/* Class = "NSTextFieldCell"; title = "Either double click on row or select Load button"; ObjectID = "AMs-qg-ohN"; */
 "AMs-qg-ohN.title" = "双击行或选择行和加载按钮";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aO0-eB-xFM"; */
@@ -354,9 +354,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Snap"; ObjectID = "BVb-Fw-C80"; */
 "BVb-Fw-C80.headerCell.title" = "吸附";
-
-/* Class = "NSTableColumn"; headerCell.title = "Batch"; ObjectID = "Byb-kM-Mpk"; */
-"Byb-kM-Mpk.headerCell.title" = "批处理";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c3e-f5-7YK"; */
 "c3e-f5-7YK.title" = "文本单元格";
@@ -514,9 +511,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "ExZ-72-tbq"; */
 "ExZ-72-tbq.headerCell.title" = "删除";
 
-/* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "eys-24-pCG"; */
-"eys-24-pCG.headerCell.title" = "本地目录";
-
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "EZS-oJ-mKt"; */
 "EZS-oJ-mKt.headerCell.title" = "本地目录";
 
@@ -643,18 +637,6 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Gw5-qa-AvW"; */
 "Gw5-qa-AvW.title" = "表格视图单元格";
 
-/* Class = "NSButtonCell"; title = "Check"; ObjectID = "gXW-nt-e2S"; */
-"gXW-nt-e2S.title" = "检查";
-
-/* Class = "NSToolbarItem"; label = "info"; ObjectID = "GYz-8J-WDp"; */
-"GYz-8J-WDp.label" = "信息";
-
-/* Class = "NSToolbarItem"; paletteLabel = "info"; ObjectID = "GYz-8J-WDp"; */
-"GYz-8J-WDp.paletteLabel" = "信息";
-
-/* Class = "NSToolbarItem"; toolTip = "Display output from rsync..."; ObjectID = "GYz-8J-WDp"; */
-"GYz-8J-WDp.toolTip" = "显示 rsync 输出...";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "GZS-gl-N62"; */
 "GZS-gl-N62.title" = "文本单元格";
 
@@ -711,9 +693,6 @@
 
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7"; */
 "hXq-5p-KS7.title" = "负载";
-
-/* Class = "NSButtonCell"; title = "Select"; ObjectID = "HXz-ee-7v0"; */
-"HXz-ee-7v0.title" = "选择";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
 "hz9-B4-Xy5.title" = "服务";
@@ -871,9 +850,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "Lur-Sd-kBP"; */
 "Lur-Sd-kBP.headerCell.title" = "结果";
 
-/* Class = "NSButtonCell"; title = "Terminal.App"; ObjectID = "lV3-TO-Uao"; */
-"lV3-TO-Uao.title" = "应用";
-
 /* Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "lvl-UW-J6U"; */
 "lvl-UW-J6U.title" = "最后备份日期:";
 
@@ -894,9 +870,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "mEQ-aD-Owg"; */
 "mEQ-aD-Owg.title" = "表格视图单元格";
-
-/* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "mJ2-R8-Fa6"; */
-"mJ2-R8-Fa6.headerCell.title" = "任务";
 
 /* Class = "NSButtonCell"; title = "restore"; ObjectID = "mkb-9F-CQR"; */
 "mkb-9F-CQR.title" = "恢复";
@@ -1011,9 +984,6 @@
 
 /* Class = "NSButtonCell"; title = "Restore files"; ObjectID = "oyb-5K-nwz"; */
 "oyb-5K-nwz.title" = "还原文件";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ozI-GG-cgX"; */
-"ozI-GG-cgX.title" = "文本单元格";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "P4M-Uu-xLy"; */
 "P4M-Uu-xLy.title" = "复制";
@@ -1479,9 +1449,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YdX-1p-DZ9"; */
 "YdX-1p-DZ9.title" = "文本单元格";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YGi-oe-yDr"; */
-"YGi-oe-yDr.title" = "文本单元格";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ygQ-aZ-NXY"; */
 "ygQ-aZ-NXY.title" = "文本单元格";
