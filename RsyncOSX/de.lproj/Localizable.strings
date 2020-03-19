@@ -65,9 +65,6 @@
 /* Restore */
 "Copy single files or directory?" = "Einzelne Dateien oder Ordner kopieren?";
 
-/* copyright */
-"Copyright ©2019 Thomas Evensen" = "Copyright ©2019 Thomas Evensen";
-
 /* main */
 "daily" = "täglich";
 
@@ -150,13 +147,13 @@
 "Getting info, please wait..." = "Info wird abgerufen, bitte warten...";
 
 /* Loggdata */
+"Got index from Snapshots and listing logs for one configuration..." = "Index aus Snapshots und Listing-Logs für eine Konfiguration...";
+
+/* Loggdata */
 "Got index from Synchronize and listing logs for one configuration..." = "Index aus Synchronisier und Auflistung von Logs für eine Konfiguration...";
 
 /* Schedules */
 "Got index from Synchronize..." = "Index von Synchronisier...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Index aus Snapshots und Listing-Logs für eine Konfiguration...";
 
 /* Remote Info */
 "Got it..." = "Verstand...";
