@@ -33,13 +33,7 @@ final class RemoteinfoEstimation: SetConfigurations {
         for i in 0 ..< (self.configurations?.getConfigurations().count ?? 0) {
             let task = self.configurations?.getConfigurations()[i].task
             if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                if self.inbatch ?? false {
-                    if self.configurations!.getConfigurations()[i].batch == 1 {
-                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
-                    }
-                } else {
-                    self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
-                }
+                self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
             }
         }
         self.maxnumber = self.stackoftasktobeestimated?.count
