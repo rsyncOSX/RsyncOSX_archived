@@ -44,7 +44,8 @@ final class BatchTaskWorkQueu {
         return self.batchQueu[0]
     }
 
-    init(configurations _: Configurations?) {
+    init(indexes: IndexSet?) {
+        guard indexes != nil else { return }
         /*
          if let batchtasks = configurations?.getConfigurationsBatch() {
              for i in 0 ..< batchtasks.count {
