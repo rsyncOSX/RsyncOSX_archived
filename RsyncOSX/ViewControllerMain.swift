@@ -52,6 +52,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var process: Process?
     // Index to selected row, index is set when row is selected
     var index: Int?
+    // Indexes, multiple selection
+    var indexes: IndexSet?
     // Getting output from rsync
     var outputprocess: OutputProcess?
     // Reference to Schedules object

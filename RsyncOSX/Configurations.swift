@@ -36,8 +36,6 @@ class Configurations: ReloadTable, SetSchedules {
     var remoteinfoestimation: RemoteinfoEstimation?
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
-    // multiple selection main view
-    var indexes: IndexSet?
 
     // Function for getting the profile
     func getProfile() -> String? {
