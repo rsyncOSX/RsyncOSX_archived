@@ -51,7 +51,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var backupID: NSTextField!
     @IBOutlet var sshport: NSTextField!
     @IBOutlet var profilInfo: NSTextField!
-    @IBOutlet var copyconfigbutton: NSButton!
     @IBOutlet var backuptype: NSComboBox!
     @IBOutlet var remotecapacitybutton: NSButton!
     @IBOutlet var addingtrailingbackslash: NSButton!
@@ -93,22 +92,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
         }
-    }
-
-    @IBAction func copyconfiguration(_: NSButton) {
-        guard self.index() != nil else { return }
-        let hiddenID = self.configurations!.gethiddenID(index: self.index() ?? -1)
-        guard hiddenID > -1 else { return }
-        self.localCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
-        self.offsiteCatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
-        self.offsiteUsername.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteusername)
-        self.backupID.stringValue = "copy of " + self.configurations!.getResourceConfiguration(hiddenID, resource: .backupid)
-        if self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer) != "localhost" {
-            self.offsiteServer.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-        } else {
-            self.offsiteServer.stringValue = ""
-        }
-        self.sshport.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .sshport)
     }
 
     @IBAction func cleartable(_: NSButton) {
@@ -165,11 +148,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.backuptypeselected = .synchronize
         self.addingtrailingbackslash.state = .off
         self.backuptype.selectItem(at: 0)
-        if self.index() != nil {
-            self.copyconfigbutton.isEnabled = true
-        } else {
-            self.copyconfigbutton.isEnabled = false
-        }
         guard self.diddissappear == false else { return }
         self.viewParameter1.stringValue = self.archive
         self.viewParameter2.stringValue = self.verbose
