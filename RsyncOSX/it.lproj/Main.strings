@@ -671,7 +671,7 @@
 "hpD-hN-6Xb.title" = "Abilita ambiente";
 
 /* Class = "NSButtonCell"; title = "Check dsa"; ObjectID = "hq8-Fq-pip"; */
-"hq8-Fq-pip.title" = "Check dsa";
+"hq8-Fq-pip.title" = "Controlla dsa";
 
 /* Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "HQE-mN-lgx"; */
 "HQE-mN-lgx.title" = "Numero di file:";
@@ -845,7 +845,7 @@
 "lsc-bT-MTr.title" = "Text Cell";
 
 /* Class = "NSButtonCell"; title = "Dsa key"; ObjectID = "LtM-4s-IJ1"; */
-"LtM-4s-IJ1.title" = "Dsa key";
+"LtM-4s-IJ1.title" = "Chiave Dsa";
 
 /* Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "Lur-Sd-kBP"; */
 "Lur-Sd-kBP.headerCell.title" = "Result";
@@ -863,7 +863,7 @@
 "m7F-8t-VwR.title" = "optional path for rsync:";
 
 /* Class = "NSViewController"; title = "All output"; ObjectID = "mal-sc-mlY"; */
-"mal-sc-mlY.title" = "All output";
+"mal-sc-mlY.title" = "Tutti gli output";
 
 /* Class = "NSButtonCell"; title = "minimum log"; ObjectID = "Md7-8G-z2y"; */
 "Md7-8G-z2y.title" = "minimum log";
@@ -1019,13 +1019,13 @@
 "Pt7-g0-FoN.headerCell.title" = "Synchronize ID";
 
 /* Class = "NSBox"; title = "Remote server"; ObjectID = "Pty-Sm-7R1"; */
-"Pty-Sm-7R1.title" = "Remote server";
+"Pty-Sm-7R1.title" = "Server Remoto";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Pya-4O-vFn"; */
 "Pya-4O-vFn.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG"; */
-"pZb-i1-xyG.headerCell.title" = "Remote server";
+"pZb-i1-xyG.headerCell.title" = "Server Remoto";
 
 /* Class = "NSTextFieldCell"; title = "Version :"; ObjectID = "q8z-Ku-oKx"; */
 "q8z-Ku-oKx.title" = "Versione:";
