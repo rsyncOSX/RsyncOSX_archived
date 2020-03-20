@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 25/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable trailing_comma
 
 import Foundation
 
@@ -44,8 +43,7 @@ final class BatchTaskWorkQueu {
         return self.batchQueu[0]
     }
 
-    init(indexes: IndexSet?) {
-        guard indexes != nil else { return }
+    init() {
         /*
          if let batchtasks = configurations?.getConfigurationsBatch() {
              for i in 0 ..< batchtasks.count {

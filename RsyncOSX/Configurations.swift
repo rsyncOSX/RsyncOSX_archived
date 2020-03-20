@@ -38,6 +38,8 @@ class Configurations: ReloadTable, SetSchedules {
     var remoteinfoestimation: RemoteinfoEstimation?
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
+    // multiple selection main view
+    var indexes: IndexSet?
 
     // Function for getting the profile
     func getProfile() -> String? {
@@ -217,7 +219,7 @@ class Configurations: ReloadTable, SetSchedules {
     // - returns : reference to to object holding data and methods
     func getbatchQueue() -> BatchTaskWorkQueu? {
         if self.batchQueue == nil {
-            self.batchQueue = BatchTaskWorkQueu(indexes: nil)
+            self.batchQueue = BatchTaskWorkQueu()
         }
         return self.batchQueue
     }

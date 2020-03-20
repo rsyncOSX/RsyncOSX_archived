@@ -229,6 +229,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         super.viewDidLoad()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.mainTableView.allowsMultipleSelection = true
         self.working.usesThreadedAnimation = true
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         self.mainTableView.target = self

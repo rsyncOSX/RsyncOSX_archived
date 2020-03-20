@@ -98,8 +98,10 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
+            self.configurations?.indexes = self.mainTableView.selectedRowIndexes
         } else {
             self.index = nil
+            self.configurations?.indexes = nil
         }
         self.reset()
         self.showrsynccommandmainview()
