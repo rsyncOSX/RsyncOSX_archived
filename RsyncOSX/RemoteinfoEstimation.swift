@@ -26,7 +26,6 @@ final class RemoteinfoEstimation: SetConfigurations {
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     var index: Int?
     private var maxnumber: Int?
-    var inbatch: Bool?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = [Row]()
@@ -84,9 +83,6 @@ final class RemoteinfoEstimation: SetConfigurations {
     init(viewcontroller: NSViewController) {
         self.updateprogressDelegate = viewcontroller as? UpdateProgress
         self.startstopProgressIndicatorDelegate = viewcontroller as? StartStopProgressIndicator
-        if viewcontroller == ViewControllerReference.shared.getvcref(viewcontroller: .vcbatch) as? ViewControllerBatch {
-            self.inbatch = true
-        }
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
         self.configurations?.estimatedlist = [NSMutableDictionary]()

@@ -10,6 +10,25 @@
 import Cocoa
 import Foundation
 
+// Dismiss view when rsync error
+protocol ReportonandhaltonError: AnyObject {
+    func reportandhaltonerror()
+}
+
+protocol Attributedestring: AnyObject {
+    func attributedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString
+}
+
+extension Attributedestring {
+    func attributedstring(str: String, color: NSColor, align: NSTextAlignment) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: str)
+        let range = (str as NSString).range(of: str)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+        attributedString.setAlignment(align, range: range)
+        return attributedString
+    }
+}
+
 extension ViewControllerMain: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in _: NSTableView) -> Int {

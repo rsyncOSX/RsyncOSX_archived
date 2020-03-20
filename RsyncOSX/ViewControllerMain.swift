@@ -314,7 +314,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.setNumbers(outputprocess: nil)
         self.deselect()
         globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerBatch!)
+            // self.presentAsSheet(self.viewControllerBatch!)
         }
     }
 
