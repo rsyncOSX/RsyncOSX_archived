@@ -103,6 +103,10 @@ final class QuickBackup: SetConfigurations {
         self.hiddenID = nil
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
     }
+
+    init(indexes: IndexSet?) {
+        guard indexes != nil else { return }
+    }
 }
 
 extension QuickBackup: SendProcessreference {
