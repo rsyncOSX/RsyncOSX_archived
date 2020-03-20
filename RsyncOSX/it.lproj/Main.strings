@@ -704,7 +704,7 @@
 "I5D-Dq-PRZ.title" = "Campo di testo";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "i8f-03-7XY"; */
-"i8f-03-7XY.title" = "Total size (kB):";
+"i8f-03-7XY.title" = "Dimensioni totali (kB):";
 
 /* Class = "NSTextFieldCell"; title = "Restore catalog :"; ObjectID = "i9b-9b-etH"; */
 "i9b-9b-etH.title" = "Restore catalog :";
@@ -776,7 +776,7 @@
 "JKJ-Kp-IuV.title" = "Fai doppio clic sulla riga oppure premi ⌘R per eseguire il task, ⌘I per ottenere informazioni...";
 
 /* Class = "NSButtonCell"; title = "verify"; ObjectID = "jTS-YA-55S"; */
-"jTS-YA-55S.title" = "verify";
+"jTS-YA-55S.title" = "verificare";
 
 /* Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "jTT-Mq-cPB"; */
 "jTT-Mq-cPB.title" = "Delete files:";
@@ -797,7 +797,7 @@
 "Kd2-mp-pUS.title" = "Show All";
 
 /* Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "kFc-LP-RkZ"; */
-"kFc-LP-RkZ.title" = "Remote catalog : ";
+"kFc-LP-RkZ.title" = "Percorso remoto : ";
 
 /* Class = "NSTableColumn"; headerCell.title = "Select"; ObjectID = "KfP-cj-1yp"; */
 "KfP-cj-1yp.headerCell.title" = "Select";
@@ -890,7 +890,7 @@
 "MWF-sp-vNQ.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "n1z-ZA-mQN"; */
-"n1z-ZA-mQN.title" = "Number of directories:";
+"n1z-ZA-mQN.title" = "Numero di cartelle:";
 
 /* Class = "NSTextFieldCell"; title = "days older"; ObjectID = "NC7-Ka-Wgs"; */
 "NC7-Ka-Wgs.title" = "days older";
@@ -941,7 +941,7 @@
 "of4-qq-ykX.title" = "Number of snapshots:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "Ogb-tX-IMk"; */
-"Ogb-tX-IMk.headerCell.title" = "Remote catalog";
+"Ogb-tX-IMk.headerCell.title" = "Percorso remoto";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OIG-cZ-jQ9"; */
 "OIG-cZ-jQ9.title" = "Text Cell";
@@ -959,7 +959,7 @@
 "OOi-RG-4If.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "oqO-Td-7wg"; */
-"oqO-Td-7wg.headerCell.title" = "Remote catalog";
+"oqO-Td-7wg.headerCell.title" = "Percorso remoto";
 
 /* Class = "NSToolbarItem"; label = "batch"; ObjectID = "OrH-Ty-gyv"; */
 "OrH-Ty-gyv.label" = "batch";

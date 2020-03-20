@@ -405,7 +405,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="taskCellID" width="79.703125" minWidth="40" maxWidth="1000" id="AkJ-MA-346">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -418,7 +418,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="snapCellID" width="40" minWidth="40" maxWidth="1000" id="e0Y-OG-qu5">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Snap">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -431,7 +431,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="schedCellID" width="44" minWidth="40" maxWidth="1000" id="rfy-TN-1YB" userLabel="Schedule">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Sched">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -440,7 +440,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="statCellID" width="40" minWidth="40" maxWidth="1000" id="LD6-1k-P7V">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Stat">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -449,7 +449,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="localCatalogCellID" width="186.97265625" minWidth="40" maxWidth="1000" id="35g-px-ZH6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Local catalog">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -462,7 +462,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="offsiteCatalogCellID" width="160.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="zzK-ZO-wvj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote catalog">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -475,7 +475,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="offsiteServerCellID" width="63.3515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="fAL-TO-qxo" userLabel="Offsite server">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote server">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -488,7 +488,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="backupIDCellID" width="91.4453125" minWidth="10" maxWidth="3.4028234663852886e+38" id="pql-cs-AEK" userLabel="ID">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="ID">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -501,7 +501,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="daysID" width="48.58203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Aa2-8Q-PPo" userLabel="Days">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Days">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -514,7 +514,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="runDateCellID" width="139.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="qvy-yX-V6C">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Last run">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -5520,11 +5520,11 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXy-OU-i8d">
-                                <rect key="frame" x="533" y="78" width="63" height="32"/>
+                                <rect key="frame" x="534" y="78" width="61" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Info" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tjU-bB-LEK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="info:" target="Bb6-iv-DYc" id="kQU-Lj-ivK"/>
