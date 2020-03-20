@@ -65,6 +65,9 @@
 /* Restore */
 "Copy single files or directory?" = "Copier un seul fichier ou un seul répertoire ?";
 
+/* copyright */
+"Copyright ©2020 Thomas Evensen" = "Copyright ©2020 Thomas Evensen";
+
 /* main */
 "daily" = "tous les jours";
 
@@ -143,9 +146,6 @@
 /* german */
 "German translation by: Andre" = "Traduction allemande par : André";
 
-/* italian */
-"Italian translation by: Stefano Steve Cutelle" = "Traduction italienne par: Stefano Steve Cutelle";
-
 /* Restore */
 "Getting info, please wait..." = "Récupération des informations, veuillez patienter...";
 
@@ -169,6 +169,9 @@
 
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
+
+/* italian */
+"Italian translation by: Stefano Steve Cutelle" = "Traduction italienne par: Stefano Steve Cutelle";
 
 /* plan */
 "Keep" = "Garder";
