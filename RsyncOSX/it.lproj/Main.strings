@@ -698,7 +698,7 @@
 "hz9-B4-Xy5.title" = "Services";
 
 /* Class = "NSButtonCell"; title = "Restore"; ObjectID = "i4K-NF-VbI"; */
-"i4K-NF-VbI.title" = "Restore";
+"i4K-NF-VbI.title" = "Ripristinare";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "I5D-Dq-PRZ"; */
 "I5D-Dq-PRZ.title" = "Campo di testo";
@@ -872,7 +872,7 @@
 "mEQ-aD-Owg.title" = "Table View Cell";
 
 /* Class = "NSButtonCell"; title = "restore"; ObjectID = "mkb-9F-CQR"; */
-"mkb-9F-CQR.title" = "restore";
+"mkb-9F-CQR.title" = "ripristinare";
 
 /* Class = "NSViewController"; title = "Estimating progress"; ObjectID = "Ml3-CP-4eZ"; */
 "Ml3-CP-4eZ.title" = "Estimating progress";
@@ -971,7 +971,7 @@
 "OrH-Ty-gyv.toolTip" = "Execute tasks marked for batch...";
 
 /* Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct"; */
-"OS5-Kb-1ct.title" = "Params";
+"OS5-Kb-1ct.title" = "Parametri";
 
 /* Class = "NSMenuItem"; title = "Info"; ObjectID = "oSU-tO-D9d"; */
 "oSU-tO-D9d.title" = "Info";
