@@ -983,7 +983,7 @@
 "OY7-WF-poV.title" = "Minimize";
 
 /* Class = "NSButtonCell"; title = "Restore files"; ObjectID = "oyb-5K-nwz"; */
-"oyb-5K-nwz.title" = "Restore files";
+"oyb-5K-nwz.title" = "Ripristina file";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "P4M-Uu-xLy"; */
 "P4M-Uu-xLy.title" = "Copy";
