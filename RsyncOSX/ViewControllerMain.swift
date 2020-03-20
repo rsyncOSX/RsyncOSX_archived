@@ -313,10 +313,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Execute batche tasks, only from main view
     @IBAction func executeBatch(_: NSButton) {
         guard self.checkforrsync() == false else { return }
-        self.setNumbers(outputprocess: nil)
-        self.deselect()
+        guard self.indexes != nil else { return }
         globalMainQueue.async { () -> Void in
-            // self.presentAsSheet(self.viewControllerBatch!)
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
 
