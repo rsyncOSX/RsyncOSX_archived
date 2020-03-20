@@ -961,6 +961,9 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "oqO-Td-7wg"; */
 "oqO-Td-7wg.headerCell.title" = "Ekstern katalog";
 
+/* Class = "NSTextFieldCell"; title = "Italian"; ObjectID = "oR6-Jq-hKr"; */
+"oR6-Jq-hKr.title" = "Italian";
+
 /* Class = "NSToolbarItem"; label = "batch"; ObjectID = "OrH-Ty-gyv"; */
 "OrH-Ty-gyv.label" = "batch";
 
@@ -986,7 +989,7 @@
 "oyb-5K-nwz.title" = "Gjenopprett filer";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "P4M-Uu-xLy"; */
-"P4M-Uu-xLy.title" = "Copy";
+"P4M-Uu-xLy.title" = "Gjenopprett";
 
 /* Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "p7O-cs-wwA"; */
 "p7O-cs-wwA.headerCell.title" = "Start dato oppgave";
@@ -1099,6 +1102,9 @@
 /* Class = "NSViewController"; title = "Schedule"; ObjectID = "rht-JI-asq"; */
 "rht-JI-asq.title" = "Oppgave";
 
+/* Class = "NSTableColumn"; headerCell.title = "User"; ObjectID = "RId-ga-w1R"; */
+"RId-ga-w1R.headerCell.title" = "User";
+
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "rLG-XO-6ip"; */
 "rLG-XO-6ip.title" = "Item 2";
 
@@ -1154,7 +1160,7 @@
 "SH2-9k-XFZ.title" = "Siste oppgave på topp...";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "SJF-H0-E3i"; */
-"SJF-H0-E3i.title" = "Paste";
+"SJF-H0-E3i.title" = "Lim inn";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sKa-Hn-USH"; */
 "sKa-Hn-USH.title" = "Text Cell";
@@ -1233,6 +1239,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U4F-fe-c48"; */
 "U4F-fe-c48.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U9D-uu-6jC"; */
+"U9D-uu-6jC.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT"; */
 "uAb-Pv-NUT.title" = "Antall kataloger:";

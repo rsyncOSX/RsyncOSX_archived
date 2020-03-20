@@ -961,6 +961,9 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "oqO-Td-7wg"; */
 "oqO-Td-7wg.headerCell.title" = "Catalogue distant";
 
+/* Class = "NSTextFieldCell"; title = "Italian"; ObjectID = "oR6-Jq-hKr"; */
+"oR6-Jq-hKr.title" = "Italian";
+
 /* Class = "NSToolbarItem"; label = "batch"; ObjectID = "OrH-Ty-gyv"; */
 "OrH-Ty-gyv.label" = "lot";
 
@@ -1099,6 +1102,9 @@
 /* Class = "NSViewController"; title = "Schedule"; ObjectID = "rht-JI-asq"; */
 "rht-JI-asq.title" = "Planifier";
 
+/* Class = "NSTableColumn"; headerCell.title = "User"; ObjectID = "RId-ga-w1R"; */
+"RId-ga-w1R.headerCell.title" = "User";
+
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "rLG-XO-6ip"; */
 "rLG-XO-6ip.title" = "Point 2";
 
@@ -1233,6 +1239,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U4F-fe-c48"; */
 "U4F-fe-c48.title" = "Cellule de texte";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U9D-uu-6jC"; */
+"U9D-uu-6jC.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT"; */
 "uAb-Pv-NUT.title" = "Nombre de répertoires :";
