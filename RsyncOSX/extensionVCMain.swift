@@ -213,14 +213,6 @@ extension ViewControllerMain: GetConfigurationsObject {
 
     // After a write, a reload is forced.
     func reloadconfigurationsobject() {
-        guard self.configurations?.batchQueue == nil else {
-            if self.configurations!.batchQueue?.batchruniscompleted() == true {
-                self.createandreloadconfigurations()
-                return
-            } else {
-                return
-            }
-        }
         self.createandreloadconfigurations()
     }
 
@@ -231,14 +223,6 @@ extension ViewControllerMain: GetConfigurationsObject {
 
 extension ViewControllerMain: GetSchedulesObject {
     func reloadschedulesobject() {
-        guard self.configurations?.batchQueue == nil else {
-            if self.configurations!.batchQueue?.batchruniscompleted() == true {
-                self.createandreloadschedules()
-                return
-            } else {
-                return
-            }
-        }
         self.createandreloadschedules()
     }
 

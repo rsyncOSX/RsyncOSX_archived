@@ -33,13 +33,6 @@ extension VcMain {
             as? NSViewController)
     }
 
-    // Batch process
-    // self.presentViewControllerAsSheet(self.ViewControllerBatch)
-    var viewControllerBatch: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardBatchID")
-            as? NSViewController)
-    }
-
     // Userconfiguration
     // self.presentViewControllerAsSheet(self.ViewControllerUserconfiguration)
     var viewControllerUserconfiguration: NSViewController? {

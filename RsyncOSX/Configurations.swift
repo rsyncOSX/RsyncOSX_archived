@@ -26,8 +26,6 @@ class Configurations: ReloadTable, SetSchedules {
     var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // Datasource for NSTableViews
     var configurationsDataSource: [NSMutableDictionary]?
-    // Object for batchQueue data and operations
-    var batchQueue: BatchTaskWorkQueu?
     // backup list from remote info view
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
@@ -38,6 +36,8 @@ class Configurations: ReloadTable, SetSchedules {
     var remoteinfoestimation: RemoteinfoEstimation?
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
+    // multiple selection main view
+    var indexes: IndexSet?
 
     // Function for getting the profile
     func getProfile() -> String? {
@@ -212,26 +212,6 @@ class Configurations: ReloadTable, SetSchedules {
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
-    // Function return the reference to object holding data and methods
-    // for batch execution of Configurations.
-    // - returns : reference to to object holding data and methods
-    func getbatchQueue() -> BatchTaskWorkQueu? {
-        if self.batchQueue == nil {
-            self.batchQueue = BatchTaskWorkQueu(indexes: nil)
-        }
-        return self.batchQueue
-    }
-
-    // Function is getting the number of rows batchDataQueue
-    // - returns : the number of rows
-    func batchQueuecount() -> Int {
-        return self.batchQueue?.getbatchtaskstodocount() ?? 0
-    }
-
-    func getbatchlist() -> [NSMutableDictionary]? {
-        return self.batchQueue?.data
-    }
-
     // Add new configurations
     func addNewConfigurations(_ dict: NSMutableDictionary) {
         _ = PersistentStorageConfiguration(profile: self.profile).newConfigurations(dict: dict)
@@ -342,7 +322,6 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations = [Configuration]()
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
-        self.batchQueue = nil
         self.profile = profile
         self.readconfigurations()
     }
