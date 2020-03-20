@@ -217,7 +217,7 @@ class Configurations: ReloadTable, SetSchedules {
     // - returns : reference to to object holding data and methods
     func getbatchQueue() -> BatchTaskWorkQueu? {
         if self.batchQueue == nil {
-            self.batchQueue = BatchTaskWorkQueu(configurations: self)
+            self.batchQueue = BatchTaskWorkQueu(indexes: nil)
         }
         return self.batchQueue
     }

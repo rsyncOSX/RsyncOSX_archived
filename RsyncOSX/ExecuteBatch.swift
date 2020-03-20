@@ -71,7 +71,7 @@ final class ExecuteBatch: SetSchedules, SetConfigurations {
     }
 
     init() {
-        self.batchqueue = self.configurations!.getbatchQueue()
+        self.batchqueue = self.configurations?.getbatchQueue()
     }
 }
 
