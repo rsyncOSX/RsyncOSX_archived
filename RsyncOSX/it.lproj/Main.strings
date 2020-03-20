@@ -686,7 +686,7 @@
 "hTP-NL-EPM.title" = "Numero di file:";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "huo-sU-wpe"; */
-"huo-sU-wpe.title" = "Close";
+"huo-sU-wpe.title" = "Chiudi";
 
 /* Class = "NSTextFieldCell"; title = "output"; ObjectID = "hwk-s3-pSJ"; */
 "hwk-s3-pSJ.title" = "output";
@@ -836,7 +836,7 @@
 "lGN-As-q21.title" = "Add parameters";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "LNh-Ch-4lY"; */
-"LNh-Ch-4lY.title" = "Close";
+"LNh-Ch-4lY.title" = "Chiudi";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "LpG-4N-4hH"; */
 "LpG-4N-4hH.title" = "Text Cell";
@@ -860,7 +860,7 @@
 "lzX-Ie-xTz.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "optional path for rsync:"; ObjectID = "m7F-8t-VwR"; */
-"m7F-8t-VwR.title" = "optional path for rsync:";
+"m7F-8t-VwR.title" = "imposta un percorso opzionale rsync:";
 
 /* Class = "NSViewController"; title = "All output"; ObjectID = "mal-sc-mlY"; */
 "mal-sc-mlY.title" = "Tutti gli output";
@@ -935,7 +935,7 @@
 "o77-iT-bNa.title" = "New files:";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "oar-D1-pfu"; */
-"oar-D1-pfu.title" = "Close";
+"oar-D1-pfu.title" = "Chiudi";
 
 /* Class = "NSTextFieldCell"; title = "Number of snapshots:"; ObjectID = "of4-qq-ykX"; */
 "of4-qq-ykX.title" = "Number of snapshots:";
