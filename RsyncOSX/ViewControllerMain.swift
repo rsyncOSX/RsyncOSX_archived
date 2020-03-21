@@ -310,8 +310,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.singletask?.executeSingleTask()
     }
 
-    // Execute batche tasks, only from main view
-    @IBAction func executeBatch(_: NSButton) {
+    // Execute multipleselected tasks, only from main view
+    @IBAction func executemultipleselectedindexes(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         guard self.indexes != nil else { return }
         globalMainQueue.async { () -> Void in

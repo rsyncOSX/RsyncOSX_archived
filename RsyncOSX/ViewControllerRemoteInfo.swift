@@ -21,7 +21,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     @IBOutlet var abortbutton: NSButton!
     @IBOutlet var count: NSTextField!
 
-    // remote info tasks
     private var remoteinfotask: RemoteinfoEstimation?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
     var selected: Bool = false
@@ -85,7 +84,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         }
     }
 
-    // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mainTableView.delegate = self

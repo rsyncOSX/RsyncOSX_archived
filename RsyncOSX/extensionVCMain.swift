@@ -430,3 +430,14 @@ protocol ViewOutputDetails: AnyObject {
     func appendnow() -> Bool
     func getalloutput() -> [String]
 }
+
+// Get multiple selected indexes
+protocol GetMultipleSelectedIndexes: AnyObject {
+    func getindexes() -> [Int]
+}
+
+extension ViewControllerMain: GetMultipleSelectedIndexes {
+    func getindexes() -> [Int] {
+        return [1, 2, 3]
+    }
+}
