@@ -330,7 +330,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Execute multipleselected tasks, only from main view
     @IBAction func executemultipleselectedindexes(_: NSButton) {
         guard self.checkforrsync() == false else { return }
-        guard self.indexes != nil else { return }
+        guard self.indexes != nil else {
+            self.info.stringValue = Infoexecute().info(num: 6)
+            return
+        }
         self.multipeselection = true
         self.configurations?.remoteinfoestimation = nil
         self.configurations?.estimatedlist = nil
