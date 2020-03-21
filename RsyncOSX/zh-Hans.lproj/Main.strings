@@ -946,8 +946,8 @@
 /* Class = "NSToolbarItem"; paletteLabel = "batch"; ObjectID = "OrH-Ty-gyv"; */
 "OrH-Ty-gyv.paletteLabel" = "批处理";
 
-/* Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv"; */
-"OrH-Ty-gyv.toolTip" = "执行标记为批处理的任务...";
+/* Class = "NSToolbarItem"; toolTip = "Execute selected tasks..."; ObjectID = "OrH-Ty-gyv"; */
+"OrH-Ty-gyv.toolTip" = "执行选定的任务...";
 
 /* Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct"; */
 "OS5-Kb-1ct.title" = "Params";
