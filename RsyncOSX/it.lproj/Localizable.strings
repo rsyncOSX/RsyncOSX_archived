@@ -20,9 +20,6 @@
 /* Add schedule */
 "Add Schedule?" = "Aggiungi una pianificazione?";
 
-/* Batch */
-"Batchtasks completed, close view..." = "Attività batch completate, chiudi finestra...";
-
 /* Tooltip */
 "By using Finder drag and drop filepaths." = "Utilizzando Finder trascina e rilascia i percorsi.";
 
@@ -127,9 +124,6 @@
 
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "ERRORE: non trovo rsync in /usr/local/bin";
-
-/* Batch */
-"Estimation completed, you can start batch..." = "Stima completata, è possibile avviare la batch...";
 
 /* plan */
 "every" = "ogni";

@@ -20,9 +20,6 @@
 /* Add schedule */
 "Add Schedule?" = "Legg til oppgave?";
 
-/* Batch */
-"Batchtasks completed, close view..." = "Batch oppgaver ferdig, lukker...";
-
 /* Tooltip */
 "By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp filstier.";
 
@@ -127,9 +124,6 @@
 
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
-
-/* Batch */
-"Estimation completed, you can start batch..." = "Estimering utført, start batch...";
 
 /* plan */
 "every" = "alle";
