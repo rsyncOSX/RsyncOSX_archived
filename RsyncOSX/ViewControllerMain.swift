@@ -89,6 +89,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
+        if self.configurations?.setestimatedlistnil() == true {
+            self.configurations?.remoteinfoestimation = nil
+            self.configurations?.estimatedlist = nil
+        }
+        self.multipeselection = false
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
@@ -96,6 +101,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     @IBAction func quickbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
+        self.configurations?.remoteinfoestimation = nil
+        self.configurations?.estimatedlist = nil
         self.multipeselection = false
         self.openquickbackup()
     }
@@ -191,6 +198,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Selecting automatic backup
     @IBAction func automaticbackup(_: NSButton) {
+        if self.configurations?.setestimatedlistnil() == true {
+            self.configurations?.remoteinfoestimation = nil
+            self.configurations?.estimatedlist = nil
+        }
         self.multipeselection = false
         self.presentAsSheet(self.viewControllerEstimating!)
     }
@@ -269,6 +280,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.multipeselection = false
+        self.configurations?.remoteinfoestimation = nil
+        self.configurations?.estimatedlist = nil
     }
 
     func reset() {
@@ -319,6 +332,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         guard self.checkforrsync() == false else { return }
         guard self.indexes != nil else { return }
         self.multipeselection = true
+        self.configurations?.remoteinfoestimation = nil
         self.configurations?.estimatedlist = nil
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)

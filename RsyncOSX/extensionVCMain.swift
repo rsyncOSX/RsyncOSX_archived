@@ -277,11 +277,11 @@ extension ViewControllerMain: GetProcessreference {
 
 extension ViewControllerMain: SetRemoteInfo {
     func getremoteinfo() -> RemoteinfoEstimation? {
-        return self.configurations!.remoteinfoestimation
+        return self.configurations?.remoteinfoestimation
     }
 
     func setremoteinfo(remoteinfotask: RemoteinfoEstimation?) {
-        self.configurations!.remoteinfoestimation = remoteinfotask
+        self.configurations?.remoteinfoestimation = remoteinfotask
     }
 }
 
