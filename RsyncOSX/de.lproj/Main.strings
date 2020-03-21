@@ -946,8 +946,8 @@
 /* Class = "NSToolbarItem"; paletteLabel = "batch"; ObjectID = "OrH-Ty-gyv"; */
 "OrH-Ty-gyv.paletteLabel" = "stapeln";
 
-/* Class = "NSToolbarItem"; toolTip = "Execute tasks marked for batch..."; ObjectID = "OrH-Ty-gyv"; */
-"OrH-Ty-gyv.toolTip" = "Für Batch markierte Aufgaben ausführen...";
+/* Class = "NSToolbarItem"; toolTip = "Execute selected tasks..."; ObjectID = "OrH-Ty-gyv"; */
+"OrH-Ty-gyv.toolTip" = "Ausgewählte Tasks ausführen...";
 
 /* Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct"; */
 "OS5-Kb-1ct.title" = "Params";
