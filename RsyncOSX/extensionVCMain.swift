@@ -443,6 +443,10 @@ extension ViewControllerMain: GetMultipleSelectedIndexes {
     }
 
     func getindexes() -> [Int] {
-        return [1, 2, 3]
+        if let indexes = self.indexes {
+            return indexes.map { $0 }
+        } else {
+            return []
+        }
     }
 }
