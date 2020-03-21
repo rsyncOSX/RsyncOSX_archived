@@ -37,6 +37,14 @@ class Configurations: ReloadTable, SetSchedules {
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
 
+    func setestimatedlistnil() -> Bool {
+        if (self.estimatedlist?.count ?? 0) == (self.configurations?.count ?? 0) {
+            return false
+        } else {
+            return true
+        }
+    }
+
     // Function for getting the profile
     func getProfile() -> String? {
         return self.profile
