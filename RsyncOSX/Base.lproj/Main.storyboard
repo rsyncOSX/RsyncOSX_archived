@@ -237,7 +237,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="executeBatch:" target="Rv5-yv-lsc" id="rTL-zJ-pEb"/>
+                                            <action selector="executemultipleselectedindexes:" target="Rv5-yv-lsc" id="rTL-zJ-pEb"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
@@ -3270,13 +3270,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="140"/>
+                                <rect key="frame" x="20" y="61" width="656" height="71"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="139"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="70"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="47"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4947,7 +4947,7 @@ DQ
                 </viewController>
                 <customObject id="WYi-qW-oH6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2940" y="549.5"/>
+            <point key="canvasLocation" x="-2688" y="561"/>
         </scene>
         <!--Verify-->
         <scene sceneID="tGg-Vb-fhZ">
@@ -5835,7 +5835,7 @@ DQ
                 </viewController>
                 <customObject id="Ev4-fO-37e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-463" y="3463.5"/>
+            <point key="canvasLocation" x="-32" y="2767"/>
         </scene>
         <!--View Controller Source-->
         <scene sceneID="54O-4C-Jot">
@@ -6038,7 +6038,7 @@ DQ
                 </viewController>
                 <customObject id="uNp-Tp-xff" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1114" y="-425"/>
+            <point key="canvasLocation" x="-2076" y="1695"/>
         </scene>
         <!--View Controller Quick Backup-->
         <scene sceneID="K43-I3-zAI">
@@ -6298,7 +6298,7 @@ DQ
                 </viewController>
                 <customObject id="tYc-nC-URw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1212.5" y="3096.5"/>
+            <point key="canvasLocation" x="-780" y="2788"/>
         </scene>
         <!--View Controller Remote Info-->
         <scene sceneID="UZZ-3R-We2">
@@ -6528,7 +6528,7 @@ DQ
                 </viewController>
                 <customObject id="EeF-i6-w3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-288.5" y="3096"/>
+            <point key="canvasLocation" x="-627" y="2353"/>
         </scene>
         <!--Estimating progress-->
         <scene sceneID="X1y-0Z-sdi">

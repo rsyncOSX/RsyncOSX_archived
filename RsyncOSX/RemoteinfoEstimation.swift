@@ -24,6 +24,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     weak var updateprogressDelegate: UpdateProgress?
     weak var reloadtableDelegate: Reloadandrefresh?
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
+    weak var getmultipleselectedindexesDelegate: GetMultipleSelectedIndexes?
     var index: Int?
     private var maxnumber: Int?
 
@@ -83,6 +84,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     init(viewcontroller: NSViewController) {
         self.updateprogressDelegate = viewcontroller as? UpdateProgress
         self.startstopProgressIndicatorDelegate = viewcontroller as? StartStopProgressIndicator
+        self.getmultipleselectedindexesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
         self.configurations?.estimatedlist = [NSMutableDictionary]()
