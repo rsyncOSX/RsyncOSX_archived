@@ -16,7 +16,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var rsyncCommand: NSTextField!
     // If On result of Dryrun is presented before
     // executing the real run
-    @IBOutlet var errorinfo: NSTextField!
     // number of files to be transferred
     @IBOutlet var transferredNumber: NSTextField!
     // size of files to be transferred
