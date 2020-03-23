@@ -84,6 +84,8 @@ extension ViewControllerRestore: UpdateProgress {
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.processTermination()
             self.reset()
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+            self.info.stringValue = NSLocalizedString("Restore completed...", comment: "Restore")
         } else {
             let number = Numbers(outputprocess: self.outputprocess)
             self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
