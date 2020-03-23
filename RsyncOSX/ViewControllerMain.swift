@@ -40,6 +40,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
+    @IBOutlet var errorinfo: NSTextField!
 
     // Reference to Configurations and Schedules object
     var configurations: Configurations?
