@@ -267,6 +267,9 @@
 /* Restore */
 "Restore" = "Wiederherstellen";
 
+/* Restore */
+"Restore completed..." = "Restore completed...";
+
 /* plan */
 "Saturday" = "Samstag";
 
@@ -287,6 +290,9 @@
 
 /* Execute */
 "Select a task...." = "Aufgabe auswählen....";
+
+/* Execute */
+"Select one or more tasks..." = "Select one or more tasks...";
 
 /* Logg */
 "Selected logs:" = "Ausgewählte Logs:";

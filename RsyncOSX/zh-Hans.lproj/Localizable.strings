@@ -267,6 +267,9 @@
 /* Restore */
 "Restore" = "恢复";
 
+/* Restore */
+"Restore completed..." = "Restore completed...";
+
 /* plan */
 "Saturday" = "周六";
 
@@ -287,6 +290,9 @@
 
 /* Execute */
 "Select a task...." = "选择任务......";
+
+/* Execute */
+"Select one or more tasks..." = "Select one or more tasks...";
 
 /* Logg */
 "Selected logs:" = "选中的日志：";

@@ -233,7 +233,7 @@
 "a0m-Z1-grn.title" = "Rsa offentlig nøkkel.";
 
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
-"aCU-js-shc.title" = "Open";
+"aCU-js-shc.title" = "Åpne";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ACw-EV-vDL"; */
 "ACw-EV-vDL.title" = "Text Cell";
@@ -350,7 +350,7 @@
 "c3e-f5-7YK.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Total dir"; ObjectID = "Can-2K-epd"; */
-"Can-2K-epd.headerCell.title" = "Total dir";
+"Can-2K-epd.headerCell.title" = "Antall kataloger";
 
 /* Class = "NSTextFieldCell"; title = "Error : no rsync in path"; ObjectID = "CCB-zy-XDh"; */
 "CCB-zy-XDh.title" = "Feil: ingen rsync i sti";
@@ -416,7 +416,7 @@
 "dtI-40-Iqi.headerCell.title" = "Når";
 
 /* Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "dti-GW-qCA"; */
-"dti-GW-qCA.title" = "Optional";
+"dti-GW-qCA.title" = "Alternativ";
 
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC"; */
 "dTX-H7-8VC.title" = "Profil :";
@@ -539,7 +539,7 @@
 "FSh-WF-QKH.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Total num"; ObjectID = "fwm-ch-a0w"; */
-"fwm-ch-a0w.headerCell.title" = "Total num";
+"fwm-ch-a0w.headerCell.title" = "Totalt antall";
 
 /* Class = "NSTableColumn"; headerCell.title = "Schedule"; ObjectID = "FXq-M1-hKG"; */
 "FXq-M1-hKG.headerCell.title" = "Oppgave";
@@ -548,7 +548,7 @@
 "fyc-hd-Fqh.title" = "Nye eller slette";
 
 /* Class = "NSButtonCell"; title = "Default"; ObjectID = "fyt-XU-Mpu"; */
-"fyt-XU-Mpu.title" = "Default";
+"fyt-XU-Mpu.title" = "Standard";
 
 /* Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "fZA-KQ-voS"; */
 "fZA-KQ-voS.title" = "Slett filer:";
@@ -893,7 +893,7 @@
 "NMo-mM-awS.title" = "Intro";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
-"NMo-om-nkz.title" = "Services";
+"NMo-om-nkz.title" = "Tjenester";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NQS-NB-OI2"; */
 "NQS-NB-OI2.title" = "Table View Cell";
@@ -938,7 +938,7 @@
 "oqO-Td-7wg.headerCell.title" = "Ekstern katalog";
 
 /* Class = "NSTextFieldCell"; title = "Italian"; ObjectID = "oR6-Jq-hKr"; */
-"oR6-Jq-hKr.title" = "Italian";
+"oR6-Jq-hKr.title" = "Italiensk";
 
 /* Class = "NSToolbarItem"; label = "batch"; ObjectID = "OrH-Ty-gyv"; */
 "OrH-Ty-gyv.label" = "batch";
@@ -1058,7 +1058,7 @@
 "rFc-o9-SOW.title" = "Sjekke data når leses";
 
 /* Class = "NSTextFieldCell"; title = "copyright"; ObjectID = "RFG-uU-oRD"; */
-"RFG-uU-oRD.title" = "copyright";
+"RFG-uU-oRD.title" = "opphavsrett";
 
 /* Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "Rfo-bd-8hM"; */
 "Rfo-bd-8hM.title" = "Velg tmp: ";
@@ -1076,7 +1076,7 @@
 "rht-JI-asq.title" = "Oppgave";
 
 /* Class = "NSTableColumn"; headerCell.title = "User"; ObjectID = "RId-ga-w1R"; */
-"RId-ga-w1R.headerCell.title" = "User";
+"RId-ga-w1R.headerCell.title" = "Bruker";
 
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "rLG-XO-6ip"; */
 "rLG-XO-6ip.title" = "Item 2";
@@ -1280,7 +1280,7 @@
 "vls-wI-lPQ.headerCell.title" = "Oppgave";
 
 /* Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob"; */
-"Vnu-mV-aob.title" = "icon";
+"Vnu-mV-aob.title" = "ikon";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VWl-UA-V1i"; */
 "VWl-UA-V1i.title" = "Text Cell";
@@ -1343,7 +1343,7 @@
 "wrk-73-4cu.title" = "Synkroniser nå";
 
 /* Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "WVf-5Q-8C4"; */
-"WVf-5Q-8C4.title" = "Optional";
+"WVf-5Q-8C4.title" = "Alternativ";
 
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "wW4-ui-Vxe"; */
 "wW4-ui-Vxe.title" = "Item 1";
@@ -1367,7 +1367,7 @@
 "X6b-BG-uCr.title" = "Text Cell";
 
 /* Class = "NSButtonCell"; title = "Docs"; ObjectID = "XAM-h1-StD"; */
-"XAM-h1-StD.title" = "Docs";
+"XAM-h1-StD.title" = "Dokumenter";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "XbU-fs-Bir"; */
 "XbU-fs-Bir.title" = "Text Cell";
