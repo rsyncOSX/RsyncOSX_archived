@@ -198,6 +198,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Selecting automatic backup
     @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
         if self.configurations?.setestimatedlistnil() == true {
             self.configurations?.remoteinfoestimation = nil
             self.configurations?.estimatedlist = nil
