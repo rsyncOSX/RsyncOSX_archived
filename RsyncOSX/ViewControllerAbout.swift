@@ -26,7 +26,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     var chinesestring: String = NSLocalizedString("Chinese (Simplified) translation by: StringKe", comment: "chinese")
     var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
     var germanstring: String = NSLocalizedString("German translation by: Andre", comment: "german")
-    var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle", comment: "italian")
+    var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle'", comment: "italian")
 
     var resource: Resources?
     var outputprocess: OutputProcess?
