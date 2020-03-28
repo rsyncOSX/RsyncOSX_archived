@@ -26,6 +26,8 @@ The app is signed with my Apple ID developer certificate and [notarized](https:/
 
 ### Localization
 
+[![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx)
+
 [RsyncOSX speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
 - German - by [Andre](https://github.com/andre68723)
