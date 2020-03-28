@@ -656,7 +656,7 @@
 "HQE-mN-lgx.title" = "Numero di file:";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "hrN-sQ-oUZ"; */
-"hrN-sQ-oUZ.title" = "Edit";
+"hrN-sQ-oUZ.title" = "Modifica";
 
 /* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "hsc-HX-kP6"; */
 "hsc-HX-kP6.headerCell.title" = "ID";
@@ -764,7 +764,7 @@
 "K2f-Jb-uUB.headerCell.title" = "Giorni";
 
 /* Class = "NSMenuItem"; title = "Abort"; ObjectID = "k2Y-Hy-jMj"; */
-"k2Y-Hy-jMj.title" = "Abort";
+"k2Y-Hy-jMj.title" = "Interrompi";
 
 /* Class = "NSTextFieldCell"; title = "Files to be transferred:"; ObjectID = "k8Z-wy-8ml"; */
 "k8Z-wy-8ml.title" = "Files to be transferred:";
@@ -971,10 +971,10 @@
 "p7O-cs-wwA.headerCell.title" = "Start date schedule";
 
 /* Class = "NSMenuItem"; title = "Parameters"; ObjectID = "p9L-16-Icv"; */
-"p9L-16-Icv.title" = "Parameters";
+"p9L-16-Icv.title" = "Parametri";
 
 /* Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO"; */
-"p56-o9-HcO.title" = "Info all";
+"p56-o9-HcO.title" = "Info su tutti";
 
 /* Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ"; */
 "PIK-cY-cmQ.title" = "File o cartella da ripristinare";
