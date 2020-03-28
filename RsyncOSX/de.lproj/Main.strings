@@ -74,7 +74,7 @@
 "3pw-4t-6v9.title" = "Tabellenansicht Zelle";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "3Td-g5-CaS"; */
-"3Td-g5-CaS.title" = "Total size (kB):";
+"3Td-g5-CaS.title" = "Gesamtgröße in Kb:";
 
 /* Class = "NSViewController"; title = "Add"; ObjectID = "3xI-3C-guU"; */
 "3xI-3C-guU.title" = "Neu";
@@ -383,7 +383,7 @@
 "CUQ-YI-Irs.title" = "Schließen";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "CwH-vm-SWF"; */
-"CwH-vm-SWF.title" = "Total size (kB):";
+"CwH-vm-SWF.title" = "Gesamtgröße in Kb:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "D7f-Cg-ZtW"; */
 "D7f-Cg-ZtW.title" = "Text Cell";
@@ -611,7 +611,7 @@
 "gsP-5c-DW5.title" = "löschen:  ";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "gVQ-92-htT"; */
-"gVQ-92-htT.title" = "Total size (kB):";
+"gVQ-92-htT.title" = "Gesamtgröße in Kb:";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Gw5-qa-AvW"; */
 "Gw5-qa-AvW.title" = "Tabellenansicht Zelle";
@@ -683,7 +683,7 @@
 "I5D-Dq-PRZ.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "i8f-03-7XY"; */
-"i8f-03-7XY.title" = "Total size (kB):";
+"i8f-03-7XY.title" = "Gesamtgröße in Kb:";
 
 /* Class = "NSTextFieldCell"; title = "Restore catalog :"; ObjectID = "i9b-9b-etH"; */
 "i9b-9b-etH.title" = "Katalog wiederherstellen:";
@@ -1082,7 +1082,7 @@
 "rLG-XO-6ip.title" = "Element 2";
 
 /* Class = "NSTextFieldCell"; title = "Default params"; ObjectID = "RPd-mi-bp4"; */
-"RPd-mi-bp4.title" = "Default params";
+"RPd-mi-bp4.title" = "Standardparameter";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rSn-oB-WbC"; */
 "rSn-oB-WbC.title" = "Text Cell";
