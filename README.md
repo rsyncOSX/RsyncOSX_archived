@@ -1,5 +1,7 @@
 ## RsyncOSX
 
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.2.0/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx)
+
 ![](icon/rsyncosx.png)
 
 [The Changelog](https://rsyncosx.github.io/Changelog).
@@ -25,8 +27,6 @@ If destination is a **local attached volume**, the above is not relevant.
 The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info. Signing and notarizing is required to run on macOS Catalina.
 
 ### Localization
-
-[![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx)
 
 [RsyncOSX speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
