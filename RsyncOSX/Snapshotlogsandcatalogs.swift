@@ -11,20 +11,28 @@ import Foundation
 
 final class Snapshotlogsandcatalogs {
     var snapshotslogs: [NSMutableDictionary]?
+    var scheduleloggdata: ScheduleLoggData?
     var config: Configuration?
     var outputprocess: OutputProcess?
     var snapshotcatalogs: [String]?
     var snapshotcatalogstodelete: [String]?
     var getsnapshots: Bool = true
+    var updateprogress: UpdateProgress?
 
     private func getremotecataloginfo(getsnapshots: Bool) {
         self.outputprocess = OutputProcess()
         let arguments = RestorefilesArguments(task: .snapshotcatalogs, config: self.config, remoteFile: nil, localCatalog: nil, drynrun: nil)
         if getsnapshots {
             let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
+            if let updateprogress = self.updateprogress {
+                object.updateDelegate = updateprogress
+            }
             object.executeProcess(outputprocess: self.outputprocess)
         } else {
             let object = SnapshotCommandSubCatalogsLogview(command: arguments.getCommand(), arguments: arguments.getArguments())
+            if let updateprogress = self.updateprogress {
+                object.updateDelegate = updateprogress
+            }
             object.executeProcess(outputprocess: self.outputprocess)
         }
     }
@@ -103,7 +111,18 @@ final class Snapshotlogsandcatalogs {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.getsnapshots = getsnapshots
         self.config = config
-        self.snapshotslogs = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true).loggdata
+        self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
+        self.snapshotslogs = scheduleloggdata?.loggdata
+        self.getremotecataloginfo(getsnapshots: getsnapshots)
+    }
+
+    init(config: Configuration, getsnapshots: Bool, updateprogress: UpdateProgress?) {
+        guard config.task == ViewControllerReference.shared.snapshot else { return }
+        self.getsnapshots = getsnapshots
+        self.config = config
+        self.updateprogress = updateprogress
+        self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
+        self.snapshotslogs = scheduleloggdata?.loggdata
         self.getremotecataloginfo(getsnapshots: getsnapshots)
     }
 }

@@ -180,8 +180,18 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func deletelogs(_: NSButton) {
-        guard self.index != nil else { return }
-        // print("snapshot")
+        if let index = self.index {
+            let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            guard hiddenID > -1 else { return }
+            if let config = self.configurations?.getConfigurations()[index] {
+                // let scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: true)
+                if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
+                    // self.working.startAnimation(nil)
+                    // let snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true)
+                    // scheduleloggdata.align to mark
+                }
+            }
+        }
     }
 
     override func viewDidLoad() {
