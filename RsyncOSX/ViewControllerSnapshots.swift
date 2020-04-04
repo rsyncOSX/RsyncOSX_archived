@@ -179,6 +179,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
+    @IBAction func deletelogs(_: NSButton) {
+        guard self.index != nil else { return }
+        // print("snapshot")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.snapshotstableView.delegate = self
