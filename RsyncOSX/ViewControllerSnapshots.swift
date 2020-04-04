@@ -186,9 +186,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             if let config = self.configurations?.getConfigurations()[index] {
                 // let scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: true)
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
-                    // self.working.startAnimation(nil)
-                    // let snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true)
-                    // scheduleloggdata.align to mark
+                    let test = DeleteSnapshotLogs(config: config)
                 }
             }
         }
