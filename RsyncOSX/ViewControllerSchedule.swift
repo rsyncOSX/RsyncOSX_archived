@@ -150,32 +150,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.schedules?.deleteorstopschedule(data: scheduledetails!)
     }
 
-    @IBAction func stoppall(_: NSButton) {
-        for i in 0 ..< (self.scheduledetails?.count ?? 0) {
-            if self.scheduledetails![i].value(forKey: "stopCellID") as? Int == 1 {
-                self.scheduledetails![i].setValue(0, forKey: "stopCellID")
-            } else {
-                self.scheduledetails![i].setValue(1, forKey: "stopCellID")
-            }
-        }
-        globalMainQueue.async { () -> Void in
-            self.scheduletabledetails.reloadData()
-        }
-    }
-
-    @IBAction func deleteall(_: NSButton) {
-        for i in 0 ..< (self.scheduledetails?.count ?? 0) {
-            if self.scheduledetails![i].value(forKey: "deleteCellID") as? Int == 1 {
-                self.scheduledetails![i].setValue(0, forKey: "deleteCellID")
-            } else {
-                self.scheduledetails![i].setValue(1, forKey: "deleteCellID")
-            }
-        }
-        globalMainQueue.async { () -> Void in
-            self.scheduletabledetails.reloadData()
-        }
-    }
-
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
