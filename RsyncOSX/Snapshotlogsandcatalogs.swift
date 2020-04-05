@@ -125,9 +125,7 @@ final class Snapshotlogsandcatalogs {
         self.snapshotslogs = scheduleloggdata?.loggdata
         self.getremotecataloginfo(getsnapshots: getsnapshots)
     }
-}
 
-extension Snapshotlogsandcatalogs: UpdateProgress {
     func processTermination() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
@@ -139,9 +137,5 @@ extension Snapshotlogsandcatalogs: UpdateProgress {
         }
         self.reducetosnapshotlogs()
         self.mergeremotecatalogsandlogs()
-    }
-
-    func fileHandler() {
-        //
     }
 }
