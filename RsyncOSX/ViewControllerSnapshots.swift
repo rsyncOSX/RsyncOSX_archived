@@ -49,6 +49,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet var dayofweek: NSTextField!
     @IBOutlet var lastorevery: NSTextField!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
+    @IBOutlet var cleanlogsbutton: NSButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -173,9 +174,22 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
             self.presentAsSheet(self.viewControllerProgress!)
             self.deletebutton.isEnabled = false
+            self.cleanlogsbutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
             self.deletesnapshotcatalogs()
             self.delete = true
+        }
+    }
+
+    @IBAction func deletelogs(_: NSButton) {
+        if let index = self.index {
+            let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
+            guard hiddenID > -1 else { return }
+            if let config = self.configurations?.getConfigurations()[index] {
+                if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
+                    _ = DeleteSnapshotLogs(config: config)
+                }
+            }
         }
     }
 
@@ -202,6 +216,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
         self.selectplan.isEnabled = false
         self.selectdayofweek.isEnabled = false
+        self.cleanlogsbutton.isEnabled = false
         self.snapshotlogsandcatalogs = nil
         self.dayofweek.isHidden = true
         self.lastorevery.isHidden = true
@@ -280,6 +295,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                 self.reloadtabledata()
             }
         }
+        self.cleanlogsbutton.isEnabled = false
     }
 
     func getsourcebyindex(index: Int) {
@@ -374,6 +390,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             }
         } else {
             self.deletebutton.isEnabled = true
+            self.cleanlogsbutton.isEnabled = true
             self.snapshotlogsandcatalogs?.processTermination()
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
