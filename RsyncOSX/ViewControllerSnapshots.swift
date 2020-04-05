@@ -187,6 +187,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()[index] {
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
+                    self.cleanlogsbutton.isEnabled = false
                     _ = DeleteSnapshotLogs(config: config)
                 }
             }
