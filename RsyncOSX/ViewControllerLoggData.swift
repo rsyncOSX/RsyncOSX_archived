@@ -104,7 +104,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     private func selectednumber() -> String {
-        if let number = self.scheduleloggdata?.loggdata?.filter({ ($0.value(forKey: "deleteCellID") as? Int)! == 1 }).count {
+        if let number = self.scheduleloggdata?.loggdata?.filter({ ($0.value(forKey: "deleteCellID") as? Int) == 1 }).count {
             return String(number)
         } else {
             return "0"
