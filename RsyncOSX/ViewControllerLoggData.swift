@@ -92,6 +92,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func deletealllogs(_: NSButton) {
+        guard self.selectednumber() != "0" else { return }
         let question: String = NSLocalizedString("Delete", comment: "Logg")
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Logg")
         let dialog: String = NSLocalizedString("Delete", comment: "Logg")

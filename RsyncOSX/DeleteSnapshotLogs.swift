@@ -31,6 +31,7 @@ extension DeleteSnapshotLogs: UpdateProgress {
     func processTermination() {
         self.snapshotlogsandcatalogs?.processTermination()
         self.snapshotlogsandcatalogs?.scheduleloggdata?.align(snapshotlogsandcatalogs: self.snapshotlogsandcatalogs)
+        guard self.selectednumber() != "0" else { return }
         let question: String = NSLocalizedString("Delete", comment: "Logg")
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Logg")
         let dialog: String = NSLocalizedString("Delete", comment: "Logg")
