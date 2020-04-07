@@ -50,9 +50,6 @@
 /* Close NSAlert */
 "Close" = "Lukk";
 
-/* Remote info */
-"Completed" = "Utført";
-
 /* Verify */
 "Completed ..." = "Utført ...";
 
@@ -63,7 +60,7 @@
 "Copy single files or directory?" = "Gjenopprett fil eller katalog?";
 
 /* copyright */
-"Copyright ©2020 Thomas Evensen" = "Copyright ©2020 Thomas Evensen";
+"Copyright ©2020 Thomas Evensen" = "Opphavsrett ©2020 Thomas Evensen";
 
 /* main */
 "daily" = "daglig";
@@ -124,6 +121,9 @@
 
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
+
+/* Remote info */
+"Estimation completed" = "Estimering ferdig";
 
 /* plan */
 "every" = "alle";

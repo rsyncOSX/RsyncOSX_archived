@@ -50,9 +50,6 @@
 /* Close NSAlert */
 "Close" = "Schließen";
 
-/* Remote info */
-"Completed" = "Abgeschlossen";
-
 /* Verify */
 "Completed ..." = "Abgeschlossen ...";
 
@@ -70,7 +67,7 @@
 
 /* Remote Info
    Verify */
-"Date last synchronize:" = "Date last synchronize:";
+"Date last synchronize:" = "Datum der letzten Synchronisierung:";
 
 /* datetime */
 "days" = "tage";
@@ -124,6 +121,9 @@
 
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEHLER: kein rsync in /usr/local/bin";
+
+/* Remote info */
+"Estimation completed" = "Schätzung abgeschlossen";
 
 /* plan */
 "every" = "jede";
@@ -226,7 +226,7 @@
 "Not a remote task, use Finder to copy files..." = "Keine entfernte Aufgabe, verwenden Sie Finder um Dateien zu kopieren...";
 
 /* Snapshots */
-"Not a snapshot task..." = "Not a snapshot task...";
+"Not a snapshot task..." = "Keine snapshot aufgabe...";
 
 /* AllProfiles */
 "Number of configurations:" = "Anzahl der Konfigurationen:";
@@ -268,7 +268,7 @@
 "Restore" = "Wiederherstellen";
 
 /* Restore */
-"Restore completed..." = "Restore completed...";
+"Restore completed..." = "Wiederherstellung abgeschlossen...";
 
 /* plan */
 "Saturday" = "Samstag";
@@ -292,7 +292,7 @@
 "Select a task...." = "Aufgabe auswählen....";
 
 /* Execute */
-"Select one or more tasks..." = "Select one or more tasks...";
+"Select one or more tasks..." = "Wählen Sie eine oder mehrere Kanten aus...";
 
 /* Logg */
 "Selected logs:" = "Ausgewählte Logs:";
@@ -307,7 +307,7 @@
 "Source catalog:" = "Quellkatalog:";
 
 /* Restore */
-"Start" = "Start";
+"Start" = "Anfang";
 
 /* Restore */
 "Start getting files?" = "Starte das Abrufen von Dateien?";
