@@ -169,6 +169,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9lf-HS-UMZ"; */
 "9lf-HS-UMZ.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "Clean"; ObjectID = "9M9-sO-FL8"; */
+"9M9-sO-FL8.title" = "Slette";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9Mv-yV-TZr"; */
 "9Mv-yV-TZr.title" = "Text Cell";
 
@@ -585,9 +588,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "New"; ObjectID = "GiH-5F-U37"; */
 "GiH-5F-U37.headerCell.title" = "Ny";
-
-/* Class = "NSButtonCell"; title = "Stop all"; ObjectID = "gih-MT-omN"; */
-"gih-MT-omN.title" = "Stopp alt";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "gJb-lQ-0wt"; */
 "gJb-lQ-0wt.title" = "Text Cell";
@@ -1168,6 +1168,9 @@
 /* Class = "NSTextFieldCell"; title = "number of days last backup:"; ObjectID = "TdE-t5-FjR"; */
 "TdE-t5-FjR.title" = "Antall dager siste backup:";
 
+/* Class = "NSBox"; title = "Clean logs"; ObjectID = "TdG-P7-1ai"; */
+"TdG-P7-1ai.title" = "Slette logger";
+
 /* Class = "NSTextFieldCell"; title = "scp dsa pub key:"; ObjectID = "Tes-Z8-BIj"; */
 "Tes-Z8-BIj.title" = "scp dsa pub key:";
 
@@ -1230,9 +1233,6 @@
 
 /* Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF"; */
 "uUH-RU-JKF.title" = "Slette parametre";
-
-/* Class = "NSButtonCell"; title = "Delete all"; ObjectID = "Uvm-NK-TNr"; */
-"Uvm-NK-TNr.title" = "Slett alt";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Uye-5c-buD"; */
 "Uye-5c-buD.title" = "Text Cell";

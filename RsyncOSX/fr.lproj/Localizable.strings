@@ -50,9 +50,6 @@
 /* Close NSAlert */
 "Close" = "Fermer";
 
-/* Remote info */
-"Completed" = "Terminé";
-
 /* Verify */
 "Completed ..." = "Terminé...";
 
@@ -124,6 +121,9 @@
 
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "ERREUR : pas de rsync dans /usr/local/bin";
+
+/* Remote info */
+"Estimation completed" = "Estimation completed";
 
 /* plan */
 "every" = "tous les";
