@@ -229,7 +229,7 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
         }
         self.progress.stopAnimation(nil)
         self.progress.isHidden = true
-        self.count.stringValue = NSLocalizedString("Completed", comment: "Remote info")
+        self.count.stringValue = NSLocalizedString("Estimation completed", comment: "Remote info") + "..."
         self.count.textColor = setcolor(nsviewcontroller: self, color: .green)
         self.selected = true
         self.enableexecutebutton()
