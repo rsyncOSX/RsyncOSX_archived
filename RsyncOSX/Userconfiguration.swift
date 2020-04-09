@@ -102,6 +102,13 @@ struct Userconfiguration {
                 ViewControllerReference.shared.haltonerror = false
             }
         }
+        if let deletelogssnapshot = dict.value(forKey: "deletelogssnapshot") as? Int {
+            if deletelogssnapshot == 1 {
+                ViewControllerReference.shared.deletelogssnapshot = true
+            } else {
+                ViewControllerReference.shared.deletelogssnapshot = false
+            }
+        }
     }
 
     init(userconfigRsyncOSX: [NSDictionary]) {
