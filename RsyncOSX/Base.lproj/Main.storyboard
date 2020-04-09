@@ -1492,14 +1492,14 @@
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7e-xQ-29b">
-                                <rect key="frame" x="20" y="151" width="438" height="224"/>
+                                <rect key="frame" x="20" y="106" width="438" height="269"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="gHo-3J-zvO">
-                                    <rect key="frame" x="1" y="0.0" width="436" height="223"/>
+                                    <rect key="frame" x="1" y="0.0" width="436" height="268"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" headerView="sAi-10-WNr" id="Gyz-fh-gfZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="436" height="198"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="436" height="243"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1570,29 +1570,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GEP-2h-OHy">
-                                <rect key="frame" x="21" y="99" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Clean" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9M9-sO-FL8">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deletelogs:" target="fiO-Ux-xlw" id="Ym0-Wn-Zqg"/>
-                                </connections>
-                            </button>
-                            <box fixedFrame="YES" title="Clean logs" translatesAutoresizingMaskIntoConstraints="NO" id="TdG-P7-1ai">
-                                <rect key="frame" x="17" y="96" width="198" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="kiC-yo-SUZ">
-                                    <rect key="frame" x="3" y="3" width="192" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="cleanlogsbutton" destination="GEP-2h-OHy" id="xwL-Ic-itv"/>
                         <outlet property="dayofweek" destination="zfd-n6-8hC" id="o06-Mb-ynB"/>
                         <outlet property="deletebutton" destination="3FX-cL-s70" id="GY1-es-2oV"/>
                         <outlet property="deletesnapshots" destination="IPi-Xv-Xr2" id="dAa-jb-0AZ"/>
@@ -1613,7 +1593,7 @@
                 </viewController>
                 <customObject id="Ryh-dP-c0c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921" y="723.5"/>
+            <point key="canvasLocation" x="1719" y="723.5"/>
         </scene>
         <!--Restore-->
         <scene sceneID="eWC-14-5oE">
@@ -3210,13 +3190,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="131"/>
+                                <rect key="frame" x="20" y="61" width="656" height="85"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="130"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="84"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="107"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="61"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
