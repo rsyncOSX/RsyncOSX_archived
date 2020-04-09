@@ -67,7 +67,7 @@
 
 /* Remote Info
    Verify */
-"Date last synchronize:" = "Date last synchronize:";
+"Date last synchronize:" = "Jours écoulés depuis la dernière synchronisation :";
 
 /* datetime */
 "days" = "Jours";
@@ -123,7 +123,7 @@
 "ERROR: no rsync in /usr/local/bin" = "ERREUR : pas de rsync dans /usr/local/bin";
 
 /* Remote info */
-"Estimation completed" = "Estimation completed";
+"Estimation completed" = "Estimation complétée";
 
 /* plan */
 "every" = "tous les";
@@ -162,7 +162,7 @@
 "hours" = "heures";
 
 /* icon */
-"Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
+"Icon by: Zsolt Sándor" = "Icône par : Zsolt Sándor";
 
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Traduction italienne par: Stefano Steve Cutelle'";
@@ -268,7 +268,7 @@
 "Restore" = "Restaurer";
 
 /* Restore */
-"Restore completed..." = "Restore completed...";
+"Restore completed..." = "Restauration complète...";
 
 /* plan */
 "Saturday" = "Samedi";
@@ -292,7 +292,7 @@
 "Select a task...." = "Sélectionnez une tâche....";
 
 /* Execute */
-"Select one or more tasks..." = "Select one or more tasks...";
+"Select one or more tasks..." = "Sélectionnez une ou plusieurs équipes...";
 
 /* Logg */
 "Selected logs:" = "Journaux sélectionnés:";
