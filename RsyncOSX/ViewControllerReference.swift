@@ -98,7 +98,7 @@ final class ViewControllerReference {
     // Halt on error
     var haltonerror: Bool = false
     // delete snapshotlogs
-    var deletelogssnapshot: Bool = true
+    var deletelogssnapshot: Bool = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
