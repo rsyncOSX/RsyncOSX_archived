@@ -47,6 +47,9 @@
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "翻译中文(简体)：StringKe";
 
+/* Snapshots */
+"Cleaning logs completed..." = "Cleaning logs completed...";
+
 /* Close NSAlert */
 "Close" = "关闭";
 

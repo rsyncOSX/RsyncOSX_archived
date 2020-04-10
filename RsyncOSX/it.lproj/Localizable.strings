@@ -36,7 +36,7 @@
 "Cancel or Delete" = "Annulla oppure elimina";
 
 /* Restore */
-"Cancel or Restore" = "Cancel or Restore";
+"Cancel or Restore" = "Annulla o ripristina";
 
 /* Restore */
 "Cannot copy from a syncremote task..." = "Impossibile copiare da un' attività di sync remota...";
@@ -46,6 +46,9 @@
 
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "Traduzione cinese (Semplificata) da: StringKe";
+
+/* Snapshots */
+"Cleaning logs completed..." = "Pulizia log completata...";
 
 /* Close NSAlert */
 "Close" = "Chiudi";
@@ -123,7 +126,7 @@
 "ERROR: no rsync in /usr/local/bin" = "ERRORE: non trovo rsync in /usr/local/bin";
 
 /* Remote info */
-"Estimation completed" = "Estimation completed";
+"Estimation completed" = "Stima completata";
 
 /* plan */
 "every" = "ogni";
@@ -162,7 +165,7 @@
 "hours" = "ore";
 
 /* icon */
-"Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
+"Icon by: Zsolt Sándor" = "Icona da: Zsolt Sándor";
 
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Traduzione italiana di: Stefano Steve Cutelle'";
@@ -232,16 +235,16 @@
 "Number of configurations:" = "Numero di configurazioni:";
 
 /* Logg */
-"Number of logs:" = "Number of logs:";
+"Number of logs:" = "Numero di log:";
 
 /* Restore */
-"Number of remote files:" = "Number of remote files:";
+"Number of remote files:" = "Numero di file remoti:";
 
 /* Remote info */
-"Number of tasks to estimate:" = "Number of tasks to estimate:";
+"Number of tasks to estimate:" = "Numero di attività da stimare:";
 
 /* Snapshots */
-"Number snapshots:" = "Number snapshots:";
+"Number snapshots:" = "Numero istantanee:";
 
 /* main */
 "once" = "una sola volta";
@@ -268,7 +271,7 @@
 "Restore" = "Ripristina";
 
 /* Restore */
-"Restore completed..." = "Restore completed...";
+"Restore completed..." = "Ripristino completato...";
 
 /* plan */
 "Saturday" = "Sabato";
@@ -292,7 +295,7 @@
 "Select a task...." = "Seleziona Attività....";
 
 /* Execute */
-"Select one or more tasks..." = "Select one or more tasks...";
+"Select one or more tasks..." = "Seleziona una o più attività...";
 
 /* Logg */
 "Selected logs:" = "Logs selezionati:";
