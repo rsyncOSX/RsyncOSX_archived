@@ -580,3 +580,9 @@ extension ViewControllerSnapshots: GetSelecetedIndex {
         return self.index
     }
 }
+
+extension ViewControllerSnapshots: Informdeletelogssnapshot {
+    func informdeletelogssnapshot() {
+        self.info.stringValue = Infosnapshots().info(num: 7)
+    }
+}
