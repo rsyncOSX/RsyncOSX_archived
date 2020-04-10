@@ -9,8 +9,13 @@
 
 import Foundation
 
+protocol Informdeletelogssnapshot: AnyObject {
+    func informdeletelogssnapshot()
+}
+
 final class DeleteSnapshotLogs: SetSchedules {
     var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
+    weak var infodeletelogssnapshotDelegate: Informdeletelogssnapshot?
 
     private func selectednumber() -> String {
         if let number = self.snapshotlogsandcatalogs?.scheduleloggdata?.loggdata?.filter({ ($0.value(forKey: "deleteCellID") as? Int) == 1 }).count {
@@ -22,6 +27,7 @@ final class DeleteSnapshotLogs: SetSchedules {
 
     init(config: Configuration?) {
         if let config = config {
+            self.infodeletelogssnapshotDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
             self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true, updateprogress: self)
         }
     }
@@ -33,6 +39,7 @@ extension DeleteSnapshotLogs: UpdateProgress {
         self.snapshotlogsandcatalogs?.scheduleloggdata?.align(snapshotlogsandcatalogs: self.snapshotlogsandcatalogs)
         guard self.selectednumber() != "0" else { return }
         self.schedules?.deleteselectedrows(scheduleloggdata: self.snapshotlogsandcatalogs?.scheduleloggdata)
+        self.infodeletelogssnapshotDelegate?.informdeletelogssnapshot()
     }
 
     func fileHandler() {

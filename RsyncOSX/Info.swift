@@ -113,6 +113,7 @@ struct Infosnapshots {
     let info54: String = NSLocalizedString("Seriously, enter a real number...", comment: "Snapshots")
     let info55: String = NSLocalizedString("You cannot delete that many, max are", comment: "Snapshots")
     let info34: String = NSLocalizedString("Seems not to be connected...", comment: "Copy files")
+    let info56: String = NSLocalizedString("Cleaning logs completed...", comment: "Snapshots")
 
     // snapshots
     func info(num: Int) -> String {
@@ -129,6 +130,8 @@ struct Infosnapshots {
             return self.info55
         case 6:
             return self.info34
+        case 7:
+            return self.info56
         default:
             return ""
         }
