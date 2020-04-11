@@ -377,6 +377,9 @@ extension ViewControllerSnapshots: UpdateProgress {
                     } else {
                         vc.processTermination()
                     }
+                    if ViewControllerReference.shared.deletelogssnapshot == true {
+                        self.deletelogssnapshot()
+                    }
                 } else {
                     vc.fileHandler()
                 }
@@ -392,9 +395,6 @@ extension ViewControllerSnapshots: UpdateProgress {
             _ = Tagsnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
             globalMainQueue.async { () -> Void in
                 self.snapshotstableView.reloadData()
-            }
-            if ViewControllerReference.shared.deletelogssnapshot == true {
-                self.deletelogssnapshot()
             }
         }
     }
