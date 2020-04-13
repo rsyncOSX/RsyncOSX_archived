@@ -108,10 +108,10 @@
 "Destination catalog:" = "Lokal katalog:";
 
 /* Snapshots */
-"Do you REALLY want to DELETE selected snapshots?" = "Vil du VIRKELIG SLETTE valgte snapshot?";
+"Do you REALLY want to delete selected snapshots" = "Vil du VIRKELIG slette valgte snapshot";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vil du VIRKELIG utføre en GJENOPPRETT?";
+"Do you REALLY want to start a restore?" = "Vil du VIRKELIG utføre en gjenopprett?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
