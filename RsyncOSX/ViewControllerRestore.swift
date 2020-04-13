@@ -171,7 +171,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.presentAsSheet(self.viewControllerProgress!)
         }
         // self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
-        print("Execute restore files")
+        self.info.stringValue = "Execute restore files"
         self.outputprocess = self.restorefilestask?.outputprocess
     }
 
@@ -322,12 +322,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
-                    print("Execute FULL restore to TMP")
+                    self.info.stringValue = "Execute FULL restore to TMP"
                 } else {
                     // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
-                    print("Execute FULL restore to SOURCE")
+                    self.info.stringValue = "Execute FULL restore to SOURCE"
                 }
             }
         }
