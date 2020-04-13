@@ -108,10 +108,10 @@
 "Destination catalog:" = "Cartella di destinazione:";
 
 /* Snapshots */
-"Do you REALLY want to DELETE selected snapshots?" = "Vuoi VERAMENTE ELIMINARE le istantanee selezionate?";
+"Do you REALLY want to delete selected snapshots" = "Vuoi VERAMENTE eliminare le istantanee selezionate";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "Vuoi VERAMENTE AVVIARE il RIPRISTINO?";
+"Do you REALLY want to start a restore?" = "Vuoi veramente avviare il ripristino?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Non cambiare il numero istantanee se non sai cosa stai facendo...";

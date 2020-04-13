@@ -340,7 +340,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func executefullrestore() {
         guard self.checkforrsync() == false else { return }
         guard self.checkforfullrestore() == true else { return }
-        let question: String = NSLocalizedString("Do you REALLY want to start a RESTORE ?", comment: "Restore")
+        let question: String = NSLocalizedString("Do you REALLY want to start a restore?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)

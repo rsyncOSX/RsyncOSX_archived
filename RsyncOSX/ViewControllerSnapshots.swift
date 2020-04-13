@@ -163,7 +163,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_: NSButton) {
         guard self.snapshotlogsandcatalogs != nil else { return }
-        let question: String = NSLocalizedString("Do you REALLY want to DELETE selected snapshots?", comment: "Snapshots")
+        let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: "selectCellID") as? Int) == 1 }.count
+        let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
         let dialog: String = NSLocalizedString("Delete", comment: "Snapshots")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)

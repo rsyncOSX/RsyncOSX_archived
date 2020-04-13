@@ -108,10 +108,10 @@
 "Destination catalog:" = "目标目录：";
 
 /* Snapshots */
-"Do you REALLY want to DELETE selected snapshots?" = "您是否希望删除选中的快照？";
+"Do you REALLY want to delete selected snapshots" = "您是否希望删除选中的快照";
 
 /* Restore */
-"Do you REALLY want to start a RESTORE ?" = "你真的想要重新开始吗？";
+"Do you REALLY want to start a restore?" = "你真的想要重新开始吗?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "如果您不知道正在做什么，请不要更改快照号码...";
