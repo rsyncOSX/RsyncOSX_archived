@@ -249,12 +249,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 if let dict = self.snapshotlogsandcatalogs?.snapshotslogs?[index] {
-                    self.hiddenID = dict.value(forKey: "hiddenID") as? Int
-                    guard self.hiddenID != nil else { return }
-                    self.index = self.configurations?.getIndex(hiddenID!)
                     self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
                     let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: "selectCellID") as? Int) == 1 }.count
                     self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(num ?? 0)
+                    self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+                    guard self.hiddenID != nil else { return }
+                    self.index = self.configurations?.getIndex(hiddenID!)
                 }
             } else {
                 self.index = nil
