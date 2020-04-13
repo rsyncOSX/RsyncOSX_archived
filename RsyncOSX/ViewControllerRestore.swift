@@ -154,7 +154,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func reset() {
-        self.index = nil
         self.restoretabledata = nil
         self.restorefilestask = nil
         self.fullrestoretask = nil
@@ -252,6 +251,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 self.index = index
+                guard self.restoreactions?.restorefiles ?? false else { return }
                 self.restoreactions?.index = true
                 self.prepareforfilesrestoreandandgetremotefilelist()
             } else {
@@ -364,19 +364,23 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         } else {
             self.restoreactions?.tmprestorepathselected = false
         }
+        self.reset()
     }
 
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
         self.reset()
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
+            self.restoreactions?.restorefiles = true
             self.prepareforfilesrestoreandandgetremotefilelist()
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             self.restoretabledata = nil
             self.restoreactions?.fullrestore = true
+            self.restoreactions?.restorefiles = false
             self.restoreactions?.tmprestorepathselected = true
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .off {
             self.restoretabledata = nil
             self.restoreactions?.fullrestore = true
+            self.restoreactions?.restorefiles = false
             self.restoreactions?.tmprestorepathselected = false
         }
         globalMainQueue.async { () -> Void in
