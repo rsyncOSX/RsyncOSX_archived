@@ -18,6 +18,24 @@ protocol Updateremotefilelist: AnyObject {
     func updateremotefilelist()
 }
 
+struct RestoreActions {
+    // Restore to tmp restorepath selected and verified
+    var tmprestorepathverified: Bool = false
+    var tmprestorepathselected: Bool = false
+    // Index for restore selected
+    var index: Bool = false
+    // Estimated or restored
+    var estimated: Bool = false
+    var restored: Bool = false
+    // Type of restore
+    var fullrestore: Bool = false
+    var restorefiles: Bool = false
+    
+    init(closure:()-> Bool) {
+        self.tmprestorepathverified = closure()
+    }
+}
+
 class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
     var restorefilestask: RestorefilesTask?
     var fullrestoretask: FullrestoreTask?
@@ -29,6 +47,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var maxcount: Int = 0
     weak var outputeverythingDelegate: ViewOutputDetails?
     var process: Process?
+    
+    var restoreactions: RestoreActions?
 
     @IBOutlet var info: NSTextField!
     @IBOutlet var restoretableView: NSTableView!
@@ -80,6 +100,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.working.stopAnimation(nil)
         self.process?.terminate()
         self.reset()
+        // Restore state
+        self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
     }
 
     override func viewDidLoad() {
@@ -111,6 +133,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
         self.settmprestorepathfromuserconfig()
         self.reset()
+        // Restore state
+        self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
     }
 
     override func viewDidDisappear() {
@@ -473,5 +497,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
         self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
+        // Restore state
+        self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
     }
 }

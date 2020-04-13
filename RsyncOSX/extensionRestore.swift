@@ -140,6 +140,8 @@ extension ViewControllerRestore: NewProfile {
         }
         self.restoretabledata = nil
         self.reset()
+        // Restore state
+        self.restoreactions = RestoreActions()
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
             self.rsynctableView.reloadData()
