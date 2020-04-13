@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length cyclomatic_complexity file_length function_body_length
+// swiftlint:disable line_length type_body_length cyclomatic_complexity file_length
 
 import Cocoa
 import Foundation
@@ -43,18 +43,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet var enableenvironment: NSButton!
     @IBOutlet var togglecheckdatabutton: NSButton!
     @IBOutlet var haltonerror: NSButton!
-    @IBOutlet var deletelogssnapshot: NSButton!
-
-    @IBAction func tooggledeletelogssnapshot(_: NSButton) {
-        if ViewControllerReference.shared.deletelogssnapshot {
-            self.deletelogssnapshot.state = .off
-            ViewControllerReference.shared.deletelogssnapshot = false
-        } else {
-            self.deletelogssnapshot.state = .on
-            ViewControllerReference.shared.deletelogssnapshot = true
-        }
-        self.setdirty()
-    }
 
     @IBAction func togglehaltonerror(_: NSButton) {
         if ViewControllerReference.shared.haltonerror {
@@ -384,11 +372,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.haltonerror.state = .on
         } else {
             self.haltonerror.state = .off
-        }
-        if ViewControllerReference.shared.deletelogssnapshot {
-            self.deletelogssnapshot.state = .on
-        } else {
-            self.deletelogssnapshot.state = .off
         }
     }
 }

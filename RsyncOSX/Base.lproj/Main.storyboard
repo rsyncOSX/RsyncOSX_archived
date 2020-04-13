@@ -3190,13 +3190,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="223"/>
+                                <rect key="frame" x="20" y="61" width="656" height="177"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="222"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="176"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="153"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3673,32 +3673,10 @@ DQ
                                     </subviews>
                                 </view>
                             </box>
-                            <box fixedFrame="YES" title="Clean logs snapshot" translatesAutoresizingMaskIntoConstraints="NO" id="q4N-mY-3Gy">
-                                <rect key="frame" x="207" y="16" width="310" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="gC4-cW-8F9">
-                                    <rect key="frame" x="3" y="3" width="304" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IHS-5E-69R">
-                                            <rect key="frame" x="9" y="7" width="287" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Clean logs snapshot" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Rhe-Ys-723">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="tooggledeletelogssnapshot:" target="Psw-ga-cgO" id="rGU-I3-Rth"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                            </box>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="automaticexecutelocalvolumes" destination="crt-kf-oG4" id="j8r-bh-Wdj"/>
-                        <outlet property="deletelogssnapshot" destination="IHS-5E-69R" id="a5K-58-vt7"/>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
                         <outlet property="enableenvironment" destination="I07-48-scn" id="dHw-8Z-G8I"/>
                         <outlet property="environment" destination="9fS-yY-5No" id="AOY-QT-JFC"/>

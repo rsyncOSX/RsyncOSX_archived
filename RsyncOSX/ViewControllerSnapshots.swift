@@ -179,16 +179,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    func deletelogssnapshot() {
-        if let index = self.index {
-            let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
-            guard hiddenID > -1 else { return }
-            if let config = self.configurations?.getConfigurations()[index] {
-                _ = DeleteSnapshotLogs(config: config)
-            }
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.snapshotstableView.delegate = self
@@ -583,11 +573,5 @@ extension ViewControllerSnapshots: OpenQuickBackup {
 extension ViewControllerSnapshots: GetSelecetedIndex {
     func getindex() -> Int? {
         return self.index
-    }
-}
-
-extension ViewControllerSnapshots: Informdeletelogssnapshot {
-    func informdeletelogssnapshot() {
-        self.info.stringValue = Infosnapshots().info(num: 7)
     }
 }
