@@ -25,7 +25,7 @@ final class FullrestoreTask: SetConfigurations {
                 self.arguments = self.configurations?.arguments4tmprestore(index: index, argtype: .argdryRun)
                 let lastindex = (self.arguments?.count ?? 0) - 1
                 guard lastindex > -1 else { return }
-                self.arguments?[lastindex] = ViewControllerReference.shared.restorepath ?? ""
+                self.arguments?[lastindex] = ViewControllerReference.shared.temporarypathforrestore ?? ""
             } else {
                 self.arguments = self.configurations?.arguments4restore(index: index, argtype: .argdryRun)
             }
@@ -34,7 +34,7 @@ final class FullrestoreTask: SetConfigurations {
                 self.arguments = self.configurations?.arguments4tmprestore(index: index, argtype: .arg)
                 let lastindex = (self.arguments?.count ?? 0) - 1
                 guard lastindex > -1 else { return }
-                self.arguments?[lastindex] = ViewControllerReference.shared.restorepath ?? ""
+                self.arguments?[lastindex] = ViewControllerReference.shared.temporarypathforrestore ?? ""
             } else {
                 self.arguments = self.configurations?.arguments4restore(index: index, argtype: .arg)
             }

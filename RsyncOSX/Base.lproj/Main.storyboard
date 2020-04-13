@@ -1924,7 +1924,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cxS-GF-CTb">
-                                <rect key="frame" x="471" y="49" width="99" height="32"/>
+                                <rect key="frame" x="468" y="49" width="99" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Estimate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LYX-2x-fHX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1935,7 +1935,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Of-dZ-euK">
-                                <rect key="frame" x="471" y="23" width="99" height="32"/>
+                                <rect key="frame" x="468" y="23" width="99" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Restore" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="i4K-NF-VbI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1962,6 +1962,16 @@
                                 <view key="contentView" id="qIX-NT-Bll">
                                     <rect key="frame" x="3" y="3" width="231" height="87"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3b-Cd-o7E">
+                                            <rect key="frame" x="215" y="15" width="14" height="13"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="NUT-6u-GCA">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
                                 </view>
                             </box>
                             <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5J-cK-ajI">
@@ -1985,13 +1995,12 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="estimatebutton" destination="cxS-GF-CTb" id="fLv-x8-Xtx"/>
                         <outlet property="filesrestoreradiobutton" destination="sUL-jc-1UR" id="pdv-jl-M9h"/>
                         <outlet property="fullrestoreradiobutton" destination="5tA-hk-2a7" id="RqS-pt-27g"/>
                         <outlet property="info" destination="gTy-bz-0lk" id="pcJ-f5-nib"/>
                         <outlet property="profilepopupbutton" destination="I5J-cK-ajI" id="ydd-6g-Sj2"/>
                         <outlet property="remotefiles" destination="1ES-5z-SmE" id="WZe-oK-FUr"/>
-                        <outlet property="restorebutton" destination="4Of-dZ-euK" id="Ing-bq-LZx"/>
+                        <outlet property="restoreisverified" destination="i3b-Cd-o7E" id="Dug-Hh-oNz"/>
                         <outlet property="restoretableView" destination="FOY-xS-bUA" id="Iy8-O7-aFx"/>
                         <outlet property="rsynctableView" destination="G94-d4-ATU" id="Lyz-an-dqk"/>
                         <outlet property="search" destination="D7K-Le-RDk" id="jB3-Yw-FoO"/>
@@ -3190,13 +3199,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="177"/>
+                                <rect key="frame" x="20" y="61" width="656" height="131"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="176"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="130"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="153"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="107"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3287,7 +3296,7 @@ DQ
                 </viewController>
                 <customObject id="pTw-WO-ehj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292" y="1741.5"/>
+            <point key="canvasLocation" x="-290" y="1718"/>
         </scene>
         <!--Progress-->
         <scene sceneID="u6v-Zu-TpF">

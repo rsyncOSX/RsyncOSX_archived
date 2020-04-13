@@ -89,10 +89,10 @@ extension ViewControllerRestore: UpdateProgress {
         } else {
             let number = Numbers(outputprocess: self.outputprocess)
             self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            self.restorebutton.isEnabled = true
-            self.estimatebutton.isEnabled = false
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal) + ", " + NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal) + " kB"
+            self.restoreisverified.image = #imageLiteral(resourceName: "green")
+            self.restoreactions?.estimated = true
         }
         self.working.stopAnimation(nil)
     }
@@ -140,8 +140,6 @@ extension ViewControllerRestore: NewProfile {
         }
         self.restoretabledata = nil
         self.reset()
-        // Restore state
-        self.restoreactions = RestoreActions()
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
             self.rsynctableView.reloadData()
