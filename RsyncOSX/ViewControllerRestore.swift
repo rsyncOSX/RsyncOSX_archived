@@ -24,9 +24,8 @@ struct RestoreActions {
     var tmprestorepathselected: Bool = true
     // Index for restore selected
     var index: Bool = false
-    // Estimated or restored
+    // Estimated
     var estimated: Bool = false
-    var restored: Bool = false
     // Type of restore
     var fullrestore: Bool = false
     var restorefiles: Bool = true
@@ -35,6 +34,21 @@ struct RestoreActions {
 
     init(closure: () -> Bool) {
         self.tmprestorepathverified = closure()
+    }
+
+    func goforfullrestoretotemporarypath() -> Bool {
+        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.fullrestore else { return false }
+        return true
+    }
+
+    func goforfullrestore() -> Bool {
+        guard self.tmprestorepathselected == false, self.index, self.estimated, self.fullrestore else { return false }
+        return true
+    }
+
+    func goforrestorefilestotemporarypath() -> Bool {
+        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.restorefiles, self.remotefileverified else { return false }
+        return true
     }
 }
 
@@ -130,6 +144,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.rsynctableView.reloadData()
         }
         self.reset()
+        self.filesrestoreradiobutton.state = .on
         self.settmprestorepathfromuserconfig()
     }
 
@@ -144,8 +159,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restorefilestask = nil
         self.fullrestoretask = nil
         self.info.stringValue = ""
-        self.filesrestoreradiobutton.state = .on
-        self.fullrestoreradiobutton.state = .off
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
         self.restoreisverified.image = #imageLiteral(resourceName: "red")
@@ -153,32 +166,26 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     // Restore files
     func executerestorefiles() {
+        guard self.restoreactions?.goforrestorefilestotemporarypath() ?? false else { return }
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProgress!)
         }
-        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
-        self.outputprocess = self.restorefilestask?.outputprocess
-    }
-
-    func estimaterestorefiles() {
-        self.working.startAnimation(nil)
-        self.enabledisableradiobuttons(enable: false)
-        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
+        // self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
+        print("Execute restore files")
         self.outputprocess = self.restorefilestask?.outputprocess
     }
 
     func prepareforfilesrestoreandandgetremotefilelist() {
+        guard self.checkforgetremotefiles() else { return }
         if let index = self.index {
             self.info.stringValue = Inforestore().info(num: 0)
             self.remotefiles.stringValue = ""
             let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
             if self.configurations?.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
-                self.enabledisableradiobuttons(enable: false)
                 self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.process = self.remotefilelist?.getProcess()
                 self.working.startAnimation(nil)
-                self.enabledisableradiobuttons(enable: false)
                 self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
             } else {
                 let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
@@ -186,12 +193,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 let dialog: String = NSLocalizedString("Start", comment: "Restore")
                 let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
                 if answer {
-                    self.enabledisableradiobuttons(enable: false)
                     self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                     self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                     self.process = remotefilelist?.getProcess()
                     self.working.startAnimation(nil)
-                    self.enabledisableradiobuttons(enable: false)
                     self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
                 } else {
                     self.reset()
@@ -201,6 +206,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func checkforgetremotefiles() -> Bool {
+        guard self.checkforrsync() == false else { return false }
         if let index = self.index {
             guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
                 self.info.stringValue = Inforestore().info(num: 4)
@@ -245,14 +251,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                if index != self.index {
-                    self.reset()
-                    globalMainQueue.async { () -> Void in
-                        self.restoretableView.reloadData()
-                    }
-                }
                 self.index = index
-                guard self.checkforgetremotefiles() == true else { return }
+                self.restoreactions?.index = true
                 self.prepareforfilesrestoreandandgetremotefilelist()
             } else {
                 self.reset()
@@ -272,32 +272,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             self.working.startAnimation(nil)
-            self.enabledisableradiobuttons(enable: false)
             self.restorefilestask?.executecopyfiles(remotefile: remotefiles?.stringValue ?? "", localCatalog: tmprestorepath?.stringValue ?? "", dryrun: false, updateprogress: self)
-        }
-    }
-
-    // Estimate for full restore
-    func estimatefullrestore() {
-        guard self.checkforrsync() == false else { return }
-        guard self.checkforfullrestore() == true else { return }
-        if let index = self.index {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
-            self.info.stringValue = gotit
-            self.info.isHidden = false
-            self.working.startAnimation(nil)
-            self.enabledisableradiobuttons(enable: false)
-            if ViewControllerReference.shared.temporarypathforrestore != nil, self.selecttmptorestore.state == .on {
-                self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
-                self.outputprocess = self.fullrestoretask?.outputprocess
-                self.process = fullrestoretask?.getProcess()
-            } else {
-                self.selecttmptorestore.state = .off
-                self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: false, updateprogress: self)
-                self.outputprocess = self.fullrestoretask?.outputprocess
-                self.process = fullrestoretask?.getProcess()
-            }
         }
     }
 
@@ -320,6 +295,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func executefullrestore() {
+        switch self.selecttmptorestore.state {
+        case .on:
+            guard self.restoreactions?.goforfullrestoretotemporarypath() ?? false else { return }
+        case .off:
+            guard self.restoreactions?.goforfullrestore() ?? false else { return }
+        default:
+            return
+        }
         let question: String = NSLocalizedString("Do you REALLY want to start a restore?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
@@ -338,10 +321,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
+                    print("Execute FULL restore to TMP")
                 case .off:
                     // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
+                    print("Execute FULL restore to SOURCE")
                 default:
                     return
                 }
@@ -383,6 +368,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
+        self.reset()
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             self.prepareforfilesrestoreandandgetremotefilelist()
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
@@ -393,9 +379,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restoretabledata = nil
             self.restoreactions?.fullrestore = true
             self.restoreactions?.tmprestorepathselected = false
-        } else {
-            self.reset()
-            self.info.stringValue = Inforestore().info(num: 1)
         }
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
@@ -411,16 +394,32 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @IBAction func estimate(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
         if self.fullrestoreradiobutton.state == .on {
-            self.estimatefullrestore()
+            guard self.checkforfullrestore() == true else { return }
+            if let index = self.index {
+                self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+                let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
+                self.info.stringValue = gotit
+                self.info.isHidden = false
+                self.working.startAnimation(nil)
+                if ViewControllerReference.shared.temporarypathforrestore != nil, self.selecttmptorestore.state == .on {
+                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
+                    self.outputprocess = self.fullrestoretask?.outputprocess
+                    self.process = fullrestoretask?.getProcess()
+                } else {
+                    self.selecttmptorestore.state = .off
+                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: false, updateprogress: self)
+                    self.outputprocess = self.fullrestoretask?.outputprocess
+                    self.process = fullrestoretask?.getProcess()
+                }
+            }
         } else {
-            self.estimaterestorefiles()
+            guard self.restoreactions?.remotefileverified ?? false else { return }
+            self.working.startAnimation(nil)
+            self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
+            self.outputprocess = self.restorefilestask?.outputprocess
         }
-    }
-
-    func enabledisableradiobuttons(enable: Bool) {
-        self.fullrestoreradiobutton.isEnabled = enable
-        self.filesrestoreradiobutton.isEnabled = enable
     }
 
     func initpopupbutton() {

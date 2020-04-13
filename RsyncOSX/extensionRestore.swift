@@ -80,7 +80,6 @@ extension ViewControllerRestore: NSTableViewDelegate {
 
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
-        self.enabledisableradiobuttons(enable: true)
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.processTermination()
             self.reset()
@@ -166,7 +165,6 @@ extension ViewControllerRestore: Updateremotefilelist {
             self.restoretableView.reloadData()
         }
         self.working.stopAnimation(nil)
-        self.enabledisableradiobuttons(enable: true)
         self.remotefilelist = nil
     }
 }
