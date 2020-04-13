@@ -138,9 +138,21 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.diddissappear = true
     }
 
+    func reset() {
+        self.index = nil
+        self.restoretabledata = nil
+        self.restorefilestask = nil
+        self.fullrestoretask = nil
+        self.info.stringValue = ""
+        self.filesrestoreradiobutton.state = .on
+        self.fullrestoreradiobutton.state = .off
+        // Restore state
+        self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
+        self.restoreisverified.image = #imageLiteral(resourceName: "red")
+    }
+
     // Restore files
     func executerestorefiles() {
-        // guard self.checkforrestorefiles() == true else { return }
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProgress!)
         }
@@ -149,15 +161,67 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func estimaterestorefiles() {
-        guard self.restorefilestask != nil else {
-            self.reset()
-            return
-        }
-        guard self.verifytmprestorepath() == true else { return }
         self.working.startAnimation(nil)
         self.enabledisableradiobuttons(enable: false)
         self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: true, updateprogress: self)
         self.outputprocess = self.restorefilestask?.outputprocess
+    }
+
+    func prepareforfilesrestoreandandgetremotefilelist() {
+        if let index = self.index {
+            self.info.stringValue = Inforestore().info(num: 0)
+            self.remotefiles.stringValue = ""
+            let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
+            if self.configurations?.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
+                self.enabledisableradiobuttons(enable: false)
+                self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
+                self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                self.process = self.remotefilelist?.getProcess()
+                self.working.startAnimation(nil)
+                self.enabledisableradiobuttons(enable: false)
+                self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
+            } else {
+                let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
+                let text: String = NSLocalizedString("Start getting files?", comment: "Restore")
+                let dialog: String = NSLocalizedString("Start", comment: "Restore")
+                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                if answer {
+                    self.enabledisableradiobuttons(enable: false)
+                    self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
+                    self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
+                    self.process = remotefilelist?.getProcess()
+                    self.working.startAnimation(nil)
+                    self.enabledisableradiobuttons(enable: false)
+                    self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
+                } else {
+                    self.reset()
+                }
+            }
+        }
+    }
+
+    func checkforgetremotefiles() -> Bool {
+        if let index = self.index {
+            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
+                self.info.stringValue = Inforestore().info(num: 4)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                return false
+            }
+            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+                self.info.stringValue = Inforestore().info(num: 5)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                self.restoretabledata = nil
+                globalMainQueue.async { () -> Void in
+                    self.restoretableView.reloadData()
+                }
+                return false
+            }
+            return true
+        } else {
+            return false
+        }
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -188,45 +252,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     }
                 }
                 self.index = index
+                guard self.checkforgetremotefiles() == true else { return }
                 self.prepareforfilesrestoreandandgetremotefilelist()
             } else {
                 self.reset()
                 globalMainQueue.async { () -> Void in
                     self.restoretableView.reloadData()
-                }
-            }
-        }
-    }
-
-    func prepareforfilesrestoreandandgetremotefilelist() {
-        if let index = self.index {
-            guard self.checkforgetremotefiles() == true else { return }
-            self.info.stringValue = Inforestore().info(num: 0)
-            self.remotefiles.stringValue = ""
-            let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
-            if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
-                self.enabledisableradiobuttons(enable: false)
-                self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
-                self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
-                self.process = self.remotefilelist?.getProcess()
-                self.working.startAnimation(nil)
-                self.enabledisableradiobuttons(enable: false)
-                self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
-            } else {
-                let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
-                let text: String = NSLocalizedString("Start getting files?", comment: "Restore")
-                let dialog: String = NSLocalizedString("Start", comment: "Restore")
-                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-                if answer {
-                    self.enabledisableradiobuttons(enable: false)
-                    self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
-                    self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
-                    self.process = remotefilelist?.getProcess()
-                    self.working.startAnimation(nil)
-                    self.enabledisableradiobuttons(enable: false)
-                    self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
-                } else {
-                    self.reset()
                 }
             }
         }
@@ -246,74 +277,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    func reset() {
-        self.index = nil
-        self.restoretabledata = nil
-        self.restorefilestask = nil
-        self.fullrestoretask = nil
-        self.info.stringValue = ""
-        self.filesrestoreradiobutton.state = .on
-        self.fullrestoreradiobutton.state = .off
-        // Restore state
-        self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
-        self.restoreisverified.image = #imageLiteral(resourceName: "red")
-    }
-
-    func checkforgetremotefiles() -> Bool {
-        if let index = self.index {
-            self.info.stringValue = ""
-            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
-                self.info.stringValue = Inforestore().info(num: 4)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.info.isHidden = false
-                return false
-            }
-            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
-                self.info.stringValue = Inforestore().info(num: 5)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.info.isHidden = false
-                self.restoretabledata = nil
-                globalMainQueue.async { () -> Void in
-                    self.restoretableView.reloadData()
-                }
-                return false
-            }
-            guard self.filesrestoreradiobutton.state == .on else { return false }
-            guard self.verifytmprestorepath() == true else {
-                self.selecttmptorestore.state = .off
-                return false
-            }
-            return true
-        }
-        return false
-    }
-
-    func checkforfullrestore() -> Bool {
-        self.restorefilestask = nil
-        self.info.stringValue = ""
-        if let index = self.index {
-            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
-                self.info.stringValue = Inforestore().info(num: 4)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.info.isHidden = false
-                return false
-            }
-            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
-                self.info.stringValue = Inforestore().info(num: 5)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
-                self.info.isHidden = false
-                return false
-            }
-            guard self.fullrestoreradiobutton.state == .on else { return false }
-            if self.selecttmptorestore.state == .on {
-                guard self.verifytmprestorepath() == true else { return false }
-            }
-        }
-        return true
-    }
-
-    // Full restore
-    func prepareforfullrestore() {
+    // Estimate for full restore
+    func estimatefullrestore() {
         guard self.checkforrsync() == false else { return }
         guard self.checkforfullrestore() == true else { return }
         if let index = self.index {
@@ -336,9 +301,25 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
+    private func checkforfullrestore() -> Bool {
+        if let index = self.index {
+            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
+                self.info.stringValue = Inforestore().info(num: 4)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                return false
+            }
+            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+                self.info.stringValue = Inforestore().info(num: 5)
+                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
+                self.info.isHidden = false
+                return false
+            }
+        }
+        return true
+    }
+
     func executefullrestore() {
-        guard self.checkforrsync() == false else { return }
-        guard self.checkforfullrestore() == true else { return }
         let question: String = NSLocalizedString("Do you REALLY want to start a restore?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
@@ -354,11 +335,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 }
                 switch self.selecttmptorestore.state {
                 case .on:
-                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
+                    // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
                 case .off:
-                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
+                    // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
                 default:
@@ -431,7 +412,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     @IBAction func estimate(_: NSButton) {
         if self.fullrestoreradiobutton.state == .on {
-            self.prepareforfullrestore()
+            self.estimatefullrestore()
         } else {
             self.estimaterestorefiles()
         }
