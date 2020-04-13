@@ -295,10 +295,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func executefullrestore() {
+        var tmprestore: Bool = true
         switch self.selecttmptorestore.state {
         case .on:
             guard self.restoreactions?.goforfullrestoretotemporarypath() ?? false else { return }
         case .off:
+            tmprestore = false
             guard self.restoreactions?.goforfullrestore() ?? false else { return }
         default:
             return
@@ -316,19 +318,16 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 globalMainQueue.async { () -> Void in
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
-                switch self.selecttmptorestore.state {
-                case .on:
+                if tmprestore {
                     // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
                     print("Execute FULL restore to TMP")
-                case .off:
+                } else {
                     // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
                     print("Execute FULL restore to SOURCE")
-                default:
-                    return
                 }
             }
         }
