@@ -262,6 +262,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     self.hiddenID = dict.value(forKey: "hiddenID") as? Int
                     guard self.hiddenID != nil else { return }
                     self.index = self.configurations?.getIndex(hiddenID!)
+                    self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+                    let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: "selectCellID") as? Int) == 1 }.count
+                    self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(num ?? 0)
                 }
             } else {
                 self.index = nil
@@ -377,9 +380,6 @@ extension ViewControllerSnapshots: UpdateProgress {
                     } else {
                         vc.processTermination()
                     }
-                    if ViewControllerReference.shared.deletelogssnapshot == true {
-                        self.deletelogssnapshot()
-                    }
                 } else {
                     vc.fileHandler()
                 }
@@ -436,17 +436,22 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
 extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableView == self.rsynctableView {
-            guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count else { return nil }
-            guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count else { return nil }
-            let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
-            return object[tableColumn!.identifier] as? String
-        } else {
-            guard row < self.snapshotlogsandcatalogs?.snapshotslogs!.count ?? 0 else { return nil }
-            let object: NSDictionary = self.snapshotlogsandcatalogs!.snapshotslogs![row]
-            if tableColumn!.identifier.rawValue == "selectCellID" {
-                return object[tableColumn!.identifier] as? Int
-            } else {
+            guard row < (self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0) else { return nil }
+            if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row] {
                 return object[tableColumn!.identifier] as? String
+            } else {
+                return nil
+            }
+        } else {
+            guard row < (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) else { return nil }
+            if let object: NSDictionary = self.snapshotlogsandcatalogs?.snapshotslogs?[row] {
+                if tableColumn!.identifier.rawValue == "selectCellID" {
+                    return object[tableColumn!.identifier] as? Int
+                } else {
+                    return object[tableColumn!.identifier] as? String
+                }
+            } else {
+                return nil
             }
         }
     }
@@ -456,8 +461,8 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         if tableColumn!.identifier.rawValue == "selectCellID" {
             var select: Int = (self.snapshotlogsandcatalogs?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            guard row < self.snapshotlogsandcatalogs!.snapshotslogs!.count - 1 else { return }
-            self.snapshotlogsandcatalogs?.snapshotslogs![row].setValue(select, forKey: "selectCellID")
+            guard row < (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) - 1 else { return }
+            self.snapshotlogsandcatalogs?.snapshotslogs?[row].setValue(select, forKey: "selectCellID")
         }
     }
 }
