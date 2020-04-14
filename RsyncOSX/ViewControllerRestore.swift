@@ -31,6 +31,8 @@ struct RestoreActions {
     var restorefiles: Bool = false
     // Remote file if restore files
     var remotefileverified: Bool = false
+    // Do the real thing
+    var executerealrestore: Bool = false
 
     init(closure: () -> Bool) {
         self.tmprestorepathverified = closure()
@@ -78,6 +80,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBOutlet var selecttmptorestore: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
     @IBOutlet var restoreisverified: NSButton!
+    @IBOutlet var dotherealthing: NSButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -162,6 +165,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.fullrestoretask = nil
         self.filesrestoreradiobutton.state = .off
         self.fullrestoreradiobutton.state = .off
+        self.dotherealthing.state = .off
         self.info.stringValue = ""
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
@@ -174,11 +178,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Restore files
     func executerestorefiles() {
         guard self.restoreactions?.goforrestorefilestotemporarypath() ?? false else { return }
+        guard (self.restoreactions?.executerealrestore ?? false) == true else {
+            self.info.stringValue = NSLocalizedString("Execute restore of files to temporary restore", comment: "Restore")
+            return
+        }
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProgress!)
         }
-        // self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
-        self.info.stringValue = "Execute restore files"
+        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
         self.outputprocess = self.restorefilestask?.outputprocess
     }
 
@@ -307,9 +314,17 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         switch self.selecttmptorestore.state {
         case .on:
             guard self.restoreactions?.goforfullrestoretotemporarypath() ?? false else { return }
+            guard (self.restoreactions?.executerealrestore ?? false) == true else {
+                self.info.stringValue = NSLocalizedString("Execute full restore to temporary restore", comment: "Restore")
+                return
+            }
         case .off:
             tmprestore = false
             guard self.restoreactions?.goforfullrestore() ?? false else { return }
+            guard (self.restoreactions?.executerealrestore ?? false) == true else {
+                self.info.stringValue = NSLocalizedString("Execute full restore to SOURCE", comment: "Restore")
+                return
+            }
         default:
             return
         }
@@ -327,15 +342,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
                 if tmprestore {
-                    // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
+                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
-                    self.info.stringValue = "Execute FULL restore to TMP"
                 } else {
-                    // self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
+                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
-                    self.info.stringValue = "Execute FULL restore to SOURCE"
                 }
             }
         }
@@ -450,5 +463,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
         self.reset()
+    }
+
+    @IBAction func toggledotherealthing(_: NSButton) {
+        if self.dotherealthing.state == .on {
+            self.restoreactions?.executerealrestore = true
+        } else {
+            self.restoreactions?.executerealrestore = false
+        }
     }
 }
