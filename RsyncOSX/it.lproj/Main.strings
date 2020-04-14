@@ -508,6 +508,9 @@
 /* Class = "NSTextFieldCell"; title = "Synchronize ID:"; ObjectID = "F9T-gx-oeJ"; */
 "F9T-gx-oeJ.title" = "Sincronizzare ID:";
 
+/* Class = "NSButtonCell"; title = "Do the real thing:  "; ObjectID = "f40-7m-CIV"; */
+"f40-7m-CIV.title" = "Fai la cosa reale:  ";
+
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo"; */
 "fAL-TO-qxo.headerCell.title" = "Server Remoto";
 
@@ -1003,9 +1006,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG"; */
 "pZb-i1-xyG.headerCell.title" = "Server Remoto";
 
-/* Class = "NSBox"; title = "Clean logs snapshot"; ObjectID = "q4N-mY-3Gy"; */
-"q4N-mY-3Gy.title" = "Elimina i registri";
-
 /* Class = "NSTextFieldCell"; title = "Version :"; ObjectID = "q8z-Ku-oKx"; */
 "q8z-Ku-oKx.title" = "Versione:";
 
@@ -1065,9 +1065,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "rfy-TN-1YB"; */
 "rfy-TN-1YB.headerCell.title" = "Programmazione";
-
-/* Class = "NSButtonCell"; title = "Clean logs snapshot"; ObjectID = "Rhe-Ys-723"; */
-"Rhe-Ys-723.title" = "Elimina i registri";
 
 /* Class = "NSTextFieldCell"; title = "selectedstart"; ObjectID = "RhH-4H-aT8"; */
 "RhH-4H-aT8.title" = "seleziona start";

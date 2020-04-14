@@ -108,10 +108,10 @@
 "Destination catalog:" = "Lokal katalog:";
 
 /* Snapshots */
-"Do you REALLY want to delete selected snapshots" = "Vil du VIRKELIG slette valgte snapshot";
+"Do you REALLY want to delete selected snapshots" = "Vil du slette valgte snapshots";
 
 /* Restore */
-"Do you REALLY want to start a restore?" = "Vil du VIRKELIG utføre en gjenopprett?";
+"Do you REALLY want to start a restore?" = "Vi du starte en full gjenopprett?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
@@ -305,6 +305,15 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
+
+/* Restore */
+"Simulated: execute full restore to SOURCE" = "Simulert: utfør full gjenopprett til KILDE";
+
+/* Restore */
+"Simulated: execute full restore to temporary restore path" = "Simulert: utfør full gjenopprett til midlertidig sti for gjenopprett";
+
+/* Restore */
+"Simulated: execute restore of files to temporary restore path" = "Simulert: utfør gjenopprett av filer til midlertidig sti for gjenopprett";
 
 /* Tooltip */
 "Source catalog:" = "Ekstern katalog:";

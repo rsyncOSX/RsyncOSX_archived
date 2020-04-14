@@ -179,7 +179,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func executerestorefiles() {
         guard self.restoreactions?.goforrestorefilestotemporarypath() ?? false else { return }
         guard (self.restoreactions?.executerealrestore ?? false) == true else {
-            self.info.stringValue = NSLocalizedString("Execute restore of files to temporary restore", comment: "Restore")
+            self.info.stringValue = NSLocalizedString("Simulated: execute restore of files to temporary restore path", comment: "Restore")
             return
         }
         globalMainQueue.async { () -> Void in
@@ -315,14 +315,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         case .on:
             guard self.restoreactions?.goforfullrestoretotemporarypath() ?? false else { return }
             guard (self.restoreactions?.executerealrestore ?? false) == true else {
-                self.info.stringValue = NSLocalizedString("Execute full restore to temporary restore", comment: "Restore")
+                self.info.stringValue = NSLocalizedString("Simulated: execute full restore to temporary restore path", comment: "Restore")
                 return
             }
         case .off:
             tmprestore = false
             guard self.restoreactions?.goforfullrestore() ?? false else { return }
             guard (self.restoreactions?.executerealrestore ?? false) == true else {
-                self.info.stringValue = NSLocalizedString("Execute full restore to SOURCE", comment: "Restore")
+                self.info.stringValue = NSLocalizedString("Simulated: execute full restore to SOURCE", comment: "Restore")
                 return
             }
         default:
