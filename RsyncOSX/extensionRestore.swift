@@ -80,7 +80,6 @@ extension ViewControllerRestore: NSTableViewDelegate {
 
 extension ViewControllerRestore: UpdateProgress {
     func processTermination() {
-        self.enabledisableradiobuttons(enable: true)
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.processTermination()
             self.reset()
@@ -89,10 +88,10 @@ extension ViewControllerRestore: UpdateProgress {
         } else {
             let number = Numbers(outputprocess: self.outputprocess)
             self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            self.restorebutton.isEnabled = true
-            self.estimatebutton.isEnabled = false
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
             self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal) + ", " + NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal) + " kB"
+            self.restoreisverified.image = #imageLiteral(resourceName: "green")
+            self.restoreactions?.estimated = true
         }
         self.working.stopAnimation(nil)
     }
@@ -166,7 +165,6 @@ extension ViewControllerRestore: Updateremotefilelist {
             self.restoretableView.reloadData()
         }
         self.working.stopAnimation(nil)
-        self.enabledisableradiobuttons(enable: true)
         self.remotefilelist = nil
     }
 }

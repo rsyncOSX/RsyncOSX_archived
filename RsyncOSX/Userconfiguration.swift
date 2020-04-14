@@ -35,9 +35,9 @@ struct Userconfiguration {
         // Temporary path for restores single files or directory
         if let restorePath = dict.value(forKey: "restorePath") as? String {
             if restorePath.count > 0 {
-                ViewControllerReference.shared.restorepath = restorePath
+                ViewControllerReference.shared.temporarypathforrestore = restorePath
             } else {
-                ViewControllerReference.shared.restorepath = nil
+                ViewControllerReference.shared.temporarypathforrestore = nil
             }
         }
         // Mark tasks

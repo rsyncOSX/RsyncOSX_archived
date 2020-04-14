@@ -14,7 +14,7 @@ protocol SetProfileinfo: AnyObject {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync, Setcolor {
+class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync, Setcolor, Help {
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
@@ -47,6 +47,10 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     @IBAction func automaticbackup(_: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    @IBAction func showHelp(_: AnyObject?) {
+        self.help()
     }
 
     @IBAction func rsyncosxsched(_: NSButton) {

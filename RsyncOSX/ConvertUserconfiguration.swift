@@ -65,7 +65,7 @@ struct ConvertUserconfiguration {
         if let rsyncpath = ViewControllerReference.shared.localrsyncpath {
             dict.setObject(rsyncpath, forKey: "rsyncPath" as NSCopying)
         }
-        if let restorepath = ViewControllerReference.shared.restorepath {
+        if let restorepath = ViewControllerReference.shared.temporarypathforrestore {
             dict.setObject(restorepath, forKey: "restorePath" as NSCopying)
         } else {
             dict.setObject("", forKey: "restorePath" as NSCopying)

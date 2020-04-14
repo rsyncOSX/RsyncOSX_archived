@@ -57,7 +57,7 @@ final class ViewControllerReference {
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
-    var restorepath: String?
+    var temporarypathforrestore: String?
     var completeoperation: CompleteQuickbackupTask?
     // Loggfile
     var minimumlogging: Bool = false

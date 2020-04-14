@@ -6,7 +6,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor, Checkforrsync {
+class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor, Checkforrsync, Help {
     // Main tableview
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -194,6 +194,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Selecting About
     @IBAction func about(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerAbout!)
+    }
+
+    @IBAction func showHelp(_: AnyObject?) {
+        self.help()
     }
 
     // Selecting automatic backup

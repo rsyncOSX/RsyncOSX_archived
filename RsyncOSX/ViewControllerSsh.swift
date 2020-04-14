@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrsync {
+class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrsync, Help {
     var sshcmd: Ssh?
     var hiddenID: Int?
     var data: [String]?
@@ -63,6 +63,10 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
         }
+    }
+
+    @IBAction func showHelp(_: AnyObject?) {
+        self.help()
     }
 
     // Just for grouping rsa and dsa radiobuttons

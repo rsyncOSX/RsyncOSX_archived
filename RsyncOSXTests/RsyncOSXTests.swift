@@ -14,7 +14,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         _ = Selectprofile(profile: "XCTest")
-        ViewControllerReference.shared.restorepath = "/temporaryrestore"
+        ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
     }
 
@@ -195,7 +195,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testreorgschedulesbefore() {
-        ViewControllerReference.shared.restorepath = "/temporaryrestore"
+        ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = false
         _ = Selectprofile(profile: "Datacheck")
         let count = CountSchedulesandLogs()
@@ -204,7 +204,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testreorgschedulesafter() {
-        ViewControllerReference.shared.restorepath = "/temporaryrestore"
+        ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
         _ = Selectprofile(profile: "Datacheck")
         let count = CountSchedulesandLogs()
