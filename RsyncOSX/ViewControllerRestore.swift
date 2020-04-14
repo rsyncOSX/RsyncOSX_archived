@@ -28,7 +28,7 @@ struct RestoreActions {
     var estimated: Bool = false
     // Type of restore
     var fullrestore: Bool = false
-    var restorefiles: Bool = true
+    var restorefiles: Bool = false
     // Remote file if restore files
     var remotefileverified: Bool = false
 
@@ -148,7 +148,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.rsynctableView.reloadData()
         }
         self.reset()
-        self.filesrestoreradiobutton.state = .on
         self.settmprestorepathfromuserconfig()
     }
 
@@ -161,6 +160,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restoretabledata = nil
         self.restorefilestask = nil
         self.fullrestoretask = nil
+        self.filesrestoreradiobutton.state = .off
+        self.fullrestoreradiobutton.state = .off
         self.info.stringValue = ""
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
@@ -375,7 +376,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
-        self.reset()
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             self.restoreactions?.restorefiles = true
             self.prepareforfilesrestoreandandgetremotefilelist()
