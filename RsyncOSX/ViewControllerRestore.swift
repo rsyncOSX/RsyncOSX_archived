@@ -115,7 +115,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.process?.terminate()
         self.reset()
     }
-    
+
     @IBAction func showHelp(_: AnyObject?) {
         self.help()
     }
@@ -164,6 +164,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.info.stringValue = ""
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
+        if self.index != nil {
+            self.restoreactions?.index = true
+        }
         self.restoreisverified.image = #imageLiteral(resourceName: "red")
     }
 
