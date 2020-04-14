@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, Connected, Setcolor, Checkforrsync {
+class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, Connected, Setcolor, Checkforrsync, Help {
     var outputprocess: OutputProcess?
     var lastindex: Int?
     var estimatedindex: Int?
@@ -74,6 +74,10 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
         }
+    }
+
+    @IBAction func showHelp(_: AnyObject?) {
+        self.help()
     }
 
     @IBAction func verify(_: NSButton) {

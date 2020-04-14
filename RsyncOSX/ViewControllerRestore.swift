@@ -52,7 +52,7 @@ struct RestoreActions {
     }
 }
 
-class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
+class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor, Help {
     var restorefilestask: RestorefilesTask?
     var fullrestoretask: FullrestoreTask?
     var remotefilelist: Remotefilelist?
@@ -114,6 +114,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.working.stopAnimation(nil)
         self.process?.terminate()
         self.reset()
+    }
+    
+    @IBAction func showHelp(_: AnyObject?) {
+        self.help()
     }
 
     override func viewDidLoad() {

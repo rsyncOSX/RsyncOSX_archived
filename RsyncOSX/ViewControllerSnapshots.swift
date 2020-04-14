@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor {
+class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor, Help {
     var hiddenID: Int?
     var config: Configuration?
     var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
@@ -78,6 +78,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
         }
+    }
+
+    @IBAction func showHelp(_: AnyObject?) {
+        self.help()
     }
 
     @IBAction func savesnapdayofweek(_: NSButton) {

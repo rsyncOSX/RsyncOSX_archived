@@ -11,7 +11,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor {
+class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor, Help {
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
     private var filterby: Sortandfilter?
@@ -55,6 +55,10 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerUserconfiguration!)
         }
+    }
+
+    @IBAction func showHelp(_: AnyObject?) {
+        self.help()
     }
 
     @IBAction func sortdirection(_: NSButton) {
