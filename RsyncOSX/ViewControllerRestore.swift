@@ -258,8 +258,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 self.index = index
-                guard self.restoreactions?.restorefiles ?? false else { return }
                 self.restoreactions?.index = true
+                guard self.restoreactions?.restorefiles ?? false else { return }
                 self.prepareforfilesrestoreandandgetremotefilelist()
             } else {
                 self.reset()
