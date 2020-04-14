@@ -48,7 +48,7 @@
 "Chinese (Simplified) translation by: StringKe" = "翻译中文(简体)：StringKe";
 
 /* Snapshots */
-"Cleaning logs completed..." = "Cleaning logs completed...";
+"Cleaning logs completed..." = "清理日志完成...";
 
 /* Close NSAlert */
 "Close" = "关闭";
@@ -63,14 +63,14 @@
 "Copy single files or directory?" = "复制单个文件或目录？";
 
 /* copyright */
-"Copyright ©2020 Thomas Evensen" = "Copyright ©2020 Thomas Evensen";
+"Copyright ©2020 Thomas Evensen" = "版权 ©2020 Thomas Evensen";
 
 /* main */
 "daily" = "每天";
 
 /* Remote Info
    Verify */
-"Date last synchronize:" = "Date last synchronize:";
+"Date last synchronize:" = "自上次同步以来的天数：";
 
 /* datetime */
 "days" = "天";
@@ -108,10 +108,10 @@
 "Destination catalog:" = "目标目录：";
 
 /* Snapshots */
-"Do you REALLY want to delete selected snapshots" = "您是否希望删除选中的快照";
+"Do you REALLY want to delete selected snapshots" = "您是否希望删除选中的快照？";
 
 /* Restore */
-"Do you REALLY want to start a restore?" = "你真的想要重新开始吗?";
+"Do you REALLY want to start a restore?" = "你真的想要重新开始吗？";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "如果您不知道正在做什么，请不要更改快照号码...";
@@ -126,7 +126,7 @@
 "ERROR: no rsync in /usr/local/bin" = "错误：/usr/local/bin 中不同步";
 
 /* Remote info */
-"Estimation completed" = "Estimation completed";
+"Estimation completed" = "估计完成";
 
 /* plan */
 "every" = "每";
@@ -229,7 +229,7 @@
 "Not a remote task, use Finder to copy files..." = "不是一个远程任务，请使用 Finder 复制文件...";
 
 /* Snapshots */
-"Not a snapshot task..." = "Not a snapshot task...";
+"Not a snapshot task..." = "不是快照任务......";
 
 /* AllProfiles */
 "Number of configurations:" = "配置数：";
@@ -271,7 +271,7 @@
 "Restore" = "恢复";
 
 /* Restore */
-"Restore completed..." = "Restore completed...";
+"Restore completed..." = "还原已完成。";
 
 /* plan */
 "Saturday" = "周六";
@@ -295,7 +295,7 @@
 "Select a task...." = "选择任务......";
 
 /* Execute */
-"Select one or more tasks..." = "Select one or more tasks...";
+"Select one or more tasks..." = "选择一个或多个标签";
 
 /* Logg */
 "Selected logs:" = "选中的日志：";
@@ -305,6 +305,15 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "请输入一个真实号码...";
+
+/* Restore */
+"Simulated: execute full restore to SOURCE" = "模拟：完全还原到SOURCE";
+
+/* Restore */
+"Simulated: execute full restore to temporary restore path" = "模拟：执行完全还原到临时恢复路径";
+
+/* Restore */
+"Simulated: execute restore of files to temporary restore path" = "模拟：执行恢复文件以临时恢复路径";
 
 /* Tooltip */
 "Source catalog:" = "源目录：";

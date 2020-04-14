@@ -111,7 +111,7 @@
 "Do you REALLY want to delete selected snapshots" = "Voulez-vous vraiment SUPPRIMER les instantanés sélectionnés";
 
 /* Restore */
-"Do you REALLY want to start a restore?" = "Voulez-vous vraiment démarrer un restours?";
+"Do you REALLY want to start a restore?" = "Voulez-vous vraiment démarrer un RESTOURS?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ne changez pas le numéro d'instantané si vous ne savez pas ce que vous faites...";
@@ -305,6 +305,15 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Sérieusement, entrez un nombre réel...";
+
+/* Restore */
+"Simulated: execute full restore to SOURCE" = "Simulé: exécuter la restauration complète vers SOURCE";
+
+/* Restore */
+"Simulated: execute full restore to temporary restore path" = "Simulé: exécuter la restauration complète vers le chemin de restauration temporaire";
+
+/* Restore */
+"Simulated: execute restore of files to temporary restore path" = "Simulé: exécuter la restauration complète vers le chemin de restauration temporaire";
 
 /* Tooltip */
 "Source catalog:" = "Catalogue source :";

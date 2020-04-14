@@ -108,10 +108,10 @@
 "Destination catalog:" = "Cartella di destinazione:";
 
 /* Snapshots */
-"Do you REALLY want to delete selected snapshots" = "Vuoi VERAMENTE eliminare le istantanee selezionate";
+"Do you REALLY want to delete selected snapshots" = "Vuoi VERAMENTE ELIMINARE le istantanee selezionate";
 
 /* Restore */
-"Do you REALLY want to start a restore?" = "Vuoi veramente avviare il ripristino?";
+"Do you REALLY want to start a restore?" = "Vuoi VERAMENTE AVVIARE il RIPRISTINO?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Non cambiare il numero istantanee se non sai cosa stai facendo...";
@@ -305,6 +305,15 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Scherzi a parte, inserisci un numero reale...";
+
+/* Restore */
+"Simulated: execute full restore to SOURCE" = "Simulato: esegui il ripristino completo a SOURCE";
+
+/* Restore */
+"Simulated: execute full restore to temporary restore path" = "Simulato: esegui il ripristino completo al percorso di ripristino temporaneo";
+
+/* Restore */
+"Simulated: execute restore of files to temporary restore path" = "Simulato: esegui il ripristino dei file per ripristinare temporaneamente il percorso";
 
 /* Tooltip */
 "Source catalog:" = "Percorso locale:";
