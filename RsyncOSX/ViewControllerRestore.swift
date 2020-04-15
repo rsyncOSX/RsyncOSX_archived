@@ -271,6 +271,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.prepareforfilesrestoreandandgetremotefilelist()
             } else {
                 self.reset()
+                self.index = nil
                 globalMainQueue.async { () -> Void in
                     self.restoretableView.reloadData()
                 }
