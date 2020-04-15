@@ -52,6 +52,16 @@ struct RestoreActions {
         guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.restorefiles, self.remotefileverified else { return false }
         return true
     }
+
+    func goforfullrestoreestimate() -> Bool {
+        guard self.tmprestorepathselected == false, self.index, self.estimated == false, self.fullrestore else { return false }
+        return true
+    }
+
+    func goforfullrestoreestimatetemporarypath() -> Bool {
+        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated == false, self.fullrestore else { return false }
+        return true
+    }
 }
 
 class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor, Help {
@@ -419,7 +429,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     @IBAction func estimate(_: NSButton) {
         guard self.checkforrsync() == false else { return }
-        if self.fullrestoreradiobutton.state == .on {
+        if (self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false) || (self.restoreactions?.goforfullrestoreestimate() ?? false) {
             guard self.checkforfullrestore() == true else { return }
             if let index = self.index {
                 self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
@@ -427,11 +437,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.info.stringValue = gotit
                 self.info.isHidden = false
                 self.working.startAnimation(nil)
-                if ViewControllerReference.shared.temporarypathforrestore != nil, self.selecttmptorestore.state == .on {
+                if self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
                     self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: true, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                     self.process = fullrestoretask?.getProcess()
-                } else {
+                } else if self.restoreactions?.goforfullrestoreestimate() ?? false {
                     self.selecttmptorestore.state = .off
                     self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: false, updateprogress: self)
                     self.outputprocess = self.fullrestoretask?.outputprocess
