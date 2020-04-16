@@ -124,6 +124,7 @@ extension ViewControllerMain: RsyncError {
         // Set on or off in user configuration
         globalMainQueue.async { () -> Void in
             self.seterrorinfo(info: "Error")
+            self.info.stringValue = "See ~/Documents/rsynclog.txt"
             self.showrsynccommandmainview()
             guard ViewControllerReference.shared.haltonerror == true else { return }
             self.deselect()
@@ -168,8 +169,8 @@ extension ViewControllerMain: Abort {
             self.process = nil
             self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""
-            if self.configurations!.remoteinfoestimation != nil, self.configurations?.estimatedlist != nil {
-                self.configurations!.remoteinfoestimation = nil
+            if self.configurations?.remoteinfoestimation != nil, self.configurations?.estimatedlist != nil {
+                self.configurations?.remoteinfoestimation = nil
             }
         } else {
             self.rsyncCommand.stringValue = NSLocalizedString("Selection out of range - aborting", comment: "Execute")

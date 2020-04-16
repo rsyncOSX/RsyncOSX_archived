@@ -79,6 +79,10 @@ final class OutputProcess {
                 if self.error {
                     self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                     self.errorDelegate?.rsyncerror()
+                    let templogging = ViewControllerReference.shared.fulllogging
+                    ViewControllerReference.shared.fulllogging = true
+                    _ = Logging(outputprocess: self)
+                    ViewControllerReference.shared.fulllogging = templogging
                 }
             }
             self.maxnumber = out.count
