@@ -263,7 +263,7 @@ protocol Help: AnyObject {
 
 extension Help {
     func help() {
-        NSWorkspace.shared.open(URL(string: "https://rsyncosx.github.io/AboutRsyncOSX")!)
+        NSWorkspace.shared.open(URL(string: "https://rsyncosx.netlify.app/post/rsyncosxdocs/")!)
     }
 }
 
