@@ -20,11 +20,11 @@ enum ResourceType {
 
 struct Resources {
     // Resource strings
-    private var changelog: String = "https://rsyncosx.github.io/Changelog"
-    private var documents: String = "https://rsyncosx.github.io/AboutRsyncOSX"
+    private var changelog: String = "https://rsyncosx.netlify.app/post/changelog/"
+    private var documents: String = "https://rsyncosx.netlify.app/post/rsyncosxdocs/"
     private var urlPlist: String = "https://raw.githubusercontent.com/rsyncOSX/RsyncOSX/master/versionRsyncOSX/versionRsyncOSX.plist"
-    private var introduction: String = "https://rsyncosx.github.io/Intro"
-    private var verify: String = "https://rsyncosx.github.io/Verify"
+    private var introduction: String = "https://rsyncosx.netlify.app/post/intro/"
+    private var verify: String = "https://rsyncosx.netlify.app/post/verify/"
     // Get the resource.
     func getResource(resource: ResourceType) -> String {
         switch resource {
