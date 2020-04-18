@@ -397,6 +397,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restoreactions?.tmprestorepathselected = false
         }
         self.reset()
+        if self.restoreactions?.tmprestorepathverified == false {
+            self.selecttmptorestore.state = .off
+            Alerts.showInfo(info: NSLocalizedString("No such temporay catalog for restore, set it in user config.", comment: "Restore"))
+        }
     }
 
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
