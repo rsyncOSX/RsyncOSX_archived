@@ -4,7 +4,7 @@
 
 ![](icon/rsyncosx.png)
 
-[The Changelog](https://rsyncosx.github.io/Changelog).
+[The Changelog](https://rsyncosx.netlify.app/post/changelog/).
 
 If you want to discuss [changes or report bugs please create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
@@ -18,17 +18,17 @@ Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled t
 
 ### Remote servers
 
-If destination is a **remote server**, RsyncOSX is dependent on [setting up password-less logins](https://rsyncosx.github.io/Remotelogins). Both ssh-keys and rsync daemon setup are possible. It is advised utilizing ssh-keys because communication between source and destination (client and server) is encrypted.
+If destination is a **remote server**, RsyncOSX is dependent on [setting up password-less logins](https://rsyncosx.netlify.app/post/remotelogins/). Both ssh-keys and rsync daemon setup are possible. It is advised utilizing ssh-keys because communication between source and destination (client and server) is encrypted.
 
 If destination is a **local attached volume**, the above is not relevant.
 
 ### Signing and notarizing
 
-The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.github.io/Notarized) for info. Signing and notarizing is required to run on macOS Catalina.
+The app is signed with my Apple ID developer certificate and [notarized](https://support.apple.com/en-us/HT202491) by Apple. See [signing and notarizing](https://rsyncosx.netlify.app/post/notarized/) for info. Signing and notarizing is required to run on macOS Catalina.
 
 ### Localization
 
-[RsyncOSX speaks new languages](https://rsyncosx.github.io/Localization). RsyncOSX is localized to:
+[RsyncOSX speaks new languages](https://rsyncosx.netlify.app/post/localization/). RsyncOSX is localized to:
 - Chinese (Simplified) -  by [StringKe](https://github.com/StringKe)
 - German - by [Andre](https://github.com/andre68723)
 - French - translated by [crowdin](https://crowdin.com/project/rsyncosx)
@@ -41,7 +41,7 @@ Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx
 
 ### Version of rsync
 
-RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.github.io/Install) the latest version of rsync.
+RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2 and 3.1.3. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.netlify.app/post/rsyncosx/) the latest version of rsync.
 
 If you are only looking for utilizing stock version of rsync (version 2.6.9) and only synchronize data to either local attached disks or remote servers, [there is a minor version (RsynGUI) available on Mac App Store](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12). RsyncGUI does **not** support snapshots or scheduling task.
 
@@ -55,7 +55,7 @@ RsyncOSX supports synchronize and snapshots of files.
 
 If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of it. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
 
-There is a [short intro to RsyncOSX](https://rsyncosx.github.io/Intro) and [some more documentation of RsyncOSX](https://rsyncosx.github.io/AboutRsyncOSX).
+There is a [short intro to RsyncOSX](https://rsyncosx.netlify.app/post/intro/) and [some more documentation of RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/).
 
 ### The --delete parameter
 ```
@@ -68,8 +68,8 @@ Every time you add a new task to RsyncOSX, execute an estimation run (--dry-run)
 the result before executing a real run. If you by accident set an empty catalog as source
 RsyncOSX (rsync) will delete all files in the destination.
 ```
-To save deleted and changes files either utilize [snapshots](https://rsyncosx.github.io/Snapshots)
-or [the --backup parameter](https://rsyncosx.github.io/Parameters). The --delete parameter and other default parameters might be deleted if wanted.
+To save deleted and changes files either utilize [snapshots](https://rsyncosx.netlify.app/post/snapshots/)
+or [the --backup parameter](https://rsyncosx.netlify.app/post/userparameters/). The --delete parameter and other default parameters might be deleted if wanted.
 
 ### Main view
 
@@ -80,7 +80,7 @@ Prepare for synchronizing tasks.
 
 ### A Sandboxed version
 
-[There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.github.io/RsyncGUIChangelog). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
+[There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.netlify.app/post/rsyncguichangelog/). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
 
 ### About bugs?
 
