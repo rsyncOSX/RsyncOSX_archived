@@ -109,12 +109,23 @@ class RsyncParameters {
     func sshportparameter(config: Configuration, forDisplay: Bool) {
         // -e "ssh  -i ~/.ssh/id_myserver -p 22"
         // ssh identityfile and ssh port
-
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
         // -e
         self.arguments?.append(parameter5)
         if forDisplay { self.arguments?.append(" ") }
+        if let sshidentityfile = config.sshidentityfile {
+            let identifyfile = ViewControllerReference.shared.sshidentityfilecatalog + sshidentityfile
+            // "ssh -i ~/.ssh/identifyfile"
+            if forDisplay { self.arguments?.append(" \"") }
+            // Then check if ssh port is set also
+            if let sshport = config.sshport {
+                self.arguments?.append("ssh -i " + identifyfile + " " + "-p " + String(sshport))
+            } else {
+                self.arguments?.append("ssh -i " + identifyfile)
+            }
+            if forDisplay { self.arguments?.append("\" ") }
+        }
         if let sshport = config.sshport {
             // "ssh -p xxx"
             if forDisplay { self.arguments?.append(" \"") }
