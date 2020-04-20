@@ -45,6 +45,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet var compressparameter: NSButton!
     @IBOutlet var esshparameter: NSButton!
     @IBOutlet var deleteparamater: NSButton!
+    @IBOutlet var sshidentityfile: NSTextField!
 
     @IBOutlet var combo8: NSComboBox!
     @IBOutlet var combo9: NSComboBox!
@@ -256,6 +257,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             if configurations[index].sshport != nil {
                 self.sshport.stringValue = String(configurations[index].sshport!)
             }
+            if (configurations[index].sshidentityfile ?? "").isEmpty == false {
+                self.sshidentityfile.stringValue = configurations[index].sshidentityfile!
+            }
         }
     }
 
@@ -288,6 +292,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             configurations[index].rsyncdaemon = self.rsyncdaemon.state.rawValue
             if let port = self.sshport {
                 configurations[index].sshport = Int(port.stringValue)
+            }
+            if let sshidentityfile = self.sshidentityfile {
+                configurations[index].sshidentityfile = sshidentityfile.stringValue
             }
             // Update configuration in memory before saving
             self.configurations!.updateConfigurations(configurations[index], index: index)

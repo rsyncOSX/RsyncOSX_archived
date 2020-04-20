@@ -97,6 +97,8 @@ final class ViewControllerReference {
     var checkinput: Bool = false
     // Halt on error
     var haltonerror: Bool = false
+    // catalog for ssh identityfile if used
+    var sshidentityfilecatalog: String = "~/.ssh/"
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
