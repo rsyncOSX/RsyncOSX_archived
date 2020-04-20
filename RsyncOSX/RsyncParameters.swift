@@ -30,23 +30,23 @@ class RsyncParameters {
         let parameter4: String = config.parameter4
         let parameter5: String = config.parameter5
         let offsiteServer: String = config.offsiteServer
-        self.arguments!.append(parameter1 ?? "")
+        self.arguments?.append(parameter1 ?? "")
         if verify {
-            if forDisplay { self.arguments!.append(" ") }
-            self.arguments!.append("--recursive")
+            if forDisplay { self.arguments?.append(" ") }
+            self.arguments?.append("--recursive")
         }
-        if forDisplay { self.arguments!.append(" ") }
-        self.arguments!.append(parameter2)
-        if forDisplay { self.arguments!.append(" ") }
+        if forDisplay { self.arguments?.append(" ") }
+        self.arguments?.append(parameter2)
+        if forDisplay { self.arguments?.append(" ") }
         if offsiteServer.isEmpty == false {
             if parameter3.isEmpty == false {
-                self.arguments!.append(parameter3)
-                if forDisplay { self.arguments!.append(" ") }
+                self.arguments?.append(parameter3)
+                if forDisplay { self.arguments?.append(" ") }
             }
         }
         if parameter4.isEmpty == false {
-            self.arguments!.append(parameter4)
-            if forDisplay { self.arguments!.append(" ") }
+            self.arguments?.append(parameter4)
+            if forDisplay { self.arguments?.append(" ") }
         }
         if offsiteServer.isEmpty {
             // nothing
@@ -107,21 +107,44 @@ class RsyncParameters {
     }
 
     func sshportparameter(config: Configuration, forDisplay: Bool) {
+        // -e "ssh  -i ~/.ssh/id_myserver -p 22"
+        // ssh identityfile and ssh port
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
+        var sshportadded: Bool = false
+        var sshidentityfileadded: Bool = false
         // -e
-        self.arguments!.append(parameter5)
-        if forDisplay { self.arguments!.append(" ") }
+        self.arguments?.append(parameter5)
+        if forDisplay { self.arguments?.append(" ") }
+        if let sshidentityfile = config.sshidentityfile {
+            sshidentityfileadded = true
+            let identifyfile = ViewControllerReference.shared.sshidentityfilecatalog + sshidentityfile
+            // "ssh -i ~/.ssh/identifyfile"
+            if forDisplay { self.arguments?.append(" \"") }
+            // Then check if ssh port is set also
+            if let sshport = config.sshport {
+                sshportadded = true
+                self.arguments?.append("ssh -i " + identifyfile + " " + "-p " + String(sshport))
+            } else {
+                self.arguments?.append("ssh -i " + identifyfile)
+            }
+            if forDisplay { self.arguments?.append("\" ") }
+        }
         if let sshport = config.sshport {
             // "ssh -p xxx"
-            if forDisplay { self.arguments!.append(" \"") }
-            self.arguments!.append("ssh -p " + String(sshport))
-            if forDisplay { self.arguments!.append("\" ") }
+            if sshportadded == false {
+                sshportadded = true
+                if forDisplay { self.arguments?.append(" \"") }
+                self.arguments?.append("ssh -p " + String(sshport))
+                if forDisplay { self.arguments?.append("\" ") }
+            }
         } else {
             // ssh
-            self.arguments!.append(parameter6)
+            if sshportadded == false, sshidentityfileadded == false {
+                self.arguments?.append(parameter6)
+            }
         }
-        if forDisplay { self.arguments!.append(" ") }
+        if forDisplay { self.arguments?.append(" ") }
     }
 
     func setdatesuffixlocalhost() -> String {
@@ -132,11 +155,11 @@ class RsyncParameters {
 
     func dryrunparameter(config _: Configuration, forDisplay: Bool) {
         let dryrun = "--dry-run"
-        self.arguments!.append(dryrun)
-        if forDisplay { self.arguments!.append(" ") }
+        self.arguments?.append(dryrun)
+        if forDisplay { self.arguments?.append(" ") }
         if self.stats! == false {
-            self.arguments!.append("--stats")
-            if forDisplay { self.arguments!.append(" ") }
+            self.arguments?.append("--stats")
+            if forDisplay { self.arguments?.append(" ") }
         }
     }
 
@@ -145,9 +168,9 @@ class RsyncParameters {
             if parameter == "--stats" {
                 self.stats = true
             }
-            self.arguments!.append(parameter)
+            self.arguments?.append(parameter)
             if forDisplay {
-                self.arguments!.append(" ")
+                self.arguments?.append(" ")
             }
         }
     }
@@ -224,61 +247,61 @@ class RsyncParameters {
     }
 
     func argumentsforsynchronize(dryRun _: Bool, forDisplay: Bool) {
-        self.arguments!.append(self.localCatalog!)
+        self.arguments?.append(self.localCatalog!)
         guard self.offsiteCatalog != nil else { return }
         if self.offsiteServer!.isEmpty {
-            if forDisplay { self.arguments!.append(" ") }
-            self.arguments!.append(self.offsiteCatalog!)
-            if forDisplay { self.arguments!.append(" ") }
+            if forDisplay { self.arguments?.append(" ") }
+            self.arguments?.append(self.offsiteCatalog!)
+            if forDisplay { self.arguments?.append(" ") }
         } else {
-            if forDisplay { self.arguments!.append(" ") }
-            self.arguments!.append(remoteargs!)
-            if forDisplay { self.arguments!.append(" ") }
+            if forDisplay { self.arguments?.append(" ") }
+            self.arguments?.append(remoteargs!)
+            if forDisplay { self.arguments?.append(" ") }
         }
     }
 
     func argumentsforsynchronizeremote(dryRun _: Bool, forDisplay: Bool) {
         guard self.offsiteCatalog != nil else { return }
-        if forDisplay { self.arguments!.append(" ") }
-        self.arguments!.append(remoteargs!)
-        if forDisplay { self.arguments!.append(" ") }
-        self.arguments!.append(self.offsiteCatalog!)
-        if forDisplay { self.arguments!.append(" ") }
+        if forDisplay { self.arguments?.append(" ") }
+        self.arguments?.append(remoteargs!)
+        if forDisplay { self.arguments?.append(" ") }
+        self.arguments?.append(self.offsiteCatalog!)
+        if forDisplay { self.arguments?.append(" ") }
     }
 
     func argumentsforsynchronizesnapshot(dryRun _: Bool, forDisplay: Bool) {
         guard self.linkdestparam != nil else {
-            self.arguments!.append(self.localCatalog!)
+            self.arguments?.append(self.localCatalog!)
             return
         }
-        self.arguments!.append(self.linkdestparam!)
-        if forDisplay { self.arguments!.append(" ") }
-        self.arguments!.append(self.localCatalog!)
+        self.arguments?.append(self.linkdestparam!)
+        if forDisplay { self.arguments?.append(" ") }
+        self.arguments?.append(self.localCatalog!)
         if self.offsiteServer!.isEmpty {
-            if forDisplay { self.arguments!.append(" ") }
-            self.arguments!.append(self.offsiteCatalog!)
-            if forDisplay { self.arguments!.append(" ") }
+            if forDisplay { self.arguments?.append(" ") }
+            self.arguments?.append(self.offsiteCatalog!)
+            if forDisplay { self.arguments?.append(" ") }
         } else {
-            if forDisplay { self.arguments!.append(" ") }
-            self.arguments!.append(remoteargs!)
-            if forDisplay { self.arguments!.append(" ") }
+            if forDisplay { self.arguments?.append(" ") }
+            self.arguments?.append(remoteargs!)
+            if forDisplay { self.arguments?.append(" ") }
         }
     }
 
     func argumentsforrestore(dryRun _: Bool, forDisplay: Bool, tmprestore: Bool) {
         if self.offsiteServer!.isEmpty {
-            self.arguments!.append(self.offsiteCatalog!)
-            if forDisplay { self.arguments!.append(" ") }
+            self.arguments?.append(self.offsiteCatalog!)
+            if forDisplay { self.arguments?.append(" ") }
         } else {
-            if forDisplay { self.arguments!.append(" ") }
-            self.arguments!.append(remoteargs!)
-            if forDisplay { self.arguments!.append(" ") }
+            if forDisplay { self.arguments?.append(" ") }
+            self.arguments?.append(remoteargs!)
+            if forDisplay { self.arguments?.append(" ") }
         }
         if tmprestore {
             let restorepath = ViewControllerReference.shared.temporarypathforrestore ?? ""
-            self.arguments!.append(restorepath)
+            self.arguments?.append(restorepath)
         } else {
-            self.arguments!.append(self.localCatalog!)
+            self.arguments?.append(self.localCatalog!)
         }
     }
 

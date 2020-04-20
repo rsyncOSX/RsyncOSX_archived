@@ -13,7 +13,7 @@ import XCTest
 class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        _ = Selectprofile(profile: "XCTest")
+        _ = Selectprofile(profile: "XCTest", selectedindex: nil)
         ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
     }
@@ -197,7 +197,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     func testreorgschedulesbefore() {
         ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = false
-        _ = Selectprofile(profile: "Datacheck")
+        _ = Selectprofile(profile: "Datacheck", selectedindex: nil)
         let count = CountSchedulesandLogs()
         XCTAssertEqual(19, count.schedulerecords, "Should be 19")
         XCTAssertEqual(299, count.logrecords, "Should be 299")
@@ -206,7 +206,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     func testreorgschedulesafter() {
         ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = true
-        _ = Selectprofile(profile: "Datacheck")
+        _ = Selectprofile(profile: "Datacheck", selectedindex: nil)
         let count = CountSchedulesandLogs()
         XCTAssertEqual(10, count.schedulerecords, "Should be 10")
         XCTAssertEqual(299, count.logrecords, "Should be 299")
