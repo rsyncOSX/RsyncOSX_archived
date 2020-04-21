@@ -163,6 +163,9 @@
 /* Class = "NSTextFieldCell"; title = "files :"; ObjectID = "8YP-GO-G5h"; */
 "8YP-GO-G5h.title" = "fichiers :";
 
+/* Class = "NSBox"; title = "ssh parameters"; ObjectID = "9A5-EU-pLg"; */
+"9A5-EU-pLg.title" = "ssh paramètres";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9hn-5x-M6a"; */
 "9hn-5x-M6a.title" = "Text Cell";
 
@@ -744,6 +747,9 @@
 
 /* Class = "NSButtonCell"; title = "Create keys"; ObjectID = "JF9-s4-tD7"; */
 "JF9-s4-tD7.title" = "Créer des clés";
+
+/* Class = "NSTextFieldCell"; title = "identityfile:"; ObjectID = "jIc-w2-78d"; */
+"jIc-w2-78d.title" = "fichier d’identité:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Jil-HV-f4r"; */
 "Jil-HV-f4r.title" = "Text Cell";
