@@ -32,6 +32,14 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
     @IBAction func close(_: NSButton) {
         self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
+
+    @IBAction func pastetabeltomacospasteboard(_: NSButton) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        for i in 0 ..< (self.output?.count ?? 0) {
+            pasteboard.writeObjects([(self.output?[i])! as NSPasteboardWriting])
+        }
+    }
 }
 
 extension ViewControllerInformation: NSTableViewDataSource {
