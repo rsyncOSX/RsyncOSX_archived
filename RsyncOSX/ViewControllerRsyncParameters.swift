@@ -294,7 +294,11 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
                 configurations[index].sshport = Int(port.stringValue)
             }
             if let sshidentityfile = self.sshidentityfile {
-                configurations[index].sshidentityfile = sshidentityfile.stringValue
+                if sshidentityfile.stringValue.isEmpty == false {
+                    configurations[index].sshidentityfile = sshidentityfile.stringValue
+                } else {
+                    configurations[index].sshidentityfile = nil
+                }
             }
             // Update configuration in memory before saving
             self.configurations!.updateConfigurations(configurations[index], index: index)
