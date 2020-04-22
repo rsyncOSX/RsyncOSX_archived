@@ -33,6 +33,14 @@ class ViewControllerAllOutput: NSViewController, Delay {
         super.viewDidDisappear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: nil)
     }
+
+    @IBAction func pastetabeltomacospasteboard(_: NSButton) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        for i in 0 ..< (self.getoutputDelegate?.getalloutput().count ?? 0) {
+            pasteboard.writeObjects([(self.getoutputDelegate?.getalloutput()[i])! as NSPasteboardWriting])
+        }
+    }
 }
 
 extension ViewControllerAllOutput: NSTableViewDataSource {
