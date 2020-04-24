@@ -158,10 +158,7 @@ extension ViewControllerMain: Fileerror {
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + "\n" + errorstr)
                 self.info.stringValue = "Error: see ~/Documents/rsynclog.txt"
             }
-            let templogging = ViewControllerReference.shared.fulllogging
-            ViewControllerReference.shared.fulllogging = true
-            _ = Logging(outputprocess: self.outputprocess)
-            ViewControllerReference.shared.fulllogging = templogging
+            _ = Logging(self.outputprocess, true)
         }
     }
 }

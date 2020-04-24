@@ -99,4 +99,10 @@ class Logging: ReportFileerror {
             self.minimumlogging()
         }
     }
+
+    init(_ outputprocess: OutputProcess?, _: Bool) {
+        self.outputprocess = outputprocess
+        self.setfilenamelogging()
+        self.fulllogging()
+    }
 }
