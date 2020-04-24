@@ -382,6 +382,9 @@
 /* Class = "NSButtonCell"; title = "Delete"; ObjectID = "CkB-lg-RfP"; */
 "CkB-lg-RfP.title" = "Supprimez";
 
+/* Class = "NSButtonCell"; title = "Copy"; ObjectID = "CKs-PR-CbT"; */
+"CKs-PR-CbT.title" = "Copie";
+
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "CUQ-YI-Irs"; */
 "CUQ-YI-Irs.title" = "Fermer";
 
@@ -1206,6 +1209,9 @@
 
 /* Class = "NSButtonCell"; title = "Remote server"; ObjectID = "tVm-A1-xMK"; */
 "tVm-A1-xMK.title" = "Serveur distant";
+
+/* Class = "NSButtonCell"; title = "Copy"; ObjectID = "u2u-d9-h8P"; */
+"u2u-d9-h8P.title" = "Copie";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U4F-fe-c48"; */
 "U4F-fe-c48.title" = "Text Cell";
