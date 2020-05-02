@@ -34,7 +34,7 @@ final class ExecuteTaskNow: SetConfigurations {
 extension ExecuteTaskNow: UpdateProgress {
     func processTermination() {
         self.startstopindicators?.stopIndicator()
-        self.configurations!.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
+        self.configurations?.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
     }
 
     func fileHandler() {
