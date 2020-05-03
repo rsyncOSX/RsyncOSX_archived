@@ -13,17 +13,18 @@ import Foundation
 class ViewControllerAllOutput: NSViewController, Delay {
     @IBOutlet var outputtable: NSTableView!
     weak var getoutputDelegate: ViewOutputDetails?
+    var logging: Logging?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: self)
-        self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.outputtable.delegate = self
         self.outputtable.dataSource = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         globalMainQueue.async { () -> Void in
             self.outputtable.reloadData()
         }
@@ -39,6 +40,21 @@ class ViewControllerAllOutput: NSViewController, Delay {
         pasteboard.clearContents()
         for i in 0 ..< (self.getoutputDelegate?.getalloutput().count ?? 0) {
             pasteboard.writeObjects([(self.getoutputDelegate?.getalloutput()[i])! as NSPasteboardWriting])
+        }
+    }
+
+    @IBAction func readloggfile(_: NSButton) {
+        self.logging = Logging()
+        self.getoutputDelegate = self.logging
+        globalMainQueue.async { () -> Void in
+            self.outputtable.reloadData()
+        }
+    }
+
+    @IBAction func reloadoutput(_: NSButton) {
+        self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        globalMainQueue.async { () -> Void in
+            self.outputtable.reloadData()
         }
     }
 }

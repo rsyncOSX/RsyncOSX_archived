@@ -12,6 +12,7 @@ import Foundation
 class Logging: ReportFileerror {
     var outputprocess: OutputProcess?
     var log: String?
+    var contentoflogfile: [String]?
     var filename: String?
     var fileURL: URL?
     var filesize: NSNumber?
@@ -27,7 +28,7 @@ class Logging: ReportFileerror {
     private func writeloggfile() {
         globalMainQueue.async { () -> Void in
             do {
-                try self.log!.write(to: self.fileURL!, atomically: true, encoding: String.Encoding.utf8)
+                try self.log?.write(to: self.fileURL!, atomically: true, encoding: String.Encoding.utf8)
                 if let filesize = self.filesize {
                     guard Int(truncating: filesize) < ViewControllerReference.shared.logfilesize else {
                         let size = Int(truncating: filesize)
@@ -62,7 +63,7 @@ class Logging: ReportFileerror {
         tmplogg.append(date)
         tmplogg.append("-------------------------------------------")
         tmplogg.append("\n")
-        for i in startindex ..< self.outputprocess!.getOutput()!.count {
+        for i in startindex ..< (self.outputprocess?.getOutput()?.count ?? 0) {
             tmplogg.append(self.outputprocess!.getOutput()![i])
         }
         if self.log == nil {
@@ -104,5 +105,23 @@ class Logging: ReportFileerror {
         self.outputprocess = outputprocess
         self.setfilenamelogging()
         self.fulllogging()
+    }
+
+    init() {
+        self.setfilenamelogging()
+        self.readloggfile()
+        self.contentoflogfile = [String]()
+        guard self.log != nil else { return }
+        self.contentoflogfile = self.log!.components(separatedBy: .newlines)
+    }
+}
+
+extension Logging: ViewOutputDetails {
+    func reloadtable() {}
+
+    func appendnow() -> Bool { return false }
+
+    func getalloutput() -> [String] {
+        return self.contentoflogfile ?? [""]
     }
 }
