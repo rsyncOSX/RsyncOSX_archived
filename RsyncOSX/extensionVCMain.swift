@@ -123,7 +123,7 @@ extension ViewControllerMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
         globalMainQueue.async { () -> Void in
-            self.seterrorinfo(info: "Error")
+            self.seterrorinfo(info: "Rsync error")
             self.info.stringValue = "See ~/Documents/rsynclog.txt"
             self.showrsynccommandmainview()
             guard ViewControllerReference.shared.haltonerror == true else { return }
@@ -146,15 +146,15 @@ extension ViewControllerMain: Fileerror {
                 self.outputprocess = OutputProcess()
             }
             if errortype == .openlogfile {
-                self.seterrorinfo(info: "Warning")
+                self.seterrorinfo(info: "Logfile warning")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype))
                 self.info.stringValue = "Logfile: see ~/Documents/rsynclog.txt"
             } else if errortype == .filesize {
-                self.seterrorinfo(info: "Warning")
+                self.seterrorinfo(info: "Logfile size")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + ": filesize = " + errorstr)
                 self.info.stringValue = "Size logfile: see ~/Documents/rsynclog.txt"
             } else {
-                self.seterrorinfo(info: "Error")
+                self.seterrorinfo(info: "Some error")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + "\n" + errorstr)
                 self.info.stringValue = "Error: see ~/Documents/rsynclog.txt"
             }
