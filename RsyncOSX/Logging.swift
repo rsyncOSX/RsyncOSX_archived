@@ -80,9 +80,9 @@ class Logging: ReportFileerror {
         let tmplogg: String = "\n" + "-------------------------------------------\n" + date + "\n"
             + "-------------------------------------------\n"
         if self.log == nil {
-            self.log = tmplogg + self.outputprocess!.getOutput()!.joined(separator: "\n")
+            self.log = tmplogg + (self.outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
         } else {
-            self.log = self.log! + tmplogg + self.outputprocess!.getOutput()!.joined(separator: "\n")
+            self.log = self.log! + tmplogg + (self.outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
         }
         self.writeloggfile()
     }
