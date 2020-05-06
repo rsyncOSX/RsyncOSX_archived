@@ -67,10 +67,10 @@ class Files: FileErrors {
     private var configpath: String?
 
     private func setrootpath() {
-        switch self.whichroot! {
+        switch self.whichroot {
         case .profileRoot:
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-            let docuDir = (paths.firstObject as? String)!
+            let docuDir = (paths.firstObject as? String) ?? ""
             if ViewControllerReference.shared.macserialnumber == nil {
                 ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
             }
@@ -78,6 +78,8 @@ class Files: FileErrors {
             self.rootpath = profilePath
         case .sshRoot:
             self.rootpath = NSHomeDirectory() + "/.ssh/"
+        default:
+            return
         }
     }
 
@@ -93,7 +95,7 @@ class Files: FileErrors {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = [URL]()
                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                    array!.append(fileURLs[i])
+                    array?.append(fileURLs[i])
                 }
                 return array
             }
@@ -113,7 +115,7 @@ class Files: FileErrors {
             if let fileURLs = self.getfileURLs(path: filePath) {
                 array = [String]()
                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                    array!.append(fileURLs[i].path)
+                    array?.append(fileURLs[i].path)
                 }
                 return array
             }
