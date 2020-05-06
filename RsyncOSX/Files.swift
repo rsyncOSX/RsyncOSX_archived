@@ -15,7 +15,6 @@ enum WhichRoot {
 }
 
 enum Fileerrortype {
-    case openlogfile
     case writelogfile
     case profilecreatedirectory
     case profiledeletedirectory
@@ -27,11 +26,11 @@ protocol Fileerror: AnyObject {
     func errormessage(errorstr: String, errortype: Fileerrortype)
 }
 
-protocol ReportFileerror {
+protocol FileErrors {
     var errorDelegate: Fileerror? { get }
 }
 
-extension ReportFileerror {
+extension FileErrors {
     var errorDelegate: Fileerror? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
@@ -41,18 +40,13 @@ extension ReportFileerror {
     }
 }
 
-protocol FileerrorMessage {
+protocol ErrorMessage {
     func errordescription(errortype: Fileerrortype) -> String
 }
 
-extension FileerrorMessage {
+extension ErrorMessage {
     func errordescription(errortype: Fileerrortype) -> String {
         switch errortype {
-        case .openlogfile:
-            guard ViewControllerReference.shared.fileURL != nil else {
-                return "No logfile, creating a new one"
-            }
-            return "No logfile, creating a new one: " + String(describing: ViewControllerReference.shared.fileURL!)
         case .writelogfile:
             return "Could not write to logfile"
         case .profilecreatedirectory:
@@ -65,7 +59,7 @@ extension FileerrorMessage {
     }
 }
 
-class Files: ReportFileerror {
+class Files: FileErrors {
     var whichroot: WhichRoot?
     var rootpath: String?
     // config path either

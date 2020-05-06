@@ -145,11 +145,7 @@ extension ViewControllerMain: Fileerror {
             if self.outputprocess == nil {
                 self.outputprocess = OutputProcess()
             }
-            if errortype == .openlogfile {
-                self.seterrorinfo(info: "Logfile warning")
-                self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype))
-                self.info.stringValue = "Logfile: see ~/Documents/rsynclog.txt"
-            } else if errortype == .filesize {
+            if errortype == .filesize {
                 self.seterrorinfo(info: "Logfile size")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + ": filesize = " + errorstr)
                 self.info.stringValue = "Size logfile: see ~/Documents/rsynclog.txt"
