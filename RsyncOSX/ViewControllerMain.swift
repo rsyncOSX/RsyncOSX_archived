@@ -6,7 +6,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, FileerrorMessage, Setcolor, Checkforrsync, Help {
+class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, ErrorMessage, Setcolor, Checkforrsync, Help {
     // Main tableview
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work

@@ -9,7 +9,7 @@
 
 import Foundation
 
-class Logging: ReportFileerror {
+class Logging: FileErrors {
     var outputprocess: OutputProcess?
     var log: String?
     var contentoflogfile: [String]?
@@ -46,9 +46,9 @@ class Logging: ReportFileerror {
     private func readloggfile() {
         do {
             self.log = try String(contentsOf: self.fileURL!, encoding: String.Encoding.utf8)
-        } catch let e {
-            let error = e as NSError
-            self.error(error: error.description, errortype: .openlogfile)
+        } catch _ {
+            self.log = "No logfile..." + "\n" + "creating logfile: " + (self.fileURL?.absoluteString ?? "")
+            self.writeloggfile()
         }
     }
 
@@ -60,9 +60,7 @@ class Logging: ReportFileerror {
         if startindex < 0 { startindex = 0 }
         tmplogg.append("\n")
         tmplogg.append("-------------------------------------------")
-        tmplogg.append(date)
-        tmplogg.append("-------------------------------------------")
-        tmplogg.append("\n")
+        tmplogg.append(date + "\n")
         for i in startindex ..< (self.outputprocess?.getOutput()?.count ?? 0) {
             tmplogg.append(self.outputprocess!.getOutput()![i])
         }
