@@ -103,6 +103,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
             self.maxInt = calculatedNumberOfFiles
+            self.numberoffilestodo.isHidden = false
         }
         progress.minValue = 0
         progress.doubleValue = 0
@@ -112,8 +113,12 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     private func updateProgressbar(progress: NSProgressIndicator) {
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         progress.doubleValue = value
-        let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
-        self.numberoffilestodo.stringValue = String(filestodo)
+        let filestodo = (self.maxInt ?? 0) + 16 - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
+        if filestodo >= 0 {
+            self.numberoffilestodo.stringValue = String(filestodo)
+        } else {
+            self.numberoffilestodo.isHidden = true
+        }
     }
 }
 
