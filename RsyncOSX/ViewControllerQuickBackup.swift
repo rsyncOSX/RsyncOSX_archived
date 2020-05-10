@@ -143,7 +143,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
             }
         } else {
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                if cellIdentifier == "countCellID" {
+                if cellIdentifier == "countCellID", hiddenID == self.quickbackup?.hiddenID {
                     let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
                     if filestodo > 0 {
                         cell.textField?.stringValue = String(filestodo)
