@@ -135,7 +135,7 @@ extension RemoteinfoEstimation: UpdateProgress {
         }
         // Update View
         self.updateprogressDelegate?.processTermination()
-        self.outputprocess = OutputProcess()
+        self.outputprocess = OutputProcessRsync()
         if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
             self.index = index
             _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)

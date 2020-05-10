@@ -18,11 +18,11 @@ enum Trim {
     case three
 }
 
-final class OutputProcess {
-    private var output: [String]?
-    private var trimmedoutput: [String]?
-    private var startindex: Int?
-    private var maxnumber: Int = 0
+class OutputProcess {
+    var output: [String]?
+    var trimmedoutput: [String]?
+    var startindex: Int?
+    var maxnumber: Int = 0
     weak var errorDelegate: RsyncError?
     var error: Bool = false
 
