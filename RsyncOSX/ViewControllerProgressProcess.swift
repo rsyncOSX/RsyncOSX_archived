@@ -62,7 +62,7 @@ class ViewControllerProgressProcess: NSViewController, SetConfigurations, SetDis
 
     // Progress bars
     private func initiateProgressbar() {
-        self.progress.maxValue = Double(self.countDelegate?.maxCount() ?? 0)
+        self.progress.maxValue = Double((self.countDelegate?.maxCount() ?? 0) + ViewControllerReference.shared.extralines)
         self.progress.minValue = 0
         self.progress.doubleValue = 0
         self.progress.startAnimation(self)

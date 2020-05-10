@@ -114,8 +114,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     private func updateProgressbar(progress: NSProgressIndicator) {
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         progress.doubleValue = value
-        let filestodo = (self.maxInt ?? 0) + 16 - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
-        if filestodo >= 0 {
+        let filestodo = (self.maxInt ?? 0) + ViewControllerReference.shared.extralines - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
+        if filestodo > 0 {
             self.numberoffilestodo.stringValue = String(filestodo)
         } else {
             self.numberoffilestodo.isHidden = true
