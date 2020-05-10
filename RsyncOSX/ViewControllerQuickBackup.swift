@@ -103,6 +103,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
             self.maxInt = calculatedNumberOfFiles
+            self.numberoffilestodo.stringValue = String(calculatedNumberOfFiles)
             self.numberoffilestodo.isHidden = false
         }
         progress.minValue = 0
