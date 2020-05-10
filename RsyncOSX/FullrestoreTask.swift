@@ -41,7 +41,7 @@ final class FullrestoreTask: SetConfigurations {
         }
         if let arguments = self.arguments {
             self.process = ProcessCmd(command: nil, arguments: arguments)
-            self.outputprocess = OutputProcess()
+            self.outputprocess = OutputProcessRsync()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             self.process?.setupdateDelegate(object: updateprogress)
             self.process?.executeProcess(outputprocess: outputprocess)

@@ -14,7 +14,7 @@ import Foundation
 // when the job discover (observs) the termination of the process.
 
 final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
-    let outputprocess = OutputProcess()
+    let outputprocess = OutputProcessRsync()
     var arguments: [String]?
     var config: Configuration?
 

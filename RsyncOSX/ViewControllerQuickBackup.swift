@@ -22,6 +22,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     var executing: Bool = true
     weak var inprogresscountDelegate: Count?
     var max: Double?
+    var maxInt: Int?
     var diddissappear: Bool = false
     var indexinitiated: Int = -1
 
@@ -100,6 +101,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         if let calculatedNumberOfFiles = self.quickbackup?.maxcount {
             progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
+            self.maxInt = calculatedNumberOfFiles
         }
         progress.minValue = 0
         progress.doubleValue = 0
@@ -141,8 +143,19 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
             }
         } else {
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
-                return cell
+                if cellIdentifier == "countCellID" {
+                    let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
+                    if filestodo > 0 {
+                        cell.textField?.stringValue = String(filestodo)
+                        return cell
+                    } else {
+                        cell.textField?.stringValue = ""
+                        return cell
+                    }
+                } else {
+                    cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                    return cell
+                }
             }
         }
         return nil

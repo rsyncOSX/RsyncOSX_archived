@@ -27,7 +27,7 @@ final class RestorefilesTask: SetConfigurations {
         if let config = self.config {
             let arguments = RestorefilesArguments(task: .rsync, config: config, remoteFile: remotefile,
                                                   localCatalog: localCatalog, drynrun: dryrun).getArguments()
-            self.outputprocess = OutputProcess()
+            self.outputprocess = OutputProcessRsync()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             self.process = ProcessCmd(command: nil, arguments: arguments)
             self.process?.setupdateDelegate(object: updateprogress)
