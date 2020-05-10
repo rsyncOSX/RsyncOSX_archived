@@ -22,6 +22,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     var executing: Bool = true
     weak var inprogresscountDelegate: Count?
     var max: Double?
+    var maxInt: Int?
     var diddissappear: Bool = false
     var indexinitiated: Int = -1
 
@@ -29,6 +30,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     @IBOutlet var abortbutton: NSButton!
     @IBOutlet var completed: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
+    @IBOutlet var numberoffilestodo: NSTextField!
 
     // Either abort or close
     @IBAction func abort(_: NSButton) {
@@ -100,6 +102,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         if let calculatedNumberOfFiles = self.quickbackup?.maxcount {
             progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
+            self.maxInt = calculatedNumberOfFiles
         }
         progress.minValue = 0
         progress.doubleValue = 0
@@ -109,6 +112,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     private func updateProgressbar(progress: NSProgressIndicator) {
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         progress.doubleValue = value
+        let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
+        self.numberoffilestodo.stringValue = String(filestodo)
     }
 }
 
