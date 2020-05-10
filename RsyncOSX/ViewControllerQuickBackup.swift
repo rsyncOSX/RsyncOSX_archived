@@ -30,7 +30,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     @IBOutlet var abortbutton: NSButton!
     @IBOutlet var completed: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
-    @IBOutlet var numberoffilestodo: NSTextField!
 
     // Either abort or close
     @IBAction func abort(_: NSButton) {
@@ -103,8 +102,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             progress.maxValue = Double(calculatedNumberOfFiles)
             self.max = Double(calculatedNumberOfFiles)
             self.maxInt = calculatedNumberOfFiles
-            self.numberoffilestodo.stringValue = String(calculatedNumberOfFiles)
-            self.numberoffilestodo.isHidden = false
         }
         progress.minValue = 0
         progress.doubleValue = 0
@@ -114,12 +111,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     private func updateProgressbar(progress: NSProgressIndicator) {
         let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
         progress.doubleValue = value
-        let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
-        if filestodo > 0 {
-            self.numberoffilestodo.stringValue = String(filestodo)
-        } else {
-            self.numberoffilestodo.isHidden = true
-        }
     }
 }
 
@@ -152,8 +143,19 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
             }
         } else {
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
-                return cell
+                if cellIdentifier == "countCellID" {
+                    let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
+                    if filestodo > 0 {
+                        cell.textField?.stringValue = String(filestodo)
+                        return cell
+                    } else {
+                        cell.textField?.stringValue = ""
+                        return cell
+                    }
+                } else {
+                    cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                    return cell
+                }
             }
         }
         return nil
