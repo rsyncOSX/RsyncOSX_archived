@@ -127,19 +127,15 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
         let object: NSDictionary = self.quickbackup!.sortedlist![row]
         let hiddenID = object.value(forKey: "hiddenID") as? Int
         let cellIdentifier: String = tableColumn!.identifier.rawValue
-        if cellIdentifier == "percentCellID" {
+        if cellIdentifier == "percentCellID", hiddenID == self.quickbackup?.hiddenID {
             if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
-                if hiddenID == self.quickbackup?.hiddenID {
-                    if row > self.indexinitiated {
-                        self.indexinitiated = row
-                        self.initiateProgressbar(progress: cell)
-                    } else {
-                        self.updateProgressbar(progress: cell)
-                    }
-                    return cell
+                if row > self.indexinitiated {
+                    self.indexinitiated = row
+                    self.initiateProgressbar(progress: cell)
                 } else {
-                    return nil
+                    self.updateProgressbar(progress: cell)
                 }
+                return cell
             }
         } else {
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
