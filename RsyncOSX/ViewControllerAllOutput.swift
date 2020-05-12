@@ -57,6 +57,13 @@ class ViewControllerAllOutput: NSViewController, Delay {
             self.outputtable.reloadData()
         }
     }
+
+    @IBAction func newcleanlogfile(_: NSButton) {
+        _ = Logging(nil, false)
+        globalMainQueue.async { () -> Void in
+            self.outputtable.reloadData()
+        }
+    }
 }
 
 extension ViewControllerAllOutput: NSTableViewDataSource {
