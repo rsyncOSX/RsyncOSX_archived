@@ -99,10 +99,15 @@ class Logging: FileErrors {
         }
     }
 
-    init(_ outputprocess: OutputProcess?, _: Bool) {
-        self.outputprocess = outputprocess
+    init(_ outputprocess: OutputProcess?, _ logging: Bool) {
         self.setfilenamelogging()
-        self.fulllogging()
+        if logging == false, outputprocess == nil {
+            self.log = "Creating a new logfile: " + (self.fileURL?.absoluteString ?? "")
+            self.writeloggfile()
+        } else {
+            self.outputprocess = outputprocess
+            self.fulllogging()
+        }
     }
 
     init() {
