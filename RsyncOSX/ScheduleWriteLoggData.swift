@@ -44,7 +44,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     }
 
     // Function adds results of task to file (via memory). Memory are
-    // saved after changed. Used in either single tasks or batch.
+    // saved after changed. Used in single tasks
     // - parameter hiddenID : hiddenID for task
     // - parameter result : String representation of result
     // - parameter date : String representation of date and time stamp

@@ -134,7 +134,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dryrun": "dryrun",
             "dateRun": "",
             "singleFile": 0,
-            "batch": 0,
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
@@ -160,7 +159,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dryrun": "dryrun",
             "dateRun": "",
             "singleFile": 0,
-            "batch": 0,
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
@@ -186,7 +184,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dryrun": "dryrun",
             "dateRun": "",
             "singleFile": 0,
-            "batch": 0,
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)

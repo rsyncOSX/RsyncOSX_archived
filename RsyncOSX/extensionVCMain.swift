@@ -182,7 +182,7 @@ extension ViewControllerMain: Abort {
     }
 }
 
-// Extensions from here are used in either newSingleTask or newBatchTask
+// Extensions from here are used in newSingleTask
 
 extension ViewControllerMain: StartStopProgressIndicatorSingleTask {
     func startIndicatorExecuteTaskNow() {
