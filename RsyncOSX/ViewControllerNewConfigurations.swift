@@ -206,7 +206,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             "dryrun": self.dryrun,
             "dateRun": "",
             "singleFile": 0,
-            "batch": 0,
         ]
         if !self.localCatalog.stringValue.hasSuffix("/"), self.backuptypeselected != .singlefile, self.addingtrailingbackslash.state == .off {
             self.localCatalog.stringValue += "/"

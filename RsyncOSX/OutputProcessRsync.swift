@@ -20,8 +20,4 @@ final class OutputProcessRsync: OutputProcess {
             self.output?.append(line)
         }
     }
-
-    override init() {
-        super.init()
-    }
 }

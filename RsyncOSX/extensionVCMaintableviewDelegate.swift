@@ -86,20 +86,15 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                 return stringdate.en_us_date_from_string().localized_string_from_date()
             }
         } else {
-            if tableColumn!.identifier.rawValue == "batchCellID" {
-                return object[tableColumn!.identifier] as? Int
-            } else {
-                // Check if test for connections is selected
-                if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
-                    if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
-                        tableColumn!.identifier.rawValue == "offsiteServerCellID" {
-                        return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
-                    } else {
-                        return object[tableColumn!.identifier] as? String
-                    }
+            if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
+                if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
+                    tableColumn!.identifier.rawValue == "offsiteServerCellID" {
+                    return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
                 } else {
                     return object[tableColumn!.identifier] as? String
                 }
+            } else {
+                return object[tableColumn!.identifier] as? String
             }
         }
         return nil
