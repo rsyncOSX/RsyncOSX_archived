@@ -127,7 +127,9 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
         let object: NSDictionary = self.quickbackup!.sortedlist![row]
         let hiddenID = object.value(forKey: "hiddenID") as? Int
         let cellIdentifier: String = tableColumn!.identifier.rawValue
-        if cellIdentifier == "percentCellID", hiddenID == self.quickbackup?.hiddenID {
+        switch cellIdentifier {
+        case "percentCellID":
+            guard hiddenID == self.quickbackup?.hiddenID else { return nil }
             if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
                 if row > self.indexinitiated {
                     self.indexinitiated = row
@@ -137,21 +139,22 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
                 }
                 return cell
             }
-        } else {
+        case "countCellID":
+            guard hiddenID == self.quickbackup?.hiddenID else { return nil }
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                if cellIdentifier == "countCellID", hiddenID == self.quickbackup?.hiddenID {
-                    let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
-                    if filestodo > 0 {
-                        cell.textField?.stringValue = String(filestodo)
-                        return cell
-                    } else {
-                        cell.textField?.stringValue = ""
-                        return cell
-                    }
+                let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
+                if filestodo > 0 {
+                    cell.textField?.stringValue = String(filestodo)
+                    return cell
                 } else {
-                    cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                    cell.textField?.stringValue = ""
                     return cell
                 }
+            }
+        default:
+            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                return cell
             }
         }
         return nil

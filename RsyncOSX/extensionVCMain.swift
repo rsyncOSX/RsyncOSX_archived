@@ -147,13 +147,13 @@ extension ViewControllerMain: Fileerror {
             }
             if errortype == .filesize {
                 self.seterrorinfo(info: "Logfile size")
-                self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + ": filesize = " + errorstr)
-                self.info.stringValue = "Size logfile: see ~/Documents/rsynclog.txt"
+                self.info.stringValue = "Size logfile, filesize= " + errorstr
             } else {
                 self.seterrorinfo(info: "Some error")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + "\n" + errorstr)
                 self.info.stringValue = "Error: see ~/Documents/rsynclog.txt"
             }
+            guard errortype != .filesize else { return }
             _ = Logging(self.outputprocess, true)
         }
     }

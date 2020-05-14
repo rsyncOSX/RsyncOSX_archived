@@ -76,7 +76,7 @@ final class ViewControllerReference {
     // rsync short version
     var rsyncversionshort: String?
     // filsize logfile warning
-    var logfilesize: Int = 500_000
+    var logfilesize: Int = 100_000
     // Extra lines in rsync output
     var extralines: Int = 18
     // Paths
