@@ -43,6 +43,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2Cv-Hb-dy9"; */
 "2Cv-Hb-dy9.title" = "Text Cell";
 
+/* Class = "NSTableColumn"; headerCell.title = "Count"; ObjectID = "2EH-WX-MAp"; */
+"2EH-WX-MAp.headerCell.title" = "Compter";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2eK-ib-h9A"; */
 "2eK-ib-h9A.title" = "Text Cell";
 
@@ -385,6 +388,9 @@
 /* Class = "NSButtonCell"; title = "Copy"; ObjectID = "CKs-PR-CbT"; */
 "CKs-PR-CbT.title" = "Copie";
 
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "cU2-bw-ci2"; */
+"cU2-bw-ci2.title" = "Table View Cell";
+
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "CUQ-YI-Irs"; */
 "CUQ-YI-Irs.title" = "Fermer";
 
@@ -627,6 +633,9 @@
 
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "h4F-dN-GN0"; */
 "h4F-dN-GN0.title" = "Charger";
+
+/* Class = "NSButtonCell"; title = "Rsync"; ObjectID = "h8a-b7-dfm"; */
+"h8a-b7-dfm.title" = "Rsync";
 
 /* Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "H79-tQ-7yT"; */
 "H79-tQ-7yT.headerCell.title" = "Avail(%)";
@@ -910,6 +919,9 @@
 /* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "nsN-YU-MJ2"; */
 "nsN-YU-MJ2.title" = "Catalogue local :";
 
+/* Class = "NSButtonCell"; title = "Logfile"; ObjectID = "Nxf-lZ-nUJ"; */
+"Nxf-lZ-nUJ.title" = "Fichier log";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "o1G-0k-G0I"; */
 "o1G-0k-G0I.title" = "Text Cell";
 
@@ -939,6 +951,9 @@
 
 /* Class = "NSMenuItem"; title = "Hide RsyncOSX"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "Cacher RsyncOSX";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "oM6-Af-lNS"; */
+"oM6-Af-lNS.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OOi-RG-4If"; */
 "OOi-RG-4If.title" = "Text Cell";
@@ -1446,6 +1461,9 @@
 
 /* Class = "NSButtonCell"; title = "Full restore"; ObjectID = "z5M-Si-YGE"; */
 "z5M-Si-YGE.title" = "Restauration complète";
+
+/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "Z5S-KF-h0s"; */
+"Z5S-KF-h0s.title" = "Borrar";
 
 /* Class = "NSTextFieldCell"; title = "Norwegian"; ObjectID = "Z6c-BQ-VEV"; */
 "Z6c-BQ-VEV.title" = "Norvégien";
