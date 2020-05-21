@@ -77,6 +77,10 @@ The main view of RsyncOSX.
 Prepare for synchronizing tasks.
 ![](images/main2.png)
 
+### The source code and compile
+
+There are [some details about source and how to compile](https://rsyncosx.netlify.app/post/compile/).
+
 ### A Sandboxed version
 
 [There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.netlify.app/post/rsyncguichangelog/). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
@@ -100,18 +104,6 @@ There are two short YouTube videos of RsyncOSX:
 - [getting RsyncOSX](https://youtu.be/MrT8NzdF9dE) and installing it
   - the video also shows how to create the two local ssh certificates for password less logins to remote server
 - [adding and executing the first backup](https://youtu.be/8oe1lKgiDx8)
-
-### SwiftLint and SwiftFormat
-
-I am using [SwiftLint](https://github.com/realm/SwiftLint) as tool for writing more readable code. I am also using Paul Taykalo´s [swift-scripts](https://github.com/PaulTaykalo/swift-scripts) to find and delete not used code. Another tool is [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) for formatting swift code.
-
-There are about 130 classes with 14,900 lines of code in RsyncOSX.
-
-### Compile
-
-To compile the code, install Xcode and open the RsyncOSX project file. Before compiling, open in Xcode the `RsyncOSX/General` preference page and replace with your own credentials in `Signing`, or disable Signing.
-
-There are two ways to compile, either utilize `make` or compile by Xcode. `make release` will compile the `RsyncOSX.app` and `make dmg` will make a dmg file to be released.  The build of dmg files are by utilizing [andreyvit](https://github.com/andreyvit/create-dmg) script for creating dmg and [syncthing-macos](https://github.com/syncthing/syncthing-macos) setup.
 
 ### XCTest
 
