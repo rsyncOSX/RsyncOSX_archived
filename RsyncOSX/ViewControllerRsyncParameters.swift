@@ -306,7 +306,11 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             }
             if let sshkeypath = self.sshkeypath {
                 if sshkeypath.stringValue.isEmpty == false {
-                    configurations[index].sshkeypath = sshkeypath.stringValue
+                    if sshkeypath.stringValue.hasSuffix("/") {
+                        configurations[index].sshkeypath = sshkeypath.stringValue
+                    } else {
+                        configurations[index].sshkeypath = sshkeypath.stringValue + "/"
+                    }
                 } else {
                     configurations[index].sshkeypath = nil
                 }
