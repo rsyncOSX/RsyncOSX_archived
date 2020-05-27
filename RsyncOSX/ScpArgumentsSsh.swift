@@ -60,24 +60,24 @@ final class ScpArgumentsSsh: SetConfigurations {
         self.args?.append(usernameandservername)
         self.command = "/usr/bin/ssh-copy-id"
         self.commandCopyPasteTerminal = self.command ?? "" + " " + self.args![0]
-        for i in 1 ..< (self.args?.count ?? 0) {
+        for i in 0 ..< (self.args?.count ?? 0) {
             self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + " " + self.args![i]
         }
     }
 
     // Create local key with ssh-keygen
-     // Generate a passwordless RSA keyfile -N sets password, "" makes it blank
-     // ssh-keygen -t rsa -N "" -f $ssh-keypath
-     private func argumentscreatekey() {
-         self.args = [String]()
-         self.args?.append("-t")
-         self.args?.append("rsa")
-         self.args?.append("-N")
-         self.args?.append("")
-         self.args?.append("-f")
-         self.args?.append(self.globalsshkeypathandidentityfile)
-         self.command = "/usr/bin/ssh-keygen"
-     }
+    // Generate a passwordless RSA keyfile -N sets password, "" makes it blank
+    // ssh-keygen -t rsa -N "" -f $ssh-keypath
+    private func argumentscreatekey() {
+        self.args = [String]()
+        self.args?.append("-t")
+        self.args?.append("rsa")
+        self.args?.append("-N")
+        self.args?.append("")
+        self.args?.append("-f")
+        self.args?.append(self.globalsshkeypathandidentityfile)
+        self.command = "/usr/bin/ssh-keygen"
+    }
 
     // Check if pub key exists on remote server
     // ssh -p port -i $ssh-keypath $ssh-address

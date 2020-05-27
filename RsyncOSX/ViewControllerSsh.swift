@@ -17,18 +17,15 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     var outputprocess: OutputProcess?
     var execute: Bool = false
 
-    @IBOutlet var dsaCheck: NSButton!
     @IBOutlet var rsaCheck: NSButton!
     @IBOutlet var detailsTable: NSTableView!
     @IBOutlet var checkRsaPubKeyButton: NSButton!
-    @IBOutlet var checkDsaPubKeyButton: NSButton!
-    @IBOutlet var createRsaKey: NSButton!
-    @IBOutlet var createDsaKey: NSButton!
     @IBOutlet var createKeys: NSButton!
-    @IBOutlet var scpRsaCopyPasteCommand: NSTextField!
-    @IBOutlet var scpDsaCopyPasteCommand: NSTextField!
+    @IBOutlet var copykeyfilepastecommand: NSTextField!
     @IBOutlet var sshCreateRemoteCatalog: NSTextField!
     @IBOutlet var remoteserverbutton: NSButton!
+    @IBOutlet var sshport: NSTextField!
+    @IBOutlet var sshkeypathandidentityfile: NSTextField!
 
     lazy var viewControllerSource: NSViewController? = {
         (self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
@@ -69,20 +66,10 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.help()
     }
 
-    // Just for grouping rsa and dsa radiobuttons
-    @IBAction func radioButtonsCreateKeyPair(_: NSButton) {
-        // For selecting either of them
-    }
-
     @IBAction func createPublicPrivateKeyPair(_: NSButton) {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
-        if self.createRsaKey.state == .on {
-            self.sshcmd?.createLocalKeysRsa()
-        }
-        if self.createDsaKey.state == .on {
-            self.sshcmd?.createLocalKeysDsa()
-        }
+        self.sshcmd?.createLocalKeysRsa()
     }
 
     @IBAction func source(_: NSButton) {
@@ -107,17 +94,10 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         }
     }
 
-    func scpRsaPubKey() {
+    func copykeyfile() {
         if let hiddenID = self.hiddenID {
-            self.sshcmd?.scpPubKey(key: "rsa", hiddenID: hiddenID)
-            self.scpRsaCopyPasteCommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
-        }
-    }
-
-    func scpDsaPubKey() {
-        if let hiddenID = self.hiddenID {
-            self.sshcmd?.scpPubKey(key: "dsa", hiddenID: hiddenID)
-            self.scpDsaCopyPasteCommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
+            self.sshcmd?.copykeyfile(hiddenID: hiddenID)
+            self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
         }
     }
 
@@ -131,35 +111,25 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         }
     }
 
-    @IBAction func checkDsaPubKey(_: NSButton) {
-        self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(outputprocess: self.outputprocess)
-        guard self.execute == true else { return }
-        if let hiddenID = self.hiddenID {
-            self.sshcmd?.chmodSsh(key: "dsa", hiddenID: hiddenID)
-            self.sshcmd?.executeSshCommand()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcssh, nsviewcontroller: self)
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
         self.outputprocess = nil
+        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? "~./ssh/id_rsa"
+        self.sshport.stringValue = String(ViewControllerReference.shared.sshport ?? 22)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.checkDsaPubKeyButton.isEnabled = false
         self.checkRsaPubKeyButton.isEnabled = false
         self.checkforPrivateandPublicKeypair()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.scpDsaCopyPasteCommand.stringValue = ""
-        self.scpRsaCopyPasteCommand.stringValue = ""
+        self.copykeyfilepastecommand.stringValue = ""
         self.sshCreateRemoteCatalog.stringValue = ""
     }
 
@@ -168,22 +138,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         if self.sshcmd?.rsaPubKeyExist ?? false {
             self.rsaCheck.state = .on
             self.createKeys.isEnabled = false
-            self.createRsaKey.state = .off
         } else {
             self.rsaCheck.state = .off
             self.createKeys.isEnabled = true
-            self.createRsaKey.state = .on
-        }
-        if self.sshcmd?.dsaPubKeyExist ?? false {
-            self.dsaCheck.state = .on
-            self.createKeys.isEnabled = false
-            self.createDsaKey.state = .off
-        } else {
-            self.dsaCheck.state = .off
-            self.createKeys.isEnabled = true
-            if self.sshcmd!.rsaPubKeyExist {
-                self.createDsaKey.state = .on
-            }
         }
     }
 }
@@ -191,11 +148,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 extension ViewControllerSsh: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.checkDsaPubKeyButton.isEnabled = true
         self.checkRsaPubKeyButton.isEnabled = true
         self.createRemoteSshDirectory()
-        self.scpRsaPubKey()
-        self.scpDsaPubKey()
+        self.copykeyfile()
     }
 }
 
@@ -238,10 +193,10 @@ extension ViewControllerSsh: UpdateProgress {
         guard self.hiddenID != nil else { return }
         switch self.sshcmd!.chmod!.pop() {
         case .chmodRsa:
-            self.sshcmd!.checkRemotePubKey(key: "rsa", hiddenID: self.hiddenID!)
+            self.sshcmd!.checkRemotePubKey(hiddenID: self.hiddenID!)
             self.sshcmd!.executeSshCommand()
         case .chmodDsa:
-            self.sshcmd!.checkRemotePubKey(key: "dsa", hiddenID: self.hiddenID!)
+            self.sshcmd!.checkRemotePubKey(hiddenID: self.hiddenID!)
             self.sshcmd!.executeSshCommand()
         default:
             self.sshcmd!.chmod = nil
