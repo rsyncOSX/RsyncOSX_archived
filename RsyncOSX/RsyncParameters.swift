@@ -49,15 +49,15 @@ class RsyncParameters {
             self.arguments?.append(parameter4)
             if forDisplay { self.arguments?.append(" ") }
         }
-        if offsiteServer.isEmpty {
-            // nothing
-        } else {
-            // TODO:
+        if offsiteServer.isEmpty == false {
             // We have to check for both global and local ssh parameters.
-            // Parameters are port, identityfile and keypath
-            // Set on task rules global settings
+            // either set global or local
             if parameter5.isEmpty == false {
-                self.sshportparameter(config: config, forDisplay: forDisplay)
+                if config.sshport != nil || config.sshport != nil || config.sshkeypath != nil {
+                    self.sshparameterslocal(config: config, forDisplay: forDisplay)
+                } else {
+                    self.sshparametersglobal(config: config, forDisplay: forDisplay)
+                }
             }
         }
     }
@@ -112,7 +112,7 @@ class RsyncParameters {
     }
 
     // Local params rules global settings
-    func sshportparameter(config: Configuration, forDisplay: Bool) {
+    func sshparameterslocal(config: Configuration, forDisplay: Bool) {
         // -e "ssh -i ~/.ssh/id_myserver -p 22"
         // -e "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
         // default is
@@ -128,15 +128,17 @@ class RsyncParameters {
         if let sshidentityfile = config.sshidentityfile {
             sshidentityfileadded = true
             if let sshkeypath = config.sshkeypath {
+                // "ssh -i ~/sshkeypath/sshidentityfile"
                 identifyfile = sshkeypath + sshidentityfile
             } else {
+                // "ssh -i ~/.ssh/identifyfile"
                 identifyfile = self.defaultsshkeypath + sshidentityfile
             }
-            // "ssh -i ~/.ssh/identifyfile"
             if forDisplay { self.arguments?.append(" \"") }
             // Then check if ssh port is set also
             if let sshport = config.sshport {
                 sshportadded = true
+                // "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
                 self.arguments?.append("ssh -i " + identifyfile + " " + "-p " + String(sshport))
             } else {
                 self.arguments?.append("ssh -i " + identifyfile)
@@ -160,19 +162,55 @@ class RsyncParameters {
         if forDisplay { self.arguments?.append(" ") }
     }
 
-    // TODO: set ssh parameters port, identityfile and keypath
-    func sshparameters(config: Configuration, forDisplay _: Bool) {
+    // Global ssh parameters
+    func sshparametersglobal(config: Configuration, forDisplay: Bool) {
         // -e "ssh -i ~/.ssh/id_myserver -p 22"
         // -e "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
         // default is
         // -e "ssh -i ~/.ssh/id_rsa -p 22"
-        // parameter5 = "-e"
-        // parameter6 = "ssh", "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
         var sshportadded: Bool = false
         var sshidentityfileadded: Bool = false
-        var sshkeypathadded: Bool = false
+        var identifyfile: String = ""
+        // -e
+        self.arguments?.append(parameter5)
+        if forDisplay { self.arguments?.append(" ") }
+        if let sshidentityfile = ViewControllerReference.shared.sshidentityfile {
+            sshidentityfileadded = true
+            if let sshkeypath = ViewControllerReference.shared.sshkeypath {
+                // "ssh -i ~/sshkeypath/sshidentityfile"
+                identifyfile = sshkeypath + sshidentityfile
+            } else {
+                // "ssh -i ~/.ssh/identifyfile"
+                identifyfile = self.defaultsshkeypath + sshidentityfile
+            }
+            if forDisplay { self.arguments?.append(" \"") }
+            // Then check if ssh port is set also
+            if let sshport = config.sshport {
+                sshportadded = true
+                // "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
+                self.arguments?.append("ssh -i " + identifyfile + " " + "-p " + String(sshport))
+            } else {
+                self.arguments?.append("ssh -i " + identifyfile)
+            }
+            if forDisplay { self.arguments?.append("\" ") }
+        }
+        if let sshport = ViewControllerReference.shared.sshport {
+            // "ssh -p xxx"
+            if sshportadded == false {
+                sshportadded = true
+                if forDisplay { self.arguments?.append(" \"") }
+                self.arguments?.append("ssh -p " + String(sshport))
+                if forDisplay { self.arguments?.append("\" ") }
+            }
+        } else {
+            // ssh
+            if sshportadded == false, sshidentityfileadded == false {
+                self.arguments?.append(parameter6)
+            }
+        }
+        if forDisplay { self.arguments?.append(" ") }
     }
 
     func setdatesuffixlocalhost() -> String {
