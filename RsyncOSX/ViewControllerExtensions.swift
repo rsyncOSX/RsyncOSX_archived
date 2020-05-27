@@ -315,6 +315,17 @@ extension ChangeTemporaryRestorePath {
     }
 }
 
+protocol ChangeSshparameters {
+    func changesshparameters()
+}
+
+extension ChangeSshparameters {
+    func changesshparameters() {
+        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+        view?.changesshparameters()
+    }
+}
+
 protocol Createandreloadconfigurations: AnyObject {
     func createandreloadconfigurations()
 }

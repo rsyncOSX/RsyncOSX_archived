@@ -117,12 +117,11 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.detailsTable.delegate = self
         self.detailsTable.dataSource = self
         self.outputprocess = nil
-        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? "~./ssh/id_rsa"
-        self.sshport.stringValue = String(ViewControllerReference.shared.sshport ?? 22)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.changesshparameters()
         self.checkRsaPubKeyButton.isEnabled = false
         self.checkforPrivateandPublicKeypair()
     }
@@ -215,6 +214,15 @@ extension ViewControllerSsh: OpenQuickBackup {
     func openquickbackup() {
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
+        }
+    }
+}
+
+extension ViewControllerSsh: ChangeSshparameters {
+    func changesshparameters() {
+        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
+        if let sshport = ViewControllerReference.shared.sshport {
+            self.sshport.stringValue = String(sshport)
         }
     }
 }
