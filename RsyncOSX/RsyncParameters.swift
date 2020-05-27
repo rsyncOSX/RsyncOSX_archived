@@ -51,6 +51,10 @@ class RsyncParameters {
         if offsiteServer.isEmpty {
             // nothing
         } else {
+            // TODO:
+            // We have to check for both global and local ssh parameters.
+            // Parameters are port, identityfile and keypath
+            // Set on task rules global settings
             if parameter5.isEmpty == false {
                 self.sshportparameter(config: config, forDisplay: forDisplay)
             }
@@ -106,13 +110,18 @@ class RsyncParameters {
         }
     }
 
+    // TODO: set ssh parameters port, identityfile and keypath
+    // Local params rules global settings
     func sshportparameter(config: Configuration, forDisplay: Bool) {
-        // -e "ssh  -i ~/.ssh/id_myserver -p 22"
-        // ssh identityfile and ssh port
+        // -e "ssh -i ~/.ssh/id_myserver -p 22"
+        // -e "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
+        // default is
+        // -e "ssh -i ~/.ssh/id_rsa -p 22"
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
         var sshportadded: Bool = false
         var sshidentityfileadded: Bool = false
+        var sshkeypathadded: Bool = false
         // -e
         self.arguments?.append(parameter5)
         if forDisplay { self.arguments?.append(" ") }

@@ -31,8 +31,11 @@ struct Configuration {
     var parameter13: String?
     var parameter14: String?
     var rsyncdaemon: Int?
+    // SSH parameters
     var sshport: Int?
     var sshidentityfile: String?
+    var sshkeypath: String?
+    // Calculated days since last backup
     var dayssincelastbackup: String?
     var markdays: Bool = false
     var profile: String?
@@ -77,7 +80,7 @@ struct Configuration {
                 }
             }
         }
-        // Parameters 8 - 14 is user selected, as well as ssh port.
+        // Parameters 8 - 14 is user selected, as well as ssh parameters.
         if let parameter8 = dictionary.object(forKey: "parameter8") {
             self.parameter8 = parameter8 as? String
         }
@@ -107,6 +110,9 @@ struct Configuration {
         }
         if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
             self.sshidentityfile = sshidentityfile as? String
+        }
+        if let sshkeypath = dictionary.object(forKey: "sshkeypath") {
+            self.sshkeypath = sshkeypath as? String
         }
     }
 
