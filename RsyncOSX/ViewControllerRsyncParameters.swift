@@ -45,8 +45,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet var compressparameter: NSButton!
     @IBOutlet var esshparameter: NSButton!
     @IBOutlet var deleteparamater: NSButton!
-    @IBOutlet var sshidentityfile: NSTextField!
-    @IBOutlet var sshkeypath: NSTextField!
+    @IBOutlet var sshkeypathandidentityfile: NSTextField!
 
     @IBOutlet var combo8: NSComboBox!
     @IBOutlet var combo9: NSComboBox!
@@ -258,11 +257,8 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             if configurations[index].sshport != nil {
                 self.sshport.stringValue = String(configurations[index].sshport!)
             }
-            if (configurations[index].sshidentityfile ?? "").isEmpty == false {
-                self.sshidentityfile.stringValue = configurations[index].sshidentityfile!
-            }
-            if (configurations[index].sshkeypath ?? "").isEmpty == false {
-                self.sshkeypath.stringValue = configurations[index].sshkeypath!
+            if (configurations[index].sshkeypathandidentityfile ?? "").isEmpty == false {
+                self.sshkeypathandidentityfile.stringValue = configurations[index].sshkeypathandidentityfile!
             }
         }
     }
@@ -297,22 +293,11 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             if let port = self.sshport {
                 configurations[index].sshport = Int(port.stringValue)
             }
-            if let sshidentityfile = self.sshidentityfile {
-                if sshidentityfile.stringValue.isEmpty == false {
-                    configurations[index].sshidentityfile = sshidentityfile.stringValue
+            if let sshkeypathandidentityfile = self.sshkeypathandidentityfile {
+                if sshkeypathandidentityfile.stringValue.isEmpty == false {
+                    configurations[index].sshkeypathandidentityfile = sshkeypathandidentityfile.stringValue
                 } else {
-                    configurations[index].sshidentityfile = nil
-                }
-            }
-            if let sshkeypath = self.sshkeypath {
-                if sshkeypath.stringValue.isEmpty == false {
-                    if sshkeypath.stringValue.hasSuffix("/") {
-                        configurations[index].sshkeypath = sshkeypath.stringValue
-                    } else {
-                        configurations[index].sshkeypath = sshkeypath.stringValue + "/"
-                    }
-                } else {
-                    configurations[index].sshkeypath = nil
+                    configurations[index].sshkeypathandidentityfile = nil
                 }
             }
             // Update configuration in memory before saving

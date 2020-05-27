@@ -53,7 +53,7 @@ class RsyncParameters {
             // We have to check for both global and local ssh parameters.
             // either set global or local
             if parameter5.isEmpty == false {
-                if config.sshport != nil || config.sshport != nil || config.sshkeypath != nil {
+                if config.sshport != nil || config.sshkeypathandidentityfile != nil {
                     self.sshparameterslocal(config: config, forDisplay: forDisplay)
                 } else {
                     self.sshparametersglobal(config: config, forDisplay: forDisplay)
@@ -120,28 +120,22 @@ class RsyncParameters {
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
         var sshportadded: Bool = false
-        var sshidentityfileadded: Bool = false
-        var identifyfile: String = ""
+        var sshkeypathandidentityfileadded: Bool = false
+        // var sshkeypathandidentityfile: String? = config.sshkeypathandidentityfile
         // -e
         self.arguments?.append(parameter5)
         if forDisplay { self.arguments?.append(" ") }
-        if let sshidentityfile = config.sshidentityfile {
-            sshidentityfileadded = true
-            if let sshkeypath = config.sshkeypath {
-                // "ssh -i ~/sshkeypath/sshidentityfile"
-                identifyfile = sshkeypath + sshidentityfile
-            } else {
-                // "ssh -i ~/.ssh/identifyfile"
-                identifyfile = self.defaultsshkeypath + sshidentityfile
-            }
+        if (config.sshkeypathandidentityfile ?? "").isEmpty == false {
+            sshkeypathandidentityfileadded = true
             if forDisplay { self.arguments?.append(" \"") }
             // Then check if ssh port is set also
+            let sshkeypathandidentityfile: String = config.sshkeypathandidentityfile ?? ""
             if let sshport = config.sshport {
                 sshportadded = true
                 // "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
-                self.arguments?.append("ssh -i " + identifyfile + " " + "-p " + String(sshport))
+                self.arguments?.append("ssh -i " + sshkeypathandidentityfile + " " + "-p " + String(sshport))
             } else {
-                self.arguments?.append("ssh -i " + identifyfile)
+                self.arguments?.append("ssh -i " + sshkeypathandidentityfile)
             }
             if forDisplay { self.arguments?.append("\" ") }
         }
@@ -155,7 +149,7 @@ class RsyncParameters {
             }
         } else {
             // ssh
-            if sshportadded == false, sshidentityfileadded == false {
+            if sshportadded == false, sshkeypathandidentityfileadded == false {
                 self.arguments?.append(parameter6)
             }
         }
