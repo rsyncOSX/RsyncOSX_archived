@@ -121,12 +121,17 @@ class RsyncParameters {
         let parameter6: String = config.parameter6
         var sshportadded: Bool = false
         var sshidentityfileadded: Bool = false
+        var identifyfile: String = ""
         // -e
         self.arguments?.append(parameter5)
         if forDisplay { self.arguments?.append(" ") }
         if let sshidentityfile = config.sshidentityfile {
             sshidentityfileadded = true
-            let identifyfile = self.defaultsshkeypath + sshidentityfile
+            if let sshkeypath = config.sshkeypath {
+                identifyfile = sshkeypath + sshidentityfile
+            } else {
+                identifyfile = self.defaultsshkeypath + sshidentityfile
+            }
             // "ssh -i ~/.ssh/identifyfile"
             if forDisplay { self.arguments?.append(" \"") }
             // Then check if ssh port is set also
