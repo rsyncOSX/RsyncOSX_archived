@@ -107,8 +107,12 @@ struct Configuration {
         if let sshport = dictionary.object(forKey: "sshport") {
             self.sshport = sshport as? Int
         }
-        if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
+        if let sshidentityfile = dictionary.object(forKey: "sshkeypathandidentityfile") {
             self.sshkeypathandidentityfile = sshidentityfile as? String
+        }
+        // From version 6.3.0, must convert "sshidentityfile" to keypath + identityfile
+        if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
+            self.sshkeypathandidentityfile = "~/.ssh/" + (sshidentityfile as? String ?? "")
         }
     }
 

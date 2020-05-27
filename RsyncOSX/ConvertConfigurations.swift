@@ -84,7 +84,7 @@ struct ConvertConfigurations: SetConfigurations {
             }
         }
         if config.sshkeypathandidentityfile != nil {
-            dict.setObject(config.sshkeypathandidentityfile!, forKey: "sshidentityfile" as NSCopying)
+            dict.setObject(config.sshkeypathandidentityfile!, forKey: "sshkeypathandidentityfile" as NSCopying)
         }
         self.configuration = dict
     }
