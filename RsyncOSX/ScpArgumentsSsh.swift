@@ -10,12 +10,32 @@
 import Foundation
 
 enum SshOperations {
-    case scpKey
+    case sshcopyid
     case checkKey
     case createKey
     case createRemoteSshCatalog
     case chmod
 }
+
+/*
+
+ Here are the ssh commands to make this method work:
+ $ssh-keypath = "~/Documents/Rsync/testkey"
+ (you could also put it in .ssh, but I think that actually might not always be something the user wants)
+
+ $ssh-address = "backup@server.com"
+ $ssh-options = ""
+
+ Generate a passwordless RSA keyfile (-N sets password, "" makes it blank - i tested this and it works)
+ ssh-keygen -t rsa -N "" -f $ssh-keypath
+ copy to server
+ ssh-copy-id -i $ssh-keypath $ssh-address
+ test if keys are there (unnecessary in my opinion)
+ ssh-copy-id -n -i $ssh-keypath $ssh-address
+ connect via ssh
+ ssh $ssh-options -i $ssh-keypath $ssh-address
+
+ */
 
 final class ScpArgumentsSsh: SetConfigurations {
     var commandCopyPasteTerminal: String?
@@ -23,75 +43,59 @@ final class ScpArgumentsSsh: SetConfigurations {
     private var args: [String]?
     private var command: String?
     private var remoteRsaPubkeyString: String = ".ssh/authorized_keys"
-    private var remoteDsaPubkeyString: String = ".ssh/authorized_keys2"
+    private var globalsshkeypathandidentityfile: String = "~./ssh/id_rsa"
+    private var globalsshport: String?
 
-    // Set parameters for SCP for copy public ssh key to server
-    // scp ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
-    // scp -P port ~/.ssh/id_rsa.pub user@server.com:.ssh/authorized_keys
-    private func argumentsScpPubKey(path: String, key: String) {
-        var remotearg: String?
+    // Set parameters for ssh-copy-id for copy public ssh key to server
+    // ssh-address = "backup@server.com"
+    // ssh-copy-id -i $ssh-keypath -p port $ssh-address
+    private func argumentssshcopyid() {
         guard self.config != nil else { return }
         guard (self.config?.offsiteServer.isEmpty ?? true) == false else { return }
         self.args = [String]()
-        if self.config?.sshport != nil {
-            self.scpport()
-        }
-        self.args?.append(path)
-        let usernameandservername = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "") + ":"
-        if key == "rsa" {
-            remotearg = usernameandservername + self.remoteRsaPubkeyString
-        } else {
-            remotearg = usernameandservername + self.remoteDsaPubkeyString
-        }
-        self.args?.append(remotearg!)
-        self.command = "/usr/bin/scp"
-        self.commandCopyPasteTerminal = self.command! + " " + self.args![0]
+        self.args?.append("-i")
+        self.args?.append(self.globalsshkeypathandidentityfile)
+        if ViewControllerReference.shared.sshport != nil { self.sshport() }
+        let usernameandservername = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
+        self.args?.append(usernameandservername)
+        self.command = "/usr/bin/ssh-copy-id"
+        self.commandCopyPasteTerminal = self.command ?? "" + " " + self.args![0]
         for i in 1 ..< (self.args?.count ?? 0) {
             self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + " " + self.args![i]
         }
     }
 
-    //  Check if pub key exists on remote server
-    //  ssh thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
-    //  ssh "-p port" thomas@10.0.0.58 "ls -al ~/.ssh/authorized_keys"
-    private func argumentsCheckRemotePubKey(key: String) {
-        var remotearg: String?
+    // Create local key with ssh-keygen
+     // Generate a passwordless RSA keyfile -N sets password, "" makes it blank
+     // ssh-keygen -t rsa -N "" -f $ssh-keypath
+     private func argumentscreatekey() {
+         self.args = [String]()
+         self.args?.append("-t")
+         self.args?.append("rsa")
+         self.args?.append("-N")
+         self.args?.append("")
+         self.args?.append("-f")
+         self.args?.append(self.globalsshkeypathandidentityfile)
+         self.command = "/usr/bin/ssh-keygen"
+     }
+
+    // Check if pub key exists on remote server
+    // ssh -p port -i $ssh-keypath $ssh-address
+    private func argumentscheckremotepubkey() {
         guard self.config != nil else { return }
         guard (self.config?.offsiteServer.isEmpty ?? true) == false else { return }
         self.args = [String]()
-        if self.config?.sshport != nil {
-            self.sshport()
-        }
-        remotearg = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
-        self.args?.append(remotearg!)
-        if key == "rsa" {
-            self.args?.append("ls -al ~/" + self.remoteRsaPubkeyString)
-        }
-        if key == "dsa" {
-            self.args?.append("ls -al ~/" + self.remoteDsaPubkeyString)
-        }
+        if ViewControllerReference.shared.sshport != nil { self.sshport() }
+        self.args?.append("-i")
+        self.args?.append(self.globalsshkeypathandidentityfile)
+        let usernameandservername = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
+        self.args?.append(usernameandservername)
         self.command = "/usr/bin/ssh"
-    }
-
-    // Create local key with ssh-keygen
-    private func argumentsCreateKeys(path: String, key: String) {
-        self.args = [String]()
-        self.args!.append("-f")
-        if key == "rsa" {
-            self.args?.append(path + "id_rsa")
-        } else {
-            self.args?.append(path + "id_dsa")
-        }
-        self.args?.append("-t")
-        self.args?.append(key)
-        self.args?.append("-N")
-        self.args?.append("")
-        self.command = "/usr/bin/ssh-keygen"
     }
 
     // Chmod .ssh catalog
     // either ssh or ssh "-p port"
-    private func argumentsChmod(key: String) {
+    private func argumentsChmod() {
         var remotearg: String?
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
@@ -100,12 +104,8 @@ final class ScpArgumentsSsh: SetConfigurations {
             self.sshport()
         }
         remotearg = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
-        self.args!.append(remotearg!)
-        if key == "rsa" {
-            self.args?.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.remoteRsaPubkeyString)
-        } else {
-            self.args?.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.remoteDsaPubkeyString)
-        }
+        self.args?.append(remotearg!)
+        self.args?.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.remoteRsaPubkeyString)
         self.command = "/usr/bin/ssh"
     }
 
@@ -132,29 +132,24 @@ final class ScpArgumentsSsh: SetConfigurations {
         self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + "\""
     }
 
-    private func scpport() {
-        self.args?.append("-P")
-        self.args?.append(String(self.config?.sshport ?? 22))
-    }
-
     private func sshport() {
         self.args?.append("-p")
-        self.args?.append(String(self.config?.sshport ?? 22))
+        self.args?.append(String(ViewControllerReference.shared.sshport ?? 22))
     }
 
     // Set the correct arguments
-    func getArguments(operation: SshOperations, key: String?, path: String?) -> [String]? {
+    func getArguments(operation: SshOperations) -> [String]? {
         switch operation {
         case .checkKey:
-            self.argumentsCheckRemotePubKey(key: key ?? "")
+            self.argumentscheckremotepubkey()
         case .createKey:
-            self.argumentsCreateKeys(path: path ?? "", key: key ?? "")
-        case .scpKey:
-            self.argumentsScpPubKey(path: path ?? "", key: key ?? "")
+            self.argumentscreatekey()
+        case .sshcopyid:
+            self.argumentssshcopyid()
         case .createRemoteSshCatalog:
             self.argumentsCreateRemoteSshCatalog()
         case .chmod:
-            self.argumentsChmod(key: key ?? "")
+            self.argumentsChmod()
         }
         return self.args
     }
