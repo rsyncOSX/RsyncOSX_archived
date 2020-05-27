@@ -17,6 +17,7 @@ class RsyncParameters {
     var offsiteServer: String?
     var remoteargs: String?
     var linkdestparam: String?
+    var defaultsshkeypath: String = "~/.ssh/"
 
     func setParameters1To6(config: Configuration, dryRun _: Bool, forDisplay: Bool, verify: Bool) {
         var parameter1: String?
@@ -110,7 +111,6 @@ class RsyncParameters {
         }
     }
 
-    // TODO: set ssh parameters port, identityfile and keypath
     // Local params rules global settings
     func sshportparameter(config: Configuration, forDisplay: Bool) {
         // -e "ssh -i ~/.ssh/id_myserver -p 22"
@@ -121,13 +121,12 @@ class RsyncParameters {
         let parameter6: String = config.parameter6
         var sshportadded: Bool = false
         var sshidentityfileadded: Bool = false
-        var sshkeypathadded: Bool = false
         // -e
         self.arguments?.append(parameter5)
         if forDisplay { self.arguments?.append(" ") }
         if let sshidentityfile = config.sshidentityfile {
             sshidentityfileadded = true
-            let identifyfile = ViewControllerReference.shared.sshidentityfilecatalog + sshidentityfile
+            let identifyfile = self.defaultsshkeypath + sshidentityfile
             // "ssh -i ~/.ssh/identifyfile"
             if forDisplay { self.arguments?.append(" \"") }
             // Then check if ssh port is set also
@@ -154,6 +153,21 @@ class RsyncParameters {
             }
         }
         if forDisplay { self.arguments?.append(" ") }
+    }
+
+    // TODO: set ssh parameters port, identityfile and keypath
+    func sshparameters(config: Configuration, forDisplay _: Bool) {
+        // -e "ssh -i ~/.ssh/id_myserver -p 22"
+        // -e "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
+        // default is
+        // -e "ssh -i ~/.ssh/id_rsa -p 22"
+        // parameter5 = "-e"
+        // parameter6 = "ssh", "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
+        let parameter5: String = config.parameter5
+        let parameter6: String = config.parameter6
+        var sshportadded: Bool = false
+        var sshidentityfileadded: Bool = false
+        var sshkeypathadded: Bool = false
     }
 
     func setdatesuffixlocalhost() -> String {

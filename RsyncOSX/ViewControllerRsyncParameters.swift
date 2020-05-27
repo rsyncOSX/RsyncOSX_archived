@@ -46,6 +46,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet var esshparameter: NSButton!
     @IBOutlet var deleteparamater: NSButton!
     @IBOutlet var sshidentityfile: NSTextField!
+    @IBOutlet var sshkeypath: NSTextField!
 
     @IBOutlet var combo8: NSComboBox!
     @IBOutlet var combo9: NSComboBox!
@@ -63,12 +64,12 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         if let index = self.index() {
             switch self.rsyncdaemon.state {
             case .on:
-                self.configurations!.removeesshparameter(index: index, delete: true)
-                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5
+                self.configurations?.removeesshparameter(index: index, delete: true)
+                self.param5.stringValue = self.configurations?.getConfigurations()[index].parameter5 ?? ""
                 self.esshparameter.state = .on
             case .off:
-                self.configurations!.removeesshparameter(index: index, delete: false)
-                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5 + " ssh"
+                self.configurations?.removeesshparameter(index: index, delete: false)
+                self.param5.stringValue = (self.configurations?.getConfigurations()[index].parameter5 ?? "") + " ssh"
                 self.esshparameter.state = .off
             default:
                 return
@@ -80,13 +81,13 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         if let index = self.index() {
             switch self.compressparameter.state {
             case .on:
-                self.configurations!.removecompressparameter(index: index, delete: true)
+                self.configurations?.removecompressparameter(index: index, delete: true)
             case .off:
-                self.configurations!.removecompressparameter(index: index, delete: false)
+                self.configurations?.removecompressparameter(index: index, delete: false)
             default:
                 break
             }
-            self.param3.stringValue = self.configurations!.getConfigurations()[index].parameter3
+            self.param3.stringValue = self.configurations?.getConfigurations()[index].parameter3 ?? ""
         }
     }
 
@@ -94,11 +95,11 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         if let index = self.index() {
             switch self.esshparameter.state {
             case .on:
-                self.configurations!.removeesshparameter(index: index, delete: true)
-                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5
+                self.configurations?.removeesshparameter(index: index, delete: true)
+                self.param5.stringValue = self.configurations?.getConfigurations()[index].parameter5 ?? ""
             case .off:
-                self.configurations!.removeesshparameter(index: index, delete: false)
-                self.param5.stringValue = self.configurations!.getConfigurations()[index].parameter5 + " ssh"
+                self.configurations?.removeesshparameter(index: index, delete: false)
+                self.param5.stringValue = (self.configurations?.getConfigurations()[index].parameter5 ?? "") + " ssh"
             default:
                 break
             }
@@ -109,13 +110,13 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
         if let index = self.index() {
             switch self.deleteparamater.state {
             case .on:
-                self.configurations!.removeedeleteparameter(index: index, delete: true)
+                self.configurations?.removeedeleteparameter(index: index, delete: true)
             case .off:
-                self.configurations!.removeedeleteparameter(index: index, delete: false)
+                self.configurations?.removeedeleteparameter(index: index, delete: false)
             default:
                 break
             }
-            self.param4.stringValue = self.configurations!.getConfigurations()[index].parameter4
+            self.param4.stringValue = self.configurations?.getConfigurations()[index].parameter4 ?? ""
         }
     }
 
@@ -129,9 +130,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             case .on:
                 self.initcombox(combobox: self.combo12, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).0)
                 self.param12.stringValue = param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).1
-                let hiddenID = self.configurations!.gethiddenID(index: (self.index())!)
-                guard hiddenID > -1 else { return }
-                let localcatalog = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
+                let hiddenID = self.configurations?.gethiddenID(index: (self.index())!)
+                guard (hiddenID ?? -1) > -1 else { return }
+                let localcatalog = self.configurations?.getResourceConfiguration(hiddenID ?? -1, resource: .localCatalog)
                 let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
                 self.initcombox(combobox: self.combo13, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[1]).0)
                 self.param13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
@@ -260,6 +261,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             if (configurations[index].sshidentityfile ?? "").isEmpty == false {
                 self.sshidentityfile.stringValue = configurations[index].sshidentityfile!
             }
+            if (configurations[index].sshkeypath ?? "").isEmpty == false {
+                self.sshkeypath.stringValue = configurations[index].sshkeypath!
+            }
         }
     }
 
@@ -300,8 +304,15 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
                     configurations[index].sshidentityfile = nil
                 }
             }
+            if let sshkeypath = self.sshkeypath {
+                if sshkeypath.stringValue.isEmpty == false {
+                    configurations[index].sshkeypath = sshkeypath.stringValue
+                } else {
+                    configurations[index].sshkeypath = nil
+                }
+            }
             // Update configuration in memory before saving
-            self.configurations!.updateConfigurations(configurations[index], index: index)
+            self.configurations?.updateConfigurations(configurations[index], index: index)
             // notify an update
             self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         }
