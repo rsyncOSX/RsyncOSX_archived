@@ -42,7 +42,7 @@ final class ScpArgumentsSsh: SetConfigurations {
     private var args: [String]?
     private var command: String?
     private var remoteRsaPubkeyString: String = ".ssh/authorized_keys"
-    private var globalsshkeypathandidentityfile: String = "~./ssh/id_rsa"
+    private var globalsshkeypathandidentityfile: String?
     private var globalsshport: String?
 
     // Set parameters for ssh-copy-id for copy public ssh key to server
@@ -52,16 +52,14 @@ final class ScpArgumentsSsh: SetConfigurations {
         guard self.config != nil else { return }
         guard (self.config?.offsiteServer.isEmpty ?? true) == false else { return }
         self.args = [String]()
+        self.command = "/usr/bin/ssh-copy-id"
+        self.args?.append(self.command ?? "")
         self.args?.append("-i")
-        self.args?.append(self.globalsshkeypathandidentityfile)
+        self.args?.append(self.globalsshkeypathandidentityfile ?? "")
         if ViewControllerReference.shared.sshport != nil { self.sshport() }
         let usernameandservername = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
         self.args?.append(usernameandservername)
-        self.command = "/usr/bin/ssh-copy-id"
-        self.commandCopyPasteTerminal = self.command ?? "" + " " + self.args![0]
-        for i in 0 ..< (self.args?.count ?? 0) {
-            self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + " " + self.args![i]
-        }
+        self.commandCopyPasteTerminal = self.args?.joined(separator: " ")
     }
 
     // Create local key with ssh-keygen
@@ -74,7 +72,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         self.args?.append("-N")
         self.args?.append("")
         self.args?.append("-f")
-        self.args?.append(self.globalsshkeypathandidentityfile)
+        self.args?.append(self.globalsshkeypathandidentityfile ?? "")
         self.command = "/usr/bin/ssh-keygen"
     }
 
@@ -86,7 +84,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         self.args = [String]()
         if ViewControllerReference.shared.sshport != nil { self.sshport() }
         self.args?.append("-i")
-        self.args?.append(self.globalsshkeypathandidentityfile)
+        self.args?.append(self.globalsshkeypathandidentityfile ?? "")
         let usernameandservername = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
         self.args?.append(usernameandservername)
         self.command = "/usr/bin/ssh"
@@ -99,9 +97,7 @@ final class ScpArgumentsSsh: SetConfigurations {
         guard self.config != nil else { return }
         guard self.config!.offsiteServer.isEmpty == false else { return }
         self.args = [String]()
-        if self.config?.sshport != nil {
-            self.sshport()
-        }
+        if ViewControllerReference.shared.sshport != nil { self.sshport() }
         remotearg = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
         self.args?.append(remotearg!)
         self.args?.append("chmod 700 ~/.ssh; chmod 600 ~/" + self.remoteRsaPubkeyString)
@@ -115,19 +111,17 @@ final class ScpArgumentsSsh: SetConfigurations {
         guard self.config != nil else { return }
         guard (self.config?.offsiteServer.isEmpty ?? true) == false else { return }
         self.args = [String]()
-        if self.config?.sshport != nil {
-            let sshport: String = "\"" + "-p " + String(self.config!.sshport!) + "\""
+        self.command = "/usr/bin/ssh"
+        self.args?.append(self.command ?? "")
+        if ViewControllerReference.shared.sshport != nil {
+            let sshport: String = "\"" + "-p " + String(ViewControllerReference.shared.sshport ?? 22) + "\""
             self.args?.append(sshport)
         }
         remotearg = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
         self.args?.append(remotearg!)
         self.args?.append("\"")
         self.args?.append("mkdir ~/.ssh")
-        self.command = "/usr/bin/ssh"
-        self.commandCopyPasteTerminal = self.command! + " " + self.args![0]
-        for i in 1 ..< (self.args?.count ?? 0) {
-            self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + " " + self.args![i]
-        }
+        self.commandCopyPasteTerminal = self.args?.joined(separator: " ")
         self.commandCopyPasteTerminal = self.commandCopyPasteTerminal! + "\""
     }
 
@@ -159,11 +153,9 @@ final class ScpArgumentsSsh: SetConfigurations {
 
     init(hiddenID: Int?, sshkeypathandidentityfile: String?) {
         if let hiddenID = hiddenID {
-            self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID)]
+            self.config = self.configurations?.getConfigurations()[self.configurations?.getIndex(hiddenID) ?? -1]
         }
-        if ViewControllerReference.shared.sshkeypathandidentityfile != nil {
-            self.globalsshkeypathandidentityfile = sshkeypathandidentityfile ?? ""
-        }
+        self.globalsshkeypathandidentityfile = sshkeypathandidentityfile ?? ""
         if let sshport = ViewControllerReference.shared.sshport {
             self.globalsshport = String(sshport)
         }

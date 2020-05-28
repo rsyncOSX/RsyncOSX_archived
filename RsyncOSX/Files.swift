@@ -82,7 +82,7 @@ class Files: FileErrors {
         case .sshRoot:
             // Check if a global ssh keypath and identityfile is set
             if ViewControllerReference.shared.sshkeypathandidentityfile == nil {
-                self.rootpath = NSHomeDirectory() + "/.ssh/"
+                self.rootpath = NSHomeDirectory() + "/.ssh"
                 self.identityfile = "id_rsa"
             } else {
                 // global sshkeypath and identityfile is set
@@ -96,7 +96,7 @@ class Files: FileErrors {
                         self.rootpath = NSHomeDirectory() + sshkeypathandidentityfilesplit.joined(separator: "/").dropFirst()
                     } else {
                         // If anything goes wrong set to default global values
-                        self.rootpath = NSHomeDirectory() + "/.ssh/"
+                        self.rootpath = NSHomeDirectory() + "/.ssh"
                         ViewControllerReference.shared.sshkeypathandidentityfile = "~./ssh/id_rsa"
                         self.identityfile = "id_rsa"
                     }
