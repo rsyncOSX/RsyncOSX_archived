@@ -81,6 +81,9 @@ class Files: FileErrors {
             self.rootpath = profilePath
         case .sshRoot:
             // Check if a global ssh keypath and identityfile is set
+            // Set full path if not ssh-keygen will fail
+            // The sshkeypath + identityfile must be prefixed with "~" used in rsync parameters
+            // only full path when ssh-keygen is used
             if ViewControllerReference.shared.sshkeypathandidentityfile == nil {
                 self.rootpath = NSHomeDirectory() + "/.ssh"
                 self.identityfile = "id_rsa"
