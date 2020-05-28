@@ -11,7 +11,6 @@ import Foundation
 
 class Ssh: Files {
     var commandCopyPasteTerminal: String?
-    // Full String paths to local public keys
     var rsaStringPath: String?
     // Arrays listing all key files
     var keyFileURLS: [URL]?
@@ -22,8 +21,6 @@ class Ssh: Files {
     // Process
     var process: CommandSsh?
     var outputprocess: OutputProcess?
-    // Chmod
-    var chmod: ChmodPubKey?
 
     // Create rsa keypair
     func creatersakeypair() {
@@ -49,36 +46,20 @@ class Ssh: Files {
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
             "/" + (self.identityfile ?? ""))
         self.arguments = scpArguments?.getArguments(operation: .sshcopyid)
-        self.command = self.scpArguments?.getCommand()
         self.commandCopyPasteTerminal = self.scpArguments?.commandCopyPasteTerminal
     }
 
     // Check for remote pub keys
-    func checkRemotePubKey(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
-        guard self.rsaStringPath != nil else { return }
-        self.arguments = scpArguments?.getArguments(operation: .checkKey)
-        self.command = self.scpArguments?.getCommand()
-    }
-
-    // Create remote ssh directory
-    func createSshRemoteDirectory(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
-        self.arguments = scpArguments?.getArguments(operation: .createRemoteSshCatalog)
-        self.command = self.scpArguments?.getCommand()
+    func verifyremotekey(hiddenID: Int) {
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
+            "/" + (self.identityfile ?? ""))
+        self.arguments = scpArguments?.getArguments(operation: .verifyremotekey)
         self.commandCopyPasteTerminal = self.scpArguments?.commandCopyPasteTerminal
-    }
-
-    // Chmod remote .ssh directory
-    func chmodSsh(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
-        self.arguments = scpArguments?.getArguments(operation: .chmod)
-        self.command = self.scpArguments?.getCommand()
-        self.chmod = ChmodPubKey()
     }
 
     // Execute command
     func executeSshCommand() {
+        guard self.arguments != nil else { return }
         self.process = CommandSsh(command: self.command, arguments: self.arguments)
         self.process?.executeProcess(outputprocess: self.outputprocess)
     }

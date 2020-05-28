@@ -15,14 +15,13 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     var hiddenID: Int?
     var data: [String]?
     var outputprocess: OutputProcess?
-    var execute: Bool = false
 
     @IBOutlet var rsaCheck: NSButton!
     @IBOutlet var detailsTable: NSTableView!
-    @IBOutlet var copykeyfilepastecommand: NSTextField!
-    @IBOutlet var sshCreateRemoteCatalog: NSTextField!
+    @IBOutlet var copykeycommand: NSTextField!
     @IBOutlet var sshport: NSTextField!
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
+    @IBOutlet var verifykeycommand: NSTextField!
 
     lazy var viewControllerSource: NSViewController? = {
         (self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
@@ -81,16 +80,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.presentAsSheet(self.viewControllerSource!)
     }
 
-    @IBAction func checkremoteRSApubkey(_: NSButton) {
-        self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(outputprocess: self.outputprocess)
-        guard self.execute == true else { return }
-        if let hiddenID = self.hiddenID {
-            self.sshcmd?.chmodSsh(hiddenID: hiddenID)
-            self.sshcmd?.executeSshCommand()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcssh, nsviewcontroller: self)
@@ -106,8 +95,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.copykeyfilepastecommand.stringValue = ""
-        self.sshCreateRemoteCatalog.stringValue = ""
+        self.copykeycommand.stringValue = ""
+        self.verifykeycommand.stringValue = ""
     }
 
     private func checkforPrivateandPublicRSAKeypair() {
@@ -136,18 +125,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         if let hiddenID = self.hiddenID {
             self.sshcmd?.copykeyfile(hiddenID: hiddenID)
-            self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
-        }
-    }
-
-    func createRemoteSshDirectory() {
-        if let hiddenID = self.hiddenID {
-            self.sshcmd?.createSshRemoteDirectory(hiddenID: hiddenID)
-            guard sshcmd?.commandCopyPasteTerminal != nil else {
-                self.sshCreateRemoteCatalog.stringValue = NSLocalizedString("... no remote server ...", comment: "Ssh")
-                return
-            }
-            self.sshCreateRemoteCatalog.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
+            self.copykeycommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
+            self.sshcmd?.verifyremotekey(hiddenID: hiddenID)
+            self.verifykeycommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
         }
     }
 }
@@ -155,7 +135,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 extension ViewControllerSsh: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.createRemoteSshDirectory()
         self.copylocalpubrsakeyfile()
         self.changesshparameters()
     }
@@ -164,12 +143,6 @@ extension ViewControllerSsh: DismissViewController {
 extension ViewControllerSsh: GetSource {
     func getSourceindex(index: Int) {
         self.hiddenID = index
-        let config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID!)]
-        if config.offsiteServer.isEmpty == true {
-            self.execute = false
-        } else {
-            self.execute = true
-        }
     }
 }
 
@@ -195,18 +168,6 @@ extension ViewControllerSsh: UpdateProgress {
         globalMainQueue.async { () -> Void in
             self.checkforPrivateandPublicRSAKeypair()
         }
-        /*
-         guard self.sshcmd != nil else { return }
-         guard self.sshcmd?.chmod != nil else { return }
-         guard self.hiddenID != nil else { return }
-         switch self.sshcmd?.chmod?.pop() {
-         case .chmodRsa:
-             self.sshcmd?.checkRemotePubKey(hiddenID: self.hiddenID!)
-             self.sshcmd?.executeSshCommand()
-         default:
-             self.sshcmd?.chmod = nil
-         }
-         */
     }
 
     func fileHandler() {
