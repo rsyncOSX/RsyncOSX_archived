@@ -313,6 +313,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             ViewControllerReference.shared.sshport = nil
         }
+        self.reload = true
     }
 
     override func viewDidLoad() {
