@@ -62,9 +62,12 @@ extension ErrorMessage {
 class Files: FileErrors {
     var whichroot: WhichRoot?
     var rootpath: String?
+    // If global keypath and identityfile is set must split keypath and identifile
+    // create a new key require full path
+    var identityfile: String?
     // config path either
     // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
-    private var configpath: String?
+    var configpath: String?
 
     private func setrootpath() {
         switch self.whichroot {
@@ -77,7 +80,28 @@ class Files: FileErrors {
             let profilePath = docuDir + self.configpath! + (ViewControllerReference.shared.macserialnumber ?? "")
             self.rootpath = profilePath
         case .sshRoot:
-            self.rootpath = NSHomeDirectory() + "/.ssh/"
+            // Check if a global ssh keypath and identityfile is set
+            if ViewControllerReference.shared.sshkeypathandidentityfile == nil {
+                self.rootpath = NSHomeDirectory() + "/.ssh/"
+                self.identityfile = "id_rsa"
+            } else {
+                // global sshkeypath and identityfile is set
+                if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
+                    if sshkeypathandidentityfile.first == "~" {
+                        // must drop identityfile and then set rootpath
+                        // also drop the "~" character
+                        var sshkeypathandidentityfilesplit = sshkeypathandidentityfile.split(separator: "/")
+                        self.identityfile = String(sshkeypathandidentityfilesplit[sshkeypathandidentityfilesplit.count - 1])
+                        sshkeypathandidentityfilesplit.remove(at: sshkeypathandidentityfilesplit.count - 1)
+                        self.rootpath = NSHomeDirectory() + sshkeypathandidentityfilesplit.joined(separator: "/").dropFirst()
+                    } else {
+                        // If anything goes wrong set to default global values
+                        self.rootpath = NSHomeDirectory() + "/.ssh/"
+                        ViewControllerReference.shared.sshkeypathandidentityfile = "~./ssh/id_rsa"
+                        self.identityfile = "id_rsa"
+                    }
+                }
+            }
         default:
             return
         }

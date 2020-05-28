@@ -14,7 +14,7 @@ protocol MenuappChanged: AnyObject {
     func menuappchanged()
 }
 
-class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, ChangeTemporaryRestorePath, ChangeSshparameters {
+class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, ChangeTemporaryRestorePath {
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
     weak var menuappDelegate: MenuappChanged?
@@ -130,7 +130,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             self.menuappDelegate?.menuappchanged()
             self.changetemporaryrestorepath()
-            self.changesshparameters()
         }
         if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -299,7 +298,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     private func setsshparameters() {
         if self.sshkeypathandidentityfile.stringValue.isEmpty == false {
-            ViewControllerReference.shared.sshkeypathandidentityfile = self.sshkeypathandidentityfile.stringValue
+            if self.sshkeypathandidentityfile.stringValue.first == "~" {
+                ViewControllerReference.shared.sshkeypathandidentityfile = self.sshkeypathandidentityfile.stringValue
+            } else {
+                ViewControllerReference.shared.sshkeypathandidentityfile = "~" + self.sshkeypathandidentityfile.stringValue
+            }
         } else {
             ViewControllerReference.shared.sshkeypathandidentityfile = nil
         }

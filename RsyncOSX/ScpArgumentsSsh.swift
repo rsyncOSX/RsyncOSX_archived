@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 27.04.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -158,9 +157,15 @@ final class ScpArgumentsSsh: SetConfigurations {
         return self.command
     }
 
-    init(hiddenID: Int?) {
+    init(hiddenID: Int?, sshkeypathandidentityfile: String?) {
         if let hiddenID = hiddenID {
             self.config = self.configurations!.getConfigurations()[self.configurations!.getIndex(hiddenID)]
+        }
+        if ViewControllerReference.shared.sshkeypathandidentityfile != nil {
+            self.globalsshkeypathandidentityfile = sshkeypathandidentityfile ?? ""
+        }
+        if let sshport = ViewControllerReference.shared.sshport {
+            self.globalsshport = String(sshport)
         }
     }
 }

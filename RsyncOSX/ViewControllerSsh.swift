@@ -95,6 +95,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 
     func copykeyfile() {
+        self.outputprocess = OutputProcess()
+        self.sshcmd = Ssh(outputprocess: self.outputprocess)
+        self.sshcmd?.createLocalKeysRsa()
         if let hiddenID = self.hiddenID {
             self.sshcmd?.copykeyfile(hiddenID: hiddenID)
             self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
@@ -142,6 +145,13 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
             self.createKeys.isEnabled = true
         }
     }
+
+    private func changesshparameters() {
+        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
+        if let sshport = ViewControllerReference.shared.sshport {
+            self.sshport.stringValue = String(sshport)
+        }
+    }
 }
 
 extension ViewControllerSsh: DismissViewController {
@@ -150,6 +160,7 @@ extension ViewControllerSsh: DismissViewController {
         self.checkRsaPubKeyButton.isEnabled = true
         self.createRemoteSshDirectory()
         self.copykeyfile()
+        self.changesshparameters()
     }
 }
 
@@ -214,15 +225,6 @@ extension ViewControllerSsh: OpenQuickBackup {
     func openquickbackup() {
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
-        }
-    }
-}
-
-extension ViewControllerSsh: ChangeSshparameters {
-    func changesshparameters() {
-        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
-        if let sshport = ViewControllerReference.shared.sshport {
-            self.sshport.stringValue = String(sshport)
         }
     }
 }

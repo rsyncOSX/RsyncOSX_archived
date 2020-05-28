@@ -34,7 +34,8 @@ class Ssh: Files {
     // Create local rsa keys
     func createLocalKeysRsa() {
         guard self.rsaPubKeyExist == false else { return }
-        self.scpArguments = ScpArgumentsSsh(hiddenID: nil)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.rootpath ?? "") +
+            "/" + (self.identityfile ?? ""))
         self.arguments = scpArguments?.getArguments(operation: .createKey)
         self.command = self.scpArguments?.getCommand()
         self.executeSshCommand()
@@ -61,7 +62,7 @@ class Ssh: Files {
 
     // Secure copy of public key from local to remote catalog
     func copykeyfile(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
         self.arguments = scpArguments?.getArguments(operation: .sshcopyid)
         self.command = self.scpArguments?.getCommand()
         self.commandCopyPasteTermninal = self.scpArguments?.commandCopyPasteTerminal
@@ -69,7 +70,7 @@ class Ssh: Files {
 
     // Check for remote pub keys
     func checkRemotePubKey(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
         guard self.rsaStringPath != nil else { return }
         self.arguments = scpArguments?.getArguments(operation: .checkKey)
         self.command = self.scpArguments?.getCommand()
@@ -77,7 +78,7 @@ class Ssh: Files {
 
     // Create remote ssh directory
     func createSshRemoteDirectory(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
         self.arguments = scpArguments?.getArguments(operation: .createRemoteSshCatalog)
         self.command = self.scpArguments?.getCommand()
         self.commandCopyPasteTermninal = self.scpArguments?.commandCopyPasteTerminal
@@ -85,7 +86,7 @@ class Ssh: Files {
 
     // Chmod remote .ssh directory
     func chmodSsh(key: String, hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
         self.arguments = scpArguments?.getArguments(operation: .chmod)
         self.command = self.scpArguments?.getCommand()
         self.chmod = ChmodPubKey(key: key)
@@ -94,7 +95,7 @@ class Ssh: Files {
     // Execute command
     func executeSshCommand() {
         self.process = CommandSsh(command: self.command, arguments: self.arguments)
-        self.process!.executeProcess(outputprocess: self.outputprocess!)
+        self.process?.executeProcess(outputprocess: self.outputprocess!)
     }
 
     // get output
