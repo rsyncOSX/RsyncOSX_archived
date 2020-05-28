@@ -81,28 +81,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.presentAsSheet(self.viewControllerSource!)
     }
 
-    func createRemoteSshDirectory() {
-        if let hiddenID = self.hiddenID {
-            self.sshcmd?.createSshRemoteDirectory(hiddenID: hiddenID)
-            guard sshcmd?.commandCopyPasteTerminal != nil else {
-                self.sshCreateRemoteCatalog.stringValue = NSLocalizedString("... no remote server ...", comment: "Ssh")
-                return
-            }
-            self.sshCreateRemoteCatalog.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
-        }
-    }
-
-    func copylocalpubrsakeyfile() {
-        // Before copy key check that pub key is present
-        guard self.sshcmd?.islocalpublicrsakeypresent() ?? false == true else { return }
-        self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(outputprocess: self.outputprocess)
-        if let hiddenID = self.hiddenID {
-            self.sshcmd?.copykeyfile(hiddenID: hiddenID)
-            self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
-        }
-    }
-
     @IBAction func checkremoteRSApubkey(_: NSButton) {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
@@ -124,7 +102,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     override func viewDidAppear() {
         super.viewDidAppear()
         self.changesshparameters()
-        self.checkforPrivateandPublicRSAKeypair()
     }
 
     override func viewDidDisappear() {
@@ -148,6 +125,29 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
             self.sshport.stringValue = String(sshport)
         } else {
             self.sshport.stringValue = ""
+        }
+        self.checkforPrivateandPublicRSAKeypair()
+    }
+
+    func copylocalpubrsakeyfile() {
+        // Before copy key check that pub key is present
+        guard self.sshcmd?.islocalpublicrsakeypresent() ?? false == true else { return }
+        self.outputprocess = OutputProcess()
+        self.sshcmd = Ssh(outputprocess: self.outputprocess)
+        if let hiddenID = self.hiddenID {
+            self.sshcmd?.copykeyfile(hiddenID: hiddenID)
+            self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
+        }
+    }
+
+    func createRemoteSshDirectory() {
+        if let hiddenID = self.hiddenID {
+            self.sshcmd?.createSshRemoteDirectory(hiddenID: hiddenID)
+            guard sshcmd?.commandCopyPasteTerminal != nil else {
+                self.sshCreateRemoteCatalog.stringValue = NSLocalizedString("... no remote server ...", comment: "Ssh")
+                return
+            }
+            self.sshCreateRemoteCatalog.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
         }
     }
 }
