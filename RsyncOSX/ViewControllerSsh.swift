@@ -19,11 +19,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     @IBOutlet var rsaCheck: NSButton!
     @IBOutlet var detailsTable: NSTableView!
-    @IBOutlet var checkRsaPubKeyButton: NSButton!
-    @IBOutlet var createKeys: NSButton!
     @IBOutlet var copykeyfilepastecommand: NSTextField!
     @IBOutlet var sshCreateRemoteCatalog: NSTextField!
-    @IBOutlet var remoteserverbutton: NSButton!
     @IBOutlet var sshport: NSTextField!
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
 
@@ -69,6 +66,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     @IBAction func createPublicPrivateRSAKeyPair(_: NSButton) {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
+        guard self.sshcmd?.islocalpublicrsakeypresent() ?? true == false else { return }
         self.sshcmd?.creatersakeypair()
     }
 
@@ -105,7 +103,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         }
     }
 
-    @IBAction func checkRsaPubKey(_: NSButton) {
+    @IBAction func checkremoteRSApubkey(_: NSButton) {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.execute == true else { return }
@@ -126,7 +124,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     override func viewDidAppear() {
         super.viewDidAppear()
         self.changesshparameters()
-        self.checkRsaPubKeyButton.isEnabled = false
         self.checkforPrivateandPublicRSAKeypair()
     }
 
@@ -140,10 +137,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshcmd = Ssh(outputprocess: nil)
         if self.sshcmd?.islocalpublicrsakeypresent() ?? false {
             self.rsaCheck.state = .on
-            self.createKeys.isEnabled = false
         } else {
             self.rsaCheck.state = .off
-            self.createKeys.isEnabled = true
         }
     }
 
@@ -160,7 +155,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 extension ViewControllerSsh: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.checkRsaPubKeyButton.isEnabled = true
         self.createRemoteSshDirectory()
         self.copylocalpubrsakeyfile()
         self.changesshparameters()
