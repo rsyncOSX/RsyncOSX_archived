@@ -55,7 +55,8 @@ class RsyncParameters {
             if parameter5.isEmpty == false {
                 if config.sshport != nil || config.sshkeypathandidentityfile != nil {
                     self.sshparameterslocal(config: config, forDisplay: forDisplay)
-                } else {
+                } else if ViewControllerReference.shared.sshkeypathandidentityfile != nil ||
+                    ViewControllerReference.shared.sshport != nil {
                     self.sshparametersglobal(config: config, forDisplay: forDisplay)
                 }
             }
@@ -125,11 +126,10 @@ class RsyncParameters {
         // -e
         self.arguments?.append(parameter5)
         if forDisplay { self.arguments?.append(" ") }
-        if (config.sshkeypathandidentityfile ?? "").isEmpty == false {
+        if let sshkeypathandidentityfile = config.sshkeypathandidentityfile {
             sshkeypathandidentityfileadded = true
             if forDisplay { self.arguments?.append(" \"") }
             // Then check if ssh port is set also
-            let sshkeypathandidentityfile: String = config.sshkeypathandidentityfile ?? ""
             if let sshport = config.sshport {
                 sshportadded = true
                 // "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
@@ -170,11 +170,10 @@ class RsyncParameters {
         // -e
         self.arguments?.append(parameter5)
         if forDisplay { self.arguments?.append(" ") }
-        if (ViewControllerReference.shared.sshkeypathandidentityfile ?? "").isEmpty == false {
+        if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
             sshkeypathandidentityfileadded = true
             if forDisplay { self.arguments?.append(" \"") }
             // Then check if ssh port is set also
-            let sshkeypathandidentityfile: String = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
             if let sshport = ViewControllerReference.shared.sshport {
                 sshportadded = true
                 // "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
