@@ -11,12 +11,6 @@ import Foundation
 
 class Ssh: Files {
     var commandCopyPasteTermninal: String?
-    // Local public rsa and dsa based keys
-    let rsaPubKey: String = "id_rsa.pub"
-    let sshCatalog: String = ".ssh/"
-    var rsaPubKeyExist: Bool = false
-    // Full URL paths to local public keys
-    var rsaURLpath: URL?
     // Full String paths to local public keys
     var rsaStringPath: String?
     // Arrays listing all key files
@@ -33,7 +27,7 @@ class Ssh: Files {
 
     // Create local rsa keys
     func createLocalKeysRsa() {
-        guard self.rsaPubKeyExist == false else { return }
+        guard self.islocalpublicrsakeypresent() == false else { return }
         self.scpArguments = ScpArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.rootpath ?? "") +
             "/" + (self.identityfile ?? ""))
         self.arguments = scpArguments?.getArguments(operation: .createKey)
@@ -41,22 +35,12 @@ class Ssh: Files {
         self.executeSshCommand()
     }
 
-    // Check for local public keys
-    func checkForLocalPubKeys() {
-        self.rsaPubKeyExist = self.isLocalPublicKeysPresent(key: self.rsaPubKey)
-    }
-
-    // Check if rsa and/or dsa is existing in local .ssh catalog
-    func isLocalPublicKeysPresent(key: String) -> Bool {
+    // Check if rsa pub key exists
+    func islocalpublicrsakeypresent() -> Bool {
         guard self.keyFileStrings != nil else { return false }
-        guard self.keyFileStrings!.filter({ $0.contains(key) }).count > 0 else { return false }
-        switch key {
-        case rsaPubKey:
-            self.rsaURLpath = URL(string: self.keyFileStrings!.filter { $0.contains(self.sshCatalog + key) }[0])
-            self.rsaStringPath = self.keyFileStrings!.filter { $0.contains(self.sshCatalog + key) }[0]
-        default:
-            return false
-        }
+        guard self.keyFileStrings!.filter({ $0.contains(self.identityfile ?? "") }).count > 0 else { return false }
+        self.rsaStringPath = self.keyFileStrings!.filter { $0.contains((self.identityfile ?? "") + ".pub") }[0]
+        guard self.rsaStringPath?.count ?? 0 > 0 else { return false }
         return true
     }
 
@@ -108,7 +92,6 @@ class Ssh: Files {
         self.outputprocess = outputprocess
         self.keyFileURLS = self.getFilesURLs()
         self.keyFileStrings = self.getFileStrings()
-        self.checkForLocalPubKeys()
         self.createDirectory()
     }
 }

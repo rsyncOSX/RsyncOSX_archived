@@ -137,7 +137,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     private func checkforPrivateandPublicKeypair() {
         self.sshcmd = Ssh(outputprocess: nil)
-        if self.sshcmd?.rsaPubKeyExist ?? false {
+        if self.sshcmd?.islocalpublicrsakeypresent() ?? false {
             self.rsaCheck.state = .on
             self.createKeys.isEnabled = false
         } else {
