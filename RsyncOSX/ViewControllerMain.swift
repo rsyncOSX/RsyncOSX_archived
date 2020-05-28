@@ -248,6 +248,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Must read userconfig when loading main view, view only load once
+        if let userconfiguration = PersistentStorageUserconfiguration().readuserconfiguration() {
+            _ = Userconfiguration(userconfigRsyncOSX: userconfiguration)
+        } else {
+            _ = RsyncVersionString()
+        }
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.allowsMultipleSelection = true

@@ -10,16 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_: Notification) {
-        // Read user configuration
-        if let userconfiguration = PersistentStorageUserconfiguration().readuserconfiguration() {
-            _ = Userconfiguration(userconfigRsyncOSX: userconfiguration)
-        } else {
-            _ = RsyncVersionString()
-        }
-    }
+    func applicationDidFinishLaunching(_: Notification) {}
 
-    func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
-        return true
-    }
+    func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool { return true }
 }

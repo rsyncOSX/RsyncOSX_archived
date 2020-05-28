@@ -50,7 +50,8 @@ class RsyncParameters {
         }
         if offsiteServer.isEmpty == false {
             // We have to check for both global and local ssh parameters.
-            // either set global or local
+            // either set global or local, parameter5 = remote server
+            // ssh params only apply if remote server
             if parameter5.isEmpty == false {
                 if config.sshport != nil || config.sshkeypathandidentityfile != nil {
                     self.sshparameterslocal(config: config, forDisplay: forDisplay)
@@ -174,7 +175,7 @@ class RsyncParameters {
             if forDisplay { self.arguments?.append(" \"") }
             // Then check if ssh port is set also
             let sshkeypathandidentityfile: String = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
-            if let sshport = config.sshport {
+            if let sshport = ViewControllerReference.shared.sshport {
                 sshportadded = true
                 // "ssh -i ~/sshkeypath/sshidentityfile -p portnumber"
                 self.arguments?.append("ssh -i " + sshkeypathandidentityfile + " " + "-p " + String(sshport))
