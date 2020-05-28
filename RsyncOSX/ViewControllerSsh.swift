@@ -69,7 +69,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     @IBAction func createPublicPrivateKeyPair(_: NSButton) {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
-        self.sshcmd?.createLocalKeysRsa()
+        self.sshcmd?.creatersakeypair()
     }
 
     @IBAction func source(_: NSButton) {
@@ -97,7 +97,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     func copykeyfile() {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
-        self.sshcmd?.createLocalKeysRsa()
+        self.sshcmd?.creatersakeypair()
         if let hiddenID = self.hiddenID {
             self.sshcmd?.copykeyfile(hiddenID: hiddenID)
             self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""

@@ -25,8 +25,8 @@ class Ssh: Files {
     // Chmod
     var chmod: ChmodPubKey?
 
-    // Create local rsa keys
-    func createLocalKeysRsa() {
+    // Create rsa keypair
+    func creatersakeypair() {
         guard self.islocalpublicrsakeypresent() == false else { return }
         self.scpArguments = ScpArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.rootpath ?? "") +
             "/" + (self.identityfile ?? ""))
@@ -46,7 +46,8 @@ class Ssh: Files {
 
     // Secure copy of public key from local to remote catalog
     func copykeyfile(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
+        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
+            "/" + (self.identityfile ?? ""))
         self.arguments = scpArguments?.getArguments(operation: .sshcopyid)
         self.command = self.scpArguments?.getCommand()
         self.commandCopyPasteTermninal = self.scpArguments?.commandCopyPasteTerminal
