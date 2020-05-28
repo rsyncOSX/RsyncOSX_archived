@@ -150,6 +150,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
         if let sshport = ViewControllerReference.shared.sshport {
             self.sshport.stringValue = String(sshport)
+        } else {
+            self.sshport.stringValue = ""
         }
     }
 }
