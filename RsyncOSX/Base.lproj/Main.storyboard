@@ -1108,7 +1108,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="createPublicPrivateKeyPair:" target="B9V-8v-Aba" id="0ZH-Yd-qlG"/>
+                                                <action selector="createPublicPrivateRSAKeyPair:" target="B9V-8v-Aba" id="0ZH-Yd-qlG"/>
                                             </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-l7-2Lf">

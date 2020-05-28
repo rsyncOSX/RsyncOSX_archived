@@ -66,7 +66,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.help()
     }
 
-    @IBAction func createPublicPrivateKeyPair(_: NSButton) {
+    @IBAction func createPublicPrivateRSAKeyPair(_: NSButton) {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         self.sshcmd?.creatersakeypair()
@@ -126,7 +126,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         super.viewDidAppear()
         self.changesshparameters()
         self.checkRsaPubKeyButton.isEnabled = false
-        self.checkforPrivateandPublicKeypair()
+        self.checkforPrivateandPublicRSAKeypair()
     }
 
     override func viewDidDisappear() {
@@ -135,7 +135,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshCreateRemoteCatalog.stringValue = ""
     }
 
-    private func checkforPrivateandPublicKeypair() {
+    private func checkforPrivateandPublicRSAKeypair() {
         self.sshcmd = Ssh(outputprocess: nil)
         if self.sshcmd?.islocalpublicrsakeypresent() ?? false {
             self.rsaCheck.state = .on
@@ -196,25 +196,24 @@ extension ViewControllerSsh: NSTableViewDelegate {
 extension ViewControllerSsh: UpdateProgress {
     func processTermination() {
         globalMainQueue.async { () -> Void in
-            self.checkforPrivateandPublicKeypair()
+            self.checkforPrivateandPublicRSAKeypair()
         }
+        /*
         guard self.sshcmd != nil else { return }
-        guard self.sshcmd!.chmod != nil else { return }
+        guard self.sshcmd?.chmod != nil else { return }
         guard self.hiddenID != nil else { return }
-        switch self.sshcmd!.chmod!.pop() {
+        switch self.sshcmd?.chmod?.pop() {
         case .chmodRsa:
-            self.sshcmd!.checkRemotePubKey(hiddenID: self.hiddenID!)
-            self.sshcmd!.executeSshCommand()
-        case .chmodDsa:
-            self.sshcmd!.checkRemotePubKey(hiddenID: self.hiddenID!)
-            self.sshcmd!.executeSshCommand()
+            self.sshcmd?.checkRemotePubKey(hiddenID: self.hiddenID!)
+            self.sshcmd?.executeSshCommand()
         default:
-            self.sshcmd!.chmod = nil
+            self.sshcmd?.chmod = nil
         }
+        */
     }
 
     func fileHandler() {
-        self.data = self.outputprocess!.getOutput()
+        self.data = self.outputprocess?.getOutput()
         globalMainQueue.async { () -> Void in
             self.detailsTable.reloadData()
         }

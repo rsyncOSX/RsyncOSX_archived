@@ -10,7 +10,6 @@ import Foundation
 
 enum ChmodTask {
     case chmodRsa
-    case chmodDsa
     case empty
 }
 
@@ -21,38 +20,21 @@ final class ChmodPubKey {
     // Returns the top most element.
     // Top element is read only
     func peek() -> ChmodTask {
-        guard self.work != nil else {
-            return .empty
-        }
-        guard self.work!.count > 0 else {
-            return .empty
-        }
-        return self.work![0]
+        guard (self.work?.count ?? 0) > 0 else { return .empty }
+        return self.work?[0] ?? .empty
     }
 
     // Returns the top most element.
     // Top element is removed
     func pop() -> ChmodTask {
-        guard self.work != nil else {
-            return .empty
-        }
-        guard self.work!.count > 0 else {
-            return .empty
-        }
-        return self.work!.removeFirst()
+        guard (self.work?.count ?? 0) > 0 else { return .empty }
+        return self.work?.removeFirst() ?? .empty
     }
 
     // Single run
-    init(key: String) {
+    init() {
         self.work = nil
         self.work = [ChmodTask]()
-        switch key {
-        case "rsa":
-            self.work!.append(.chmodRsa)
-        case "dsa":
-            self.work!.append(.chmodDsa)
-        default:
-            self.work = nil
-        }
+        self.work?.append(.chmodRsa)
     }
 }
