@@ -1,9 +1,6 @@
 /* Restore */
 " ... set in User configuration ..." = "... sett i bruker preferanser...";
 
-/* Ssh */
-"... no remote server ..." = "...ingen ekstern tjener...";
-
 /* Execute */
 "⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
 

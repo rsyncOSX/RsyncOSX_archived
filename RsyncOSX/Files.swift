@@ -62,9 +62,12 @@ extension ErrorMessage {
 class Files: FileErrors {
     var whichroot: WhichRoot?
     var rootpath: String?
+    // If global keypath and identityfile is set must split keypath and identifile
+    // create a new key require full path
+    var identityfile: String?
     // config path either
     // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
-    private var configpath: String?
+    var configpath: String?
 
     private func setrootpath() {
         switch self.whichroot {
@@ -77,7 +80,21 @@ class Files: FileErrors {
             let profilePath = docuDir + self.configpath! + (ViewControllerReference.shared.macserialnumber ?? "")
             self.rootpath = profilePath
         case .sshRoot:
-            self.rootpath = NSHomeDirectory() + "/.ssh/"
+            // Check if a global ssh keypath and identityfile is set
+            // Set full path if not ssh-keygen will fail
+            // The sshkeypath + identityfile must be prefixed with "~" used in rsync parameters
+            // only full path when ssh-keygen is used
+            if ViewControllerReference.shared.sshkeypathandidentityfile == nil {
+                self.rootpath = NSHomeDirectory() + "/.ssh"
+                self.identityfile = "id_rsa"
+            } else {
+                // global sshkeypath and identityfile is set
+                if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
+                    let sshkeypath = Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile)
+                    self.identityfile = sshkeypath.identityfile
+                    self.rootpath = sshkeypath.rootpath
+                }
+            }
         default:
             return
         }

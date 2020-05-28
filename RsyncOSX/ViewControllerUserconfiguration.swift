@@ -43,6 +43,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet var enableenvironment: NSButton!
     @IBOutlet var togglecheckdatabutton: NSButton!
     @IBOutlet var haltonerror: NSButton!
+    @IBOutlet var sshport: NSTextField!
+    @IBOutlet var sshkeypathandidentityfile: NSTextField!
 
     @IBAction func togglehaltonerror(_: NSButton) {
         if ViewControllerReference.shared.haltonerror {
@@ -120,6 +122,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setRestorePath()
             self.setmarknumberofdayssince()
             self.setEnvironment()
+            self.setsshparameters()
             _ = PersistentStorageUserconfiguration().saveuserconfiguration()
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
@@ -293,6 +296,26 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         return true
     }
 
+    private func setsshparameters() {
+        if self.sshkeypathandidentityfile.stringValue.isEmpty == false {
+            if self.sshkeypathandidentityfile.stringValue.first == "~" {
+                ViewControllerReference.shared.sshkeypathandidentityfile = self.sshkeypathandidentityfile.stringValue
+            } else {
+                ViewControllerReference.shared.sshkeypathandidentityfile = "~" + self.sshkeypathandidentityfile.stringValue
+            }
+        } else {
+            ViewControllerReference.shared.sshkeypathandidentityfile = nil
+        }
+        if self.sshport.stringValue.isEmpty == false {
+            if let port = self.sshport {
+                ViewControllerReference.shared.sshport = Int(port.stringValue)
+            }
+        } else {
+            ViewControllerReference.shared.sshport = nil
+        }
+        self.reload = true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rsyncPath.delegate = self
@@ -301,6 +324,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.pathRsyncOSX.delegate = self
         self.pathRsyncOSXsched.delegate = self
         self.environment.delegate = self
+        self.sshkeypathandidentityfile.delegate = self
+        self.sshport.delegate = self
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
@@ -312,6 +337,10 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.reload = false
         self.pathRsyncOSXsched.stringValue = ViewControllerReference.shared.pathrsyncosxsched ?? ""
         self.pathRsyncOSX.stringValue = ViewControllerReference.shared.pathrsyncosx ?? ""
+        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
+        if let sshport = ViewControllerReference.shared.sshport {
+            self.sshport.stringValue = String(sshport)
+        }
         self.checkUserConfig()
         self.verifyrsync()
         self.statuslighttemppath.isHidden = true
@@ -398,6 +427,10 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
             case self.pathRsyncOSXsched:
                 self.verifypathtorsyncsched()
                 self.verifypathtorsyncosx()
+            case self.sshkeypathandidentityfile:
+                return
+            case self.sshport:
+                return
             case self.environment:
                 return
             default:

@@ -33,8 +33,7 @@ struct Configuration {
     var rsyncdaemon: Int?
     // SSH parameters
     var sshport: Int?
-    var sshidentityfile: String?
-    var sshkeypath: String?
+    var sshkeypathandidentityfile: String?
     // Calculated days since last backup
     var dayssincelastbackup: String?
     var markdays: Bool = false
@@ -108,11 +107,12 @@ struct Configuration {
         if let sshport = dictionary.object(forKey: "sshport") {
             self.sshport = sshport as? Int
         }
-        if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
-            self.sshidentityfile = sshidentityfile as? String
+        if let sshidentityfile = dictionary.object(forKey: "sshkeypathandidentityfile") {
+            self.sshkeypathandidentityfile = sshidentityfile as? String
         }
-        if let sshkeypath = dictionary.object(forKey: "sshkeypath") {
-            self.sshkeypath = sshkeypath as? String
+        // From version 6.3.0, must convert "sshidentityfile" to keypath + identityfile
+        if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
+            self.sshkeypathandidentityfile = "~/.ssh/" + (sshidentityfile as? String ?? "")
         }
     }
 
