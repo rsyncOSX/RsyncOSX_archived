@@ -4,6 +4,9 @@
 /* Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD"; */
 "00G-Ps-GJD.title" = "Lokal katalog : ";
 
+/* Class = "NSTextFieldCell"; title = "keypath + identityfile :"; ObjectID = "0HP-Xc-FiP"; */
+"0HP-Xc-FiP.title" = "keypath + identityfile :";
+
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "0KI-B9-ezl"; */
 "0KI-B9-ezl.headerCell.title" = "Oppgave";
 
@@ -166,8 +169,8 @@
 /* Class = "NSTextFieldCell"; title = "files :"; ObjectID = "8YP-GO-G5h"; */
 "8YP-GO-G5h.title" = "filer :";
 
-/* Class = "NSBox"; title = "ssh parameters"; ObjectID = "9A5-EU-pLg"; */
-"9A5-EU-pLg.title" = "ssh parametre";
+/* Class = "NSBox"; title = "ssh parameters (local)"; ObjectID = "9A5-EU-pLg"; */
+"9A5-EU-pLg.title" = "ssh parametere (lokal)";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9hn-5x-M6a"; */
 "9hn-5x-M6a.title" = "Text Cell";
@@ -433,6 +436,9 @@
 /* Class = "NSTextFieldCell"; title = "Profile :"; ObjectID = "dTX-H7-8VC"; */
 "dTX-H7-8VC.title" = "Profil :";
 
+/* Class = "NSTextFieldCell"; title = "keypath + identityfile :"; ObjectID = "dUb-NV-U4p"; */
+"dUb-NV-U4p.title" = "keypath + identityfile :";
+
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "Dzo-0Z-Tko"; */
 "Dzo-0Z-Tko.title" = "Item 2";
 
@@ -457,9 +463,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Server"; ObjectID = "ecv-vl-IKk"; */
 "ecv-vl-IKk.headerCell.title" = "Tjener";
 
-/* Class = "NSButtonCell"; title = "Dsa public key is found."; ObjectID = "EeS-fZ-csl"; */
-"EeS-fZ-csl.title" = "Dsa offentlig nøkkel.";
-
 /* Class = "NSViewController"; title = "Synchronize"; ObjectID = "egt-C3-u4G"; */
 "egt-C3-u4G.title" = "Synkroniser";
 
@@ -468,6 +471,9 @@
 
 /* Class = "NSBox"; title = "Catalog parameters (use Finder to drag and drop paths)"; ObjectID = "EH0-Ty-cyz"; */
 "EH0-Ty-cyz.title" = "Katalog parametre (bruk Finder for dra og slipp stier)";
+
+/* Class = "NSTextFieldCell"; title = "keypath + identityfile :"; ObjectID = "Eh7-8Q-c63"; */
+"Eh7-8Q-c63.title" = "keypath + identityfile :";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eHU-gd-SBP"; */
 "eHU-gd-SBP.title" = "Text Cell";
@@ -613,9 +619,6 @@
 /* Class = "NSTextFieldCell"; title = "temporary path restore:"; ObjectID = "GKP-F2-XbX"; */
 "GKP-F2-XbX.title" = "midlertidig sti for gjenopprett:";
 
-/* Class = "NSButtonCell"; title = "Check rsa"; ObjectID = "goN-EU-g61"; */
-"goN-EU-g61.title" = "Sjekk rsa";
-
 /* Class = "NSTextFieldCell"; title = "Completed..."; ObjectID = "gRY-vZ-99W"; */
 "gRY-vZ-99W.title" = "Utført...";
 
@@ -663,9 +666,6 @@
 
 /* Class = "NSButtonCell"; title = "Enable environment"; ObjectID = "hpD-hN-6Xb"; */
 "hpD-hN-6Xb.title" = "Åpne skall variabel";
-
-/* Class = "NSButtonCell"; title = "Check dsa"; ObjectID = "hq8-Fq-pip"; */
-"hq8-Fq-pip.title" = "Sjekk dsa";
 
 /* Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "HQE-mN-lgx"; */
 "HQE-mN-lgx.title" = "Antall filer:";
@@ -727,6 +727,9 @@
 /* Class = "NSButtonCell"; title = "no log"; ObjectID = "Ien-PS-8Dv"; */
 "Ien-PS-8Dv.title" = "ingen logg";
 
+/* Class = "NSTextFieldCell"; title = "verify rsa pub key:"; ObjectID = "iHg-sG-ZSs"; */
+"iHg-sG-ZSs.title" = "verifiser rsa pub key:";
+
 /* Class = "NSButtonCell"; title = "reset next snapshot number"; ObjectID = "Iii-2E-YHF"; */
 "Iii-2E-YHF.title" = "reset neste snapshot num";
 
@@ -741,9 +744,6 @@
 
 /* Class = "NSTextFieldCell"; title = "rsync daemon"; ObjectID = "ImR-R8-DPA"; */
 "ImR-R8-DPA.title" = "rsync daemon";
-
-/* Class = "NSTextFieldCell"; title = " port: "; ObjectID = "ipH-US-wgO"; */
-"ipH-US-wgO.title" = " port: ";
 
 /* Class = "NSButtonCell"; title = "Daily"; ObjectID = "iS6-br-dsn"; */
 "iS6-br-dsn.title" = "Daglig";
@@ -760,9 +760,6 @@
 /* Class = "NSButtonCell"; title = "Create keys"; ObjectID = "JF9-s4-tD7"; */
 "JF9-s4-tD7.title" = "Opprett nøkler";
 
-/* Class = "NSTextFieldCell"; title = "identityfile:"; ObjectID = "jIc-w2-78d"; */
-"jIc-w2-78d.title" = "identitetsfil:";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Jil-HV-f4r"; */
 "Jil-HV-f4r.title" = "Text Cell";
 
@@ -777,6 +774,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Delete files:"; ObjectID = "jTT-Mq-cPB"; */
 "jTT-Mq-cPB.title" = "Slett filer:";
+
+/* Class = "NSBox"; title = "ssh parameters (global)"; ObjectID = "Jwf-kI-FZf"; */
+"Jwf-kI-FZf.title" = "ssh parametere (global)";
 
 /* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "K2f-Jb-uUB"; */
 "K2f-Jb-uUB.headerCell.title" = "Dager";
@@ -808,9 +808,6 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "KPx-Pg-dAk"; */
 "KPx-Pg-dAk.title" = "Text Cell";
 
-/* Class = "NSTextFieldCell"; title = "ssh directory:"; ObjectID = "kUC-cs-Fc2"; */
-"kUC-cs-Fc2.title" = "ssh katalog:";
-
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "L1n-6w-rIj"; */
 "L1n-6w-rIj.headerCell.title" = "Lokal katalog";
 
@@ -837,9 +834,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "lsc-bT-MTr"; */
 "lsc-bT-MTr.title" = "Text Cell";
-
-/* Class = "NSButtonCell"; title = "Dsa key"; ObjectID = "LtM-4s-IJ1"; */
-"LtM-4s-IJ1.title" = "Dsa nøkkel";
 
 /* Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "Lur-Sd-kBP"; */
 "Lur-Sd-kBP.headerCell.title" = "Resultat";
@@ -1138,6 +1132,9 @@
 /* Class = "NSButtonCell"; title = "Weekly"; ObjectID = "s3e-Xz-emD"; */
 "s3e-Xz-emD.title" = "Ukentlig";
 
+/* Class = "NSTextFieldCell"; title = "port :"; ObjectID = "s76-3j-fYg"; */
+"s76-3j-fYg.title" = "port :";
+
 /* Class = "NSTextFieldCell"; title = "Number of configurations:"; ObjectID = "sBt-QN-KGK"; */
 "sBt-QN-KGK.title" = "Antall konfigurasjoner:";
 
@@ -1159,7 +1156,7 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Sr3-1q-P2Q"; */
 "Sr3-1q-P2Q.title" = "Text Cell";
 
-/* Class = "NSBox"; title = "Local ssh keys"; ObjectID = "srs-cz-k0D"; */
+/* Class = "NSBox"; title = "Local ssh key"; ObjectID = "srs-cz-k0D"; */
 "srs-cz-k0D.title" = "Lokale ssh nøkler";
 
 /* Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "STf-VO-dOL"; */
@@ -1191,9 +1188,6 @@
 
 /* Class = "NSTextFieldCell"; title = "number of days last backup:"; ObjectID = "TdE-t5-FjR"; */
 "TdE-t5-FjR.title" = "Antall dager siste backup:";
-
-/* Class = "NSTextFieldCell"; title = "scp dsa pub key:"; ObjectID = "Tes-Z8-BIj"; */
-"Tes-Z8-BIj.title" = "scp dsa pub key:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Output"; ObjectID = "TG2-kC-9mp"; */
 "TG2-kC-9mp.headerCell.title" = "Output";
@@ -1351,8 +1345,8 @@
 /* Class = "NSButtonCell"; title = "Don´t add trailing /"; ObjectID = "WMA-Xf-UcN"; */
 "WMA-Xf-UcN.title" = "Ikke legg til /";
 
-/* Class = "NSButtonCell"; title = "Rsa key"; ObjectID = "wmz-CK-ZzC"; */
-"wmz-CK-ZzC.title" = "Rsa nøkkel";
+/* Class = "NSBox"; title = "ssh parameters (global)"; ObjectID = "WnY-dE-WiT"; */
+"WnY-dE-WiT.title" = "ssh parametre (global)";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "Woh-4u-GUH"; */
 "Woh-4u-GUH.title" = "Antall kataloger:";
@@ -1372,8 +1366,8 @@
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "wW4-ui-Vxe"; */
 "wW4-ui-Vxe.title" = "Item 1";
 
-/* Class = "NSTextFieldCell"; title = "scp rsa pub key:"; ObjectID = "WW7-sg-7Xq"; */
-"WW7-sg-7Xq.title" = "scp rsa pub key:";
+/* Class = "NSTextFieldCell"; title = "copy rsa pub key:"; ObjectID = "WW7-sg-7Xq"; */
+"WW7-sg-7Xq.title" = "copy rsa pub key:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WWj-MW-4MO"; */
 "WWj-MW-4MO.title" = "Text Cell";
@@ -1405,6 +1399,9 @@
 /* Class = "NSButtonCell"; title = "Save"; ObjectID = "xnI-Se-9HL"; */
 "xnI-Se-9HL.title" = "Lagre";
 
+/* Class = "NSTextFieldCell"; title = "port :"; ObjectID = "XrE-Og-cxo"; */
+"XrE-Og-cxo.title" = "port :";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "xsi-tM-sv9"; */
 "xsi-tM-sv9.title" = "Text Cell";
 
@@ -1416,6 +1413,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Chinese"; ObjectID = "xz5-2j-E51"; */
 "xz5-2j-E51.title" = "Kinesisk";
+
+/* Class = "NSTextFieldCell"; title = "port :"; ObjectID = "xZP-bH-nU4"; */
+"xZP-bH-nU4.title" = "port :";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Y5P-iP-A70"; */
 "Y5P-iP-A70.title" = "Table View Cell";
