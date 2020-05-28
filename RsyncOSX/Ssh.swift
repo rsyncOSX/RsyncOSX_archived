@@ -10,7 +10,7 @@ import Cocoa
 import Foundation
 
 class Ssh: Files {
-    var commandCopyPasteTermninal: String?
+    var commandCopyPasteTerminal: String?
     // Full String paths to local public keys
     var rsaStringPath: String?
     // Arrays listing all key files
@@ -50,7 +50,7 @@ class Ssh: Files {
             "/" + (self.identityfile ?? ""))
         self.arguments = scpArguments?.getArguments(operation: .sshcopyid)
         self.command = self.scpArguments?.getCommand()
-        self.commandCopyPasteTermninal = self.scpArguments?.commandCopyPasteTerminal
+        self.commandCopyPasteTerminal = self.scpArguments?.commandCopyPasteTerminal
     }
 
     // Check for remote pub keys
@@ -66,7 +66,7 @@ class Ssh: Files {
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
         self.arguments = scpArguments?.getArguments(operation: .createRemoteSshCatalog)
         self.command = self.scpArguments?.getCommand()
-        self.commandCopyPasteTermninal = self.scpArguments?.commandCopyPasteTerminal
+        self.commandCopyPasteTerminal = self.scpArguments?.commandCopyPasteTerminal
     }
 
     // Chmod remote .ssh directory

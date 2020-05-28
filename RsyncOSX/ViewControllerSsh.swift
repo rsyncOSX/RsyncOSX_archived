@@ -86,21 +86,22 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     func createRemoteSshDirectory() {
         if let hiddenID = self.hiddenID {
             self.sshcmd?.createSshRemoteDirectory(hiddenID: hiddenID)
-            guard sshcmd?.commandCopyPasteTermninal != nil else {
+            guard sshcmd?.commandCopyPasteTerminal != nil else {
                 self.sshCreateRemoteCatalog.stringValue = NSLocalizedString("... no remote server ...", comment: "Ssh")
                 return
             }
-            self.sshCreateRemoteCatalog.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
+            self.sshCreateRemoteCatalog.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
         }
     }
 
-    func copykeyfile() {
+    func copylocalpubrsakeyfile() {
+        // Before copy key check that pub key is present
+        guard self.sshcmd?.islocalpublicrsakeypresent() ?? false == true else { return }
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
-        self.sshcmd?.creatersakeypair()
         if let hiddenID = self.hiddenID {
             self.sshcmd?.copykeyfile(hiddenID: hiddenID)
-            self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTermninal ?? ""
+            self.copykeyfilepastecommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
         }
     }
 
@@ -161,7 +162,7 @@ extension ViewControllerSsh: DismissViewController {
         self.dismiss(viewcontroller)
         self.checkRsaPubKeyButton.isEnabled = true
         self.createRemoteSshDirectory()
-        self.copykeyfile()
+        self.copylocalpubrsakeyfile()
         self.changesshparameters()
     }
 }
