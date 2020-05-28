@@ -109,7 +109,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshcmd = Ssh(outputprocess: self.outputprocess)
         guard self.execute == true else { return }
         if let hiddenID = self.hiddenID {
-            self.sshcmd?.chmodSsh(key: "rsa", hiddenID: hiddenID)
+            self.sshcmd?.chmodSsh(hiddenID: hiddenID)
             self.sshcmd?.executeSshCommand()
         }
     }
@@ -199,17 +199,17 @@ extension ViewControllerSsh: UpdateProgress {
             self.checkforPrivateandPublicRSAKeypair()
         }
         /*
-        guard self.sshcmd != nil else { return }
-        guard self.sshcmd?.chmod != nil else { return }
-        guard self.hiddenID != nil else { return }
-        switch self.sshcmd?.chmod?.pop() {
-        case .chmodRsa:
-            self.sshcmd?.checkRemotePubKey(hiddenID: self.hiddenID!)
-            self.sshcmd?.executeSshCommand()
-        default:
-            self.sshcmd?.chmod = nil
-        }
-        */
+         guard self.sshcmd != nil else { return }
+         guard self.sshcmd?.chmod != nil else { return }
+         guard self.hiddenID != nil else { return }
+         switch self.sshcmd?.chmod?.pop() {
+         case .chmodRsa:
+             self.sshcmd?.checkRemotePubKey(hiddenID: self.hiddenID!)
+             self.sshcmd?.executeSshCommand()
+         default:
+             self.sshcmd?.chmod = nil
+         }
+         */
     }
 
     func fileHandler() {

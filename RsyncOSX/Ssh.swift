@@ -70,17 +70,17 @@ class Ssh: Files {
     }
 
     // Chmod remote .ssh directory
-    func chmodSsh(key: String, hiddenID: Int) {
+    func chmodSsh(hiddenID: Int) {
         self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: nil)
         self.arguments = scpArguments?.getArguments(operation: .chmod)
         self.command = self.scpArguments?.getCommand()
-        self.chmod = ChmodPubKey(key: key)
+        self.chmod = ChmodPubKey()
     }
 
     // Execute command
     func executeSshCommand() {
         self.process = CommandSsh(command: self.command, arguments: self.arguments)
-        self.process?.executeProcess(outputprocess: self.outputprocess!)
+        self.process?.executeProcess(outputprocess: self.outputprocess)
     }
 
     // get output
