@@ -119,7 +119,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 
     func copylocalpubrsakeyfile() {
-        // Before copy key check that pub key is present
         guard self.sshcmd?.islocalpublicrsakeypresent() ?? false == true else { return }
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess)

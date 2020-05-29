@@ -15,7 +15,7 @@ class Ssh: Files {
     // Arrays listing all key files
     var keyFileURLS: [URL]?
     var keyFileStrings: [String]?
-    var scpArguments: ScpArgumentsSsh?
+    var argumentsssh: ArgumentsSsh?
     var command: String?
     var arguments: [String]?
     // Process
@@ -25,10 +25,10 @@ class Ssh: Files {
     // Create rsa keypair
     func creatersakeypair() {
         guard self.islocalpublicrsakeypresent() == false else { return }
-        self.scpArguments = ScpArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.rootpath ?? "") +
+        self.argumentsssh = ArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.rootpath ?? "") +
             "/" + (self.identityfile ?? ""))
-        self.arguments = scpArguments?.getArguments(operation: .createKey)
-        self.command = self.scpArguments?.getCommand()
+        self.arguments = argumentsssh?.getArguments(operation: .createKey)
+        self.command = self.argumentsssh?.getCommand()
         self.executeSshCommand()
     }
 
@@ -43,18 +43,18 @@ class Ssh: Files {
 
     // Secure copy of public key from local to remote catalog
     func copykeyfile(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
+        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
             "/" + (self.identityfile ?? ""))
-        self.arguments = scpArguments?.getArguments(operation: .sshcopyid)
-        self.commandCopyPasteTerminal = self.scpArguments?.commandCopyPasteTerminal
+        self.arguments = argumentsssh?.getArguments(operation: .sshcopyid)
+        self.commandCopyPasteTerminal = self.argumentsssh?.commandCopyPasteTerminal
     }
 
     // Check for remote pub keys
     func verifyremotekey(hiddenID: Int) {
-        self.scpArguments = ScpArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
+        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
             "/" + (self.identityfile ?? ""))
-        self.arguments = scpArguments?.getArguments(operation: .verifyremotekey)
-        self.commandCopyPasteTerminal = self.scpArguments?.commandCopyPasteTerminal
+        self.arguments = argumentsssh?.getArguments(operation: .verifyremotekey)
+        self.commandCopyPasteTerminal = self.argumentsssh?.commandCopyPasteTerminal
     }
 
     // Execute command

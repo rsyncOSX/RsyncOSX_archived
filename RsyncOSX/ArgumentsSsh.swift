@@ -14,7 +14,7 @@ enum SshOperations {
     case createKey
 }
 
-final class ScpArgumentsSsh: SetConfigurations {
+final class ArgumentsSsh: SetConfigurations {
     var commandCopyPasteTerminal: String?
     private var config: Configuration?
     private var args: [String]?
