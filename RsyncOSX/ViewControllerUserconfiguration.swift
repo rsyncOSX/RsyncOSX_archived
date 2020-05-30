@@ -45,6 +45,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet var haltonerror: NSButton!
     @IBOutlet var sshport: NSTextField!
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
+    @IBOutlet var statuslightsshkeypath: NSImageView!
 
     @IBAction func togglehaltonerror(_: NSButton) {
         if ViewControllerReference.shared.haltonerror {
@@ -296,13 +297,43 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         return true
     }
 
+    private func verifysshkeypath() {
+        self.statuslightsshkeypath.isHidden = false
+        if self.sshkeypathandidentityfile.stringValue.first != "~" {
+            let tempsshkeypath = self.sshkeypathandidentityfile.stringValue
+            self.sshkeypathandidentityfile.stringValue = "~" + tempsshkeypath
+        }
+        let tempsshkeypath = self.sshkeypathandidentityfile.stringValue
+        let sshkeypathandidentityfilesplit = tempsshkeypath.split(separator: "/")
+        if sshkeypathandidentityfilesplit.count > 2 {
+            guard sshkeypathandidentityfilesplit[1].count > 1 else {
+                self.statuslightsshkeypath.image = #imageLiteral(resourceName: "red")
+                return
+            }
+            guard sshkeypathandidentityfilesplit[2].count > 1 else {
+                self.statuslightsshkeypath.image = #imageLiteral(resourceName: "red")
+                return
+            }
+            self.statuslightsshkeypath.image = #imageLiteral(resourceName: "green")
+        } else {
+            self.statuslightsshkeypath.image = #imageLiteral(resourceName: "red")
+        }
+    }
+
+    private func checksshkeypathbeforesaving() -> Bool {
+        if self.sshkeypathandidentityfile.stringValue.first != "~" { return false }
+        let tempsshkeypath = self.sshkeypathandidentityfile.stringValue
+        let sshkeypathandidentityfilesplit = tempsshkeypath.split(separator: "/")
+        guard sshkeypathandidentityfilesplit.count > 2 else { return false }
+        guard sshkeypathandidentityfilesplit[1].count > 1 else { return false }
+        guard sshkeypathandidentityfilesplit[2].count > 1 else { return false }
+        return true
+    }
+
     private func setsshparameters() {
         if self.sshkeypathandidentityfile.stringValue.isEmpty == false {
-            if self.sshkeypathandidentityfile.stringValue.first == "~" {
-                ViewControllerReference.shared.sshkeypathandidentityfile = self.sshkeypathandidentityfile.stringValue
-            } else {
-                ViewControllerReference.shared.sshkeypathandidentityfile = "~" + self.sshkeypathandidentityfile.stringValue
-            }
+            guard self.checksshkeypathbeforesaving() == true else { return }
+            ViewControllerReference.shared.sshkeypathandidentityfile = self.sshkeypathandidentityfile.stringValue
         } else {
             ViewControllerReference.shared.sshkeypathandidentityfile = nil
         }
@@ -347,6 +378,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.statuslightpathrsync.isHidden = true
         self.statuslightpathrsyncosx.isHidden = true
         self.statuslightpathrsyncosxsched.isHidden = true
+        self.statuslightsshkeypath.isHidden = true
     }
 
     // Function for check and set user configuration
@@ -428,7 +460,7 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
                 self.verifypathtorsyncsched()
                 self.verifypathtorsyncosx()
             case self.sshkeypathandidentityfile:
-                return
+                self.verifysshkeypath()
             case self.sshport:
                 return
             case self.environment:
