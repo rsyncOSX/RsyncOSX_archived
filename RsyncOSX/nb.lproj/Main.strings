@@ -1438,9 +1438,6 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YdX-1p-DZ9"; */
 "YdX-1p-DZ9.title" = "Text Cell";
 
-/* Class = "NSBox"; title = "Environment"; ObjectID = "YmB-7A-vYE"; */
-"YmB-7A-vYE.title" = "Skall variabel";
-
 /* Class = "NSButtonCell"; title = "Delete"; ObjectID = "yOD-ng-BAz"; */
 "yOD-ng-BAz.title" = "Slett";
 

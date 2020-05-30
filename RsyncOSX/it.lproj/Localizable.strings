@@ -1,9 +1,6 @@
 /* Restore */
 " ... set in User configuration ..." = " ... imposta nella configurazione utente...";
 
-/* Ssh */
-"... no remote server ..." = "... nessun server remoto...";
-
 /* Execute */
 "⌘A to abort or wait..." = "⌘A per interrompere oppure attendere...";
 
