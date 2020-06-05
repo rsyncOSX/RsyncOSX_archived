@@ -15,7 +15,6 @@ class Allschedules {
     private var allprofiles: [String]?
 
     private func readallschedules(nolog: Bool) {
-        guard self.allprofiles != nil else { return }
         var configurationschedule: [ConfigurationSchedule]?
         for i in 0 ..< (self.allprofiles?.count ?? 0) {
             let profilename = self.allprofiles?[i]
@@ -27,7 +26,6 @@ class Allschedules {
             } else {
                 configurationschedule = PersistentStorageAllprofilesAPI(profile: profilename).getScheduleandhistory(nolog: nolog)
             }
-            guard configurationschedule != nil else { return }
             for j in 0 ..< (configurationschedule?.count ?? 0) {
                 configurationschedule?[j].profilename = profilename
                 if let configurationschedule = configurationschedule?[j] {
