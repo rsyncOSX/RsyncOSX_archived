@@ -8,6 +8,11 @@ If you want to discuss [changes or report bugs please create an issue](https://g
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
 
+The user documentation is updated in both Jekyll and Hugo. The Jekyll based docs are served from GitHub and the Hugo based from Netlify. If you have any comments about the documentation, which theme to use please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues). 
+
+- the [Hugo based docs](https://rsyncosx.netlify.app/)
+- the [Jekyll based docs](https://rsyncosx.github.io/)
+
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
 RsyncOSX is compiled with support for **macOS El Capitan version 10.11 - macOS Catalina version 10.15**. The application is implemented in pure Swift 5 (Cocoa and Foundation). RsyncOSX is not depended upon any third party binary distributions. There is, however, [one third party source code](https://github.com/swiftsocket/SwiftSocket) included to check for TCP connections.
