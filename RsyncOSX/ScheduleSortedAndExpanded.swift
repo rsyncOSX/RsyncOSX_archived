@@ -69,7 +69,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             // Get all jobs which are not executed
             if seconds > 0 {
                 switch schedule {
-                case "once":
+                case Scheduletype.once.rawValue:
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                     let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = seconds
@@ -82,9 +82,9 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         "profilename": profilename,
                     ]
                     self.expandedData!.append(dict)
-                case "daily":
+                case Scheduletype.daily.rawValue:
                     self.daily(dateStart: dateStart, schedule: schedule, dict: dict)
-                case "weekly":
+                case Scheduletype.weekly.rawValue:
                     self.weekly(dateStart: dateStart, schedule: schedule, dict: dict)
                 default:
                     break
@@ -146,7 +146,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         guard self.scheduleConfiguration != nil else { return }
         var data = [NSDictionary]()
         for i in 0 ..< self.scheduleConfiguration!.count where
-            self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != "stopped" {
+            self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != Scheduletype.stopped.rawValue {
             let dict: NSDictionary = [
                 "dateStart": self.scheduleConfiguration![i].dateStart,
                 "dateStop": self.scheduleConfiguration![i].dateStop!,

@@ -39,11 +39,13 @@ class Schedules: ScheduleWriteLoggData {
         dict.setObject(offsiteserver as Any, forKey: "offsiteserver" as NSCopying)
         switch schedule {
         case .once:
-            dict.setObject("once", forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.once.rawValue, forKey: "schedule" as NSCopying)
         case .daily:
-            dict.setObject("daily", forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.daily.rawValue, forKey: "schedule" as NSCopying)
         case .weekly:
-            dict.setObject("weekly", forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.weekly.rawValue, forKey: "schedule" as NSCopying)
+        default:
+            return
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
         self.schedules!.append(newSchedule)
@@ -94,7 +96,7 @@ class Schedules: ScheduleWriteLoggData {
                 } else {
                     row.setValue(self.schedules![i].dateStop, forKey: "dateStop")
                 }
-                if self.schedules![i].schedule == "stopped" {
+                if self.schedules![i].schedule == Scheduletype.stopped.rawValue {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
@@ -165,7 +167,7 @@ class Schedules: ScheduleWriteLoggData {
                 self.schedules![i].dateStop == nil &&
                 dict.value(forKey: "schedule") as? String == self.schedules![i].schedule &&
                 dict.value(forKey: "dateStart") as? String == self.schedules![i].dateStart {
-                self.schedules![i].schedule = "stopped"
+                self.schedules![i].schedule = Scheduletype.stopped.rawValue
                 self.schedules![i].dateStop = Date().en_us_string_from_date()
             }
         }

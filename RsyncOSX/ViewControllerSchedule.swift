@@ -262,14 +262,14 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         let schedule: String? = self.sortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
                         if schedule?.isEmpty == false {
                             switch schedule {
-                            case "once":
-                                return NSLocalizedString("once", comment: "main")
-                            case "daily":
-                                return NSLocalizedString("daily", comment: "main")
-                            case "weekly":
-                                return NSLocalizedString("weekly", comment: "main")
-                            case "manuel":
-                                return NSLocalizedString("manuel", comment: "main")
+                            case Scheduletype.once.rawValue:
+                                return NSLocalizedString(Scheduletype.once.rawValue, comment: "main")
+                            case Scheduletype.daily.rawValue:
+                                return NSLocalizedString(Scheduletype.daily.rawValue, comment: "main")
+                            case Scheduletype.weekly.rawValue:
+                                return NSLocalizedString(Scheduletype.weekly.rawValue, comment: "main")
+                            case Scheduletype.manuel.rawValue:
+                                return NSLocalizedString(Scheduletype.manuel.rawValue, comment: "main")
                             default:
                                 return ""
                             }
@@ -317,7 +317,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     let schedule = object.value(forKey: "schedule") as? String ?? ""
                     guard datestopstring.isEmpty == false, datestopstring != "no stop date" else { return nil }
                     let dateStop: Date = datestopstring.en_us_date_from_string()
-                    if dateStop.timeIntervalSinceNow > 0, schedule != "stopped" {
+                    if dateStop.timeIntervalSinceNow > 0, schedule != Scheduletype.stopped.rawValue {
                         return #imageLiteral(resourceName: "complete")
                     } else {
                         return nil
@@ -326,16 +326,16 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                     return object[tableColumn!.identifier] as? Int
                 case "schedule":
                     switch object[tableColumn!.identifier] as? String {
-                    case "once":
-                        return NSLocalizedString("once", comment: "main")
-                    case "daily":
-                        return NSLocalizedString("daily", comment: "main")
-                    case "weekly":
-                        return NSLocalizedString("weekly", comment: "main")
-                    case "manuel":
-                        return NSLocalizedString("manuel", comment: "main")
-                    case "stopped":
-                        return NSLocalizedString("stopped", comment: "main")
+                    case Scheduletype.once.rawValue:
+                        return NSLocalizedString(Scheduletype.once.rawValue, comment: "main")
+                    case Scheduletype.daily.rawValue:
+                        return NSLocalizedString(Scheduletype.daily.rawValue, comment: "main")
+                    case Scheduletype.weekly.rawValue:
+                        return NSLocalizedString(Scheduletype.weekly.rawValue, comment: "main")
+                    case Scheduletype.manuel.rawValue:
+                        return NSLocalizedString(Scheduletype.manuel.rawValue, comment: "main")
+                    case Scheduletype.stopped.rawValue:
+                        return NSLocalizedString(Scheduletype.stopped.rawValue, comment: "main")
                     default:
                         return ""
                     }
