@@ -32,43 +32,41 @@ final class RsyncParametersSingleFilesArguments {
             let remote = remote_with_whitespace.replacingOccurrences(of: " ", with: whitespace)
             let local: String = localCatalog!
             if config.sshport != nil {
-                self.args!.append(self.eparam)
-                self.args!.append(self.sshp + " " + String(config.sshport!))
+                self.args?.append(self.eparam)
+                self.args?.append(self.sshp + " " + String(config.sshport!))
             } else {
-                self.args!.append(self.eparam)
-                self.args!.append(self.ssh)
+                self.args?.append(self.eparam)
+                self.args?.append(self.ssh)
             }
-            self.args!.append(self.archive)
-            self.args!.append(self.verbose)
+            self.args?.append(self.archive)
+            self.args?.append(self.verbose)
             // If copy over network compress files
             if config.offsiteServer.isEmpty {
-                self.args!.append(self.compress)
+                self.args?.append(self.compress)
             }
             // Set dryrun or not
             if drynrun != nil {
                 if drynrun == true {
-                    self.args!.append(self.dryrun)
+                    self.args?.append(self.dryrun)
                 }
             }
             if config.offsiteServer.isEmpty {
-                self.args!.append(config.offsiteCatalog + remote)
+                self.args?.append(config.offsiteCatalog + remote)
             } else {
                 let rarg = config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog + remote
-                self.args!.append(rarg)
+                self.args?.append(rarg)
             }
-            self.args!.append(local)
+            self.args?.append(local)
         }
     }
 
     private func argumentstodisplay() {
-        guard self.args != nil else { return }
-        // Prepare the display version of arguments
         self.argDisplay = Getrsyncpath().rsyncpath ?? "" + " "
-        for i in 0 ..< self.args!.count {
+        for i in 0 ..< (self.args?.count ?? 0) {
             if i == 1, self.config!.sshport != nil {
-                self.argDisplay = self.argDisplay! + "\"" + self.args![i] + "\"  "
+                self.argDisplay = self.argDisplay! + "\"" + (self.args?[i] ?? "") + "\"  "
             } else {
-                self.argDisplay = self.argDisplay! + self.args![i] + " "
+                self.argDisplay = self.argDisplay! + (self.args?[i] ?? "") + " "
             }
         }
     }

@@ -59,7 +59,7 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter hiddenID : hiddenID for task
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
-        for i in 0 ..< self.schedules!.count where self.schedules![i].hiddenID == hiddenID {
+        for i in 0 ..< (self.schedules?.count ?? 0) where self.schedules![i].hiddenID == hiddenID {
             // Mark Schedules for delete
             // Cannot delete in memory, index out of bound is result
             self.schedules![i].delete = true
@@ -79,7 +79,7 @@ class Schedules: ScheduleWriteLoggData {
         guard hiddenID != nil else { return nil }
         var row: NSMutableDictionary
         var data = [NSMutableDictionary]()
-        for i in 0 ..< self.schedules!.count {
+        for i in 0 ..< (self.schedules?.count ?? 0) {
             if self.schedules![i].hiddenID == hiddenID {
                 row = [
                     "dateStart": self.schedules![i].dateStart,
@@ -148,7 +148,7 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to delete or not
     private func delete(dict: NSDictionary) {
-        for i in 0 ..< self.schedules!.count where
+        for i in 0 ..< (self.schedules?.count ?? 0) where
             dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
             if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
                 self.schedules![i].dateStop == nil &&
@@ -161,7 +161,7 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to stop er not
     private func stop(dict: NSDictionary) {
-        for i in 0 ..< self.schedules!.count where
+        for i in 0 ..< (self.schedules?.count ?? 0) where
             dict.value(forKey: "hiddenID") as? Int == self.schedules![i].hiddenID {
             if dict.value(forKey: "dateStop") as? String == self.schedules![i].dateStop ||
                 self.schedules![i].dateStop == nil &&
@@ -179,8 +179,8 @@ class Schedules: ScheduleWriteLoggData {
         var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
         guard store != nil else { return }
         var data = [ConfigurationSchedule]()
-        for i in 0 ..< store!.count where store![i].logrecords.isEmpty == false || store![i].dateStop != nil {
-            store![i].profilename = self.profile
+        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil {
+            store?[i].profilename = self.profile
             data.append(store![i])
         }
         // Sorting schedule after hiddenID

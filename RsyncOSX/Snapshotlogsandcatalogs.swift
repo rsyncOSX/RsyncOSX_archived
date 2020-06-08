@@ -84,8 +84,7 @@ final class Snapshotlogsandcatalogs {
     }
 
     func preparecatalogstodelete() {
-        guard self.snapshotslogs != nil else { return }
-        for i in 0 ..< self.snapshotslogs!.count - 1 {
+        for i in 0 ..< (self.snapshotslogs?.count ?? 0) - 1 {
             if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
                 if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
                 let snaproot = self.config!.offsiteCatalog
@@ -98,7 +97,7 @@ final class Snapshotlogsandcatalogs {
     func countbydays(num: Double) -> Int {
         var j: Int = 0
         guard self.snapshotslogs != nil else { return 0 }
-        for i in 0 ..< self.snapshotslogs!.count - 1 {
+        for i in 0 ..< (self.snapshotslogs?.count ?? 0) - 1 {
             let days: String = self.snapshotslogs![i].value(forKey: "days") as? String ?? "0"
             if Double(days)! >= num {
                 j += 1

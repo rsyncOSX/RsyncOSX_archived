@@ -65,7 +65,7 @@ class OutputProcess {
         guard self.output != nil else { return nil }
         switch trim {
         case .one:
-            for i in 0 ..< self.output!.count {
+            for i in 0 ..< (self.output?.count ?? 0) {
                 let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
                 let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
                 if str.isEmpty == false, str.contains(".DS_Store") == false {
@@ -73,7 +73,7 @@ class OutputProcess {
                 }
             }
         case .two:
-            for i in 0 ..< self.output!.count where self.output![i].last != "/" {
+            for i in 0 ..< (self.output?.count ?? 0) where self.output![i].last != "/" {
                 out.append(self.output![i])
                 self.error = self.output![i].contains("rsync error:")
                 if self.error {
@@ -84,7 +84,7 @@ class OutputProcess {
             }
             self.maxnumber = out.count
         case .three:
-            for i in 0 ..< self.output!.count {
+            for i in 0 ..< (self.output?.count ?? 0) {
                 let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
                 let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
                 if str.isEmpty == false {

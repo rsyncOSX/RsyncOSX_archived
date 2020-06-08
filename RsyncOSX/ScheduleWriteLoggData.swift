@@ -75,7 +75,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     private func addlogexisting(hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
-        loop: for i in 0 ..< self.schedules!.count where
+        loop: for i in 0 ..< (self.schedules?.count ?? 0) where
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) ==

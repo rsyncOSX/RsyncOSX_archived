@@ -22,7 +22,7 @@ final class RemoteNumbers {
 
     private func setnumbers() {
         guard self.output != nil else { return }
-        guard self.output!.count == 2 else { return }
+        guard (self.output?.count ?? 0) == 2 else { return }
         let splitnumberstring = self.split(self.output![1])
         self.splitnumbers = [String]()
         for i in 0 ..< splitnumberstring.count where splitnumberstring[i].isEmpty == false {

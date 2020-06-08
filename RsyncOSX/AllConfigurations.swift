@@ -17,7 +17,7 @@ final class AllConfigurations: Sorting {
     private func readallconfigurations() {
         guard self.allprofiles != nil else { return }
         var configurations: [Configuration]?
-        for i in 0 ..< self.allprofiles!.count {
+        for i in 0 ..< (self.allprofiles?.count ?? 0) {
             let profile = self.allprofiles![i]
             if self.allconfigurations == nil {
                 self.allconfigurations = []
@@ -28,7 +28,7 @@ final class AllConfigurations: Sorting {
                 configurations = PersistentStorageAllprofilesAPI(profile: profile).getConfigurations()
             }
             guard configurations != nil else { return }
-            for j in 0 ..< configurations!.count {
+            for j in 0 ..< (configurations?.count ?? 0) {
                 configurations![j].profile = profile
                 self.allconfigurations!.append(configurations![j])
             }
