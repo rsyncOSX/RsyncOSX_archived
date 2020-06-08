@@ -30,8 +30,10 @@ protocol GetSchedulesObject: AnyObject {
     func reloadschedulesobject()
 }
 
-enum Scheduletype {
+enum Scheduletype: String {
     case once
     case daily
     case weekly
+    case manuel
+    case stopped
 }

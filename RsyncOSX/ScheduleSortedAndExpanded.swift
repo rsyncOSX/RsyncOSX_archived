@@ -60,7 +60,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleTasks() {
-        for i in 0 ..< self.schedulesNSDictionary!.count {
+        for i in 0 ..< (self.schedulesNSDictionary?.count ?? 0) {
             let dict = self.schedulesNSDictionary![i]
             let dateStop: Date = (dict.value(forKey: "dateStop") as? String)!.en_us_date_from_string()
             let dateStart: Date = (dict.value(forKey: "dateStart") as? String)!.en_us_date_from_string()
@@ -69,7 +69,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             // Get all jobs which are not executed
             if seconds > 0 {
                 switch schedule {
-                case "once":
+                case Scheduletype.once.rawValue:
                     let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                     let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = seconds
@@ -82,15 +82,15 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         "profilename": profilename,
                     ]
                     self.expandedData!.append(dict)
-                case "daily":
+                case Scheduletype.daily.rawValue:
                     self.daily(dateStart: dateStart, schedule: schedule, dict: dict)
-                case "weekly":
+                case Scheduletype.weekly.rawValue:
                     self.weekly(dateStart: dateStart, schedule: schedule, dict: dict)
                 default:
                     break
                 }
             }
-            self.sortedschedules = self.expandedData!.sorted { (di1, di2) -> Bool in
+            self.sortedschedules = self.expandedData?.sorted { (di1, di2) -> Bool in
                 if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!) > 0 {
                     return false
                 } else {
@@ -143,15 +143,14 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     /// array of NSDictionary.
     /// - returns : none
     private func setallscheduledtasksNSDictionary() {
-        guard self.scheduleConfiguration != nil else { return }
         var data = [NSDictionary]()
-        for i in 0 ..< self.scheduleConfiguration!.count where
-            self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != "stopped" {
+        for i in 0 ..< (self.scheduleConfiguration?.count ?? 0) where
+            self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != Scheduletype.stopped.rawValue {
             let dict: NSDictionary = [
-                "dateStart": self.scheduleConfiguration![i].dateStart,
-                "dateStop": self.scheduleConfiguration![i].dateStop!,
-                "hiddenID": self.scheduleConfiguration![i].hiddenID,
-                "schedule": self.scheduleConfiguration![i].schedule,
+                "dateStart": self.scheduleConfiguration?[i].dateStart ?? "",
+                "dateStop": self.scheduleConfiguration?[i].dateStop ?? "",
+                "hiddenID": self.scheduleConfiguration?[i].hiddenID ?? -1,
+                "schedule": self.scheduleConfiguration?[i].schedule ?? "",
                 "profilename": self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile"),
             ]
             data.append(dict as NSDictionary)
@@ -171,7 +170,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     init(allschedules: Allschedules?) {
         guard allschedules != nil else { return }
         self.expandedData = [NSDictionary]()
-        self.scheduleConfiguration = allschedules!.getallschedules()
+        self.scheduleConfiguration = allschedules?.getallschedules()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
     }

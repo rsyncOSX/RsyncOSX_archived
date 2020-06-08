@@ -48,7 +48,7 @@ final class QuickBackup: SetConfigurations {
             "start": now,
             "hiddenID": hiddenID,
             "dateStart": "01 Jan 1900 00:00".en_us_date_from_string(),
-            "schedule": "manuel",
+            "schedule": Scheduletype.manuel.rawValue,
         ]
         ViewControllerReference.shared.quickbackuptask = task
         _ = OperationFactory(updateprogress: self)
