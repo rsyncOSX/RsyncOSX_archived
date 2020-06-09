@@ -70,13 +70,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 
     @IBAction func source(_: NSButton) {
-        guard self.sshcmd != nil else {
-            self.data = ["Press the \"Check\" button before this action..."]
-            globalMainQueue.async { () -> Void in
-                self.detailsTable.reloadData()
-            }
-            return
-        }
+        guard self.sshcmd != nil else { return }
         self.presentAsSheet(self.viewControllerSource!)
     }
 

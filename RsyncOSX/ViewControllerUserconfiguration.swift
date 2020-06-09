@@ -301,7 +301,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.statuslightsshkeypath.isHidden = false
         if self.sshkeypathandidentityfile.stringValue.first != "~" {
             let tempsshkeypath = self.sshkeypathandidentityfile.stringValue
-            self.sshkeypathandidentityfile.stringValue = "~" + tempsshkeypath
+            if tempsshkeypath.count > 1 {
+                self.sshkeypathandidentityfile.stringValue = "~" + tempsshkeypath
+            }
         }
         let tempsshkeypath = self.sshkeypathandidentityfile.stringValue
         let sshkeypathandidentityfilesplit = tempsshkeypath.split(separator: "/")
