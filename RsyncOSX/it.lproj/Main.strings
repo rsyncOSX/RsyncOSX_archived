@@ -1009,6 +1009,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "prA-0K-uny"; */
 "prA-0K-uny.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "PS2-bk-aN7"; */
+"PS2-bk-aN7.title" = "Chiudi";
+
 /* Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO"; */
 "Psw-ga-cgO.title" = "Visualizza la configurazione controller";
 
