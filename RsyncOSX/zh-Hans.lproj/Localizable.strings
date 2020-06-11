@@ -1,9 +1,6 @@
 /* Restore */
 " ... set in User configuration ..." = " 在用户配置中设置...";
 
-/* Ssh */
-"... no remote server ..." = "... 没有远程服务器...";
-
 /* Execute */
 "⌘A to abort or wait..." = "zA 要中止或等待...";
 
@@ -64,9 +61,6 @@
 
 /* copyright */
 "Copyright ©2020 Thomas Evensen" = "版权 ©2020 Thomas Evensen";
-
-/* main */
-"daily" = "每天";
 
 /* Remote Info
    Verify */
@@ -189,9 +183,6 @@
 /* Restore */
 "Local or remote catalog cannot be empty..." = "本地或远程目录不能为空...";
 
-/* main */
-"manuel" = "手动模式";
-
 /* Execute */
 "Menu app is running..." = "菜单应用正在运行...";
 
@@ -245,9 +236,6 @@
 
 /* Snapshots */
 "Number snapshots:" = "数字快照：";
-
-/* main */
-"once" = "一次";
 
 /* Verify */
 "Please select a task in Synchronize ..." = "请选择同步任务...";
@@ -327,9 +315,6 @@
 /* Restore */
 "Start restore?" = "开始还原？";
 
-/* main */
-"stopped" = "停止";
-
 /* dayofweek
    plan */
 "Sunday" = "周日";
@@ -360,9 +345,6 @@
 
 /* plan */
 "Wednesday" = "星期三";
-
-/* main */
-"weekly" = "每周的";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "你不能删除这么多, 最大是";

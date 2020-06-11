@@ -65,7 +65,7 @@
 "2tH-gF-ycx.title" = "synchronisier";
 
 /* Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "2W2-3F-urP"; */
-"2W2-3F-urP.title" = "KB zu übertragen:";
+"2W2-3F-urP.title" = "kB zu übertragen:";
 
 /* Class = "NSButtonCell"; title = "remove -e ssh"; ObjectID = "2zQ-iW-vbk"; */
 "2zQ-iW-vbk.title" = "-e ssh entfernen";
@@ -80,10 +80,10 @@
 "3pw-4t-6v9.title" = "Tabellenansicht Zelle";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "3Td-g5-CaS"; */
-"3Td-g5-CaS.title" = "Gesamtgröße in Kb:";
+"3Td-g5-CaS.title" = "Gesamtgröße (kB):";
 
 /* Class = "NSViewController"; title = "Add"; ObjectID = "3xI-3C-guU"; */
-"3xI-3C-guU.title" = "Neu";
+"3xI-3C-guU.title" = "Hinzufügen";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "4bI-2z-3J9"; */
 "4bI-2z-3J9.title" = "Text Cell";
@@ -167,10 +167,10 @@
 "8pt-99-AYJ.headerCell.title" = "Dateien ";
 
 /* Class = "NSTextFieldCell"; title = "files :"; ObjectID = "8YP-GO-G5h"; */
-"8YP-GO-G5h.title" = "dateien:";
+"8YP-GO-G5h.title" = "Dateien:";
 
 /* Class = "NSBox"; title = "ssh parameters (local)"; ObjectID = "9A5-EU-pLg"; */
-"9A5-EU-pLg.title" = "ssh Parameter (lokal)";
+"9A5-EU-pLg.title" = "SSH Parameter (lokal)";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9hn-5x-M6a"; */
 "9hn-5x-M6a.title" = "Text Cell";
@@ -239,7 +239,7 @@
 "857-EY-QrY.headerCell.title" = "Aufgabe";
 
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
-"a0m-Z1-grn.title" = "Öffentlicher Rsa Schlüssel wurde gefunden.";
+"a0m-Z1-grn.title" = "Öffentlicher RSA-Schlüssel wurde gefunden.";
 
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Öffnen";
@@ -299,7 +299,7 @@
 "B5v-j0-w2F.title" = "Text Cell";
 
 /* Class = "NSViewController"; title = "Ssh"; ObjectID = "B9V-8v-Aba"; */
-"B9V-8v-Aba.title" = "Ssh";
+"B9V-8v-Aba.title" = "SSH";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "b9w-AI-p9K"; */
 "b9w-AI-p9K.title" = "Text Cell";
@@ -314,7 +314,7 @@
 "bCH-Oe-dEC.title" = "Jetzt alle synchronisieren";
 
 /* Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "BEH-BV-PWu"; */
-"BEH-BV-PWu.title" = "ssh Port:";
+"BEH-BV-PWu.title" = "SSH-Port:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW"; */
 "Beq-PN-DJW.headerCell.title" = "Verfügbar (GB)";
@@ -398,7 +398,7 @@
 "CUQ-YI-Irs.title" = "Schließen";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "CwH-vm-SWF"; */
-"CwH-vm-SWF.title" = "Gesamtgröße in Kb:";
+"CwH-vm-SWF.title" = "Gesamtgröße (kB):";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "D7f-Cg-ZtW"; */
 "D7f-Cg-ZtW.title" = "Text Cell";
@@ -458,7 +458,7 @@
 "eAP-VY-l6H.title" = "Schließen";
 
 /* Class = "NSTextFieldCell"; title = "new :  "; ObjectID = "Eb4-2s-zft"; */
-"Eb4-2s-zft.title" = "neu :  ";
+"Eb4-2s-zft.title" = "Neu:  ";
 
 /* Class = "NSTableColumn"; headerCell.title = "Server"; ObjectID = "ecv-vl-IKk"; */
 "ecv-vl-IKk.headerCell.title" = "Server";
@@ -623,10 +623,10 @@
 "gRY-vZ-99W.title" = "Abgeschlossen...";
 
 /* Class = "NSTextFieldCell"; title = "delete :  "; ObjectID = "gsP-5c-DW5"; */
-"gsP-5c-DW5.title" = "löschen:  ";
+"gsP-5c-DW5.title" = "Löschen:  ";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "gVQ-92-htT"; */
-"gVQ-92-htT.title" = "Gesamtgröße in Kb:";
+"gVQ-92-htT.title" = "Gesamtgröße (kB):";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Gw5-qa-AvW"; */
 "Gw5-qa-AvW.title" = "Tabellenansicht Zelle";
@@ -698,7 +698,7 @@
 "I5D-Dq-PRZ.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "i8f-03-7XY"; */
-"i8f-03-7XY.title" = "Gesamtgröße in Kb:";
+"i8f-03-7XY.title" = "Gesamtgröße (kB):";
 
 /* Class = "NSTextFieldCell"; title = "Restore catalog :"; ObjectID = "i9b-9b-etH"; */
 "i9b-9b-etH.title" = "Katalog wiederherstellen:";
@@ -719,7 +719,7 @@
 "IDs-zU-XOw.headerCell.title" = "Aufgabe";
 
 /* Class = "NSTextFieldCell"; title = "dir :"; ObjectID = "iEk-Zm-Qpb"; */
-"iEk-Zm-Qpb.title" = "dir :";
+"iEk-Zm-Qpb.title" = "Verzeichnis:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "iEn-jH-KFP"; */
 "iEn-jH-KFP.title" = "Text Cell";
@@ -728,7 +728,7 @@
 "Ien-PS-8Dv.title" = "kein Log";
 
 /* Class = "NSTextFieldCell"; title = "verify rsa pub key:"; ObjectID = "iHg-sG-ZSs"; */
-"iHg-sG-ZSs.title" = "verifiziere rsa Pub Schlüssel:";
+"iHg-sG-ZSs.title" = "Öffentlichen RSA-Schlüssel verifizieren:";
 
 /* Class = "NSButtonCell"; title = "reset next snapshot number"; ObjectID = "Iii-2E-YHF"; */
 "Iii-2E-YHF.title" = "nächste Snapshot-Nummer zurücksetzen";
@@ -776,7 +776,7 @@
 "jTT-Mq-cPB.title" = "Dateien löschen:";
 
 /* Class = "NSBox"; title = "ssh parameters (global)"; ObjectID = "Jwf-kI-FZf"; */
-"Jwf-kI-FZf.title" = "ssh Parameter (global)";
+"Jwf-kI-FZf.title" = "SSH-Parameter (global)";
 
 /* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "K2f-Jb-uUB"; */
 "K2f-Jb-uUB.headerCell.title" = "Tage";
@@ -803,7 +803,7 @@
 "KIJ-hF-wBF.title" = "Remote-Info";
 
 /* Class = "NSTextFieldCell"; title = "files :"; ObjectID = "kNR-NX-OzR"; */
-"kNR-NX-OzR.title" = "dateien:";
+"kNR-NX-OzR.title" = "Dateien:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "KPx-Pg-dAk"; */
 "KPx-Pg-dAk.title" = "Text Cell";
@@ -1009,6 +1009,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "prA-0K-uny"; */
 "prA-0K-uny.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "PS2-bk-aN7"; */
+"PS2-bk-aN7.title" = "Schließen";
+
 /* Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO"; */
 "Psw-ga-cgO.title" = "Controller-Konfiguration anzeigen";
 
@@ -1052,7 +1055,7 @@
 "QOZ-8g-24B.title" = "tagwoche";
 
 /* Class = "NSButtonCell"; title = "add suffix Linux"; ObjectID = "QPs-xd-DDF"; */
-"QPs-xd-DDF.title" = "suffix Linux hinzufügen";
+"QPs-xd-DDF.title" = "Suffix Linux hinzufügen";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "qq5-4q-5kV"; */
 "qq5-4q-5kV.title" = "Text Cell";
@@ -1118,7 +1121,7 @@
 "RVB-9H-LQM.title" = "Lokale Info";
 
 /* Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "Rve-M9-9Pp"; */
-"Rve-M9-9Pp.title" = "kB :";
+"Rve-M9-9Pp.title" = "kB:";
 
 /* Class = "NSTextFieldCell"; title = "estimating"; ObjectID = "RX2-fV-dtX"; */
 "RX2-fV-dtX.title" = "schätzt";
@@ -1157,7 +1160,7 @@
 "Sr3-1q-P2Q.title" = "Text Cell";
 
 /* Class = "NSBox"; title = "Local ssh key"; ObjectID = "srs-cz-k0D"; */
-"srs-cz-k0D.title" = "Lokale Ssh-Schlüssel";
+"srs-cz-k0D.title" = "Lokaler SSH-Schlüssel";
 
 /* Class = "NSTableColumn"; headerCell.title = "Last run"; ObjectID = "STf-VO-dOL"; */
 "STf-VO-dOL.headerCell.title" = "Letzter Lauf";
@@ -1232,7 +1235,7 @@
 "uAb-Pv-NUT.title" = "Anzahl der Verzeichnisse:";
 
 /* Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "uBc-LG-TjQ"; */
-"uBc-LG-TjQ.title" = "KB zu übertragen:";
+"uBc-LG-TjQ.title" = "kB zu übertragen:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "UbI-k2-XjL"; */
 "UbI-k2-XjL.title" = "Text Cell";
@@ -1247,7 +1250,7 @@
 "uQy-DD-JDr.title" = "RsyncOSX";
 
 /* Class = "NSTextFieldCell"; title = "kB :"; ObjectID = "uRN-6L-8Nq"; */
-"uRN-6L-8Nq.title" = "kB :";
+"uRN-6L-8Nq.title" = "kB:";
 
 /* Class = "NSBox"; title = "Remove parameters"; ObjectID = "uUH-RU-JKF"; */
 "uUH-RU-JKF.title" = "Parameter entfernen";
@@ -1256,7 +1259,7 @@
 "Uye-5c-buD.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "UZO-oe-ZyD"; */
-"UZO-oe-ZyD.title" = "ssh Port:";
+"UZO-oe-ZyD.title" = "SSH-Port:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "V8a-eh-20b"; */
 "V8a-eh-20b.headerCell.title" = "Externer Katalog";
@@ -1343,10 +1346,10 @@
 "WlH-m8-C35.title" = "Text Cell";
 
 /* Class = "NSButtonCell"; title = "Don´t add trailing /"; ObjectID = "WMA-Xf-UcN"; */
-"WMA-Xf-UcN.title" = "Nicht nacheinander hinzufügen /";
+"WMA-Xf-UcN.title" = "ohne schließenden Slash (/)";
 
 /* Class = "NSBox"; title = "ssh parameters (global)"; ObjectID = "WnY-dE-WiT"; */
-"WnY-dE-WiT.title" = "ssh Parameter (global)";
+"WnY-dE-WiT.title" = "SSH-Parameter (global)";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "Woh-4u-GUH"; */
 "Woh-4u-GUH.title" = "Anzahl der Verzeichnisse:";
@@ -1367,7 +1370,7 @@
 "wW4-ui-Vxe.title" = "Element 1";
 
 /* Class = "NSTextFieldCell"; title = "copy rsa pub key:"; ObjectID = "WW7-sg-7Xq"; */
-"WW7-sg-7Xq.title" = "kopiere rsa Pub Schlüssel:";
+"WW7-sg-7Xq.title" = "Kopiere öffentlichen RSA-Schlüssel:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "WWj-MW-4MO"; */
 "WWj-MW-4MO.title" = "Text Cell";
@@ -1490,7 +1493,7 @@
 "znZ-ht-M5x.title" = "Erforderlich wenn entfernter Server";
 
 /* Class = "NSTableColumn"; headerCell.title = "Total size (kB)"; ObjectID = "zoV-D2-sU8"; */
-"zoV-D2-sU8.headerCell.title" = "Gesamtgröße (Kb)";
+"zoV-D2-sU8.headerCell.title" = "Gesamtgröße (kB)";
 
 /* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "ZpW-Be-i8h"; */
 "ZpW-Be-i8h.headerCell.title" = "Tage";
