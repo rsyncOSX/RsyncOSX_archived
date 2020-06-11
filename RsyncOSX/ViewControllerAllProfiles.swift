@@ -158,13 +158,13 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             let schedule: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profile, number: false)
             switch schedule {
             case Scheduletype.once.rawValue:
-                return NSLocalizedString(Scheduletype.once.rawValue, comment: "main")
+                return NSLocalizedString("once", comment: "main")
             case Scheduletype.daily.rawValue:
-                return NSLocalizedString(Scheduletype.daily.rawValue, comment: "main")
+                return NSLocalizedString("daily", comment: "main")
             case Scheduletype.weekly.rawValue:
-                return NSLocalizedString(Scheduletype.weekly.rawValue, comment: "main")
+                return NSLocalizedString("weekly", comment: "main")
             case Scheduletype.manuel.rawValue:
-                return NSLocalizedString(Scheduletype.manuel.rawValue, comment: "main")
+                return NSLocalizedString("manuel", comment: "main")
             default:
                 return ""
             }

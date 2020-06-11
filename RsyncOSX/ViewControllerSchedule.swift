@@ -263,13 +263,13 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         if schedule?.isEmpty == false {
                             switch schedule {
                             case Scheduletype.once.rawValue:
-                                return NSLocalizedString(Scheduletype.once.rawValue, comment: "main")
+                                return NSLocalizedString("once", comment: "main")
                             case Scheduletype.daily.rawValue:
-                                return NSLocalizedString(Scheduletype.daily.rawValue, comment: "main")
+                                return NSLocalizedString("daily", comment: "main")
                             case Scheduletype.weekly.rawValue:
-                                return NSLocalizedString(Scheduletype.weekly.rawValue, comment: "main")
+                                return NSLocalizedString("weekly", comment: "main")
                             case Scheduletype.manuel.rawValue:
-                                return NSLocalizedString(Scheduletype.manuel.rawValue, comment: "main")
+                                return NSLocalizedString("manuel", comment: "main")
                             default:
                                 return ""
                             }
@@ -327,15 +327,15 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 case "schedule":
                     switch object[tableColumn!.identifier] as? String {
                     case Scheduletype.once.rawValue:
-                        return NSLocalizedString(Scheduletype.once.rawValue, comment: "main")
+                        return NSLocalizedString("once", comment: "main")
                     case Scheduletype.daily.rawValue:
-                        return NSLocalizedString(Scheduletype.daily.rawValue, comment: "main")
+                        return NSLocalizedString("daily", comment: "main")
                     case Scheduletype.weekly.rawValue:
-                        return NSLocalizedString(Scheduletype.weekly.rawValue, comment: "main")
+                        return NSLocalizedString("weekly", comment: "main")
                     case Scheduletype.manuel.rawValue:
-                        return NSLocalizedString(Scheduletype.manuel.rawValue, comment: "main")
+                        return NSLocalizedString("manuel", comment: "main")
                     case Scheduletype.stopped.rawValue:
-                        return NSLocalizedString(Scheduletype.stopped.rawValue, comment: "main")
+                        return NSLocalizedString("stopped", comment: "main")
                     default:
                         return ""
                     }

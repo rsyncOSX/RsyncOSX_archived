@@ -62,6 +62,9 @@
 /* copyright */
 "Copyright ©2020 Thomas Evensen" = "Opphavsrett ©2020 Thomas Evensen";
 
+/* main */
+"daily" = "daglig";
+
 /* Remote Info
    Verify */
 "Date last synchronize:" = "Dato siste synkronisering:";
@@ -183,6 +186,9 @@
 /* Restore */
 "Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
 
+/* main */
+"manuel" = "manuell";
+
 /* Execute */
 "Menu app is running..." = "Meny appen kjører...";
 
@@ -236,6 +242,9 @@
 
 /* Snapshots */
 "Number snapshots:" = "Antall snapshots:";
+
+/* main */
+"once" = "engang";
 
 /* Verify */
 "Please select a task in Synchronize ..." = "Velg en oppgave i Synkroniser ...";
@@ -315,6 +324,9 @@
 /* Restore */
 "Start restore?" = "Start gjenopprett?";
 
+/* main */
+"stopped" = "stoppet";
+
 /* dayofweek
    plan */
 "Sunday" = "søndag";
@@ -345,6 +357,9 @@
 
 /* plan */
 "Wednesday" = "onsdag";
+
+/* main */
+"weekly" = "ukentlig";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
