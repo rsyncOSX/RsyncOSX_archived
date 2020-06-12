@@ -66,7 +66,7 @@ extension ViewControllerRestore: NSTableViewDelegate {
                 return cell
             }
         } else {
-            guard row < self.configurations!.getConfigurationsDataSourceSynchronize()!.count else { return nil }
+            guard row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? -1 else { return nil }
             let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
             let cellIdentifier: String = tableColumn!.identifier.rawValue
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
