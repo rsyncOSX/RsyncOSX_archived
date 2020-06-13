@@ -6,21 +6,6 @@
 	objectVersion = 52;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		E94FB2032124A8FE0007DCAF /* rsyncosx-dmg */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = E94FB2062124A8FE0007DCAF /* Build configuration list for PBXAggregateTarget "rsyncosx-dmg" */;
-			buildPhases = (
-				E94FB2072124A9290007DCAF /* ShellScript */,
-			);
-			dependencies = (
-				E94FB2092124AA040007DCAF /* PBXTargetDependency */,
-			);
-			name = "rsyncosx-dmg";
-			productName = "rsyncosx-dmg";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */; };
 		A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004D8191D9586580016914F /* ViewControllerLoggData.swift */; };
@@ -162,13 +147,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		E9240FB722C26A0700203207 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A044927A1D658EE800B3CE17 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A04492811D658EE800B3CE17;
-			remoteInfo = RsyncOSX;
-		};
-		E94FB2082124AA040007DCAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A044927A1D658EE800B3CE17 /* Project object */;
 			proxyType = 1;
@@ -893,11 +871,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = A04492811D658EE800B3CE17;
 					};
-					E94FB2032124A8FE0007DCAF = {
-						CreatedOnToolsVersion = 9.4.1;
-						DevelopmentTeam = 93M47F4H9T;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = A044927D1D658EE800B3CE17 /* Build configuration list for PBXProject "RsyncOSX" */;
@@ -919,7 +892,6 @@
 			projectRoot = "";
 			targets = (
 				A04492811D658EE800B3CE17 /* RsyncOSX */,
-				E94FB2032124A8FE0007DCAF /* rsyncosx-dmg */,
 				E9240FB122C26A0600203207 /* RsyncOSXTests */,
 			);
 		};
@@ -947,19 +919,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E94FB2072124A9290007DCAF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${SOURCE_ROOT}/Scripts/create-dmg.sh\n";
-		};
 		E9DF3E6D1F1B5F180055DB66 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1129,11 +1088,6 @@
 			isa = PBXTargetDependency;
 			target = A04492811D658EE800B3CE17 /* RsyncOSX */;
 			targetProxy = E9240FB722C26A0700203207 /* PBXContainerItemProxy */;
-		};
-		E94FB2092124AA040007DCAF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A04492811D658EE800B3CE17 /* RsyncOSX */;
-			targetProxy = E94FB2082124AA040007DCAF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1399,24 +1353,6 @@
 			};
 			name = Release;
 		};
-		E94FB2042124A8FE0007DCAF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93M47F4H9T;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		E94FB2052124A8FE0007DCAF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 93M47F4H9T;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1443,15 +1379,6 @@
 			buildConfigurations = (
 				E9240FB922C26A0700203207 /* Debug */,
 				E9240FBA22C26A0700203207 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E94FB2062124A8FE0007DCAF /* Build configuration list for PBXAggregateTarget "rsyncosx-dmg" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E94FB2042124A8FE0007DCAF /* Debug */,
-				E94FB2052124A8FE0007DCAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
