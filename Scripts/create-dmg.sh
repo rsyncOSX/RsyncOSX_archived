@@ -14,7 +14,7 @@ RSYNCOSX_APP_RESOURCES="${RSYNCOSX_APP}/Contents/Resources"
 CREATE_DMG="${SOURCE_ROOT}/3thparty/github.com/andreyvit/create-dmg/create-dmg"
 STAGING_DIR="${BUILT_PRODUCTS_DIR}/staging/dmg"
 STAGING_APP="${STAGING_DIR}/RsyncOSX.app"
-DMG_TEMPLATE_DIR="${SOURCE_ROOT}/Scripts/Templates/DMG"
+DMG_TEMPLATE_DIR="${SOURCE_ROOT}/Templates/DMG"
 DEFAULT_IDENTITY=$(security find-identity -v -p codesigning | grep "Developer ID" | head -1 | cut -f 4 -d " " || true)
 
 if [ -f "${RSYNCOSX_DMG}" ]; then
@@ -39,10 +39,11 @@ else
 	fi
 
 	if [[ ! -z "${SELECTED_IDENTITY}" ]]; then
-		codesign --force --deep --sign "${SELECTED_IDENTITY}" "${STAGING_APP}"
+		codesign --force --deep --options=runtime --sign "${SELECTED_IDENTITY}" "${STAGING_APP}"
 	fi
 
 	${CREATE_DMG} \
+		--sandbox-safe \
 		--volname "RsyncOSX" \
 		--volicon "${RSYNCOSX_APP_RESOURCES}/AppIcon.icns" \
 		--background "${DMG_TEMPLATE_DIR}/background.png" \
