@@ -8,10 +8,10 @@ If you want to discuss [changes or report bugs please create an issue](https://g
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
 
-The user documentation is updated in both Jekyll and Hugo. The Jekyll based docs are served from GitHub and the Hugo based from Netlify. If you have any comments about the documentation, which theme to use please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues). 
+The user documentation is updated in both Jekyll and Hugo. The Jekyll based docs are served from GitHub and the Hugo based from Netlify. If you have any comments about the documentation, which theme to use please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
-- the [Hugo based docs](https://rsyncosx.netlify.app/)
-- the [Jekyll based docs](https://rsyncosx.github.io/)
+- the [Hugo based docs](https://rsyncosx.netlify.app/), this is the main docs about RsyncOSX, RsynGUI and RcloneOSX
+- the [Jekyll based docs](https://rsyncosx.github.io/), the Jekyll based docs are for RsyncOSX details only
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
