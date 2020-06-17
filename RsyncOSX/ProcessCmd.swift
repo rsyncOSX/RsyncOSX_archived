@@ -45,7 +45,7 @@ class ProcessCmd: Delay {
             self.executecontinuislycheckforalive = false
             task.launchPath = command
         } else {
-            if self.arguments?.contains("--dry-run") ?? false == true {
+            if self.arguments?.contains("--dry-run") ?? false == false {
                 self.executecontinuislycheckforalive = true
             }
             task.launchPath = Getrsyncpath().rsyncpath
@@ -93,7 +93,7 @@ class ProcessCmd: Delay {
         task.launch()
         // Create the Timer object for verifying the process object is alive
         if self.executecontinuislycheckforalive {
-            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.check), userInfo: nil, repeats: true)
+            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.check), userInfo: nil, repeats: true)
         }
     }
 
@@ -108,18 +108,18 @@ class ProcessCmd: Delay {
     }
 
     @objc func check() {
-        // print("checking")
         /*
-         let output = OutputProcess()
-         let string = "Checking " + Date().long_localized_string_from_date()
-         output.addlinefromoutput(str: string)
-         _ = Logging(output, true)
-         */
-        if self.processReference?.isRunning ?? false == false {
-            self.processReference?.interrupt()
-        } else {
-            print("checking")
-        }
+         if self.processReference?.isRunning ?? false == false {
+             self.processReference?.interrupt()
+         } else {
+             print("checking")
+         }
+          */
+        let output = OutputProcess()
+        let string = "Interupting " + Date().long_localized_string_from_date()
+        output.addlinefromoutput(str: string)
+        _ = Logging(output, true)
+        self.processReference?.interrupt()
     }
 
     init(command: String?, arguments: [String]?) {
