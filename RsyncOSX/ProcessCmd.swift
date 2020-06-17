@@ -108,15 +108,8 @@ class ProcessCmd: Delay {
     }
 
     @objc func check() {
-        /*
-         if self.processReference?.isRunning ?? false == false {
-             self.processReference?.interrupt()
-         } else {
-             print("checking")
-         }
-          */
         let output = OutputProcess()
-        let string = "Interupting " + Date().long_localized_string_from_date()
+        let string = "Interrupt: " + Date().long_localized_string_from_date()
         output.addlinefromoutput(str: string)
         _ = Logging(output, true)
         self.processReference?.interrupt()
