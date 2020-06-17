@@ -108,7 +108,11 @@ class ProcessCmd: Delay {
     }
 
     @objc func check() {
-        print("checking")
+        // print("checking")
+        let output = OutputProcess()
+        let string = "Checking " + Date().long_localized_string_from_date()
+        output.addlinefromoutput(str: string)
+        _ = Logging(output, true)
     }
 
     init(command: String?, arguments: [String]?) {
