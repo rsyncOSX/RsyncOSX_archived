@@ -109,10 +109,17 @@ class ProcessCmd: Delay {
 
     @objc func check() {
         // print("checking")
-        let output = OutputProcess()
-        let string = "Checking " + Date().long_localized_string_from_date()
-        output.addlinefromoutput(str: string)
-        _ = Logging(output, true)
+        /*
+         let output = OutputProcess()
+         let string = "Checking " + Date().long_localized_string_from_date()
+         output.addlinefromoutput(str: string)
+         _ = Logging(output, true)
+         */
+        if self.processReference?.isRunning ?? false == false {
+            self.processReference?.interrupt()
+        } else {
+            print("checking")
+        }
     }
 
     init(command: String?, arguments: [String]?) {
