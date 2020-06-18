@@ -130,7 +130,7 @@ extension ViewControllerMain: RsyncError {
             self.deselect()
             // Abort any operations
             if let process = self.process {
-                process.terminate()
+                _ = InterruptProcess(process: process)
                 self.process = nil
             }
             self.singletask?.error()
@@ -165,7 +165,7 @@ extension ViewControllerMain: Abort {
     func abortOperations() {
         // Terminates the running process
         if let process = self.process {
-            process.terminate()
+            _ = InterruptProcess(process: process)
             self.process = nil
             self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""

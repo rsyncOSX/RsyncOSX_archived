@@ -125,7 +125,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Abort button
     @IBAction func abort(_: NSButton) {
         self.working.stopAnimation(nil)
-        self.process?.terminate()
+        _ = InterruptProcess(process: self.process)
         self.reset()
     }
 

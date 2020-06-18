@@ -119,7 +119,7 @@ extension ViewControllerRestore: Count {
 extension ViewControllerRestore: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
-        self.process?.terminate()
+        _ = InterruptProcess(process: self.process)
         self.reset()
     }
 }

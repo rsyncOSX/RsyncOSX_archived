@@ -154,6 +154,14 @@ extension Date {
         return dateformatter.string(from: self)
     }
 
+    func long_localized_string_from_date() -> String {
+        let dateformatter = DateFormatter()
+        dateformatter.formatterBehavior = .behavior10_4
+        dateformatter.dateStyle = .medium
+        dateformatter.timeStyle = .long
+        return dateformatter.string(from: self)
+    }
+
     func en_us_string_from_date() -> String {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US")

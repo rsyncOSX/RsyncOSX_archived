@@ -29,6 +29,9 @@ class ProcessCmd: Delay {
     var termination: Bool = false
     // possible error ouput
     weak var possibleerrorDelegate: ErrorOutput?
+    // A Timer object to continusly check process is alive
+    var continuislycheckforalive: Timer?
+    var executecontinuislycheckforalive: Bool = false
 
     func setupdateDelegate(object: UpdateProgress) {
         self.updateDelegate = object
@@ -39,8 +42,13 @@ class ProcessCmd: Delay {
         let task = Process()
         // If self.command != nil either alternativ path for rsync or other command than rsync to be executed
         if let command = self.command {
+            self.executecontinuislycheckforalive = false
             task.launchPath = command
         } else {
+            if self.arguments?.contains("--dry-run") ?? false == false {
+                // self.executecontinuislycheckforalive = true
+                self.executecontinuislycheckforalive = false
+            }
             task.launchPath = Getrsyncpath().rsyncpath
         }
         task.arguments = self.arguments
@@ -75,6 +83,8 @@ class ProcessCmd: Delay {
             self.delayWithSeconds(0.5) {
                 self.termination = true
                 self.updateDelegate?.processTermination()
+                // Deallocate the Timer object
+                self.continuislycheckforalive?.invalidate()
                 // Must remove for deallocation
                 NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
                 NotificationCenter.default.removeObserver(self.notifications_termination as Any)
@@ -82,6 +92,10 @@ class ProcessCmd: Delay {
         }
         self.processReference = task
         task.launch()
+        // Create the Timer object for verifying the process object is alive
+        if self.executecontinuislycheckforalive {
+            // self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
+        }
     }
 
     // Get the reference to the Process object.
@@ -91,7 +105,11 @@ class ProcessCmd: Delay {
 
     // Terminate Process, used when user Aborts task.
     func abortProcess() {
-        self.processReference?.terminate()
+        _ = InterruptProcess(process: self.processReference)
+    }
+
+    @objc func verifyrunningprocess() {
+        // Verify
     }
 
     init(command: String?, arguments: [String]?) {
