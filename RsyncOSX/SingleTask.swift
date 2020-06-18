@@ -46,7 +46,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
             if let index = self.index {
                 self.indicatorDelegate?.startIndicator()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .argdryRun) {
-                    let process = Rsync(arguments: arguments)
+                    let process = RsyncVerify(arguments: arguments)
                     self.outputprocess = OutputProcessRsync()
                     process.setdelegate(object: self)
                     process.executeProcess(outputprocess: self.outputprocess)
@@ -58,7 +58,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
             if let index = self.index {
                 self.singletaskDelegate?.presentViewProgress()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                    let process = Rsync(arguments: arguments)
+                    let process = RsyncVerify(arguments: arguments)
                     self.outputprocess = OutputProcessRsync()
                     process.setdelegate(object: self)
                     process.executeProcess(outputprocess: self.outputprocess)
