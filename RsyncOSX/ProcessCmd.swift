@@ -47,7 +47,7 @@ class ProcessCmd: Delay {
             self.executecontinuislycheckforalive = false
             task.launchPath = command
         } else {
-            if self.arguments?.contains("--dry-run") ?? false == false {
+            if self.arguments?.contains("--dry-run") ?? false == false, ViewControllerReference.shared.executecontinuislycheckforalive {
                 self.executecontinuislycheckforalive = true
             }
             task.launchPath = Getrsyncpath().rsyncpath
@@ -95,7 +95,7 @@ class ProcessCmd: Delay {
         task.launch()
         // Create the Timer object for verifying the process object is alive
         if self.executecontinuislycheckforalive {
-            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
+            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: ViewControllerReference.shared.timerexecutecontinuislycheckforalive, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
         }
         self.outputprocessverifyrsync = outputprocess
     }
