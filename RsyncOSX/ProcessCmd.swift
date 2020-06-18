@@ -32,6 +32,8 @@ class ProcessCmd: Delay {
     // A Timer object to continusly check process is alive
     var continuislycheckforalive: Timer?
     var executecontinuislycheckforalive: Bool = false
+    var previousnumberofoutput: Int?
+    var outputprocessverifyrsync: OutputProcess?
 
     func setupdateDelegate(object: UpdateProgress) {
         self.updateDelegate = object
@@ -45,9 +47,8 @@ class ProcessCmd: Delay {
             self.executecontinuislycheckforalive = false
             task.launchPath = command
         } else {
-            if self.arguments?.contains("--dry-run") ?? false == false {
-                // self.executecontinuislycheckforalive = true
-                self.executecontinuislycheckforalive = false
+            if self.arguments?.contains("--dry-run") ?? false == false, ViewControllerReference.shared.executecontinuislycheckforalive {
+                self.executecontinuislycheckforalive = true
             }
             task.launchPath = Getrsyncpath().rsyncpath
         }
@@ -94,8 +95,9 @@ class ProcessCmd: Delay {
         task.launch()
         // Create the Timer object for verifying the process object is alive
         if self.executecontinuislycheckforalive {
-            // self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
+            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: ViewControllerReference.shared.timerexecutecontinuislycheckforalive, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
         }
+        self.outputprocessverifyrsync = outputprocess
     }
 
     // Get the reference to the Process object.
@@ -109,7 +111,23 @@ class ProcessCmd: Delay {
     }
 
     @objc func verifyrunningprocess() {
-        // Verify
+        // print("verify")
+        guard self.previousnumberofoutput != nil else {
+            self.previousnumberofoutput = self.outputprocessverifyrsync?.count()
+            return
+        }
+        guard self.outputprocessverifyrsync?.count() ?? 0 > self.previousnumberofoutput ?? 0 else {
+            // print(self.outputprocess2?.count() ?? 0)
+            // print(self.previousnumberofoutput ?? 0)
+            return
+        }
+        let question: String = NSLocalizedString("Seems like rsync is not responding?", comment: "Process")
+        let text: String = NSLocalizedString("Interrupt rsync?", comment: "Process")
+        let dialog: String = NSLocalizedString("Interrupt", comment: "Process")
+        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+        if answer {
+            _ = InterruptProcess(process: self.processReference)
+        }
     }
 
     init(command: String?, arguments: [String]?) {
