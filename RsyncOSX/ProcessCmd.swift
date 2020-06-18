@@ -33,7 +33,7 @@ class ProcessCmd: Delay {
     var continuislycheckforalive: Timer?
     var executecontinuislycheckforalive: Bool = false
     var previousnumberofoutput: Int?
-    var outputprocess2: OutputProcess?
+    var outputprocessverifyrsync: OutputProcess?
 
     func setupdateDelegate(object: UpdateProgress) {
         self.updateDelegate = object
@@ -97,7 +97,7 @@ class ProcessCmd: Delay {
         if self.executecontinuislycheckforalive {
             self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
         }
-        self.outputprocess2 = outputprocess
+        self.outputprocessverifyrsync = outputprocess
     }
 
     // Get the reference to the Process object.
@@ -113,10 +113,10 @@ class ProcessCmd: Delay {
     @objc func verifyrunningprocess() {
         // print("verify")
         guard self.previousnumberofoutput != nil else {
-            self.previousnumberofoutput = self.outputprocess2?.count()
+            self.previousnumberofoutput = self.outputprocessverifyrsync?.count()
             return
         }
-        guard self.outputprocess2?.count() ?? 0 > self.previousnumberofoutput ?? 0 else {
+        guard self.outputprocessverifyrsync?.count() ?? 0 > self.previousnumberofoutput ?? 0 else {
             // print(self.outputprocess2?.count() ?? 0)
             // print(self.previousnumberofoutput ?? 0)
             return
