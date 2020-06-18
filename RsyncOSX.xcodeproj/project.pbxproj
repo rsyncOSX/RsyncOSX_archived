@@ -84,6 +84,7 @@
 		E946496323130EDC00ADDF22 /* extensionVCMainSingletask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E946496223130EDC00ADDF22 /* extensionVCMainSingletask.swift */; };
 		E94649652313112300ADDF22 /* extensionVCMaintableviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94649642313112300ADDF22 /* extensionVCMaintableviewDelegate.swift */; };
 		E94BCEF421C63F0800DB8EA2 /* RemoteCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */; };
+		E94C852C249B3ECA0017696C /* InterruptProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C852B249B3ECA0017696C /* InterruptProcess.swift */; };
 		E94D2603205025790026D18F /* ViewControllerAllProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D2602205025790026D18F /* ViewControllerAllProfiles.swift */; };
 		E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */; };
 		E94D6E3321A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */; };
@@ -242,6 +243,7 @@
 		E946496223130EDC00ADDF22 /* extensionVCMainSingletask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCMainSingletask.swift; sourceTree = "<group>"; };
 		E94649642313112300ADDF22 /* extensionVCMaintableviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCMaintableviewDelegate.swift; sourceTree = "<group>"; };
 		E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCapacity.swift; sourceTree = "<group>"; };
+		E94C852B249B3ECA0017696C /* InterruptProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptProcess.swift; sourceTree = "<group>"; };
 		E94C935723B636CA00C1968D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		E94C935823B636CA00C1968D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E94C935923B636CA00C1968D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
+				E94C852B249B3ECA0017696C /* InterruptProcess.swift */,
 			);
 			name = Mainprocess;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,
 				E9C4A40D2353017400BCF1C4 /* ArgumentsSynchronize.swift in Sources */,
 				E958D62522B65ADF00755074 /* Selectprofile.swift in Sources */,
+				E94C852C249B3ECA0017696C /* InterruptProcess.swift in Sources */,
 				E802F00024681EA6007B2556 /* OutputProcessRsync.swift in Sources */,
 				E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */,
 				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,

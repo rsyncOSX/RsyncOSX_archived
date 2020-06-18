@@ -46,7 +46,8 @@ class ProcessCmd: Delay {
             task.launchPath = command
         } else {
             if self.arguments?.contains("--dry-run") ?? false == false {
-                self.executecontinuislycheckforalive = true
+                // self.executecontinuislycheckforalive = true
+                self.executecontinuislycheckforalive = false
             }
             task.launchPath = Getrsyncpath().rsyncpath
         }
@@ -93,7 +94,7 @@ class ProcessCmd: Delay {
         task.launch()
         // Create the Timer object for verifying the process object is alive
         if self.executecontinuislycheckforalive {
-            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.check), userInfo: nil, repeats: true)
+            // self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
         }
     }
 
@@ -104,15 +105,11 @@ class ProcessCmd: Delay {
 
     // Terminate Process, used when user Aborts task.
     func abortProcess() {
-        self.processReference?.terminate()
+        _ = InterruptProcess(process: self.processReference)
     }
 
-    @objc func check() {
-        let output = OutputProcess()
-        let string = "Interrupt: " + Date().long_localized_string_from_date()
-        output.addlinefromoutput(str: string)
-        _ = Logging(output, true)
-        self.processReference?.interrupt()
+    @objc func verifyrunningprocess() {
+        // Verify
     }
 
     init(command: String?, arguments: [String]?) {
