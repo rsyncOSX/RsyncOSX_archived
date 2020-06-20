@@ -9,24 +9,20 @@
 
 import Foundation
 
-class ProcessCmdVerify: ProcessCmd {
+class ProcessCmdVerify: ProcessCmd, Connected {
     // A Timer object to continusly check process is alive
     var continuislycheckforalive: Timer?
-    var executecontinuislycheckforalive: Bool = false
     var previousnumberofoutput: Int?
     var outputprocessverifyrsync: OutputProcess?
+    var config: Configuration?
 
     override func executeProcess(outputprocess: OutputProcess?) {
         // Process
         let task = Process()
         // If self.command != nil either alternativ path for rsync or other command than rsync to be executed
         if let command = self.command {
-            self.executecontinuislycheckforalive = false
             task.launchPath = command
         } else {
-            if self.arguments?.contains("--dry-run") ?? false == false, ViewControllerReference.shared.executecontinuislycheckforalive {
-                self.executecontinuislycheckforalive = true
-            }
             task.launchPath = Getrsyncpath().rsyncpath
         }
         task.arguments = self.arguments
@@ -71,29 +67,36 @@ class ProcessCmdVerify: ProcessCmd {
         self.processReference = task
         task.launch()
         // Create the Timer object for verifying the process object is alive
-        if self.executecontinuislycheckforalive {
-            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: ViewControllerReference.shared.timerexecutecontinuislycheckforalive, target: self, selector: #selector(self.verifyrunningprocess), userInfo: nil, repeats: true)
+        if self.executecontinuislycheckforconnected() {
+            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: ViewControllerReference.shared.timerexecutecontinuislycheckforalive, target: self, selector: #selector(self.verifystillconnected), userInfo: nil, repeats: true)
         }
         self.outputprocessverifyrsync = outputprocess
     }
 
-    @objc func verifyrunningprocess() {
+    @objc func verifystillconnected() {
         // print("verify")
-        guard self.previousnumberofoutput != nil else {
-            self.previousnumberofoutput = self.outputprocessverifyrsync?.count()
-            return
+        if let config = self.config {
+            if connected(config: config) == false {
+                let question: String = NSLocalizedString("Seems like rsync is not responding?", comment: "Process")
+                let text: String = NSLocalizedString("Interrupt rsync?", comment: "Process")
+                let dialog: String = NSLocalizedString("Interrupt", comment: "Process")
+                let yes = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                if yes {
+                    _ = InterruptProcess(process: self.processReference)
+                }
+            }
         }
-        guard self.outputprocessverifyrsync?.count() ?? 0 > self.previousnumberofoutput ?? 0 else {
-            // print(self.outputprocess2?.count() ?? 0)
-            // print(self.previousnumberofoutput ?? 0)
-            return
-        }
-        let question: String = NSLocalizedString("Seems like rsync is not responding?", comment: "Process")
-        let text: String = NSLocalizedString("Interrupt rsync?", comment: "Process")
-        let dialog: String = NSLocalizedString("Interrupt", comment: "Process")
-        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-        if answer {
-            _ = InterruptProcess(process: self.processReference)
-        }
+    }
+
+    func executecontinuislycheckforconnected() -> Bool {
+        guard self.arguments?.contains("--dry-run") ?? false == false else { return false }
+        guard self.config?.offsiteServer.isEmpty == false else { return false }
+        guard ViewControllerReference.shared.executecontinuislycheckforalive == true else { return false }
+        return true
+    }
+
+    init(command: String?, arguments: [String]?, config: Configuration?) {
+        super.init(command: command, arguments: arguments)
+        self.config = config
     }
 }

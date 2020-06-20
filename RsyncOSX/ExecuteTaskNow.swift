@@ -20,7 +20,7 @@ final class ExecuteTaskNow: SetConfigurations {
         self.setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.startstopindicators = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-            let process = RsyncVerify(arguments: arguments)
+            let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
             self.outputprocess = OutputProcessRsync()
             process.setdelegate(object: self)
             process.executeProcess(outputprocess: self.outputprocess)
