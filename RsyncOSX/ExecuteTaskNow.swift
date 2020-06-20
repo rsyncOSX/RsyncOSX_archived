@@ -19,14 +19,23 @@ final class ExecuteTaskNow: SetConfigurations {
         self.index = index
         self.setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.startstopindicators = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        self.outputprocess = OutputProcessRsync()
         if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-            let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-            self.outputprocess = OutputProcessRsync()
-            process.setdelegate(object: self)
-            process.executeProcess(outputprocess: self.outputprocess)
-            self.startstopindicators?.startIndicatorExecuteTaskNow()
-            self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
-            self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            if #available(OSX 10.14, *) {
+                let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
+                process.setdelegate(object: self)
+                process.executeProcess(outputprocess: self.outputprocess)
+                self.startstopindicators?.startIndicatorExecuteTaskNow()
+                self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
+                self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            } else {
+                let process = Rsync(arguments: arguments)
+                process.setdelegate(object: self)
+                process.executeProcess(outputprocess: self.outputprocess)
+                self.startstopindicators?.startIndicatorExecuteTaskNow()
+                self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
+                self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            }
         }
     }
 }
