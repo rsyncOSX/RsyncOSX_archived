@@ -103,7 +103,7 @@ final class ViewControllerReference {
     var sshport: Int?
     var sshkeypathandidentityfile: String?
     // Continuously verify if rsync is running
-    var executecontinuislycheckforconnected: Bool = false
+    var executecontinuislycheckforconnected: Bool = true
     var timerexecutecontinuislycheckforalive: Double = 10
 
     // Reference to main View

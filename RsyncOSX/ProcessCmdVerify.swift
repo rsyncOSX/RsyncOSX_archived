@@ -12,7 +12,7 @@ import Foundation
 @available(OSX 10.14, *)
 class ProcessCmdVerify: ProcessCmd {
     var config: Configuration?
-    var monitor: NetworkMonitor?
+    weak var monitor: NetworkMonitor?
 
     override func executeProcess(outputprocess: OutputProcess?) {
         // Process
@@ -62,7 +62,6 @@ class ProcessCmdVerify: ProcessCmd {
         }
         self.processReference = task
         task.launch()
-        self.executecontinuislycheckforconnected()
     }
 
     func executecontinuislycheckforconnected() {
@@ -75,6 +74,7 @@ class ProcessCmdVerify: ProcessCmd {
     init(command: String?, arguments: [String]?, config: Configuration?) {
         super.init(command: command, arguments: arguments)
         self.config = config
+        self.executecontinuislycheckforconnected()
     }
 }
 
@@ -84,9 +84,11 @@ extension ProcessCmdVerify: ReportNetworkMonitor {
         let question: String = NSLocalizedString("Seems like the network connection is dropped?", comment: "Process")
         let text: String = NSLocalizedString("Interrupt rsync?", comment: "Process")
         let dialog: String = NSLocalizedString("Interrupt", comment: "Process")
-        let yes = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-        if yes {
-            _ = InterruptProcess(process: self.processReference)
+        globalMainQueue.async { () -> Void in
+            let yes = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+            if yes {
+                _ = InterruptProcess(process: self.processReference)
+            }
         }
     }
 }
