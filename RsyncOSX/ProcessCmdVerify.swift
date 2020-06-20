@@ -9,12 +9,10 @@
 
 import Foundation
 
-class ProcessCmdVerify: ProcessCmd, Connected {
-    // A Timer object to continusly check process is alive
-    var continuislycheckforalive: Timer?
-    var previousnumberofoutput: Int?
-    var outputprocessverifyrsync: OutputProcess?
+@available(OSX 10.14, *)
+class ProcessCmdVerify: ProcessCmd {
     var config: Configuration?
+    var monitor: NetworkMonitor?
 
     override func executeProcess(outputprocess: OutputProcess?) {
         // Process
@@ -57,8 +55,6 @@ class ProcessCmdVerify: ProcessCmd, Connected {
             self.delayWithSeconds(0.5) {
                 self.termination = true
                 self.updateDelegate?.processTermination()
-                // Deallocate the Timer object
-                self.continuislycheckforalive?.invalidate()
                 // Must remove for deallocation
                 NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
                 NotificationCenter.default.removeObserver(self.notifications_termination as Any)
@@ -66,37 +62,31 @@ class ProcessCmdVerify: ProcessCmd, Connected {
         }
         self.processReference = task
         task.launch()
-        // Create the Timer object for verifying the process object is alive
-        if self.executecontinuislycheckforconnected() {
-            self.continuislycheckforalive = Timer.scheduledTimer(timeInterval: ViewControllerReference.shared.timerexecutecontinuislycheckforalive, target: self, selector: #selector(self.verifystillconnected), userInfo: nil, repeats: true)
-        }
-        self.outputprocessverifyrsync = outputprocess
+        self.executecontinuislycheckforconnected()
     }
 
-    @objc func verifystillconnected() {
-        // print("verify")
-        if let config = self.config {
-            if connected(config: config) == false {
-                let question: String = NSLocalizedString("Seems like rsync is not responding?", comment: "Process")
-                let text: String = NSLocalizedString("Interrupt rsync?", comment: "Process")
-                let dialog: String = NSLocalizedString("Interrupt", comment: "Process")
-                let yes = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-                if yes {
-                    _ = InterruptProcess(process: self.processReference)
-                }
-            }
-        }
-    }
-
-    func executecontinuislycheckforconnected() -> Bool {
-        guard self.arguments?.contains("--dry-run") ?? false == false else { return false }
-        guard self.config?.offsiteServer.isEmpty == false else { return false }
-        guard ViewControllerReference.shared.executecontinuislycheckforalive == true else { return false }
-        return true
+    func executecontinuislycheckforconnected() {
+        guard self.arguments?.contains("--dry-run") ?? false == false else { return }
+        guard self.config?.offsiteServer.isEmpty == false else { return }
+        guard ViewControllerReference.shared.executecontinuislycheckforalive == true else { return }
+        self.monitor = NetworkMonitor(object: self)
     }
 
     init(command: String?, arguments: [String]?, config: Configuration?) {
         super.init(command: command, arguments: arguments)
         self.config = config
+    }
+}
+
+@available(OSX 10.14, *)
+extension ProcessCmdVerify: ReportNetworkMonitor {
+    func noconnection() {
+        let question: String = NSLocalizedString("Seems like the network connection is dropped?", comment: "Process")
+        let text: String = NSLocalizedString("Interrupt rsync?", comment: "Process")
+        let dialog: String = NSLocalizedString("Interrupt", comment: "Process")
+        let yes = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+        if yes {
+            _ = InterruptProcess(process: self.processReference)
+        }
     }
 }

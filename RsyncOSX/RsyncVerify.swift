@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(OSX 10.14, *)
 final class RsyncVerify: ProcessCmdVerify {
     func setdelegate(object: UpdateProgress?) {
         self.updateDelegate = object
