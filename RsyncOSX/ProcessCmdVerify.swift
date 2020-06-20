@@ -8,11 +8,12 @@
 //  swiftlint:disable line_length
 
 import Foundation
+import Network
 
 @available(OSX 10.14, *)
 class ProcessCmdVerify: ProcessCmd {
     var config: Configuration?
-    weak var monitor: NetworkMonitor?
+    var monitor: NetworkMonitor?
 
     override func executeProcess(outputprocess: OutputProcess?) {
         // Process
@@ -68,7 +69,8 @@ class ProcessCmdVerify: ProcessCmd {
         guard self.arguments?.contains("--dry-run") ?? false == false else { return }
         guard self.config?.offsiteServer.isEmpty == false else { return }
         guard ViewControllerReference.shared.executecontinuislycheckforconnected == true else { return }
-        self.monitor = NetworkMonitor(object: self)
+        self.monitor = NetworkMonitor()
+        self.monitor?.addObserver(observer: self)
     }
 
     init(command: String?, arguments: [String]?, config: Configuration?) {
@@ -76,19 +78,20 @@ class ProcessCmdVerify: ProcessCmd {
         self.config = config
         self.executecontinuislycheckforconnected()
     }
+
+    deinit {
+        self.monitor?.removeObserver(observer: self)
+    }
 }
 
 @available(OSX 10.14, *)
-extension ProcessCmdVerify: ReportNetworkMonitor {
-    func noconnection() {
-        let question: String = NSLocalizedString("Seems like the network connection is dropped?", comment: "Process")
-        let text: String = NSLocalizedString("Interrupt rsync?", comment: "Process")
-        let dialog: String = NSLocalizedString("Interrupt", comment: "Process")
-        globalMainQueue.async { () -> Void in
-            let yes = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-            if yes {
-                _ = InterruptProcess(process: self.processReference)
-            }
+extension ProcessCmdVerify: NetworkCheckObserver {
+    func statusDidChange(status: NWPath.Status) {
+        if status != .satisfied {
+            let output = OutputProcess()
+            let string = "Network connection lost: " + Date().long_localized_string_from_date()
+            output.addlinefromoutput(str: string)
+            _ = Logging(output, true)
         }
     }
 }

@@ -9,31 +9,46 @@
 import Foundation
 import Network
 
-protocol ReportNetworkMonitor: AnyObject {
-    func noconnection()
+@available(OSX 10.14, *)
+protocol NetworkCheckObserver: AnyObject {
+    func statusDidChange(status: NWPath.Status)
 }
 
 @available(OSX 10.14, *)
 class NetworkMonitor {
-    let monitor = NWPathMonitor()
-    weak var reportnetworkmonitorDelegate: ReportNetworkMonitor?
-
-    init(object: Any) {
-        self.reportnetworkmonitorDelegate = object as? ReportNetworkMonitor
-        self.monitor.pathUpdateHandler = { path in
-            if path.status != .satisfied {
-                self.reportnetworkmonitorDelegate?.noconnection()
-                let output = OutputProcess()
-                let string = "Network connection lost: " + Date().long_localized_string_from_date()
-                output.addlinefromoutput(str: string)
-                _ = Logging(output, true)
-            }
-        }
-        let queue = DispatchQueue(label: "Monitor")
-        self.monitor.start(queue: queue)
+    struct NetworkChangeObservation {
+        weak var observer: NetworkCheckObserver?
     }
 
-    deinit {
-        print("deinit")
+    private var monitor = NWPathMonitor()
+    private var observations = [ObjectIdentifier: NetworkChangeObservation]()
+    var currentStatus: NWPath.Status {
+        return monitor.currentPath.status
+    }
+
+    init() {
+        self.monitor.pathUpdateHandler = { [unowned self] path in
+            for (id, observations) in self.observations {
+                // If any observer is nil, remove it from the list of observers
+                guard let observer = observations.observer else {
+                    self.observations.removeValue(forKey: id)
+                    continue
+                }
+                DispatchQueue.main.async {
+                    observer.statusDidChange(status: path.status)
+                }
+            }
+        }
+        monitor.start(queue: DispatchQueue.global(qos: .background))
+    }
+
+    func addObserver(observer: NetworkCheckObserver) {
+        let id = ObjectIdentifier(observer)
+        observations[id] = NetworkChangeObservation(observer: observer)
+    }
+
+    func removeObserver(observer: NetworkCheckObserver) {
+        let id = ObjectIdentifier(observer)
+        observations.removeValue(forKey: id)
     }
 }

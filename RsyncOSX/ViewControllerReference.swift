@@ -102,9 +102,8 @@ final class ViewControllerReference {
     // Global SSH parameters
     var sshport: Int?
     var sshkeypathandidentityfile: String?
-    // Continuously verify if rsync is running
+    // Check for network changes
     var executecontinuislycheckforconnected: Bool = true
-    var timerexecutecontinuislycheckforalive: Double = 10
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
