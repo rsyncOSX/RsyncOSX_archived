@@ -41,7 +41,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
         if self.workload == nil {
             self.workload = SingleTaskWorkQueu()
         }
-        switch self.workload!.peek() {
+        switch self.workload?.peek() {
         case .estimatesinglerun:
             if let index = self.index {
                 self.indicatorDelegate?.startIndicator()

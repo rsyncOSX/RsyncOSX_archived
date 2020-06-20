@@ -68,7 +68,7 @@ class ProcessCmdVerify: ProcessCmd {
     func executecontinuislycheckforconnected() {
         guard self.arguments?.contains("--dry-run") ?? false == false else { return }
         guard self.config?.offsiteServer.isEmpty == false else { return }
-        guard ViewControllerReference.shared.executecontinuislycheckforalive == true else { return }
+        guard ViewControllerReference.shared.executecontinuislycheckforconnected == true else { return }
         self.monitor = NetworkMonitor(object: self)
     }
 
