@@ -77,7 +77,10 @@ class ProcessCmdVerify: ProcessCmd {
 
     func statusDidChange() {
         if self.monitor?.monitor?.currentPath.status != .satisfied {
-            _ = InterruptProcess(process: self.processReference)
+            let output = OutputProcess()
+            let string = "Network dropped: " + Date().long_localized_string_from_date()
+            output.addlinefromoutput(str: string)
+            _ = InterruptProcess(process: self.processReference, output: output)
         }
     }
 
