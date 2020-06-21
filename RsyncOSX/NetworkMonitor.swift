@@ -9,31 +9,53 @@
 import Foundation
 import Network
 
-protocol ReportNetworkMonitor: AnyObject {
-    func noconnection()
-}
-
 @available(OSX 10.14, *)
 class NetworkMonitor {
-    let monitor = NWPathMonitor()
-    weak var reportnetworkmonitorDelegate: ReportNetworkMonitor?
+    var monitor: NWPathMonitor?
+    var netStatusChangeHandler: (() -> Void)?
 
-    init(object: Any) {
-        self.reportnetworkmonitorDelegate = object as? ReportNetworkMonitor
-        self.monitor.pathUpdateHandler = { path in
-            if path.status != .satisfied {
-                self.reportnetworkmonitorDelegate?.noconnection()
-                let output = OutputProcess()
-                let string = "Network connection lost: " + Date().long_localized_string_from_date()
-                output.addlinefromoutput(str: string)
-                _ = Logging(output, true)
-            }
-        }
-        let queue = DispatchQueue(label: "Monitor")
-        self.monitor.start(queue: queue)
+    var isConnected: Bool {
+        guard let monitor = monitor else { return false }
+        return monitor.currentPath.status == .satisfied
+    }
+
+    var interfaceType: NWInterface.InterfaceType? {
+        guard let monitor = monitor else { return nil }
+        return monitor.currentPath.availableInterfaces.filter {
+            monitor.currentPath.usesInterfaceType($0.type)
+        }.first?.type
+    }
+
+    var availableInterfacesTypes: [NWInterface.InterfaceType]? {
+        guard let monitor = monitor else { return nil }
+        return monitor.currentPath.availableInterfaces.map { $0.type }
+    }
+
+    var isExpensive: Bool {
+        return monitor?.currentPath.isExpensive ?? false
+    }
+
+    init() {
+        self.startMonitoring()
     }
 
     deinit {
-        print("deinit")
+        self.stopMonitoring()
+    }
+
+    func startMonitoring() {
+        self.monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "NetStatus_Monitor")
+        self.monitor?.start(queue: queue)
+        self.monitor?.pathUpdateHandler = { _ in
+            self.netStatusChangeHandler?()
+        }
+    }
+
+    func stopMonitoring() {
+        if let monitor = self.monitor {
+            monitor.cancel()
+            self.monitor = nil
+        }
     }
 }
