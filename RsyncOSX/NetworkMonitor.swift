@@ -12,7 +12,6 @@ import Network
 @available(OSX 10.14, *)
 class NetworkMonitor {
     var monitor: NWPathMonitor?
-    var isMonitoring = false
     var netStatusChangeHandler: (() -> Void)?
 
     var isConnected: Bool {
@@ -45,20 +44,18 @@ class NetworkMonitor {
     }
 
     func startMonitoring() {
-        guard self.isMonitoring == false else { return }
         self.monitor = NWPathMonitor()
         let queue = DispatchQueue(label: "NetStatus_Monitor")
         self.monitor?.start(queue: queue)
         self.monitor?.pathUpdateHandler = { _ in
             self.netStatusChangeHandler?()
         }
-        self.isMonitoring = true
     }
 
     func stopMonitoring() {
-        guard self.isMonitoring == true, let monitor = monitor else { return }
-        monitor.cancel()
-        self.monitor = nil
-        self.isMonitoring = false
+        if let monitor = self.monitor {
+            monitor.cancel()
+            self.monitor = nil
+        }
     }
 }

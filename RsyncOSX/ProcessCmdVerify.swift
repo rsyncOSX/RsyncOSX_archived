@@ -66,7 +66,7 @@ class ProcessCmdVerify: ProcessCmd {
     }
 
     func executecontinuislycheckforconnected() {
-        guard self.arguments?.contains("--dry-run") ?? false == false else { return }
+        // guard self.arguments?.contains("--dry-run") ?? false == false else { return }
         guard self.config?.offsiteServer.isEmpty == false else { return }
         guard ViewControllerReference.shared.executecontinuislycheckforconnected == true else { return }
         self.monitor = NetworkMonitor()
@@ -77,10 +77,7 @@ class ProcessCmdVerify: ProcessCmd {
 
     func statusDidChange() {
         if self.monitor?.monitor?.currentPath.status != .satisfied {
-            let output = OutputProcess()
-            let string = "Network connection lost: " + Date().long_localized_string_from_date()
-            output.addlinefromoutput(str: string)
-            _ = Logging(output, true)
+            _ = InterruptProcess(process: self.processReference)
         }
     }
 
