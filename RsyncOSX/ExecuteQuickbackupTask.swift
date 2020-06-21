@@ -34,15 +34,27 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                         if let arguments = self.arguments {
                             weak var sendprocess: SendProcessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                            let process = Rsync(arguments: arguments)
-                            if updateprogress != nil {
-                                process.setdelegate(object: updateprogress!)
-                                let sendprocessreference = updateprogress as? SendProcessreference
-                                sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                            if #available(OSX 10.14, *) {
+                                let process = RsyncVerify(arguments: arguments, config: self.config)
+                                if updateprogress != nil {
+                                    process.setdelegate(object: updateprogress!)
+                                    let sendprocessreference = updateprogress as? SendProcessreference
+                                    sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                                }
+                                process.executeProcess(outputprocess: self.outputprocess)
+                                sendprocess?.sendprocessreference(process: process.getProcess())
+                                sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                            } else {
+                                let process = Rsync(arguments: arguments)
+                                if updateprogress != nil {
+                                    process.setdelegate(object: updateprogress!)
+                                    let sendprocessreference = updateprogress as? SendProcessreference
+                                    sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
+                                }
+                                process.executeProcess(outputprocess: self.outputprocess)
+                                sendprocess?.sendprocessreference(process: process.getProcess())
+                                sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                             }
-                            process.executeProcess(outputprocess: self.outputprocess)
-                            sendprocess?.sendprocessreference(process: process.getProcess())
-                            sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                         }
                     }
                 }

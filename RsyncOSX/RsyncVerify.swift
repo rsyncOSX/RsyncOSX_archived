@@ -14,7 +14,7 @@ final class RsyncVerify: ProcessCmdVerify {
         self.updateDelegate = object
     }
 
-    init(arguments: [String]?, config: Configuration) {
+    init(arguments: [String]?, config: Configuration?) {
         super.init(command: nil, arguments: arguments, config: config)
     }
 }
