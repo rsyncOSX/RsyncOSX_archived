@@ -17,4 +17,10 @@ struct InterruptProcess {
         _ = Logging(output, true)
         process?.interrupt()
     }
+
+    init(process: Process?, output: OutputProcess?) {
+        guard process != nil, output != nil else { return }
+        _ = Logging(output, true)
+        process?.interrupt()
+    }
 }
