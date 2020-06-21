@@ -10,45 +10,55 @@ import Foundation
 import Network
 
 @available(OSX 10.14, *)
-protocol NetworkCheckObserver: AnyObject {
-    func statusDidChange(status: NWPath.Status)
-}
-
-@available(OSX 10.14, *)
 class NetworkMonitor {
-    struct NetworkChangeObservation {
-        weak var observer: NetworkCheckObserver?
+    var monitor: NWPathMonitor?
+    var isMonitoring = false
+    var netStatusChangeHandler: (() -> Void)?
+
+    var isConnected: Bool {
+        guard let monitor = monitor else { return false }
+        return monitor.currentPath.status == .satisfied
     }
 
-    private var monitor = NWPathMonitor()
-    private var observations = [ObjectIdentifier: NetworkChangeObservation]()
-    var currentStatus: NWPath.Status {
-        return monitor.currentPath.status
+    var interfaceType: NWInterface.InterfaceType? {
+        guard let monitor = monitor else { return nil }
+        return monitor.currentPath.availableInterfaces.filter {
+            monitor.currentPath.usesInterfaceType($0.type)
+        }.first?.type
+    }
+
+    var availableInterfacesTypes: [NWInterface.InterfaceType]? {
+        guard let monitor = monitor else { return nil }
+        return monitor.currentPath.availableInterfaces.map { $0.type }
+    }
+
+    var isExpensive: Bool {
+        return monitor?.currentPath.isExpensive ?? false
     }
 
     init() {
-        self.monitor.pathUpdateHandler = { [unowned self] path in
-            for (id, observations) in self.observations {
-                // If any observer is nil, remove it from the list of observers
-                guard let observer = observations.observer else {
-                    self.observations.removeValue(forKey: id)
-                    continue
-                }
-                DispatchQueue.main.async {
-                    observer.statusDidChange(status: path.status)
-                }
-            }
+        self.startMonitoring()
+    }
+
+    deinit {
+        self.stopMonitoring()
+    }
+
+    func startMonitoring() {
+        guard self.isMonitoring == false else { return }
+        self.monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "NetStatus_Monitor")
+        self.monitor?.start(queue: queue)
+        self.monitor?.pathUpdateHandler = { _ in
+            self.netStatusChangeHandler?()
         }
-        monitor.start(queue: DispatchQueue.global(qos: .background))
+        self.isMonitoring = true
     }
 
-    func addObserver(observer: NetworkCheckObserver) {
-        let id = ObjectIdentifier(observer)
-        observations[id] = NetworkChangeObservation(observer: observer)
-    }
-
-    func removeObserver(observer: NetworkCheckObserver) {
-        let id = ObjectIdentifier(observer)
-        observations.removeValue(forKey: id)
+    func stopMonitoring() {
+        guard self.isMonitoring == true, let monitor = monitor else { return }
+        monitor.cancel()
+        self.monitor = nil
+        self.isMonitoring = false
     }
 }

@@ -70,7 +70,18 @@ class ProcessCmdVerify: ProcessCmd {
         guard self.config?.offsiteServer.isEmpty == false else { return }
         guard ViewControllerReference.shared.executecontinuislycheckforconnected == true else { return }
         self.monitor = NetworkMonitor()
-        self.monitor?.addObserver(observer: self)
+        self.monitor?.netStatusChangeHandler = { [unowned self] in
+            self.statusDidChange()
+        }
+    }
+
+    func statusDidChange() {
+        if self.monitor?.monitor?.currentPath.status != .satisfied {
+            let output = OutputProcess()
+            let string = "Network connection lost: " + Date().long_localized_string_from_date()
+            output.addlinefromoutput(str: string)
+            _ = Logging(output, true)
+        }
     }
 
     init(command: String?, arguments: [String]?, config: Configuration?) {
@@ -80,18 +91,7 @@ class ProcessCmdVerify: ProcessCmd {
     }
 
     deinit {
-        self.monitor?.removeObserver(observer: self)
-    }
-}
-
-@available(OSX 10.14, *)
-extension ProcessCmdVerify: NetworkCheckObserver {
-    func statusDidChange(status: NWPath.Status) {
-        if status != .satisfied {
-            let output = OutputProcess()
-            let string = "Network connection lost: " + Date().long_localized_string_from_date()
-            output.addlinefromoutput(str: string)
-            _ = Logging(output, true)
-        }
+        self.monitor?.stopMonitoring()
+        self.monitor = nil
     }
 }
