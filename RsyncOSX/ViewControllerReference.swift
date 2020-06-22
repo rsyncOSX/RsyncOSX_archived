@@ -103,7 +103,7 @@ final class ViewControllerReference {
     var sshport: Int?
     var sshkeypathandidentityfile: String?
     // Check for network changes
-    var executecontinuislycheckforconnected: Bool = true
+    var monitornetworkconnection: Bool = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

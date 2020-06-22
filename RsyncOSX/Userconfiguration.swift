@@ -108,6 +108,13 @@ struct Userconfiguration {
         if let sshport = dict.value(forKey: "sshport") as? Int {
             ViewControllerReference.shared.sshport = sshport
         }
+        if let monitornetworkconnection = dict.value(forKey: "monitornetworkconnection") as? Int {
+            if monitornetworkconnection == 1 {
+                ViewControllerReference.shared.monitornetworkconnection = true
+            } else {
+                ViewControllerReference.shared.monitornetworkconnection = false
+            }
+        }
     }
 
     init(userconfigRsyncOSX: [NSDictionary]) {

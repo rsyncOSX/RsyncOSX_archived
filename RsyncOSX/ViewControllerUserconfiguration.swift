@@ -120,9 +120,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
 
     @IBAction func togglemonitornetworkconnection(_: NSButton) {
         if self.monitornetworkconnection.state == .on {
-            ViewControllerReference.shared.executecontinuislycheckforconnected = true
+            ViewControllerReference.shared.monitornetworkconnection = true
         } else {
-            ViewControllerReference.shared.executecontinuislycheckforconnected = false
+            ViewControllerReference.shared.monitornetworkconnection = false
         }
         self.setdirty()
     }
@@ -470,7 +470,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         } else {
             self.haltonerror.state = .off
         }
-        if ViewControllerReference.shared.executecontinuislycheckforconnected {
+        if ViewControllerReference.shared.monitornetworkconnection {
             self.monitornetworkconnection.state = .on
         } else {
             self.monitornetworkconnection.state = .off

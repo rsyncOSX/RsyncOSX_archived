@@ -14,10 +14,10 @@ class ProcessCmdVerify: ProcessCmd {
     var config: Configuration?
     var monitor: NetworkMonitor?
 
-    func executecontinuislycheckforconnected() {
+    func executemonitornetworkconnection() {
         // guard self.arguments?.contains("--dry-run") ?? false == false else { return }
         guard self.config?.offsiteServer.isEmpty == false else { return }
-        guard ViewControllerReference.shared.executecontinuislycheckforconnected == true else { return }
+        guard ViewControllerReference.shared.monitornetworkconnection == true else { return }
         self.monitor = NetworkMonitor()
         self.monitor?.netStatusChangeHandler = { [unowned self] in
             self.statusDidChange()
@@ -36,7 +36,7 @@ class ProcessCmdVerify: ProcessCmd {
     init(command: String?, arguments: [String]?, config: Configuration?) {
         super.init(command: command, arguments: arguments)
         self.config = config
-        self.executecontinuislycheckforconnected()
+        self.executemonitornetworkconnection()
     }
 
     deinit {
