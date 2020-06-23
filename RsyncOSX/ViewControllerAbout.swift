@@ -31,26 +31,6 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     var resource: Resources?
     var outputprocess: OutputProcess?
 
-    @IBAction func dismiss(_: NSButton) {
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        }
-    }
-
     @IBAction func changelog(_: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
