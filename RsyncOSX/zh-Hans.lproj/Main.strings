@@ -490,9 +490,6 @@
 /* Class = "NSTextFieldCell"; title = "Selected logs: 0"; ObjectID = "EiP-tC-Ve8"; */
 "EiP-tC-Ve8.title" = "选中的日志: 0";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "ej1-6m-NgB"; */
-"ej1-6m-NgB.title" = "关闭";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eLp-YO-ses"; */
 "eLp-YO-ses.title" = "Text Cell";
 
@@ -523,8 +520,8 @@
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
 "F2S-fz-NVQ.title" = "帮助";
 
-/* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.0 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z"; */
-"f6o-pt-x0z.title" = "v 3.1.2, 3.1.3, 3.2.0 rsync - 如果不在 /usr/local/bin 设置可选路径";
+/* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.1 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z"; */
+"f6o-pt-x0z.title" = "v 3.1.2, 3.1.3, 3.2.1 rsync - 如果不在 /usr/local/bin 设置可选路径";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "f8w-ZJ-YZg"; */
 "f8w-ZJ-YZg.title" = "Text Cell";
