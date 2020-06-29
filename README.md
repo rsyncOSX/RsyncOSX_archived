@@ -10,7 +10,7 @@ If you want to discuss [changes or report bugs please create an issue](https://g
 
 The user documentation is updated in both Jekyll and Hugo. The Jekyll based docs are served from GitHub and the Hugo based from Netlify. If you have any comments about the documentation, which theme to use please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
-- the [Hugo based docs](https://rsyncosx.netlify.app/), this is the main docs about RsyncOSX, RsynGUI and RcloneOSX
+There are some [docs about RsyncOSX, RsynGUI and RcloneOSX](https://rsyncosx.netlify.app/). The docs are based on Hugo, [the Hugo Theme Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on Netlify. 
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
