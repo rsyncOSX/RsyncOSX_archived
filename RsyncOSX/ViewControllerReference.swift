@@ -27,6 +27,8 @@ enum ViewController {
     case vcestimatingtasks
     case vcinfolocalremote
     case vcalloutput
+    case vcedit
+    case vcrsyncparameters
 }
 
 final class ViewControllerReference {
@@ -137,6 +139,10 @@ final class ViewControllerReference {
     private var viewControllerVerify: NSViewController?
     // Alloutput
     private var viewControllerAlloutput: NSViewController?
+    // Edit
+    private var viewControllerEdit: NSViewController?
+    // Rsync parameters
+    private var viewControllerRsyncParameters: NSViewController?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
@@ -172,6 +178,10 @@ final class ViewControllerReference {
             return self.viewControllerVerify
         case .vcalloutput:
             return self.viewControllerAlloutput
+        case .vcedit:
+            return self.viewControllerEdit
+        case .vcrsyncparameters:
+            return self.viewControllerRsyncParameters
         }
     }
 
@@ -209,6 +219,10 @@ final class ViewControllerReference {
             self.viewControllerVerify = nsviewcontroller
         case .vcalloutput:
             self.viewControllerAlloutput = nsviewcontroller
+        case .vcedit:
+            self.viewControllerEdit = nsviewcontroller
+        case .vcrsyncparameters:
+            self.viewControllerRsyncParameters = nsviewcontroller
         }
     }
 

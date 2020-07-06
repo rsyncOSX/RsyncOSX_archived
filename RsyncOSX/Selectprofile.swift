@@ -33,5 +33,16 @@ final class Selectprofile {
         self.snapshotnewProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
         self.loggdataProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
         self.restoreProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
+        // Close edit and parameters view if open
+        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
+            weak var closeview: ViewControllerRsyncParameters?
+            closeview = view
+            closeview?.closeview()
+        }
+        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
+            weak var closeview: ViewControllerEdit?
+            closeview = view
+            closeview?.closeview()
+        }
     }
 }

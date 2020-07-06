@@ -107,28 +107,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.openquickbackup()
     }
 
-    @IBAction func edit(_: NSButton) {
-        self.reset()
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
-            return
-        }
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.editViewController!)
-        }
-    }
-
-    @IBAction func rsyncparams(_: NSButton) {
-        self.reset()
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
-            return
-        }
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerRsyncParams!)
-        }
-    }
-
     @IBAction func delete(_: NSButton) {
         guard self.index != nil else {
             self.info.stringValue = Infoexecute().info(num: 1)

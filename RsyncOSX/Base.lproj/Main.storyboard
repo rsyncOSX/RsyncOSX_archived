@@ -759,6 +759,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="edit:" target="egt-C3-u4G" id="gcN-au-Sjh"/>
+                                    <segue destination="CrF-Wa-Hfa" kind="show" id="Y0E-1r-SAj"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HyA-OL-xUh">
@@ -770,6 +771,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="rsyncparams:" target="egt-C3-u4G" id="PNy-Jb-Iiu"/>
+                                    <segue destination="K9c-yf-VMY" kind="show" id="kJK-Nc-VVc"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btH-xq-kOR">
@@ -783,17 +785,6 @@
                                     <action selector="delete:" target="egt-C3-u4G" id="cfc-8T-Uv2"/>
                                 </connections>
                             </button>
-                            <box title="Edit" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-M8-m3v">
-                                <rect key="frame" x="17" y="210" width="113" height="99"/>
-                                <view key="contentView" id="0DJ-h3-zoP">
-                                    <rect key="frame" x="3" y="3" width="107" height="81"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="nxq-Yh-32V"/>
-                                    <constraint firstAttribute="width" constant="107" id="vpi-g5-cfM"/>
-                                </constraints>
-                            </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3L-Il-K5w">
                                 <rect key="frame" x="856" y="3" width="217" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -880,6 +871,17 @@
                                     <action selector="selectprofile:" target="egt-C3-u4G" id="AzD-Ed-Y05"/>
                                 </connections>
                             </popUpButton>
+                            <box title="Edit" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-M8-m3v">
+                                <rect key="frame" x="17" y="208" width="113" height="99"/>
+                                <view key="contentView" id="0DJ-h3-zoP">
+                                    <rect key="frame" x="3" y="3" width="107" height="81"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="nxq-Yh-32V"/>
+                                    <constraint firstAttribute="width" constant="107" id="vpi-g5-cfM"/>
+                                </constraints>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="74N-MA-FWg" secondAttribute="trailing" constant="20" symbolic="YES" id="21c-tD-Jvk"/>
@@ -887,14 +889,14 @@
                             <constraint firstItem="Tk3-A0-aHr" firstAttribute="centerY" secondItem="74N-MA-FWg" secondAttribute="centerY" id="9jJ-Mk-aKR"/>
                             <constraint firstAttribute="bottom" secondItem="QdJ-n1-Mtr" secondAttribute="bottom" constant="311" id="D34-rQ-nWj"/>
                             <constraint firstItem="74N-MA-FWg" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="308" id="HAQ-Tl-4SC"/>
-                            <constraint firstAttribute="bottom" secondItem="0B4-M8-m3v" secondAttribute="bottom" constant="214" id="I7w-JD-696"/>
+                            <constraint firstAttribute="bottom" secondItem="0B4-M8-m3v" secondAttribute="bottom" constant="212" id="I7w-JD-696"/>
                             <constraint firstItem="0B4-M8-m3v" firstAttribute="trailing" secondItem="QdJ-n1-Mtr" secondAttribute="trailing" id="IJk-gx-Uhd"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="top" secondItem="Gg2-se-FkF" secondAttribute="bottom" constant="2" id="JNG-Vd-kJt"/>
                             <constraint firstItem="74N-MA-FWg" firstAttribute="leading" secondItem="Gg2-se-FkF" secondAttribute="trailing" constant="16" id="NyR-Rt-r54"/>
                             <constraint firstItem="KXa-DA-hNS" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="6" id="OgM-5J-d4T"/>
                             <constraint firstItem="QdJ-n1-Mtr" firstAttribute="top" secondItem="Tk3-A0-aHr" secondAttribute="bottom" constant="13" id="Pnj-Wk-Oa1"/>
                             <constraint firstItem="QdJ-n1-Mtr" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="38" id="TAa-k3-jra"/>
-                            <constraint firstItem="0B4-M8-m3v" firstAttribute="top" secondItem="QdJ-n1-Mtr" secondAttribute="bottom" constant="2" id="UhC-VF-ar6"/>
+                            <constraint firstItem="0B4-M8-m3v" firstAttribute="top" secondItem="QdJ-n1-Mtr" secondAttribute="bottom" constant="4" id="UhC-VF-ar6"/>
                             <constraint firstItem="QdJ-n1-Mtr" firstAttribute="leading" secondItem="fyc-hd-Fqh" secondAttribute="leading" id="UjS-n8-3gI"/>
                             <constraint firstItem="KXa-DA-hNS" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="78" id="boU-l3-FcW"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="leading" secondItem="QdJ-n1-Mtr" secondAttribute="trailing" constant="16" id="d9E-MY-rRa"/>
@@ -3199,13 +3201,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="266"/>
+                                <rect key="frame" x="20" y="61" width="656" height="220"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="265"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="219"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="242"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="196"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4012,7 +4014,7 @@ DQ
                 </viewController>
                 <customObject id="cus-9G-xLk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1384" y="2310"/>
+            <point key="canvasLocation" x="-2666" y="1484"/>
         </scene>
         <!--About-->
         <scene sceneID="qtg-l1-11e">
@@ -4649,7 +4651,7 @@ DQ
                 </viewController>
                 <customObject id="WDP-gm-I5Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="682" y="2395"/>
+            <point key="canvasLocation" x="-2072" y="1569"/>
         </scene>
         <!--All output-->
         <scene sceneID="ExO-HS-EpI">
@@ -4660,13 +4662,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="194"/>
+                                <rect key="frame" x="20" y="61" width="762" height="146"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="193"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="145"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="170"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="122"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -5554,7 +5556,7 @@ DQ
                 </viewController>
                 <customObject id="jll-RI-cmH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2264" y="1241.5"/>
+            <point key="canvasLocation" x="-2353" y="1095"/>
         </scene>
         <!--View Controller Profile-->
         <scene sceneID="Ifs-65-j1l">
@@ -6165,7 +6167,7 @@ DQ
                 </viewController>
                 <customObject id="uNp-Tp-xff" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2076" y="1695"/>
+            <point key="canvasLocation" x="-2353" y="2182"/>
         </scene>
         <!--View Controller Quick Backup-->
         <scene sceneID="K43-I3-zAI">

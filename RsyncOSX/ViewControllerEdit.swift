@@ -10,6 +10,10 @@
 import Cocoa
 import Foundation
 
+protocol CloseEdit: Any {
+    func closeview()
+}
+
 class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Index, Delay {
     @IBOutlet var localCatalog: NSTextField!
     @IBOutlet var offsiteCatalog: NSTextField!
@@ -38,38 +42,41 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
 
     // Close and dismiss view
     @IBAction func close(_: NSButton) {
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.view.window?.close()
     }
 
     // Update configuration, save and dismiss view
     @IBAction func update(_: NSButton) {
-        var config: [Configuration] = self.configurations!.getConfigurations()
+        var config: [Configuration] = self.configurations?.getConfigurations() ?? []
+        guard config.count > 0 else { return }
         if self.localCatalog.stringValue.hasSuffix("/") == false, self.singleFile == false {
             self.localCatalog.stringValue += "/"
         }
-        config[self.index!].localCatalog = self.localCatalog.stringValue
-        if self.offsiteCatalog.stringValue.hasSuffix("/") == false {
-            self.offsiteCatalog.stringValue += "/"
-        }
-        config[self.index!].offsiteCatalog = self.offsiteCatalog.stringValue
-        config[self.index!].offsiteServer = self.offsiteServer.stringValue
-        config[self.index!].offsiteUsername = self.offsiteUsername.stringValue
-        config[self.index!].backupID = self.backupID.stringValue
-        let port = self.sshport.stringValue
-        if port.isEmpty == false {
-            if let port = Int(port) {
-                config[self.index!].sshport = port
+        if let index = self.index() {
+            config[self.index!].localCatalog = self.localCatalog.stringValue
+            if self.offsiteCatalog.stringValue.hasSuffix("/") == false {
+                self.offsiteCatalog.stringValue += "/"
             }
-        } else {
-            config[self.index!].sshport = nil
+            config[index].offsiteCatalog = self.offsiteCatalog.stringValue
+            config[index].offsiteServer = self.offsiteServer.stringValue
+            config[index].offsiteUsername = self.offsiteUsername.stringValue
+            config[index].backupID = self.backupID.stringValue
+            let port = self.sshport.stringValue
+            if port.isEmpty == false {
+                if let port = Int(port) {
+                    config[index].sshport = port
+                }
+            } else {
+                config[index].sshport = nil
+            }
+            if self.snapshotnum.stringValue.count > 0 {
+                config[index].snapshotnum = Int(self.snapshotnum.stringValue)
+            }
+            let dict = ConvertOneConfig(config: config[index]).dict
+            guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
+            self.configurations?.updateConfigurations(config[index], index: index)
+            self.view.window?.close()
         }
-        if self.snapshotnum.stringValue.count > 0 {
-            config[self.index!].snapshotnum = Int(self.snapshotnum.stringValue)
-        }
-        let dict = ConvertOneConfig(config: config[self.index!]).dict
-        guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
-        self.configurations!.updateConfigurations(config[self.index!], index: self.index!)
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     override func viewDidLoad() {
@@ -79,31 +86,46 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        // Check if there is another view open, if yes close it..
+        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
+            weak var closeview: ViewControllerEdit?
+            closeview = view
+            closeview?.closeview()
+        }
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcedit, nsviewcontroller: self)
         self.localCatalog.stringValue = ""
         self.offsiteCatalog.stringValue = ""
         self.offsiteUsername.stringValue = ""
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
-        self.index = self.index()
-        let config: Configuration = self.configurations!.getConfigurations()[self.index!]
-        self.localCatalog.stringValue = config.localCatalog
-        if self.localCatalog.stringValue.hasSuffix("/") == false {
-            self.singleFile = true
-        } else {
-            self.singleFile = false
+        if let index = self.index() {
+            self.index = index
+            if let config: Configuration = self.configurations?.getConfigurations()[index] {
+                self.localCatalog.stringValue = config.localCatalog
+                if self.localCatalog.stringValue.hasSuffix("/") == false {
+                    self.singleFile = true
+                } else {
+                    self.singleFile = false
+                }
+                self.offsiteCatalog.stringValue = config.offsiteCatalog
+                self.offsiteUsername.stringValue = config.offsiteUsername
+                self.offsiteServer.stringValue = config.offsiteServer
+                self.backupID.stringValue = config.backupID
+                if let port = config.sshport {
+                    self.sshport.stringValue = String(port)
+                }
+                if let snapshotnum = config.snapshotnum {
+                    self.snapshotnum.stringValue = String(snapshotnum)
+                }
+                self.changelabels()
+            }
         }
-        self.offsiteCatalog.stringValue = config.offsiteCatalog
-        self.offsiteUsername.stringValue = config.offsiteUsername
-        self.offsiteServer.stringValue = config.offsiteServer
-        self.backupID.stringValue = config.backupID
-        if let port = config.sshport {
-            self.sshport.stringValue = String(port)
-        }
-        if let snapshotnum = config.snapshotnum {
-            self.snapshotnum.stringValue = String(snapshotnum)
-        }
-        self.changelabels()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcedit, nsviewcontroller: nil)
     }
 
     private func changelabels() {
@@ -133,5 +155,11 @@ extension ViewControllerEdit: NSTextFieldDelegate {
                 self.snapshotnum.stringValue = String(config.snapshotnum ?? 1)
             }
         }
+    }
+}
+
+extension ViewControllerEdit: CloseEdit {
+    func closeview() {
+        self.view.window?.close()
     }
 }
