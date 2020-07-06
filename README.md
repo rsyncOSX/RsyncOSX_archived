@@ -42,7 +42,7 @@ Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx
 
 ### Version of rsync
 
-RsyncOSX is only verified with rsync versions 2.6.9, 3.1.2, 3.1.3 and 3.2.1. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.netlify.app/post/rsyncosx/) the latest version of rsync.
+RsyncOSX is verified with rsync versions 2.6.9, 3.1.2, 3.1.3 and 3.2.x. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.netlify.app/post/rsync/) the latest version of rsync.
 
 If you are only looking for utilizing stock version of rsync (version 2.6.9) and only synchronize data to either local attached disks or remote servers, [there is a minor version (RsynGUI) available on Mac App Store](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12). RsyncGUI does **not** support snapshots or scheduling task.
 
