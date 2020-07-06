@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length function_body_length type_body_length
+//  swiftlint:disable line_length function_body_length type_body_length cyclomatic_complexity
 
 import Cocoa
 import Foundation
@@ -56,7 +56,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     @IBOutlet var combo14: NSComboBox!
 
     @IBAction func close(_: NSButton) {
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.view.window?.close()
     }
 
     @IBAction func togglersyncdaemon(_: NSButton) {
@@ -198,67 +198,75 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        // Check if there is another view open, if yes close it..
+        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
+            weak var closeview: ViewControllerRsyncParameters?
+            closeview = view
+            closeview?.closeview()
+        }
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcrsyncparameters, nsviewcontroller: self)
         guard self.diddissappear == false else { return }
         if let index = self.index() {
-            let configurations: [Configuration] = self.configurations!.getConfigurations()
-            let param = ComboboxRsyncParameters(config: configurations[index])
-            self.comboBoxValues = param.getComboBoxValues()
-            self.backupbutton.state = .off
-            self.suffixButton.state = .off
-            self.suffixButton2.state = .off
-            self.param1.stringValue = configurations[index].parameter1
-            self.param2.stringValue = configurations[index].parameter2
-            self.param3.stringValue = configurations[index].parameter3
-            self.param4.stringValue = configurations[index].parameter4
-            if configurations[index].parameter5.isEmpty == false {
-                self.param5.stringValue = configurations[index].parameter5 + " " + configurations[index].parameter6
-            }
-            if configurations[index].parameter3.isEmpty == true {
-                self.compressparameter.state = .on
-            } else {
-                self.compressparameter.state = .off
-            }
-            if configurations[index].parameter4.isEmpty == true {
-                self.self.deleteparamater.state = .on
-            } else {
-                self.deleteparamater.state = .off
-            }
-            if configurations[index].parameter5.isEmpty == true {
-                self.esshparameter.state = .on
-            } else {
-                self.esshparameter.state = .off
-            }
-            let value8 = param.getParameter(rsyncparameternumber: 8).0
-            self.initcombox(combobox: self.combo8, index: value8)
-            self.param8.stringValue = param.getParameter(rsyncparameternumber: 8).1
-            let value9 = param.getParameter(rsyncparameternumber: 9).0
-            self.initcombox(combobox: self.combo9, index: value9)
-            self.param9.stringValue = param.getParameter(rsyncparameternumber: 9).1
-            let value10 = param.getParameter(rsyncparameternumber: 10).0
-            self.initcombox(combobox: self.combo10, index: value10)
-            self.param10.stringValue = param.getParameter(rsyncparameternumber: 10).1
-            let value11 = param.getParameter(rsyncparameternumber: 11).0
-            self.initcombox(combobox: self.combo11, index: value11)
-            self.param11.stringValue = param.getParameter(rsyncparameternumber: 11).1
-            let value12 = param.getParameter(rsyncparameternumber: 12).0
-            self.initcombox(combobox: self.combo12, index: value12)
-            self.param12.stringValue = param.getParameter(rsyncparameternumber: 12).1
-            let value13 = param.getParameter(rsyncparameternumber: 13).0
-            self.initcombox(combobox: self.combo13, index: value13)
-            self.param13.stringValue = param.getParameter(rsyncparameternumber: 13).1
-            let value14 = param.getParameter(rsyncparameternumber: 14).0
-            self.initcombox(combobox: self.combo14, index: value14)
-            self.param14.stringValue = param.getParameter(rsyncparameternumber: 14).1
-            if configurations[index].rsyncdaemon != nil {
-                self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index].rsyncdaemon!)
-            } else {
-                self.rsyncdaemon.state = .off
-            }
-            if configurations[index].sshport != nil {
-                self.sshport.stringValue = String(configurations[index].sshport!)
-            }
-            if (configurations[index].sshkeypathandidentityfile ?? "").isEmpty == false {
-                self.sshkeypathandidentityfile.stringValue = configurations[index].sshkeypathandidentityfile!
+            if let configurations: [Configuration] = self.configurations?.getConfigurations() {
+                let param = ComboboxRsyncParameters(config: configurations[index])
+                self.comboBoxValues = param.getComboBoxValues()
+                self.backupbutton.state = .off
+                self.suffixButton.state = .off
+                self.suffixButton2.state = .off
+                self.param1.stringValue = configurations[index].parameter1
+                self.param2.stringValue = configurations[index].parameter2
+                self.param3.stringValue = configurations[index].parameter3
+                self.param4.stringValue = configurations[index].parameter4
+                if configurations[index].parameter5.isEmpty == false {
+                    self.param5.stringValue = configurations[index].parameter5 + " " + configurations[index].parameter6
+                }
+                if configurations[index].parameter3.isEmpty == true {
+                    self.compressparameter.state = .on
+                } else {
+                    self.compressparameter.state = .off
+                }
+                if configurations[index].parameter4.isEmpty == true {
+                    self.self.deleteparamater.state = .on
+                } else {
+                    self.deleteparamater.state = .off
+                }
+                if configurations[index].parameter5.isEmpty == true {
+                    self.esshparameter.state = .on
+                } else {
+                    self.esshparameter.state = .off
+                }
+                let value8 = param.getParameter(rsyncparameternumber: 8).0
+                self.initcombox(combobox: self.combo8, index: value8)
+                self.param8.stringValue = param.getParameter(rsyncparameternumber: 8).1
+                let value9 = param.getParameter(rsyncparameternumber: 9).0
+                self.initcombox(combobox: self.combo9, index: value9)
+                self.param9.stringValue = param.getParameter(rsyncparameternumber: 9).1
+                let value10 = param.getParameter(rsyncparameternumber: 10).0
+                self.initcombox(combobox: self.combo10, index: value10)
+                self.param10.stringValue = param.getParameter(rsyncparameternumber: 10).1
+                let value11 = param.getParameter(rsyncparameternumber: 11).0
+                self.initcombox(combobox: self.combo11, index: value11)
+                self.param11.stringValue = param.getParameter(rsyncparameternumber: 11).1
+                let value12 = param.getParameter(rsyncparameternumber: 12).0
+                self.initcombox(combobox: self.combo12, index: value12)
+                self.param12.stringValue = param.getParameter(rsyncparameternumber: 12).1
+                let value13 = param.getParameter(rsyncparameternumber: 13).0
+                self.initcombox(combobox: self.combo13, index: value13)
+                self.param13.stringValue = param.getParameter(rsyncparameternumber: 13).1
+                let value14 = param.getParameter(rsyncparameternumber: 14).0
+                self.initcombox(combobox: self.combo14, index: value14)
+                self.param14.stringValue = param.getParameter(rsyncparameternumber: 14).1
+                if configurations[index].rsyncdaemon != nil {
+                    self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index].rsyncdaemon!)
+                } else {
+                    self.rsyncdaemon.state = .off
+                }
+                if configurations[index].sshport != nil {
+                    self.sshport.stringValue = String(configurations[index].sshport!)
+                }
+                if (configurations[index].sshkeypathandidentityfile ?? "").isEmpty == false {
+                    self.sshkeypathandidentityfile.stringValue = configurations[index].sshkeypathandidentityfile!
+                }
             }
         }
     }
@@ -266,6 +274,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.diddissappear = true
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcrsyncparameters, nsviewcontroller: nil)
     }
 
     // Function for saving changed or new parameters for one configuration.
@@ -305,7 +314,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
             // notify an update
             self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
         }
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.view.window?.close()
     }
 
     // There are eight comboboxes, all eight are initalized during ViewDidLoad and the correct index is set.
@@ -320,5 +329,11 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDis
     private func getValue(value: String) -> String? {
         guard value.isEmpty == false else { return nil }
         return value
+    }
+}
+
+extension ViewControllerRsyncParameters: CloseEdit {
+    func closeview() {
+        self.view.window?.close()
     }
 }
