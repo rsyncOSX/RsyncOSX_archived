@@ -17,6 +17,7 @@ final class Selectprofile {
     weak var restoreProfileDelegate: NewProfile?
 
     init(profile: String?, selectedindex: Int?) {
+        guard ViewControllerReference.shared.process == nil else { return }
         self.profile = profile
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
