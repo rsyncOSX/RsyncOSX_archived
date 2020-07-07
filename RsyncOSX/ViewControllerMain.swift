@@ -347,7 +347,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
             return
         }
-        if let profile = self.configurations!.getProfile() {
+        if let profile = self.configurations?.getProfile() {
             self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
             self.profilInfo.textColor = setcolor(nsviewcontroller: self, color: .white)
         } else {
