@@ -14,8 +14,6 @@ protocol ErrorOutput: AnyObject {
 }
 
 class ProcessCmd: Delay {
-    // Variable for reference to Process
-    var processReference: Process?
     // Message to calling class
     weak var updateDelegate: UpdateProgress?
     // Observers
@@ -80,18 +78,13 @@ class ProcessCmd: Delay {
                 NotificationCenter.default.removeObserver(self.notifications_termination as Any)
             }
         }
-        self.processReference = task
+        ViewControllerReference.shared.process = task
         task.launch()
-    }
-
-    // Get the reference to the Process object.
-    func getProcess() -> Process? {
-        return self.processReference
     }
 
     // Terminate Process, used when user Aborts task.
     func abortProcess() {
-        _ = InterruptProcess(process: self.processReference)
+        _ = InterruptProcess()
     }
 
     init(command: String?, arguments: [String]?) {

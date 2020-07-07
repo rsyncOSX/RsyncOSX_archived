@@ -9,10 +9,6 @@
 import Foundation
 
 final class DuCommandSsh: ProcessCmd {
-    func getprocess() -> Process? {
-        return self.getProcess()
-    }
-
     func setdelegate(object: UpdateProgress) {
         self.updateDelegate = object
     }

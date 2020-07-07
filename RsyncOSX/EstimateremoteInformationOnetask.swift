@@ -11,7 +11,7 @@ import Foundation
 final class EstimateremoteInformationOnetask: SetConfigurations {
     var arguments: [String]?
     init(index: Int, outputprocess: OutputProcess?, local: Bool, updateprogress: UpdateProgress) {
-        weak var setprocessDelegate: SendProcessreference?
+        weak var setprocessDelegate: SendOutputProcessreference?
         setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if local {
             self.arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRunlocalcataloginfo)
@@ -21,7 +21,6 @@ final class EstimateremoteInformationOnetask: SetConfigurations {
         let process = Rsync(arguments: self.arguments)
         process.setdelegate(object: updateprogress)
         process.executeProcess(outputprocess: outputprocess)
-        setprocessDelegate?.sendprocessreference(process: process.getProcess()!)
         setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
     }
 }

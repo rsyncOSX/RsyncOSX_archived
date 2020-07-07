@@ -8,13 +8,8 @@
 
 import Foundation
 
-protocol SendProcessreference: AnyObject {
-    func sendprocessreference(process: Process?)
+protocol SendOutputProcessreference: AnyObject {
     func sendoutputprocessreference(outputprocess: OutputProcess?)
-}
-
-protocol GetProcessreference: AnyObject {
-    func getprocessreference() -> Process?
 }
 
 class OperationFactory {

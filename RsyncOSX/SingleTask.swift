@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 20.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity function_body_length
+//  swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 
@@ -30,7 +30,7 @@ protocol SingleTaskProcess: AnyObject {
 final class SingleTask: SetSchedules, SetConfigurations {
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     weak var singletaskDelegate: SingleTaskProcess?
-    weak var setprocessDelegate: SendProcessreference?
+    weak var setprocessDelegate: SendOutputProcessreference?
 
     private var index: Int?
     private var outputprocess: OutputProcess?
@@ -51,13 +51,11 @@ final class SingleTask: SetSchedules, SetConfigurations {
                         let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
                         process.setdelegate(object: self)
                         process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                         self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                     } else {
                         let process = Rsync(arguments: arguments)
                         process.setdelegate(object: self)
                         process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                         self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                     }
                 }
@@ -71,13 +69,11 @@ final class SingleTask: SetSchedules, SetConfigurations {
                         let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
                         process.setdelegate(object: self)
                         process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                         self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                     } else {
                         let process = Rsync(arguments: arguments)
                         process.setdelegate(object: self)
                         process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                         self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                     }
                 }

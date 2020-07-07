@@ -15,7 +15,7 @@ class Remotefilelist: ProcessCmd, SetConfigurations {
     var remotefilelist: [String]?
     weak var setremotefilelistDelegate: Updateremotefilelist?
     weak var outputeverythingDelegate: ViewOutputDetails?
-    weak var sendprocess: SendProcessreference?
+    weak var sendprocess: SendOutputProcessreference?
 
     init(hiddenID: Int) {
         super.init(command: nil, arguments: nil)
