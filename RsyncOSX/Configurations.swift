@@ -17,7 +17,7 @@ import Foundation
 
 class Configurations: ReloadTable, SetSchedules {
     // reference to Process, used for kill in executing task
-    var process: Process?
+    // var process: Process?
     var profile: String?
     // The main structure storing all Configurations for tasks
     var configurations: [Configuration]?

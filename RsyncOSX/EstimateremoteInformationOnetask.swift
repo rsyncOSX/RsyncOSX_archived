@@ -21,7 +21,6 @@ final class EstimateremoteInformationOnetask: SetConfigurations {
         let process = Rsync(arguments: self.arguments)
         process.setdelegate(object: updateprogress)
         process.executeProcess(outputprocess: outputprocess)
-        setprocessDelegate?.sendprocessreference(process: process.getProcess()!)
         setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
     }
 }

@@ -106,6 +106,8 @@ final class ViewControllerReference {
     var sshkeypathandidentityfile: String?
     // Check for network changes
     var monitornetworkconnection: Bool = false
+    // Reference to the active process
+    var process: Process?
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

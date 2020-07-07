@@ -26,14 +26,12 @@ final class ExecuteTaskNow: SetConfigurations {
                 process.setdelegate(object: self)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.startstopindicators?.startIndicatorExecuteTaskNow()
-                self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                 self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
             } else {
                 let process = Rsync(arguments: arguments)
                 process.setdelegate(object: self)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.startstopindicators?.startIndicatorExecuteTaskNow()
-                self.setprocessDelegate?.sendprocessreference(process: process.getProcess())
                 self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
             }
         }

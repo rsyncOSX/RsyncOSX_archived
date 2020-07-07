@@ -128,11 +128,7 @@ extension ViewControllerMain: RsyncError {
             self.showrsynccommandmainview()
             guard ViewControllerReference.shared.haltonerror == true else { return }
             self.deselect()
-            // Abort any operations
-            if let process = self.process {
-                _ = InterruptProcess(process: process)
-                self.process = nil
-            }
+            _ = InterruptProcess()
             self.singletask?.error()
         }
     }
@@ -164,9 +160,8 @@ extension ViewControllerMain: Abort {
     // Abort any task
     func abortOperations() {
         // Terminates the running process
-        if let process = self.process {
-            _ = InterruptProcess(process: process)
-            self.process = nil
+        if ViewControllerReference.shared.process != nil {
+            _ = InterruptProcess()
             self.seterrorinfo(info: "Abort")
             self.rsyncCommand.stringValue = ""
             if self.configurations?.remoteinfoestimation != nil, self.configurations?.estimatedlist != nil {
@@ -177,7 +172,6 @@ extension ViewControllerMain: Abort {
         }
         self.working.stopAnimation(nil)
         self.workinglabel.isHidden = true
-        self.process = nil
         self.index = nil
     }
 }
@@ -263,16 +257,6 @@ extension ViewControllerMain: Createandreloadconfigurations {
 extension ViewControllerMain: SendProcessreference {
     func sendoutputprocessreference(outputprocess: OutputProcess?) {
         self.outputprocess = outputprocess
-    }
-
-    func sendprocessreference(process: Process?) {
-        self.process = process
-    }
-}
-
-extension ViewControllerMain: GetProcessreference {
-    func getprocessreference() -> Process? {
-        return self.process
     }
 }
 

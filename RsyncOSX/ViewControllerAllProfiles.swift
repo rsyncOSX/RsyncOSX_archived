@@ -23,19 +23,18 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
-    private var allprofiles: AllConfigurations?
-    private var allschedules: Allschedules?
-    private var allschedulessortedandexpanded: ScheduleSortedAndExpand?
-    private var column: Int?
-    private var filterby: Sortandfilter?
-    private var sortascending: Bool = true
-    private var index: Int?
-    private var outputprocess: OutputProcess?
-    private var process: Process?
+    var allprofiles: AllConfigurations?
+    var allschedules: Allschedules?
+    var allschedulessortedandexpanded: ScheduleSortedAndExpand?
+    var column: Int?
+    var filterby: Sortandfilter?
+    var sortascending: Bool = true
+    var index: Int?
+    var outputprocess: OutputProcess?
+    // var process: Process?
 
     @IBAction func abort(_: NSButton) {
-        _ = InterruptProcess(process: self.process)
-        self.process = nil
+        _ = InterruptProcess()
     }
 
     @IBAction func sortdirection(_: NSButton) {
@@ -59,7 +58,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     private func getremotesizes() {
         guard self.index != nil else { return }
-        guard self.process == nil else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
         self.outputprocess = OutputProcess()
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
         let config = Configuration(dictionary: dict!)
@@ -70,7 +69,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
         task.setdelegate(object: self)
         task.executeProcess(outputprocess: self.outputprocess)
-        self.process = task.getprocess()
     }
 
     override func viewDidLoad() {
@@ -243,8 +241,7 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
 extension ViewControllerAllProfiles: UpdateProgress {
     func processTermination() {
         self.working.stopAnimation(nil)
-        guard self.process != nil else { return }
-        self.process = nil
+        guard ViewControllerReference.shared.process != nil else { return }
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         self.allprofiles?.allconfigurationsasdictionary?[self.index ?? 0].setValue(numbers.getused(), forKey: "used")
         self.allprofiles?.allconfigurationsasdictionary?[self.index ?? 0].setValue(numbers.getavail(), forKey: "avail")

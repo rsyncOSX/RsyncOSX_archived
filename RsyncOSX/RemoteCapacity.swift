@@ -9,7 +9,7 @@
 import Foundation
 
 final class RemoteCapacity: SetConfigurations, Connected {
-    var process: Process?
+    // var process: Process?
     var outputprocess: OutputProcess?
     var remotecapacity: [NSMutableDictionary]?
     var index: Int?
@@ -32,7 +32,6 @@ final class RemoteCapacity: SetConfigurations, Connected {
                 let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
                 task.setdelegate(object: self.object!)
                 task.executeProcess(outputprocess: self.outputprocess)
-                self.process = task.getprocess()
             } else {
                 self.processTermination()
             }

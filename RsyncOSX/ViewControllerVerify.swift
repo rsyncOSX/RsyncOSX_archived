@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 26.07.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length
+// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
@@ -16,7 +16,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     var estimatedindex: Int?
     var gotremoteinfo: Bool = false
     private var complete: Bool = false
-    private var processRefererence: ProcessCmd?
     let lastdate: String = NSLocalizedString("Date last synchronize:", comment: "Verify")
     let dayssince: String = NSLocalizedString("Days since last synchronize:", comment: "Verify")
 
@@ -81,7 +80,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     @IBAction func verify(_: NSButton) {
-        guard self.processRefererence == nil else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
         if let index = self.index() {
             self.estimatedindex = index
             self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: index, display: .verify).displayrsyncpath ?? ""
@@ -98,7 +97,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     @IBAction func changed(_: NSButton) {
-        guard self.processRefererence == nil else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
         if let index = self.index() {
             self.estimatedindex = index
             self.rsynccommanddisplay.stringValue = Displayrsyncpath(index: index, display: .restore).displayrsyncpath ?? ""
@@ -118,7 +117,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         let verifytask = ProcessCmd(command: nil, arguments: arguments)
         verifytask.setupdateDelegate(object: self)
         verifytask.executeProcess(outputprocess: self.outputprocess)
-        self.processRefererence = verifytask
     }
 
     @IBAction func info(_: NSButton) {
@@ -140,8 +138,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 
     // Abort button
     @IBAction func abort(_: NSButton) {
-        self.processRefererence?.abortProcess()
-        self.processRefererence = nil
+        _ = InterruptProcess()
     }
 
     override func viewDidLoad() {
@@ -228,7 +225,6 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         let estimate = ProcessCmd(command: nil, arguments: arguments)
         estimate.setupdateDelegate(object: self)
         estimate.executeProcess(outputprocess: self.outputprocess)
-        self.processRefererence = estimate
     }
 
     private func publishnumbers(outputprocess: OutputProcess?, local: Bool) {
@@ -302,7 +298,7 @@ extension ViewControllerVerify: NSTableViewDelegate {
 
 extension ViewControllerVerify: UpdateProgress {
     func processTermination() {
-        self.processRefererence = nil
+        ViewControllerReference.shared.process = nil
         if self.gotremoteinfo == false {
             if self.complete == false {
                 self.publishnumbers(outputprocess: self.outputprocess, local: true)

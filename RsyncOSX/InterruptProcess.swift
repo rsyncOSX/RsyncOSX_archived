@@ -9,18 +9,20 @@
 import Foundation
 
 struct InterruptProcess {
-    init(process: Process?) {
-        guard process != nil else { return }
+    init() {
+        guard ViewControllerReference.shared.process != nil else { return }
         let output = OutputProcess()
         let string = "Interrupted: " + Date().long_localized_string_from_date()
         output.addlinefromoutput(str: string)
         _ = Logging(output, true)
-        process?.interrupt()
+        ViewControllerReference.shared.process?.interrupt()
+        ViewControllerReference.shared.process = nil
     }
 
-    init(process: Process?, output: OutputProcess?) {
-        guard process != nil, output != nil else { return }
+    init(output: OutputProcess?) {
+        guard ViewControllerReference.shared.process != nil, output != nil else { return }
         _ = Logging(output, true)
-        process?.interrupt()
+        ViewControllerReference.shared.process?.interrupt()
+        ViewControllerReference.shared.process = nil
     }
 }

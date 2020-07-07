@@ -49,7 +49,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var singletask: SingleTask?
     var executetasknow: ExecuteTaskNow?
     // Reference to Process task
-    var process: Process?
+    // var process: Process?
     // Index to selected row, index is set when row is selected
     var index: Int?
     // Indexes, multiple selection
@@ -274,7 +274,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func reset() {
-        self.process = nil
         self.singletask = nil
         self.setNumbers(outputprocess: nil)
         // Close edit and parameters view if open
@@ -365,7 +364,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func createandreloadschedules() {
-        self.process = nil
         guard self.configurations != nil else {
             self.schedules = Schedules(profile: nil)
             return

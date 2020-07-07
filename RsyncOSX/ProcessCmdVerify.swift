@@ -29,7 +29,7 @@ class ProcessCmdVerify: ProcessCmd {
             let output = OutputProcess()
             let string = "Network dropped: " + Date().long_localized_string_from_date()
             output.addlinefromoutput(str: string)
-            _ = InterruptProcess(process: self.processReference, output: output)
+            _ = InterruptProcess(output: output)
         }
     }
 

@@ -42,7 +42,6 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                                     sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
                                 }
                                 process.executeProcess(outputprocess: self.outputprocess)
-                                sendprocess?.sendprocessreference(process: process.getProcess())
                                 sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                             } else {
                                 let process = Rsync(arguments: arguments)
@@ -52,7 +51,6 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                                     sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
                                 }
                                 process.executeProcess(outputprocess: self.outputprocess)
-                                sendprocess?.sendprocessreference(process: process.getProcess())
                                 sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                             }
                         }

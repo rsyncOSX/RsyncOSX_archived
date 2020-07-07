@@ -14,10 +14,6 @@ final class FullrestoreTask: SetConfigurations {
     var process: ProcessCmd?
     var outputprocess: OutputProcess?
 
-    func getProcess() -> Process? {
-        return self.process?.getProcess()
-    }
-
     init(index: Int, dryrun: Bool, tmprestore: Bool, updateprogress: UpdateProgress) {
         self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if dryrun {
