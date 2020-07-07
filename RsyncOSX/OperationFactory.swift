@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SendProcessreference: AnyObject {
+protocol SendOutputProcessreference: AnyObject {
     func sendoutputprocessreference(outputprocess: OutputProcess?)
 }
 

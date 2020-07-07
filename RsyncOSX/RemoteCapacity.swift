@@ -9,7 +9,6 @@
 import Foundation
 
 final class RemoteCapacity: SetConfigurations, Connected {
-    // var process: Process?
     var outputprocess: OutputProcess?
     var remotecapacity: [NSMutableDictionary]?
     var index: Int?

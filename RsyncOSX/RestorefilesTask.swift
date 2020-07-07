@@ -13,7 +13,7 @@ final class RestorefilesTask: SetConfigurations {
     private var commandDisplay: String?
     var process: ProcessCmd?
     var outputprocess: OutputProcess?
-    weak var sendprocess: SendProcessreference?
+    weak var sendprocess: SendOutputProcessreference?
 
     func getOutput() -> [String] {
         return self.outputprocess?.getOutput() ?? []

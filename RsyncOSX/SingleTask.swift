@@ -30,7 +30,7 @@ protocol SingleTaskProcess: AnyObject {
 final class SingleTask: SetSchedules, SetConfigurations {
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     weak var singletaskDelegate: SingleTaskProcess?
-    weak var setprocessDelegate: SendProcessreference?
+    weak var setprocessDelegate: SendOutputProcessreference?
 
     private var index: Int?
     private var outputprocess: OutputProcess?

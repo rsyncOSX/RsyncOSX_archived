@@ -254,7 +254,7 @@ extension ViewControllerMain: Createandreloadconfigurations {
     // func reateandreloadconfigurations()
 }
 
-extension ViewControllerMain: SendProcessreference {
+extension ViewControllerMain: SendOutputProcessreference {
     func sendoutputprocessreference(outputprocess: OutputProcess?) {
         self.outputprocess = outputprocess
     }

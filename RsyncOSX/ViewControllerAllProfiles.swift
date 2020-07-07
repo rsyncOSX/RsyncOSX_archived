@@ -31,7 +31,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     var sortascending: Bool = true
     var index: Int?
     var outputprocess: OutputProcess?
-    // var process: Process?
 
     @IBAction func abort(_: NSButton) {
         _ = InterruptProcess()

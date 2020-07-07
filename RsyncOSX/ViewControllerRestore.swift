@@ -74,7 +74,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var outputprocess: OutputProcess?
     var maxcount: Int = 0
     weak var outputeverythingDelegate: ViewOutputDetails?
-    var process: Process?
 
     var restoreactions: RestoreActions?
 

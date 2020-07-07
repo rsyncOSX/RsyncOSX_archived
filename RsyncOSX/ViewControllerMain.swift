@@ -48,8 +48,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Reference to the taskobjects
     var singletask: SingleTask?
     var executetasknow: ExecuteTaskNow?
-    // Reference to Process task
-    // var process: Process?
     // Index to selected row, index is set when row is selected
     var index: Int?
     // Indexes, multiple selection

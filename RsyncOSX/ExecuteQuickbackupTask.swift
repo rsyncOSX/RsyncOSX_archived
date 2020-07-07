@@ -32,13 +32,13 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                     ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
                     globalMainQueue.async {
                         if let arguments = self.arguments {
-                            weak var sendprocess: SendProcessreference?
+                            weak var sendprocess: SendOutputProcessreference?
                             sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                             if #available(OSX 10.14, *) {
                                 let process = RsyncVerify(arguments: arguments, config: self.config)
                                 if updateprogress != nil {
                                     process.setdelegate(object: updateprogress!)
-                                    let sendprocessreference = updateprogress as? SendProcessreference
+                                    let sendprocessreference = updateprogress as? SendOutputProcessreference
                                     sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
                                 }
                                 process.executeProcess(outputprocess: self.outputprocess)
@@ -47,7 +47,7 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                                 let process = Rsync(arguments: arguments)
                                 if updateprogress != nil {
                                     process.setdelegate(object: updateprogress!)
-                                    let sendprocessreference = updateprogress as? SendProcessreference
+                                    let sendprocessreference = updateprogress as? SendOutputProcessreference
                                     sendprocessreference?.sendoutputprocessreference(outputprocess: self.outputprocess)
                                 }
                                 process.executeProcess(outputprocess: self.outputprocess)
