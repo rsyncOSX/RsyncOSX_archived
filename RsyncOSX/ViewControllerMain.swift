@@ -274,6 +274,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func reset() {
         self.singletask = nil
         self.setNumbers(outputprocess: nil)
+        self.seterrorinfo(info: "")
         // Close edit and parameters view if open
         if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?
@@ -347,7 +348,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
             return
         }
-        if let profile = self.configurations!.getProfile() {
+        if let profile = self.configurations?.getProfile() {
             self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
             self.profilInfo.textColor = setcolor(nsviewcontroller: self, color: .white)
         } else {

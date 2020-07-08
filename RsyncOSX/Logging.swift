@@ -56,13 +56,13 @@ class Logging: FileErrors {
         let date = Date().localized_string_from_date()
         self.readloggfile()
         var tmplogg = [String]()
-        var startindex = self.outputprocess!.getOutput()!.count - 8
+        var startindex = (self.outputprocess?.getOutput()?.count ?? 0) - 8
         if startindex < 0 { startindex = 0 }
         tmplogg.append("\n")
         tmplogg.append("-------------------------------------------")
         tmplogg.append(date + "\n")
         for i in startindex ..< (self.outputprocess?.getOutput()?.count ?? 0) {
-            tmplogg.append(self.outputprocess!.getOutput()![i])
+            tmplogg.append(self.outputprocess?.getOutput()?[i] ?? "")
         }
         if self.log == nil {
             self.log = tmplogg.joined(separator: "\n")
@@ -114,8 +114,9 @@ class Logging: FileErrors {
         self.setfilenamelogging()
         self.readloggfile()
         self.contentoflogfile = [String]()
-        guard self.log != nil else { return }
-        self.contentoflogfile = self.log!.components(separatedBy: .newlines)
+        if let log = self.log {
+            self.contentoflogfile = log.components(separatedBy: .newlines)
+        }
     }
 }
 
