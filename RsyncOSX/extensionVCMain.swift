@@ -114,9 +114,10 @@ extension ViewControllerMain: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
         if let index = self.index {
+            ViewControllerReference.shared.process = nil
+            self.index = nil
             self.mainTableView.deselectRow(index)
         }
-        ViewControllerReference.shared.process = nil
     }
 }
 
