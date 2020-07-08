@@ -274,6 +274,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func reset() {
         self.singletask = nil
         self.setNumbers(outputprocess: nil)
+        self.seterrorinfo(info: "")
         // Close edit and parameters view if open
         if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?
