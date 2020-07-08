@@ -309,20 +309,21 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Single task can be activated by double click from table
     func executeSingleTask() {
         guard self.checkforrsync() == false else { return }
-        guard self.index != nil else { return }
-        let task = self.configurations!.getConfigurations()[self.index!].task
-        guard ViewControllerReference.shared.synctasks.contains(task) else {
-            self.info.stringValue = Infoexecute().info(num: 6)
-            return
-        }
-        guard self.singletask != nil else {
-            // Dry run
-            self.singletask = SingleTask(index: self.index!)
+        if let index = self.index {
+            let task = self.configurations?.getConfigurations()[index].task ?? ""
+            guard ViewControllerReference.shared.synctasks.contains(task) else {
+                self.info.stringValue = Infoexecute().info(num: 6)
+                return
+            }
+            guard self.singletask != nil else {
+                // Dry run
+                self.singletask = SingleTask(index: self.index!)
+                self.singletask?.executeSingleTask()
+                return
+            }
+            // Real run
             self.singletask?.executeSingleTask()
-            return
         }
-        // Real run
-        self.singletask?.executeSingleTask()
     }
 
     // Execute multipleselected tasks, only from main view
