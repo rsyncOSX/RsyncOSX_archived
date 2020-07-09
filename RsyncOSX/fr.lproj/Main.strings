@@ -520,8 +520,8 @@
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
 "F2S-fz-NVQ.title" = "Aide";
 
-/* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.1 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z"; */
-"f6o-pt-x0z.title" = "v 3.1.2, 3.1.3, 3.2.1 rsync - définir un chemin optionnel si PAS dans /usr/local/bin";
+/* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.x rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z"; */
+"f6o-pt-x0z.title" = "v 3.1.2, 3.1.3, 3.2.x rsync - définir un chemin optionnel si PAS dans /usr/local/bin";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "f8w-ZJ-YZg"; */
 "f8w-ZJ-YZg.title" = "Text Cell";

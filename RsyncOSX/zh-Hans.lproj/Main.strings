@@ -520,8 +520,8 @@
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
 "F2S-fz-NVQ.title" = "帮助";
 
-/* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.1 rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z"; */
-"f6o-pt-x0z.title" = "v 3.1.2, 3.1.3, 3.2.1 rsync - 如果不在 /usr/local/bin 设置可选路径";
+/* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.x rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "f6o-pt-x0z"; */
+"f6o-pt-x0z.title" = "v 3.1.2, 3.1.3, 3.2.x rsync - 如果不在 /usr/local/bin 设置可选路径";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "f8w-ZJ-YZg"; */
 "f8w-ZJ-YZg.title" = "Text Cell";
@@ -530,7 +530,7 @@
 "F9T-gx-oeJ.title" = "同步:";
 
 /* Class = "NSButtonCell"; title = "Do the real thing:  "; ObjectID = "f40-7m-CIV"; */
-"f40-7m-CIV.title" = "Do the real thing:  ";
+"f40-7m-CIV.title" = "做真正的事：  ";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo"; */
 "fAL-TO-qxo.headerCell.title" = "远程服务器";
