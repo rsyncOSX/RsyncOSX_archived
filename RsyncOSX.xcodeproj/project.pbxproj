@@ -143,6 +143,8 @@
 		E9F4A0C220A9A7DE0019A9F6 /* AllSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4A0C120A9A7DE0019A9F6 /* AllSchedules.swift */; };
 		E9F4EBB81EB4C32D006EEEF1 /* CommandSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4EBB71EB4C32D006EEEF1 /* CommandSsh.swift */; };
 		E9F941651FC5FCC3005F2439 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F941631FC5FCC3005F2439 /* Logging.swift */; };
+		E9FC539324BB298600784238 /* ShellOut in Frameworks */ = {isa = PBXBuildFile; productRef = E9FC539224BB298600784238 /* ShellOut */; };
+		E9FC539524BB2B2A00784238 /* ExecuteTaskNowShellOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC539424BB2B2A00784238 /* ExecuteTaskNowShellOut.swift */; };
 		E9FCAC52249BBAF8008C9D6D /* ProcessCmdVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FCAC51249BBAF8008C9D6D /* ProcessCmdVerify.swift */; };
 		E9FCAC54249BBCDF008C9D6D /* RsyncVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FCAC53249BBCDF008C9D6D /* RsyncVerify.swift */; };
 		E9FFA02D1E7287E100B7AB2B /* ProcessCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */; };
@@ -314,6 +316,7 @@
 		E9F4A0C120A9A7DE0019A9F6 /* AllSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSchedules.swift; sourceTree = "<group>"; };
 		E9F4EBB71EB4C32D006EEEF1 /* CommandSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandSsh.swift; sourceTree = "<group>"; };
 		E9F941631FC5FCC3005F2439 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		E9FC539424BB2B2A00784238 /* ExecuteTaskNowShellOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskNowShellOut.swift; sourceTree = "<group>"; };
 		E9FCAC51249BBAF8008C9D6D /* ProcessCmdVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessCmdVerify.swift; sourceTree = "<group>"; };
 		E9FCAC53249BBCDF008C9D6D /* RsyncVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVerify.swift; sourceTree = "<group>"; };
 		E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessCmd.swift; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9FC539324BB298600784238 /* ShellOut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +520,7 @@
 				E94BCEF321C63F0800DB8EA2 /* RemoteCapacity.swift */,
 				E905EDB31FED05B10044234E /* QuickBackup.swift */,
 				E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */,
+				E9FC539424BB2B2A00784238 /* ExecuteTaskNowShellOut.swift */,
 			);
 			name = Execution;
 			sourceTree = "<group>";
@@ -834,6 +839,9 @@
 			dependencies = (
 			);
 			name = RsyncOSX;
+			packageProductDependencies = (
+				E9FC539224BB298600784238 /* ShellOut */,
+			);
 			productName = RsyncOSX;
 			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
 			productType = "com.apple.product-type.application";
@@ -899,6 +907,9 @@
 				it,
 			);
 			mainGroup = A04492791D658EE800B3CE17;
+			packageReferences = (
+				E9FC539124BB298600784238 /* XCRemoteSwiftPackageReference "ShellOut" */,
+			);
 			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1072,6 +1083,7 @@
 				E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
 				E943DC681FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift in Sources */,
+				E9FC539524BB2B2A00784238 /* ExecuteTaskNowShellOut.swift in Sources */,
 				E912020722B3CFD90056AEFE /* Remotefilelist.swift in Sources */,
 				E99D18722304199A003F1796 /* Socket.swift in Sources */,
 				E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */,
@@ -1400,6 +1412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E9FC539124BB298600784238 /* XCRemoteSwiftPackageReference "ShellOut" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/ShellOut.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E9FC539224BB298600784238 /* ShellOut */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9FC539124BB298600784238 /* XCRemoteSwiftPackageReference "ShellOut" */;
+			productName = ShellOut;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A044927A1D658EE800B3CE17 /* Project object */;
 }

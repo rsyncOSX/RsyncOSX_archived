@@ -197,7 +197,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             guard ViewControllerReference.shared.synctasks.contains(task) else {
                 return
             }
-            self.executetasknow = ExecuteTaskNow(index: self.index!)
+            // self.executetasknow = ExecuteTaskNow(index: self.index!)
+            self.executetasknow = ExecuteTaskNowShellOut(index: self.index!)
         }
     }
 
