@@ -13,7 +13,7 @@ import ShellOut
 final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     func executepre() {
         do {
-            try shellOut(to: "totally-invalid-pre")
+            try shellOut(to: "/tmp/pre.sh")
         } catch {
             let error = error as? ShellOutError
             let outputprocess = OutputProcess()
@@ -25,7 +25,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
 
     func executepost() {
         do {
-            try shellOut(to: "totally-invalid-post")
+            try shellOut(to: "/tmp/post.sh")
         } catch {
             let error = error as? ShellOutError
             let outputprocess = OutputProcess()
