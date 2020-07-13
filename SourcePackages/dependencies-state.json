@@ -1,0 +1,1 @@
+{"object": {"dependencies": [{"basedOn": null, "packageRef": {"identity": "shellout", "kind": "remote", "name": "ShellOut", "path": "https://github.com/JohnSundell/ShellOut.git"}, "state": {"checkoutState": {"branch": null, "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568", "version": "2.3.0"}, "name": "checkout"}, "subpath": "ShellOut"}]}, "version": 3}
