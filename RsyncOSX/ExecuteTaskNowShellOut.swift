@@ -25,7 +25,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                     outputprocess.addlinefromoutput(str: "ShellOut error")
                     outputprocess.addlinefromoutput(str: error?.message ?? "")
                     _ = Logging(outputprocess, true)
-                    _ = InterruptProcess()
+                    return
                 }
             }
         }
