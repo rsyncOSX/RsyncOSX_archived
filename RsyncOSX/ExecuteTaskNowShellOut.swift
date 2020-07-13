@@ -11,33 +11,46 @@ import Foundation
 import ShellOut
 
 final class ExecuteTaskNowShellOut: ExecuteTaskNow {
-    func executepre() {
-        do {
-            try shellOut(to: "/tmp/pre.sh")
-        } catch {
-            let error = error as? ShellOutError
-            let outputprocess = OutputProcess()
-            outputprocess.addlinefromoutput(str: "ShellOut error")
-            outputprocess.addlinefromoutput(str: error?.message ?? "")
-            _ = Logging(outputprocess, true)
+    var pretask: String?
+    var posttask: String?
+
+    func executepretask() {
+        if let index = self.index {
+            if let pretask = self.configurations?.getConfigurations()[index].pretask {
+                do {
+                    try shellOut(to: pretask)
+                } catch {
+                    let error = error as? ShellOutError
+                    let outputprocess = OutputProcess()
+                    outputprocess.addlinefromoutput(str: "ShellOut error")
+                    outputprocess.addlinefromoutput(str: error?.message ?? "")
+                    _ = Logging(outputprocess, true)
+                    _ = InterruptProcess()
+                }
+            }
         }
     }
 
-    func executepost() {
-        do {
-            try shellOut(to: "/tmp/post.sh")
-        } catch {
-            let error = error as? ShellOutError
-            let outputprocess = OutputProcess()
-            outputprocess.addlinefromoutput(str: "ShellOut error")
-            outputprocess.addlinefromoutput(str: error?.message ?? "")
-            _ = Logging(outputprocess, true)
+    func executeposttask() {
+        if let index = self.index {
+            if let posttask = self.configurations?.getConfigurations()[index].posttask {
+                do {
+                    try shellOut(to: posttask)
+                } catch {
+                    let error = error as? ShellOutError
+                    let outputprocess = OutputProcess()
+                    outputprocess.addlinefromoutput(str: "ShellOut error")
+                    outputprocess.addlinefromoutput(str: error?.message ?? "")
+                    _ = Logging(outputprocess, true)
+                }
+            }
         }
     }
 
     override func executetasknow() {
         if let index = self.index {
-            self.executepre()
+            // Execute pretask
+            self.executepretask()
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
                 if #available(OSX 10.14, *) {
@@ -58,6 +71,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     }
 
     deinit {
-        self.executepost()
+        // Execute posttask
+        self.executeposttask()
     }
 }

@@ -41,6 +41,11 @@ struct Configuration {
     // Snapshots, day to save and last = 1 or every last=0
     var snapdayoffweek: String?
     var snaplast: Int?
+    // Pre and post tasks
+    var executepretask: Int?
+    var pretask: String?
+    var executeposttask: Int?
+    var posttask: String?
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }

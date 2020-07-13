@@ -194,11 +194,14 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         if let task = self.configurations?.getConfigurations()[self.index!].task {
-            guard ViewControllerReference.shared.synctasks.contains(task) else {
-                return
+            guard ViewControllerReference.shared.synctasks.contains(task) else { return }
+            if let config = self.configurations?.getConfigurations()[self.index ?? -1] {
+                if PreandPostTasks(config: config).executepretask || PreandPostTasks(config: config).executeposttask {
+                    self.executetasknow = ExecuteTaskNowShellOut(index: self.index!)
+                } else {
+                    self.executetasknow = ExecuteTaskNow(index: self.index!)
+                }
             }
-            self.executetasknow = ExecuteTaskNow(index: self.index!)
-            // self.executetasknow = ExecuteTaskNowShellOut(index: self.index!)
         }
     }
 
