@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length cyclomatic_complexity function_body_length
 
 import Cocoa
 import Foundation
@@ -24,6 +24,10 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
     @IBOutlet var snapshotnum: NSTextField!
     @IBOutlet var stringlocalcatalog: NSTextField!
     @IBOutlet var stringremotecatalog: NSTextField!
+    @IBOutlet var pretask: NSTextField!
+    @IBOutlet var executepretask: NSButton!
+    @IBOutlet var posttask: NSTextField!
+    @IBOutlet var executeposttask: NSButton!
 
     var index: Int?
     var singleFile: Bool = false
@@ -72,6 +76,28 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
             if self.snapshotnum.stringValue.count > 0 {
                 config[index].snapshotnum = Int(self.snapshotnum.stringValue)
             }
+            // Pre task
+            if self.pretask.stringValue.isEmpty == false {
+                if self.executepretask.state == .on {
+                    config[index].executepretask = 1
+                } else {
+                    config[index].executepretask = 0
+                }
+                config[index].pretask = self.pretask.stringValue
+            } else {
+                config[index].executepretask = 0
+            }
+            // Post task
+            if self.posttask.stringValue.isEmpty == false {
+                if self.executeposttask.state == .on {
+                    config[index].executeposttask = 1
+                } else {
+                    config[index].executeposttask = 0
+                }
+                config[index].posttask = self.posttask.stringValue
+            } else {
+                config[index].executeposttask = 0
+            }
             let dict = ConvertOneConfig(config: config[index]).dict
             guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
             self.configurations?.updateConfigurations(config[index], index: index)
@@ -117,6 +143,26 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
                 }
                 if let snapshotnum = config.snapshotnum {
                     self.snapshotnum.stringValue = String(snapshotnum)
+                }
+                self.pretask.stringValue = config.pretask ?? ""
+                self.posttask.stringValue = config.posttask ?? ""
+                if let executepretask = config.executepretask {
+                    if executepretask == 1 {
+                        self.executepretask.state = .on
+                    } else {
+                        self.executepretask.state = .off
+                    }
+                } else {
+                    self.executepretask.state = .off
+                }
+                if let executeposttask = config.executeposttask {
+                    if executeposttask == 1 {
+                        self.executeposttask.state = .on
+                    } else {
+                        self.executeposttask.state = .off
+                    }
+                } else {
+                    self.executeposttask.state = .off
                 }
                 self.changelabels()
             }

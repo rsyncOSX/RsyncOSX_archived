@@ -56,6 +56,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var addingtrailingbackslash: NSButton!
     @IBOutlet var stringlocalcatalog: NSTextField!
     @IBOutlet var stringremotecatalog: NSTextField!
+    @IBOutlet var pretask: NSTextField!
+    @IBOutlet var executepretask: NSButton!
+    @IBOutlet var posttask: NSTextField!
+    @IBOutlet var executeposttask: NSButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -232,6 +236,29 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         } else if self.backuptypeselected == .singlefile {
             dict.setValue(1, forKey: "singleFile")
         }
+        // Pre task
+        if self.pretask.stringValue.isEmpty == false {
+            if self.executepretask.state == .on {
+                dict.setObject(1, forKey: "executepretask" as NSCopying)
+            } else {
+                dict.setObject(0, forKey: "executepretask" as NSCopying)
+            }
+            dict.setObject(self.pretask.stringValue, forKey: "pretask" as NSCopying)
+        } else {
+            dict.setObject(0, forKey: "executepretask" as NSCopying)
+        }
+        // Post task
+        if self.posttask.stringValue.isEmpty == false {
+            if self.executeposttask.state == .on {
+                dict.setObject(1, forKey: "executeposttask" as NSCopying)
+            } else {
+                dict.setObject(0, forKey: "executeposttask" as NSCopying)
+            }
+            dict.setObject(self.pretask.stringValue, forKey: "posttask" as NSCopying)
+        } else {
+            dict.setObject(0, forKey: "executeposttask" as NSCopying)
+        }
+
         if ViewControllerReference.shared.checkinput {
             let config: Configuration = Configuration(dictionary: dict)
             let equal = Equal().isequal(data: self.configurations?.getConfigurations(), element: config)

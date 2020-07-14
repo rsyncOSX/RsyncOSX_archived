@@ -3215,10 +3215,14 @@ DQ
                         <outlet property="addtable" destination="ytY-cn-Iq7" id="SRE-zL-BlG"/>
                         <outlet property="backupID" destination="9T4-S6-awV" id="9jO-LC-qeB"/>
                         <outlet property="backuptype" destination="kWg-fw-1d2" id="HB9-v3-Uar"/>
+                        <outlet property="executeposttask" destination="aeC-dp-4uH" id="Hvr-tv-gso"/>
+                        <outlet property="executepretask" destination="TXE-hE-vGI" id="Xk2-dg-00u"/>
                         <outlet property="localCatalog" destination="0F6-hc-3TR" id="up8-NP-Gtr"/>
                         <outlet property="offsiteCatalog" destination="PLj-9a-6li" id="TJS-U0-E82"/>
                         <outlet property="offsiteServer" destination="Dd9-ZY-ewa" id="UxA-aT-Viu"/>
                         <outlet property="offsiteUsername" destination="SU3-FM-dip" id="iHh-g7-hch"/>
+                        <outlet property="posttask" destination="v2E-t5-m4b" id="hzy-6T-VGo"/>
+                        <outlet property="pretask" destination="ibv-Fg-9nv" id="4Rp-8Z-YHK"/>
                         <outlet property="profilInfo" destination="NDH-vD-wXh" id="x1r-3x-xGE"/>
                         <outlet property="remotecapacitybutton" destination="vH9-nE-GXW" id="k3m-MA-jQw"/>
                         <outlet property="remotecapacitytable" destination="Kgh-Ao-GIW" id="gBb-q8-zSD"/>
@@ -4090,10 +4094,14 @@ DQ
                     </view>
                     <connections>
                         <outlet property="backupID" destination="2Y8-Qa-HQE" id="ad0-fT-paH"/>
+                        <outlet property="executeposttask" destination="3nW-vW-mWz" id="Lpc-cf-Zwy"/>
+                        <outlet property="executepretask" destination="aX2-qC-e7w" id="GGI-Un-1cH"/>
                         <outlet property="localCatalog" destination="NXZ-v6-jgd" id="WXd-97-3uZ"/>
                         <outlet property="offsiteCatalog" destination="d6R-if-JLe" id="wpv-Gq-Jfh"/>
                         <outlet property="offsiteServer" destination="K4B-RP-RbM" id="tM6-4p-VHp"/>
                         <outlet property="offsiteUsername" destination="jVM-RL-IuU" id="wl3-4L-PcG"/>
+                        <outlet property="posttask" destination="5SJ-aX-GXM" id="fbz-KU-cNu"/>
+                        <outlet property="pretask" destination="czl-Fo-BIt" id="Ich-Fk-Ed0"/>
                         <outlet property="snapshotnum" destination="Zar-jw-2b8" id="rOK-LB-K08"/>
                         <outlet property="sshport" destination="xH3-OQ-4hl" id="kiy-q4-Yxt"/>
                         <outlet property="stringlocalcatalog" destination="ZWj-qH-2I5" id="WEd-L3-Aot"/>
