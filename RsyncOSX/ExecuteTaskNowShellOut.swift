@@ -13,6 +13,7 @@ import ShellOut
 final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     var pretask: String?
     var posttask: String?
+    var error: Bool = false
 
     func executepretask() {
         if let index = self.index {
@@ -27,7 +28,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                     outputprocess.addlinefromoutput(str: "ShellOut error")
                     outputprocess.addlinefromoutput(str: error?.message ?? "")
                     _ = Logging(outputprocess, true)
-                    return
+                    self.error = true
                 }
             }
         }
@@ -55,6 +56,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
         if let index = self.index {
             // Execute pretask
             self.executepretask()
+            guard self.error == false else { return }
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
                 if #available(OSX 10.14, *) {
@@ -76,6 +78,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
 
     deinit {
         // Execute posttask
+        guard self.error == false else { return }
         self.executeposttask()
     }
 }
