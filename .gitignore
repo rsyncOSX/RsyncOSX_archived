@@ -74,8 +74,5 @@ fastlane/test_output
 *.xcuserstate
 
 *.xcbkptlist
-
-RsyncOSX/\.DS_Store
-
-RsyncOSX/Assets\.xcassets/\.DS_Store
 .DS_Store
+SourcePackages

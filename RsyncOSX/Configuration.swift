@@ -41,6 +41,11 @@ struct Configuration {
     // Snapshots, day to save and last = 1 or every last=0
     var snapdayoffweek: String?
     var snaplast: Int?
+    // Pre and post tasks
+    var executepretask: Int?
+    var pretask: String?
+    var executeposttask: Int?
+    var posttask: String?
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }
@@ -113,6 +118,19 @@ struct Configuration {
         // From version 6.3.0, must convert "sshidentityfile" to keypath + identityfile
         if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
             self.sshkeypathandidentityfile = "~/.ssh/" + (sshidentityfile as? String ?? "")
+        }
+        // Pre and post tasks
+        if let pretask = dictionary.object(forKey: "pretask") {
+            self.pretask = pretask as? String
+        }
+        if let executepretask = dictionary.object(forKey: "executepretask") {
+            self.executepretask = executepretask as? Int
+        }
+        if let posttask = dictionary.object(forKey: "posttask") {
+            self.posttask = posttask as? String
+        }
+        if let executeposttask = dictionary.object(forKey: "executeposttask") {
+            self.executeposttask = executeposttask as? Int
         }
     }
 

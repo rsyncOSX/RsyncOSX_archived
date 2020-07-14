@@ -438,3 +438,9 @@ extension ViewControllerMain: GetMultipleSelectedIndexes {
         }
     }
 }
+
+extension ViewControllerMain: DeinitExecuteTaskNow {
+    func deinitexecutetasknow() {
+        self.executetasknow = nil
+    }
+}
