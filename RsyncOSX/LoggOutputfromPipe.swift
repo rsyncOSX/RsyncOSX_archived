@@ -12,12 +12,8 @@ struct LoggOutputfromPipe {
     init(pipe: Pipe?) {
         self.messages = [String]()
         if let outHandle = pipe?.fileHandleForReading {
-            let data = outHandle.availableData
-            if data.count > 0 {
-                if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    self.messages?.append(str as String)
-                }
-            }
+            let capturedData = outHandle.readDataToEndOfFile()
+            self.messages?.append(String(data: capturedData, encoding: .utf8) ?? "")
         }
         guard self.messages?.count ?? 0 > 0 else { return }
         let outputprocess = OutputProcess()
