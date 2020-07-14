@@ -119,6 +119,19 @@ struct Configuration {
         if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
             self.sshkeypathandidentityfile = "~/.ssh/" + (sshidentityfile as? String ?? "")
         }
+        // Pre and post tasks
+        if let pretask = dictionary.object(forKey: "pretask") {
+            self.pretask = pretask as? String
+        }
+        if let executepretask = dictionary.object(forKey: "executepretask") {
+            self.executepretask = executepretask as? Int
+        }
+        if let posttask = dictionary.object(forKey: "posttask") {
+            self.posttask = posttask as? String
+        }
+        if let executeposttask = dictionary.object(forKey: "executeposttask") {
+            self.executeposttask = executeposttask as? Int
+        }
     }
 
     init(dictionary: NSMutableDictionary) {

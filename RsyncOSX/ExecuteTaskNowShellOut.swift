@@ -17,8 +17,10 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     func executepretask() {
         if let index = self.index {
             if let pretask = self.configurations?.getConfigurations()[index].pretask {
+                let pipe = Pipe()
                 do {
-                    try shellOut(to: pretask)
+                    try shellOut(to: pretask, errorHandle: pipe.fileHandleForWriting)
+                    _ = LoggOutputfromPipe(pipe: pipe)
                 } catch {
                     let error = error as? ShellOutError
                     let outputprocess = OutputProcess()
@@ -34,8 +36,10 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     func executeposttask() {
         if let index = self.index {
             if let posttask = self.configurations?.getConfigurations()[index].posttask {
+                let pipe = Pipe()
                 do {
-                    try shellOut(to: posttask)
+                    try shellOut(to: posttask, errorHandle: pipe.fileHandleForWriting)
+                    _ = LoggOutputfromPipe(pipe: pipe)
                 } catch {
                     let error = error as? ShellOutError
                     let outputprocess = OutputProcess()

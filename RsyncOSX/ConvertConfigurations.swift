@@ -86,6 +86,19 @@ struct ConvertConfigurations: SetConfigurations {
         if config.sshkeypathandidentityfile != nil {
             dict.setObject(config.sshkeypathandidentityfile!, forKey: "sshkeypathandidentityfile" as NSCopying)
         }
+        // Pre and post tasks
+        if config.pretask != nil {
+            dict.setObject(config.pretask!, forKey: "pretask" as NSCopying)
+        }
+        if config.executepretask != nil {
+            dict.setObject(config.executepretask!, forKey: "executepretask" as NSCopying)
+        }
+        if config.posttask != nil {
+            dict.setObject(config.posttask!, forKey: "posttask" as NSCopying)
+        }
+        if config.executeposttask != nil {
+            dict.setObject(config.executeposttask!, forKey: "executeposttask" as NSCopying)
+        }
         self.configuration = dict
     }
 }
