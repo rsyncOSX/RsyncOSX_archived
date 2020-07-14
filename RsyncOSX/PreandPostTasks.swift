@@ -16,11 +16,11 @@ struct PreandPostTasks {
     init(config: Configuration?) {
         guard config != nil else { return }
         if let executepretask = config?.executepretask {
-            if executepretask == 1 {
+            if executepretask == 1, (config?.pretask?.count ?? 0) > 0 {
                 self.executepretask = true
             }
             if let executeposttask = config?.executeposttask {
-                if executeposttask == 1 {
+                if executeposttask == 1, (config?.posttask?.count ?? 0) > 0 {
                     self.executeposttask = true
                 }
             }
