@@ -56,7 +56,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
             self.localCatalog.stringValue += "/"
         }
         if let index = self.index() {
-            config[self.index!].localCatalog = self.localCatalog.stringValue
+            config[index].localCatalog = self.localCatalog.stringValue
             if self.offsiteCatalog.stringValue.hasSuffix("/") == false {
                 self.offsiteCatalog.stringValue += "/"
             }
@@ -115,6 +115,10 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
         self.offsiteUsername.stringValue = ""
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
+        self.pretask.stringValue = ""
+        self.executepretask.state = .off
+        self.posttask.stringValue = ""
+        self.executeposttask.state = .off
         if let index = self.index() {
             self.index = index
             if let config: Configuration = self.configurations?.getConfigurations()[index] {

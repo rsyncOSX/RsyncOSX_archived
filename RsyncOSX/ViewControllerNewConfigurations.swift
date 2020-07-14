@@ -183,6 +183,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
         self.sshport.stringValue = ""
+        self.pretask.stringValue = ""
+        self.executepretask.state = .off
+        self.posttask.stringValue = ""
+        self.executeposttask.state = .off
     }
 
     private func snapshotcreatecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
