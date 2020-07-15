@@ -76,7 +76,8 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
                 }
                 config[index].pretask = self.pretask.stringValue
             } else {
-                config[index].executepretask = 0
+                config[index].executepretask = nil
+                config[index].pretask = nil
             }
             // Post task
             if self.posttask.stringValue.isEmpty == false {
@@ -87,7 +88,8 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
                 }
                 config[index].posttask = self.posttask.stringValue
             } else {
-                config[index].executeposttask = 0
+                config[index].executeposttask = nil
+                config[index].posttask = nil
             }
             let dict = ConvertOneConfig(config: config[index]).dict
             guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
