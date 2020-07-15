@@ -59,8 +59,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
     }
 
     @IBAction func newcleanlogfile(_: NSButton) {
-        _ = Logging(nil, false)
-        self.logging = Logging()
+        self.logging = Logging(nil, false)
         self.getoutputDelegate = self.logging
         globalMainQueue.async { () -> Void in
             self.outputtable.reloadData()

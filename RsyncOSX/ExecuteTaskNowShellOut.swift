@@ -11,8 +11,6 @@ import Foundation
 import ShellOut
 
 final class ExecuteTaskNowShellOut: ExecuteTaskNow {
-    var pretask: String?
-    var posttask: String?
     var error: Bool = false
 
     func executepretask() throws {
@@ -23,6 +21,9 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                 outputprocess.addlinefromoutput(str: "ShellOut: execute pretask")
                 outputprocess.addlinefromoutput(str: task.self)
                 _ = Logging(outputprocess, true)
+                if task.self.contains("error") {
+                    self.error = true
+                }
             }
         }
     }
@@ -42,16 +43,19 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     override func executetasknow() {
         if let index = self.index {
             // Execute pretask
-            do {
-                try self.executepretask()
-            } catch let e {
-                let error = e as? ShellOutError
-                let outputprocess = OutputProcess()
-                outputprocess.addlinefromoutput(str: "ShellOut: pretask fault, aborting")
-                outputprocess.addlinefromoutput(str: error?.message ?? "")
-                _ = Logging(outputprocess, true)
-                self.error = true
+            if self.configurations?.getConfigurations()[index].executepretask == 1 {
+                do {
+                    try self.executepretask()
+                } catch let e {
+                    let error = e as? ShellOutError
+                    let outputprocess = OutputProcess()
+                    outputprocess.addlinefromoutput(str: "ShellOut: pretask fault, aborting")
+                    outputprocess.addlinefromoutput(str: error?.message ?? "")
+                    _ = Logging(outputprocess, true)
+                    self.error = true
+                }
             }
+
             guard self.error == false else { return }
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
@@ -75,14 +79,18 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     deinit {
         // Execute posttask
         guard self.error == false else { return }
-        do {
-            try self.executeposttask()
-        } catch let e {
-            let error = e as? ShellOutError
-            let outputprocess = OutputProcess()
-            outputprocess.addlinefromoutput(str: "ShellOut: posttask fault")
-            outputprocess.addlinefromoutput(str: error?.message ?? "")
-            _ = Logging(outputprocess, true)
+        if let index = self.index {
+            if self.configurations?.getConfigurations()[index].executeposttask == 1 {
+                do {
+                    try self.executeposttask()
+                } catch let e {
+                    let error = e as? ShellOutError
+                    let outputprocess = OutputProcess()
+                    outputprocess.addlinefromoutput(str: "ShellOut: posttask fault")
+                    outputprocess.addlinefromoutput(str: error?.message ?? "")
+                    _ = Logging(outputprocess, true)
+                }
+            }
         }
     }
 }
