@@ -85,6 +85,14 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
             } else {
                 return stringdate.en_us_date_from_string().localized_string_from_date()
             }
+        } else if tableColumn!.identifier.rawValue == "Shell" {
+            let pre = object.value(forKey: "executepretask") as? Int ?? 0
+            let post = object.value(forKey: "executeposttask") as? Int ?? 0
+            if pre == 1 || post == 1 {
+                return 1
+            } else {
+                return 0
+            }
         } else {
             if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
                 if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
