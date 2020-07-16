@@ -94,6 +94,12 @@
 /* Class = "NSTextFieldCell"; title = "lastorevery"; ObjectID = "4fh-oN-1Ue"; */
 "4fh-oN-1Ue.title" = "lastorevery";
 
+/* Class = "NSButtonCell"; title = "posttask"; ObjectID = "4Iv-vL-g8v"; */
+"4Iv-vL-g8v.title" = "posttask";
+
+/* Class = "NSBox"; title = "Basic info"; ObjectID = "4o6-U0-3UT"; */
+"4o6-U0-3UT.title" = "Informations basiques";
+
 /* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "4pl-Ij-4C8"; */
 "4pl-Ij-4C8.title" = "Point 1";
 
@@ -138,6 +144,9 @@
 
 /* Class = "NSButtonCell"; title = "remove --delete"; ObjectID = "5Zv-SY-8nT"; */
 "5Zv-SY-8nT.title" = "supprimer --delete";
+
+/* Class = "NSTableColumn"; headerCell.title = "Shell"; ObjectID = "6wP-Yl-v87"; */
+"6wP-Yl-v87.headerCell.title" = "Shell";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "7KY-LK-D7K"; */
 "7KY-LK-D7K.title" = "Text Cell";
@@ -277,6 +286,9 @@
 /* Class = "NSTextFieldCell"; title = "Either double click on row or select Load button"; ObjectID = "AMs-qg-ohN"; */
 "AMs-qg-ohN.title" = "Double-cliquez sur une ligne ou sélectionnez la ligne et le bouton Charger";
 
+/* Class = "NSBox"; title = "Optional pre and post task"; ObjectID = "AR1-J6-cEh"; */
+"AR1-J6-cEh.title" = "Tâche avant et post optionnelle";
+
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "Aru-qx-Bbf"; */
 "Aru-qx-Bbf.title" = "Point 3";
 
@@ -315,9 +327,6 @@
 
 /* Class = "NSMenuItem"; title = "Synchronize all now"; ObjectID = "bCH-Oe-dEC"; */
 "bCH-Oe-dEC.title" = "Tout synchroniser maintenant";
-
-/* Class = "NSTextFieldCell"; title = "ssh port:"; ObjectID = "BEH-BV-PWu"; */
-"BEH-BV-PWu.title" = "Port ssh :";
 
 /* Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW"; */
 "Beq-PN-DJW.headerCell.title" = "Moyenne (GB)";
@@ -526,6 +535,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "f8w-ZJ-YZg"; */
 "f8w-ZJ-YZg.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "Halt on error"; ObjectID = "f9L-rL-dmR"; */
+"f9L-rL-dmR.title" = "Arrêter en cas d'erreur";
+
 /* Class = "NSTextFieldCell"; title = "Synchronize ID:"; ObjectID = "F9T-gx-oeJ"; */
 "F9T-gx-oeJ.title" = "Synchroniser:";
 
@@ -562,6 +574,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "FSh-WF-QKH"; */
 "FSh-WF-QKH.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "pretask"; ObjectID = "fTy-N5-xYE"; */
+"fTy-N5-xYE.title" = "pretask";
+
 /* Class = "NSTableColumn"; headerCell.title = "Total num"; ObjectID = "fwm-ch-a0w"; */
 "fwm-ch-a0w.headerCell.title" = "N° total";
 
@@ -594,6 +609,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "G43-jD-Ptq"; */
 "G43-jD-Ptq.headerCell.title" = "Catalogue distant";
+
+/* Class = "NSBox"; title = "Snapshot"; ObjectID = "gbQ-oc-gEa"; */
+"gbQ-oc-gEa.title" = "Snapshot";
 
 /* Class = "NSTableColumn"; headerCell.title = "Result"; ObjectID = "gci-hz-pdE"; */
 "gci-hz-pdE.headerCell.title" = "Résultat";
@@ -690,6 +708,9 @@
 
 /* Class = "NSTextFieldCell"; title = "output"; ObjectID = "hwk-s3-pSJ"; */
 "hwk-s3-pSJ.title" = "Sortie";
+
+/* Class = "NSButtonCell"; title = "Halt on error"; ObjectID = "hwq-Rb-11L"; */
+"hwq-Rb-11L.title" = "Arrêter en cas d'erreur";
 
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "hXq-5p-KS7"; */
 "hXq-5p-KS7.title" = "Charger";
@@ -1035,6 +1056,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG"; */
 "pZb-i1-xyG.headerCell.title" = "Serveur distant";
+
+/* Class = "NSButtonCell"; title = "pretask"; ObjectID = "q0U-NT-39d"; */
+"q0U-NT-39d.title" = "pretask";
 
 /* Class = "NSTextFieldCell"; title = "Version :"; ObjectID = "q8z-Ku-oKx"; */
 "q8z-Ku-oKx.title" = "Version :";
@@ -1453,6 +1477,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "YdX-1p-DZ9"; */
 "YdX-1p-DZ9.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "posttask"; ObjectID = "Ydy-9u-wgL"; */
+"Ydy-9u-wgL.title" = "posttask";
+
 /* Class = "NSButtonCell"; title = "Delete"; ObjectID = "yOD-ng-BAz"; */
 "yOD-ng-BAz.title" = "Supprimez";
 
@@ -1509,6 +1536,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "ZpW-Be-i8h"; */
 "ZpW-Be-i8h.headerCell.title" = "Jours";
+
+/* Class = "NSBox"; title = "Optional pre and post task"; ObjectID = "ZqM-gA-jus"; */
+"ZqM-gA-jus.title" = "Tâche avant et post optionnelle";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Zsa-We-CKZ"; */
 "Zsa-We-CKZ.title" = "Table View Cell";
