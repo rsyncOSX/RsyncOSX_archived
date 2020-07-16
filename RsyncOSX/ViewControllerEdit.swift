@@ -27,6 +27,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
     @IBOutlet var executepretask: NSButton!
     @IBOutlet var posttask: NSTextField!
     @IBOutlet var executeposttask: NSButton!
+    @IBOutlet var haltshelltasksonerror: NSButton!
 
     var index: Int?
     var singleFile: Bool = false
@@ -91,6 +92,13 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
                 config[index].executeposttask = nil
                 config[index].posttask = nil
             }
+            // Halt on error
+            if self.haltshelltasksonerror.state == .on {
+                config[index].haltshelltasksonerror = 1
+            } else {
+                config[index].haltshelltasksonerror = 0
+            }
+
             let dict = ConvertOneConfig(config: config[index]).dict
             guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
             self.configurations?.updateConfigurations(config[index], index: index)
@@ -121,6 +129,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
         self.executepretask.state = .off
         self.posttask.stringValue = ""
         self.executeposttask.state = .off
+        self.haltshelltasksonerror.state = .off
         if let index = self.index() {
             self.index = index
             if let config: Configuration = self.configurations?.getConfigurations()[index] {
@@ -156,6 +165,13 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
                     }
                 } else {
                     self.executeposttask.state = .off
+                }
+                if let haltshelltasksonerror = config.haltshelltasksonerror {
+                    if haltshelltasksonerror == 1 {
+                        self.haltshelltasksonerror.state = .on
+                    } else {
+                        self.haltshelltasksonerror.state = .off
+                    }
                 }
                 self.changelabels()
             }

@@ -21,7 +21,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                 outputprocess.addlinefromoutput(str: "ShellOut: execute pretask")
                 outputprocess.addlinefromoutput(str: task.self)
                 _ = Logging(outputprocess, true)
-                if task.self.contains("error") {
+                if task.self.contains("error"), (self.configurations?.getConfigurations()[index].haltshelltasksonerror ?? 0) == 1 {
                     let outputprocess = OutputProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: pretask containes error, aborting")
                     _ = Logging(outputprocess, true)

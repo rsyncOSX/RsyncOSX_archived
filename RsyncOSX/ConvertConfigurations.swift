@@ -99,6 +99,9 @@ struct ConvertConfigurations: SetConfigurations {
         if config.executeposttask != nil {
             dict.setObject(config.executeposttask!, forKey: "executeposttask" as NSCopying)
         }
+        if config.haltshelltasksonerror != nil {
+            dict.setObject(config.haltshelltasksonerror!, forKey: "haltshelltasksonerror" as NSCopying)
+        }
         self.configuration = dict
     }
 }
