@@ -46,6 +46,7 @@ struct Configuration {
     var pretask: String?
     var executeposttask: Int?
     var posttask: String?
+    var haltshelltasksonerror: Int?
 
     private func calculatedays(date: String) -> Double? {
         guard date != "" else { return nil }
@@ -131,6 +132,9 @@ struct Configuration {
         }
         if let executeposttask = dictionary.object(forKey: "executeposttask") {
             self.executeposttask = executeposttask as? Int
+        }
+        if let haltshelltasksonerror = dictionary.object(forKey: "haltshelltasksonerror") {
+            self.haltshelltasksonerror = haltshelltasksonerror as? Int
         }
     }
 

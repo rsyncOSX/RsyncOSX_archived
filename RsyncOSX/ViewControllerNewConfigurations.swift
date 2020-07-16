@@ -60,6 +60,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var executepretask: NSButton!
     @IBOutlet var posttask: NSTextField!
     @IBOutlet var executeposttask: NSButton!
+    @IBOutlet var haltshelltasksonerror: NSButton!
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -187,6 +188,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.executepretask.state = .off
         self.posttask.stringValue = ""
         self.executeposttask.state = .off
+        self.haltshelltasksonerror.state = .off
     }
 
     private func snapshotcreatecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
@@ -261,6 +263,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             dict.setObject(self.pretask.stringValue, forKey: "posttask" as NSCopying)
         } else {
             dict.setObject(0, forKey: "executeposttask" as NSCopying)
+        }
+        // Haltpretast on error
+        if self.haltshelltasksonerror.state == .on {
+            dict.setObject(1, forKey: "haltshelltasksonerror" as NSCopying)
+        } else {
+            dict.setObject(0, forKey: "haltshelltasksonerror" as NSCopying)
         }
 
         if ViewControllerReference.shared.checkinput {
