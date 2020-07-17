@@ -94,6 +94,9 @@ class ProcessCmd: Delay {
                 try task.run()
             } catch let e {
                 let error = e as NSError
+                let outputprocess = OutputProcess()
+                outputprocess.addlinefromoutput(str: error.description)
+                _ = Logging(outputprocess, true)
             }
         } else {
             task.launch()
