@@ -17,20 +17,19 @@ final class Selectprofile {
     weak var restoreProfileDelegate: NewProfile?
 
     init(profile: String?, selectedindex: Int?) {
-        guard ViewControllerReference.shared.process == nil else { return }
         self.profile = profile
         self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.loggdataProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         self.restoreProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         if self.profile == NSLocalizedString("Default profile", comment: "default profile") {
-            newProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
+            newProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
         } else {
-            newProfileDelegate?.newProfile(profile: self.profile, selectedindex: selectedindex)
+            newProfileDelegate?.newprofile(profile: self.profile, selectedindex: selectedindex)
         }
-        self.snapshotnewProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
-        self.loggdataProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
-        self.restoreProfileDelegate?.newProfile(profile: nil, selectedindex: selectedindex)
+        self.snapshotnewProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
+        self.loggdataProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
+        self.restoreProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
         // Close edit and parameters view if open
         if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?

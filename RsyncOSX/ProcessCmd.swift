@@ -13,6 +13,11 @@ protocol ErrorOutput: AnyObject {
     func erroroutput()
 }
 
+protocol DisableEnablePopupSelectProfile: AnyObject {
+    func disableselectpopupprofile()
+    func enableselectpopupprofile()
+}
+
 class ProcessCmd: Delay {
     // Message to calling class
     weak var updateDelegate: UpdateProgress?
@@ -27,6 +32,8 @@ class ProcessCmd: Delay {
     var termination: Bool = false
     // possible error ouput
     weak var possibleerrorDelegate: ErrorOutput?
+    // Enable and disable select profile
+    weak var profilepopupDelegate: DisableEnablePopupSelectProfile?
 
     func setupdateDelegate(object: UpdateProgress) {
         self.updateDelegate = object
@@ -76,10 +83,21 @@ class ProcessCmd: Delay {
                 // Must remove for deallocation
                 NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
                 NotificationCenter.default.removeObserver(self.notifications_termination as Any)
+                // Enable select profile
+                self.profilepopupDelegate?.enableselectpopupprofile()
             }
         }
         ViewControllerReference.shared.process = task
-        task.launch()
+        self.profilepopupDelegate?.disableselectpopupprofile()
+        if #available(OSX 10.13, *) {
+            do {
+                try task.run()
+            } catch let e {
+                let error = e as NSError
+            }
+        } else {
+            task.launch()
+        }
     }
 
     // Terminate Process, used when user Aborts task.
@@ -91,5 +109,6 @@ class ProcessCmd: Delay {
         self.command = command
         self.arguments = arguments
         self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        self.profilepopupDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 }

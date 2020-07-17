@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length function_body_length
+// swiftlint:disable line_length function_body_length cyclomatic_complexity
 
 import Cocoa
 import Foundation
