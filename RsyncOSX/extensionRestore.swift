@@ -131,7 +131,7 @@ extension ViewControllerRestore: TemporaryRestorePath {
 }
 
 extension ViewControllerRestore: NewProfile {
-    func newProfile(profile _: String?, selectedindex: Int?) {
+    func newprofile(profile _: String?, selectedindex: Int?) {
         if let index = selectedindex {
             self.profilepopupbutton.selectItem(at: index)
         } else {
@@ -145,7 +145,7 @@ extension ViewControllerRestore: NewProfile {
         }
     }
 
-    func enableselectprofile() {
+    func reloadprofilepopupbutton() {
         //
     }
 }

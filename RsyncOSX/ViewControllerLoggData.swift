@@ -325,11 +325,11 @@ extension ViewControllerLoggData: DismissViewController {
 }
 
 extension ViewControllerLoggData: NewProfile {
-    func newProfile(profile _: String?, selectedindex _: Int?) {
+    func newprofile(profile _: String?, selectedindex _: Int?) {
         self.reloadtabledata()
     }
 
-    func enableselectprofile() {
+    func reloadprofilepopupbutton() {
         //
     }
 }

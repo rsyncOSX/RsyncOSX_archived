@@ -11,8 +11,8 @@ import Foundation
 
 // Protocol for adding new profiles
 protocol NewProfile: AnyObject {
-    func newProfile(profile: String?, selectedindex: Int?)
-    func enableselectprofile()
+    func newprofile(profile: String?, selectedindex: Int?)
+    func reloadprofilepopupbutton()
 }
 
 class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, Delay {

@@ -46,7 +46,7 @@ class TCPconnections: SetConfigurations, Delay {
         self.indexBoolremoteserverOff = [Bool]()
         guard (self.configurations?.configurationsDataSourcecount() ?? -1) > 0 else {
             // Tell main view profile menu might presented
-            self.newprofileDelegate?.enableselectprofile()
+            self.newprofileDelegate?.reloadprofilepopupbutton()
             return
         }
         globalDefaultQueue.async { () -> Void in
@@ -69,7 +69,7 @@ class TCPconnections: SetConfigurations, Delay {
                         // Send message to do a refresh table in main view
                         self.testconnectionsDelegate?.displayConnections()
                         // Tell main view profile menu might presented
-                        self.newprofileDelegate?.enableselectprofile()
+                        self.newprofileDelegate?.reloadprofilepopupbutton()
                         self.connectionscheckcompleted = true
                     }
                 }
