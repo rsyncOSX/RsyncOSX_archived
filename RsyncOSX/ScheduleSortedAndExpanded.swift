@@ -15,6 +15,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private var scheduleConfiguration: [ConfigurationSchedule]?
     private var expandedData: [NSDictionary]?
     private var sortedschedules: [NSDictionary]?
+    var delta: [String]?
 
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
@@ -32,7 +33,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "timetostart": time,
                     "profilename": profilename,
                 ]
-                self.expandedData!.append(dictSchedule)
+                self.expandedData?.append(dictSchedule)
             }
         }
     }
@@ -53,7 +54,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     "timetostart": time,
                     "profilename": profilename,
                 ]
-                self.expandedData!.append(dictSchedule)
+                self.expandedData?.append(dictSchedule)
             }
         }
     }
@@ -90,11 +91,27 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     break
                 }
             }
-            self.sortedschedules = self.expandedData?.sorted { (di1, di2) -> Bool in
-                if (di1.value(forKey: "start") as? Date)!.timeIntervalSince((di2.value(forKey: "start") as? Date)!) > 0 {
-                    return false
-                } else {
-                    return true
+            self.sortedschedules = self.expandedData?.sorted { (date1, date2) -> Bool in
+                if let date1 = date1.value(forKey: "start") as? Date {
+                    if let date2 = date2.value(forKey: "start") as? Date {
+                        if date1.timeIntervalSince(date2) > 0 {
+                            return false
+                        } else {
+                            return true
+                        }
+                    }
+                }
+                return false
+            }
+            // calculate delta time
+            self.delta = [String]()
+            self.delta?.append("0")
+            let timestring = Dateandtime()
+            for i in 1 ..< (self.sortedschedules?.count ?? 0) {
+                if let t1 = self.sortedschedules?[i - 1].value(forKey: "timetostart") as? Double {
+                    if let t2 = self.sortedschedules?[i].value(forKey: "timetostart") as? Double {
+                        self.delta?.append(timestring.timestring(seconds: t2 - t1))
+                    }
                 }
             }
         }

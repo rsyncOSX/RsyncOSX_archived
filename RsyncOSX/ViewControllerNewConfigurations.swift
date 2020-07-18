@@ -49,7 +49,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var offsiteUsername: NSTextField!
     @IBOutlet var offsiteServer: NSTextField!
     @IBOutlet var backupID: NSTextField!
-    @IBOutlet var sshport: NSTextField!
     @IBOutlet var profilInfo: NSTextField!
     @IBOutlet var backuptype: NSComboBox!
     @IBOutlet var remotecapacitybutton: NSButton!
@@ -183,7 +182,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.offsiteUsername.stringValue = ""
         self.offsiteServer.stringValue = ""
         self.backupID.stringValue = ""
-        self.sshport.stringValue = ""
         self.pretask.stringValue = ""
         self.executepretask.state = .off
         self.posttask.stringValue = ""
@@ -224,11 +222,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         if !self.offsiteCatalog.stringValue.hasSuffix("/"), self.addingtrailingbackslash.state == .off {
             self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
-        }
-        if sshport.stringValue != "" {
-            if let port: Int = Int(self.sshport.stringValue) {
-                dict.setObject(port, forKey: "sshport" as NSCopying)
-            }
         }
         if self.backuptypeselected == .snapshots {
             dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
