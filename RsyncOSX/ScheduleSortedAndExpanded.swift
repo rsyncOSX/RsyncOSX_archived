@@ -91,7 +91,6 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     break
                 }
             }
-            guard (self.expandedData?.count ?? 0) > 0 else { return }
             self.sortedschedules = self.expandedData?.sorted { (date1, date2) -> Bool in
                 if let date1 = date1.value(forKey: "start") as? Date {
                     if let date2 = date2.value(forKey: "start") as? Date {
