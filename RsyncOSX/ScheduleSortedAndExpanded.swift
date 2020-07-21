@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length trailing_comma cyclomatic_complexity
+// swiftlint:disable line_length trailing_comma cyclomatic_complexity function_body_length
 
 import Cocoa
 import Foundation
@@ -103,15 +103,18 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 }
                 return false
             }
-            // calculate delta time
-            self.delta = [String]()
-            self.delta?.append("0")
-            let timestring = Dateandtime()
-            for i in 1 ..< (self.sortedschedules?.count ?? 0) {
-                if let t1 = self.sortedschedules?[i - 1].value(forKey: "timetostart") as? Double {
-                    if let t2 = self.sortedschedules?[i].value(forKey: "timetostart") as? Double {
-                        self.delta?.append(timestring.timestring(seconds: t2 - t1))
-                    }
+        }
+    }
+
+    private func adddelta() {
+        // calculate delta time
+        self.delta = [String]()
+        self.delta?.append("0")
+        let timestring = Dateandtime()
+        for i in 1 ..< (self.sortedschedules?.count ?? 0) {
+            if let t1 = self.sortedschedules?[i - 1].value(forKey: "timetostart") as? Double {
+                if let t2 = self.sortedschedules?[i].value(forKey: "timetostart") as? Double {
+                    self.delta?.append(timestring.timestring(seconds: t2 - t1))
                 }
             }
         }
