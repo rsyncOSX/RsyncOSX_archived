@@ -151,7 +151,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var selectedstart: NSTextField!
 
     @IBAction func update(_: NSButton) {
-        self.schedules?.deleteorstopschedule(data: scheduledetails!)
+        self.schedules?.deleteandstopschedules(data: scheduledetails)
     }
 
     // Initial functions viewDidLoad and viewDidAppear
