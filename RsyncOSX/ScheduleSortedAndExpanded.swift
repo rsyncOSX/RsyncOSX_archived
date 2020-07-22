@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 05/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length trailing_comma cyclomatic_complexity function_body_length
+// swiftlint:disable line_length trailing_comma
 
 import Cocoa
 import Foundation
@@ -20,7 +20,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
         let calendar = Calendar.current
-        let days = dateStart.daystonow + 1
+        let days = dateStart.daystonow
         let components = DateComponents(day: days)
         if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
@@ -43,7 +43,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate weekly schedules
     private func weekly(dateStart: Date, schedule: String, dict: NSDictionary) {
         let calendar = Calendar.current
-        let weekofyear = dateStart.weekstonow + 7
+        let weekofyear = dateStart.weekstonow + 1
         let components = DateComponents(weekOfYear: weekofyear)
         if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {

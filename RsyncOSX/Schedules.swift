@@ -117,23 +117,23 @@ class Schedules: ScheduleWriteLoggData {
     // Function either deletes or stops Schedules.
     // - parameter data : array of Schedules which some of them are either marked for stop or delete
     func deleteorstopschedule(data: [NSMutableDictionary]?) {
-        guard data != nil else { return }
         var update: Bool = false
-        if (data!.count) > 0 {
-            let stop = data!.filter { (($0.value(forKey: "stopCellID") as? Int) == 1) }
-            let delete = data!.filter { (($0.value(forKey: "deleteCellID") as? Int) == 1) }
-            // Delete Schedules
-            if delete.count > 0 {
-                update = true
-                for i in 0 ..< delete.count {
-                    self.delete(dict: delete[i])
+        if (data?.count ?? 0) > 0 {
+            if let stop = data?.filter({ (($0.value(forKey: "stopCellID") as? Int) == 1) }) {
+                // Stop Schedules
+                if stop.count > 0 {
+                    update = true
+                    for i in 0 ..< stop.count {
+                        self.stop(dict: stop[i])
+                    }
                 }
             }
-            // Stop Schedules
-            if stop.count > 0 {
-                update = true
-                for i in 0 ..< stop.count {
-                    self.stop(dict: stop[i])
+            if let delete = data?.filter({ (($0.value(forKey: "deleteCellID") as? Int) == 1) }) {
+                if delete.count > 0 {
+                    update = true
+                    for i in 0 ..< delete.count {
+                        self.delete(dict: delete[i])
+                    }
                 }
             }
             if update {
