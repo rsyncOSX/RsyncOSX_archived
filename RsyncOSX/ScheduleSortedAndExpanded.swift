@@ -20,7 +20,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
         let calendar = Calendar.current
-        let days = dateStart.daystonow
+        let days = dateStart.daystonow + 1
         let components = DateComponents(day: days)
         if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
