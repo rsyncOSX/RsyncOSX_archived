@@ -19,8 +19,10 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
-        let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateStart.dayssincenow, to: dateStart) {
+        let calendar = Calendar.current
+        let days = dateStart.daystonow + 1
+        let components = DateComponents(day: days)
+        if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                 let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
@@ -40,8 +42,10 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculate weekly schedules
     private func weekly(dateStart: Date, schedule: String, dict: NSDictionary) {
-        let cal = Calendar.current
-        if let start: Date = cal.date(byAdding: dateStart.weekssincenowplusoneweek, to: dateStart) {
+        let calendar = Calendar.current
+        let weekofyear = dateStart.weekstonow + 7
+        let components = DateComponents(weekOfYear: weekofyear)
+        if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
                 let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")

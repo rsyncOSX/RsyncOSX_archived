@@ -135,15 +135,19 @@ extension Date {
         return false
     }
 
-    // Returns a DateComponent value with number of days away from a specified date
-    var dayssincenow: DateComponents {
-        let now = Date()
-        return Calendar.current.dateComponents([.day], from: self, to: now)
+    var secondstonow: Int {
+        let components = Set<Calendar.Component>([.second])
+        return Calendar.current.dateComponents(components, from: self, to: Date()).second ?? 0
     }
 
-    var weekssincenowplusoneweek: DateComponents {
-        let now = Date()
-        return Calendar.current.dateComponents([.weekOfYear], from: self, to: now.dateByAddingDays(7))
+    var daystonow: Int {
+        let components = Set<Calendar.Component>([.day])
+        return Calendar.current.dateComponents(components, from: self, to: Date()).day ?? 0
+    }
+
+    var weekstonow: Int {
+        let components = Set<Calendar.Component>([.weekOfYear])
+        return Calendar.current.dateComponents(components, from: self, to: Date()).weekOfYear ?? 0
     }
 
     func localized_string_from_date() -> String {
