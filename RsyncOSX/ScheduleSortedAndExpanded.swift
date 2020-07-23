@@ -29,18 +29,19 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         let components = DateComponents(day: days)
         if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
-                let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
-                let time = start.timeIntervalSinceNow
-                let dictschedule: NSDictionary = [
-                    "start": start,
-                    "hiddenID": hiddenID,
-                    "dateStart": dateStart,
-                    "schedule": schedule,
-                    "timetostart": time,
-                    "profilename": profilename,
-                ]
-                self.expandedData?.append(dictschedule)
+                if let hiddenID = (dict.value(forKey: "hiddenID") as? Int) {
+                    let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
+                    let time = start.timeIntervalSinceNow
+                    let dictschedule: NSDictionary = [
+                        "start": start,
+                        "hiddenID": hiddenID,
+                        "dateStart": dateStart,
+                        "schedule": schedule,
+                        "timetostart": time,
+                        "profilename": profilename,
+                    ]
+                    self.expandedData?.append(dictschedule)
+                }
             }
         }
     }
@@ -52,18 +53,19 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         let components = DateComponents(weekOfYear: weekofyear)
         if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
-                let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
-                let time = start.timeIntervalSinceNow
-                let dictschedule: NSDictionary = [
-                    "start": start,
-                    "hiddenID": hiddenID,
-                    "dateStart": dateStart,
-                    "schedule": schedule,
-                    "timetostart": time,
-                    "profilename": profilename,
-                ]
-                self.expandedData?.append(dictschedule)
+                if let hiddenID = (dict.value(forKey: "hiddenID") as? Int) {
+                    let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
+                    let time = start.timeIntervalSinceNow
+                    let dictschedule: NSDictionary = [
+                        "start": start,
+                        "hiddenID": hiddenID,
+                        "dateStart": dateStart,
+                        "schedule": schedule,
+                        "timetostart": time,
+                        "profilename": profilename,
+                    ]
+                    self.expandedData?.append(dictschedule)
+                }
             }
         }
     }
@@ -80,18 +82,19 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             if seconds > 0 {
                 switch schedule {
                 case Scheduletype.once.rawValue:
-                    let hiddenID = (dict.value(forKey: "hiddenID") as? Int)!
-                    let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
-                    let time = seconds
-                    let dictschedule: NSDictionary = [
-                        "start": dateStart,
-                        "hiddenID": hiddenID,
-                        "dateStart": dateStart,
-                        "schedule": schedule,
-                        "timetostart": time,
-                        "profilename": profilename,
-                    ]
-                    self.expandedData?.append(dictschedule)
+                    if let hiddenID = (dict.value(forKey: "hiddenID") as? Int) {
+                        let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
+                        let time = seconds
+                        let dictschedule: NSDictionary = [
+                            "start": dateStart,
+                            "hiddenID": hiddenID,
+                            "dateStart": dateStart,
+                            "schedule": schedule,
+                            "timetostart": time,
+                            "profilename": profilename,
+                        ]
+                        self.expandedData?.append(dictschedule)
+                    }
                 case Scheduletype.daily.rawValue:
                     self.daily(dateStart: dateStart, schedule: schedule, dict: dict)
                 case Scheduletype.weekly.rawValue:
