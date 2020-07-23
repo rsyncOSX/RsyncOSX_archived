@@ -147,7 +147,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     // Test if Schedule record in memory is set to delete or not
-    private func delete(dict: NSDictionary) {
+    func delete(dict: NSDictionary) {
         if let hiddenID = dict.value(forKey: "hiddenID") as? Int {
             if let schedule = dict.value(forKey: "schedule") as? String {
                 if let datestart = dict.value(forKey: "dateStart") as? String {
@@ -155,7 +155,6 @@ class Schedules: ScheduleWriteLoggData {
                             && $0.schedule == schedule
                             && $0.dateStart == datestart
                     }) {
-                        print(i)
                         self.schedules![i].delete = true
                     }
                 }
@@ -164,7 +163,7 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     // Test if Schedule record in memory is set to stop er not
-    private func stop(dict: NSDictionary) {
+    func stop(dict: NSDictionary) {
         if let hiddenID = dict.value(forKey: "hiddenID") as? Int {
             if let schedule = dict.value(forKey: "schedule") as? String {
                 if let datestart = dict.value(forKey: "dateStart") as? String {
@@ -172,7 +171,6 @@ class Schedules: ScheduleWriteLoggData {
                             && $0.schedule == schedule
                             && $0.dateStart == datestart
                     }) {
-                        print(i)
                         self.schedules![i].schedule = Scheduletype.stopped.rawValue
                         self.schedules![i].dateStop = Date().en_us_string_from_date()
                     }

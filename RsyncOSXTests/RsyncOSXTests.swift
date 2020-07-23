@@ -116,16 +116,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         XCTAssertEqual("23t 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "23t 59m")
     }
 
-    func testaddonemoreschedulefordelete() {
-        let schedules = SchedulesXCTEST(profile: "XCTest")
-        let today: Date = Date()
-        let nextweek = Calendar.current.date(byAdding: .day, value: 6, to: today)
-        schedules.addschedule(hiddenID: 1, schedule: .weekly, start: nextweek!)
-        XCTAssertEqual(1, schedules.getSchedule().count, "Should be three")
-        let schedulesortedandexpanded = ScheduleSortedAndExpand(schedules: schedules)
-        XCTAssertEqual("6d", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "6d")
-    }
-
     func testaddconfig() {
         let configurations = ConfigurationsXCTEST(profile: "XCTest")
         let dict: NSMutableDictionary = [
