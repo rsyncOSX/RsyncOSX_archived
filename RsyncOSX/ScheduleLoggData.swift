@@ -37,7 +37,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         }
     }
 
-    private func readAndSortAllLoggdata(hiddenID: Int?, sortascending: Bool) {
+    private func readandsortallloggdata(hiddenID: Int?, sortascending: Bool) {
         var data = [NSMutableDictionary]()
         if let input: [ConfigurationSchedule] = self.schedules?.getSchedule() {
             for i in 0 ..< input.count {
@@ -117,13 +117,13 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     init(sortascending: Bool) {
         if self.loggdata == nil {
-            self.readAndSortAllLoggdata(hiddenID: nil, sortascending: sortascending)
+            self.readandsortallloggdata(hiddenID: nil, sortascending: sortascending)
         }
     }
 
     init(hiddenID: Int, sortascending: Bool) {
         if self.loggdata == nil {
-            self.readAndSortAllLoggdata(hiddenID: hiddenID, sortascending: sortascending)
+            self.readandsortallloggdata(hiddenID: hiddenID, sortascending: sortascending)
         }
     }
 
