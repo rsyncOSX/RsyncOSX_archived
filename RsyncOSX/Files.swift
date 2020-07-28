@@ -7,6 +7,7 @@
 //
 // swiftlint:disable line_length
 
+import Files
 import Foundation
 
 enum WhichRoot {
@@ -100,60 +101,113 @@ class Files: FileErrors {
         }
     }
 
-    // Function for returning files in path as array of URLs
-    func getFilesURLs() -> [URL]? {
-        var array: [URL]?
-        if let filePath = self.rootpath {
-            let fileManager = FileManager.default
-            var isDir: ObjCBool = false
-            if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
-                guard isDir.boolValue else { return nil }
-            } else { return nil }
-            if let fileURLs = self.getfileURLs(path: filePath) {
-                array = [URL]()
-                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                    array?.append(fileURLs[i])
+    /*
+     // Function for returning files in path as array of URLs
+     func getFilesURLs() -> [URL]? {
+         var array: [URL]?
+         if let filePath = self.rootpath {
+             let fileManager = FileManager.default
+             var isDir: ObjCBool = false
+             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
+                 guard isDir.boolValue else { return nil }
+             } else { return nil }
+             if let fileURLs = self.getfileURLs(path: filePath) {
+                 array = [URL]()
+                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                     array?.append(fileURLs[i])
+                 }
+                 return array
+             }
+         }
+         return nil
+     }
+     */
+    func getcatalogsasURLnames() -> [URL]? {
+        if let atpath = self.rootpath {
+            do {
+                var array = [URL]()
+                for file in try Folder(path: atpath).files {
+                    print(file.name)
+                    array.append(file.url)
                 }
                 return array
+            } catch {
+                return nil
             }
         }
         return nil
     }
 
-    // Function for returning files in path as array of Strings
-    func getFileStrings() -> [String]? {
-        var array: [String]?
-        if let filePath = self.rootpath {
-            let fileManager = FileManager.default
-            var isDir: ObjCBool = false
-            if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
-                guard isDir.boolValue else { return nil }
-            } else { return nil }
-            if let fileURLs = self.getfileURLs(path: filePath) {
-                array = [String]()
-                for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                    array?.append(fileURLs[i].path)
+    /*
+     // Function for returning files in path as array of Strings
+     func getFileStrings() -> [String]? {
+         var array: [String]?
+         if let filePath = self.rootpath {
+             let fileManager = FileManager.default
+             var isDir: ObjCBool = false
+             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
+                 guard isDir.boolValue else { return nil }
+             } else { return nil }
+             if let fileURLs = self.getfileURLs(path: filePath) {
+                 array = [String]()
+                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                     array?.append(fileURLs[i].path)
+                 }
+                 return array
+             }
+         }
+         return nil
+     }
+     */
+
+    func getfilesasstringnames() -> [String]? {
+        if let atpath = self.rootpath {
+            do {
+                var array = [String]()
+                for file in try Folder(path: atpath).files {
+                    print(file.name)
+                    array.append(file.name)
                 }
                 return array
+            } catch {
+                return nil
             }
         }
         return nil
     }
 
-    // Function for returning profiles as array of Strings
-    func getDirectorysStrings() -> [String] {
-        var array = [String]()
-        if let filePath = self.rootpath {
-            if let fileURLs = self.getfileURLs(path: filePath) {
-                for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
-                    let path = fileURLs[i].pathComponents
-                    let i = path.count
-                    array.append(path[i - 1])
+    /*
+     // Function for returning profiles as array of Strings
+     func getDirectorysStrings() -> [String] {
+         var array = [String]()
+         if let filePath = self.rootpath {
+             if let fileURLs = self.getfileURLs(path: filePath) {
+                 for i in 0 ..< fileURLs.count where fileURLs[i].hasDirectoryPath {
+                     let path = fileURLs[i].pathComponents
+                     let i = path.count
+                     array.append(path[i - 1])
+                 }
+                 return array
+             }
+         }
+         return array
+     }
+     */
+
+    func getcatalogsasstringnames() -> [String]? {
+        if let atpath = self.rootpath {
+            var array = [String]()
+            do {
+                for folders in try Folder(path: atpath).subfolders {
+                    array.append(folders.name)
+                    print(folders.name)
                 }
                 return array
+            } catch {
+                return nil
             }
         }
-        return array
+        return nil
     }
 
     // Func that creates directory if not created
