@@ -16,6 +16,11 @@ enum WhatToReadWrite {
     case none
 }
 
+enum WhichRoot {
+    case profileRoot
+    case sshRoot
+}
+
 class NamesandPaths {
     var whichroot: WhichRoot?
     var rootpath: String?
@@ -69,7 +74,7 @@ class NamesandPaths {
         return ViewControllerReference.shared.macserialnumber
     }
 
-    private func setrootpath() {
+    func setrootpath() {
         switch self.whichroot {
         case .profileRoot:
             self.rootpath = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")

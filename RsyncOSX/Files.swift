@@ -10,11 +10,6 @@
 import Files
 import Foundation
 
-enum WhichRoot {
-    case profileRoot
-    case sshRoot
-}
-
 enum Fileerrortype {
     case writelogfile
     case profilecreatedirectory
@@ -60,74 +55,33 @@ extension ErrorMessage {
     }
 }
 
-class Files: FileErrors {
-    var whichroot: WhichRoot?
-    var rootpath: String?
-    // If global keypath and identityfile is set must split keypath and identifile
-    // create a new key require full path
-    var identityfile: String?
-    // config path either
-    // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
-    var configpath: String?
-
-    private func setrootpath() {
-        switch self.whichroot {
-        case .profileRoot:
-            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-            let docuDir = (paths.firstObject as? String) ?? ""
-            if ViewControllerReference.shared.macserialnumber == nil {
-                ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
-            }
-            let profilePath = docuDir + (self.configpath ?? "") + (ViewControllerReference.shared.macserialnumber ?? "")
-            self.rootpath = profilePath
-        case .sshRoot:
-            // Check if a global ssh keypath and identityfile is set
-            // Set full path if not ssh-keygen will fail
-            // The sshkeypath + identityfile must be prefixed with "~" used in rsync parameters
-            // only full path when ssh-keygen is used
-            if ViewControllerReference.shared.sshkeypathandidentityfile == nil {
-                self.rootpath = NSHomeDirectory() + "/.ssh"
-                self.identityfile = "id_rsa"
-            } else {
-                // global sshkeypath and identityfile is set
-                if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
-                    let sshkeypath = Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile)
-                    self.identityfile = sshkeypath.identityfile
-                    self.rootpath = sshkeypath.rootpath
-                }
-            }
-        default:
-            return
-        }
-    }
-
+class Files: NamesandPaths, FileErrors {
     /*
      // Function for returning files in path as array of URLs
-     func getFilesURLs() -> [URL]? {
-         var array: [URL]?
-         if let filePath = self.rootpath {
-             let fileManager = FileManager.default
-             var isDir: ObjCBool = false
-             if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
-                 guard isDir.boolValue else { return nil }
-             } else { return nil }
-             if let fileURLs = self.getfileURLs(path: filePath) {
-                 array = [URL]()
-                 for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
-                     array?.append(fileURLs[i])
-                 }
-                 return array
-             }
-         }
-         return nil
-     }
-     */
+      func getFilesURLs() -> [URL]? {
+          var array: [URL]?
+          if let filePath = self.rootpath {
+              let fileManager = FileManager.default
+              var isDir: ObjCBool = false
+              if fileManager.fileExists(atPath: filePath, isDirectory: &isDir) {
+                  guard isDir.boolValue else { return nil }
+              } else { return nil }
+              if let fileURLs = self.getfileURLs(path: filePath) {
+                  array = [URL]()
+                  for i in 0 ..< fileURLs.count where fileURLs[i].isFileURL {
+                      array?.append(fileURLs[i])
+                  }
+                  return array
+              }
+          }
+          return nil
+      }
+      */
     func getcatalogsasURLnames() -> [URL]? {
         if let atpath = self.rootpath {
             do {
                 var array = [URL]()
                 for file in try Folder(path: atpath).files {
-                    print(file.name)
                     array.append(file.url)
                 }
                 return array
@@ -165,7 +119,6 @@ class Files: FileErrors {
             do {
                 var array = [String]()
                 for file in try Folder(path: atpath).files {
-                    print(file.name)
                     array.append(file.name)
                 }
                 return array
@@ -200,7 +153,6 @@ class Files: FileErrors {
             do {
                 for folders in try Folder(path: atpath).subfolders {
                     array.append(folders.name)
-                    print(folders.name)
                 }
                 return array
             } catch {
@@ -260,9 +212,7 @@ class Files: FileErrors {
         }
     }
 
-    init(whichroot: WhichRoot?, configpath: String?) {
-        self.configpath = configpath
-        self.whichroot = whichroot
-        self.setrootpath()
+    override init(whichroot: WhichRoot, configpath: String?) {
+        super.init(whichroot: whichroot, configpath: configpath)
     }
 }
