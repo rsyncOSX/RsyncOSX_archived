@@ -23,20 +23,20 @@ enum WhatToReadWrite {
 
 class ReadWriteDictionary {
     // Name set for schedule, configuration or config
-    private var plistname: String?
+    var plistname: String?
     // key in objectForKey, e.g key for reading what
-    private var key: String?
+    var key: String?
     // Which profile to read
     var profile: String?
     // task to do
-    private var task: WhatToReadWrite?
+    var task: WhatToReadWrite?
     // Path for configuration files
-    private var filepath: String?
+    var filepath: String?
     // Set which file to read
-    private var filename: String?
+    var filename: String?
     // config path either
     // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
-    private var configpath: String?
+    var configpath: String?
 
     private func setnameandpath() {
         let docupath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
@@ -49,13 +49,13 @@ class ReadWriteDictionary {
             // Use profile
             guard profile.isEmpty == false else { return }
             let profilePath = CatalogProfile()
-            profilePath.createDirectory()
+            profilePath.createprofilecatalog()
             self.filepath = self.configpath! + macserialnumber! + "/" + profile + "/"
             self.filename = docuDir + self.configpath! + macserialnumber! + "/" + profile + self.plistname!
         } else {
             // no profile
             let profilePath = CatalogProfile()
-            profilePath.createDirectory()
+            profilePath.createprofilecatalog()
             self.filename = docuDir + self.configpath! + macserialnumber! + self.plistname!
             self.filepath = self.configpath! + macserialnumber! + "/"
         }

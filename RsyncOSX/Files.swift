@@ -78,7 +78,7 @@ class Files: FileErrors {
             if ViewControllerReference.shared.macserialnumber == nil {
                 ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
             }
-            let profilePath = docuDir + self.configpath! + (ViewControllerReference.shared.macserialnumber ?? "")
+            let profilePath = docuDir + (self.configpath ?? "") + (ViewControllerReference.shared.macserialnumber ?? "")
             self.rootpath = profilePath
         case .sshRoot:
             // Check if a global ssh keypath and identityfile is set
@@ -211,7 +211,7 @@ class Files: FileErrors {
     }
 
     // Func that creates directory if not created
-    func createDirectory() {
+    func createprofilecatalog() {
         let fileManager = FileManager.default
         if let path = self.rootpath {
             // Profile root
@@ -225,6 +225,23 @@ class Files: FileErrors {
             }
         }
     }
+
+    /*
+     func createprofilecatalog() {
+         if let docupath = self.docupath {
+             do {
+                 let path = docupath + (self.configpath ?? "")
+                 try Folder(path: path).createSubfolder(named: path)
+             } catch {}
+             if let macserial = self.macserial {
+                 do {
+                     let path = docupath + (self.configpath ?? "") + macserial
+                     try Folder(path: path).createSubfolder(named: path)
+                 } catch {}
+             }
+         }
+     }
+     */
 
     // Function for getting fileURLs for a given path
     func getfileURLs(path: String) -> [URL]? {
@@ -243,7 +260,7 @@ class Files: FileErrors {
         }
     }
 
-    init(whichroot: WhichRoot, configpath: String) {
+    init(whichroot: WhichRoot?, configpath: String?) {
         self.configpath = configpath
         self.whichroot = whichroot
         self.setrootpath()
