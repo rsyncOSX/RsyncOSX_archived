@@ -20,8 +20,9 @@ RsyncOSX is compiled with support for **macOS El Capitan version 10.11 - macOS C
 
 - check for TCP connectivity by utilizing [SwiftSocket](https://github.com/swiftsocket/SwiftSocket), some functions require connections to remote servers
 - execute pre and post shellscripts by utilizing John Sundell´s [ShellOut](https://github.com/JohnSundell/ShellOut)
+- utilizing John Sundell´s [Files](https://github.com/JohnSundell/Files) for reading files and catalogs
 
-Both are available as source code and automatically included as part of building RsyncOSX.
+All three are available as source code and automatically included as part of building RsyncOSX.
 
 ### Scheduling
 
