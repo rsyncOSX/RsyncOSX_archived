@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Files",
+        "repositoryURL": "https://github.com/rsyncOSX/Files",
+        "state": {
+          "branch": null,
+          "revision": "22fe84797d499ffca911ccd896b34efaf06a50b9",
+          "version": "4.1.1"
+        }
+      },
+      {
         "package": "ShellOut",
         "repositoryURL": "https://github.com/rsyncOSX/ShellOut.git",
         "state": {

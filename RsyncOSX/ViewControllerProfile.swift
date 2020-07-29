@@ -88,7 +88,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.profile = CatalogProfile()
-        self.profilesArray = self.profile?.getDirectorysStrings()
+        self.profilesArray = self.profile?.getcatalogsasstringnames()
         globalMainQueue.async { () -> Void in
             self.profilesTable.reloadData()
         }

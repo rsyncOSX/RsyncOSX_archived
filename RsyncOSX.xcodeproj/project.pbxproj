@@ -74,6 +74,7 @@
 		E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */; };
 		E9374D2E1E329A5800CD3945 /* CompleteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteQuickbackupTask.swift */; };
 		E939EC4A20C048A000C47F91 /* extensionVCMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939EC4920C048A000C47F91 /* extensionVCMain.swift */; };
+		E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */; };
 		E93A64842195E3BD0040B334 /* DuCommandSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A64832195E3BD0040B334 /* DuCommandSsh.swift */; };
 		E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */; };
 		E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */; };
@@ -101,6 +102,7 @@
 		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
 		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
+		E97301B724D03E4F00652B28 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = E97301B624D03E4F00652B28 /* Files */; };
 		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
 		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
@@ -239,6 +241,7 @@
 		E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNumbers.swift; sourceTree = "<group>"; };
 		E9374D2D1E329A5800CD3945 /* CompleteQuickbackupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteQuickbackupTask.swift; sourceTree = "<group>"; };
 		E939EC4920C048A000C47F91 /* extensionVCMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCMain.swift; sourceTree = "<group>"; };
+		E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesandPaths.swift; sourceTree = "<group>"; };
 		E93A64832195E3BD0040B334 /* DuCommandSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuCommandSsh.swift; sourceTree = "<group>"; };
 		E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEstimatingTasks.swift; sourceTree = "<group>"; };
 		E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerQuickBackup.swift; sourceTree = "<group>"; };
@@ -330,6 +333,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97301B724D03E4F00652B28 /* Files in Frameworks */,
 				E957642124BF9F7C008C66E1 /* ShellOut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +424,7 @@
 				E9234FFA1EB068AE00A4C550 /* Files.swift */,
 				E9F068F31F27BA0200DDF1A1 /* ReadWriteDictionary.swift */,
 				E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */,
+				E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */,
 			);
 			name = FilesAndCatalogs;
 			sourceTree = "<group>";
@@ -844,6 +849,7 @@
 			name = RsyncOSX;
 			packageProductDependencies = (
 				E957642024BF9F7C008C66E1 /* ShellOut */,
+				E97301B624D03E4F00652B28 /* Files */,
 			);
 			productName = RsyncOSX;
 			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
@@ -912,6 +918,7 @@
 			mainGroup = A04492791D658EE800B3CE17;
 			packageReferences = (
 				E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */,
+				E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */,
 			);
 			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
 			projectDirPath = "";
@@ -1062,6 +1069,7 @@
 				E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */,
 				E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */,
 				E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */,
+				E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */,
 				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
 				E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */,
 				E9F068F21F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift in Sources */,
@@ -1426,6 +1434,14 @@
 				minimumVersion = 2.3.0;
 			};
 		};
+		E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rsyncOSX/Files";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1433,6 +1449,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */;
 			productName = ShellOut;
+		};
+		E97301B624D03E4F00652B28 /* Files */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */;
+			productName = Files;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

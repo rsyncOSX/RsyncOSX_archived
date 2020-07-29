@@ -404,7 +404,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     func initpopupbutton() {
         var profilestrings: [String]?
-        profilestrings = CatalogProfile().getDirectorysStrings()
+        profilestrings = CatalogProfile().getcatalogsasstringnames()
         profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
         self.profilepopupbutton.removeAllItems()
         self.profilepopupbutton.addItems(withTitles: profilestrings ?? [])
