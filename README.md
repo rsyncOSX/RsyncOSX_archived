@@ -16,7 +16,7 @@ RsyncOSX is compiled with support for **macOS El Capitan version 10.11 - macOS C
 
 ### Dependencies
 
- From the latest release there are two source code dependencies:
+ From the latest release there are three source code dependencies:
 
 - check for TCP connectivity by utilizing [SwiftSocket](https://github.com/swiftsocket/SwiftSocket), some functions require connections to remote servers
 - execute pre and post shellscripts by utilizing John Sundell´s [ShellOut](https://github.com/JohnSundell/ShellOut)
