@@ -13,7 +13,7 @@ class AllProfilenames {
 
     private func getprofilenames() {
         let profile = Files(whichroot: .profileRoot, configpath: ViewControllerReference.shared.configpath)
-        self.allprofiles = profile.getDirectorysStrings()
+        self.allprofiles = profile.getcatalogsasstringnames()
         guard self.allprofiles != nil else { return }
         self.allprofiles!.append(NSLocalizedString("Default profile", comment: "default profile"))
     }
