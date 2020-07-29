@@ -9,6 +9,13 @@
 
 import Foundation
 
+enum WhatToReadWrite {
+    case schedule
+    case configuration
+    case userconfig
+    case none
+}
+
 class NamesandPaths {
     var whichroot: WhichRoot?
     var rootpath: String?
@@ -25,16 +32,17 @@ class NamesandPaths {
     // Which profile to read
     var profile: String?
     // task to do
-    private var task: WhatToReadWrite?
+    var task: WhatToReadWrite?
     // Path for configuration files
-    private var filepath: String?
+    var filepath: String?
     // Set which file to read
-    private var filename: String?
+    var filename: String?
     // Documentscatalog
     var documentscatalog: String? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         return (paths.firstObject as? String)
     }
+
     // Path to ssh keypath
     var sshrootkeypath: String? {
         if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
@@ -43,6 +51,7 @@ class NamesandPaths {
             return NSHomeDirectory() + "/.ssh"
         }
     }
+
     // path to ssh identityfile
     var sshidentityfile: String? {
         if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
@@ -51,6 +60,7 @@ class NamesandPaths {
             return "id_rsa"
         }
     }
+
     // Mac serialnumber
     var macserialnumber: String? {
         if ViewControllerReference.shared.macserialnumber == nil {
@@ -92,7 +102,7 @@ class NamesandPaths {
     // Set preferences for which data to read or write
     func setpreferencesforreadingplist(whattoreadwrite: WhatToReadWrite) {
         self.task = whattoreadwrite
-        switch (self.task ?? .none) {
+        switch self.task ?? .none {
         case .schedule:
             self.plistname = "/scheduleRsync.plist"
             self.key = "Schedule"
@@ -112,7 +122,7 @@ class NamesandPaths {
         self.whichroot = whichroot
         self.setrootpath()
     }
-    
+
     init(whattoreadwrite: WhatToReadWrite, profile: String?, configpath: String?) {
         self.configpath = configpath
         self.profile = profile
