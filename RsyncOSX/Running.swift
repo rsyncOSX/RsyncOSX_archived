@@ -16,9 +16,10 @@ final class Running {
     var rsyncOSXschedisrunning: Bool = false
     var menuappnoconfig: Bool = true
 
-    func verifypathexists(pathorfilename: String) -> Bool {
+    func verifyrsyncosxsched() -> Bool {
         let fileManager = FileManager.default
-        guard fileManager.fileExists(atPath: pathorfilename) else { return false }
+        guard fileManager.fileExists(atPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") +
+            ViewControllerReference.shared.namersyncosssched) else { return false }
         return true
     }
 
