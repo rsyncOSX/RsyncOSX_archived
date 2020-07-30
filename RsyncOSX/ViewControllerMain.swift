@@ -65,9 +65,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             return
         }
-        let pathtorsyncosxschedapp: String = (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched
-        guard running.verifypathexists(pathorfilename: pathtorsyncosxschedapp) == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: pathtorsyncosxschedapp))
+        guard running.verifyrsyncosxsched() == true else { return }
+        NSWorkspace.shared.open(URL(fileURLWithPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched))
         NSApp.terminate(self)
     }
 
