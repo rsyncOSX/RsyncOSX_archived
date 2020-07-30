@@ -1,0 +1,2 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - SourcePackages/*
