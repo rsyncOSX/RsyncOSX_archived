@@ -19,27 +19,30 @@ final class ArgumentsSynchronize: RsyncParameters {
     /// - parameter dryRun: true if compute dryrun arguments, false if compute arguments for real run
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
-    func argumentssynchronize(dryRun: Bool, forDisplay: Bool) -> [String] {
-        self.localCatalog = self.config!.localCatalog
-        if self.config?.task == ViewControllerReference.shared.syncremote {
-            self.remoteargssyncremote(config: self.config!)
-        } else {
-            self.remoteargs(config: self.config!)
+    func argumentssynchronize(dryRun: Bool, forDisplay: Bool) -> [String]? {
+        if let config = self.config {
+            self.localCatalog = config.localCatalog
+            if self.config?.task == ViewControllerReference.shared.syncremote {
+                self.remoteargssyncremote(config: config)
+            } else {
+                self.remoteargs(config: config)
+            }
+            self.setParameters1To6(config: config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
+            self.setParameters8To14(config: config, dryRun: dryRun, forDisplay: forDisplay)
+            switch config.task {
+            case ViewControllerReference.shared.synchronize:
+                self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
+            case ViewControllerReference.shared.snapshot:
+                self.linkdestparameter(config: config, verify: false)
+                self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
+            case ViewControllerReference.shared.syncremote:
+                self.argumentsforsynchronizeremote(dryRun: dryRun, forDisplay: forDisplay)
+            default:
+                break
+            }
+            return self.arguments
         }
-        self.setParameters1To6(config: self.config!, dryRun: dryRun, forDisplay: forDisplay, verify: false)
-        self.setParameters8To14(config: self.config!, dryRun: dryRun, forDisplay: forDisplay)
-        switch self.config?.task {
-        case ViewControllerReference.shared.synchronize:
-            self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
-        case ViewControllerReference.shared.snapshot:
-            self.linkdestparameter(config: self.config!, verify: false)
-            self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
-        case ViewControllerReference.shared.syncremote:
-            self.argumentsforsynchronizeremote(dryRun: dryRun, forDisplay: forDisplay)
-        default:
-            break
-        }
-        return self.arguments ?? [""]
+        return nil
     }
 
     init(config: Configuration?) {

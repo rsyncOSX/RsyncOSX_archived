@@ -83,7 +83,7 @@ struct ComboboxRsyncParameters {
                 }
             }
         }
-        return (returnindex!, returnvalue!)
+        return (returnindex ?? 0, returnvalue ?? "")
     }
 
     // Function returns value of rsync a touple to set the corrosponding
@@ -116,7 +116,7 @@ struct ComboboxRsyncParameters {
         self.config = config
         self.comboBoxValues = [String]()
         for i in 0 ..< SuffixstringsRsyncParameters().rsyncArguments.count {
-            self.comboBoxValues!.append(SuffixstringsRsyncParameters().rsyncArguments[i].0)
+            self.comboBoxValues?.append(SuffixstringsRsyncParameters().rsyncArguments[i].0)
         }
     }
 }
