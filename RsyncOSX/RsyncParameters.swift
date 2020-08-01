@@ -320,7 +320,7 @@ class RsyncParameters {
     }
 
     func argumentsforsynchronize(dryRun _: Bool, forDisplay: Bool) {
-        self.arguments?.append(self.localCatalog!)
+        self.arguments?.append(self.localCatalog ?? "")
         guard self.offsiteCatalog != nil else { return }
         if (self.offsiteServer ?? "").isEmpty {
             if forDisplay { self.arguments?.append(" ") }
@@ -328,7 +328,7 @@ class RsyncParameters {
             if forDisplay { self.arguments?.append(" ") }
         } else {
             if forDisplay { self.arguments?.append(" ") }
-            self.arguments?.append(remoteargs!)
+            self.arguments?.append(remoteargs ?? "")
             if forDisplay { self.arguments?.append(" ") }
         }
     }
@@ -338,43 +338,43 @@ class RsyncParameters {
         if forDisplay { self.arguments?.append(" ") }
         self.arguments?.append(remoteargs ?? "")
         if forDisplay { self.arguments?.append(" ") }
-        self.arguments?.append(self.offsiteCatalog!)
+        self.arguments?.append(self.offsiteCatalog ?? "")
         if forDisplay { self.arguments?.append(" ") }
     }
 
     func argumentsforsynchronizesnapshot(dryRun _: Bool, forDisplay: Bool) {
         guard self.linkdestparam != nil else {
-            self.arguments?.append(self.localCatalog!)
+            self.arguments?.append(self.localCatalog ?? "")
             return
         }
-        self.arguments?.append(self.linkdestparam!)
+        self.arguments?.append(self.linkdestparam ?? "")
         if forDisplay { self.arguments?.append(" ") }
-        self.arguments?.append(self.localCatalog!)
+        self.arguments?.append(self.localCatalog ?? "")
         if (self.offsiteServer ?? "").isEmpty {
             if forDisplay { self.arguments?.append(" ") }
-            self.arguments?.append(self.offsiteCatalog!)
+            self.arguments?.append(self.offsiteCatalog ?? "")
             if forDisplay { self.arguments?.append(" ") }
         } else {
             if forDisplay { self.arguments?.append(" ") }
-            self.arguments?.append(remoteargs!)
+            self.arguments?.append(remoteargs ?? "")
             if forDisplay { self.arguments?.append(" ") }
         }
     }
 
     func argumentsforrestore(dryRun _: Bool, forDisplay: Bool, tmprestore: Bool) {
         if (self.offsiteServer ?? "").isEmpty {
-            self.arguments?.append(self.offsiteCatalog!)
+            self.arguments?.append(self.offsiteCatalog ?? "")
             if forDisplay { self.arguments?.append(" ") }
         } else {
             if forDisplay { self.arguments?.append(" ") }
-            self.arguments?.append(remoteargs!)
+            self.arguments?.append(remoteargs ?? "")
             if forDisplay { self.arguments?.append(" ") }
         }
         if tmprestore {
             let restorepath = ViewControllerReference.shared.temporarypathforrestore ?? ""
             self.arguments?.append(restorepath)
         } else {
-            self.arguments?.append(self.localCatalog!)
+            self.arguments?.append(self.localCatalog ?? "")
         }
     }
 
