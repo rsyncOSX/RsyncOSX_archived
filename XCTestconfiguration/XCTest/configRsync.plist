@@ -7,8 +7,6 @@
 		<dict>
 			<key>backupID</key>
 			<string>XCTest</string>
-			<key>batch</key>
-			<integer>0</integer>
 			<key>dateRun</key>
 			<string></string>
 			<key>hiddenID</key>
@@ -51,10 +49,10 @@
 		<dict>
 			<key>backupID</key>
 			<string>XCTest</string>
-			<key>batch</key>
-			<integer>0</integer>
 			<key>dateRun</key>
 			<string>26 Jun 2019 09:40</string>
+			<key>haltshelltasksonerror</key>
+			<integer>0</integer>
 			<key>hiddenID</key>
 			<integer>2</integer>
 			<key>localCatalog</key>
@@ -95,8 +93,6 @@
 		<dict>
 			<key>backupID</key>
 			<string>XCTest</string>
-			<key>batch</key>
-			<integer>0</integer>
 			<key>dateRun</key>
 			<string></string>
 			<key>hiddenID</key>
@@ -129,6 +125,44 @@
 			<integer>22</integer>
 			<key>task</key>
 			<string>syncremote</string>
+		</dict>
+		<dict>
+			<key>backupID</key>
+			<string>Snapshot</string>
+			<key>dateRun</key>
+			<string></string>
+			<key>haltshelltasksonerror</key>
+			<integer>0</integer>
+			<key>hiddenID</key>
+			<integer>4</integer>
+			<key>localCatalog</key>
+			<string>/Users/thomas/XCTest/</string>
+			<key>offsiteCatalog</key>
+			<string>~/XCTest/</string>
+			<key>offsiteServer</key>
+			<string>10.0.0.57</string>
+			<key>offsiteUsername</key>
+			<string>thomas</string>
+			<key>parameter1</key>
+			<string>--archive</string>
+			<key>parameter2</key>
+			<string>--verbose</string>
+			<key>parameter3</key>
+			<string>--compress</string>
+			<key>parameter4</key>
+			<string>--delete</string>
+			<key>parameter5</key>
+			<string>-e</string>
+			<key>parameter6</key>
+			<string>ssh</string>
+			<key>snapdayoffweek</key>
+			<string>Sunday</string>
+			<key>snaplast</key>
+			<integer>1</integer>
+			<key>snapshotnum</key>
+			<integer>100</integer>
+			<key>task</key>
+			<string>snapshot</string>
 		</dict>
 	</array>
 </dict>
