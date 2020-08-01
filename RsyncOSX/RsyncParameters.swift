@@ -318,7 +318,7 @@ class RsyncParameters {
     func argumentsforsynchronizeremote(dryRun _: Bool, forDisplay: Bool) {
         guard self.offsiteCatalog != nil else { return }
         if forDisplay { self.arguments?.append(" ") }
-        self.arguments?.append(remoteargs!)
+        self.arguments?.append(remoteargs ?? "")
         if forDisplay { self.arguments?.append(" ") }
         self.arguments?.append(self.offsiteCatalog!)
         if forDisplay { self.arguments?.append(" ") }
