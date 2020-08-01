@@ -234,15 +234,21 @@ class RsyncParameters {
         self.offsiteCatalog = config.offsiteCatalog
         self.offsiteUsername = config.offsiteUsername
         self.offsiteServer = config.offsiteServer
-        if self.offsiteServer!.isEmpty == false {
-            if config.rsyncdaemon != nil {
-                if config.rsyncdaemon == 1 {
-                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.offsiteCatalog!
+        if (self.offsiteServer ?? "").isEmpty == false {
+            if let offsiteUsername = self.offsiteUsername,
+                let offsiteServer = self.offsiteServer,
+                // NB: offsiteCatalog
+                let offsiteCatalog = self.offsiteCatalog
+            {
+                if config.rsyncdaemon != nil {
+                    if config.rsyncdaemon == 1 {
+                        self.remoteargs = offsiteUsername + "@" + offsiteServer + "::" + offsiteCatalog
+                    } else {
+                        self.remoteargs = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
+                    }
                 } else {
-                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
+                    self.remoteargs = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
                 }
-            } else {
-                self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
             }
         }
     }
@@ -252,15 +258,21 @@ class RsyncParameters {
         self.localCatalog = config.localCatalog
         self.offsiteUsername = config.offsiteUsername
         self.offsiteServer = config.offsiteServer
-        if self.offsiteServer!.isEmpty == false {
-            if config.rsyncdaemon != nil {
-                if config.rsyncdaemon == 1 {
-                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.localCatalog!
+        if (self.offsiteServer ?? "").isEmpty == false {
+            if let offsiteUsername = self.offsiteUsername,
+                let offsiteServer = self.offsiteServer,
+                // NB: locaCatalog
+                let localCatalog = self.localCatalog
+            {
+                if config.rsyncdaemon != nil {
+                    if config.rsyncdaemon == 1 {
+                        self.remoteargs = offsiteUsername + "@" + offsiteServer + "::" + localCatalog
+                    } else {
+                        self.remoteargs = offsiteUsername + "@" + offsiteServer + ":" + localCatalog
+                    }
                 } else {
-                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.localCatalog!
+                    self.remoteargs = offsiteUsername + "@" + offsiteServer + ":" + localCatalog
                 }
-            } else {
-                self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.localCatalog!
             }
         }
     }
@@ -270,15 +282,21 @@ class RsyncParameters {
         self.offsiteCatalog = config.offsiteCatalog + String(snapshotnum - 1) + "/"
         self.offsiteUsername = config.offsiteUsername
         self.offsiteServer = config.offsiteServer
-        if self.offsiteServer!.isEmpty == false {
-            if config.rsyncdaemon != nil {
-                if config.rsyncdaemon == 1 {
-                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + "::" + self.offsiteCatalog!
+        if (self.offsiteServer ?? "").isEmpty == false {
+            if let offsiteUsername = self.offsiteUsername,
+                let offsiteServer = self.offsiteServer,
+                // NB: offsiteCatalog
+                let offsiteCatalog = self.offsiteCatalog
+            {
+                if config.rsyncdaemon != nil {
+                    if config.rsyncdaemon == 1 {
+                        self.remoteargs = offsiteUsername + "@" + offsiteServer + "::" + offsiteCatalog
+                    } else {
+                        self.remoteargs = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
+                    }
                 } else {
-                    self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
+                    self.remoteargs = offsiteUsername + "@" + offsiteServer + ":" + offsiteCatalog
                 }
-            } else {
-                self.remoteargs = self.offsiteUsername! + "@" + self.offsiteServer! + ":" + self.offsiteCatalog!
             }
         }
     }
@@ -304,7 +322,7 @@ class RsyncParameters {
     func argumentsforsynchronize(dryRun _: Bool, forDisplay: Bool) {
         self.arguments?.append(self.localCatalog!)
         guard self.offsiteCatalog != nil else { return }
-        if self.offsiteServer!.isEmpty {
+        if (self.offsiteServer ?? "").isEmpty {
             if forDisplay { self.arguments?.append(" ") }
             self.arguments?.append(self.offsiteCatalog!)
             if forDisplay { self.arguments?.append(" ") }
@@ -332,7 +350,7 @@ class RsyncParameters {
         self.arguments?.append(self.linkdestparam!)
         if forDisplay { self.arguments?.append(" ") }
         self.arguments?.append(self.localCatalog!)
-        if self.offsiteServer!.isEmpty {
+        if (self.offsiteServer ?? "").isEmpty {
             if forDisplay { self.arguments?.append(" ") }
             self.arguments?.append(self.offsiteCatalog!)
             if forDisplay { self.arguments?.append(" ") }
@@ -344,7 +362,7 @@ class RsyncParameters {
     }
 
     func argumentsforrestore(dryRun _: Bool, forDisplay: Bool, tmprestore: Bool) {
-        if self.offsiteServer!.isEmpty {
+        if (self.offsiteServer ?? "").isEmpty {
             self.arguments?.append(self.offsiteCatalog!)
             if forDisplay { self.arguments?.append(" ") }
         } else {

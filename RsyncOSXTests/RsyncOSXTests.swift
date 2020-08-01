@@ -29,7 +29,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
 
     func testnumberofconfigurations() {
         let count = self.configurations?.getConfigurations().count
-        XCTAssertEqual(count, 3, "Should be equal to 3")
+        XCTAssertEqual(count, 4, "Should be equal to 4")
     }
 
     func testargumentsdryrun() {
@@ -89,6 +89,13 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
                        "Arguments should be equal")
     }
 
+    func testargumentssnapshot() {
+        let arguments = ["--archive", "--verbose", "--compress", "--delete", "-e", "ssh -i ~/.ssh_rsyncosx/rsyncosx -p 22",
+                         "--stats", "--link-dest=~/XCTest/99", "/Users/thomas/XCTest/", "thomas@10.0.0.57:~/XCTest/100"]
+        XCTAssertEqual(arguments, self.configurations?.arguments4rsync(index: 3, argtype: .arg),
+                       "Arguments should be equal")
+    }
+
     func testalllogs() {
         let schedules = ScheduleLoggData(sortascending: true)
         XCTAssertEqual(1, schedules.loggdata?.count, "Should be one")
@@ -138,7 +145,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
         let count = configurations.getConfigurations().count
-        XCTAssertEqual(count, 4, "Should be equal to 4")
+        XCTAssertEqual(count, 5, "Should be equal to 5")
     }
 
     func testaddnoconfig1() {
@@ -163,7 +170,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
         let count = configurations.getConfigurations().count
-        XCTAssertEqual(count, 3, "Should be equal to 3")
+        XCTAssertEqual(count, 4, "Should be equal to 4")
     }
 
     func testaddnoconfig2() {
@@ -188,7 +195,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
         let count = configurations.getConfigurations().count
-        XCTAssertEqual(count, 3, "Should be equal to 3")
+        XCTAssertEqual(count, 4, "Should be equal to 4")
     }
 
     func testreorgschedulesbefore() {
