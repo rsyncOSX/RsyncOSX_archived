@@ -322,7 +322,7 @@ class RsyncParameters {
     func argumentsforsynchronize(dryRun _: Bool, forDisplay: Bool) {
         self.arguments?.append(self.localCatalog!)
         guard self.offsiteCatalog != nil else { return }
-        if self.offsiteServer!.isEmpty {
+        if (self.offsiteServer ?? "").isEmpty {
             if forDisplay { self.arguments?.append(" ") }
             self.arguments?.append(self.offsiteCatalog!)
             if forDisplay { self.arguments?.append(" ") }
@@ -350,7 +350,7 @@ class RsyncParameters {
         self.arguments?.append(self.linkdestparam!)
         if forDisplay { self.arguments?.append(" ") }
         self.arguments?.append(self.localCatalog!)
-        if self.offsiteServer!.isEmpty {
+        if (self.offsiteServer ?? "").isEmpty {
             if forDisplay { self.arguments?.append(" ") }
             self.arguments?.append(self.offsiteCatalog!)
             if forDisplay { self.arguments?.append(" ") }
@@ -362,7 +362,7 @@ class RsyncParameters {
     }
 
     func argumentsforrestore(dryRun _: Bool, forDisplay: Bool, tmprestore: Bool) {
-        if self.offsiteServer!.isEmpty {
+        if (self.offsiteServer ?? "").isEmpty {
             self.arguments?.append(self.offsiteCatalog!)
             if forDisplay { self.arguments?.append(" ") }
         } else {
