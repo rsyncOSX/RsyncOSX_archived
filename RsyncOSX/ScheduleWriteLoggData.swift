@@ -79,10 +79,12 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.synchronize ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) == ViewControllerReference.shared.snapshot ||
             self.configurations!.getResourceConfiguration(hiddenID, resource: .task) ==
-            ViewControllerReference.shared.syncremote {
+            ViewControllerReference.shared.syncremote
+        {
             if self.schedules![i].hiddenID == hiddenID,
                 self.schedules![i].schedule == Scheduletype.manuel.rawValue,
-                self.schedules![i].dateStop == nil {
+                self.schedules![i].dateStop == nil
+            {
                 let dict = NSMutableDictionary()
                 dict.setObject(date, forKey: "dateExecuted" as NSCopying)
                 dict.setObject(result, forKey: "resultExecuted" as NSCopying)

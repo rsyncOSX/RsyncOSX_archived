@@ -182,7 +182,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private func setallscheduledtasksNSDictionary() {
         var data = [NSDictionary]()
         for i in 0 ..< (self.scheduleConfiguration?.count ?? 0) where
-            self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != Scheduletype.stopped.rawValue {
+            self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != Scheduletype.stopped.rawValue
+        {
             let dict: NSDictionary = [
                 "dateStart": self.scheduleConfiguration?[i].dateStart ?? "",
                 "dateStop": self.scheduleConfiguration?[i].dateStop ?? "",

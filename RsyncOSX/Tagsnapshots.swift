@@ -97,7 +97,8 @@ class Tagsnapshots {
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).weekOfYear ==
             self.datecomponentsfromstring(datestringlocalized: self.now).weekOfYear,
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year ==
-            self.datecomponentsfromstring(datestringlocalized: self.now).year {
+            self.datecomponentsfromstring(datestringlocalized: self.now).year
+        {
             let tag = NSLocalizedString("Keep", comment: "plan") + " " + NSLocalizedString("this week", comment: "plan")
             self.snapshotlogsandcatalogs?.snapshotslogs?[index].setValue(tag, forKey: "period")
             return true
@@ -112,7 +113,8 @@ class Tagsnapshots {
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month ==
             self.datecomponentsfromstring(datestringlocalized: self.now).month,
-            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentsfromstring(datestringlocalized: self.now).year {
+            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentsfromstring(datestringlocalized: self.now).year
+        {
             if self.datefromstring(datestringlocalized: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
                 let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("this month", comment: "plan")
                 self.snapshotlogsandcatalogs?.snapshotslogs?[index].setValue(tag, forKey: "period")
@@ -141,7 +143,8 @@ class Tagsnapshots {
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
             self.datecomponentsfromstring(datestringlocalized: self.now).month ||
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
-            self.datecomponentsfromstring(datestringlocalized: self.now).year! {
+            self.datecomponentsfromstring(datestringlocalized: self.now).year!
+        {
             if check!(self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
                 if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month == self.datecomponentsfromstring(datestringlocalized: self.now).month! - 1 {
                     let tag = NSLocalizedString("Keep", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")

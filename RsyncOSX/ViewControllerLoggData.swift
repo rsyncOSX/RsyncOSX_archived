@@ -214,7 +214,8 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         guard row < self.scheduleloggdata!.loggdata!.count else { return nil }
         let object: NSDictionary = self.scheduleloggdata!.loggdata![row]
         if tableColumn!.identifier.rawValue == "deleteCellID" ||
-            tableColumn!.identifier.rawValue == "snapCellID" {
+            tableColumn!.identifier.rawValue == "snapCellID"
+        {
             return object[tableColumn!.identifier] as? Int
         } else {
             return object[tableColumn!.identifier] as? String

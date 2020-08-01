@@ -24,7 +24,8 @@ struct ComboboxRsyncParameters {
     private func indexofrsyncparameter(_ argument: String) -> Int {
         var index: Int = -1
         loop: for i in 0 ..< SuffixstringsRsyncParameters().rsyncArguments.count where
-            argument == SuffixstringsRsyncParameters().rsyncArguments[i].0 {
+            argument == SuffixstringsRsyncParameters().rsyncArguments[i].0
+        {
             index = i
             break loop
         }

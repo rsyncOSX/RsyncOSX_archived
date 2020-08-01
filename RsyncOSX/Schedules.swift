@@ -104,7 +104,8 @@ class Schedules: ScheduleWriteLoggData {
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
                 if (sched1.value(forKey: "dateStart") as? String)!.en_us_date_from_string() >
-                    (sched2.value(forKey: "dateStart") as? String)!.en_us_date_from_string() {
+                    (sched2.value(forKey: "dateStart") as? String)!.en_us_date_from_string()
+                {
                     return true
                 } else {
                     return false

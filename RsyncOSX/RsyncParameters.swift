@@ -56,7 +56,8 @@ class RsyncParameters {
                 if config.sshport != nil || config.sshkeypathandidentityfile != nil {
                     self.sshparameterslocal(config: config, forDisplay: forDisplay)
                 } else if ViewControllerReference.shared.sshkeypathandidentityfile != nil ||
-                    ViewControllerReference.shared.sshport != nil {
+                    ViewControllerReference.shared.sshport != nil
+                {
                     self.sshparametersglobal(config: config, forDisplay: forDisplay)
                 }
             }
@@ -95,7 +96,8 @@ class RsyncParameters {
         if config.parameter14 != nil {
             if config.offsiteServer.isEmpty == true {
                 if config.parameter14! == SuffixstringsRsyncParameters().suffixstringfreebsd ||
-                    config.parameter14! == SuffixstringsRsyncParameters().suffixstringlinux {
+                    config.parameter14! == SuffixstringsRsyncParameters().suffixstringlinux
+                {
                     self.appendParameter(parameter: self.setdatesuffixlocalhost(), forDisplay: forDisplay)
                 }
             } else {

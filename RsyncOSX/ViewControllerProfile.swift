@@ -110,7 +110,8 @@ extension ViewControllerProfile: NSTableViewDataSource {
 extension ViewControllerProfile: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "profilesID"),
-                                         owner: self) as? NSTableCellView {
+                                         owner: self) as? NSTableCellView
+        {
             cell.textField?.stringValue = self.profilesArray?[row] ?? ""
             return cell
         } else {
