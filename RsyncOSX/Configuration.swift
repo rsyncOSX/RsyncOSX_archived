@@ -48,11 +48,14 @@ struct Configuration {
     var posttask: String?
     var haltshelltasksonerror: Int?
 
-    private func calculatedays(date: String) -> Double? {
-        guard date != "" else { return nil }
-        let lastbackup = date.en_us_date_from_string()
-        let seconds: TimeInterval = lastbackup.timeIntervalSinceNow
-        return seconds * (-1)
+    var lastruninseconds: Double? {
+        if let date = self.dateRun {
+            let lastbackup = date.en_us_date_from_string()
+            let seconds: TimeInterval = lastbackup.timeIntervalSinceNow
+            return seconds * (-1)
+        } else {
+            return nil
+        }
     }
 
     init(dictionary: NSDictionary) {
@@ -78,7 +81,7 @@ struct Configuration {
         // Last run of task
         if let dateRun = dictionary.object(forKey: "dateRun") {
             self.dateRun = dateRun as? String
-            if let secondssince = self.calculatedays(date: self.dateRun!) {
+            if let secondssince = self.lastruninseconds {
                 self.dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
                 if secondssince / (60 * 60 * 24) > ViewControllerReference.shared.marknumberofdayssince {
                     self.markdays = true
