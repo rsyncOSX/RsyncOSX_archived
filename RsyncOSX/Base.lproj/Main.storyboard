@@ -3109,6 +3109,7 @@ DQ
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="addbutton" destination="vgz-68-zbF" id="yru-xh-sTx"/>
                         <outlet property="addingtrailingbackslash" destination="MtH-wo-2c4" id="eiO-2X-h4m"/>
                         <outlet property="addtable" destination="ytY-cn-Iq7" id="SRE-zL-BlG"/>
                         <outlet property="backupID" destination="9T4-S6-awV" id="9jO-LC-qeB"/>
