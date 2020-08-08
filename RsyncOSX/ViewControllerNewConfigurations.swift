@@ -332,7 +332,7 @@ extension ViewControllerNewConfigurations: SetProfileinfo {
 extension ViewControllerNewConfigurations: UpdateProgress {
     func processTermination() {
         self.remote?.processTermination()
-        self.remotecapacitybutton.isEnabled = self.remote!.enableremotecapacitybutton()
+        self.remotecapacitybutton.isEnabled = self.remote?.enableremotecapacitybutton() ?? false
         globalMainQueue.async { () -> Void in
             self.remotecapacitytable.reloadData()
         }
