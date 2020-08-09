@@ -32,14 +32,14 @@ extension Attributedestring {
 extension ViewControllerMain: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in _: NSTableView) -> Int {
-        return self.configurations?.configurationsDataSourcecount() ?? 0
+        return self.configurations?.configurationsDataSource?.count ?? 0
     }
 }
 
 extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if row > self.configurations!.configurationsDataSourcecount() - 1 { return nil }
+        if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
         let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
         let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
         let markdays: Bool = self.configurations!.getConfigurations()[row].markdays

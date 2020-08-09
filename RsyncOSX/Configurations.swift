@@ -62,13 +62,6 @@ class Configurations: ReloadTable, SetSchedules {
         return self.argumentAllConfigurations ?? []
     }
 
-    // Function for getting the number of configurations used in NSTableViews
-    // - parameter none: none
-    // - returns : Int
-    func configurationsDataSourcecount() -> Int {
-        return self.configurationsDataSource?.count ?? 0
-    }
-
     // Function for getting Configurations read into memory
     // as datasource for tableViews
     // - parameter none: none
