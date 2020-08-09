@@ -205,7 +205,8 @@ class Configurations: ReloadTable, SetSchedules {
     // Function computes index by hiddenID.
     // - parameter hiddenID: hiddenID which is unique for every Configuration
     func deleteConfigurationsByhiddenID(hiddenID: Int) {
-        let index = self.getIndex(hiddenID)
+        let index = self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
+        guard index > -1 else { return }
         self.configurations?.remove(at: index)
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
@@ -247,12 +248,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func getIndex(_ hiddenID: Int) -> Int {
-        var index: Int = -1
-        loop: for i in 0 ..< (self.configurations?.count ?? 0) where self.configurations?[i].hiddenID == hiddenID {
-            index = i
-            break loop
-        }
-        return index
+        return self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
     }
 
     func gethiddenID(index: Int) -> Int {
@@ -262,7 +258,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     func removecompressparameter(index: Int, delete: Bool) {
         guard self.configurations != nil else { return }
-        guard index < self.configurations!.count else { return }
+        guard index < (self.configurations?.count ?? -1) else { return }
         if delete {
             self.configurations![index].parameter3 = ""
         } else {

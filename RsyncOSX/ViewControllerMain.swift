@@ -116,8 +116,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
             if answer {
                 // Delete Configurations and Schedules by hiddenID
-                self.configurations!.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
-                self.schedules!.deletescheduleonetask(hiddenID: hiddenID)
+                self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
+                self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
                 self.deselect()
                 self.reloadtabledata()
                 // Reset in tabSchedule
