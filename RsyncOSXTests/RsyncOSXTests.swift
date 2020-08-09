@@ -124,14 +124,15 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testaddconfig() {
+        // Local snapshot only, if not connected no snapshot task
         let configurations = ConfigurationsXCTEST(profile: "XCTest")
         let dict: NSMutableDictionary = [
             "task": ViewControllerReference.shared.snapshot,
             "backupID": "backupID",
             "localCatalog": "localCatalog",
             "offsiteCatalog": "offsiteCatalog",
-            "offsiteServer": "offsiteServer",
-            "offsiteUsername": "offsiteUsername",
+            // "offsiteServer": "offsiteServer",
+            // "offsiteUsername": "offsiteUsername",
             "parameter1": "parameter1",
             "parameter2": "parameter2",
             "parameter3": "parameter3",

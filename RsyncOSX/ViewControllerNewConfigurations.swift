@@ -174,15 +174,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.haltshelltasksonerror.state = .off
     }
 
-    private func snapshotcreatecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
-        let config: Configuration = Configuration(dictionary: dict)
-        guard config.offsiteServer.isEmpty == false else { return }
-        self.addbutton.isEnabled = false
-        let args = SnapshotCreateCatalogArguments(config: config)
-        let updatecurrent = SnapshotCreateCatalog(command: args.getCommand(), arguments: args.getArguments())
-        updatecurrent.executeProcess(outputprocess: outputprocess)
-    }
-
     @IBAction func addConfig(_: NSButton) {
         let dict: NSMutableDictionary = [
             "task": ViewControllerReference.shared.synchronize,
@@ -200,17 +191,22 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             "dryrun": self.dryrun,
             "dateRun": "",
         ]
-        if !self.offsiteCatalog.stringValue.hasSuffix("/"), self.addingtrailingbackslash.state == .off {
+        if self.localCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
+            self.localCatalog.stringValue += "/"
+            dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
+        }
+        if self.offsiteCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
             self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
         }
         if self.backuptypeselected == .snapshots {
             dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
             dict.setValue(1, forKey: "snapshotnum")
+            // Must be connected to create base remote snapshot catalog
             guard Validatenewconfigs(dict: dict).validated == true else { return }
             self.outputprocess = OutputProcess()
             // If connected create base remote snapshotcatalog
-            self.snapshotcreatecatalog(dict: dict, outputprocess: self.outputprocess)
+            self.snapshotcreateremotecatalog(dict: dict, outputprocess: self.outputprocess)
         } else if self.backuptypeselected == .syncremote {
             guard self.offsiteServer.stringValue.isEmpty == false else { return }
             dict.setValue(ViewControllerReference.shared.syncremote, forKey: "task")
@@ -264,6 +260,15 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         }
         self.resetinputfields()
     }
+
+    func snapshotcreateremotecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
+        let config: Configuration = Configuration(dictionary: dict)
+        guard config.offsiteServer.isEmpty == false else { return }
+        self.addbutton.isEnabled = false
+        let args = SnapshotCreateCatalogArguments(config: config)
+        let updatecurrent = SnapshotCreateCatalog(command: args.getCommand(), arguments: args.getArguments())
+        updatecurrent.executeProcess(outputprocess: outputprocess)
+    }
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDataSource {
@@ -274,13 +279,11 @@ extension ViewControllerNewConfigurations: NSTableViewDataSource {
 
 extension ViewControllerNewConfigurations: NSTableViewDelegate {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard self.newconfigurations?.getnewConfigurations() != nil else { return nil }
-        let object: NSMutableDictionary = self.newconfigurations!.getnewConfigurations()![row]
-        return object[tableColumn!.identifier] as? String
-    }
-
-    func tableView(_: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        self.tabledata![row].setObject(object!, forKey: (tableColumn?.identifier)! as NSCopying)
+        if let object: NSMutableDictionary = self.newconfigurations?.getnewConfigurations()![row] {
+            return object[tableColumn!.identifier] as? String
+        } else {
+            return nil
+        }
     }
 }
 
