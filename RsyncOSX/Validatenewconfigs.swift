@@ -5,11 +5,11 @@
 //  Created by Thomas Evensen on 08/01/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length cyclomatic_complexity
 
 import Foundation
 
-struct Validatenewconfigs {
+struct Validatenewconfigs: Connected {
     var validated: Bool = false
     init(dict: NSMutableDictionary) {
         guard (dict.value(forKey: "localCatalog") as? String)?.isEmpty == false, (dict.value(forKey: "offsiteCatalog") as? String)?.isEmpty == false else { return }
@@ -22,6 +22,11 @@ struct Validatenewconfigs {
         }
         if (dict.value(forKey: "task") as? String) == ViewControllerReference.shared.snapshot {
             guard (dict.value(forKey: "snapshotnum") as? Int) == 1 else { return }
+            // also check if connected because creating base remote catalog if remote server
+            // must be connected to create remote base catalog
+            if let remoteserver = dict.value(forKey: "offsiteServer") as? String {
+                guard connected(server: remoteserver) else { return }
+            }
         }
         if (dict.value(forKey: "task") as? String) == ViewControllerReference.shared.syncremote {
             guard (dict.value(forKey: "offsiteServer") as? String)?.isEmpty == false, (dict.value(forKey: "offsiteUsername") as? String)?.isEmpty == false else { return }

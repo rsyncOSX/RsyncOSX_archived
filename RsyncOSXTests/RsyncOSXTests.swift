@@ -124,14 +124,15 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testaddconfig() {
+        // Local snapshot only, if not connected no snapshot task
         let configurations = ConfigurationsXCTEST(profile: "XCTest")
         let dict: NSMutableDictionary = [
             "task": ViewControllerReference.shared.snapshot,
             "backupID": "backupID",
             "localCatalog": "localCatalog",
             "offsiteCatalog": "offsiteCatalog",
-            "offsiteServer": "offsiteServer",
-            "offsiteUsername": "offsiteUsername",
+            // "offsiteServer": "offsiteServer",
+            // "offsiteUsername": "offsiteUsername",
             "parameter1": "parameter1",
             "parameter2": "parameter2",
             "parameter3": "parameter3",
@@ -140,7 +141,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "parameter6": "parameter6",
             "dryrun": "dryrun",
             "dateRun": "",
-            "singleFile": 0,
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
@@ -165,7 +165,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "parameter6": "parameter6",
             "dryrun": "dryrun",
             "dateRun": "",
-            "singleFile": 0,
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
@@ -190,7 +189,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "parameter6": "parameter6",
             "dryrun": "dryrun",
             "dateRun": "",
-            "singleFile": 0,
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations.addNewConfigurations(dict)
