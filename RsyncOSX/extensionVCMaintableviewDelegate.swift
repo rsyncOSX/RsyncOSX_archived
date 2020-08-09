@@ -40,72 +40,76 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
-        let object: NSDictionary = self.configurations!.getConfigurationsDataSource()![row]
-        let hiddenID: Int = self.configurations!.getConfigurations()[row].hiddenID
-        let markdays: Bool = self.configurations!.getConfigurations()[row].markdays
-        let celltext = object[tableColumn!.identifier] as? String
-        if tableColumn!.identifier.rawValue == "daysID" {
-            if markdays {
-                return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-            } else {
-                return object[tableColumn!.identifier] as? String
-            }
-        } else if tableColumn!.identifier.rawValue == "offsiteServerCellID",
-            ((object[tableColumn!.identifier] as? String)?.isEmpty) == true
+        if let object = self.configurations?.getConfigurationsDataSource()?[row],
+            let hiddenID: Int = self.configurations?.getConfigurations()[row].hiddenID,
+            let markdays = self.configurations?.getConfigurations()[row].markdays,
+            let tableColumn = tableColumn
         {
-            return "localhost"
-        } else if tableColumn!.identifier.rawValue == "schedCellID" {
-            if let obj = self.schedulesortedandexpanded {
-                if obj.numberoftasks(hiddenID).0 > 0 {
-                    if obj.numberoftasks(hiddenID).1 > 3600 {
+            let celltext = object[tableColumn.identifier] as? String
+            if tableColumn.identifier.rawValue == "daysID" {
+                if markdays {
+                    return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
+                } else {
+                    return object[tableColumn.identifier] as? String
+                }
+            } else if tableColumn.identifier.rawValue == "offsiteServerCellID",
+                ((object[tableColumn.identifier] as? String)?.isEmpty) == true
+            {
+                return "localhost"
+            } else if tableColumn.identifier.rawValue == "schedCellID" {
+                if let obj = self.schedulesortedandexpanded {
+                    if obj.numberoftasks(hiddenID).0 > 0 {
+                        if obj.numberoftasks(hiddenID).1 > 3600 {
+                            return #imageLiteral(resourceName: "yellow")
+                        } else {
+                            return #imageLiteral(resourceName: "green")
+                        }
+                    }
+                }
+            } else if tableColumn.identifier.rawValue == "statCellID" {
+                if row == self.index {
+                    if self.singletask == nil {
                         return #imageLiteral(resourceName: "yellow")
                     } else {
                         return #imageLiteral(resourceName: "green")
                     }
                 }
-            }
-        } else if tableColumn!.identifier.rawValue == "statCellID" {
-            if row == self.index {
-                if self.singletask == nil {
-                    return #imageLiteral(resourceName: "yellow")
+            } else if tableColumn.identifier.rawValue == "snapCellID" {
+                let snap = object.value(forKey: "snapCellID") as? Int ?? -1
+                if snap > 0 {
+                    return String(snap - 1)
                 } else {
-                    return #imageLiteral(resourceName: "green")
+                    return ""
                 }
-            }
-        } else if tableColumn!.identifier.rawValue == "snapCellID" {
-            let snap = object.value(forKey: "snapCellID") as? Int ?? -1
-            if snap > 0 {
-                return String(snap - 1)
-            } else {
-                return ""
-            }
-        } else if tableColumn!.identifier.rawValue == "runDateCellID" {
-            let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
-            if stringdate.isEmpty {
-                return ""
-            } else {
-                return stringdate.en_us_date_from_string().localized_string_from_date()
-            }
-        } else if tableColumn!.identifier.rawValue == "Shell" {
-            let pre = object.value(forKey: "executepretask") as? Int ?? 0
-            let post = object.value(forKey: "executeposttask") as? Int ?? 0
-            if pre == 1 || post == 1 {
-                return 1
-            } else {
-                return 0
-            }
-        } else {
-            if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
-                if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
-                    tableColumn!.identifier.rawValue == "offsiteServerCellID"
-                {
-                    return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
+            } else if tableColumn.identifier.rawValue == "runDateCellID" {
+                let stringdate: String = object[tableColumn.identifier] as? String ?? ""
+                if stringdate.isEmpty {
+                    return ""
                 } else {
-                    return object[tableColumn!.identifier] as? String
+                    return stringdate.en_us_date_from_string().localized_string_from_date()
+                }
+            } else if tableColumn.identifier.rawValue == "Shell" {
+                let pre = object.value(forKey: "executepretask") as? Int ?? 0
+                let post = object.value(forKey: "executeposttask") as? Int ?? 0
+                if pre == 1 || post == 1 {
+                    return 1
+                } else {
+                    return 0
                 }
             } else {
-                return object[tableColumn!.identifier] as? String
+                if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
+                    if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
+                        tableColumn.identifier.rawValue == "offsiteServerCellID"
+                    {
+                        return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
+                    } else {
+                        return object[tableColumn.identifier] as? String
+                    }
+                } else {
+                    return object[tableColumn.identifier] as? String
+                }
             }
+            return nil
         }
         return nil
     }
