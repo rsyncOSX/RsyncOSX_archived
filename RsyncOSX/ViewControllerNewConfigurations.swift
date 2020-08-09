@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length line_length cyclomatic_complexity trailing_comma type_body_length
+//  swiftlint:disable function_body_length cyclomatic_complexity trailing_comma
 
 import Cocoa
 import Foundation
@@ -14,7 +14,6 @@ enum Typebackup {
     case synchronize
     case snapshots
     case syncremote
-    case singlefile
 }
 
 class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Delay, Index, VcMain, Checkforrsync, Help {
@@ -31,8 +30,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     // Reference to rsync parameters to use in combox
     var comboBoxValues = [ViewControllerReference.shared.synchronize,
                           ViewControllerReference.shared.snapshot,
-                          ViewControllerReference.shared.syncremote,
-                          "single file"]
+                          ViewControllerReference.shared.syncremote]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
 
@@ -121,8 +119,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             self.backuptypeselected = .snapshots
         case 2:
             self.backuptypeselected = .syncremote
-        case 3:
-            self.backuptypeselected = .singlefile
         default:
             self.backuptypeselected = .synchronize
         }
@@ -203,12 +199,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             "parameter6": self.ssh,
             "dryrun": self.dryrun,
             "dateRun": "",
-            "singleFile": 0,
         ]
-        if !self.localCatalog.stringValue.hasSuffix("/"), self.backuptypeselected != .singlefile, self.addingtrailingbackslash.state == .off {
-            self.localCatalog.stringValue += "/"
-            dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
-        }
         if !self.offsiteCatalog.stringValue.hasSuffix("/"), self.addingtrailingbackslash.state == .off {
             self.offsiteCatalog.stringValue += "/"
             dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
@@ -222,8 +213,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         } else if self.backuptypeselected == .syncremote {
             guard self.offsiteServer.stringValue.isEmpty == false else { return }
             dict.setValue(ViewControllerReference.shared.syncremote, forKey: "task")
-        } else if self.backuptypeselected == .singlefile {
-            dict.setValue(1, forKey: "singleFile")
         }
         // Pre task
         if self.pretask.stringValue.isEmpty == false {

@@ -37,7 +37,6 @@ class ConfigurationsXCTEST: Configurations {
             }
         }
         dict.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
-        dict.removeObject(forKey: "singleFile")
         array.append(dict)
         guard Validatenewconfigs(dict: dict).validated == true else { return }
         self.appendconfigurationstomemory(dict: array[array.count - 1])
@@ -45,7 +44,7 @@ class ConfigurationsXCTEST: Configurations {
 
     override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).getConfigurations()
+        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
         for i in 0 ..< (store?.count ?? 0) {
             if ViewControllerReference.shared.synctasks.contains(store![i].task) {
                 self.configurations?.append(store![i])

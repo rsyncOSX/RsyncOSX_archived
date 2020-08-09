@@ -303,7 +303,7 @@ class Configurations: ReloadTable, SetSchedules {
 
     func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).getConfigurations()
+        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
         for i in 0 ..< (store?.count ?? 0) {
             if ViewControllerReference.shared.synctasks.contains(store![i].task) {
                 self.configurations?.append(store![i])

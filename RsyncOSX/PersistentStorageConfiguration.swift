@@ -15,62 +15,64 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
 
     // Variable computes max hiddenID used
     // MaxhiddenID is used when new configurations are added.
-    private var maxhiddenID: Int {
+    var maxhiddenID: Int {
         // Reading Configurations from memory
-        let store: [Configuration] = self.configurations!.getConfigurations()
-        if store.count > 0 {
-            _ = store.sorted { (config1, config2) -> Bool in
-                if config1.hiddenID > config2.hiddenID {
-                    return true
-                } else {
-                    return false
+        if let store = self.configurations?.getConfigurations() {
+            if store.count > 0 {
+                _ = store.sorted { (config1, config2) -> Bool in
+                    if config1.hiddenID > config2.hiddenID {
+                        return true
+                    } else {
+                        return false
+                    }
                 }
+                let index = store.count - 1
+                return store[index].hiddenID
             }
-            let index = store.count - 1
-            return store[index].hiddenID
         } else {
             return 0
         }
+        return 0
     }
 
     // Read configurations from persisten store
-    func getConfigurations() -> [Configuration]? {
+    func readconfigurations() -> [Configuration]? {
         guard self.configurationsasdictionary != nil else { return nil }
-        var Configurations = [Configuration]()
-        for dict in self.configurationsasdictionary! {
-            let conf = Configuration(dictionary: dict)
-            Configurations.append(conf)
+        var configurations = [Configuration]()
+        for dict in self.configurationsasdictionary ?? [] {
+            configurations.append(Configuration(dictionary: dict))
         }
-        return Configurations
+        return configurations
     }
 
     // Saving Configuration from MEMORY to persistent store
     // Reads Configurations from MEMORY and saves to persistent Store
     func saveconfigInMemoryToPersistentStore() {
         var array = [NSDictionary]()
-        let configs: [Configuration] = self.configurations!.getConfigurations()
-        for i in 0 ..< configs.count {
-            if let dict: NSMutableDictionary = ConvertConfigurations(index: i).configuration {
-                array.append(dict)
+        if let configurations = self.configurations?.getConfigurations() {
+            for i in 0 ..< configurations.count {
+                if let dict: NSMutableDictionary = ConvertConfigurations(index: i).configuration {
+                    array.append(dict)
+                }
             }
+            self.writeToStore(array: array)
         }
-        self.writeToStore(array: array)
     }
 
     // Add new configuration in memory to permanent storage
     func newConfigurations(dict: NSMutableDictionary) {
         var array = [NSDictionary]()
-        let configs: [Configuration] = self.configurations!.getConfigurations()
-        for i in 0 ..< configs.count {
-            if let dict: NSMutableDictionary = ConvertConfigurations(index: i).configuration {
-                array.append(dict)
+        if let configs: [Configuration] = self.configurations?.getConfigurations() {
+            for i in 0 ..< configs.count {
+                if let dict: NSMutableDictionary = ConvertConfigurations(index: i).configuration {
+                    array.append(dict)
+                }
             }
+            dict.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
+            array.append(dict)
+            self.configurations?.appendconfigurationstomemory(dict: array[array.count - 1])
+            self.saveconfigInMemoryToPersistentStore()
         }
-        dict.setObject(self.maxhiddenID + 1, forKey: "hiddenID" as NSCopying)
-        dict.removeObject(forKey: "singleFile")
-        array.append(dict)
-        self.configurations!.appendconfigurationstomemory(dict: array[array.count - 1])
-        self.saveconfigInMemoryToPersistentStore()
     }
 
     // Writing configuration to persistent store
