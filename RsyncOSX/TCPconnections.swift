@@ -44,14 +44,14 @@ class TCPconnections: SetConfigurations, Delay {
     func testAllremoteserverConnections() {
         self.indexBoolremoteserverOff = nil
         self.indexBoolremoteserverOff = [Bool]()
-        guard (self.configurations?.configurationsDataSourcecount() ?? -1) > 0 else {
+        guard (self.configurations?.configurationsDataSource?.count ?? -1) > 0 else {
             // Tell main view profile menu might presented
             self.newprofileDelegate?.reloadprofilepopupbutton()
             return
         }
         globalDefaultQueue.async { () -> Void in
             var port: Int = 22
-            for i in 0 ..< (self.configurations?.configurationsDataSourcecount() ?? 0) {
+            for i in 0 ..< (self.configurations?.configurationsDataSource?.count ?? 0) {
                 if let config = self.configurations?.getConfigurations()[i] {
                     if config.offsiteServer.isEmpty == false {
                         if let sshport: Int = config.sshport { port = sshport }
@@ -65,7 +65,7 @@ class TCPconnections: SetConfigurations, Delay {
                         self.indexBoolremoteserverOff!.append(false)
                     }
                     // Reload table when all remote servers are checked
-                    if i == ((self.configurations?.configurationsDataSourcecount() ?? 0) - 1) {
+                    if i == ((self.configurations?.configurationsDataSource?.count ?? 0) - 1) {
                         // Send message to do a refresh table in main view
                         self.testconnectionsDelegate?.displayConnections()
                         // Tell main view profile menu might presented

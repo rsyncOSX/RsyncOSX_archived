@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable cyclomatic_complexity line_length
+//  swiftlint:disable line_length
 
 import Cocoa
 import Foundation
@@ -62,13 +62,6 @@ class Configurations: ReloadTable, SetSchedules {
         return self.argumentAllConfigurations ?? []
     }
 
-    // Function for getting the number of configurations used in NSTableViews
-    // - parameter none: none
-    // - returns : Int
-    func configurationsDataSourcecount() -> Int {
-        return self.configurationsDataSource?.count ?? 0
-    }
-
     // Function for getting Configurations read into memory
     // as datasource for tableViews
     // - parameter none: none
@@ -81,7 +74,8 @@ class Configurations: ReloadTable, SetSchedules {
     // - parameter none: none
     // - returns : Array of NSDictionary
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter {
+        guard self.configurations != nil else { return nil }
+        var configurations = self.configurations!.filter {
             ViewControllerReference.shared.synctasks.contains($0.task)
         }
         var data = [NSMutableDictionary]()
@@ -184,12 +178,12 @@ class Configurations: ReloadTable, SetSchedules {
         let number = Numbers(outputprocess: outputprocess)
         let hiddenID = self.gethiddenID(index: index)
         let numbers = number.stats()
-        self.schedules!.addlog(hiddenID: hiddenID, result: numbers)
-        if self.configurations![index].task == ViewControllerReference.shared.snapshot {
+        self.schedules?.addlog(hiddenID: hiddenID, result: numbers)
+        if self.configurations?[index].task == ViewControllerReference.shared.snapshot {
             self.increasesnapshotnum(index: index)
         }
         let currendate = Date()
-        self.configurations![index].dateRun = currendate.en_us_string_from_date()
+        self.configurations?[index].dateRun = currendate.en_us_string_from_date()
         // Saving updated configuration in memory to persistent store
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
         // Call the view and do a refresh of tableView
@@ -202,7 +196,7 @@ class Configurations: ReloadTable, SetSchedules {
     // - parameter config: updated configuration
     // - parameter index: index to Configuration to replace by config
     func updateConfigurations(_ config: Configuration, index: Int) {
-        self.configurations![index] = config
+        self.configurations?[index] = config
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
@@ -211,8 +205,9 @@ class Configurations: ReloadTable, SetSchedules {
     // Function computes index by hiddenID.
     // - parameter hiddenID: hiddenID which is unique for every Configuration
     func deleteConfigurationsByhiddenID(hiddenID: Int) {
-        let index = self.getIndex(hiddenID)
-        self.configurations!.remove(at: index)
+        let index = self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
+        guard index > -1 else { return }
+        self.configurations?.remove(at: index)
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
@@ -222,52 +217,48 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String {
-        guard hiddenID > -1 else { return "" }
-        let result = self.configurations!.filter { ($0.hiddenID == hiddenID) }
-        guard result.count > 0 else { return "" }
-        switch resource {
-        case .localCatalog:
-            return result[0].localCatalog
-        case .remoteCatalog:
-            return result[0].offsiteCatalog
-        case .offsiteServer:
-            if result[0].offsiteServer.isEmpty {
-                return "localhost"
-            } else {
-                return result[0].offsiteServer
+        if let result = self.configurations?.filter({ ($0.hiddenID == hiddenID) }) {
+            switch resource {
+            case .localCatalog:
+                return result[0].localCatalog
+            case .remoteCatalog:
+                return result[0].offsiteCatalog
+            case .offsiteServer:
+                if result[0].offsiteServer.isEmpty {
+                    return "localhost"
+                } else {
+                    return result[0].offsiteServer
+                }
+            case .task:
+                return result[0].task
+            case .backupid:
+                return result[0].backupID
+            case .offsiteusername:
+                return result[0].offsiteUsername
+            case .sshport:
+                if result[0].sshport != nil {
+                    return String(result[0].sshport!)
+                } else {
+                    return ""
+                }
             }
-        case .task:
-            return result[0].task
-        case .backupid:
-            return result[0].backupID
-        case .offsiteusername:
-            return result[0].offsiteUsername
-        case .sshport:
-            if result[0].sshport != nil {
-                return String(result[0].sshport!)
-            } else {
-                return ""
-            }
+        } else {
+            return ""
         }
     }
 
     func getIndex(_ hiddenID: Int) -> Int {
-        var index: Int = -1
-        loop: for i in 0 ..< self.configurations!.count where self.configurations![i].hiddenID == hiddenID {
-            index = i
-            break loop
-        }
-        return index
+        return self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
     }
 
     func gethiddenID(index: Int) -> Int {
         guard index != -1, index < (self.configurations?.count ?? -1) else { return -1 }
-        return self.configurations![index].hiddenID
+        return self.configurations?[index].hiddenID ?? -1
     }
 
     func removecompressparameter(index: Int, delete: Bool) {
         guard self.configurations != nil else { return }
-        guard index < self.configurations!.count else { return }
+        guard index < (self.configurations?.count ?? -1) else { return }
         if delete {
             self.configurations![index].parameter3 = ""
         } else {
@@ -276,8 +267,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func removeedeleteparameter(index: Int, delete: Bool) {
-        guard self.configurations != nil else { return }
-        guard index < self.configurations!.count else { return }
+        guard index < (self.configurations?.count ?? -1) else { return }
         if delete {
             self.configurations![index].parameter4 = ""
         } else {
@@ -286,8 +276,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func removeesshparameter(index: Int, delete: Bool) {
-        guard self.configurations != nil else { return }
-        guard index < self.configurations!.count else { return }
+        guard index < (self.configurations?.count ?? -1) else { return }
         if delete {
             self.configurations![index].parameter5 = ""
         } else {
@@ -296,8 +285,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     private func increasesnapshotnum(index: Int) {
-        guard self.configurations != nil else { return }
-        let num = self.configurations![index].snapshotnum ?? 0
+        let num = self.configurations?[index].snapshotnum ?? 0
         self.configurations![index].snapshotnum = num + 1
     }
 
