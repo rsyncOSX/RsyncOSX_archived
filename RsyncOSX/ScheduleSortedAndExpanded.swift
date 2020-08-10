@@ -141,10 +141,12 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculates number of future Schedules ID by hiddenID
     func numberoftasks(_ hiddenID: Int) -> Futureschedules {
-        let result = self.sortedschedules?.filter { (($0.value(forKey: "hiddenID") as? Int)! == hiddenID) }
-        guard result?.count ?? 0 > 0 else { return (0, 0) }
-        let timetostart = result![0].value(forKey: "timetostart") as? Double ?? 0
-        return (result!.count, timetostart)
+        if let result = self.sortedschedules?.filter({ (($0.value(forKey: "hiddenID") as? Int) == hiddenID) }) {
+            guard result.count > 0 else { return (0, 0) }
+            let timetostart = result[0].value(forKey: "timetostart") as? Double ?? 0
+            return (result.count, timetostart)
+        }
+        return (0, 0)
     }
 
     func sortandcountscheduledonetask(_ hiddenID: Int, profilename: String?, number: Bool) -> String {
