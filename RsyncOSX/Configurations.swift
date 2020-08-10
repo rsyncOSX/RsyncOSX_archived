@@ -49,30 +49,22 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     // Function for getting Configurations read into memory
-    // - parameter none: none
-    // - returns : Array of configurations
     func getConfigurations() -> [Configuration] {
         return self.configurations ?? []
     }
 
     // Function for getting arguments for all Configurations read into memory
-    // - parameter none: none
-    // - returns : Array of arguments
     func getargumentAllConfigurations() -> [ArgumentsOneConfiguration] {
         return self.argumentAllConfigurations ?? []
     }
 
     // Function for getting Configurations read into memory
     // as datasource for tableViews
-    // - parameter none: none
-    // - returns : Array of Configurations
     func getConfigurationsDataSource() -> [NSDictionary]? {
         return self.configurationsDataSource
     }
 
     // Function for getting all Configurations
-    // - parameter none: none
-    // - returns : Array of NSDictionary
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
         guard self.configurations != nil else { return nil }
         var configurations = self.configurations!.filter {
@@ -96,7 +88,8 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func uniqueserversandlogins() -> [NSDictionary]? {
-        var configurations: [Configuration] = self.configurations!.filter {
+        guard self.configurations != nil else { return nil }
+        var configurations = self.configurations!.filter {
             ViewControllerReference.shared.synctasks.contains($0.task)
         }
         var data = [NSDictionary]()
@@ -116,11 +109,8 @@ class Configurations: ReloadTable, SetSchedules {
         return data
     }
 
-    // Function computes arguments for rsync, either arguments for
+    // Function return arguments for rsync, either arguments for
     // real runn or arguments for --dry-run for Configuration at selected index
-    // - parameter index: index of Configuration
-    // - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
-    // - returns : array of Strings holding all computed arguments
     func arguments4rsync(index: Int, argtype: ArgumentsRsync) -> [String] {
         let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
@@ -133,11 +123,8 @@ class Configurations: ReloadTable, SetSchedules {
         }
     }
 
-    // Function computes arguments for rsync, either arguments for
+    // Function return arguments for rsync, either arguments for
     // real runn or arguments for --dry-run for Configuration at selected index
-    // - parameter index: index of Configuration
-    // - parameter argtype : either .arg or .argdryRun (of enumtype argumentsRsync)
-    // - returns : array of Strings holding all computed arguments
     func arguments4restore(index: Int, argtype: ArgumentsRsync) -> [String] {
         let allarguments = self.argumentAllConfigurations![index]
         switch argtype {
@@ -168,7 +155,6 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     // Function is adding new Configurations to existing in memory.
-    // - parameter dict : new record configuration
     func appendconfigurationstomemory(dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
         self.configurations!.append(config)
@@ -193,8 +179,6 @@ class Configurations: ReloadTable, SetSchedules {
 
     // Function is updating Configurations in memory (by record) and
     // then saves updated Configurations from memory to persistent store
-    // - parameter config: updated configuration
-    // - parameter index: index to Configuration to replace by config
     func updateConfigurations(_ config: Configuration, index: Int) {
         self.configurations?[index] = config
         _ = PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
@@ -203,7 +187,6 @@ class Configurations: ReloadTable, SetSchedules {
     // Function deletes Configuration in memory at hiddenID and
     // then saves updated Configurations from memory to persistent store.
     // Function computes index by hiddenID.
-    // - parameter hiddenID: hiddenID which is unique for every Configuration
     func deleteConfigurationsByhiddenID(hiddenID: Int) {
         let index = self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
         guard index > -1 else { return }
