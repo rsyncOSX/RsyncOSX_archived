@@ -156,7 +156,7 @@ class Tagsnapshots {
                 return false
             } else {
                 let date = self.datefromstring(datestringlocalized: datesnapshotstring)
-                if date.ispreviosmonth() {
+                if date.ispreviousmont {
                     let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
                     self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(tag, forKey: "period")
                 } else {
