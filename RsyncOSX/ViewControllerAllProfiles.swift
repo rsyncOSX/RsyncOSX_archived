@@ -46,9 +46,13 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         }
         switch self.filterby ?? .localcatalog {
         case .executedate:
-            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortascending)
+            self.allprofiles?.allconfigurationsasdictionary =
+                self.allprofiles?.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary,
+                                             sortdirection: self.sortascending)
         default:
-            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortby: self.filterby ?? .localcatalog, sortdirection: self.sortascending)
+            self.allprofiles?.allconfigurationsasdictionary =
+                self.allprofiles?.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary,
+                                               sortby: self.filterby ?? .localcatalog, sortdirection: self.sortascending)
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
@@ -200,9 +204,13 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             return
         }
         if sortbystring {
-            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortby: self.filterby!, sortdirection: self.sortascending)
+            self.allprofiles?.allconfigurationsasdictionary =
+                self.allprofiles?.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary,
+                                               sortby: self.filterby!, sortdirection: self.sortascending)
         } else {
-            self.allprofiles?.allconfigurationsasdictionary = self.allprofiles?.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary, sortdirection: self.sortascending)
+            self.allprofiles?.allconfigurationsasdictionary =
+                self.allprofiles?.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary,
+                                             sortdirection: self.sortascending)
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
@@ -245,7 +253,8 @@ extension ViewControllerAllProfiles: UpdateProgress {
         if let index = self.index {
             self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getused(), forKey: "used")
             self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getavail(), forKey: "avail")
-            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getpercentavaliable(), forKey: "availpercent")
+            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getpercentavaliable(),
+                                                                             forKey: "availpercent")
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
