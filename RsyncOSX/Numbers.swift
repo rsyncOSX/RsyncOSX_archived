@@ -95,29 +95,29 @@ final class Numbers: SetConfigurations {
         guard self.new?.count ?? -1 > 0 else { return }
         guard self.delete?.count ?? -1 > 0 else { return }
         // Ver3 of rsync adds "," as 1000 mark, must replace it and then split numbers into components
-        let filesPart = self.files![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-        let filesPartSize = self.filesSize![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-        let totfilesPart = self.totfilesNum![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-        let totfilesPartSize = self.totfileSize![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-        let newPart = self.new![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
-        let deletePart = self.delete![0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+        let filesPart = self.files?[0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+        let filesPartSize = self.filesSize?[0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+        let totfilesPart = self.totfilesNum?[0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+        let totfilesPartSize = self.totfileSize?[0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+        let newPart = self.new?[0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
+        let deletePart = self.delete?[0].replacingOccurrences(of: ",", with: "").components(separatedBy: " ")
         // ["Number", "of", "regular", "files", "transferred:", "24"]
         // ["Total", "transferred", "file", "size:", "281653", "bytes"]
         // ["Number", "of", "files:", "3956", "(reg:", "3197", "dir:", "758", "link:", "1)"]
         // ["Total", "file", "size:", "1016385159", "bytes"]
         // ["Number" "of" "created" "files:" "0"]
         // ["Number" "of" "deleted" "files:" "0"]
-        if filesPart.count > 5 { self.transferNum = Int(filesPart[5]) } else { self.transferNum = 0 }
-        if filesPartSize.count > 4 { self.transferNumSize = Double(filesPartSize[4]) } else { self.transferNumSize = 0 }
-        if totfilesPart.count > 5 { self.totNum = Int(totfilesPart[5]) } else { self.totNum = 0 }
-        if totfilesPartSize.count > 3 { self.totNumSize = Double(totfilesPartSize[3]) } else { self.totNumSize = 0 }
-        if totfilesPart.count > 7 {
-            self.totDir = Int(totfilesPart[7].replacingOccurrences(of: ")", with: ""))
+        if filesPart?.count ?? 0 > 5 { self.transferNum = Int(filesPart?[5] ?? "") } else { self.transferNum = 0 }
+        if filesPartSize?.count ?? 0 > 4 { self.transferNumSize = Double(filesPartSize?[4] ?? "") } else { self.transferNumSize = 0 }
+        if totfilesPart?.count ?? 0 > 5 { self.totNum = Int(totfilesPart?[5] ?? "") } else { self.totNum = 0 }
+        if totfilesPartSize?.count ?? 0 > 3 { self.totNumSize = Double(totfilesPartSize?[3] ?? "") } else { self.totNumSize = 0 }
+        if totfilesPart?.count ?? 0 > 7 {
+            self.totDir = Int((totfilesPart?[7] ?? "").replacingOccurrences(of: ")", with: ""))
         } else {
             self.totDir = 0
         }
-        if newPart.count > 4 { self.newfiles = Int(newPart[4]) } else { self.newfiles = 0 }
-        if deletePart.count > 4 { self.deletefiles = Int(deletePart[4]) } else { self.deletefiles = 0 }
+        if newPart?.count ?? 0 > 4 { self.newfiles = Int(newPart?[4] ?? "") } else { self.newfiles = 0 }
+        if deletePart?.count ?? 0 > 4 { self.deletefiles = Int(deletePart?[4] ?? "") } else { self.deletefiles = 0 }
     }
 
     private func resultrsyncver2() {
