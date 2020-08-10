@@ -81,7 +81,7 @@ final class Numbers: SetConfigurations {
 
     private func checandadjustknumbers() {
         guard self.transferNum != nil else { return }
-        if self.transferNum! > 0 {
+        if (self.transferNum ?? 0) > 0 {
             self.totNum = (self.totNum ?? 0) - (self.transferNum ?? 0)
             self.totNumSize = (self.totNumSize ?? 0) - (self.transferNumSize ?? 0)
         }
@@ -108,9 +108,13 @@ final class Numbers: SetConfigurations {
         // ["Number" "of" "created" "files:" "0"]
         // ["Number" "of" "deleted" "files:" "0"]
         if filesPart?.count ?? 0 > 5 { self.transferNum = Int(filesPart?[5] ?? "") } else { self.transferNum = 0 }
-        if filesPartSize?.count ?? 0 > 4 { self.transferNumSize = Double(filesPartSize?[4] ?? "") } else { self.transferNumSize = 0 }
+        if filesPartSize?.count ?? 0 > 4 { self.transferNumSize =
+            Double(filesPartSize?[4] ?? "")
+        } else { self.transferNumSize = 0 }
         if totfilesPart?.count ?? 0 > 5 { self.totNum = Int(totfilesPart?[5] ?? "") } else { self.totNum = 0 }
-        if totfilesPartSize?.count ?? 0 > 3 { self.totNumSize = Double(totfilesPartSize?[3] ?? "") } else { self.totNumSize = 0 }
+        if totfilesPartSize?.count ?? 0 > 3 { self.totNumSize =
+            Double(totfilesPartSize?[3] ?? "")
+        } else { self.totNumSize = 0 }
         if totfilesPart?.count ?? 0 > 7 {
             self.totDir = Int((totfilesPart?[7] ?? "").replacingOccurrences(of: ")", with: ""))
         } else {
@@ -125,18 +129,22 @@ final class Numbers: SetConfigurations {
         guard self.filesSize?.count ?? -1 > 0 else { return }
         guard self.totfilesNum?.count ?? -1 > 0 else { return }
         guard self.totfileSize?.count ?? -1 > 0 else { return }
-        let filesPart = self.files![0].components(separatedBy: " ")
-        let filesPartSize = self.filesSize![0].components(separatedBy: " ")
-        let totfilesPart = self.totfilesNum![0].components(separatedBy: " ")
-        let totfilesPartSize = self.totfileSize![0].components(separatedBy: " ")
+        let filesPart = self.files?[0].components(separatedBy: " ")
+        let filesPartSize = self.filesSize?[0].components(separatedBy: " ")
+        let totfilesPart = self.totfilesNum?[0].components(separatedBy: " ")
+        let totfilesPartSize = self.totfileSize?[0].components(separatedBy: " ")
         // ["Number", "of", "files", "transferred:", "24"]
         // ["Total", "transferred", "file", "size:", "281579", "bytes"]
         // ["Number", "of", "files:", "3956"]
         // ["Total", "file", "size:", "1016385085", "bytes"]
-        if filesPart.count > 4 { self.transferNum = Int(filesPart[4]) } else { self.transferNum = 0 }
-        if filesPartSize.count > 4 { self.transferNumSize = Double(filesPartSize[4]) } else { self.transferNumSize = 0 }
-        if totfilesPart.count > 3 { self.totNum = Int(totfilesPart[3]) } else { self.totNum = 0 }
-        if totfilesPartSize.count > 3 { self.totNumSize = Double(totfilesPartSize[3]) } else { self.totNumSize = 0 }
+        if filesPart?.count ?? 0 > 4 { self.transferNum = Int(filesPart?[4] ?? "") } else { self.transferNum = 0 }
+        if filesPartSize?.count ?? 0 > 4 { self.transferNumSize =
+            Double(filesPartSize?[4] ?? "")
+        } else { self.transferNumSize = 0 }
+        if totfilesPart?.count ?? 0 > 3 { self.totNum = Int(totfilesPart?[3] ?? "") } else { self.totNum = 0 }
+        if totfilesPartSize?.count ?? 0 > 3 { self.totNumSize =
+            Double(totfilesPartSize?[3] ?? "")
+        } else { self.totNumSize = 0 }
         // Rsync ver 2.x does not count directories, new files or deleted files
         self.totDir = 0
         self.newfiles = 0
@@ -201,28 +209,28 @@ final class Numbers: SetConfigurations {
 
     init(outputprocess: OutputProcess?) {
         guard outputprocess != nil else { return }
-        self.output = outputprocess!.trimoutput(trim: .two)
+        self.output = outputprocess?.trimoutput(trim: .two)
         // Getting the summarized output from output.
         if (self.output?.count ?? 0) > 2 {
-            self.resultRsync = (self.output![(self.output?.count ?? 0) - 2])
+            self.resultRsync = (self.output?[(self.output?.count ?? 0) - 2])
         }
-        self.files = self.output!.filter { ($0.contains("files transferred:")) }
+        self.files = self.output?.filter { ($0.contains("files transferred:")) }
         // ver 3.x - [Number of regular files transferred: 24]
         // ver 2.x - [Number of files transferred: 24]
-        self.filesSize = self.output!.filter { ($0.contains("Total transferred file size:")) }
+        self.filesSize = self.output?.filter { ($0.contains("Total transferred file size:")) }
         // ver 3.x - [Total transferred file size: 278,642 bytes]
         // ver 2.x - [Total transferred file size: 278197 bytes]
-        self.totfileSize = self.output!.filter { ($0.contains("Total file size:")) }
+        self.totfileSize = self.output?.filter { ($0.contains("Total file size:")) }
         // ver 3.x - [Total file size: 1,016,382,148 bytes]
         // ver 2.x - [Total file size: 1016381703 bytes]
-        self.totfilesNum = self.output!.filter { ($0.contains("Number of files:")) }
+        self.totfilesNum = self.output?.filter { ($0.contains("Number of files:")) }
         // ver 3.x - [Number of files: 3,956 (reg: 3,197, dir: 758, link: 1)]
         // ver 2.x - [Number of files: 3956]
         // New files
-        self.new = self.output!.filter { ($0.contains("Number of created files:")) }
+        self.new = self.output?.filter { ($0.contains("Number of created files:")) }
         // Delete files
-        self.delete = self.output!.filter { ($0.contains("Number of deleted files:")) }
-        if files!.count == 1, filesSize!.count == 1, totfileSize!.count == 1, totfilesNum!.count == 1 {
+        self.delete = self.output?.filter { ($0.contains("Number of deleted files:")) }
+        if files?.count == 1, filesSize?.count == 1, totfileSize?.count == 1, totfilesNum?.count == 1 {
             if ViewControllerReference.shared.rsyncversion3 {
                 self.resultrsyncver3()
                 self.checandadjustknumbers()
@@ -232,7 +240,7 @@ final class Numbers: SetConfigurations {
             }
         } else {
             // If it breaks set number of transferred files to size of output.
-            self.transferNum = (self.output?.count ?? 0)
+            self.transferNum = self.output?.count ?? 0
         }
     }
 }
