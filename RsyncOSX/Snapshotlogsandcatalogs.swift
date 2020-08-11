@@ -39,10 +39,10 @@ final class Snapshotlogsandcatalogs {
 
     private func reducetosnapshotlogs() {
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) {
-            if let dateRun = self.snapshotslogs![i].object(forKey: "dateExecuted") {
+            if let dateRun = self.snapshotslogs?[i].object(forKey: "dateExecuted") {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun as? String ?? "") {
                     let dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
-                    self.snapshotslogs![i].setObject(dayssincelastbackup, forKey: "days" as NSCopying)
+                    self.snapshotslogs?[i].setObject(dayssincelastbackup, forKey: "days" as NSCopying)
                 }
             }
         }
@@ -50,19 +50,19 @@ final class Snapshotlogsandcatalogs {
 
     private func mergeremotecatalogsandlogs() {
         for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
-            if self.snapshotcatalogs![i].contains(".DS_Store") == false {
-                let snapshotnum = "(" + self.snapshotcatalogs![i].dropFirst(2) + ")"
+            if self.snapshotcatalogs?[i].contains(".DS_Store") == false {
+                let snapshotnum = "(" + (self.snapshotcatalogs?[i] ?? "").dropFirst(2) + ")"
                 let filter = self.snapshotslogs?.filter { ($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum) }
-                if filter!.count == 1 {
-                    filter![0].setObject(self.snapshotcatalogs![i], forKey: "snapshotCatalog" as NSCopying)
+                if filter?.count == 1 {
+                    filter?[0].setObject(self.snapshotcatalogs![i], forKey: "snapshotCatalog" as NSCopying)
                 } else {
                     let dict: NSMutableDictionary = ["snapshotCatalog": self.snapshotcatalogs![i],
                                                      "dateExecuted": "no log"]
-                    self.snapshotslogs!.append(dict)
+                    self.snapshotslogs?.append(dict)
                 }
             }
         }
-        let sorted = self.snapshotslogs!.sorted { (di1, di2) -> Bool in
+        let sorted = self.snapshotslogs?.sorted { (di1, di2) -> Bool in
             let str1 = di1.value(forKey: "snapshotCatalog") as? String
             let str2 = di2.value(forKey: "snapshotCatalog") as? String
             let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
@@ -73,7 +73,7 @@ final class Snapshotlogsandcatalogs {
                 return !self.getsnapshots
             }
         }
-        self.snapshotslogs = sorted.filter { ($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false }
+        self.snapshotslogs = sorted?.filter { ($0.value(forKey: "snapshotCatalog") as? String)?.isEmpty == false }
     }
 
     private func calculatedays(datestringlocalized: String) -> Double? {
@@ -87,9 +87,9 @@ final class Snapshotlogsandcatalogs {
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) - 1 {
             if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
                 if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
-                let snaproot = self.config!.offsiteCatalog
-                let snapcatalog = self.snapshotslogs![i].value(forKey: "snapshotCatalog") as? String
-                self.snapshotcatalogstodelete!.append(snaproot + snapcatalog!.dropFirst(2))
+                let snaproot = self.config?.offsiteCatalog
+                let snapcatalog = self.snapshotslogs?[i].value(forKey: "snapshotCatalog") as? String
+                self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
             }
         }
     }
@@ -98,7 +98,7 @@ final class Snapshotlogsandcatalogs {
         var j: Int = 0
         guard self.snapshotslogs != nil else { return 0 }
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) - 1 {
-            let days: String = self.snapshotslogs![i].value(forKey: "days") as? String ?? "0"
+            let days: String = self.snapshotslogs?[i].value(forKey: "days") as? String ?? "0"
             if Double(days)! >= num {
                 j += 1
             }
