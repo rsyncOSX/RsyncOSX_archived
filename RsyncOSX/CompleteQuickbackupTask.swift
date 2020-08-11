@@ -16,13 +16,15 @@ final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
     // Function for update result of quickbacuptask the job
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(outputprocess: OutputProcess?) {
-        guard self.index ?? -1 > -1 else { return }
-        self.configurations?.setCurrentDateonConfiguration(index: self.index!, outputprocess: outputprocess)
-        self.schedulesDelegate?.reloadschedulesobject()
+        if let index = self.index {
+            self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: outputprocess)
+            self.schedulesDelegate?.reloadschedulesobject()
+        }
     }
 
     init(dict: NSDictionary) {
-        self.hiddenID = dict.value(forKey: "hiddenID") as? Int ?? -1
-        self.index = self.configurations!.getIndex(hiddenID!)
+        if let hiddenID = dict.value(forKey: "hiddenID") as? Int {
+            self.index = self.configurations?.getIndex(hiddenID)
+        }
     }
 }

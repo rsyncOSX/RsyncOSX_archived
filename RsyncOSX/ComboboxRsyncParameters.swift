@@ -41,14 +41,14 @@ struct ComboboxRsyncParameters {
         } else {
             value = argument
         }
-        return [argument!, value!]
+        return [argument ?? "", value ?? ""]
     }
 
     // Function returns index and value of rsync argument to set the corrospending
     // value in combobox when rsync parameters are presented and stored in configuration
     func indexandvaluersyncparameter(_ parameter: String?) -> (Int, String) {
         guard parameter != nil else { return (0, "") }
-        let splitstr: [String] = self.split(parameter!)
+        let splitstr: [String] = self.split(parameter ?? "")
         guard splitstr.count > 1 else { return (0, "") }
         let argument = splitstr[0]
         let value = splitstr[1]
@@ -85,25 +85,27 @@ struct ComboboxRsyncParameters {
     // - parameter rsyncparameternumber : which stored rsync parameter, integer 8 - 14
     // - returns : touple with index for combobox and corresponding rsync value
     func getParameter(rsyncparameternumber: Int) -> (Int, String) {
-        guard self.config != nil else { return (0, "") }
-        switch rsyncparameternumber {
-        case 8:
-            return self.indexandvaluersyncparameter(self.config?.parameter8)
-        case 9:
-            return self.indexandvaluersyncparameter(self.config?.parameter9)
-        case 10:
-            return self.indexandvaluersyncparameter(self.config?.parameter10)
-        case 11:
-            return self.indexandvaluersyncparameter(self.config?.parameter11)
-        case 12:
-            return self.indexandvaluersyncparameter(self.config?.parameter12)
-        case 13:
-            return self.indexandvaluersyncparameter(self.config?.parameter13)
-        case 14:
-            return self.indexandvaluersyncparameter(self.config?.parameter14)
-        default:
-            return (0, "")
+        if let config = self.config {
+            switch rsyncparameternumber {
+            case 8:
+                return self.indexandvaluersyncparameter(config.parameter8)
+            case 9:
+                return self.indexandvaluersyncparameter(config.parameter9)
+            case 10:
+                return self.indexandvaluersyncparameter(config.parameter10)
+            case 11:
+                return self.indexandvaluersyncparameter(config.parameter11)
+            case 12:
+                return self.indexandvaluersyncparameter(config.parameter12)
+            case 13:
+                return self.indexandvaluersyncparameter(config.parameter13)
+            case 14:
+                return self.indexandvaluersyncparameter(config.parameter14)
+            default:
+                return (0, "")
+            }
         }
+        return (0, "")
     }
 
     init(config: Configuration?) {

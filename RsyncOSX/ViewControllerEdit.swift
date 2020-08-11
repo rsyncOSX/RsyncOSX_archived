@@ -50,52 +50,51 @@ class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Ind
 
     // Update configuration, save and dismiss view
     @IBAction func update(_: NSButton) {
-        var config: [Configuration] = self.configurations?.getConfigurations() ?? []
-        guard config.count > 0 else { return }
-        if let index = self.index() {
-            config[index].localCatalog = self.localCatalog.stringValue
-            config[index].offsiteCatalog = self.offsiteCatalog.stringValue
-            config[index].offsiteServer = self.offsiteServer.stringValue
-            config[index].offsiteUsername = self.offsiteUsername.stringValue
-            config[index].backupID = self.backupID.stringValue
-            if self.snapshotnum.stringValue.count > 0 {
-                config[index].snapshotnum = Int(self.snapshotnum.stringValue)
-            }
-            // Pre task
-            if self.pretask.stringValue.isEmpty == false {
-                if self.executepretask.state == .on {
-                    config[index].executepretask = 1
-                } else {
-                    config[index].executepretask = 0
+        if var config: [Configuration] = self.configurations?.getConfigurations() {
+            if let index = self.index() {
+                config[index].localCatalog = self.localCatalog.stringValue
+                config[index].offsiteCatalog = self.offsiteCatalog.stringValue
+                config[index].offsiteServer = self.offsiteServer.stringValue
+                config[index].offsiteUsername = self.offsiteUsername.stringValue
+                config[index].backupID = self.backupID.stringValue
+                if self.snapshotnum.stringValue.count > 0 {
+                    config[index].snapshotnum = Int(self.snapshotnum.stringValue)
                 }
-                config[index].pretask = self.pretask.stringValue
-            } else {
-                config[index].executepretask = nil
-                config[index].pretask = nil
-            }
-            // Post task
-            if self.posttask.stringValue.isEmpty == false {
-                if self.executeposttask.state == .on {
-                    config[index].executeposttask = 1
+                // Pre task
+                if self.pretask.stringValue.isEmpty == false {
+                    if self.executepretask.state == .on {
+                        config[index].executepretask = 1
+                    } else {
+                        config[index].executepretask = 0
+                    }
+                    config[index].pretask = self.pretask.stringValue
                 } else {
-                    config[index].executeposttask = 0
+                    config[index].executepretask = nil
+                    config[index].pretask = nil
                 }
-                config[index].posttask = self.posttask.stringValue
-            } else {
-                config[index].executeposttask = nil
-                config[index].posttask = nil
+                // Post task
+                if self.posttask.stringValue.isEmpty == false {
+                    if self.executeposttask.state == .on {
+                        config[index].executeposttask = 1
+                    } else {
+                        config[index].executeposttask = 0
+                    }
+                    config[index].posttask = self.posttask.stringValue
+                } else {
+                    config[index].executeposttask = nil
+                    config[index].posttask = nil
+                }
+                // Halt on error
+                if self.haltshelltasksonerror.state == .on {
+                    config[index].haltshelltasksonerror = 1
+                } else {
+                    config[index].haltshelltasksonerror = 0
+                }
+                let dict = ConvertOneConfig(config: config[index]).dict
+                guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
+                self.configurations?.updateConfigurations(config[index], index: index)
+                self.view.window?.close()
             }
-            // Halt on error
-            if self.haltshelltasksonerror.state == .on {
-                config[index].haltshelltasksonerror = 1
-            } else {
-                config[index].haltshelltasksonerror = 0
-            }
-
-            let dict = ConvertOneConfig(config: config[index]).dict
-            guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
-            self.configurations?.updateConfigurations(config[index], index: index)
-            self.view.window?.close()
         }
     }
 
