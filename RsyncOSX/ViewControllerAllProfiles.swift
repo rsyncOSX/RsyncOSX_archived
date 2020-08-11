@@ -259,6 +259,7 @@ extension ViewControllerAllProfiles: UpdateProgress {
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
+        ViewControllerReference.shared.process = nil
     }
 
     func fileHandler() {
