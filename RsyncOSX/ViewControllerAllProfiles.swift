@@ -134,44 +134,43 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
 extension ViewControllerAllProfiles: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        if self.allprofiles?.allconfigurationsasdictionary == nil {
-            self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles")
-            return 0
-        } else {
-            self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles") + " " +
-                String(self.allprofiles!.allconfigurationsasdictionary?.count ?? 0)
-            return self.allprofiles!.allconfigurationsasdictionary?.count ?? 0
-        }
+        self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles") + " " +
+            String(self.allprofiles?.allconfigurationsasdictionary?.count ?? 0)
+        return self.allprofiles?.allconfigurationsasdictionary?.count ?? 0
     }
 }
 
 extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if row > self.allprofiles!.allconfigurationsasdictionary!.count - 1 { return nil }
-        let object: NSDictionary = self.allprofiles!.allconfigurationsasdictionary![row]
-        let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
-        let profile = object.value(forKey: "profile") as? String ?? NSLocalizedString("Default profile", comment: "default profile")
-        if tableColumn!.identifier.rawValue == "intime" {
-            let taskintime: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profile, number: true)
-            return taskintime ?? ""
-        } else if tableColumn!.identifier.rawValue == "schedule" {
-            let schedule: String? = self.allschedulessortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: profile, number: false)
-            switch schedule {
-            case Scheduletype.once.rawValue:
-                return NSLocalizedString("once", comment: "main")
-            case Scheduletype.daily.rawValue:
-                return NSLocalizedString("daily", comment: "main")
-            case Scheduletype.weekly.rawValue:
-                return NSLocalizedString("weekly", comment: "main")
-            case Scheduletype.manuel.rawValue:
-                return NSLocalizedString("manuel", comment: "main")
-            default:
-                return ""
+        if let tableColumn = tableColumn {
+            if row > (self.allprofiles?.allconfigurationsasdictionary?.count ?? 0) - 1 { return nil }
+            if let object: NSDictionary = self.allprofiles?.allconfigurationsasdictionary?[row] {
+                let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
+                let profile = object.value(forKey: "profile") as? String ?? NSLocalizedString("Default profile", comment: "default profile")
+                if tableColumn.identifier.rawValue == "intime" {
+                    let taskintime: String? = self.allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: true)
+                    return taskintime ?? ""
+                } else if tableColumn.identifier.rawValue == "schedule" {
+                    let schedule = self.allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: false)
+                    switch schedule {
+                    case Scheduletype.once.rawValue:
+                        return NSLocalizedString("once", comment: "main")
+                    case Scheduletype.daily.rawValue:
+                        return NSLocalizedString("daily", comment: "main")
+                    case Scheduletype.weekly.rawValue:
+                        return NSLocalizedString("weekly", comment: "main")
+                    case Scheduletype.manuel.rawValue:
+                        return NSLocalizedString("manuel", comment: "main")
+                    default:
+                        return ""
+                    }
+                } else {
+                    return object[tableColumn.identifier] as? String
+                }
             }
-        } else {
-            return object[tableColumn!.identifier] as? String
         }
+        return nil
     }
 
     // setting which table row is selected
