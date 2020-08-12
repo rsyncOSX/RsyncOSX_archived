@@ -2,13 +2,13 @@
 
 ![](icon/rsyncosx.png) [The Changelog](https://rsyncosx.netlify.app/post/changelog/).
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.0/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.3.5/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.0/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys)
 
 If you want to discuss [changes or report bugs please create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
 
-There are some [docs about RsyncOSX, RsynGUI and RcloneOSX](https://rsyncosx.netlify.app/). The docs are based on Hugo, [the Hugo Theme Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on Netlify.
+There are some [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/). The docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on Netlify.
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
 
@@ -58,7 +58,7 @@ If you are only looking for utilizing stock version of rsync (version 2.6.9) and
 
 ### Some words about RsyncOSX
 
-RsyncOSX is not developed to be an easy to use synchronize and backup tool. The main purpose is to assist and ease the use of `rsync` to synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from those remote servers.
+RsyncOSX is not developed to be an easy to use synchronize and backup tool. The main purpose is to assist and ease the use of `rsync` to synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
 
 The UI can for users who dont know `rsync`, be difficult or complex to understand. It is not required to know `rsync` but it will ease the use and understanding of RsyncOSX. But it is though, possible to use RsyncOSX by just adding a source and remote backup catalog using default parameters.
 
