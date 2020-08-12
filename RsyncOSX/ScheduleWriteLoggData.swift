@@ -37,7 +37,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             return obj1 > obj2
         })
         for i in 0 ..< deletes.count {
-            self.schedules![deletes[i].0].logrecords.remove(at: deletes[i].1)
+            self.schedules?[deletes[i].0].logrecords.remove(at: deletes[i].1)
         }
         _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vcloggdata)
@@ -104,7 +104,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             let executed = NSMutableArray()
             executed.add(dict)
             let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed, nolog: false)
-            self.schedules!.append(newSchedule)
+            self.schedules?.append(newSchedule)
             loggadded = true
         }
         return loggadded
