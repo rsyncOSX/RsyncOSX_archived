@@ -112,52 +112,52 @@ class Configurations: ReloadTable, SetSchedules {
     // Function return arguments for rsync, either arguments for
     // real runn or arguments for --dry-run for Configuration at selected index
     func arguments4rsync(index: Int, argtype: ArgumentsRsync) -> [String] {
-        let allarguments = self.argumentAllConfigurations![index]
+        let allarguments = self.argumentAllConfigurations?[index]
         switch argtype {
         case .arg:
-            return allarguments.arg ?? []
+            return allarguments?.arg ?? []
         case .argdryRun:
-            return allarguments.argdryRun ?? []
+            return allarguments?.argdryRun ?? []
         case .argdryRunlocalcataloginfo:
-            return allarguments.argdryRunLocalcatalogInfo ?? []
+            return allarguments?.argdryRunLocalcatalogInfo ?? []
         }
     }
 
     // Function return arguments for rsync, either arguments for
     // real runn or arguments for --dry-run for Configuration at selected index
     func arguments4restore(index: Int, argtype: ArgumentsRsync) -> [String] {
-        let allarguments = self.argumentAllConfigurations![index]
+        let allarguments = self.argumentAllConfigurations?[index]
         switch argtype {
         case .arg:
-            return allarguments.restore ?? []
+            return allarguments?.restore ?? []
         case .argdryRun:
-            return allarguments.restoredryRun ?? []
+            return allarguments?.restoredryRun ?? []
         default:
             return []
         }
     }
 
     func arguments4tmprestore(index: Int, argtype: ArgumentsRsync) -> [String] {
-        let allarguments = self.argumentAllConfigurations![index]
+        let allarguments = self.argumentAllConfigurations?[index]
         switch argtype {
         case .arg:
-            return allarguments.tmprestore ?? []
+            return allarguments?.tmprestore ?? []
         case .argdryRun:
-            return allarguments.tmprestoredryRun ?? []
+            return allarguments?.tmprestoredryRun ?? []
         default:
             return []
         }
     }
 
     func arguments4verify(index: Int) -> [String] {
-        let allarguments = self.argumentAllConfigurations![index]
-        return allarguments.verify ?? []
+        let allarguments = self.argumentAllConfigurations?[index]
+        return allarguments?.verify ?? []
     }
 
     // Function is adding new Configurations to existing in memory.
     func appendconfigurationstomemory(dict: NSDictionary) {
         let config = Configuration(dictionary: dict)
-        self.configurations!.append(config)
+        self.configurations?.append(config)
     }
 
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
@@ -240,30 +240,29 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func removecompressparameter(index: Int, delete: Bool) {
-        guard self.configurations != nil else { return }
         guard index < (self.configurations?.count ?? -1) else { return }
         if delete {
-            self.configurations![index].parameter3 = ""
+            self.configurations?[index].parameter3 = ""
         } else {
-            self.configurations![index].parameter3 = "--compress"
+            self.configurations?[index].parameter3 = "--compress"
         }
     }
 
     func removeedeleteparameter(index: Int, delete: Bool) {
         guard index < (self.configurations?.count ?? -1) else { return }
         if delete {
-            self.configurations![index].parameter4 = ""
+            self.configurations?[index].parameter4 = ""
         } else {
-            self.configurations![index].parameter4 = "--delete"
+            self.configurations?[index].parameter4 = "--delete"
         }
     }
 
     func removeesshparameter(index: Int, delete: Bool) {
         guard index < (self.configurations?.count ?? -1) else { return }
         if delete {
-            self.configurations![index].parameter5 = ""
+            self.configurations?[index].parameter5 = ""
         } else {
-            self.configurations![index].parameter5 = "-e"
+            self.configurations?[index].parameter5 = "-e"
         }
     }
 
