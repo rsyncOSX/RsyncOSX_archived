@@ -14,8 +14,8 @@ import Foundation
 class Schedules: ScheduleWriteLoggData {
     // Return reference to Schedule data
     // self.Schedule is privat data
-    func getSchedule() -> [ConfigurationSchedule] {
-        return self.schedules ?? []
+    func getSchedule() -> [ConfigurationSchedule]? {
+        return self.schedules
     }
 
     // Function adds new Shcedules (plans). Functions writes
@@ -48,7 +48,7 @@ class Schedules: ScheduleWriteLoggData {
             return
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
-        self.schedules!.append(newSchedule)
+        self.schedules?.append(newSchedule)
         _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vctabschedule)
     }
@@ -59,10 +59,10 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter hiddenID : hiddenID for task
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
-        for i in 0 ..< (self.schedules?.count ?? 0) where self.schedules![i].hiddenID == hiddenID {
+        for i in 0 ..< (self.schedules?.count ?? 0) where self.schedules?[i].hiddenID == hiddenID {
             // Mark Schedules for delete
             // Cannot delete in memory, index out of bound is result
-            self.schedules![i].delete = true
+            self.schedules?[i].delete = true
             delete = true
         }
         if delete {
