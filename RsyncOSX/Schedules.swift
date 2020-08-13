@@ -76,12 +76,11 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter hiddenID : hiddenID for task
     // - returns : array of Schedules sorted after startDate
     func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
-        guard hiddenID != nil else { return nil }
-        var row: NSMutableDictionary
-        var data = [NSMutableDictionary]()
-        for i in 0 ..< (self.schedules?.count ?? 0) {
-            if self.schedules![i].hiddenID == hiddenID {
-                row = [
+        if let hiddenID = hiddenID {
+            var data = [NSMutableDictionary]()
+            let allschedulesonetask = self.schedules?.filter { $0.hiddenID == hiddenID }
+            for i in 0 ..< (allschedulesonetask?.count ?? 0) {
+                let row: NSMutableDictionary = [
                     "dateStart": self.schedules?[i].dateStart ?? "",
                     "dayinweek": self.schedules?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
                     "stopCellID": 0,
@@ -111,8 +110,9 @@ class Schedules: ScheduleWriteLoggData {
                     return false
                 }
             }
+            return data
         }
-        return data
+        return nil
     }
 
     // Function either deletes or stops Schedules.
