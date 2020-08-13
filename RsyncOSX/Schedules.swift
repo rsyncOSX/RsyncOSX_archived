@@ -82,21 +82,21 @@ class Schedules: ScheduleWriteLoggData {
         for i in 0 ..< (self.schedules?.count ?? 0) {
             if self.schedules![i].hiddenID == hiddenID {
                 row = [
-                    "dateStart": self.schedules![i].dateStart,
-                    "dayinweek": self.schedules![i].dateStart.en_us_date_from_string().dayNameShort(),
+                    "dateStart": self.schedules?[i].dateStart ?? "",
+                    "dayinweek": self.schedules?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
-                    "schedule": self.schedules![i].schedule,
-                    "hiddenID": schedules![i].hiddenID,
-                    "numberoflogs": String(schedules![i].logrecords.count),
+                    "schedule": self.schedules?[i].schedule ?? "",
+                    "hiddenID": schedules?[i].hiddenID ?? 0,
+                    "numberoflogs": String(schedules?[i].logrecords.count ?? 0),
                 ]
-                if self.schedules![i].dateStop == nil {
+                if self.schedules?[i].dateStop == nil {
                     row.setValue("no stop date", forKey: "dateStop")
                 } else {
-                    row.setValue(self.schedules![i].dateStop, forKey: "dateStop")
+                    row.setValue(self.schedules?[i].dateStop, forKey: "dateStop")
                 }
-                if self.schedules![i].schedule == Scheduletype.stopped.rawValue {
+                if self.schedules?[i].schedule == Scheduletype.stopped.rawValue {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
