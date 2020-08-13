@@ -14,8 +14,8 @@ import Foundation
 class Schedules: ScheduleWriteLoggData {
     // Return reference to Schedule data
     // self.Schedule is privat data
-    func getSchedule() -> [ConfigurationSchedule] {
-        return self.schedules ?? []
+    func getSchedule() -> [ConfigurationSchedule]? {
+        return self.schedules
     }
 
     // Function adds new Shcedules (plans). Functions writes
@@ -48,7 +48,7 @@ class Schedules: ScheduleWriteLoggData {
             return
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
-        self.schedules!.append(newSchedule)
+        self.schedules?.append(newSchedule)
         _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vctabschedule)
     }
@@ -59,10 +59,10 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter hiddenID : hiddenID for task
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
-        for i in 0 ..< (self.schedules?.count ?? 0) where self.schedules![i].hiddenID == hiddenID {
+        for i in 0 ..< (self.schedules?.count ?? 0) where self.schedules?[i].hiddenID == hiddenID {
             // Mark Schedules for delete
             // Cannot delete in memory, index out of bound is result
-            self.schedules![i].delete = true
+            self.schedules?[i].delete = true
             delete = true
         }
         if delete {
@@ -76,27 +76,26 @@ class Schedules: ScheduleWriteLoggData {
     // - parameter hiddenID : hiddenID for task
     // - returns : array of Schedules sorted after startDate
     func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
-        guard hiddenID != nil else { return nil }
-        var row: NSMutableDictionary
-        var data = [NSMutableDictionary]()
-        for i in 0 ..< (self.schedules?.count ?? 0) {
-            if self.schedules![i].hiddenID == hiddenID {
-                row = [
-                    "dateStart": self.schedules![i].dateStart,
-                    "dayinweek": self.schedules![i].dateStart.en_us_date_from_string().dayNameShort(),
+        if let hiddenID = hiddenID {
+            var data = [NSMutableDictionary]()
+            let allschedulesonetask = self.schedules?.filter { $0.hiddenID == hiddenID }
+            for i in 0 ..< (allschedulesonetask?.count ?? 0) {
+                let row: NSMutableDictionary = [
+                    "dateStart": self.schedules?[i].dateStart ?? "",
+                    "dayinweek": self.schedules?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
-                    "schedule": self.schedules![i].schedule,
-                    "hiddenID": schedules![i].hiddenID,
-                    "numberoflogs": String(schedules![i].logrecords.count),
+                    "schedule": self.schedules?[i].schedule ?? "",
+                    "hiddenID": schedules?[i].hiddenID ?? 0,
+                    "numberoflogs": String(schedules?[i].logrecords.count ?? 0),
                 ]
-                if self.schedules![i].dateStop == nil {
+                if self.schedules?[i].dateStop == nil {
                     row.setValue("no stop date", forKey: "dateStop")
                 } else {
-                    row.setValue(self.schedules![i].dateStop, forKey: "dateStop")
+                    row.setValue(self.schedules?[i].dateStop, forKey: "dateStop")
                 }
-                if self.schedules![i].schedule == Scheduletype.stopped.rawValue {
+                if self.schedules?[i].schedule == Scheduletype.stopped.rawValue {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
@@ -111,8 +110,9 @@ class Schedules: ScheduleWriteLoggData {
                     return false
                 }
             }
+            return data
         }
-        return data
+        return nil
     }
 
     // Function either deletes or stops Schedules.

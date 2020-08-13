@@ -42,7 +42,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         if let input: [ConfigurationSchedule] = self.schedules?.getSchedule() {
             for i in 0 ..< input.count {
                 for j in 0 ..< input[i].logrecords.count {
-                    if let hiddenID = self.schedules?.getSchedule()[i].hiddenID {
+                    if let hiddenID = self.schedules?.getSchedule()?[i].hiddenID {
                         let dict = input[i].logrecords[j]
                         var date: String = ""
                         let stringdate = dict.value(forKey: "dateExecuted") as? String ?? ""

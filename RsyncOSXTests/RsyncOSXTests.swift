@@ -118,7 +118,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         schedules.addschedule(hiddenID: 1, schedule: .once, start: tomorrow!)
         schedules.addschedule(hiddenID: 1, schedule: .daily, start: tomorrow!)
         schedules.addschedule(hiddenID: 1, schedule: .weekly, start: tomorrow!)
-        XCTAssertEqual(3, schedules.getSchedule().count, "Should be three")
+        XCTAssertEqual(3, schedules.getSchedule()?.count, "Should be three")
         let schedulesortedandexpanded = ScheduleSortedAndExpand(schedules: schedules)
         XCTAssertEqual("23t 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "23t 59m")
     }
