@@ -33,7 +33,7 @@ class SchedulesXCTEST: Schedules {
             return
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
-        self.schedules!.append(newSchedule)
+        self.schedules?.append(newSchedule)
     }
 
     override init(profile: String?) {
