@@ -76,12 +76,15 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         guard self.checkforrsync() == false else { return }
-        let task = self.configurations!.getConfigurations()[self.index!].task
-        guard ViewControllerReference.shared.synctasks.contains(task) else {
-            self.info.stringValue = Infoexecute().info(num: 7)
-            return
+        if let index = self.index {
+            if let task = self.configurations?.getConfigurations()[index].task {
+                guard ViewControllerReference.shared.synctasks.contains(task) else {
+                    self.info.stringValue = Infoexecute().info(num: 7)
+                    return
+                }
+                self.presentAsSheet(self.viewControllerInformationLocalRemote!)
+            }
         }
-        self.presentAsSheet(self.viewControllerInformationLocalRemote!)
     }
 
     @IBAction func totinfo(_: NSButton) {
@@ -109,23 +112,25 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        if let hiddenID = self.configurations?.gethiddenID(index: self.index!) {
-            let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
-            let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
-            let dialog: String = NSLocalizedString("Delete", comment: "Execute")
-            let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-            if answer {
-                // Delete Configurations and Schedules by hiddenID
-                self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
-                self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
-                self.deselect()
-                self.reloadtabledata()
-                // Reset in tabSchedule
-                self.reloadtable(vcontroller: .vctabschedule)
-                self.reloadtable(vcontroller: .vcsnapshot)
+        if let index = self.index {
+            if let hiddenID = self.configurations?.gethiddenID(index: index) {
+                let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
+                let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
+                let dialog: String = NSLocalizedString("Delete", comment: "Execute")
+                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                if answer {
+                    // Delete Configurations and Schedules by hiddenID
+                    self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
+                    self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
+                    self.deselect()
+                    self.reloadtabledata()
+                    // Reset in tabSchedule
+                    self.reloadtable(vcontroller: .vctabschedule)
+                    self.reloadtable(vcontroller: .vcsnapshot)
+                }
             }
+            self.reset()
         }
-        self.reset()
     }
 
     @IBAction func TCP(_: NSButton) {
