@@ -170,8 +170,11 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         }
         guard sorted.count > 0 else { return "" }
         if number {
-            let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow
-            return Dateandtime().timestring(seconds: firsttask!)
+            if let firsttask = (sorted[0].value(forKey: "start") as? Date)?.timeIntervalSinceNow {
+                return Dateandtime().timestring(seconds: firsttask)
+            } else {
+                return ""
+            }
         } else {
             let type = sorted[0].value(forKey: "schedule") as? String
             return type ?? ""
