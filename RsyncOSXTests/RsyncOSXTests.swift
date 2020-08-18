@@ -114,13 +114,14 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     func testaddschedule() {
         let schedules = SchedulesXCTEST(profile: "XCTest")
         let today: Date = Date()
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)
+        let tomorrow = Calendar.current.date(byAdding: .hour, value: 12, to: today)
+        let dayaftertomorrow = Calendar.current.date(byAdding: .day, value: 2, to: today)
+        schedules.addschedule(hiddenID: 1, schedule: .daily, start: dayaftertomorrow!)
+        schedules.addschedule(hiddenID: 1, schedule: .weekly, start: dayaftertomorrow!)
         schedules.addschedule(hiddenID: 1, schedule: .once, start: tomorrow!)
-        schedules.addschedule(hiddenID: 1, schedule: .daily, start: tomorrow!)
-        schedules.addschedule(hiddenID: 1, schedule: .weekly, start: tomorrow!)
         XCTAssertEqual(3, schedules.getSchedule()?.count, "Should be three")
         let schedulesortedandexpanded = ScheduleSortedAndExpand(schedules: schedules)
-        XCTAssertEqual("23t 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "23t 59m")
+        XCTAssertEqual("11h 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "11h 59m")
     }
 
     func testaddconfig() {
