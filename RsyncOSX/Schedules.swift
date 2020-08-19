@@ -156,7 +156,7 @@ class Schedules: ScheduleWriteLoggData {
                             && $0.schedule == schedule
                             && $0.dateStart == datestart
                     }) {
-                        self.schedules![i].delete = true
+                        self.schedules?[i].delete = true
                     }
                 }
             }
@@ -172,8 +172,8 @@ class Schedules: ScheduleWriteLoggData {
                             && $0.schedule == schedule
                             && $0.dateStart == datestart
                     }) {
-                        self.schedules![i].schedule = Scheduletype.stopped.rawValue
-                        self.schedules![i].dateStop = Date().en_us_string_from_date()
+                        self.schedules?[i].schedule = Scheduletype.stopped.rawValue
+                        self.schedules?[i].dateStop = Date().en_us_string_from_date()
                     }
                 }
             }
