@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 20.06.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity
+//  swiftlint:disable line_length
 
 import Foundation
 
@@ -47,17 +47,10 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.indicatorDelegate?.startIndicator()
                 self.outputprocess = OutputProcessRsync()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .argdryRun) {
-                    if #available(OSX 10.14, *) {
-                        let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-                        process.setdelegate(object: self)
-                        process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
-                    } else {
-                        let process = Rsync(arguments: arguments)
-                        process.setdelegate(object: self)
-                        process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
-                    }
+                    let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
+                    process.setdelegate(object: self)
+                    process.executeProcess(outputprocess: self.outputprocess)
+                    self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
             }
         case .executesinglerun:
@@ -65,17 +58,10 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.singletaskDelegate?.presentViewProgress()
                 self.outputprocess = OutputProcessRsync()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                    if #available(OSX 10.14, *) {
-                        let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-                        process.setdelegate(object: self)
-                        process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
-                    } else {
-                        let process = Rsync(arguments: arguments)
-                        process.setdelegate(object: self)
-                        process.executeProcess(outputprocess: self.outputprocess)
-                        self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
-                    }
+                    let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
+                    process.setdelegate(object: self)
+                    process.executeProcess(outputprocess: self.outputprocess)
+                    self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
             }
         case .abort:

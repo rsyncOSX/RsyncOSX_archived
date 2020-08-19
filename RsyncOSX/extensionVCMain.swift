@@ -351,10 +351,7 @@ protocol Setcolor: AnyObject {
 
 extension Setcolor {
     private func isDarkMode(view: NSView) -> Bool {
-        if #available(OSX 10.14, *) {
-            return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-        }
-        return false
+        return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
     }
 
     func setcolor(nsviewcontroller: NSViewController, color: Color) -> NSColor {
