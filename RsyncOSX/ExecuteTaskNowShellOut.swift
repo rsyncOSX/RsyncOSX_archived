@@ -67,19 +67,11 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
             guard self.error == false else { return }
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                if #available(OSX 10.14, *) {
-                    let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-                    process.setdelegate(object: self)
-                    process.executeProcess(outputprocess: self.outputprocess)
-                    self.startstopindicators?.startIndicatorExecuteTaskNow()
-                    self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
-                } else {
-                    let process = Rsync(arguments: arguments)
-                    process.setdelegate(object: self)
-                    process.executeProcess(outputprocess: self.outputprocess)
-                    self.startstopindicators?.startIndicatorExecuteTaskNow()
-                    self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
-                }
+                let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
+                process.setdelegate(object: self)
+                process.executeProcess(outputprocess: self.outputprocess)
+                self.startstopindicators?.startIndicatorExecuteTaskNow()
+                self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
             }
         }
     }
