@@ -188,7 +188,9 @@ class Schedules: ScheduleWriteLoggData {
         var data = [ConfigurationSchedule]()
         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil {
             store?[i].profilename = self.profile
-            data.append(store![i])
+            if let store = store?[i] {
+                data.append(store)
+            }
         }
         // Sorting schedule after hiddenID
         data.sort { (schedule1, schedule2) -> Bool in
