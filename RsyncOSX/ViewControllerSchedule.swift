@@ -252,7 +252,7 @@ extension ViewControllerSchedule: NSTableViewDataSource {
 extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableView == self.scheduletable {
-            if row < self.configurations!.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
+            if row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
                 let object: NSDictionary = self.configurations!.getConfigurationsDataSourceSynchronize()![row]
                 let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
                 switch tableColumn!.identifier.rawValue {

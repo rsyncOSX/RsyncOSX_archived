@@ -81,21 +81,21 @@ class Schedules: ScheduleWriteLoggData {
             let allschedulesonetask = self.schedules?.filter { $0.hiddenID == hiddenID }
             for i in 0 ..< (allschedulesonetask?.count ?? 0) {
                 let row: NSMutableDictionary = [
-                    "dateStart": self.schedules?[i].dateStart ?? "",
-                    "dayinweek": self.schedules?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
+                    "dateStart": allschedulesonetask?[i].dateStart ?? "",
+                    "dayinweek": allschedulesonetask?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
                     "stopCellID": 0,
                     "deleteCellID": 0,
                     "dateStop": "",
-                    "schedule": self.schedules?[i].schedule ?? "",
-                    "hiddenID": schedules?[i].hiddenID ?? 0,
-                    "numberoflogs": String(schedules?[i].logrecords.count ?? 0),
+                    "schedule": allschedulesonetask?[i].schedule ?? "",
+                    "hiddenID": allschedulesonetask?[i].hiddenID ?? 0,
+                    "numberoflogs": String(allschedulesonetask?[i].logrecords.count ?? 0),
                 ]
-                if self.schedules?[i].dateStop == nil {
+                if allschedulesonetask?[i].dateStop == nil {
                     row.setValue("no stop date", forKey: "dateStop")
                 } else {
-                    row.setValue(self.schedules?[i].dateStop, forKey: "dateStop")
+                    row.setValue(allschedulesonetask?[i].dateStop, forKey: "dateStop")
                 }
-                if self.schedules?[i].schedule == Scheduletype.stopped.rawValue {
+                if allschedulesonetask?[i].schedule == Scheduletype.stopped.rawValue {
                     row.setValue(1, forKey: "stopCellID")
                 }
                 data.append(row)
