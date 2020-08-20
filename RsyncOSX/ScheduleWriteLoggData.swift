@@ -18,16 +18,16 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     func deleteselectedrows(scheduleloggdata: ScheduleLoggData?) {
         guard scheduleloggdata?.loggdata != nil else { return }
         var deletes = [Row]()
-        let selectdeletes = scheduleloggdata!.loggdata!.filter { ($0.value(forKey: "deleteCellID") as? Int)! == 1 }.sorted { (dict1, dict2) -> Bool in
+        let selectdeletes = scheduleloggdata?.loggdata?.filter { ($0.value(forKey: "deleteCellID") as? Int)! == 1 }.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: "parent") as? Int) ?? 0 > (dict2.value(forKey: "parent") as? Int) ?? 0 {
                 return true
             } else {
                 return false
             }
         }
-        for i in 0 ..< selectdeletes.count {
-            let parent = selectdeletes[i].value(forKey: "parent") as? Int ?? 0
-            let sibling = selectdeletes[i].value(forKey: "sibling") as? Int ?? 0
+        for i in 0 ..< (selectdeletes?.count ?? 0) {
+            let parent = selectdeletes?[i].value(forKey: "parent") as? Int ?? 0
+            let sibling = selectdeletes?[i].value(forKey: "sibling") as? Int ?? 0
             deletes.append((parent, sibling))
         }
         deletes.sort(by: { (obj1, obj2) -> Bool in
@@ -77,6 +77,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     func addlogexisting(hiddenID: Int, result: String, date: String) -> Bool {
         var loggadded: Bool = false
         let index = self.schedules?.firstIndex(where: { _ in ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") }) ?? -1
+
         guard index > -1 else { return false }
         if self.schedules?[index].hiddenID == hiddenID,
             self.schedules?[index].schedule == Scheduletype.manuel.rawValue,
