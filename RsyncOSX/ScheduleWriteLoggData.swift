@@ -75,21 +75,19 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     }
 
     func addlogexisting(hiddenID: Int, result: String, date: String) -> Bool {
-        var loggadded: Bool = false
-        let index = self.schedules?.firstIndex(where: { _ in ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") }) ?? -1
-
-        guard index > -1 else { return false }
-        if self.schedules?[index].hiddenID == hiddenID,
-            self.schedules?[index].schedule == Scheduletype.manuel.rawValue,
-            self.schedules?[index].dateStop == nil
-        {
-            let dict = NSMutableDictionary()
-            dict.setObject(date, forKey: "dateExecuted" as NSCopying)
-            dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-            self.schedules?[index].logrecords.append(dict)
-            loggadded = true
+        if ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
+            if let index = self.schedules?.firstIndex(where: { $0.hiddenID == hiddenID
+                    && $0.schedule == Scheduletype.manuel.rawValue
+                    && $0.dateStart == "01 Jan 1900 00:00"
+            }) {
+                let dict = NSMutableDictionary()
+                dict.setObject(date, forKey: "dateExecuted" as NSCopying)
+                dict.setObject(result, forKey: "resultExecuted" as NSCopying)
+                self.schedules?[index].logrecords.append(dict)
+                return true
+            }
         }
-        return loggadded
+        return false
     }
 
     private func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
