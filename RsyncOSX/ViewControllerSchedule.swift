@@ -314,7 +314,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 case "active":
                     let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
                     let schedule = object.value(forKey: "schedule") as? String ?? ""
-                    guard datestopstring.isEmpty == false, datestopstring != "no stop date" else { return nil }
+                    guard datestopstring.isEmpty == false, datestopstring != "no stopdate" else { return nil }
                     let dateStop: Date = datestopstring.en_us_date_from_string()
                     if dateStop.timeIntervalSinceNow > 0, schedule != Scheduletype.stopped.rawValue {
                         return #imageLiteral(resourceName: "complete")
@@ -354,7 +354,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         return NSLocalizedString("no stopdate", comment: "Schedule details")
                     } else {
                         let stringdate: String = object[tableColumn!.identifier] as? String ?? ""
-                        if stringdate.isEmpty || stringdate == "no stop date" {
+                        if stringdate.isEmpty || stringdate == "no stopdate" {
                             return ""
                         } else {
                             return stringdate.en_us_date_from_string().localized_string_from_date()
