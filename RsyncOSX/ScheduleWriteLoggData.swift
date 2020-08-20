@@ -91,7 +91,6 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     }
 
     private func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
-        var loggadded: Bool = false
         if ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
             let masterdict = NSMutableDictionary()
             masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
@@ -104,9 +103,9 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             executed.add(dict)
             let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed, nolog: false)
             self.schedules?.append(newSchedule)
-            loggadded = true
+            return true
         }
-        return loggadded
+        return false
     }
 
     private func getconfig(hiddenID: Int) -> Configuration? {
