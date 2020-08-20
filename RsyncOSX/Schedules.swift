@@ -91,7 +91,7 @@ class Schedules: ScheduleWriteLoggData {
                     "numberoflogs": String(allschedulesonetask?[i].logrecords.count ?? 0),
                 ]
                 if allschedulesonetask?[i].dateStop == nil {
-                    row.setValue("no stop date", forKey: "dateStop")
+                    row.setValue("no stopdate", forKey: "dateStop")
                 } else {
                     row.setValue(allschedulesonetask?[i].dateStop, forKey: "dateStop")
                 }
