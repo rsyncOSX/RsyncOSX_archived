@@ -25,8 +25,10 @@ struct ConfigurationSchedule {
         self.offsiteserver = dictionary.object(forKey: "offsiteserver") as? String ?? ""
         if let date = dictionary.object(forKey: "dateStop") as? String { self.dateStop = date }
         if log != nil, nolog == false {
-            for i in 0 ..< log!.count {
-                self.logrecords.append((log![i] as? NSMutableDictionary)!)
+            for i in 0 ..< (log?.count ?? 0) {
+                if let dict = log?[i] as? NSMutableDictionary {
+                    self.logrecords.append(dict)
+                }
             }
         }
     }
