@@ -48,7 +48,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     // - parameter hiddenID : hiddenID for task
     // - parameter result : String representation of result
     // - parameter date : String representation of date and time stamp
-    func addlog(hiddenID: Int, result: String) {
+    func addlogpermanentstore(hiddenID: Int, result: String) {
         if ViewControllerReference.shared.detailedlogging {
             // Set the current date
             let currendate = Date()
