@@ -115,9 +115,9 @@ The application icon is created by [Zsolt Sándor](https://github.com/graphis). 
 
 There are two short YouTube videos of RsyncOSX:
 
-- [getting RsyncOSX](https://youtu.be/MzKueXEH1Pk) and installing it
+- [getting RsyncOSX](https://www.youtube.com/watch?v=d-srHjL2F-0) and installing it
   - the video also shows how to create the two local ssh certificates for password less logins to remote server
-- [adding and executing the first backup](https://youtu.be/8oe1lKgiDx8)
+- adding and executing the first backup (old video - to be replaced)
 
 ### XCTest
 
