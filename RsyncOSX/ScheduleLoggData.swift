@@ -21,18 +21,19 @@ enum Sortandfilter {
     case backupid
     case numberofdays
     case executedate
+    case none
 }
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     var loggdata: [NSMutableDictionary]?
     private var scheduleConfiguration: [ConfigurationSchedule]?
 
-    func myownfilter(search: String?, filterby: Sortandfilter?) {
-        guard search != nil, self.loggdata != nil, filterby != nil else { return }
+    func filter(search: String?, filterby: Sortandfilter?) {
+        // guard search != nil, self.loggdata != nil, filterby != nil else { return }
         globalDefaultQueue.async { () -> Void in
-            let valueforkey = self.filterbystring(filterby: filterby!)
+            let valueforkey = self.filterbystring(filterby: filterby ?? Optional.none)
             self.loggdata = self.loggdata?.filter {
-                ($0.value(forKey: valueforkey) as? String)!.contains(search!)
+                ($0.value(forKey: valueforkey) as? String ?? "").contains(search ?? "")
             }
         }
     }
