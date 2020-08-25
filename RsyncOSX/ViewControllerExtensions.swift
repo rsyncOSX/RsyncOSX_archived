@@ -373,7 +373,7 @@ extension Sorting {
     }
 
     func filterbystring(filterby: Sortandfilter?) -> String {
-        switch filterby ?? .executedate {
+        switch filterby ?? .none {
         case .localcatalog:
             return "localCatalog"
         case .profile:
@@ -390,6 +390,8 @@ extension Sorting {
             return "daysID"
         case .executedate:
             return "dateExecuted"
+        default:
+            return ""
         }
     }
 }
