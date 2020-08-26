@@ -200,25 +200,28 @@ extension ViewControllerLoggData: NSTableViewDataSource {
             return 0
         } else {
             self.numberOflogfiles.stringValue = NSLocalizedString("Number of logs:", comment: "Logg")
-                + " " + String(self.scheduleloggdata!.loggdata?.count ?? 0)
+                + " " + String(self.scheduleloggdata?.loggdata?.count ?? 0)
             self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg")
                 + " " + self.selectednumber()
-            return self.scheduleloggdata!.loggdata?.count ?? 0
+            return self.scheduleloggdata?.loggdata?.count ?? 0
         }
     }
 }
 
 extension ViewControllerLoggData: NSTableViewDelegate {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard row < self.scheduleloggdata?.loggdata?.count ?? -1 else { return nil }
-        if let object: NSDictionary = self.scheduleloggdata?.loggdata?[row] {
-            if tableColumn!.identifier.rawValue == "deleteCellID" ||
-                tableColumn!.identifier.rawValue == "snapCellID"
-            {
-                return object[tableColumn!.identifier] as? Int
-            } else {
-                return object[tableColumn!.identifier] as? String
+        if let tableColumn = tableColumn {
+            guard row < self.scheduleloggdata?.loggdata?.count ?? -1 else { return nil }
+            if let object: NSDictionary = self.scheduleloggdata?.loggdata?[row] {
+                if tableColumn.identifier.rawValue == "deleteCellID" ||
+                    tableColumn.identifier.rawValue == "snapCellID"
+                {
+                    return object[tableColumn.identifier] as? Int
+                } else {
+                    return object[tableColumn.identifier] as? String
+                }
             }
+            return nil
         }
         return nil
     }
