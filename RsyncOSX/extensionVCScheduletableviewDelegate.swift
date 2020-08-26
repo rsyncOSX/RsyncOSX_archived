@@ -70,7 +70,10 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                                 return taskintime ?? ""
                             }
                         case "delta":
-                            return self.sortedandexpanded?.delta?[row]
+                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
+                            if (delta?.count ?? 0) > 0 {
+                                return delta?[0].value(forKey: "delta") as? String
+                            }
                         default:
                             if self.index() ?? -1 == row, self.index == nil {
                                 let text = object[tableColumn.identifier] as? String

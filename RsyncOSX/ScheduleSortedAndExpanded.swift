@@ -11,11 +11,10 @@ import Cocoa
 import Foundation
 
 class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
-    private var schedulesNSDictionary: [NSDictionary]?
-    private var scheduleConfiguration: [ConfigurationSchedule]?
-    private var expandedData: [NSDictionary]?
-    private var sortedschedules: [NSDictionary]?
-    var delta: [String]?
+    var schedulesNSDictionary: [NSMutableDictionary]?
+    var scheduleConfiguration: [ConfigurationSchedule]?
+    var expandedData: [NSMutableDictionary]?
+    var sortedschedules: [NSMutableDictionary]?
 
     // Calculate daily schedules
     private func daily(dateStart: Date, schedule: String, dict: NSDictionary) {
@@ -32,7 +31,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 if let hiddenID = (dict.value(forKey: "hiddenID") as? Int) {
                     let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = start.timeIntervalSinceNow
-                    let dictschedule: NSDictionary = [
+                    let dictschedule: NSMutableDictionary = [
                         "start": start,
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
@@ -61,7 +60,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 if let hiddenID = (dict.value(forKey: "hiddenID") as? Int) {
                     let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = start.timeIntervalSinceNow
-                    let dictschedule: NSDictionary = [
+                    let dictschedule: NSMutableDictionary = [
                         "start": start,
                         "hiddenID": hiddenID,
                         "dateStart": dateStart,
@@ -90,7 +89,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                     if let hiddenID = (dict.value(forKey: "hiddenID") as? Int) {
                         let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
                         let time = seconds
-                        let dictschedule: NSDictionary = [
+                        let dictschedule: NSMutableDictionary = [
                             "start": dateStart,
                             "hiddenID": hiddenID,
                             "dateStart": dateStart,
@@ -127,13 +126,12 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private func adddelta() {
         // calculate delta time
         guard (self.sortedschedules?.count ?? 0) > 1 else { return }
-        self.delta = [String]()
-        self.delta?.append("0")
         let timestring = Dateandtime()
+        self.sortedschedules?[0].setValue(timestring.timestring(seconds: 0), forKey: "delta")
         for i in 1 ..< (self.sortedschedules?.count ?? 0) {
             if let t1 = self.sortedschedules?[i - 1].value(forKey: "timetostart") as? Double {
                 if let t2 = self.sortedschedules?[i].value(forKey: "timetostart") as? Double {
-                    self.delta?.append(timestring.timestring(seconds: t2 - t1))
+                    self.sortedschedules?[i].setValue(timestring.timestring(seconds: t2 - t1), forKey: "delta")
                 }
             }
         }
@@ -190,18 +188,18 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     /// array of NSDictionary.
     /// - returns : none
     private func setallscheduledtasksNSDictionary() {
-        var data = [NSDictionary]()
+        var data = [NSMutableDictionary]()
         for i in 0 ..< (self.scheduleConfiguration?.count ?? 0) where
             self.scheduleConfiguration![i].dateStop != nil && self.scheduleConfiguration![i].schedule != Scheduletype.stopped.rawValue
         {
-            let dict: NSDictionary = [
+            let dict: NSMutableDictionary = [
                 "dateStart": self.scheduleConfiguration?[i].dateStart ?? "",
                 "dateStop": self.scheduleConfiguration?[i].dateStop ?? "",
                 "hiddenID": self.scheduleConfiguration?[i].hiddenID ?? -1,
                 "schedule": self.scheduleConfiguration?[i].schedule ?? "",
                 "profilename": self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile"),
             ]
-            data.append(dict as NSDictionary)
+            data.append(dict as NSMutableDictionary)
         }
         self.schedulesNSDictionary = data
     }
@@ -209,7 +207,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     init() {
         // Getting the Schedule and expanding all the jobs
         guard self.schedules != nil else { return }
-        self.expandedData = [NSDictionary]()
+        self.expandedData = [NSMutableDictionary]()
         self.scheduleConfiguration = self.schedules?.getSchedule()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
@@ -217,7 +215,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     init(allschedules: Allschedules?) {
         guard allschedules != nil else { return }
-        self.expandedData = [NSDictionary]()
+        self.expandedData = [NSMutableDictionary]()
         self.scheduleConfiguration = allschedules?.getallschedules()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
@@ -225,7 +223,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // For XCtest
     init(schedules: Schedules?) {
-        self.expandedData = [NSDictionary]()
+        self.expandedData = [NSMutableDictionary]()
         self.scheduleConfiguration = schedules?.getSchedule()
         self.setallscheduledtasksNSDictionary()
         self.sortAndExpandScheduleTasks()
