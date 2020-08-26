@@ -121,6 +121,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 return false
             }
         }
+        self.adddelta()
     }
 
     private func adddelta() {
