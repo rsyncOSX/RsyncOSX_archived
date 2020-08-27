@@ -89,61 +89,62 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 }
             } else {
                 if row < self.scheduledetails?.count ?? 0 {
-                    let object: NSMutableDictionary = self.scheduledetails![row]
-                    switch tableColumn.identifier.rawValue {
-                    case "active":
-                        let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
-                        let schedule = object.value(forKey: "schedule") as? String ?? ""
-                        guard datestopstring.isEmpty == false, datestopstring != "no stopdate" else { return nil }
-                        let dateStop: Date = datestopstring.en_us_date_from_string()
-                        if dateStop.timeIntervalSinceNow > 0, schedule != Scheduletype.stopped.rawValue {
-                            return #imageLiteral(resourceName: "complete")
-                        } else {
+                    if let object: NSMutableDictionary = self.scheduledetails?[row] {
+                        switch tableColumn.identifier.rawValue {
+                        case "active":
+                            let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
+                            let schedule = object.value(forKey: "schedule") as? String ?? ""
+                            guard datestopstring.isEmpty == false, datestopstring != "no stopdate" else { return nil }
+                            let dateStop: Date = datestopstring.en_us_date_from_string()
+                            if dateStop.timeIntervalSinceNow > 0, schedule != Scheduletype.stopped.rawValue {
+                                return #imageLiteral(resourceName: "complete")
+                            } else {
+                                return nil
+                            }
+                        case "stopCellID", "deleteCellID":
+                            return object[tableColumn.identifier] as? Int
+                        case "schedule":
+                            switch object[tableColumn.identifier] as? String {
+                            case Scheduletype.once.rawValue:
+                                return NSLocalizedString("once", comment: "main")
+                            case Scheduletype.daily.rawValue:
+                                return NSLocalizedString("daily", comment: "main")
+                            case Scheduletype.weekly.rawValue:
+                                return NSLocalizedString("weekly", comment: "main")
+                            case Scheduletype.manuel.rawValue:
+                                return NSLocalizedString("manuel", comment: "main")
+                            case Scheduletype.stopped.rawValue:
+                                return NSLocalizedString("stopped", comment: "main")
+                            default:
+                                return ""
+                            }
+                        case "dateStart":
+                            if object[tableColumn.identifier] as? String == "01 Jan 1900 00:00" {
+                                return NSLocalizedString("no startdate", comment: "Schedule details")
+                            } else {
+                                let stringdate: String = object[tableColumn.identifier] as? String ?? ""
+                                if stringdate.isEmpty {
+                                    return ""
+                                } else {
+                                    return stringdate.en_us_date_from_string().localized_string_from_date()
+                                }
+                            }
+                        case "dateStop":
+                            if object[tableColumn.identifier] as? String == "01 Jan 2100 00:00" {
+                                return NSLocalizedString("no stopdate", comment: "Schedule details")
+                            } else {
+                                let stringdate: String = object[tableColumn.identifier] as? String ?? ""
+                                if stringdate.isEmpty || stringdate == "no stopdate" {
+                                    return ""
+                                } else {
+                                    return stringdate.en_us_date_from_string().localized_string_from_date()
+                                }
+                            }
+                        case "numberoflogs", "dayinweek":
+                            return object[tableColumn.identifier] as? String
+                        default:
                             return nil
                         }
-                    case "stopCellID", "deleteCellID":
-                        return object[tableColumn.identifier] as? Int
-                    case "schedule":
-                        switch object[tableColumn.identifier] as? String {
-                        case Scheduletype.once.rawValue:
-                            return NSLocalizedString("once", comment: "main")
-                        case Scheduletype.daily.rawValue:
-                            return NSLocalizedString("daily", comment: "main")
-                        case Scheduletype.weekly.rawValue:
-                            return NSLocalizedString("weekly", comment: "main")
-                        case Scheduletype.manuel.rawValue:
-                            return NSLocalizedString("manuel", comment: "main")
-                        case Scheduletype.stopped.rawValue:
-                            return NSLocalizedString("stopped", comment: "main")
-                        default:
-                            return ""
-                        }
-                    case "dateStart":
-                        if object[tableColumn.identifier] as? String == "01 Jan 1900 00:00" {
-                            return NSLocalizedString("no startdate", comment: "Schedule details")
-                        } else {
-                            let stringdate: String = object[tableColumn.identifier] as? String ?? ""
-                            if stringdate.isEmpty {
-                                return ""
-                            } else {
-                                return stringdate.en_us_date_from_string().localized_string_from_date()
-                            }
-                        }
-                    case "dateStop":
-                        if object[tableColumn.identifier] as? String == "01 Jan 2100 00:00" {
-                            return NSLocalizedString("no stopdate", comment: "Schedule details")
-                        } else {
-                            let stringdate: String = object[tableColumn.identifier] as? String ?? ""
-                            if stringdate.isEmpty || stringdate == "no stopdate" {
-                                return ""
-                            } else {
-                                return stringdate.en_us_date_from_string().localized_string_from_date()
-                            }
-                        }
-                    case "numberoflogs", "dayinweek":
-                        return object[tableColumn.identifier] as? String
-                    default:
-                        return nil
                     }
                 } else {
                     return nil
