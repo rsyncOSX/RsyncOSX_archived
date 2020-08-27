@@ -72,7 +72,11 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         case "delta":
                             let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0 {
-                                return delta?[0].value(forKey: "delta") as? String
+                                if (delta?.count ?? 0) > 1 {
+                                    return (delta?[0].value(forKey: "delta") as? String ?? "") + "+"
+                                } else {
+                                    return delta?[0].value(forKey: "delta") as? String
+                                }
                             }
                         default:
                             if self.index() ?? -1 == row, self.index == nil {
