@@ -39,7 +39,7 @@ struct Dateandtime {
         if secf <= 0 {
             result = "... working ..."
         }
-        return result!
+        return result ?? ""
     }
 
     // Calculation of time to a spesific date
@@ -49,9 +49,18 @@ struct Dateandtime {
         let (min, secf) = modf(60 * minf)
         // hr, min, 60 * secf
         if hr == 0, min == 0 {
-            result = String(format: "%.0f", 60 * secf) + "s"
+            if secf < 0.9 {
+                result = String(format: "%.0f", 60 * secf) + "s"
+            } else {
+                result = String(format: "%.0f", 1.0) + "m"
+            }
         } else if hr == 0, min < 60 {
-            result = String(format: "%.0f", min) + "m " + String(format: "%.0f", 60 * secf) + "s"
+            // print(secf)
+            if secf < 0.9 {
+                result = String(format: "%.0f", min) + "m " + String(format: "%.0f", 60 * secf) + "s"
+            } else {
+                result = String(format: "%.0f", min + 1) + "m"
+            }
         } else if hr < 25 {
             result = String(format: "%.0f", hr) + NSLocalizedString("h", comment: "datetime") + " "
                 + String(format: "%.0f", min) + "m"

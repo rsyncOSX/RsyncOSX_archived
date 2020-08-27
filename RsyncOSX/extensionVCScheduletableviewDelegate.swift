@@ -25,8 +25,9 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
         if let tableColumn = tableColumn {
             if tableView == self.scheduletable {
                 if row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
-                    if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row] {
-                        let hiddenID: Int = object.value(forKey: "hiddenID") as? Int ?? -1
+                    if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row],
+                        let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
+                    {
                         switch tableColumn.identifier.rawValue {
                         case "scheduleID":
                             if self.sortedandexpanded != nil {
@@ -58,15 +59,20 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                             } else {
                                 if self.index() ?? -1 == row, self.index == nil {
                                     let text = object[tableColumn.identifier] as? String
-                                    return self.attributedstring(str: text!, color: NSColor.green, align: .left)
+                                    return self.attributedstring(str: text ?? "", color: NSColor.green, align: .left)
                                 } else {
                                     return object[tableColumn.identifier] as? String
                                 }
                             }
                         case "inCellID":
                             if self.sortedandexpanded != nil {
-                                let taskintime: String? = self.sortedandexpanded!.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
+                                let taskintime: String? = self.sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
                                 return taskintime ?? ""
+                            }
+                        case "delta":
+                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
+                            if (delta?.count ?? 0) > 0 {
+                                return delta?[0].value(forKey: "delta") as? String
                             }
                         default:
                             if self.index() ?? -1 == row, self.index == nil {
