@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28/07/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint: disable line length
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -145,14 +145,14 @@ class NamesandPaths {
         }
     }
 
-    init(profileorsshrootpath: Profileorsshrootpath, configpath: String?) {
-        self.configpath = configpath
+    init(profileorsshrootpath: Profileorsshrootpath) {
+        self.configpath = Configpath().configpath
         self.profileorsshroot = profileorsshrootpath
         self.setrootpath()
     }
 
-    init(whattoreadwrite: WhatToReadWrite, profile: String?, configpath: String?) {
-        self.configpath = configpath
+    init(whattoreadwrite: WhatToReadWrite, profile: String?) {
+        self.configpath = Configpath().configpath
         self.profile = profile
         self.setpreferencesforreadingplist(whattoreadwrite: whattoreadwrite)
         self.setnameandpath()

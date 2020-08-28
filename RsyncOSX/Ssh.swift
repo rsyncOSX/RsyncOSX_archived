@@ -70,7 +70,7 @@ class Ssh: Files {
     }
 
     init(outputprocess: OutputProcess?) {
-        super.init(profileorsshrootpath: .sshroot, configpath: nil)
+        super.init(profileorsshrootpath: .sshroot)
         self.outputprocess = outputprocess
         self.keyFileURLS = self.getcatalogsasURLnames()
         self.keyFileStrings = self.getfilesasstringnames()

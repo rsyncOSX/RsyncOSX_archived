@@ -29,6 +29,6 @@ final class PersistentStorageUserconfiguration: ReadWriteDictionary {
     }
 
     init() {
-        super.init(whattoreadwrite: .userconfig, profile: nil, configpath: Configpath().configpath ?? "")
+        super.init(whattoreadwrite: .userconfig, profile: nil)
     }
 }

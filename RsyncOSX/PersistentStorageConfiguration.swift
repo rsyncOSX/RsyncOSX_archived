@@ -83,14 +83,14 @@ final class PersistentStorageConfiguration: ReadWriteDictionary, SetConfiguratio
     }
 
     init(profile: String?) {
-        super.init(whattoreadwrite: .configuration, profile: profile, configpath: Configpath().configpath ?? "")
+        super.init(whattoreadwrite: .configuration, profile: profile)
         if self.configurations == nil {
             self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
         }
     }
 
     init(profile: String?, allprofiles _: Bool) {
-        super.init(whattoreadwrite: .configuration, profile: profile, configpath: Configpath().configpath ?? "")
+        super.init(whattoreadwrite: .configuration, profile: profile)
         self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
     }
 }

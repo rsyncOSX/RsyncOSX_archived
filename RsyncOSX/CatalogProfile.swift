@@ -56,6 +56,6 @@ final class CatalogProfile: Files {
     }
 
     init() {
-        super.init(profileorsshrootpath: .profileroot, configpath: Configpath().configpath ?? "")
+        super.init(profileorsshrootpath: .profileroot)
     }
 }
