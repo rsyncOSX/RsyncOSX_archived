@@ -138,6 +138,7 @@
 		E9DF6DD8227976030083405C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD6227976030083405C /* Localizable.strings */; };
 		E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */; };
 		E9E88FD01EB25A080028432F /* ArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E88FCF1EB25A080028432F /* ArgumentsSsh.swift */; };
+		E9E8C6DB24F905AC00845BD7 /* Configpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8C6DA24F905AC00845BD7 /* Configpath.swift */; };
 		E9EC78711EACE082001EED9B /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC78701EACE082001EED9B /* Ssh.swift */; };
 		E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */; };
 		E9F068F01F27B93E00DDF1A1 /* ConfigurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EF1F27B93E00DDF1A1 /* ConfigurationSchedule.swift */; };
@@ -309,6 +310,7 @@
 		E9DF6DD7227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVersionString.swift; sourceTree = "<group>"; };
 		E9E88FCF1EB25A080028432F /* ArgumentsSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgumentsSsh.swift; sourceTree = "<group>"; };
+		E9E8C6DA24F905AC00845BD7 /* Configpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configpath.swift; sourceTree = "<group>"; };
 		E9EC78701EACE082001EED9B /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
 		E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTask.swift; sourceTree = "<group>"; };
 		E9F068EF1F27B93E00DDF1A1 /* ConfigurationSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSchedule.swift; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */,
 				A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */,
 				E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */,
+				E9E8C6DA24F905AC00845BD7 /* Configpath.swift */,
 			);
 			name = PersistentStorage;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 				E9AC77602272F4DC0063F324 /* ConvertUserconfiguration.swift in Sources */,
 				E94D2603205025790026D18F /* ViewControllerAllProfiles.swift in Sources */,
 				A04492B01D658F2100B3CE17 /* PersistentStorageScheduling.swift in Sources */,
+				E9E8C6DB24F905AC00845BD7 /* Configpath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -105,15 +105,21 @@ class NamesandPaths {
             // Use profile
             let profilePath = CatalogProfile()
             profilePath.createprofilecatalog()
-            // self.filename = (self.documentscatalog ?? "") + config + "/" + profile + plist
-            self.filename = (self.userHomeDirectoryPath ?? "") + config + "/" + profile + plist
+            if ViewControllerReference.shared.usenewconfigpath == true {
+                self.filename = (self.userHomeDirectoryPath ?? "") + config + "/" + profile + plist
+            } else {
+                self.filename = (self.documentscatalog ?? "") + config + "/" + profile + plist
+            }
             self.filepath = config + "/" + profile + "/"
         } else {
             // no profile
             let profilePath = CatalogProfile()
             profilePath.createprofilecatalog()
-            // self.filename = (self.documentscatalog ?? "") + config + plist
-            self.filename = (self.userHomeDirectoryPath ?? "") + config + plist
+            if ViewControllerReference.shared.usenewconfigpath == true {
+                self.filename = (self.userHomeDirectoryPath ?? "") + config + plist
+            } else {
+                self.filename = (self.documentscatalog ?? "") + config + plist
+            }
             self.filepath = config + "/"
         }
     }
