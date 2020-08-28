@@ -6,26 +6,21 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
+import Files
 import Foundation
 
 final class CatalogProfile: Catalogsandfiles {
-    // Function for creating new profile directory
-    func createProfileDirectory(profileName: String) -> Bool {
-        let fileManager = FileManager.default
+    func createprofilecatalog(profile: String) -> Bool {
+        var rootpath: Folder?
         if let path = self.rootpath {
-            let profileDirectory = path + "/" + profileName
-            if fileManager.fileExists(atPath: profileDirectory) == false {
+            do {
+                rootpath = try Folder(path: path)
                 do {
-                    try fileManager.createDirectory(atPath: profileDirectory,
-                                                    withIntermediateDirectories: true,
-                                                    attributes: nil)
-                    return true
-                } catch let e {
-                    let error = e as NSError
-                    self.error(error: error.description, errortype: .profilecreatedirectory)
+                    try rootpath?.createSubfolder(at: profile)
+                } catch {
                     return false
                 }
-            } else {
+            } catch {
                 return false
             }
         }

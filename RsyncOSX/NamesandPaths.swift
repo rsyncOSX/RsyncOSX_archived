@@ -23,6 +23,9 @@ enum Profileorsshrootpath {
 
 class NamesandPaths {
     var profileorsshroot: Profileorsshrootpath?
+    // rootpath without macserialnumber
+    var barerootpath: String?
+    // rootpath with macserianlnumer
     var rootpath: String?
     // If global keypath and identityfile is set must split keypath and identifile
     // create a new key require full path
@@ -89,8 +92,10 @@ class NamesandPaths {
         case .profileroot:
             if ViewControllerReference.shared.usenewconfigpath == true {
                 self.rootpath = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+                self.barerootpath = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "")
             } else {
                 self.rootpath = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+                self.barerootpath = (self.documentscatalog ?? "") + (self.configpath ?? "")
             }
         case .sshroot:
             self.rootpath = self.sshrootkeypath
@@ -104,10 +109,10 @@ class NamesandPaths {
     func setnameandpath() {
         let config = (self.configpath ?? "") + (self.macserialnumber ?? "")
         let plist = (self.plistname ?? "")
+        // Create base profile catalog
+        _ = CatalogProfile().createprofilecatalog()
         if let profile = self.profile {
             // Use profile
-            let profilePath = CatalogProfile()
-            profilePath.createprofilecatalog()
             if ViewControllerReference.shared.usenewconfigpath == true {
                 self.filename = (self.userHomeDirectoryPath ?? "") + config + "/" + profile + plist
             } else {
@@ -115,9 +120,6 @@ class NamesandPaths {
             }
             self.filepath = config + "/" + profile + "/"
         } else {
-            // no profile
-            let profilePath = CatalogProfile()
-            profilePath.createprofilecatalog()
             if ViewControllerReference.shared.usenewconfigpath == true {
                 self.filename = (self.userHomeDirectoryPath ?? "") + config + plist
             } else {

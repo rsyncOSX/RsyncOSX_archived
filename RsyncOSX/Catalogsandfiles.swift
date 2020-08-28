@@ -101,7 +101,8 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     }
 
     // Func that creates directory if not created
-    func createprofilecatalog() {
+
+    func ccreateprofilecatalog() {
         let fileManager = FileManager.default
         if let path = self.rootpath {
             // Profile root
@@ -112,6 +113,37 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                     let error = e as NSError
                     self.error(error: error.description, errortype: .profilecreatedirectory)
                 }
+            }
+        }
+    }
+
+    func createprofilecatalog() {
+        var root: Folder?
+        var catalog: String?
+        if ViewControllerReference.shared.usenewconfigpath {
+            catalog = ViewControllerReference.shared.newconfigpath
+            root = Folder.home
+            do {
+                try root?.createSubfolder(at: catalog ?? "")
+            } catch {
+                return
+            }
+        } else {
+            catalog = ViewControllerReference.shared.configpath
+            root = Folder.documents
+            do {
+                try root?.createSubfolder(at: catalog ?? "")
+            } catch {
+                return
+            }
+        }
+        if let serial = self.macserialnumber,
+            let barerootpath = self.barerootpath
+        {
+            do {
+                try Folder(path: barerootpath).createSubfolder(at: serial)
+            } catch {
+                return
             }
         }
     }
