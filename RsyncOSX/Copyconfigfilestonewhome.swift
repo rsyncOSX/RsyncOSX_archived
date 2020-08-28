@@ -51,14 +51,14 @@ struct Copyconfigfilestonewhome: FileErrors {
                 print("catalogs")
                 for i in 0 ..< (self.profilecatalogs?.count ?? 0) {
                     do {
-                        originFolder = try Folder(path: oldpath + (self.profilecatalogs?[i] ?? ""))
+                        originFolder = try Folder(path: oldpath + "/" + (self.profilecatalogs?[i] ?? ""))
                     } catch let e {
                         let error = e as NSError
                         self.error(error: error.description, errortype: .profilecreatedirectory)
                         return
                     }
                     do {
-                        targetFolder = try Folder(path: newpath + (self.profilecatalogs?[i] ?? ""))
+                        targetFolder = try Folder(path: newpath + "/" + (self.profilecatalogs?[i] ?? ""))
                     } catch let e {
                         let error = e as NSError
                         self.error(error: error.description, errortype: .profilecreatedirectory)
@@ -80,7 +80,7 @@ struct Copyconfigfilestonewhome: FileErrors {
         }
     }
 
-    private func getcatalogsasstringnames() -> [String]? {
+    private func getoldcatalogsasstringnames() -> [String]? {
         if let atpath = self.oldpath {
             var array = [String]()
             do {
@@ -95,6 +95,22 @@ struct Copyconfigfilestonewhome: FileErrors {
         return nil
     }
 
+    private func createnewpaths() {
+        var newpath: Folder?
+        do {
+            newpath = try Folder(path: self.newpath ?? "")
+        } catch {
+            return
+        }
+        for i in 0 ..< (self.profilecatalogs?.count ?? 0) {
+            do {
+                try newpath?.createSubfolder(at: self.profilecatalogs?[i] ?? "")
+            } catch {
+                return
+            }
+        }
+    }
+
     init() {
         // Temporary set old path
         ViewControllerReference.shared.usenewconfigpath = false
@@ -102,8 +118,10 @@ struct Copyconfigfilestonewhome: FileErrors {
         ViewControllerReference.shared.usenewconfigpath = true
         self.newpath = NamesandPaths(profileorsshrootpath: .profileroot).rootpath
         // Catalogs in oldpath
-        self.profilecatalogs = self.getcatalogsasstringnames()
-        // for now print only
+        self.profilecatalogs = self.getoldcatalogsasstringnames()
+        // create new subcatalogs
+        self.createnewpaths()
+        // move files
         self.moveplistfilestonewhome()
         ViewControllerReference.shared.usenewconfigpath = false
     }
