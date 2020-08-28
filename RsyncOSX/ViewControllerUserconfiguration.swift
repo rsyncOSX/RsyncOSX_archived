@@ -415,6 +415,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.statuslightpathrsyncosxsched.isHidden = true
         self.statuslightsshkeypath.isHidden = true
         self.closebutton.isHidden = true
+        // Prepare for copy configfiles
+        _ = Copyconfigfilestonewhome()
     }
 
     // Function for check and set user configuration

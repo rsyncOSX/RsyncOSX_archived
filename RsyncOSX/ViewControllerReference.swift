@@ -57,8 +57,15 @@ final class ViewControllerReference {
     // Where RsyncOSX config files are stored
     var configpath: String = "/Rsync/"
     // New RsynOSX config files and path
-    var newconfigpath: String = "./rsyncosx/"
+    var newconfigpath: String = "/.rsyncosx/"
     var usenewconfigpath: Bool = false
+    // Plistnames and key
+    var scheduleplist: String = "/scheduleRsync.plist"
+    var schedulekey: String = "Schedule"
+    var configurationsplist: String = "/configRsync.plist"
+    var configurationskey: String = "Catalogs"
+    var userconfigplist: String = "/config.plist"
+    var userconfigkey: String = "config"
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore

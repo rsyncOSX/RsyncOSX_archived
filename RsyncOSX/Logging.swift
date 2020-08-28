@@ -17,12 +17,16 @@ class Logging: FileErrors {
     var fileURL: URL?
     var filesize: NSNumber?
 
-    private func setfilenamelogging() {
+    private func setfilenamelogging() -> Bool {
         self.filename = ViewControllerReference.shared.logname
         let DocumentDirURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        self.fileURL = DocumentDirURL?.appendingPathComponent(self.filename!).appendingPathExtension("txt")
-        self.filesize = try? FileManager.default.attributesOfItem(atPath: self.fileURL!.path)[FileAttributeKey.size] as? NSNumber ?? 0
-        ViewControllerReference.shared.fileURL = self.fileURL
+        if let fileURL = DocumentDirURL?.appendingPathComponent(self.filename ?? "").appendingPathExtension("txt") {
+            self.filesize = try? FileManager.default.attributesOfItem(atPath: fileURL.path)[FileAttributeKey.size] as? NSNumber ?? 0
+            ViewControllerReference.shared.fileURL = fileURL
+            self.fileURL = fileURL
+            return true
+        }
+        return false
     }
 
     private func writeloggfile() {
@@ -92,31 +96,34 @@ class Logging: FileErrors {
             return
         }
         self.outputprocess = outputprocess
-        self.setfilenamelogging()
-        if ViewControllerReference.shared.fulllogging {
-            self.fulllogging()
-        } else {
-            self.minimumlogging()
+        if self.setfilenamelogging() {
+            if ViewControllerReference.shared.fulllogging {
+                self.fulllogging()
+            } else {
+                self.minimumlogging()
+            }
         }
     }
 
     init(_ outputprocess: OutputProcess?, _ logging: Bool) {
-        self.setfilenamelogging()
-        if logging == false, outputprocess == nil {
-            self.log = "Creating a new logfile: " + (self.fileURL?.absoluteString ?? "")
-            self.writeloggfile()
-        } else {
-            self.outputprocess = outputprocess
-            self.fulllogging()
+        if self.setfilenamelogging() {
+            if logging == false, outputprocess == nil {
+                self.log = "Creating a new logfile: " + (self.fileURL?.absoluteString ?? "")
+                self.writeloggfile()
+            } else {
+                self.outputprocess = outputprocess
+                self.fulllogging()
+            }
         }
     }
 
     init() {
-        self.setfilenamelogging()
-        self.readloggfile()
-        self.contentoflogfile = [String]()
-        if let log = self.log {
-            self.contentoflogfile = log.components(separatedBy: .newlines)
+        if self.setfilenamelogging() {
+            self.readloggfile()
+            self.contentoflogfile = [String]()
+            if let log = self.log {
+                self.contentoflogfile = log.components(separatedBy: .newlines)
+            }
         }
     }
 }
