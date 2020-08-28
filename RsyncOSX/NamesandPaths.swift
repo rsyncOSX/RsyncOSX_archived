@@ -16,13 +16,13 @@ enum WhatToReadWrite {
     case none
 }
 
-enum WhichRoot {
-    case profileRoot
-    case sshRoot
+enum Profileorsshrootpath {
+    case profileroot
+    case sshroot
 }
 
 class NamesandPaths {
-    var whichroot: WhichRoot?
+    var profileorsshroot: Profileorsshrootpath?
     var rootpath: String?
     // If global keypath and identityfile is set must split keypath and identifile
     // create a new key require full path
@@ -74,11 +74,22 @@ class NamesandPaths {
         return ViewControllerReference.shared.macserialnumber
     }
 
+    var userHomeDirectoryPath: String? {
+        let pw = getpwuid(getuid())
+        if let home = pw?.pointee.pw_dir {
+            let homePath = FileManager.default.string(withFileSystemRepresentation: home, length: Int(strlen(home)))
+            return homePath
+        } else {
+            return nil
+        }
+    }
+
     func setrootpath() {
-        switch self.whichroot {
-        case .profileRoot:
-            self.rootpath = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
-        case .sshRoot:
+        switch self.profileorsshroot {
+        case .profileroot:
+            // self.rootpath = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+            self.rootpath = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+        case .sshroot:
             self.rootpath = self.sshrootkeypath
             self.identityfile = self.sshidentityfile
         default:
@@ -86,6 +97,7 @@ class NamesandPaths {
         }
     }
 
+    // Set path and name for reading plist.files
     func setnameandpath() {
         let config = (self.configpath ?? "") + (self.macserialnumber ?? "")
         let plist = (self.plistname ?? "")
@@ -93,13 +105,15 @@ class NamesandPaths {
             // Use profile
             let profilePath = CatalogProfile()
             profilePath.createprofilecatalog()
-            self.filename = (self.documentscatalog ?? "") + config + "/" + profile + plist
+            // self.filename = (self.documentscatalog ?? "") + config + "/" + profile + plist
+            self.filename = (self.userHomeDirectoryPath ?? "") + config + "/" + profile + plist
             self.filepath = config + "/" + profile + "/"
         } else {
             // no profile
             let profilePath = CatalogProfile()
             profilePath.createprofilecatalog()
-            self.filename = (self.documentscatalog ?? "") + config + plist
+            // self.filename = (self.documentscatalog ?? "") + config + plist
+            self.filename = (self.userHomeDirectoryPath ?? "") + config + plist
             self.filepath = config + "/"
         }
     }
@@ -122,9 +136,9 @@ class NamesandPaths {
         }
     }
 
-    init(whichroot: WhichRoot, configpath: String?) {
+    init(profileorsshrootpath: Profileorsshrootpath, configpath: String?) {
         self.configpath = configpath
-        self.whichroot = whichroot
+        self.profileorsshroot = profileorsshrootpath
         self.setrootpath()
     }
 

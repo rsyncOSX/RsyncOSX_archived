@@ -56,6 +56,8 @@ final class ViewControllerReference {
     var usrlocalbinrsync: String = "/usr/local/bin/rsync"
     // Where RsyncOSX config files are stored
     var configpath: String = "/Rsync/"
+    // New RsynOSX config files and path
+    var newconfigpath: String = "./rsyncosx/"
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
