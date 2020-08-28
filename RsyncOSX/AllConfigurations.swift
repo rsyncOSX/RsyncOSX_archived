@@ -69,18 +69,6 @@ final class AllConfigurations: Sorting {
         self.allconfigurationsasdictionary = data
     }
 
-    // Function for filter
-    func myownfilter(search: String?, filterby: Sortandfilter?) {
-        guard search != nil, self.allconfigurationsasdictionary != nil, filterby != nil else { return }
-        globalDefaultQueue.async { () -> Void in
-            let valueforkey = self.filterbystring(filterby: filterby!)
-            let filtereddata = self.allconfigurationsasdictionary?.filter {
-                ($0.value(forKey: valueforkey) as? String)?.contains(search ?? "") ?? false
-            }
-            self.allconfigurationsasdictionary = filtereddata
-        }
-    }
-
     init() {
         self.allprofiles = AllProfilenames().allprofiles
         self.readallconfigurations()
