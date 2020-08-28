@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class Ssh: Files {
+class Ssh: Catalogsandfiles {
     var commandCopyPasteTerminal: String?
     var rsaStringPath: String?
     // Arrays listing all key files

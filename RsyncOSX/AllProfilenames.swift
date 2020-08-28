@@ -12,7 +12,7 @@ class AllProfilenames {
     var allprofiles: [String]?
 
     private func getprofilenames() {
-        let profile = Files(profileorsshrootpath: .profileroot)
+        let profile = Catalogsandfiles(profileorsshrootpath: .profileroot)
         self.allprofiles = profile.getcatalogsasstringnames()
         guard self.allprofiles != nil else { return }
         self.allprofiles?.append(NSLocalizedString("Default profile", comment: "default profile"))

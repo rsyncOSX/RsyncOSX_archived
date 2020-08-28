@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class CatalogProfile: Files {
+final class CatalogProfile: Catalogsandfiles {
     // Function for creating new profile directory
     func createProfileDirectory(profileName: String) -> Bool {
         let fileManager = FileManager.default

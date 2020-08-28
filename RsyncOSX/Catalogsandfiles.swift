@@ -54,7 +54,7 @@ extension ErrorMessage {
     }
 }
 
-class Files: NamesandPaths, FileErrors {
+class Catalogsandfiles: NamesandPaths, FileErrors {
     func getcatalogsasURLnames() -> [URL]? {
         if let atpath = self.rootpath {
             do {
