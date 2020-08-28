@@ -87,8 +87,11 @@ class NamesandPaths {
     func setrootpath() {
         switch self.profileorsshroot {
         case .profileroot:
-            // self.rootpath = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
-            self.rootpath = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+            if ViewControllerReference.shared.usenewconfigpath == true {
+                self.rootpath = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+            } else {
+                self.rootpath = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+            }
         case .sshroot:
             self.rootpath = self.sshrootkeypath
             self.identityfile = self.sshidentityfile
