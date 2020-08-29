@@ -15,72 +15,72 @@ struct Copyconfigfilestonewhome: FileErrors {
     var newpath: String?
     var profilecatalogs: [String]?
 
-    private func moveplistfilestonewhome() {
-        if let oldpath = self.oldpath {
-            if let newpath = self.newpath {
-                var originFolder: Folder?
-                var targetFolder: Folder?
+    // Move all plistfiles from old profile catalog
+    // to new profile catalog.
+    func moveplistfilestonewhome() -> Bool {
+        if let oldpath = self.oldpath,
+            let newpath = self.newpath
+        {
+            var originFolder: Folder?
+            var targetFolder: Folder?
 
-                // Root
-                print("root")
+            // root of profile catalog
+            do {
+                originFolder = try Folder(path: oldpath)
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .profilecreatedirectory)
+                return false
+            }
+            do {
+                targetFolder = try Folder(path: newpath)
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .profilecreatedirectory)
+                return false
+            }
+            do {
+                if let targetFolder = targetFolder {
+                    try originFolder?.files.move(to: targetFolder)
+                }
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .profilecreatedirectory)
+                return false
+            }
+            // profile catalogs
+            for i in 0 ..< (self.profilecatalogs?.count ?? 0) {
                 do {
-                    originFolder = try Folder(path: oldpath)
+                    originFolder = try Folder(path: oldpath + "/" + (self.profilecatalogs?[i] ?? ""))
                 } catch let e {
                     let error = e as NSError
                     self.error(error: error.description, errortype: .profilecreatedirectory)
-                    return
+                    return false
                 }
                 do {
-                    targetFolder = try Folder(path: newpath)
+                    targetFolder = try Folder(path: newpath + "/" + (self.profilecatalogs?[i] ?? ""))
                 } catch let e {
                     let error = e as NSError
                     self.error(error: error.description, errortype: .profilecreatedirectory)
-                    return
+                    return false
                 }
                 do {
                     if let targetFolder = targetFolder {
-                        print(originFolder?.description ?? "")
-                        print(targetFolder.description)
-                        // try originFolder?.files.move(to: targetFolder)
+                        try originFolder?.files.move(to: targetFolder)
                     }
                 } catch let e {
                     let error = e as NSError
                     self.error(error: error.description, errortype: .profilecreatedirectory)
-                    return
-                }
-                // Catalogs
-                print("catalogs")
-                for i in 0 ..< (self.profilecatalogs?.count ?? 0) {
-                    do {
-                        originFolder = try Folder(path: oldpath + "/" + (self.profilecatalogs?[i] ?? ""))
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .profilecreatedirectory)
-                        return
-                    }
-                    do {
-                        targetFolder = try Folder(path: newpath + "/" + (self.profilecatalogs?[i] ?? ""))
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .profilecreatedirectory)
-                        return
-                    }
-                    do {
-                        if let targetFolder = targetFolder {
-                            print(originFolder?.description ?? "")
-                            print(targetFolder.description)
-                            // try originFolder?.files.move(to: targetFolder)
-                        }
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .profilecreatedirectory)
-                        return
-                    }
+                    return false
                 }
             }
+            return true
         }
+        return false
     }
 
+    // Collect all catalognames from old profile catalog.
+    // Profilenames are used to create new profile catalogs
     private func getoldcatalogsasstringnames() -> [String]? {
         if let atpath = self.oldpath {
             var array = [String]()
@@ -96,7 +96,9 @@ struct Copyconfigfilestonewhome: FileErrors {
         return nil
     }
 
-    private func createnewpaths() {
+    // Create new profile catalogs at new profile root
+    // ahead of moving profile files.
+    private func createnewprofilecatalogs() {
         var newpath: Folder?
         do {
             newpath = try Folder(path: self.newpath ?? "")
@@ -121,9 +123,9 @@ struct Copyconfigfilestonewhome: FileErrors {
         // Catalogs in oldpath
         self.profilecatalogs = self.getoldcatalogsasstringnames()
         // create new subcatalogs
-        self.createnewpaths()
+        // self.createnewprofilecatalogs()
         // move files
-        self.moveplistfilestonewhome()
-        ViewControllerReference.shared.usenewconfigpath = false
+        // self.moveplistfilestonewhome()
+        // ViewControllerReference.shared.usenewconfigpath = false
     }
 }

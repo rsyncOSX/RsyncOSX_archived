@@ -70,7 +70,7 @@ final class AllConfigurations: Sorting {
     }
 
     // Function for filter
-    func myownfilter(search: String?, filterby: Sortandfilter?) {
+    func filter(search: String?, filterby: Sortandfilter?) {
         guard search != nil, self.allconfigurationsasdictionary != nil, filterby != nil else { return }
         globalDefaultQueue.async { () -> Void in
             let valueforkey = self.filterbystring(filterby: filterby!)

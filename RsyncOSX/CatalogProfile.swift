@@ -17,7 +17,10 @@ final class CatalogProfile: Catalogsandfiles {
                 rootpath = try Folder(path: path)
                 do {
                     try rootpath?.createSubfolder(at: profile)
-                } catch {
+                    return true
+                } catch let e {
+                    let error = e as NSError
+                    self.error(error: error.description, errortype: .profilecreatedirectory)
                     return false
                 }
             } catch {
