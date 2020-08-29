@@ -101,9 +101,8 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     }
 
     // Create profile catalog at first start of RsyncOSX.
-    // If profile catalog exists - bail out, no need
-    // to create
-    func createprofilecatalog() {
+    // If profile catalog exists - bail out, no need to create
+    func createrootprofilecatalog() {
         var root: Folder?
         var catalog: String?
         // First check if profilecatalog exists, if yes bail out
@@ -151,7 +150,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     // Create SSH catalog
     // If ssh catalog exists - bail out, no need
     // to create
-    func createsshcatalog() {
+    func createsshkeyrootpath() {
         if let path = self.sshkeyrootpath {
             let root = Folder.home
             guard root.containsSubfolder(named: path) == false else { return }

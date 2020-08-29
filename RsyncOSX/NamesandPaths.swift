@@ -113,8 +113,6 @@ class NamesandPaths {
     func setnameandpath() {
         let config = (self.configpath ?? "") + (self.macserialnumber ?? "")
         let plist = (self.plistname ?? "")
-        // Create base profile catalog
-        _ = CatalogProfile().createprofilecatalog()
         if let profile = self.profile {
             // Use profile
             if ViewControllerReference.shared.usenewconfigpath == true {

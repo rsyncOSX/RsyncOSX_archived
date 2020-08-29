@@ -115,7 +115,6 @@ struct Copyconfigfilestonewhome: FileErrors {
     }
 
     init() {
-        // Temporary set old path
         ViewControllerReference.shared.usenewconfigpath = false
         self.oldpath = NamesandPaths(profileorsshrootpath: .profileroot).rootpath
         ViewControllerReference.shared.usenewconfigpath = true

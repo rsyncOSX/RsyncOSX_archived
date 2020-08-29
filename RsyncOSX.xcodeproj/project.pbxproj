@@ -137,6 +137,7 @@
 		E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */; };
 		E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD3227976030083405C /* InfoPlist.strings */; };
 		E9DF6DD8227976030083405C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD6227976030083405C /* Localizable.strings */; };
+		E9E3C81724FAAA3E00FFDE00 /* Neworoldprofilepath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E3C81624FAAA3E00FFDE00 /* Neworoldprofilepath.swift */; };
 		E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */; };
 		E9E88FD01EB25A080028432F /* ArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E88FCF1EB25A080028432F /* ArgumentsSsh.swift */; };
 		E9E8C6DB24F905AC00845BD7 /* Configpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8C6DA24F905AC00845BD7 /* Configpath.swift */; };
@@ -310,6 +311,7 @@
 		E9DE2CCE228A835C003BC663 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E9DF6DD4227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9DF6DD7227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9E3C81624FAAA3E00FFDE00 /* Neworoldprofilepath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neworoldprofilepath.swift; sourceTree = "<group>"; };
 		E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVersionString.swift; sourceTree = "<group>"; };
 		E9E88FCF1EB25A080028432F /* ArgumentsSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgumentsSsh.swift; sourceTree = "<group>"; };
 		E9E8C6DA24F905AC00845BD7 /* Configpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configpath.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				E98EF115249E23E100FD4669 /* NetworkMonitor.swift */,
 				E9B9675624BCB68500F623C9 /* PreandPostTasks.swift */,
 				E9BD689A24F940D800F30AE3 /* Copyconfigfilestonewhome.swift */,
+				E9E3C81624FAAA3E00FFDE00 /* Neworoldprofilepath.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1085,6 +1088,7 @@
 				E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */,
 				E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */,
 				E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */,
+				E9E3C81724FAAA3E00FFDE00 /* Neworoldprofilepath.swift in Sources */,
 				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
 				E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */,
 				E9F068F21F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift in Sources */,
