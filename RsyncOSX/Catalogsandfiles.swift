@@ -113,6 +113,9 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                 guard pathexists == false else { return }
             } catch {
                 // if fails then create profile catalogs
+                // Creating profile catalalog is a two step task
+                // 1: create profilecatalog
+                // 2: create profilecatalog/macserialnumber
                 if ViewControllerReference.shared.usenewconfigpath {
                     catalog = ViewControllerReference.shared.newconfigpath
                     root = Folder.home

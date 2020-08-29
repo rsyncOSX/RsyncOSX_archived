@@ -58,7 +58,7 @@ final class ViewControllerReference {
     var configpath: String = "/Rsync/"
     // New RsynOSX config files and path
     var newconfigpath: String = "/.rsyncosx/"
-    var usenewconfigpath: Bool = true
+    var usenewconfigpath: Bool = false
     // Plistnames and key
     var scheduleplist: String = "/scheduleRsync.plist"
     var schedulekey: String = "Schedule"
