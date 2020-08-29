@@ -100,51 +100,57 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
         return nil
     }
 
-    // Func that creates directory if not created
-
-    func ccreateprofilecatalog() {
-        let fileManager = FileManager.default
-        if let path = self.rootpath {
-            // Profile root
-            if fileManager.fileExists(atPath: path) == false {
-                do {
-                    try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-                } catch let e {
-                    let error = e as NSError
-                    self.error(error: error.description, errortype: .profilecreatedirectory)
+    // Create profile catalog
+    func createprofilecatalog() {
+        var root: Folder?
+        var catalog: String?
+        // First check if profilecatalog exists, if yes bail out
+        if let serial = self.macserialnumber,
+            let barerootpath = self.barerootpath
+        {
+            do {
+                let pathexists = try Folder(path: barerootpath).containsSubfolder(named: serial)
+                guard pathexists == false else { return }
+            } catch {
+                // if fails then create profile catalogs
+                if ViewControllerReference.shared.usenewconfigpath {
+                    catalog = ViewControllerReference.shared.newconfigpath
+                    root = Folder.home
+                    do {
+                        try root?.createSubfolder(at: catalog ?? "")
+                    } catch {
+                        return
+                    }
+                } else {
+                    catalog = ViewControllerReference.shared.configpath
+                    root = Folder.documents
+                    do {
+                        try root?.createSubfolder(at: catalog ?? "")
+                    } catch {
+                        return
+                    }
+                }
+                if let serial = self.macserialnumber,
+                    let barerootpath = self.barerootpath
+                {
+                    do {
+                        try Folder(path: barerootpath).createSubfolder(at: serial)
+                    } catch {
+                        return
+                    }
                 }
             }
         }
     }
 
-    func createprofilecatalog() {
-        var root: Folder?
-        var catalog: String?
-        if ViewControllerReference.shared.usenewconfigpath {
-            catalog = ViewControllerReference.shared.newconfigpath
-            root = Folder.home
+    // Create SSH catalog
+    func createsshcatalog() {
+        if let path = self.sshkeyrootpath {
+            let root = Folder.home
+            guard root.containsSubfolder(named: path) == false else { return }
             do {
-                try root?.createSubfolder(at: catalog ?? "")
-            } catch {
-                return
-            }
-        } else {
-            catalog = ViewControllerReference.shared.configpath
-            root = Folder.documents
-            do {
-                try root?.createSubfolder(at: catalog ?? "")
-            } catch {
-                return
-            }
-        }
-        if let serial = self.macserialnumber,
-            let barerootpath = self.barerootpath
-        {
-            do {
-                try Folder(path: barerootpath).createSubfolder(at: serial)
-            } catch {
-                return
-            }
+                try root.createSubfolder(at: path)
+            } catch {}
         }
     }
 

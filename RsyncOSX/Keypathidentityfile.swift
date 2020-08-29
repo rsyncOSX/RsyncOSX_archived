@@ -13,6 +13,7 @@ struct Keypathidentityfile {
     // If global keypath and identityfile is set must split keypath and identifile
     // create a new key require full path
     var identityfile: String?
+    var sshkeyrootpath: String?
 
     init(sshkeypathandidentityfile: String) {
         if sshkeypathandidentityfile.first == "~" {
@@ -24,6 +25,7 @@ struct Keypathidentityfile {
                 self.rootpath = NSHomeDirectory() + "/.ssh"
                 ViewControllerReference.shared.sshkeypathandidentityfile = nil
                 self.identityfile = "id_rsa"
+                self.sshkeyrootpath = nil
                 return
             }
             self.identityfile =
@@ -31,11 +33,13 @@ struct Keypathidentityfile {
             sshkeypathandidentityfilesplit.remove(at: sshkeypathandidentityfilesplit.count - 1)
             self.rootpath = NSHomeDirectory() +
                 sshkeypathandidentityfilesplit.joined(separator: "/").dropFirst()
+            self.sshkeyrootpath = String(sshkeypathandidentityfilesplit.joined(separator: "/").dropFirst())
         } else {
             // If anything goes wrong set to default global values
             self.rootpath = NSHomeDirectory() + "/.ssh"
             ViewControllerReference.shared.sshkeypathandidentityfile = nil
             self.identityfile = "id_rsa"
+            self.sshkeyrootpath = nil
         }
     }
 }

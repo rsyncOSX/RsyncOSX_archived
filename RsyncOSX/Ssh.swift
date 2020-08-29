@@ -74,6 +74,6 @@ class Ssh: Catalogsandfiles {
         self.outputprocess = outputprocess
         self.keyFileURLS = self.getcatalogsasURLnames()
         self.keyFileStrings = self.getfilesasstringnames()
-        self.createprofilecatalog()
+        self.createsshcatalog()
     }
 }

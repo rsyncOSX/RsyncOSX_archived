@@ -30,6 +30,8 @@ class NamesandPaths {
     // If global keypath and identityfile is set must split keypath and identifile
     // create a new key require full path
     var identityfile: String?
+    // Bare sshkeyrootpath (not NSHome)
+    var sshkeyrootpath: String?
     // config path either
     // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
     var configpath: String?
@@ -54,8 +56,10 @@ class NamesandPaths {
     // Path to ssh keypath
     var sshrootkeypath: String? {
         if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
+            self.sshkeyrootpath = Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).sshkeyrootpath
             return Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).rootpath
         } else {
+            self.sshkeyrootpath = NSHomeDirectory()
             return NSHomeDirectory() + "/.ssh"
         }
     }
