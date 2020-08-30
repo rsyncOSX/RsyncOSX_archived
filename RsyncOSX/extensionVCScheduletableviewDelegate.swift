@@ -149,9 +149,11 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         case "numberoflogs", "dayinweek":
                             return object[tableColumn.identifier] as? String
                         case "inCellID":
-                            if self.sortedandexpanded != nil {
-                                let taskintime: String? = self.sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
-                                return taskintime ?? ""
+                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
+                            if (delta?.count ?? 0) > 0, row < (delta?.count ?? 0) {
+                                return delta?[row].value(forKey: "timetostart")
+                            } else {
+                                return ""
                             }
                         default:
                             return nil
