@@ -313,6 +313,9 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "B39-H6-802"; */
 "B39-H6-802.headerCell.title" = "Ekstern katalog";
 
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "b87-Cn-VBW"; */
+"b87-Cn-VBW.title" = "Text Cell";
+
 /* Class = "NSViewController"; title = "Verify"; ObjectID = "Bb6-iv-DYc"; */
 "Bb6-iv-DYc.title" = "Verifiser";
 
@@ -441,6 +444,9 @@
 
 /* Class = "NSTextFieldCell"; title = "keypath + identityfile :"; ObjectID = "dUb-NV-U4p"; */
 "dUb-NV-U4p.title" = "keypath + identityfile :";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Dz5-TG-ady"; */
+"Dz5-TG-ady.title" = "Text Cell";
 
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "Dzo-0Z-Tko"; */
 "Dzo-0Z-Tko.title" = "Item 2";
@@ -1246,6 +1252,9 @@
 /* Class = "NSTextFieldCell"; title = "KB to be transferred:"; ObjectID = "uBc-LG-TjQ"; */
 "uBc-LG-TjQ.title" = "KB for overføring:";
 
+/* Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "ubI-jj-Ldc"; */
+"ubI-jj-Ldc.headerCell.title" = "Når";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "UbI-k2-XjL"; */
 "UbI-k2-XjL.title" = "Text Cell";
 
@@ -1449,6 +1458,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "yQh-8M-Dxo"; */
 "yQh-8M-Dxo.headerCell.title" = "Ekstern katalog";
+
+/* Class = "NSTableColumn"; headerCell.title = "Delta"; ObjectID = "YSa-Re-cp2"; */
+"YSa-Re-cp2.headerCell.title" = "Delta";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yUA-PJ-sOA"; */
 "yUA-PJ-sOA.title" = "Text Cell";
