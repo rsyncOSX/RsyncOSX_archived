@@ -151,7 +151,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         case "inCellID":
                             let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0, row < (delta?.count ?? 0) {
-                                return delta?[row].value(forKey: "timetostart")
+                                return delta?[row].value(forKey: "startsin")
                             } else {
                                 return ""
                             }
