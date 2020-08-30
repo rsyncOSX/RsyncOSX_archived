@@ -56,7 +56,7 @@ extension ErrorMessage {
 
 class Catalogsandfiles: NamesandPaths, FileErrors {
     func getcatalogsasURLnames() -> [URL]? {
-        if let atpath = self.rootpath {
+        if let atpath = self.fullroot {
             do {
                 var array = [URL]()
                 for file in try Folder(path: atpath).files {
@@ -71,7 +71,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     }
 
     func getfilesasstringnames() -> [String]? {
-        if let atpath = self.rootpath {
+        if let atpath = self.fullroot {
             do {
                 var array = [String]()
                 for file in try Folder(path: atpath).files {
@@ -86,7 +86,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     }
 
     func getcatalogsasstringnames() -> [String]? {
-        if let atpath = self.rootpath {
+        if let atpath = self.fullroot {
             var array = [String]()
             do {
                 for folders in try Folder(path: atpath).subfolders {
@@ -106,17 +106,18 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
         var root: Folder?
         var catalog: String?
         // First check if profilecatalog exists, if yes bail out
-        if let serial = self.macserialnumber,
-            let barerootpath = self.barerootpath
+        if let macserialnumber = self.macserialnumber,
+            let fullrootnomacserial = self.fullrootnomacserial
         {
             do {
-                let pathexists = try Folder(path: barerootpath).containsSubfolder(named: serial)
+                let pathexists = try Folder(path: fullrootnomacserial).containsSubfolder(named: macserialnumber)
                 guard pathexists == false else { return }
             } catch {
                 // if fails then create profile catalogs
                 // Creating profile catalalog is a two step task
                 // 1: create profilecatalog
                 // 2: create profilecatalog/macserialnumber
+                // New config path (/.rsyncosx)
                 if ViewControllerReference.shared.usenewconfigpath {
                     catalog = ViewControllerReference.shared.newconfigpath
                     root = Folder.home
@@ -126,6 +127,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                         return
                     }
                 } else {
+                    // Old configpath (Rsync)
                     catalog = ViewControllerReference.shared.configpath
                     root = Folder.documents
                     do {
@@ -134,11 +136,11 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                         return
                     }
                 }
-                if let serial = self.macserialnumber,
-                    let barerootpath = self.barerootpath
+                if let macserialnumber = self.macserialnumber,
+                    let fullrootnomacserial = self.fullrootnomacserial
                 {
                     do {
-                        try Folder(path: barerootpath).createSubfolder(at: serial)
+                        try Folder(path: fullrootnomacserial).createSubfolder(at: macserialnumber)
                     } catch {
                         return
                     }
@@ -151,7 +153,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     // If ssh catalog exists - bail out, no need
     // to create
     func createsshkeyrootpath() {
-        if let path = self.sshkeyrootpath {
+        if let path = self.onlysshkeypath {
             let root = Folder.home
             guard root.containsSubfolder(named: path) == false else { return }
             do {

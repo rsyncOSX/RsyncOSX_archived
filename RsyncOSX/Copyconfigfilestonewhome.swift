@@ -116,9 +116,9 @@ struct Copyconfigfilestonewhome: FileErrors {
 
     init() {
         ViewControllerReference.shared.usenewconfigpath = false
-        self.oldpath = NamesandPaths(profileorsshrootpath: .profileroot).rootpath
+        self.oldpath = NamesandPaths(profileorsshrootpath: .profileroot).fullroot
         ViewControllerReference.shared.usenewconfigpath = true
-        self.newpath = NamesandPaths(profileorsshrootpath: .profileroot).rootpath
+        self.newpath = NamesandPaths(profileorsshrootpath: .profileroot).fullroot
         // Catalogs in oldpath
         self.profilecatalogs = self.getoldcatalogsasstringnames()
         // create new subcatalogs

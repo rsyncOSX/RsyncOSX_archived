@@ -41,9 +41,9 @@ struct Neworoldprofilepath {
 
     init() {
         ViewControllerReference.shared.usenewconfigpath = false
-        self.oldpath = NamesandPaths(profileorsshrootpath: .profileroot).rootpath
+        self.oldpath = NamesandPaths(profileorsshrootpath: .profileroot).fullroot
         ViewControllerReference.shared.usenewconfigpath = true
-        self.newpath = NamesandPaths(profileorsshrootpath: .profileroot).rootpath
+        self.newpath = NamesandPaths(profileorsshrootpath: .profileroot).fullroot
         self.useoldpath = verifyoldpath()
         self.usenewpath = verifynewpath()
         switch (self.useoldpath, self.usenewpath) {

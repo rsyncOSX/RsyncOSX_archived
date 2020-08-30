@@ -22,16 +22,15 @@ enum Profileorsshrootpath {
 }
 
 class NamesandPaths {
+    // which root to compute? either RsyncOSX profileroot or sshroot
     var profileorsshroot: Profileorsshrootpath?
     // rootpath without macserialnumber
-    var barerootpath: String?
+    var fullrootnomacserial: String?
     // rootpath with macserianlnumer
-    var rootpath: String?
+    var fullroot: String?
     // If global keypath and identityfile is set must split keypath and identifile
     // create a new key require full path
     var identityfile: String?
-    // Bare sshkeyrootpath (not NSHome)
-    var sshkeyrootpath: String?
     // config path either
     // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
     var configpath: String?
@@ -54,13 +53,19 @@ class NamesandPaths {
     }
 
     // Path to ssh keypath
-    var sshrootkeypath: String? {
+    var fullsshkeypath: String? {
         if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
-            self.sshkeyrootpath = Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).sshkeyrootpath
-            return Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).rootpath
+            return Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).fullsshkeypath
         } else {
-            self.sshkeyrootpath = NSHomeDirectory()
             return NSHomeDirectory() + "/.ssh"
+        }
+    }
+
+    var onlysshkeypath: String? {
+        if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
+            return Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).onlysshkeypath
+        } else {
+            return NSHomeDirectory()
         }
     }
 
@@ -95,14 +100,14 @@ class NamesandPaths {
         switch self.profileorsshroot {
         case .profileroot:
             if ViewControllerReference.shared.usenewconfigpath == true {
-                self.rootpath = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
-                self.barerootpath = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "")
+                self.fullroot = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+                self.fullrootnomacserial = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "")
             } else {
-                self.rootpath = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
-                self.barerootpath = (self.documentscatalog ?? "") + (self.configpath ?? "")
+                self.fullroot = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
+                self.fullrootnomacserial = (self.documentscatalog ?? "") + (self.configpath ?? "")
             }
         case .sshroot:
-            self.rootpath = self.sshrootkeypath
+            self.fullroot = self.fullsshkeypath
             self.identityfile = self.sshidentityfile
         default:
             return
