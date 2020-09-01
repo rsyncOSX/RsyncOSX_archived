@@ -103,6 +103,11 @@
                                                 <action selector="TCP:" target="Ady-hI-5gd" id="PyO-tg-h9Y"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Move" keyEquivalent="m" id="qEr-u7-PyK" userLabel="Info">
+                                            <connections>
+                                                <action selector="moveconfig:" target="Ady-hI-5gd" id="tR8-zf-LiM"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="doz-B8-buN"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
@@ -3148,18 +3153,18 @@ DQ
         <scene sceneID="GIT-ED-d2h">
             <objects>
                 <viewController title="Details about files" storyboardIdentifier="StoryboardInformationID" id="ceM-Kt-SJU" customClass="ViewControllerInformation" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="KBL-J8-CuF">
+                    <view key="view" id="KBL-J8-CuF">
                         <rect key="frame" x="0.0" y="0.0" width="696" height="301"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="59"/>
+                                <rect key="frame" x="20" y="61" width="656" height="220"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="58"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="219"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="196"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3729,49 +3734,6 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
-                            <box fixedFrame="YES" title="Move configfiles" translatesAutoresizingMaskIntoConstraints="NO" id="LVt-Si-f36">
-                                <rect key="frame" x="564" y="16" width="177" height="108"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="8U0-gH-Hkw">
-                                    <rect key="frame" x="3" y="3" width="171" height="90"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bg-dF-AbS">
-                                            <rect key="frame" x="18" y="54" width="55" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Move" bezelStyle="regularSquare" imagePosition="left" inset="2" id="VWe-bS-PXk">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="togglemove:" target="Psw-ga-cgO" id="OJg-IY-K9Y"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9TW-za-9qf">
-                                            <rect key="frame" x="11" y="13" width="69" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Prep" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9li-Wq-Mu1">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="preparemoveconfigfiles:" target="Psw-ga-cgO" id="H1A-fL-xWs"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2BB-fd-Z8f">
-                                            <rect key="frame" x="74" y="13" width="57" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Do" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G2v-Td-M8B">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="executemoveconfigfiles:" target="Psw-ga-cgO" id="fSK-4l-f1v"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -3786,12 +3748,10 @@ DQ
                         <outlet property="marknumberofdayssince" destination="LM6-LS-XBt" id="i3n-O2-UHK"/>
                         <outlet property="minimumlogging" destination="rRE-KD-I0w" id="ULZ-Cz-3Gs"/>
                         <outlet property="monitornetworkconnection" destination="RfG-I0-dxb" id="60o-Wb-PKU"/>
-                        <outlet property="moveconfigfilesbutton" destination="2BB-fd-Z8f" id="Zxm-lc-5mq"/>
                         <outlet property="noRsync" destination="MU5-XI-9GS" id="apy-XI-W5g"/>
                         <outlet property="nologging" destination="nJR-oe-0vl" id="CwU-Bk-FNB"/>
                         <outlet property="pathRsyncOSX" destination="XTm-P8-lHR" id="LbF-Fm-aAY"/>
                         <outlet property="pathRsyncOSXsched" destination="aVo-6x-XDy" id="qon-Hb-TQy"/>
-                        <outlet property="preparebutton" destination="9TW-za-9qf" id="tcX-li-3pd"/>
                         <outlet property="restorePath" destination="x5R-hx-ATZ" id="qoy-sV-5fh"/>
                         <outlet property="rsyncPath" destination="Raw-fd-DIw" id="9MU-5e-zvh"/>
                         <outlet property="savebutton" destination="u41-A5-KKx" id="DZB-hH-3zk"/>
@@ -3803,7 +3763,6 @@ DQ
                         <outlet property="statuslightsshkeypath" destination="Bko-qu-03B" id="Ufv-ad-xDp"/>
                         <outlet property="statuslighttemppath" destination="FFf-rE-SFk" id="aF1-mh-YhA"/>
                         <outlet property="togglecheckdatabutton" destination="lmk-Yv-46s" id="79W-n5-nuA"/>
-                        <outlet property="togglemove" destination="1Bg-dF-AbS" id="4pJ-og-zMa"/>
                         <outlet property="version3rsync" destination="pCc-fa-P8h" id="SEd-Qb-5fr"/>
                     </connections>
                 </viewController>
@@ -4721,13 +4680,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="194"/>
+                                <rect key="frame" x="20" y="61" width="762" height="146"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="193"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="145"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="170"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="122"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -5753,6 +5712,59 @@ DQ
                 <customObject id="RTu-uV-wPA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137" y="2295"/>
+        </scene>
+        <!--View Controller Move-->
+        <scene sceneID="dFS-lE-Qy7">
+            <objects>
+                <viewController storyboardIdentifier="MoveID" id="TDQ-7j-FRW" customClass="ViewControllerMove" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Vkm-nH-L3I">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="207"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RpB-0F-O5p">
+                                <rect key="frame" x="52" y="155" width="61" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="657-Va-5xd">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="togglemove:" target="TDQ-7j-FRW" id="2W8-vA-Z6v"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q3n-zm-rRf">
+                                <rect key="frame" x="45" y="109" width="88" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Prepare" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0eL-pE-p1V">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="preparemoveconfigfiles:" target="TDQ-7j-FRW" id="sR8-Ib-WhR"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wiF-Pk-9Ns">
+                                <rect key="frame" x="45" y="83" width="88" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Move" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4XB-mD-OlZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="executemoveconfigfiles:" target="TDQ-7j-FRW" id="0Mp-dw-Y2U"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="moveconfigfilesbutton" destination="wiF-Pk-9Ns" id="A7O-KX-I4e"/>
+                        <outlet property="preparebutton" destination="q3n-zm-rRf" id="1Vq-Nc-Bat"/>
+                        <outlet property="togglemovebutton" destination="RpB-0F-O5p" id="5OM-IQ-DYd"/>
+                    </connections>
+                </viewController>
+                <customObject id="CcV-3a-26Y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="491" y="2295.5"/>
         </scene>
         <!--View Controller Information Local Remote-->
         <scene sceneID="xgX-RA-RDV">

@@ -95,6 +95,13 @@ extension VcMain {
         return (self.storyboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
             as? NSViewController)
     }
+
+    // Move config files
+    // self.presentViewControllerAsSheet(self.viewControllerMove)
+    var viewControllerMove: NSViewController? {
+        return (self.storyboard?.instantiateController(withIdentifier: "MoveID")
+            as? NSViewController)
+    }
 }
 
 // Protocol for dismissing a viewcontroller

@@ -106,6 +106,7 @@
 		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
 		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
+		E97BC78B24FED4D30098447F /* ViewControllerMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BC78A24FED4D30098447F /* ViewControllerMove.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
 		E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */; };
 		E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF115249E23E100FD4669 /* NetworkMonitor.swift */; };
@@ -278,6 +279,7 @@
 		E973B6F7238F1AF600B0FD12 /* Equal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equal.swift; sourceTree = "<group>"; };
 		E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllConfigurations.swift; sourceTree = "<group>"; };
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		E97BC78A24FED4D30098447F /* ViewControllerMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMove.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullrestoreTask.swift; sourceTree = "<group>"; };
 		E98EF115249E23E100FD4669 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 				E945D61320B736E9000E787B /* ViewControllerInformationLocalRemote.swift */,
 				A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */,
 				E996431B231AEFA100E05B40 /* ViewControllerSource.swift */,
+				E97BC78A24FED4D30098447F /* ViewControllerMove.swift */,
 			);
 			name = Sheetviews;
 			sourceTree = "<group>";
@@ -1064,6 +1067,7 @@
 				E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */,
 				E9A2600123AB5BDB00302280 /* ConfigurationsXCTEST.swift in Sources */,
 				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,
+				E97BC78B24FED4D30098447F /* ViewControllerMove.swift in Sources */,
 				E9C4A40D2353017400BCF1C4 /* ArgumentsSynchronize.swift in Sources */,
 				E958D62522B65ADF00755074 /* Selectprofile.swift in Sources */,
 				E94C852C249B3ECA0017696C /* InterruptProcess.swift in Sources */,

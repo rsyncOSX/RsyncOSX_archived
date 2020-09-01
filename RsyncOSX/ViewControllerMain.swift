@@ -180,6 +180,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.help()
     }
 
+    @IBAction func moveconfig(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerMove!)
+    }
+
     // Selecting automatic backup
     @IBAction func automaticbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
