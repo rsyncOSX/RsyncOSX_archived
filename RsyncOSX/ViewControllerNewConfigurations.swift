@@ -241,7 +241,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         }
 
         if ViewControllerReference.shared.checkinput {
-            let config: Configuration = Configuration(dictionary: dict)
+            let config = Configuration(dictionary: dict)
             let equal = Equal().isequal(data: self.configurations?.getConfigurations(), element: config)
             if equal {
                 let question: String = NSLocalizedString("This is added before?", comment: "New")
@@ -262,7 +262,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     }
 
     func snapshotcreateremotecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
-        let config: Configuration = Configuration(dictionary: dict)
+        let config = Configuration(dictionary: dict)
         guard config.offsiteServer.isEmpty == false else { return }
         self.addbutton.isEnabled = false
         let args = SnapshotCreateCatalogArguments(config: config)

@@ -66,10 +66,10 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
         let config = Configuration(dictionary: dict!)
         guard self.connected(config: config) == true else { return }
-        let duargs: DuArgumentsSsh = DuArgumentsSsh(config: config)
+        let duargs = DuArgumentsSsh(config: config)
         guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
         self.working.startAnimation(nil)
-        let task: DuCommandSsh = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
+        let task = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
         task.setdelegate(object: self)
         task.executeProcess(outputprocess: self.outputprocess)
     }
