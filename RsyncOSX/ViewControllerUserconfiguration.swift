@@ -48,6 +48,10 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
     @IBOutlet var statuslightsshkeypath: NSImageView!
     @IBOutlet var closebutton: NSButton!
     @IBOutlet var monitornetworkconnection: NSButton!
+    // Buttons for moving config files
+    @IBOutlet var togglemove: NSButton!
+    @IBOutlet var preparebutton: NSButton!
+    @IBOutlet var moveconfigfilesbutton: NSButton!
 
     @IBAction func togglehaltonerror(_: NSButton) {
         if ViewControllerReference.shared.haltonerror {
@@ -196,6 +200,28 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         }
         self.setdirty()
     }
+
+    // Move configfiles start
+    @IBAction func togglemove(_: NSButton) {
+        let move = Copyconfigfilestonewhome()
+        // Verify that configfiles are not previously moved
+        if move.newprofilecatalogs != move.oldprofilecatalogs {
+            self.preparebutton.isHidden = false
+            self.preparebutton.isEnabled = true
+            self.moveconfigfilesbutton.isHidden = false
+        }
+    }
+
+    @IBAction func preparemoveconfigfiles(_: NSButton) {
+        var move = Copyconfigfilestonewhome()
+        move.createnewprofilecatalogs()
+        if move.verifycatalogsnewprofiles() {
+            self.moveconfigfilesbutton.isEnabled = true
+        }
+    }
+
+    @IBAction func executemoveconfigfiles(_: NSButton) {}
+    // Move configfiles end
 
     private func setdirty() {
         self.dirty = true
@@ -415,6 +441,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
         self.statuslightpathrsyncosxsched.isHidden = true
         self.statuslightsshkeypath.isHidden = true
         self.closebutton.isHidden = true
+        // Move configfiles
+        self.preparebutton.isHidden = true
+        self.moveconfigfilesbutton.isHidden = true
     }
 
     // Function for check and set user configuration

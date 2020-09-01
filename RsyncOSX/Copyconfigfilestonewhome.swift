@@ -13,7 +13,8 @@ import Foundation
 struct Copyconfigfilestonewhome: FileErrors {
     var oldpath: String?
     var newpath: String?
-    var profilecatalogs: [String]?
+    var newprofilecatalogs: [String]?
+    var oldprofilecatalogs: [String]?
 
     // Move all plistfiles from old profile catalog
     // to new profile catalog.
@@ -49,16 +50,16 @@ struct Copyconfigfilestonewhome: FileErrors {
                 return false
             }
             // profile catalogs
-            for i in 0 ..< (self.profilecatalogs?.count ?? 0) {
+            for i in 0 ..< (self.oldprofilecatalogs?.count ?? 0) {
                 do {
-                    originFolder = try Folder(path: oldpath + "/" + (self.profilecatalogs?[i] ?? ""))
+                    originFolder = try Folder(path: oldpath + "/" + (self.oldprofilecatalogs?[i] ?? ""))
                 } catch let e {
                     let error = e as NSError
                     self.error(error: error.description, errortype: .profilecreatedirectory)
                     return false
                 }
                 do {
-                    targetFolder = try Folder(path: newpath + "/" + (self.profilecatalogs?[i] ?? ""))
+                    targetFolder = try Folder(path: newpath + "/" + (self.oldprofilecatalogs?[i] ?? ""))
                 } catch let e {
                     let error = e as NSError
                     self.error(error: error.description, errortype: .profilecreatedirectory)
@@ -96,35 +97,61 @@ struct Copyconfigfilestonewhome: FileErrors {
         return nil
     }
 
-    // Create new profile catalogs at new profile root
-    // ahead of moving profile files.
-    private func createnewprofilecatalogs() {
-        var newpath: Folder?
-        do {
-            newpath = try Folder(path: self.newpath ?? "")
-        } catch {
-            return
-        }
-        for i in 0 ..< (self.profilecatalogs?.count ?? 0) {
+    // Collect all catalognames from old profile catalog.
+    // Profilenames are used to create new profile catalogs
+    private func getnewcatalogsasstringnames() -> [String]? {
+        if let atpath = self.newpath {
+            var array = [String]()
             do {
-                try newpath?.createSubfolder(at: self.profilecatalogs?[i] ?? "")
+                for folders in try Folder(path: atpath).subfolders {
+                    array.append(folders.name)
+                }
+                return array
             } catch {
-                return
+                return nil
             }
         }
+        return nil
+    }
+
+    // Create new profile catalogs at new profile root
+    // ahead of moving profile files.
+    mutating func createnewprofilecatalogs() {
+        if let atpath = self.newpath {
+            var newpath: Folder?
+            do {
+                newpath = try Folder(path: atpath)
+            } catch {}
+            for i in 0 ..< (self.oldprofilecatalogs?.count ?? 0) {
+                do {
+                    try newpath?.createSubfolder(at: self.oldprofilecatalogs?[i] ?? "")
+                } catch {
+                    return
+                }
+            }
+        }
+        // Collect the newly created catalogs
+        self.newprofilecatalogs = self.getnewcatalogsasstringnames()
+    }
+
+    // Verify ready for move
+    func verifycatalogsnewprofiles() -> Bool {
+        return self.getnewcatalogsasstringnames() == self.getoldcatalogsasstringnames()
+    }
+
+    func veriyreadytomoveprofiles() -> Bool {
+        return self.oldprofilecatalogs == self.newprofilecatalogs
     }
 
     init() {
         ViewControllerReference.shared.usenewconfigpath = false
         self.oldpath = NamesandPaths(profileorsshrootpath: .profileroot).fullroot
+        // Create new profileroot
         ViewControllerReference.shared.usenewconfigpath = true
-        self.newpath = NamesandPaths(profileorsshrootpath: .profileroot).fullroot
+        let root = Catalogsandfiles(profileorsshrootpath: .profileroot)
+        root.createrootprofilecatalog()
+        self.newpath = root.fullroot
         // Catalogs in oldpath
-        self.profilecatalogs = self.getoldcatalogsasstringnames()
-        // create new subcatalogs
-        // self.createnewprofilecatalogs()
-        // move files
-        // self.moveplistfilestonewhome()
-        // ViewControllerReference.shared.usenewconfigpath = false
+        self.oldprofilecatalogs = self.getoldcatalogsasstringnames()
     }
 }
