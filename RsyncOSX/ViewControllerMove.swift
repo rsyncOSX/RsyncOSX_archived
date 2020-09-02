@@ -44,7 +44,9 @@ class ViewControllerMove: NSViewController {
 
     @IBAction func executemoveconfigfiles(_: NSButton) {
         self.view.window?.close()
-        NSApp.terminate(self)
+        if self.move?.moveplistfilestonewhome() ?? false {
+            NSApp.terminate(self)
+        }
     }
 
     // Move configfiles end
