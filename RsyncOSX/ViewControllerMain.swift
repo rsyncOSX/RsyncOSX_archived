@@ -181,6 +181,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func moveconfig(_: NSButton) {
+        guard ViewControllerReference.shared.usenewconfigpath == false else { return }
         self.presentAsModalWindow(self.viewControllerMove!)
     }
 
