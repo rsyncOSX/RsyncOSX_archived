@@ -103,12 +103,13 @@
                                                 <action selector="TCP:" target="Ady-hI-5gd" id="PyO-tg-h9Y"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Move" keyEquivalent="m" id="qEr-u7-PyK" userLabel="Info">
+                                        <menuItem isSeparatorItem="YES" id="doz-B8-buN"/>
+                                        <menuItem title="Configfiles" keyEquivalent="m" id="qEr-u7-PyK" userLabel="Info">
                                             <connections>
                                                 <action selector="moveconfig:" target="Ady-hI-5gd" id="tR8-zf-LiM"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="doz-B8-buN"/>
+                                        <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
                                                 <action selector="abort:" target="Ady-hI-5gd" id="07y-93-KHs"/>
@@ -3153,18 +3154,18 @@ DQ
         <scene sceneID="GIT-ED-d2h">
             <objects>
                 <viewController title="Details about files" storyboardIdentifier="StoryboardInformationID" id="ceM-Kt-SJU" customClass="ViewControllerInformation" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="KBL-J8-CuF">
-                        <rect key="frame" x="0.0" y="0.0" width="696" height="301"/>
+                    <view key="view" misplaced="YES" id="KBL-J8-CuF">
+                        <rect key="frame" x="0.0" y="0.0" width="696" height="278"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="220"/>
+                                <rect key="frame" x="20" y="61" width="656" height="174"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="219"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="173"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="196"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="150"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4680,13 +4681,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="146"/>
+                                <rect key="frame" x="20" y="61" width="762" height="98"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="145"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="97"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="122"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="74"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
