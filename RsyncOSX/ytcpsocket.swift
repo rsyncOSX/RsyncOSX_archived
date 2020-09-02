@@ -179,7 +179,7 @@ open class TCPServer: Socket {
     open func accept(timeout: Int32 = 0) -> TCPClient? {
         guard let serferfd = self.fd else { return nil }
 
-        var buff: [Int8] = [Int8](repeating: 0x0, count: 16)
+        var buff = [Int8](repeating: 0x0, count: 16)
         var port: Int32 = 0
         let clientfd: Int32 = c_ytcpsocket_accept(serferfd, ip: &buff, port: &port, timeout: timeout)
 

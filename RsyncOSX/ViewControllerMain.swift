@@ -180,6 +180,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.help()
     }
 
+    @IBAction func moveconfig(_: NSButton) {
+        guard ViewControllerReference.shared.usenewconfigpath == false else { return }
+        self.presentAsModalWindow(self.viewControllerMove!)
+    }
+
     // Selecting automatic backup
     @IBAction func automaticbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -234,6 +239,14 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Decide if:
+        // 1: First time start, use new profilepath
+        // 2: Old profilepath is copied to new, use new profilepath
+        // 3: Use old profilepath
+        // ViewControllerReference.shared.usenewconfigpath = true or false (default true)
+        _ = Neworoldprofilepath()
+        // Create base profile catalog
+        _ = CatalogProfile().createrootprofilecatalog()
         // Must read userconfig when loading main view, view only load once
         if let userconfiguration = PersistentStorageUserconfiguration().readuserconfiguration() {
             _ = Userconfiguration(userconfigRsyncOSX: userconfiguration)

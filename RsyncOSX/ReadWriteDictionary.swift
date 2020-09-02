@@ -41,7 +41,7 @@ class ReadWriteDictionary: NamesandPaths {
         return write
     }
 
-    init(whattoreadwrite: WhatToReadWrite, profile: String?, configpath: String) {
-        super.init(whattoreadwrite: whattoreadwrite, profile: profile, configpath: configpath)
+    override init(whattoreadwrite: WhatToReadWrite, profile: String?) {
+        super.init(whattoreadwrite: whattoreadwrite, profile: profile)
     }
 }

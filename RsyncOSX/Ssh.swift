@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class Ssh: Files {
+class Ssh: Catalogsandfiles {
     var commandCopyPasteTerminal: String?
     var rsaStringPath: String?
     // Arrays listing all key files
@@ -25,7 +25,7 @@ class Ssh: Files {
     // Create rsa keypair
     func creatersakeypair() {
         guard self.islocalpublicrsakeypresent() == false else { return }
-        self.argumentsssh = ArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.rootpath ?? "") +
+        self.argumentsssh = ArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.fullroot ?? "") +
             "/" + (self.identityfile ?? ""))
         self.arguments = argumentsssh?.getArguments(operation: .createKey)
         self.command = self.argumentsssh?.getCommand()
@@ -43,7 +43,7 @@ class Ssh: Files {
 
     // Secure copy of public key from local to remote catalog
     func copykeyfile(hiddenID: Int) {
-        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
+        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.fullroot ?? "") +
             "/" + (self.identityfile ?? ""))
         self.arguments = argumentsssh?.getArguments(operation: .sshcopyid)
         self.commandCopyPasteTerminal = self.argumentsssh?.commandCopyPasteTerminal
@@ -51,7 +51,7 @@ class Ssh: Files {
 
     // Check for remote pub keys
     func verifyremotekey(hiddenID: Int) {
-        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.rootpath ?? "") +
+        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.fullroot ?? "") +
             "/" + (self.identityfile ?? ""))
         self.arguments = argumentsssh?.getArguments(operation: .verifyremotekey)
         self.commandCopyPasteTerminal = self.argumentsssh?.commandCopyPasteTerminal
@@ -70,10 +70,10 @@ class Ssh: Files {
     }
 
     init(outputprocess: OutputProcess?) {
-        super.init(whichroot: .sshRoot, configpath: ViewControllerReference.shared.configpath)
+        super.init(profileorsshrootpath: .sshroot)
         self.outputprocess = outputprocess
         self.keyFileURLS = self.getcatalogsasURLnames()
         self.keyFileStrings = self.getfilesasstringnames()
-        self.createprofilecatalog()
+        self.createsshkeyrootpath()
     }
 }

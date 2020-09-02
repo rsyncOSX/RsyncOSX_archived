@@ -113,7 +113,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
 
     func testaddschedule() {
         let schedules = SchedulesXCTEST(profile: "XCTest")
-        let today: Date = Date()
+        let today = Date()
         let tomorrow = Calendar.current.date(byAdding: .hour, value: 12, to: today)
         let dayaftertomorrow = Calendar.current.date(byAdding: .day, value: 2, to: today)
         schedules.addschedule(hiddenID: 1, schedule: .daily, start: dayaftertomorrow!)

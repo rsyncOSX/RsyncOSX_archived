@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerAbout: NSViewController, SetDismisser, Delay {
+class ViewControllerAbout: NSViewController, SetDismisser {
     @IBOutlet var version: NSTextField!
     @IBOutlet var downloadbutton: NSButton!
     @IBOutlet var thereisanewversion: NSTextField!
@@ -20,6 +20,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
     @IBOutlet var norwegian: NSTextField!
     @IBOutlet var german: NSTextField!
     @IBOutlet var italian: NSTextField!
+    @IBOutlet var configpath: NSTextField!
 
     var copyrigthstring: String = NSLocalizedString("Copyright ©2020 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
@@ -81,6 +82,7 @@ class ViewControllerAbout: NSViewController, SetDismisser, Delay {
         }
         self.thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
         self.rsyncversionstring.stringValue = ViewControllerReference.shared.rsyncversionstring ?? ""
+        self.configpath.stringValue = NamesandPaths(profileorsshrootpath: .profileroot).fullroot ?? ""
     }
 
     override func viewDidDisappear() {

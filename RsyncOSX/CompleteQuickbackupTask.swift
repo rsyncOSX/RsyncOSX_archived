@@ -12,7 +12,6 @@ import Foundation
 // The object does also kicks of next scheduled job by setting new waiter time.
 final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
     private var index: Int?
-    private var hiddenID: Int?
     // Function for update result of quickbacuptask the job
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(outputprocess: OutputProcess?) {

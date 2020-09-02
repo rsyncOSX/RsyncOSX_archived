@@ -43,7 +43,7 @@ final class QuickBackup: SetConfigurations {
     }
 
     private func executequickbackuptask(hiddenID: Int) {
-        let now: Date = Date()
+        let now = Date()
         let task: NSDictionary = [
             "start": now,
             "hiddenID": hiddenID,

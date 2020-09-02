@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Cocoa
 import Foundation
@@ -93,6 +93,13 @@ extension VcMain {
     // self.presentViewControllerAsSheet(self.viewControllerInformationLocalRemote)
     var viewControllerInformationLocalRemote: NSViewController? {
         return (self.storyboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
+            as? NSViewController)
+    }
+
+    // Move config files
+    // self.presentViewControllerAsSheet(self.viewControllerMove)
+    var viewControllerMove: NSViewController? {
+        return (self.storyboard?.instantiateController(withIdentifier: "MoveID")
             as? NSViewController)
     }
 }

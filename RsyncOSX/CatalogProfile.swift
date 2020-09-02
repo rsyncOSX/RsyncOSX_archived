@@ -6,26 +6,24 @@
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
 
+import Files
 import Foundation
 
-final class CatalogProfile: Files {
-    // Function for creating new profile directory
-    func createProfileDirectory(profileName: String) -> Bool {
-        let fileManager = FileManager.default
-        if let path = self.rootpath {
-            let profileDirectory = path + "/" + profileName
-            if fileManager.fileExists(atPath: profileDirectory) == false {
+final class CatalogProfile: Catalogsandfiles {
+    func createprofilecatalog(profile: String) -> Bool {
+        var rootpath: Folder?
+        if let path = self.fullroot {
+            do {
+                rootpath = try Folder(path: path)
                 do {
-                    try fileManager.createDirectory(atPath: profileDirectory,
-                                                    withIntermediateDirectories: true,
-                                                    attributes: nil)
+                    try rootpath?.createSubfolder(at: profile)
                     return true
                 } catch let e {
                     let error = e as NSError
                     self.error(error: error.description, errortype: .profilecreatedirectory)
                     return false
                 }
-            } else {
+            } catch {
                 return false
             }
         }
@@ -35,7 +33,7 @@ final class CatalogProfile: Files {
     // Function for deleting profile directory
     func deleteProfileDirectory(profileName: String) {
         let fileManager = FileManager.default
-        if let path = self.rootpath {
+        if let path = self.fullroot {
             let profileDirectory = path + "/" + profileName
             if fileManager.fileExists(atPath: profileDirectory) == true {
                 let question: String = NSLocalizedString("Delete profile:", comment: "Profiles")
@@ -56,6 +54,6 @@ final class CatalogProfile: Files {
     }
 
     init() {
-        super.init(whichroot: .profileRoot, configpath: ViewControllerReference.shared.configpath)
+        super.init(profileorsshrootpath: .profileroot)
     }
 }

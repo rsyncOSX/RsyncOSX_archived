@@ -93,7 +93,9 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                 }
             } else {
                 if row < self.scheduledetails?.count ?? 0 {
-                    if let object: NSMutableDictionary = self.scheduledetails?[row] {
+                    if let object: NSMutableDictionary = self.scheduledetails?[row],
+                        let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
+                    {
                         switch tableColumn.identifier.rawValue {
                         case "active":
                             let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
@@ -146,6 +148,13 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                             }
                         case "numberoflogs", "dayinweek":
                             return object[tableColumn.identifier] as? String
+                        case "inCellID":
+                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
+                            if (delta?.count ?? 0) > 0, row < (delta?.count ?? 0) {
+                                return delta?[row].value(forKey: "startsin")
+                            } else {
+                                return ""
+                            }
                         default:
                             return nil
                         }
