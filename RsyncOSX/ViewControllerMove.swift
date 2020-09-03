@@ -27,18 +27,23 @@ class ViewControllerMove: NSViewController {
         {
             if newcatalogs != oldcatalogs {
                 self.preparebutton.isEnabled = true
-                self.moveconfigfilesbutton.isHidden = false
+                self.moveconfigfilesbutton.isEnabled = false
             }
         } else {
             self.preparebutton.isEnabled = true
-            self.moveconfigfilesbutton.isHidden = false
+            self.moveconfigfilesbutton.isEnabled = false
         }
     }
 
     @IBAction func preparemoveconfigfiles(_: NSButton) {
-        self.move?.createnewprofilecatalogs()
-        if self.move?.verifycatalogsnewprofiles() ?? false {
-            self.moveconfigfilesbutton.isEnabled = true
+        if self.move?.backup() ?? false {
+            self.move?.createnewprofilecatalogs()
+            if self.move?.verifycatalogsnewprofiles() ?? false {
+                self.moveconfigfilesbutton.isEnabled = true
+            }
+        } else {
+            self.preparebutton.isEnabled = false
+            self.moveconfigfilesbutton.isEnabled = false
         }
     }
 

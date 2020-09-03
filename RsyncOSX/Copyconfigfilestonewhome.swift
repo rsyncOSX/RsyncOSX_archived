@@ -15,6 +15,9 @@ struct Copyconfigfilestonewhome: FileErrors {
     var newpath: String?
     var newprofilecatalogs: [String]?
     var oldprofilecatalogs: [String]?
+    // oldpath no macserial
+    var documentscatalog: String?
+    var macserialnumber: String?
 
     // Move all plistfiles from old profile catalog
     // to new profile catalog.
@@ -97,6 +100,27 @@ struct Copyconfigfilestonewhome: FileErrors {
         return nil
     }
 
+    func backup() -> Bool {
+        if let documentscatalog = self.documentscatalog,
+            let oldpath = self.oldpath
+        {
+            var originFolder: Folder?
+            // root of profile catalog
+            do {
+                originFolder = try Folder(path: oldpath)
+                let targetpath = "Rsync-" + Date().shortlocalized_string_from_date()
+                let targetFolder = try Folder(path: documentscatalog).createSubfolder(at: targetpath)
+                try originFolder?.copy(to: targetFolder)
+                return true
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .profilecreatedirectory)
+                return false
+            }
+        }
+        return false
+    }
+
     // Collect all catalognames from old profile catalog.
     // Profilenames are used to create new profile catalogs
     private func getnewcatalogsasstringnames() -> [String]? {
@@ -145,7 +169,10 @@ struct Copyconfigfilestonewhome: FileErrors {
 
     init() {
         ViewControllerReference.shared.usenewconfigpath = false
-        self.oldpath = NamesandPaths(profileorsshrootpath: .profileroot).fullroot
+        let oldfolder = NamesandPaths(profileorsshrootpath: .profileroot)
+        self.oldpath = oldfolder.fullroot
+        self.documentscatalog = oldfolder.documentscatalog
+        self.macserialnumber = oldfolder.macserialnumber
         // Create new profileroot
         ViewControllerReference.shared.usenewconfigpath = true
         let root = Catalogsandfiles(profileorsshrootpath: .profileroot)
