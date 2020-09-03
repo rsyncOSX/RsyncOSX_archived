@@ -100,7 +100,7 @@ struct Copyconfigfilestonewhome: FileErrors {
         return nil
     }
 
-    func backup() -> Bool {
+    func backupbeforemove() -> Bool {
         if let documentscatalog = self.documentscatalog,
             let oldpath = self.oldpath
         {
