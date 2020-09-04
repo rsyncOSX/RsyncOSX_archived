@@ -40,6 +40,7 @@ class ViewControllerMove: NSViewController {
             self.move?.createnewprofilecatalogs()
             if self.move?.verifycatalogsnewprofiles() ?? false {
                 self.moveconfigfilesbutton.isEnabled = true
+                self.preparebutton.isEnabled = false
             }
         } else {
             self.preparebutton.isEnabled = false
