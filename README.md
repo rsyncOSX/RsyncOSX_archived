@@ -23,11 +23,9 @@
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files. From version 6.4.2, RsyncOSX is compiled with support for **macOS Mojave 10.14 - latest version**.  Version 6.4.0 of RsyncOSX is the last version which is compiled with support for macOS El Capitan 10.11 - macOS Catalina 10.15.
 
 - [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/)
-- [the Changelog](https://rsyncosx.netlify.app/post/changelog/)
+- [the changelog](https://rsyncosx.netlify.app/post/changelog/)
 
-The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on [Netlify](https://rsyncosx.netlify.app/).
-
-If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on [Netlify](https://rsyncosx.netlify.app/). If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 ### Dependencies
 
