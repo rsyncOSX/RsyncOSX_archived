@@ -1,24 +1,17 @@
-## RsyncOSX
-
-![](icon/rsyncosx.png) [The Changelog](https://rsyncosx.netlify.app/post/changelog/).
-
+![](images/main2.png)
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.2/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.0/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys)
 
-If you want to discuss [changes or report bugs please create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+[The Changelog](https://rsyncosx.netlify.app/post/changelog/). If you want to discuss [changes or report bugs please create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
 
 There are some [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/). The docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on Netlify.
 
-RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files.
-
-From version 6.4.2, RsyncOSX is compiled with support for **macOS Mojave 10.14 - latest version**.  Version 6.4.0 of RsyncOSX is the last version which is compiled with support for macOS El Capitan 10.11 - macOS Catalina 10.15.
-
-The application is implemented in pure Swift 5, Cocoa and Foundation.
+RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files. From version 6.4.2, RsyncOSX is compiled with support for **macOS Mojave 10.14 - latest version**.  Version 6.4.0 of RsyncOSX is the last version which is compiled with support for macOS El Capitan 10.11 - macOS Catalina 10.15.
 
 ### Dependencies
 
- From the latest release there are three source code dependencies:
+The application is implemented in pure Swift 5, Cocoa and Foundation. From the latest release there are three source code dependencies:
 
 - check for TCP connectivity by utilizing [SwiftSocket](https://github.com/swiftsocket/SwiftSocket), some functions require connections to remote servers
 - execute pre and post shellscripts by utilizing John Sundell´s [ShellOut](https://github.com/JohnSundell/ShellOut)
@@ -84,13 +77,6 @@ RsyncOSX (rsync) will delete all files in the destination.
 To save deleted and changes files either utilize [snapshots](https://rsyncosx.netlify.app/post/snapshots/)
 or [the --backup parameter](https://rsyncosx.netlify.app/post/userparameters/). The --delete parameter and other default parameters might be deleted if wanted.
 
-### Main view
-
-The main view of RsyncOSX.
-![](images/main1.png)
-Prepare for synchronizing tasks.
-![](images/main2.png)
-
 ### The source code and compile
 
 There are [some details about source and how to compile](https://rsyncosx.netlify.app/post/compile/).
@@ -110,6 +96,8 @@ If you do a restore from the `remote` to the `source`, some files in the source 
 ### Application icon
 
 The application icon is created by [Zsolt Sándor](https://github.com/graphis). All rights reserved to Zsolt Sándor.
+
+![](icon/rsyncosx.png)
 
 ### How to use RsyncOSX - YouTube videos
 
