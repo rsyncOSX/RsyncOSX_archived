@@ -10,7 +10,7 @@
 - [Localization](#localization)
 - [Version of rsync](#version-of-rsync)
 - [Some words about RsyncOSX](#some-words-about-rsyncosx)
-- [The --delete parameter](#the---delete-parameter)
+- [The --delete parameter](#the---delete-parameter) - important
 - [The source code and compile](#the-source-code-and-compile)
 - [A Sandboxed version](#a-sandboxed-version)
 - [About bugs?](#about-bugs)
@@ -19,7 +19,7 @@
 - [How to use RsyncOSX - YouTube videos](#how-to-use-rsyncosx---youtube-videos)
 - [XCTest](#xctest)%    
 
-**Read about [the --delete parameter](#the---delete-parameter) to rsync **before** using rsync and RsyncOSX.
+Read about [the --delete parameter](#the---delete-parameter) to rsync **before** using rsync and RsyncOSX.
 
 There are some [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/). The docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on Netlify.
 
