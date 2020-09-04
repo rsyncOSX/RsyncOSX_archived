@@ -1,7 +1,7 @@
 ![](images/main2.png)
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.2/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.0/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys)
 
-[The Changelog](https://rsyncosx.netlify.app/post/changelog/). If you want to discuss [changes or report bugs please create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+[The Changelog](https://rsyncosx.netlify.app/post/changelog/). If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 - [Dependencies](#dependencies)
 - [Scheduling](#scheduling)
@@ -10,16 +10,14 @@
 - [Localization](#localization)
 - [Version of rsync](#version-of-rsync)
 - [Some words about RsyncOSX](#some-words-about-rsyncosx)
-- [The --delete parameter](#the---delete-parameter) - important
+- [The --delete parameter](#the---delete-parameter) - read this before using RsyncOSX
 - [The source code and compile](#the-source-code-and-compile)
 - [A Sandboxed version](#a-sandboxed-version)
-- [About bugs?](#about-bugs)
+- [About bugs](#about-bugs)
 - [About restoring files to a temporary restore catalog](#about-restoring-files-to-a-temporary-restore-catalog)
 - [Application icon](#application-icon)
 - [How to use RsyncOSX - YouTube videos](#how-to-use-rsyncosx---youtube-videos)
-- [XCTest](#xctest)%    
-
-Read about [the --delete parameter](#the---delete-parameter) to rsync **before** using rsync and RsyncOSX.
+- [XCTest](#xctest)    
 
 There are some [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/). The docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on Netlify.
 
@@ -101,7 +99,7 @@ There are [some details about source and how to compile](https://rsyncosx.netlif
 
 [There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.netlify.app/post/rsyncguichangelog/). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
 
-### About bugs?
+### About bugs
 
  Over the years most bugs are smoked out. Thanks to users who reports bugs. Fighting bugs are difficult. I am not able to test RsyncOSX for all possible user interactions and use. I need support from other users discovering bugs or not expected results. If you discover a bug [please report it](https://github.com/rsyncOSX/RsyncOSX/issues).
 
