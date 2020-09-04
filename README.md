@@ -4,6 +4,9 @@
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.2/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.0/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys)
 
+![](images/main1.png)
+![](images/main2.png)
+
 If you want to discuss [changes or report bugs please create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 **Read about the --delete parameter** (below) to rsync **before** using rsync and RsyncOSX.
@@ -83,13 +86,6 @@ RsyncOSX (rsync) will delete all files in the destination.
 ```
 To save deleted and changes files either utilize [snapshots](https://rsyncosx.netlify.app/post/snapshots/)
 or [the --backup parameter](https://rsyncosx.netlify.app/post/userparameters/). The --delete parameter and other default parameters might be deleted if wanted.
-
-### Main view
-
-The main view of RsyncOSX.
-![](images/main1.png)
-Prepare for synchronizing tasks.
-![](images/main2.png)
 
 ### The source code and compile
 
