@@ -187,7 +187,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restoreactions?.index = true
         }
         self.restoreisverified.image = #imageLiteral(resourceName: "red")
-        self.index = nil
         self.restoretabledata = nil
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
