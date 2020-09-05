@@ -62,6 +62,11 @@ struct RestoreActions {
         guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated == false, self.fullrestore else { return false }
         return true
     }
+
+    func getfilelistrestorefiles() -> Bool {
+        guard self.index, self.estimated == false, self.restorefiles else { return false }
+        return true
+    }
 }
 
 class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor, Help {
@@ -182,6 +187,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restoreactions?.index = true
         }
         self.restoreisverified.image = #imageLiteral(resourceName: "red")
+        self.index = nil
+        self.restoretabledata = nil
+        globalMainQueue.async { () -> Void in
+            self.restoretableView.reloadData()
+        }
     }
 
     // Restore files
@@ -275,8 +285,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.fullrestoreradiobutton.state = .off
             if let index = indexes.first {
                 self.index = index
-                self.restoreactions?.restorefiles = false
                 self.restoretabledata = nil
+                self.restoreactions?.index = true
             } else {
                 self.reset()
                 self.index = nil
@@ -288,19 +298,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @IBAction func getremotefilelist(_: NSButton) {
-        guard self.restoreactions?.restorefiles ?? false else { return }
+        guard self.restoreactions?.getfilelistrestorefiles() ?? false else { return }
         self.prepareforfilesrestoreandandgetremotefilelist()
     }
 
     @IBAction func reset(_: NSButton) {
         self.reset()
-        self.index = nil
-        self.restoretabledata = nil
-        self.filesrestoreradiobutton.state = .off
-        self.fullrestoreradiobutton.state = .off
-        globalMainQueue.async { () -> Void in
-            self.restoretableView.reloadData()
-        }
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
@@ -324,7 +327,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.info.isHidden = false
                 return false
             }
-            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+            guard self.configurations?.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
                 self.info.stringValue = Inforestore().info(num: 5)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
@@ -416,6 +419,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
+        guard self.restoreactions?.goforfullrestore() ?? false ||
+            self.restoreactions?.goforfullrestoretotemporarypath() ?? false ||
+            self.restoreactions?.goforrestorefilestotemporarypath() ?? false == false
+        else {
+            return
+        }
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             self.restoreactions?.restorefiles = true
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
