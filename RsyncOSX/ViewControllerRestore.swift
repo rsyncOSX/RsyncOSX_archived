@@ -271,6 +271,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
+            self.filesrestoreradiobutton.state = .off
+            self.fullrestoreradiobutton.state = .off
             if let index = indexes.first {
                 self.index = index
                 self.restoreactions?.index = true
