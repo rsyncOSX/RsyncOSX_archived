@@ -194,7 +194,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProgress!)
         }
-        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles!.stringValue, localCatalog: self.tmprestorepath!.stringValue, dryrun: false, updateprogress: self)
+        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles.stringValue, localCatalog: self.tmprestorepath.stringValue, dryrun: false, updateprogress: self)
         self.outputprocess = self.restorefilestask?.outputprocess
     }
 
@@ -203,8 +203,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         if let index = self.index {
             self.info.stringValue = Inforestore().info(num: 0)
             self.remotefiles.stringValue = ""
-            let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int ?? -1
-            if self.configurations?.getConfigurationsDataSourceSynchronize()![index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
+            let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int ?? -1
+            if self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
                 self.restorefilestask = RestorefilesTask(hiddenID: hiddenID)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
@@ -229,7 +229,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func checkforgetremotefiles() -> Bool {
         guard self.checkforrsync() == false else { return false }
         if let index = self.index {
-            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
+            guard self.connected(config: self.configurations?.getConfigurations()[index]) == true else {
                 self.info.stringValue = Inforestore().info(num: 4)
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
@@ -275,16 +275,31 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.fullrestoreradiobutton.state = .off
             if let index = indexes.first {
                 self.index = index
-                self.restoreactions?.index = true
-                guard self.restoreactions?.restorefiles ?? false else { return }
-                self.prepareforfilesrestoreandandgetremotefilelist()
+                self.restoreactions?.restorefiles = false
+                self.restoretabledata = nil
             } else {
                 self.reset()
                 self.index = nil
-                globalMainQueue.async { () -> Void in
-                    self.restoretableView.reloadData()
-                }
             }
+            globalMainQueue.async { () -> Void in
+                self.restoretableView.reloadData()
+            }
+        }
+    }
+
+    @IBAction func getremotefilelist(_: NSButton) {
+        guard self.restoreactions?.restorefiles ?? false else { return }
+        self.prepareforfilesrestoreandandgetremotefilelist()
+    }
+
+    @IBAction func reset(_: NSButton) {
+        self.reset()
+        self.index = nil
+        self.restoretabledata = nil
+        self.filesrestoreradiobutton.state = .off
+        self.fullrestoreradiobutton.state = .off
+        globalMainQueue.async { () -> Void in
+            self.restoretableView.reloadData()
         }
     }
 
@@ -403,7 +418,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             self.restoreactions?.restorefiles = true
-            self.prepareforfilesrestoreandandgetremotefilelist()
         } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
             self.restoretabledata = nil
             self.restoreactions?.fullrestore = true
