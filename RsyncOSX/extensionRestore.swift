@@ -12,19 +12,19 @@ import Foundation
 
 extension ViewControllerRestore: NSSearchFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
-        if (notification.object as? NSTextField)! == self.search {
+        if (notification.object as? NSTextField) == self.search {
             self.delayWithSeconds(0.25) {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async { () -> Void in
                         if let index = self.index {
-                            if let hiddenID = self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int {
+                            if let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int {
                                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                             }
                         }
                     }
                 } else {
                     globalMainQueue.async { () -> Void in
-                        self.restoretabledata = self.restoretabledata!.filter { $0.contains(self.search.stringValue) }
+                        self.restoretabledata = self.restoretabledata?.filter { $0.contains(self.search.stringValue) }
                         self.restoretableView.reloadData()
                     }
                 }
@@ -34,7 +34,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_: NSSearchField) {
         if let index = self.index {
-            if self.configurations!.getConfigurationsDataSourceSynchronize()![index].value(forKey: "hiddenID") as? Int != nil {
+            if self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int != nil {
                 self.working.startAnimation(nil)
             }
         }
