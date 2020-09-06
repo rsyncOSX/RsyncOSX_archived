@@ -286,9 +286,15 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.index = index
                 self.restoretabledata = nil
                 self.restoreactions?.index = true
+                if self.restoreactions?.goforfullrestore() ?? false ||
+                    self.restoreactions?.goforfullrestoretotemporarypath() ?? false ||
+                    self.restoreactions?.goforrestorefilestotemporarypath() ?? false == true
+                {
+                    self.reset()
+                }
             } else {
-                self.reset()
                 self.index = nil
+                self.reset()
             }
             globalMainQueue.async { () -> Void in
                 self.restoretableView.reloadData()
@@ -418,10 +424,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
+        self.info.stringValue = ""
         guard self.restoreactions?.goforfullrestore() ?? false ||
             self.restoreactions?.goforfullrestoretotemporarypath() ?? false ||
             self.restoreactions?.goforrestorefilestotemporarypath() ?? false == false
         else {
+            self.reset()
             return
         }
         if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
