@@ -82,9 +82,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     // Userconfiguration button
     @IBAction func userconfiguration(_: NSButton) {
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerUserconfiguration!)
-        }
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
     }
 
     @IBAction func showHelp(_: AnyObject?) {
