@@ -283,11 +283,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.index = index
                 self.restoretabledata = nil
                 self.restoreactions?.index = true
-                if self.restoreactions?.goforfullrestore() ?? false ||
-                    self.restoreactions?.goforfullrestoretotemporarypath() ?? false ||
-                    self.restoreactions?.goforrestorefilestotemporarypath() ?? false == true
-                {
+                guard self.decideifreset() == false else {
                     self.reset()
+                    return
                 }
             } else {
                 self.index = nil
@@ -416,11 +414,22 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
+    private func decideifreset() -> Bool {
+        var reset = false
+        if self.restoreactions?.goforfullrestore() ?? false == true {
+            reset = true
+        }
+        if self.restoreactions?.goforfullrestoretotemporarypath() ?? false == true {
+            reset = true
+        }
+        if self.restoreactions?.goforrestorefilestotemporarypath() ?? false == true {
+            reset = true
+        }
+        return reset
+    }
+
     @IBAction func togglewhichtypeofrestore(_: NSButton) {
-        guard self.restoreactions?.goforfullrestore() ?? false ||
-            self.restoreactions?.goforfullrestoretotemporarypath() ?? false ||
-            self.restoreactions?.goforrestorefilestotemporarypath() ?? false == false
-        else {
+        guard self.decideifreset() == false else {
             self.reset()
             return
         }
