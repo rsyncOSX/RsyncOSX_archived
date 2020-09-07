@@ -181,7 +181,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.filesrestoreradiobutton.state = .off
         self.fullrestoreradiobutton.state = .off
         self.dotherealthing.state = .off
-
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
         if self.index != nil {
