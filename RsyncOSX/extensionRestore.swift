@@ -45,11 +45,9 @@ extension ViewControllerRestore: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.restoretableView {
             guard self.restoretabledata != nil else {
-                self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
                 return 0
             }
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.restoretabledata?.count ?? 0), number: NumberFormatter.Style.decimal)
+            self.infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.restoretabledata?.count ?? 0), number: NumberFormatter.Style.decimal)
             return self.restoretabledata!.count
         } else {
             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
@@ -83,13 +81,11 @@ extension ViewControllerRestore: UpdateProgress {
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.processTermination()
             self.reset()
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Restore completed...", comment: "Restore")
+            self.infolabel.stringValue = NSLocalizedString("Restore completed...", comment: "Restore")
         } else {
             let number = Numbers(outputprocess: self.outputprocess)
             self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal) + ", " + NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal) + " kB"
+            self.infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal) + ", " + NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal) + " kB"
             self.restoreisverified.image = #imageLiteral(resourceName: "green")
             self.restoreactions?.estimated = true
         }
