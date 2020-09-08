@@ -1,6 +1,9 @@
 /* Class = "NSBox"; title = "Edit"; ObjectID = "0B4-M8-m3v"; */
 "0B4-M8-m3v.title" = "Bearbeiten";
 
+/* Class = "NSButtonCell"; title = "Prepare"; ObjectID = "0eL-pE-p1V"; */
+"0eL-pE-p1V.title" = "Vorbereiten";
+
 /* Class = "NSTextFieldCell"; title = "Local catalog : "; ObjectID = "00G-Ps-GJD"; */
 "00G-Ps-GJD.title" = "Lokaler Katalog: ";
 
@@ -105,6 +108,9 @@
 
 /* Class = "NSMenuItem"; title = "Quit RsyncOSX"; ObjectID = "4sb-4s-VLi"; */
 "4sb-4s-VLi.title" = "RsyncOSX beenden";
+
+/* Class = "NSButtonCell"; title = "Execute"; ObjectID = "4XB-mD-OlZ"; */
+"4XB-mD-OlZ.title" = "Ausführen";
 
 /* Class = "NSMenu"; title = "Edit"; ObjectID = "5A9-Q1-SN9"; */
 "5A9-Q1-SN9.title" = "Bearbeiten";
@@ -234,6 +240,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "All output"; ObjectID = "302-lC-sbl"; */
 "302-lC-sbl.headerCell.title" = "Alle Ausgaben";
+
+/* Class = "NSButtonCell"; title = "Enable move config files"; ObjectID = "657-Va-5xd"; */
+"657-Va-5xd.title" = "Konfigurationsdateien verschieben aktivieren";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "798-Ig-rVS"; */
 "798-Ig-rVS.title" = "Text Cell";
@@ -538,8 +547,8 @@
 /* Class = "NSTextFieldCell"; title = "Synchronize ID:"; ObjectID = "F9T-gx-oeJ"; */
 "F9T-gx-oeJ.title" = "Synchronisier ID:";
 
-/* Class = "NSButtonCell"; title = "Do the real thing:  "; ObjectID = "f40-7m-CIV"; */
-"f40-7m-CIV.title" = "Machen Sie das Wirkliche:  ";
+/* Class = "NSButtonCell"; title = "Do the real thing"; ObjectID = "f40-7m-CIV"; */
+"f40-7m-CIV.title" = "Machen Sie das Wirkliche";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "fAL-TO-qxo"; */
 "fAL-TO-qxo.headerCell.title" = "Remote-Server";
@@ -829,6 +838,9 @@
 /* Class = "NSButtonCell"; title = "Save"; ObjectID = "L5g-6S-at9"; */
 "L5g-6S-at9.title" = "Speichern";
 
+/* Class = "NSButtonCell"; title = "Filelist"; ObjectID = "L28-ss-Qx4"; */
+"L28-ss-Qx4.title" = "Dateiliste";
+
 /* Class = "NSTextFieldCell"; title = ":"; ObjectID = "L51-Pl-bRg"; */
 "L51-Pl-bRg.title" = ":";
 
@@ -894,6 +906,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "n1z-ZA-mQN"; */
 "n1z-ZA-mQN.title" = "Anzahl der Verzeichnisse:";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "n6B-W4-X0a"; */
+"n6B-W4-X0a.title" = "Label";
 
 /* Class = "NSTextFieldCell"; title = "days older"; ObjectID = "NC7-Ka-Wgs"; */
 "NC7-Ka-Wgs.title" = "Tage älter";
@@ -982,6 +997,9 @@
 /* Class = "NSButtonCell"; title = "Params"; ObjectID = "OS5-Kb-1ct"; */
 "OS5-Kb-1ct.title" = "Parameter";
 
+/* Class = "NSTextFieldCell"; title = "infolabel"; ObjectID = "osL-TA-bg1"; */
+"osL-TA-bg1.title" = "infolabel";
+
 /* Class = "NSMenuItem"; title = "Info"; ObjectID = "oSU-tO-D9d"; */
 "oSU-tO-D9d.title" = "Info";
 
@@ -1054,6 +1072,9 @@
 /* Class = "NSBox"; title = "Process info"; ObjectID = "QdJ-n1-Mtr"; */
 "QdJ-n1-Mtr.title" = "Prozess-Info";
 
+/* Class = "NSMenuItem"; title = "Move config"; ObjectID = "qEr-u7-PyK"; */
+"qEr-u7-PyK.title" = "Move config";
+
 /* Class = "NSToolbarItem"; label = "backupnow"; ObjectID = "QmL-ZM-Xc4"; */
 "QmL-ZM-Xc4.label" = "sichern";
 
@@ -1093,8 +1114,8 @@
 /* Class = "NSTextFieldCell"; title = "copyright"; ObjectID = "RFG-uU-oRD"; */
 "RFG-uU-oRD.title" = "Urheberrecht";
 
-/* Class = "NSButtonCell"; title = "Select tmp: "; ObjectID = "Rfo-bd-8hM"; */
-"Rfo-bd-8hM.title" = "Wähle tmp: ";
+/* Class = "NSButtonCell"; title = "Select tmp"; ObjectID = "Rfo-bd-8hM"; */
+"Rfo-bd-8hM.title" = "Wähle tmp";
 
 /* Class = "NSTableColumn"; headerCell.title = "Sched"; ObjectID = "rfy-TN-1YB"; */
 "rfy-TN-1YB.headerCell.title" = "Schröder";
@@ -1317,6 +1338,9 @@
 
 /* Class = "NSTextFieldCell"; title = "icon"; ObjectID = "Vnu-mV-aob"; */
 "Vnu-mV-aob.title" = "symbol";
+
+/* Class = "NSButtonCell"; title = "Reset"; ObjectID = "VsE-6i-Hlm"; */
+"VsE-6i-Hlm.title" = "Reset";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VWl-UA-V1i"; */
 "VWl-UA-V1i.title" = "Text Cell";
