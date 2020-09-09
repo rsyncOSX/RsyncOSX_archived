@@ -136,7 +136,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     // Userconfiguration button
     @IBAction func userconfiguration(_: NSButton) {
-       self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
     }
 
     // Abort button
