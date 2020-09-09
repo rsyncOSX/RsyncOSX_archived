@@ -96,7 +96,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     var restoreactions: RestoreActions?
 
-    @IBOutlet var iinfo: NSTextField!
     @IBOutlet var restoretableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
     @IBOutlet var remotefiles: NSTextField!
