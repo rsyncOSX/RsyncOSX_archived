@@ -95,7 +95,6 @@ extension ViewControllerRestore: UpdateProgress {
                 self.restoreisverified.image = #imageLiteral(resourceName: "green")
                 self.restoreactions?.estimated = true
             }
-            
         }
         self.working.stopAnimation(nil)
     }
