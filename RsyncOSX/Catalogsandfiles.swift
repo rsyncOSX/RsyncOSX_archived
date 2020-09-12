@@ -14,6 +14,7 @@ enum Fileerrortype {
     case profilecreatedirectory
     case profiledeletedirectory
     case filesize
+    case createsshdirectory
 }
 
 // Protocol for reporting file errors
@@ -50,6 +51,8 @@ extension ErrorMessage {
             return "Could not delete profile directory"
         case .filesize:
             return "Filesize of logfile is getting bigger"
+        case .createsshdirectory:
+            return "Error creating ssh directory"
         }
     }
 }
@@ -123,7 +126,9 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                     root = Folder.home
                     do {
                         try root?.createSubfolder(at: catalog ?? "")
-                    } catch {
+                    } catch let e {
+                        let error = e as NSError
+                        self.error(error: error.description, errortype: .profilecreatedirectory)
                         return
                     }
                 } else {
@@ -132,7 +137,9 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                     root = Folder.documents
                     do {
                         try root?.createSubfolder(at: catalog ?? "")
-                    } catch {
+                    } catch let e {
+                        let error = e as NSError
+                        self.error(error: error.description, errortype: .profilecreatedirectory)
                         return
                     }
                 }
@@ -141,7 +148,9 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                 {
                     do {
                         try Folder(path: fullrootnomacserial).createSubfolder(at: macserialnumber)
-                    } catch {
+                    } catch let e {
+                        let error = e as NSError
+                        self.error(error: error.description, errortype: .profilecreatedirectory)
                         return
                     }
                 }
@@ -158,7 +167,11 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
             guard root.containsSubfolder(named: path) == false else { return }
             do {
                 try root.createSubfolder(at: path)
-            } catch {}
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .createsshdirectory)
+                return
+            }
         }
     }
 
