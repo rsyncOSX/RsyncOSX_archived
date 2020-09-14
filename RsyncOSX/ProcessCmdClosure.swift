@@ -10,16 +10,15 @@
 import Foundation
 
 class ProcessCmdClosure: Delay {
+    // Process termination and filehandler closures
     var processtermination: () -> Void
     var filehandler: () -> Void
+    // Verify network connection
     var config: Configuration?
     var monitor: NetworkMonitor?
-
     // Observers
     weak var notifications_datahandle: NSObjectProtocol?
     weak var notifications_termination: NSObjectProtocol?
-    // Command to be executed, normally rsync
-    var command: String?
     // Arguments to command
     var arguments: [String]?
     // true if processtermination
@@ -51,12 +50,8 @@ class ProcessCmdClosure: Delay {
     func executeProcess(outputprocess: OutputProcess?) {
         // Process
         let task = Process()
-        // If self.command != nil either alternativ path for rsync or other command than rsync to be executed
-        if let command = self.command {
-            task.launchPath = command
-        } else {
-            task.launchPath = Getrsyncpath().rsyncpath
-        }
+        // Getting version of rsync
+        task.launchPath = Getrsyncpath().rsyncpath
         task.arguments = self.arguments
         // If there are any Environmentvariables like
         // SSH_AUTH_SOCK": "/Users/user/.gnupg/S.gpg-agent.ssh"
@@ -113,8 +108,7 @@ class ProcessCmdClosure: Delay {
         _ = InterruptProcess()
     }
 
-    init(command: String?, arguments: [String]?, config: Configuration?, processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
-        self.command = command
+    init(arguments: [String]?, config: Configuration?, processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
         self.arguments = arguments
         self.processtermination = processtermination
         self.filehandler = filehandler

@@ -7,11 +7,11 @@
 //
 
 final class RsyncClosure: ProcessCmdClosure {
-    init(arguments: [String]?, config: Configuration?,
-         processtermination: @escaping () -> Void,
-         filehandler: @escaping () -> Void)
+    override init(arguments: [String]?, config: Configuration?,
+                  processtermination: @escaping () -> Void,
+                  filehandler: @escaping () -> Void)
     {
-        super.init(command: nil, arguments: arguments, config: config,
+        super.init(arguments: arguments, config: config,
                    processtermination: processtermination,
                    filehandler: filehandler)
     }
