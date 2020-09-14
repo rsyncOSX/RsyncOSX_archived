@@ -37,48 +37,6 @@ class SingleTask: SetSchedules, SetConfigurations {
     var maxcount: Int = 0
     var workload: SingleTaskWorkQueu?
 
-    func processtermination() {
-        print("processtermination singletask")
-        if let workload = self.workload,
-            let index = self.index
-        {
-            switch workload.pop() {
-            case .estimatesinglerun:
-                self.indicatorDelegate?.stopIndicator()
-                self.singletaskDelegate?.setNumbers(outputprocess: self.outputprocess)
-                self.maxcount = self.outputprocess?.getMaxcount() ?? 0
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-            case .error:
-                self.indicatorDelegate?.stopIndicator()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
-                self.workload = nil
-            case .executesinglerun:
-                self.singletaskDelegate?.terminateProgressProcess()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
-            case .empty:
-                self.workload = nil
-            default:
-                self.workload = nil
-            }
-        }
-        // Reset process referance
-        ViewControllerReference.shared.process = nil
-    }
-
-    func filehandler() {
-        print("filehandler singletask")
-        weak var outputeverythingDelegate: ViewOutputDetails?
-        weak var localprocessupdateDelegate: UpdateProgress?
-        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
-        localprocessupdateDelegate?.fileHandler()
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        if outputeverythingDelegate?.appendnow() ?? false {
-            outputeverythingDelegate?.reloadtable()
-        }
-    }
-
     func executesingletask() {
         if self.workload == nil {
             self.workload = SingleTaskWorkQueu()
@@ -129,6 +87,50 @@ class SingleTask: SetSchedules, SetConfigurations {
         self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.singletaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+    }
+}
+
+extension SingleTask {
+    func processtermination() {
+        print("processtermination singletask")
+        if let workload = self.workload,
+            let index = self.index
+        {
+            switch workload.pop() {
+            case .estimatesinglerun:
+                self.indicatorDelegate?.stopIndicator()
+                self.singletaskDelegate?.setNumbers(outputprocess: self.outputprocess)
+                self.maxcount = self.outputprocess?.getMaxcount() ?? 0
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
+            case .error:
+                self.indicatorDelegate?.stopIndicator()
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
+                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
+                self.workload = nil
+            case .executesinglerun:
+                self.singletaskDelegate?.terminateProgressProcess()
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
+                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
+            case .empty:
+                self.workload = nil
+            default:
+                self.workload = nil
+            }
+        }
+        // Reset process referance
+        ViewControllerReference.shared.process = nil
+    }
+
+    func filehandler() {
+        print("filehandler singletask")
+        weak var outputeverythingDelegate: ViewOutputDetails?
+        weak var localprocessupdateDelegate: UpdateProgress?
+        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
+        localprocessupdateDelegate?.fileHandler()
+        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.reloadtable()
+        }
     }
 }
 

@@ -24,8 +24,10 @@ class ExecuteTaskNow: SetConfigurations {
         if let index = self.index {
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-                process.setdelegate(object: self)
+                let process = RsyncClosure(arguments: arguments,
+                                           config: self.configurations?.getConfigurations()[index],
+                                           processtermination: self.processtermination,
+                                           filehandler: self.filehandler)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.startstopindicators?.startIndicatorExecuteTaskNow()
                 self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
@@ -42,8 +44,9 @@ class ExecuteTaskNow: SetConfigurations {
     }
 }
 
-extension ExecuteTaskNow: UpdateProgress {
-    func processTermination() {
+extension ExecuteTaskNow {
+    func processtermination() {
+        print("processtermination ExecuteTaskNow")
         self.startstopindicators?.stopIndicator()
         if let index = self.index {
             self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
@@ -51,7 +54,8 @@ extension ExecuteTaskNow: UpdateProgress {
         self.deinitDelegate?.deinitexecutetasknow()
     }
 
-    func fileHandler() {
+    func filehandler() {
+        print("filehandler ExecuteTaskNow")
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
