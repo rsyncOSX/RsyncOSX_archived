@@ -76,7 +76,7 @@ class ProcessCmdClosure: Delay {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
                     outputprocess?.addlinefromoutput(str: str as String)
                     // Send message about files
-                    self!.filehandler()
+                    self?.filehandler()
                     if self?.termination ?? false {
                         self?.possibleerrorDelegate?.erroroutput()
                     }
@@ -127,6 +127,6 @@ class ProcessCmdClosure: Delay {
     deinit {
         self.monitor?.stopMonitoring()
         self.monitor = nil
-        print("stop monitoring")
+        print("stop monitoring ProcessCmdClosure")
     }
 }
