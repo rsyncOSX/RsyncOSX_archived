@@ -46,7 +46,6 @@ class ExecuteTaskNow: SetConfigurations {
 
 extension ExecuteTaskNow {
     func processtermination() {
-        print("processtermination ExecuteTaskNow")
         self.startstopindicators?.stopIndicator()
         if let index = self.index {
             self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
@@ -55,7 +54,6 @@ extension ExecuteTaskNow {
     }
 
     func filehandler() {
-        print("filehandler ExecuteTaskNow")
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {

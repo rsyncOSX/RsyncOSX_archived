@@ -29,7 +29,6 @@ class ProcessCmdClosure: Delay {
     weak var profilepopupDelegate: DisableEnablePopupSelectProfile?
 
     func executemonitornetworkconnection() {
-        // guard self.arguments?.contains("--dry-run") ?? false == false else { return }
         guard self.config?.offsiteServer.isEmpty == false else { return }
         guard ViewControllerReference.shared.monitornetworkconnection == true else { return }
         self.monitor = NetworkMonitor()
@@ -121,6 +120,5 @@ class ProcessCmdClosure: Delay {
     deinit {
         self.monitor?.stopMonitoring()
         self.monitor = nil
-        print("stop monitoring ProcessCmdClosure")
     }
 }

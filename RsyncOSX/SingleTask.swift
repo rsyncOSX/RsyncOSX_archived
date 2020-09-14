@@ -92,7 +92,6 @@ class SingleTask: SetSchedules, SetConfigurations {
 
 extension SingleTask {
     func processtermination() {
-        print("processtermination singletask")
         if let workload = self.workload,
             let index = self.index
         {
@@ -122,7 +121,6 @@ extension SingleTask {
     }
 
     func filehandler() {
-        print("filehandler singletask")
         weak var outputeverythingDelegate: ViewOutputDetails?
         weak var localprocessupdateDelegate: UpdateProgress?
         localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
