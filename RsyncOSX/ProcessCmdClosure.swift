@@ -9,6 +9,15 @@
 
 import Foundation
 
+protocol ErrorOutput: AnyObject {
+    func erroroutput()
+}
+
+protocol DisableEnablePopupSelectProfile: AnyObject {
+    func disableselectpopupprofile()
+    func enableselectpopupprofile()
+}
+
 class ProcessCmdClosure: Delay {
     // Process termination and filehandler closures
     var processtermination: () -> Void

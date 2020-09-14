@@ -9,6 +9,10 @@
 
 import Foundation
 
+protocol SendOutputProcessreference: AnyObject {
+    func sendoutputprocessreference(outputprocess: OutputProcess?)
+}
+
 // Protocols for instruction start/stop progressviewindicator
 protocol StartStopProgressIndicatorSingleTask: AnyObject {
     func startIndicator()

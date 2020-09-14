@@ -9,15 +9,6 @@
 
 import Foundation
 
-protocol ErrorOutput: AnyObject {
-    func erroroutput()
-}
-
-protocol DisableEnablePopupSelectProfile: AnyObject {
-    func disableselectpopupprofile()
-    func enableselectpopupprofile()
-}
-
 class ProcessCmd: Delay {
     // Message to calling class
     weak var updateDelegate: UpdateProgress?
