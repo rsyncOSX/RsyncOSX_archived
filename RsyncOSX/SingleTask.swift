@@ -27,17 +27,59 @@ protocol SingleTaskProcess: AnyObject {
     func gettransferredNumberSizebytes() -> String
 }
 
-final class SingleTask: SetSchedules, SetConfigurations {
+class SingleTask: SetSchedules, SetConfigurations {
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     weak var singletaskDelegate: SingleTaskProcess?
     weak var setprocessDelegate: SendOutputProcessreference?
 
-    private var index: Int?
-    private var outputprocess: OutputProcess?
-    private var maxcount: Int = 0
-    private var workload: SingleTaskWorkQueu?
+    var index: Int?
+    var outputprocess: OutputProcess?
+    var maxcount: Int = 0
+    var workload: SingleTaskWorkQueu?
 
-    func executeSingleTask() {
+    func processtermination() {
+        print("processtermination")
+        if let workload = self.workload,
+            let index = self.index
+        {
+            switch workload.pop() {
+            case .estimatesinglerun:
+                self.indicatorDelegate?.stopIndicator()
+                self.singletaskDelegate?.setNumbers(outputprocess: self.outputprocess)
+                self.maxcount = self.outputprocess?.getMaxcount() ?? 0
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
+            case .error:
+                self.indicatorDelegate?.stopIndicator()
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
+                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
+                self.workload = nil
+            case .executesinglerun:
+                self.singletaskDelegate?.terminateProgressProcess()
+                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
+                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
+            case .empty:
+                self.workload = nil
+            default:
+                self.workload = nil
+            }
+        }
+        // Reset process referance
+        ViewControllerReference.shared.process = nil
+    }
+
+    func filehandler() {
+        print("filehandler")
+        weak var outputeverythingDelegate: ViewOutputDetails?
+        weak var localprocessupdateDelegate: UpdateProgress?
+        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
+        localprocessupdateDelegate?.fileHandler()
+        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.reloadtable()
+        }
+    }
+
+    func executesingletask() {
         if self.workload == nil {
             self.workload = SingleTaskWorkQueu()
         }
@@ -47,8 +89,10 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.indicatorDelegate?.startIndicator()
                 self.outputprocess = OutputProcessRsync()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .argdryRun) {
-                    let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-                    process.setdelegate(object: self)
+                    let process = RsyncClosure(arguments: arguments,
+                                               config: self.configurations?.getConfigurations()[index],
+                                               processtermination: self.processtermination,
+                                               filehandler: self.filehandler)
                     process.executeProcess(outputprocess: self.outputprocess)
                     self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
@@ -58,8 +102,10 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.singletaskDelegate?.presentViewProgress()
                 self.outputprocess = OutputProcessRsync()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                    let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-                    process.setdelegate(object: self)
+                    let process = RsyncClosure(arguments: arguments,
+                                               config: self.configurations?.getConfigurations()[index],
+                                               processtermination: self.processtermination,
+                                               filehandler: self.filehandler)
                     process.executeProcess(outputprocess: self.outputprocess)
                     self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
@@ -93,45 +139,5 @@ extension SingleTask: Count {
 
     func inprogressCount() -> Int {
         return self.outputprocess?.count() ?? 0
-    }
-}
-
-extension SingleTask: UpdateProgress {
-    func processTermination() {
-        if let workload = self.workload {
-            switch workload.pop() {
-            case .estimatesinglerun:
-                self.indicatorDelegate?.stopIndicator()
-                self.singletaskDelegate?.setNumbers(outputprocess: self.outputprocess)
-                self.maxcount = self.outputprocess!.getMaxcount()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-            case .error:
-                self.indicatorDelegate?.stopIndicator()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-                self.configurations?.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
-                self.workload = nil
-            case .executesinglerun:
-                self.singletaskDelegate?.terminateProgressProcess()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-                self.configurations?.setCurrentDateonConfiguration(index: self.index!, outputprocess: self.outputprocess)
-            case .empty:
-                self.workload = nil
-            default:
-                self.workload = nil
-            }
-        }
-        // Reset process referance
-        ViewControllerReference.shared.process = nil
-    }
-
-    func fileHandler() {
-        weak var outputeverythingDelegate: ViewOutputDetails?
-        weak var localprocessupdateDelegate: UpdateProgress?
-        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
-        localprocessupdateDelegate?.fileHandler()
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        if outputeverythingDelegate?.appendnow() ?? false {
-            outputeverythingDelegate?.reloadtable()
-        }
     }
 }

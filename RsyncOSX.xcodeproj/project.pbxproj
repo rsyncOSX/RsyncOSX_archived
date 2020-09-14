@@ -116,6 +116,8 @@
 		E99D187423041C47003F1796 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99D187323041C47003F1796 /* Result.swift */; };
 		E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */; };
 		E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */; };
+		E9A1725C250F675B00F26529 /* ProcessCmdClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1725B250F675B00F26529 /* ProcessCmdClosure.swift */; };
+		E9A1725E250F6D3800F26529 /* RsyncClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1725D250F6D3800F26529 /* RsyncClosure.swift */; };
 		E9A2600123AB5BDB00302280 /* ConfigurationsXCTEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A2600023AB5BDB00302280 /* ConfigurationsXCTEST.swift */; };
 		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
 		E9A8307D23925CBA00FB877E /* CountSchedulesandLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */; };
@@ -289,6 +291,8 @@
 		E99D187323041C47003F1796 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Getrsyncpath.swift; sourceTree = "<group>"; };
 		E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalogArguments.swift; sourceTree = "<group>"; };
+		E9A1725B250F675B00F26529 /* ProcessCmdClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessCmdClosure.swift; sourceTree = "<group>"; };
+		E9A1725D250F6D3800F26529 /* RsyncClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncClosure.swift; sourceTree = "<group>"; };
 		E9A2600023AB5BDB00302280 /* ConfigurationsXCTEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsXCTEST.swift; sourceTree = "<group>"; };
 		E9A63063202B425D00F1FFF1 /* Running.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
 		E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountSchedulesandLogs.swift; sourceTree = "<group>"; };
@@ -525,6 +529,7 @@
 				E93A64832195E3BD0040B334 /* DuCommandSsh.swift */,
 				E91AF8F321AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift */,
 				E912020622B3CFD90056AEFE /* Remotefilelist.swift */,
+				E9A1725D250F6D3800F26529 /* RsyncClosure.swift */,
 			);
 			name = Process;
 			sourceTree = "<group>";
@@ -692,6 +697,7 @@
 				E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */,
 				E94C852B249B3ECA0017696C /* InterruptProcess.swift */,
 				E9FCAC51249BBAF8008C9D6D /* ProcessCmdVerify.swift */,
+				E9A1725B250F675B00F26529 /* ProcessCmdClosure.swift */,
 			);
 			name = Mainprocess;
 			sourceTree = "<group>";
@@ -1083,6 +1089,7 @@
 				E92755A42130506000B1F781 /* Dateandtime.swift in Sources */,
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				E9F4EBB81EB4C32D006EEEF1 /* CommandSsh.swift in Sources */,
+				E9A1725C250F675B00F26529 /* ProcessCmdClosure.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
 				E925DD31232C33D0001499D1 /* SchedulesXCTEST.swift in Sources */,
 				E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */,
@@ -1112,6 +1119,7 @@
 				E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */,
 				E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */,
 				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
+				E9A1725E250F6D3800F26529 /* RsyncClosure.swift in Sources */,
 				E9FFA02D1E7287E100B7AB2B /* ProcessCmd.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */,
