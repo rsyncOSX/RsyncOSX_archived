@@ -17,10 +17,6 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
         if let index = self.index {
             if let pretask = self.configurations?.getConfigurations()[index].pretask {
                 let task = try shellOut(to: pretask)
-                // let outputprocess = OutputProcess()
-                // outputprocess.addlinefromoutput(str: "ShellOut: execute pretask")
-                // outputprocess.addlinefromoutput(str: task.self)
-                // _ = Logging(outputprocess, true)
                 if task.self.contains("error"), (self.configurations?.getConfigurations()[index].haltshelltasksonerror ?? 0) == 1 {
                     let outputprocess = OutputProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: pretask containes error, aborting")
@@ -35,10 +31,6 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
         if let index = self.index {
             if let posttask = self.configurations?.getConfigurations()[index].posttask {
                 let task = try shellOut(to: posttask)
-                // let outputprocess = OutputProcess()
-                // outputprocess.addlinefromoutput(str: "ShellOut: execute posttask")
-                // outputprocess.addlinefromoutput(str: task.self)
-                // _ = Logging(outputprocess, true)
                 if task.self.contains("error"), (self.configurations?.getConfigurations()[index].haltshelltasksonerror ?? 0) == 1 {
                     let outputprocess = OutputProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: posstak containes error")
@@ -67,8 +59,10 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
             guard self.error == false else { return }
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                let process = RsyncVerify(arguments: arguments, config: (self.configurations?.getConfigurations()[index])!)
-                process.setdelegate(object: self)
+                let process = RsyncClosure(arguments: arguments,
+                                           config: self.configurations?.getConfigurations()[index],
+                                           processtermination: self.processtermination,
+                                           filehandler: self.filehandler)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.startstopindicators?.startIndicatorExecuteTaskNow()
                 self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)

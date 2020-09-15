@@ -64,7 +64,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
                 if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
                     self.working.startAnimation(nil)
                     self.outputprocess = OutputProcess()
-                    _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: true, updateprogress: self)
+                    _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: true, processtermination: self.processtermination, filehandler: self.filehandler)
                 } else {
                     self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
                     self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
@@ -122,8 +122,8 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
     }
 }
 
-extension ViewControllerInformationLocalRemote: UpdateProgress {
-    func processTermination() {
+extension ViewControllerInformationLocalRemote {
+    func processtermination() {
         if self.complete == false {
             self.setnumbers(outputprocess: self.outputprocess, local: true)
         } else {
@@ -133,12 +133,12 @@ extension ViewControllerInformationLocalRemote: UpdateProgress {
             if self.complete == false {
                 self.complete = true
                 self.outputprocess = OutputProcess()
-                _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)
+                _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
             }
         }
     }
 
-    func fileHandler() {
+    func filehandler() {
         //
     }
 }

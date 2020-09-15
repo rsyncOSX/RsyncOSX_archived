@@ -11,10 +11,10 @@ import Foundation
 final class FullrestoreTask: SetConfigurations {
     var arguments: [String]?
     weak var sendprocess: SendOutputProcessreference?
-    var process: ProcessCmd?
+    var process: ProcessCmdClosure?
     var outputprocess: OutputProcess?
 
-    init(index: Int, dryrun: Bool, tmprestore: Bool, updateprogress: UpdateProgress) {
+    init(index: Int, dryrun: Bool, tmprestore: Bool, processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
         self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if dryrun {
             if tmprestore {
@@ -36,10 +36,9 @@ final class FullrestoreTask: SetConfigurations {
             }
         }
         if let arguments = self.arguments {
-            self.process = ProcessCmd(command: nil, arguments: arguments)
+            self.process = ProcessCmdClosure(arguments: arguments, config: nil, processtermination: processtermination, filehandler: filehandler)
             self.outputprocess = OutputProcessRsync()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-            self.process?.setupdateDelegate(object: updateprogress)
             self.process?.executeProcess(outputprocess: outputprocess)
         }
     }

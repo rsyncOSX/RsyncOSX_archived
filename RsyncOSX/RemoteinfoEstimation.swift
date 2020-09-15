@@ -89,7 +89,7 @@ final class RemoteinfoEstimation: SetConfigurations {
             self.index = index
             self.outputprocess = OutputProcess()
             self.startstopProgressIndicatorDelegate?.start()
-            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)
+            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
         }
     }
 
@@ -114,8 +114,8 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
     }
 }
 
-extension RemoteinfoEstimation: UpdateProgress {
-    func processTermination() {
+extension RemoteinfoEstimation {
+    func processtermination() {
         let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
         record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
         record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
@@ -138,11 +138,11 @@ extension RemoteinfoEstimation: UpdateProgress {
         self.outputprocess = OutputProcessRsync()
         if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
             self.index = index
-            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, updateprogress: self)
+            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
         }
     }
 
-    func fileHandler() {
+    func filehandler() {
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
