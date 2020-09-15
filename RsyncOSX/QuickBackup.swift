@@ -58,28 +58,30 @@ final class QuickBackup: SetConfigurations {
         if let list = self.sortedlist {
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
-                self.sortedlist![i].setObject(false, forKey: "completeCellID" as NSCopying)
-                self.sortedlist![i].setObject(false, forKey: "inprogressCellID" as NSCopying)
+                list[i].setObject(false, forKey: "completeCellID" as NSCopying)
+                list[i].setObject(false, forKey: "inprogressCellID" as NSCopying)
                 if list[i].value(forKey: "selectCellID") as? Int == 1 {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
                 }
                 let hiddenID = list[i].value(forKey: "hiddenID") as? Int
-                if self.estimatedlist != nil {
-                    let estimated = self.estimatedlist!.filter { ($0.value(forKey: "hiddenID") as? Int) == hiddenID! }
+                if let estimatedlist = self.estimatedlist {
+                    let estimated = estimatedlist.filter { ($0.value(forKey: "hiddenID") as? Int) == hiddenID ?? -1 }
                     if estimated.count > 0 {
                         let transferredNumber = estimated[0].value(forKey: "transferredNumber") as? String ?? ""
-                        self.sortedlist![i].setObject(transferredNumber, forKey: "transferredNumber" as NSCopying)
+                        self.sortedlist?[i].setObject(transferredNumber, forKey: "transferredNumber" as NSCopying)
                     }
                 }
             }
-            guard self.stackoftasktobeexecuted!.count > 0 else { return }
+            guard self.stackoftasktobeexecuted?.count ?? 0 > 0 else { return }
             // Kick off first task
-            self.hiddenID = self.stackoftasktobeexecuted![0].0
-            self.index = self.stackoftasktobeexecuted![0].1
-            self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
-            self.maxcount = Int(self.sortedlist![self.index!].value(forKey: "transferredNumber") as? String ?? "0")
-            self.stackoftasktobeexecuted?.remove(at: 0)
-            self.executequickbackuptask(hiddenID: self.hiddenID!)
+            if let hiddenID = self.stackoftasktobeexecuted?[0].0,
+                let index = self.stackoftasktobeexecuted?[0].1
+            {
+                self.sortedlist?[index].setValue(true, forKey: "inprogressCellID")
+                self.maxcount = Int(self.sortedlist?[index].value(forKey: "transferredNumber") as? String ?? "0")
+                self.stackoftasktobeexecuted?.remove(at: 0)
+                self.executequickbackuptask(hiddenID: hiddenID)
+            }
         }
     }
 
