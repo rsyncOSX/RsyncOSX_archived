@@ -76,8 +76,8 @@ extension ViewControllerRestore: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerRestore: UpdateProgress {
-    func processTermination() {
+extension ViewControllerRestore {
+    func processtermination() {
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.processTermination()
             self.reset()
@@ -99,7 +99,7 @@ extension ViewControllerRestore: UpdateProgress {
         self.working.stopAnimation(nil)
     }
 
-    func fileHandler() {
+    func filehandler() {
         if self.outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }
