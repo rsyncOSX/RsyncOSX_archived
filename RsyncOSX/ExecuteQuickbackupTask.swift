@@ -14,7 +14,7 @@ import Foundation
 // when the job discover (observs) the termination of the process.
 
 final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
-    var outputprocess: OutputProcessRsync?
+    var outputprocess: OutputProcess?
     var arguments: [String]?
     var config: Configuration?
 
@@ -36,14 +36,11 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                     ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
                     globalMainQueue.async {
                         if let arguments = self.arguments {
-                            weak var sendprocess: SendOutputProcessreference?
-                            sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                             let process = RsyncClosure(arguments: arguments,
                                                        config: self.config,
                                                        processtermination: self.processtermination,
                                                        filehandler: self.filehandler)
                             process.executeProcess(outputprocess: self.outputprocess)
-                            sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
                         }
                     }
                 }
@@ -51,11 +48,10 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
         }
     }
 
-    init(processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
+    init(processtermination: @escaping () -> Void, filehandler: @escaping () -> Void, outputprocess: OutputProcess?) {
         self.processtermination = processtermination
         self.filehandler = filehandler
-        self.outputprocess = OutputProcessRsync()
-        ViewControllerReference.shared.outputRsync = self.outputprocess
+        self.outputprocess = outputprocess
         self.executetask()
     }
 }
