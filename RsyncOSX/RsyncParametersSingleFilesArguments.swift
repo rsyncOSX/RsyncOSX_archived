@@ -79,10 +79,6 @@ final class RsyncParametersSingleFilesArguments {
         return self.argDisplay
     }
 
-    func getCommand() -> String? {
-        return nil
-    }
-
     init(config: Configuration?, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
         if let config = config {
             self.config = config

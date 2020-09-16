@@ -25,8 +25,7 @@ class Remotefilelist: ProcessCmd, SetConfigurations {
             self.outputprocess = OutputProcess()
             self.arguments = RestorefilesArguments(task: .rsyncfilelistings, config: self.config,
                                                    remoteFile: nil, localCatalog: nil, drynrun: nil).getArguments()
-            self.command = RestorefilesArguments(task: .rsyncfilelistings, config: self.config,
-                                                 remoteFile: nil, localCatalog: nil, drynrun: nil).getCommand()
+            self.command = nil
             self.setupdateDelegate(object: self)
             self.executeProcess(outputprocess: self.outputprocess)
         }
