@@ -116,7 +116,11 @@ class ProcessCmdClosure: Delay {
         _ = InterruptProcess()
     }
 
-    init(arguments: [String]?, config: Configuration?, processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
+    init(arguments: [String]?,
+         config: Configuration?,
+         processtermination: @escaping () -> Void,
+         filehandler: @escaping () -> Void)
+    {
         self.arguments = arguments
         self.processtermination = processtermination
         self.filehandler = filehandler
