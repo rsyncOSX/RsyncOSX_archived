@@ -43,13 +43,12 @@ final class QuickBackup: SetConfigurations {
 
     private func executequickbackuptask(hiddenID: Int) {
         let now = Date()
-        let task: NSDictionary = [
+        ViewControllerReference.shared.quickbackuptask = [
             "start": now,
             "hiddenID": hiddenID,
             "dateStart": "01 Jan 1900 00:00".en_us_date_from_string(),
             "schedule": Scheduletype.manuel.rawValue,
         ]
-        ViewControllerReference.shared.quickbackuptask = task
         _ = QuickbackupDispatch(processtermination: self.processtermination, filehandler: self.filehandler)
     }
 
@@ -107,8 +106,8 @@ final class QuickBackup: SetConfigurations {
 extension QuickBackup {
     func processtermination() {
         self.setcompleted()
-        let test = ViewControllerReference.shared.outputRsync
-        ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: test)
+        ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: ViewControllerReference.shared.outputRsync)
+        ViewControllerReference.shared.outputRsync = nil
         ViewControllerReference.shared.completeoperation = nil
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0 else {

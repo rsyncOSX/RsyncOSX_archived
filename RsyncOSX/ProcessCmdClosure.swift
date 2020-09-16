@@ -56,7 +56,6 @@ class ProcessCmdClosure: Delay {
     }
 
     func executeProcess(outputprocess: OutputProcess?) {
-        ViewControllerReference.shared.outputRsync = outputprocess
         // Process
         let task = Process()
         // Getting version of rsync
