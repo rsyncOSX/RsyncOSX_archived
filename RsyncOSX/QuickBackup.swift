@@ -24,7 +24,6 @@ final class QuickBackup: SetConfigurations {
     var index: Int?
     var hiddenID: Int?
     var maxcount: Int?
-    var outputprocess: OutputProcess?
     weak var reloadtableDelegate: Reloadandrefresh?
 
     func sortbydays() {
@@ -105,16 +104,11 @@ final class QuickBackup: SetConfigurations {
     }
 }
 
-extension QuickBackup: SendOutputProcessreference {
-    func sendoutputprocessreference(outputprocess: OutputProcess?) {
-        self.outputprocess = outputprocess
-    }
-}
-
 extension QuickBackup {
     func processtermination() {
         self.setcompleted()
-        ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: self.outputprocess)
+        let test = ViewControllerReference.shared.outputRsync
+        ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: test)
         ViewControllerReference.shared.completeoperation = nil
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0 else {
