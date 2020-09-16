@@ -24,8 +24,12 @@ final class RsyncVersionString: ProcessCmd {
 extension RsyncVersionString: UpdateProgress {
     func processTermination() {
         guard self.outputprocess?.getOutput()?.count ?? 0 > 0 else { return }
-        ViewControllerReference.shared.rsyncversionshort = self.outputprocess!.getOutput()![0]
-        ViewControllerReference.shared.rsyncversionstring = self.outputprocess!.getOutput()!.joined(separator: "\n")
+        if let rsyncversionshort = self.outputprocess?.getOutput()?[0],
+            let rsyncversionstring = self.outputprocess?.getOutput()?.joined(separator: "\n")
+        {
+            ViewControllerReference.shared.rsyncversionshort = rsyncversionshort
+            ViewControllerReference.shared.rsyncversionstring = rsyncversionstring
+        }
         weak var shortstringDelegate: RsyncIsChanged?
         shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         shortstringDelegate?.rsyncischanged()
