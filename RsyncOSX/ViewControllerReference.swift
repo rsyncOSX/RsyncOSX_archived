@@ -118,10 +118,6 @@ final class ViewControllerReference {
     var monitornetworkconnection: Bool = false
     // Reference to the active process
     var process: Process?
-
-    // Output
-    var outputRsync: OutputProcess?
-
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
