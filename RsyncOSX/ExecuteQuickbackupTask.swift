@@ -14,7 +14,7 @@ import Foundation
 // when the job discover (observs) the termination of the process.
 
 final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
-    let outputprocess = OutputProcessRsync()
+    var outputprocess: OutputProcessRsync?
     var arguments: [String]?
     var config: Configuration?
 
@@ -54,6 +54,8 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
     init(processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
         self.processtermination = processtermination
         self.filehandler = filehandler
+        self.outputprocess = OutputProcessRsync()
+        ViewControllerReference.shared.outputRsync = self.outputprocess
         self.executetask()
     }
 }

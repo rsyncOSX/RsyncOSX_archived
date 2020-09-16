@@ -42,7 +42,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
         super.viewDidAppear()
         guard self.diddissappear == false else { return }
         self.abort.isEnabled = true
-        self.remoteinfotask = RemoteinfoEstimation(viewcontroller: self)
+        self.remoteinfotask = RemoteinfoEstimation(viewcontroller: self, processtermination: self.processtermination)
         self.initiateProgressbar()
     }
 
@@ -84,14 +84,10 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     }
 }
 
-extension ViewControllerEstimatingTasks: UpdateProgress {
-    func processTermination() {
+extension ViewControllerEstimatingTasks {
+    func processtermination() {
         let progress = Double(self.remoteinfotask?.maxCount() ?? 0) - Double(self.remoteinfotask?.inprogressCount() ?? 0)
         self.updateProgressbar(progress)
-    }
-
-    func fileHandler() {
-        //
     }
 }
 

@@ -24,7 +24,6 @@ final class QuickBackup: SetConfigurations {
     var index: Int?
     var hiddenID: Int?
     var maxcount: Int?
-    var outputprocess: OutputProcess?
     weak var reloadtableDelegate: Reloadandrefresh?
 
     func sortbydays() {
@@ -44,13 +43,12 @@ final class QuickBackup: SetConfigurations {
 
     private func executequickbackuptask(hiddenID: Int) {
         let now = Date()
-        let task: NSDictionary = [
+        ViewControllerReference.shared.quickbackuptask = [
             "start": now,
             "hiddenID": hiddenID,
             "dateStart": "01 Jan 1900 00:00".en_us_date_from_string(),
             "schedule": Scheduletype.manuel.rawValue,
         ]
-        ViewControllerReference.shared.quickbackuptask = task
         _ = QuickbackupDispatch(processtermination: self.processtermination, filehandler: self.filehandler)
     }
 
@@ -105,16 +103,11 @@ final class QuickBackup: SetConfigurations {
     }
 }
 
-extension QuickBackup: SendOutputProcessreference {
-    func sendoutputprocessreference(outputprocess: OutputProcess?) {
-        self.outputprocess = outputprocess
-    }
-}
-
 extension QuickBackup {
     func processtermination() {
         self.setcompleted()
-        ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: self.outputprocess)
+        ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: ViewControllerReference.shared.outputRsync)
+        ViewControllerReference.shared.outputRsync = nil
         ViewControllerReference.shared.completeoperation = nil
         guard self.stackoftasktobeexecuted != nil else { return }
         guard self.stackoftasktobeexecuted!.count > 0 else {

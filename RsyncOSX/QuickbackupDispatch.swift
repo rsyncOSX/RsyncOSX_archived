@@ -9,7 +9,7 @@
 import Foundation
 
 class QuickbackupDispatch: SetSchedules {
-    private var workitem: DispatchWorkItem?
+    weak var workitem: DispatchWorkItem?
     // Process termination and filehandler closures
     var processtermination: () -> Void
     var filehandler: () -> Void

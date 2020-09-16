@@ -21,7 +21,8 @@ final class RemoteinfoEstimation: SetConfigurations {
     var stackoftasktobeestimated: [Row]?
     var outputprocess: OutputProcess?
     var records: [NSMutableDictionary]?
-    weak var updateprogressDelegate: UpdateProgress?
+    // weak var updateprogressDelegate: UpdateProgress?
+    var updateviewprocesstermination: () -> Void
     weak var reloadtableDelegate: Reloadandrefresh?
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     weak var getmultipleselectedindexesDelegate: GetMultipleSelectedIndexes?
@@ -93,8 +94,8 @@ final class RemoteinfoEstimation: SetConfigurations {
         }
     }
 
-    init(viewcontroller: NSViewController) {
-        self.updateprogressDelegate = viewcontroller as? UpdateProgress
+    init(viewcontroller: NSViewController, processtermination: @escaping () -> Void) {
+        self.updateviewprocesstermination = processtermination
         self.startstopProgressIndicatorDelegate = viewcontroller as? StartStopProgressIndicator
         self.getmultipleselectedindexesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.prepareandstartexecutetasks()
@@ -134,7 +135,7 @@ extension RemoteinfoEstimation {
             return
         }
         // Update View
-        self.updateprogressDelegate?.processTermination()
+        self.updateviewprocesstermination()
         self.outputprocess = OutputProcessRsync()
         if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
             self.index = index

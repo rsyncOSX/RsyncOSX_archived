@@ -96,7 +96,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             self.loaded = true
             self.progress.isHidden = true
         } else {
-            self.remoteinfotask = RemoteinfoEstimation(viewcontroller: self)
+            self.remoteinfotask = RemoteinfoEstimation(viewcontroller: self, processtermination: self.processtermination)
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: self.remoteinfotask)
         }
     }
@@ -205,17 +205,13 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
     }
 }
 
-extension ViewControllerRemoteInfo: UpdateProgress {
-    func processTermination() {
+extension ViewControllerRemoteInfo {
+    func processtermination() {
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
         let progress = Double(self.remoteinfotask?.maxCount() ?? 0) - Double(self.remoteinfotask?.inprogressCount() ?? 0)
         self.updateProgressbar(progress)
-    }
-
-    func fileHandler() {
-        //
     }
 }
 
