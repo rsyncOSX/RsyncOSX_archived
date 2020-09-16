@@ -23,13 +23,13 @@ final class Snapshotlogsandcatalogs {
         self.outputprocess = OutputProcess()
         let arguments = RestorefilesArguments(task: .snapshotcatalogs, config: self.config, remoteFile: nil, localCatalog: nil, drynrun: nil)
         if getsnapshots {
-            let object = SnapshotCommandSubCatalogs(command: arguments.getCommand(), arguments: arguments.getArguments())
+            let object = SnapshotCommandSubCatalogs(arguments: arguments.getArguments())
             if let updateprogress = self.updateprogress {
                 object.updateDelegate = updateprogress
             }
             object.executeProcess(outputprocess: self.outputprocess)
         } else {
-            let object = SnapshotCommandSubCatalogsLogview(command: arguments.getCommand(), arguments: arguments.getArguments())
+            let object = SnapshotCommandSubCatalogsLogview(arguments: arguments.getArguments())
             if let updateprogress = self.updateprogress {
                 object.updateDelegate = updateprogress
             }
