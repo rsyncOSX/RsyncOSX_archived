@@ -23,10 +23,10 @@ final class EstimateremoteInformationOnetask: SetConfigurations {
         } else {
             self.arguments = self.configurations?.arguments4rsync(index: index, argtype: .argdryRun)
         }
-        let process = RsyncClosure(arguments: self.arguments,
-                                   config: nil,
-                                   processtermination: processtermination,
-                                   filehandler: filehandler)
+        let process = RsyncProcessCmdClosure(arguments: self.arguments,
+                                             config: nil,
+                                             processtermination: processtermination,
+                                             filehandler: filehandler)
         process.executeProcess(outputprocess: outputprocess)
         setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
     }

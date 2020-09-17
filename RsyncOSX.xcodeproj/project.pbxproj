@@ -75,7 +75,6 @@
 		E9374D2E1E329A5800CD3945 /* CompleteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteQuickbackupTask.swift */; };
 		E939EC4A20C048A000C47F91 /* extensionVCMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939EC4920C048A000C47F91 /* extensionVCMain.swift */; };
 		E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */; };
-		E93A64842195E3BD0040B334 /* DuCommandSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A64832195E3BD0040B334 /* DuCommandSsh.swift */; };
 		E93ADA6C24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */; };
 		E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */; };
 		E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */; };
@@ -116,7 +115,6 @@
 		E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */; };
 		E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */; };
 		E9A1725C250F675B00F26529 /* RsyncProcessCmdClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1725B250F675B00F26529 /* RsyncProcessCmdClosure.swift */; };
-		E9A1725E250F6D3800F26529 /* RsyncClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1725D250F6D3800F26529 /* RsyncClosure.swift */; };
 		E9A2600123AB5BDB00302280 /* ConfigurationsXCTEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A2600023AB5BDB00302280 /* ConfigurationsXCTEST.swift */; };
 		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
 		E9A8307D23925CBA00FB877E /* CountSchedulesandLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */; };
@@ -245,7 +243,6 @@
 		E9374D2D1E329A5800CD3945 /* CompleteQuickbackupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteQuickbackupTask.swift; sourceTree = "<group>"; };
 		E939EC4920C048A000C47F91 /* extensionVCMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCMain.swift; sourceTree = "<group>"; };
 		E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesandPaths.swift; sourceTree = "<group>"; };
-		E93A64832195E3BD0040B334 /* DuCommandSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuCommandSsh.swift; sourceTree = "<group>"; };
 		E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCScheduletableviewDelegate.swift; sourceTree = "<group>"; };
 		E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEstimatingTasks.swift; sourceTree = "<group>"; };
 		E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerQuickBackup.swift; sourceTree = "<group>"; };
@@ -288,7 +285,6 @@
 		E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Getrsyncpath.swift; sourceTree = "<group>"; };
 		E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalogArguments.swift; sourceTree = "<group>"; };
 		E9A1725B250F675B00F26529 /* RsyncProcessCmdClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncProcessCmdClosure.swift; sourceTree = "<group>"; };
-		E9A1725D250F6D3800F26529 /* RsyncClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncClosure.swift; sourceTree = "<group>"; };
 		E9A2600023AB5BDB00302280 /* ConfigurationsXCTEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsXCTEST.swift; sourceTree = "<group>"; };
 		E9A63063202B425D00F1FFF1 /* Running.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
 		E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountSchedulesandLogs.swift; sourceTree = "<group>"; };
@@ -518,10 +514,8 @@
 				E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */,
 				E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */,
 				E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */,
-				E93A64832195E3BD0040B334 /* DuCommandSsh.swift */,
 				E91AF8F321AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift */,
 				E912020622B3CFD90056AEFE /* Remotefilelist.swift */,
-				E9A1725D250F6D3800F26529 /* RsyncClosure.swift */,
 			);
 			name = Process;
 			sourceTree = "<group>";
@@ -1028,7 +1022,6 @@
 				A04492B21D658F2100B3CE17 /* RsyncParameters.swift in Sources */,
 				E9230C0E1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift in Sources */,
 				E9FE959B25134BD800B9AF5D /* OtherProcessCmdClosure.swift in Sources */,
-				E93A64842195E3BD0040B334 /* DuCommandSsh.swift in Sources */,
 				A0EFB4501DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift in Sources */,
 				E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */,
 				E9F068F01F27B93E00DDF1A1 /* ConfigurationSchedule.swift in Sources */,
@@ -1108,7 +1101,6 @@
 				E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */,
 				E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */,
 				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
-				E9A1725E250F6D3800F26529 /* RsyncClosure.swift in Sources */,
 				E9FFA02D1E7287E100B7AB2B /* ProcessCmd.swift in Sources */,
 				A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */,
 				E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */,
