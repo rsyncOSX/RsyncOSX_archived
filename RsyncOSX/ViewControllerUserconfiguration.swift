@@ -135,7 +135,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.setmarknumberofdayssince()
             self.setEnvironment()
             self.setsshparameters()
-            _ = PersistentStorageUserconfiguration().saveuserconfiguration()
+            PersistentStorageUserconfiguration().saveuserconfiguration()
             if self.reload {
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
             }

@@ -244,7 +244,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         // ViewControllerReference.shared.usenewconfigpath = true or false (default true)
         _ = Neworoldprofilepath()
         // Create base profile catalog
-        _ = CatalogProfile().createrootprofilecatalog()
+        CatalogProfile().createrootprofilecatalog()
         // Must read userconfig when loading main view, view only load once
         if let userconfiguration = PersistentStorageUserconfiguration().readuserconfiguration() {
             _ = Userconfiguration(userconfigRsyncOSX: userconfiguration)
