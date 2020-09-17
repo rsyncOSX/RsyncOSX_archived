@@ -60,18 +60,22 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     }
 
     private func getremotesizes() {
-        guard self.index != nil else { return }
-        guard ViewControllerReference.shared.process == nil else { return }
-        self.outputprocess = OutputProcess()
-        let dict = self.allprofiles!.allconfigurationsasdictionary?[self.index!]
-        let config = Configuration(dictionary: dict!)
-        guard self.connected(config: config) == true else { return }
-        let duargs = DuArgumentsSsh(config: config)
-        guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
-        self.working.startAnimation(nil)
-        let task = DuCommandSsh(command: duargs.getCommand(), arguments: duargs.getArguments())
-        task.setdelegate(object: self)
-        task.executeProcess(outputprocess: self.outputprocess)
+        if let index = self.index {
+            guard ViewControllerReference.shared.process == nil else { return }
+            if let dict = self.allprofiles?.allconfigurationsasdictionary?[index] {
+                self.outputprocess = OutputProcess()
+                let config = Configuration(dictionary: dict)
+                guard self.connected(config: config) == true else { return }
+                let duargs = DuArgumentsSsh(config: config)
+                guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
+                self.working.startAnimation(nil)
+                let task = OtherProcessCmdClosure(command: duargs.getCommand(),
+                                                  arguments: duargs.getArguments(),
+                                                  processtermination: self.processtermination,
+                                                  filehandler: self.filehandler)
+                task.executeProcess(outputprocess: self.outputprocess)
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -244,8 +248,8 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
     }
 }
 
-extension ViewControllerAllProfiles: UpdateProgress {
-    func processTermination() {
+extension ViewControllerAllProfiles {
+    func processtermination() {
         self.working.stopAnimation(nil)
         guard ViewControllerReference.shared.process != nil else { return }
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
@@ -261,7 +265,7 @@ extension ViewControllerAllProfiles: UpdateProgress {
         ViewControllerReference.shared.process = nil
     }
 
-    func fileHandler() {
+    func filehandler() {
         //
     }
 }

@@ -24,10 +24,10 @@ class ExecuteTaskNow: SetConfigurations {
         if let index = self.index {
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                let process = RsyncClosure(arguments: arguments,
-                                           config: self.configurations?.getConfigurations()[index],
-                                           processtermination: self.processtermination,
-                                           filehandler: self.filehandler)
+                let process = RsyncProcessCmdClosure(arguments: arguments,
+                                                     config: self.configurations?.getConfigurations()[index],
+                                                     processtermination: self.processtermination,
+                                                     filehandler: self.filehandler)
                 process.executeProcess(outputprocess: self.outputprocess)
                 self.startstopindicators?.startIndicatorExecuteTaskNow()
                 self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)

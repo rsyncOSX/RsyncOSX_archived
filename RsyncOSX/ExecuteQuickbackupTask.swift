@@ -36,10 +36,10 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
                     ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
                     globalMainQueue.async {
                         if let arguments = self.arguments {
-                            let process = RsyncClosure(arguments: arguments,
-                                                       config: self.config,
-                                                       processtermination: self.processtermination,
-                                                       filehandler: self.filehandler)
+                            let process = RsyncProcessCmdClosure(arguments: arguments,
+                                                                 config: self.config,
+                                                                 processtermination: self.processtermination,
+                                                                 filehandler: self.filehandler)
                             process.executeProcess(outputprocess: self.outputprocess)
                         }
                     }
