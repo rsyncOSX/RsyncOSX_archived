@@ -49,7 +49,7 @@ class Schedules: ScheduleWriteLoggData {
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
         self.schedules?.append(newSchedule)
-        _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
+        PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vctabschedule)
     }
 
@@ -66,7 +66,7 @@ class Schedules: ScheduleWriteLoggData {
             delete = true
         }
         if delete {
-            _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
+            PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
             // Send message about refresh tableView
             self.reloadtable(vcontroller: .vctabmain)
         }
@@ -138,7 +138,7 @@ class Schedules: ScheduleWriteLoggData {
             }
             if update {
                 // Saving the resulting data file
-                _ = PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
+                PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 // Send message about refresh tableView
                 self.reloadtable(vcontroller: .vctabmain)
                 self.reloadtable(vcontroller: .vctabschedule)
