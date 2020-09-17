@@ -12,7 +12,7 @@ import Foundation
 final class RestorefilesTask: SetConfigurations {
     private var config: Configuration?
     private var commandDisplay: String?
-    var process: ProcessCmdClosure?
+    var process: RsyncProcessCmdClosure?
     var outputprocess: OutputProcess?
     weak var sendprocess: SendOutputProcessreference?
 
@@ -34,7 +34,7 @@ final class RestorefilesTask: SetConfigurations {
                                                   localCatalog: localCatalog, drynrun: dryrun).getArguments()
             self.outputprocess = OutputProcessRsync()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-            self.process = ProcessCmdClosure(arguments: arguments, config: nil, processtermination: self.processtermination, filehandler: self.filehandler)
+            self.process = RsyncProcessCmdClosure(arguments: arguments, config: nil, processtermination: self.processtermination, filehandler: self.filehandler)
             self.process?.executeProcess(outputprocess: self.outputprocess)
         }
     }

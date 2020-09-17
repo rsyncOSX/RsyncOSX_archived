@@ -1,5 +1,5 @@
 //
-//  ProcessCmdClosure.swift
+//  RsyncProcessCmdClosure.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 14/09/2020.
@@ -18,7 +18,7 @@ protocol DisableEnablePopupSelectProfile: AnyObject {
     func enableselectpopupprofile()
 }
 
-class ProcessCmdClosure: Delay {
+class RsyncProcessCmdClosure: Delay {
     // Process termination and filehandler closures
     var processtermination: () -> Void
     var filehandler: () -> Void

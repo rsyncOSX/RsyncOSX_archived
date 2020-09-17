@@ -12,7 +12,7 @@ import Foundation
 final class FullrestoreTask: SetConfigurations {
     var arguments: [String]?
     weak var sendprocess: SendOutputProcessreference?
-    var process: ProcessCmdClosure?
+    var process: RsyncProcessCmdClosure?
     var outputprocess: OutputProcess?
 
     init(index: Int, dryrun: Bool, tmprestore: Bool, processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
@@ -37,7 +37,7 @@ final class FullrestoreTask: SetConfigurations {
             }
         }
         if let arguments = self.arguments {
-            self.process = ProcessCmdClosure(arguments: arguments, config: nil, processtermination: processtermination, filehandler: filehandler)
+            self.process = RsyncProcessCmdClosure(arguments: arguments, config: nil, processtermination: processtermination, filehandler: filehandler)
             self.outputprocess = OutputProcessRsync()
             self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
             self.process?.executeProcess(outputprocess: outputprocess)

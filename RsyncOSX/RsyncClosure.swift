@@ -6,7 +6,7 @@
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
 
-final class RsyncClosure: ProcessCmdClosure {
+final class RsyncClosure: RsyncProcessCmdClosure {
     override init(arguments: [String]?, config: Configuration?,
                   processtermination: @escaping () -> Void,
                   filehandler: @escaping () -> Void)
