@@ -105,15 +105,11 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         progress.minValue = 0
         progress.doubleValue = 0
         progress.startAnimation(self)
-        print("maxvalue")
-        print(progress.maxValue)
-        print("maxvalue")
     }
 
     private func updateProgressbar(progress: NSProgressIndicator) {
         let value = Double((self.quickbackup?.outputprocess?.getOutput()?.count) ?? 0)
         progress.doubleValue = value
-        print(progress.doubleValue)
     }
 }
 
