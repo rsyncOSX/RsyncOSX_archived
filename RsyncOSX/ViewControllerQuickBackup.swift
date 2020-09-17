@@ -20,7 +20,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     var filterby: Sortandfilter?
     var quickbackup: QuickBackup?
     var executing: Bool = true
-    weak var inprogresscountDelegate: Count?
+    // weak var inprogresscountDelegate: Count?
     var max: Double?
     var maxInt: Int?
     var diddissappear: Bool = false
@@ -59,7 +59,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.inprogresscountDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbackup, nsviewcontroller: self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
@@ -106,11 +105,15 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         progress.minValue = 0
         progress.doubleValue = 0
         progress.startAnimation(self)
+        print("maxvalue")
+        print(progress.maxValue)
+        print("maxvalue")
     }
 
     private func updateProgressbar(progress: NSProgressIndicator) {
-        let value = Double((self.inprogresscountDelegate?.inprogressCount())!)
+        let value = Double((self.quickbackup?.outputprocess?.getOutput()?.count) ?? 0)
         progress.doubleValue = value
+        print(progress.doubleValue)
     }
 }
 
@@ -123,38 +126,39 @@ extension ViewControllerQuickBackup: NSTableViewDataSource {
 extension ViewControllerQuickBackup: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard self.quickbackup?.sortedlist != nil else { return nil }
-        guard row < self.quickbackup!.sortedlist!.count else { return nil }
-        let object: NSDictionary = self.quickbackup!.sortedlist![row]
-        let hiddenID = object.value(forKey: "hiddenID") as? Int
-        let cellIdentifier: String = tableColumn!.identifier.rawValue
-        switch cellIdentifier {
-        case "percentCellID":
-            guard hiddenID == self.quickbackup?.hiddenID else { return nil }
-            if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
-                if row > self.indexinitiated {
-                    self.indexinitiated = row
-                    self.initiateProgressbar(progress: cell)
-                } else {
-                    self.updateProgressbar(progress: cell)
-                }
-                return cell
-            }
-        case "countCellID":
-            guard hiddenID == self.quickbackup?.hiddenID else { return nil }
-            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                let filestodo = (self.maxInt ?? 0) - (self.inprogresscountDelegate?.inprogressCount() ?? 0)
-                if filestodo > 0 {
-                    cell.textField?.stringValue = String(filestodo)
-                    return cell
-                } else {
-                    cell.textField?.stringValue = ""
+        guard row < (self.quickbackup?.sortedlist?.count ?? 0) else { return nil }
+        if let object: NSDictionary = self.quickbackup?.sortedlist?[row] {
+            let hiddenID = object.value(forKey: "hiddenID") as? Int
+            let cellIdentifier: String = tableColumn!.identifier.rawValue
+            switch cellIdentifier {
+            case "percentCellID":
+                guard hiddenID == self.quickbackup?.hiddenID else { return nil }
+                if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
+                    if row > self.indexinitiated {
+                        self.indexinitiated = row
+                        self.initiateProgressbar(progress: cell)
+                    } else {
+                        self.updateProgressbar(progress: cell)
+                    }
                     return cell
                 }
-            }
-        default:
-            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
-                return cell
+            case "countCellID":
+                guard hiddenID == self.quickbackup?.hiddenID else { return nil }
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    let filestodo = (self.maxInt ?? 0) - (self.quickbackup?.outputprocess?.getOutput()?.count ?? 0)
+                    if filestodo > 0 {
+                        cell.textField?.stringValue = String(filestodo)
+                        return cell
+                    } else {
+                        cell.textField?.stringValue = ""
+                        return cell
+                    }
+                }
+            default:
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                    return cell
+                }
             }
         }
         return nil
