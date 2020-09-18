@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerAbout: NSViewController, SetDismisser {
+class ViewControllerAbout: NSViewController {
     @IBOutlet var version: NSTextField!
     @IBOutlet var downloadbutton: NSButton!
     @IBOutlet var thereisanewversion: NSTextField!
@@ -36,30 +36,30 @@ class ViewControllerAbout: NSViewController, SetDismisser {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.view.window?.close()
     }
 
     @IBAction func documentation(_: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .documents))!)
         }
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.view.window?.close()
     }
 
     @IBAction func introduction(_: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .introduction))!)
         }
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.view.window?.close()
     }
 
     @IBAction func download(_: NSButton) {
         guard ViewControllerReference.shared.URLnewVersion != nil else {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+            self.view.window?.close()
             return
         }
         NSWorkspace.shared.open(URL(string: ViewControllerReference.shared.URLnewVersion!)!)
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        self.view.window?.close()
     }
 
     override func viewDidLoad() {

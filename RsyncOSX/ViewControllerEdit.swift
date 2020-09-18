@@ -14,7 +14,7 @@ protocol CloseEdit: Any {
     func closeview()
 }
 
-class ViewControllerEdit: NSViewController, SetConfigurations, SetDismisser, Index, Delay {
+class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
     @IBOutlet var localCatalog: NSTextField!
     @IBOutlet var offsiteCatalog: NSTextField!
     @IBOutlet var offsiteUsername: NSTextField!

@@ -9,35 +9,15 @@
 import Cocoa
 import Foundation
 
-class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
+class ViewControllerSource: NSViewController, SetConfigurations {
     @IBOutlet var mainTableView: NSTableView!
     @IBOutlet var selectButton: NSButton!
 
     weak var getSourceDelegateSsh: ViewControllerSsh?
     private var index: Int?
 
-    private func dismissview() {
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        }
-    }
-
     private func select() {
-        if let pvc = self.presentingViewController as? ViewControllerSsh {
+        if let pvc = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh {
             self.getSourceDelegateSsh = pvc
             if let index = self.index {
                 self.getSourceDelegateSsh?.getSourceindex(index: index)
@@ -45,13 +25,9 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
         }
     }
 
-    @IBAction func close(_: NSButton) {
-        self.dismissview()
-    }
-
     @IBAction func select(_: NSButton) {
         self.select()
-        self.dismissview()
+        self.view.window?.close()
     }
 
     // Initial functions viewDidLoad and viewDidAppear
@@ -71,7 +47,7 @@ class ViewControllerSource: NSViewController, SetConfigurations, SetDismisser {
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         self.select()
-        self.dismissview()
+        self.view.window?.close()
     }
 
     // when row is selected, setting which table row is selected

@@ -69,7 +69,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     @IBAction func source(_: NSButton) {
         guard self.sshcmd != nil else { return }
-        self.presentAsSheet(self.viewControllerSource!)
+        self.presentAsModalWindow(self.viewControllerSource!)
     }
 
     override func viewDidLoad() {
@@ -123,17 +123,11 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 }
 
-extension ViewControllerSsh: DismissViewController {
-    func dismiss_view(viewcontroller: NSViewController) {
-        self.dismiss(viewcontroller)
-        self.copylocalpubrsakeyfile()
-        self.changesshparameters()
-    }
-}
-
 extension ViewControllerSsh: GetSource {
     func getSourceindex(index: Int) {
         self.hiddenID = index
+        self.copylocalpubrsakeyfile()
+        self.changesshparameters()
     }
 }
 

@@ -14,7 +14,7 @@ protocol MenuappChanged: AnyObject {
     func menuappchanged()
 }
 
-class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser, Delay, ChangeTemporaryRestorePath {
+class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, ChangeTemporaryRestorePath {
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
     weak var menuappDelegate: MenuappChanged?
@@ -143,44 +143,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, SetDismisser,
             self.menuappDelegate?.menuappchanged()
             self.changetemporaryrestorepath()
         }
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        }
+        self.view.window?.close()
         _ = RsyncVersionString()
     }
 
     @IBAction func closenosave(_: NSButton) {
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        }
+        self.view.window?.close()
     }
 
     @IBAction func logging(_: NSButton) {

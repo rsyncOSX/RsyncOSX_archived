@@ -22,7 +22,7 @@ protocol GetSelecetedIndex: AnyObject {
     func getindex() -> Int?
 }
 
-class ViewControllerRsyncParameters: NSViewController, SetConfigurations, SetDismisser, Index {
+class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index {
     weak var userparamsupdatedDelegate: RsyncUserParams?
     var comboBoxValues = [String]()
     var diddissappear: Bool = false

@@ -9,7 +9,6 @@
 import Foundation
 import Network
 
-@available(OSX 10.14, *)
 class NetworkMonitor {
     var monitor: NWPathMonitor?
     var netStatusChangeHandler: (() -> Void)?
