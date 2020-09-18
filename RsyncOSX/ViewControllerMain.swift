@@ -161,9 +161,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
         if self.configurations?.tcpconnections?.connectionscheckcompleted ?? true {
-            globalMainQueue.async { () -> Void in
-                self.presentAsSheet(self.viewControllerProfile!)
-            }
+            self.presentAsModalWindow(self.viewControllerProfile!)
         } else {
             self.displayProfile()
         }
