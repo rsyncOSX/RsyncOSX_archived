@@ -130,10 +130,6 @@ extension SetDismisser {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
     }
 
-    var dismissDelegateSsh: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-    }
-
     var dimissDelegateSnapshot: DismissViewController? {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
@@ -155,8 +151,6 @@ extension SetDismisser {
             self.dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcnewconfigurations {
             self.dismissDelegateNewConfigurations?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vcssh {
-            self.dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcsnapshot {
             self.dimissDelegateSnapshot?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcverify {
