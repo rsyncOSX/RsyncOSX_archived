@@ -168,3 +168,9 @@ extension ViewControllerSsh: OpenQuickBackup {
         }
     }
 }
+
+extension ViewControllerSsh: DismissViewController {
+    func dismiss_view(viewcontroller: NSViewController) {
+        self.dismiss(viewcontroller)
+    }
+}
