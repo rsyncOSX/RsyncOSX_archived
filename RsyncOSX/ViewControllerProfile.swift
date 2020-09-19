@@ -15,7 +15,7 @@ protocol NewProfile: AnyObject {
     func reloadprofilepopupbutton()
 }
 
-class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, Delay {
+class ViewControllerProfile: NSViewController, SetConfigurations, Delay {
     private var profilesArray: [String]?
     private var profile: CatalogProfile?
     private var useprofile: String?
@@ -26,7 +26,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
 
     @IBAction func defaultProfile(_: NSButton) {
         _ = Selectprofile(profile: nil, selectedindex: nil)
-        self.closeview()
+        self.view.window?.close()
     }
 
     @IBAction func deleteProfile(_: NSButton) {
@@ -34,7 +34,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
             self.profile?.deleteProfileDirectory(profileName: useprofile)
             _ = Selectprofile(profile: nil, selectedindex: nil)
         }
-        self.closeview()
+        self.view.window?.close()
     }
 
     // Use profile or close
@@ -44,36 +44,16 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
             if self.useprofile != nil {
                 _ = Selectprofile(profile: self.useprofile, selectedindex: nil)
             }
-            self.closeview()
+            self.view.window?.close()
             return
         }
         let success = self.profile?.createprofilecatalog(profile: newprofile)
         guard success == true else {
-            self.closeview()
+            self.view.window?.close()
             return
         }
         _ = Selectprofile(profile: newprofile, selectedindex: nil)
-        self.closeview()
-    }
-
-    private func closeview() {
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
-        }
+        self.view.window?.close()
     }
 
     override func viewDidLoad() {
@@ -97,7 +77,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, SetDismisser, 
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         _ = Selectprofile(profile: self.useprofile, selectedindex: nil)
-        self.closeview()
+        self.view.window?.close()
     }
 }
 

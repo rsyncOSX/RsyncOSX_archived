@@ -46,9 +46,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerProfile!)
-        }
+        self.presentAsModalWindow(self.viewControllerProfile!)
     }
 
     // Userconfiguration button
@@ -168,5 +166,11 @@ extension ViewControllerSsh: OpenQuickBackup {
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         }
+    }
+}
+
+extension ViewControllerSsh: DismissViewController {
+    func dismiss_view(viewcontroller: NSViewController) {
+        self.dismiss(viewcontroller)
     }
 }

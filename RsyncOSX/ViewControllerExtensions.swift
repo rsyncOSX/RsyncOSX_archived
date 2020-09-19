@@ -142,6 +142,10 @@ extension SetDismisser {
         return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
 
+    var dismissDelegateSsh: DismissViewController? {
+        return ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+    }
+
     func dismissview(viewcontroller _: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
@@ -157,6 +161,8 @@ extension SetDismisser {
             self.dismissDelegateVerify?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcloggdata {
             self.dismissDelegateLoggData?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+        } else if vcontroller == .vcssh {
+            self.dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         }
     }
 }

@@ -63,9 +63,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerProfile!)
-        }
+        self.presentAsModalWindow(self.viewControllerProfile!)
     }
 
     // Userconfiguration button
