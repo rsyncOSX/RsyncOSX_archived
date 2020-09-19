@@ -288,6 +288,9 @@
    Verify */
 "Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
 
+/* Restore */
+"Seems to be nothing to restore" = "Virker ikke å være noe å gjenopprette";
+
 /* Execute */
 "Select a task...." = "Velg en oppgave...";
 
