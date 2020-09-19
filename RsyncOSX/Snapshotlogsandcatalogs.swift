@@ -17,23 +17,30 @@ final class Snapshotlogsandcatalogs {
     var snapshotcatalogs: [String]?
     var snapshotcatalogstodelete: [String]?
     var getsnapshots: Bool = true
-    var updateprogress: UpdateProgress?
+    // var updateprogress: UpdateProgress?
+    // Process termination and filehandler closures
+    var processtermination: () -> Void
+    var filehandler: () -> Void
 
     private func getremotecataloginfo(getsnapshots: Bool) {
         self.outputprocess = OutputProcess()
-        let arguments = RestorefilesArguments(task: .snapshotcatalogs, config: self.config, remoteFile: nil, localCatalog: nil, drynrun: nil)
+        let arguments = RestorefilesArguments(task: .snapshotcatalogs,
+                                              config: self.config,
+                                              remoteFile: nil,
+                                              localCatalog: nil,
+                                              drynrun: nil)
         if getsnapshots {
-            let object = SnapshotCommandSubCatalogs(arguments: arguments.getArguments())
-            if let updateprogress = self.updateprogress {
-                object.updateDelegate = updateprogress
-            }
-            object.executeProcess(outputprocess: self.outputprocess)
+            let command = RsyncProcessCmdClosure(arguments: arguments.getArguments(),
+                                                 config: nil,
+                                                 processtermination: self.processtermination,
+                                                 filehandler: self.filehandler)
+            command.executeProcess(outputprocess: self.outputprocess)
         } else {
-            let object = SnapshotCommandSubCatalogsLogview(arguments: arguments.getArguments())
-            if let updateprogress = self.updateprogress {
-                object.updateDelegate = updateprogress
-            }
-            object.executeProcess(outputprocess: self.outputprocess)
+            let command = RsyncProcessCmdClosure(arguments: arguments.getArguments(),
+                                                 config: nil,
+                                                 processtermination: self.processtermination,
+                                                 filehandler: self.filehandler)
+            command.executeProcess(outputprocess: self.outputprocess)
         }
     }
 
@@ -106,20 +113,26 @@ final class Snapshotlogsandcatalogs {
         return j - 1
     }
 
-    init(config: Configuration, getsnapshots: Bool) {
+    /*
+     init(config: Configuration, getsnapshots: Bool) {
+         guard config.task == ViewControllerReference.shared.snapshot else { return }
+         self.getsnapshots = getsnapshots
+         self.config = config
+         self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
+         self.snapshotslogs = scheduleloggdata?.loggdata
+         self.getremotecataloginfo(getsnapshots: getsnapshots)
+     }
+     */
+    init(config: Configuration,
+         getsnapshots: Bool,
+         processtermination: @escaping () -> Void,
+         filehandler: @escaping () -> Void)
+    {
+        self.processtermination = processtermination
+        self.filehandler = filehandler
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.getsnapshots = getsnapshots
         self.config = config
-        self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
-        self.snapshotslogs = scheduleloggdata?.loggdata
-        self.getremotecataloginfo(getsnapshots: getsnapshots)
-    }
-
-    init(config: Configuration, getsnapshots: Bool, updateprogress: UpdateProgress?) {
-        guard config.task == ViewControllerReference.shared.snapshot else { return }
-        self.getsnapshots = getsnapshots
-        self.config = config
-        self.updateprogress = updateprogress
         self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
         self.snapshotslogs = scheduleloggdata?.loggdata
         self.getremotecataloginfo(getsnapshots: getsnapshots)

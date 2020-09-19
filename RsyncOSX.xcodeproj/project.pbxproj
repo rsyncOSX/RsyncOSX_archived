@@ -53,7 +53,6 @@
 		E9196FDD2350CAC30037AA8B /* ComboboxRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */; };
 		E9196FDF2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */; };
 		E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */; };
-		E91AF8F421AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AF8F321AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift */; };
 		E91B6E8A1FFA17B800A2231A /* ViewControllerRemoteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91B6E891FFA17B800A2231A /* ViewControllerRemoteInfo.swift */; };
 		E91E1A3422A9823B00AD0935 /* Norsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E1A3322A9823B00AD0935 /* Norsync.swift */; };
 		E92276E422995B3500F7D2B6 /* ConvertOneConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92276E322995B3500F7D2B6 /* ConvertOneConfig.swift */; };
@@ -126,7 +125,6 @@
 		E9BC4DE7230277A10058CB52 /* ExecuteTaskNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */; };
 		E9BD689B24F940D800F30AE3 /* Copyconfigfilestonewhome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BD689A24F940D800F30AE3 /* Copyconfigfilestonewhome.swift */; };
 		E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4A201623B00079C63D /* Snapshotlogsandcatalogs.swift */; };
-		E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */; };
 		E9C4A40D2353017400BCF1C4 /* ArgumentsSynchronize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A40C2353017400BCF1C4 /* ArgumentsSynchronize.swift */; };
 		E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A40E23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift */; };
 		E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A410235311FE00BCF1C4 /* ArgumentsRestore.swift */; };
@@ -217,7 +215,6 @@
 		E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboboxRsyncParameters.swift; sourceTree = "<group>"; };
 		E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixstringsRsyncParameters.swift; sourceTree = "<group>"; };
 		E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleWriteLoggData.swift; sourceTree = "<group>"; };
-		E91AF8F321AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCommandSubCatalogsLogview.swift; sourceTree = "<group>"; };
 		E91B6E891FFA17B800A2231A /* ViewControllerRemoteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRemoteInfo.swift; sourceTree = "<group>"; };
 		E91E1A3322A9823B00AD0935 /* Norsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Norsync.swift; sourceTree = "<group>"; };
 		E92037AF22741D9900CC3EE5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -297,7 +294,6 @@
 		E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskNow.swift; sourceTree = "<group>"; };
 		E9BD689A24F940D800F30AE3 /* Copyconfigfilestonewhome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Copyconfigfilestonewhome.swift; sourceTree = "<group>"; };
 		E9C30B4A201623B00079C63D /* Snapshotlogsandcatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshotlogsandcatalogs.swift; sourceTree = "<group>"; };
-		E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCommandSubCatalogs.swift; sourceTree = "<group>"; };
 		E9C4A40C2353017400BCF1C4 /* ArgumentsSynchronize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsSynchronize.swift; sourceTree = "<group>"; };
 		E9C4A40E23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsLocalcatalogInfo.swift; sourceTree = "<group>"; };
 		E9C4A410235311FE00BCF1C4 /* ArgumentsRestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsRestore.swift; sourceTree = "<group>"; };
@@ -512,9 +508,7 @@
 				E9F4EBB71EB4C32D006EEEF1 /* CommandSsh.swift */,
 				E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */,
 				E92D03182010CB2D00A92813 /* SnapshotCreateCatalog.swift */,
-				E9C30B4C201625500079C63D /* SnapshotCommandSubCatalogs.swift */,
 				E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */,
-				E91AF8F321AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift */,
 				E912020622B3CFD90056AEFE /* Remotefilelist.swift */,
 			);
 			name = Process;
@@ -1034,7 +1028,6 @@
 				A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */,
 				E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */,
 				E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */,
-				E91AF8F421AD73130078F0E8 /* SnapshotCommandSubCatalogsLogview.swift in Sources */,
 				E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */,
 				E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */,
 				E9196FDF2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift in Sources */,
@@ -1079,7 +1072,6 @@
 				E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */,
 				E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */,
 				E92D03192010CB2D00A92813 /* SnapshotCreateCatalog.swift in Sources */,
-				E9C30B4D201625500079C63D /* SnapshotCommandSubCatalogs.swift in Sources */,
 				E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */,
 				E9E3C81724FAAA3E00FFDE00 /* Neworoldprofilepath.swift in Sources */,
 				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
