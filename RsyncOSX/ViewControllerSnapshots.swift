@@ -384,7 +384,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             }
         } else {
             self.deletebutton.isEnabled = true
-            self.snapshotlogsandcatalogs?.processTermination()
+            self.snapshotlogsandcatalogs?.loggdata()
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil

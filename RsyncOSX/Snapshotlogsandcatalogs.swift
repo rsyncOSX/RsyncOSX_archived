@@ -22,26 +22,18 @@ final class Snapshotlogsandcatalogs {
     var processtermination: () -> Void
     var filehandler: () -> Void
 
-    private func getremotecataloginfo(getsnapshots: Bool) {
+    private func getremotecataloginfo() {
         self.outputprocess = OutputProcess()
         let arguments = RestorefilesArguments(task: .snapshotcatalogs,
                                               config: self.config,
                                               remoteFile: nil,
                                               localCatalog: nil,
                                               drynrun: nil)
-        if getsnapshots {
-            let command = RsyncProcessCmdClosure(arguments: arguments.getArguments(),
-                                                 config: nil,
-                                                 processtermination: self.processtermination,
-                                                 filehandler: self.filehandler)
-            command.executeProcess(outputprocess: self.outputprocess)
-        } else {
-            let command = RsyncProcessCmdClosure(arguments: arguments.getArguments(),
-                                                 config: nil,
-                                                 processtermination: self.processtermination,
-                                                 filehandler: self.filehandler)
-            command.executeProcess(outputprocess: self.outputprocess)
-        }
+        let command = RsyncProcessCmdClosure(arguments: arguments.getArguments(),
+                                             config: nil,
+                                             processtermination: self.processtermination,
+                                             filehandler: self.filehandler)
+        command.executeProcess(outputprocess: self.outputprocess)
     }
 
     private func reducetosnapshotlogs() {
@@ -113,16 +105,6 @@ final class Snapshotlogsandcatalogs {
         return j - 1
     }
 
-    /*
-     init(config: Configuration, getsnapshots: Bool) {
-         guard config.task == ViewControllerReference.shared.snapshot else { return }
-         self.getsnapshots = getsnapshots
-         self.config = config
-         self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
-         self.snapshotslogs = scheduleloggdata?.loggdata
-         self.getremotecataloginfo(getsnapshots: getsnapshots)
-     }
-     */
     init(config: Configuration,
          getsnapshots: Bool,
          processtermination: @escaping () -> Void,
@@ -135,10 +117,10 @@ final class Snapshotlogsandcatalogs {
         self.config = config
         self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
         self.snapshotslogs = scheduleloggdata?.loggdata
-        self.getremotecataloginfo(getsnapshots: getsnapshots)
+        self.getremotecataloginfo()
     }
 
-    func processTermination() {
+    func loggdata() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
         self.snapshotcatalogs = self.outputprocess?.trimoutput(trim: .one)

@@ -306,7 +306,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
 extension ViewControllerLoggData {
     func processtermination() {
-        self.snapshotlogsandcatalogs?.processTermination()
+        self.snapshotlogsandcatalogs?.loggdata()
         guard self.snapshotlogsandcatalogs?.outputprocess?.error == false else { return }
         self.scheduleloggdata?.align(snapshotlogsandcatalogs: self.snapshotlogsandcatalogs)
         self.working.stopAnimation(nil)
