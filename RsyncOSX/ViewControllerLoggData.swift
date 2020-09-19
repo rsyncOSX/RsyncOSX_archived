@@ -133,7 +133,10 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
                     self.working.startAnimation(nil)
-                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: false)
+                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
+                                                                           getsnapshots: false,
+                                                                           processtermination: self.processtermination,
+                                                                           filehandler: self.filehandler)
                 }
                 if self.indexfromwhere() == .vcsnapshot {
                     self.info.stringValue = Infologgdata().info(num: 2)
@@ -282,11 +285,15 @@ extension ViewControllerLoggData: Reloadandrefresh {
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
-            let config = self.configurations?.getConfigurations()[index]
-            self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
-            if self.connected(config: config!) {
-                if config?.task == "snapshot" { self.working.startAnimation(nil) }
-                self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config!, getsnapshots: false)
+            if let config = self.configurations?.getConfigurations()[index] {
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
+                if self.connected(config: config) {
+                    if config.task == "snapshot" { self.working.startAnimation(nil) }
+                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
+                                                                           getsnapshots: false,
+                                                                           processtermination: self.processtermination,
+                                                                           filehandler: self.filehandler)
+                }
             }
         } else {
             self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
@@ -297,9 +304,9 @@ extension ViewControllerLoggData: Reloadandrefresh {
     }
 }
 
-extension ViewControllerLoggData: UpdateProgress {
-    func processTermination() {
-        self.snapshotlogsandcatalogs?.processTermination()
+extension ViewControllerLoggData {
+    func processtermination() {
+        self.snapshotlogsandcatalogs?.loggdata()
         guard self.snapshotlogsandcatalogs?.outputprocess?.error == false else { return }
         self.scheduleloggdata?.align(snapshotlogsandcatalogs: self.snapshotlogsandcatalogs)
         self.working.stopAnimation(nil)
@@ -308,7 +315,7 @@ extension ViewControllerLoggData: UpdateProgress {
         }
     }
 
-    func fileHandler() {
+    func filehandler() {
         //
     }
 }

@@ -297,7 +297,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if let config = self.config {
             self.info.stringValue = Infosnapshots().info(num: 0)
             self.gettinglogs.startAnimation(nil)
-            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config, getsnapshots: true)
+            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
+                                                                   getsnapshots: true,
+                                                                   processtermination: self.processTermination,
+                                                                   filehandler: self.fileHandler)
         }
     }
 
@@ -365,7 +368,10 @@ extension ViewControllerSnapshots: UpdateProgress {
                     self.deletebutton.isEnabled = true
                     self.deletesnapshots.isEnabled = true
                     self.info.stringValue = Infosnapshots().info(num: 3)
-                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: self.config!, getsnapshots: true)
+                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: self.config!,
+                                                                           getsnapshots: true,
+                                                                           processtermination: self.processTermination,
+                                                                           filehandler: self.fileHandler)
                     if self.abort == true {
                         self.abort = false
                     } else {
@@ -378,7 +384,7 @@ extension ViewControllerSnapshots: UpdateProgress {
             }
         } else {
             self.deletebutton.isEnabled = true
-            self.snapshotlogsandcatalogs?.processTermination()
+            self.snapshotlogsandcatalogs?.loggdata()
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
             self.numbersinsequencetodelete = nil
