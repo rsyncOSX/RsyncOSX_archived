@@ -288,6 +288,9 @@
    Verify */
 "Seems not to be connected..." = "Il semble que ne soit pas connecté...";
 
+/* Restore */
+"Seems to be nothing to restore" = "Il semble que ce ne soit rien à restaurer";
+
 /* Execute */
 "Select a task...." = "Sélectionnez une tâche....";
 

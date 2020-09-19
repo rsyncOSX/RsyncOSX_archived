@@ -406,6 +406,9 @@
 /* Class = "NSButtonCell"; title = "Copy"; ObjectID = "CKs-PR-CbT"; */
 "CKs-PR-CbT.title" = "复制";
 
+/* Class = "NSViewController"; title = "Change"; ObjectID = "CrF-Wa-Hfa"; */
+"CrF-Wa-Hfa.title" = "Change";
+
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "cU2-bw-ci2"; */
 "cU2-bw-ci2.title" = "Table View Cell";
 
@@ -513,6 +516,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "eNk-N9-vVo"; */
 "eNk-N9-vVo.title" = "Text Cell";
+
+/* Class = "NSViewController"; title = "Source"; ObjectID = "EOK-1X-FQE"; */
+"EOK-1X-FQE.title" = "Source";
 
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "Eol-qW-iFp"; */
 "Eol-qW-iFp.title" = "Item 2";
@@ -679,9 +685,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "HEg-kc-zdY"; */
 "HEg-kc-zdY.headerCell.title" = "删除";
 
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "hF2-vi-oTK"; */
-"hF2-vi-oTK.title" = "关闭";
-
 /* Class = "NSBox"; title = "Monitor network connection"; ObjectID = "hfZ-HL-KIi"; */
 "hfZ-HL-KIi.title" = "监视网络连接";
 
@@ -831,6 +834,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "KPx-Pg-dAk"; */
 "KPx-Pg-dAk.title" = "Text Cell";
+
+/* Class = "NSViewController"; title = "Profile"; ObjectID = "kPy-NB-0HQ"; */
+"kPy-NB-0HQ.title" = "Profile";
 
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "L1n-6w-rIj"; */
 "L1n-6w-rIj.headerCell.title" = "本地目录";
