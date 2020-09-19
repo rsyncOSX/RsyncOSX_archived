@@ -262,7 +262,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         guard config.offsiteServer.isEmpty == false else { return }
         self.addbutton.isEnabled = false
         let args = SnapshotCreateCatalogArguments(config: config)
-        let updatecurrent = SnapshotCreateCatalog(command: args.getCommand(), arguments: args.getArguments())
+        let updatecurrent = OtherProcessCmdClosure(command: args.getCommand(),
+                                                   arguments: args.getArguments(),
+                                                   processtermination: self.processtermination,
+                                                   filehandler: self.filehandler)
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 }
@@ -298,12 +301,12 @@ extension ViewControllerNewConfigurations: SetProfileinfo {
     }
 }
 
-extension ViewControllerNewConfigurations: UpdateProgress {
-    func processTermination() {
+extension ViewControllerNewConfigurations {
+    func processtermination() {
         self.addbutton.isEnabled = true
     }
 
-    func fileHandler() {
+    func filehandler() {
         //
     }
 }
