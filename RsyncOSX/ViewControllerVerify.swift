@@ -110,8 +110,10 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
     }
 
     private func verifyandchanged(arguments: [String]) {
-        let verifytask = ProcessCmd(command: nil, arguments: arguments)
-        verifytask.setupdateDelegate(object: self)
+        let verifytask = RsyncProcessCmdClosure(arguments: arguments,
+                                                config: nil,
+                                                processtermination: self.processtermination,
+                                                filehandler: self.filehandler)
         verifytask.executeProcess(outputprocess: self.outputprocess)
     }
 
@@ -152,16 +154,18 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             self.setinfo()
             self.gotremoteinfo = false
             self.complete = false
-            let datelastbackup = self.configurations?.getConfigurations()[self.index()!].dateRun ?? ""
-            if datelastbackup.isEmpty == false {
-                let date = datelastbackup.en_us_date_from_string()
-                self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
-                    + " " + date.localized_string_from_date()
-            } else {
-                self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
+            if let index = self.index() {
+                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
+                if datelastbackup.isEmpty == false {
+                    let date = datelastbackup.en_us_date_from_string()
+                    self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
+                        + " " + date.localized_string_from_date()
+                } else {
+                    self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
+                }
+                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
+                self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
             }
-            let numberlastbackup = self.configurations?.getConfigurations()[self.index()!].dayssincelastbackup ?? ""
-            self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
         } else {
             _ = self.reload()
         }
@@ -218,8 +222,10 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         } else {
             arguments = self.configurations!.arguments4rsync(index: index, argtype: .argdryRun)
         }
-        let estimate = ProcessCmd(command: nil, arguments: arguments)
-        estimate.setupdateDelegate(object: self)
+        let estimate = RsyncProcessCmdClosure(arguments: arguments,
+                                              config: nil,
+                                              processtermination: self.processtermination,
+                                              filehandler: self.filehandler)
         estimate.executeProcess(outputprocess: self.outputprocess)
     }
 
@@ -227,17 +233,17 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         globalMainQueue.async { () -> Void in
             let infotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
             if local {
-                self.localtotalNumber.stringValue = infotask.totalNumber!
-                self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
-                self.localtotalDirs.stringValue = infotask.totalDirs!
+                self.localtotalNumber.stringValue = infotask.totalNumber ?? ""
+                self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes ?? ""
+                self.localtotalDirs.stringValue = infotask.totalDirs ?? ""
             } else {
-                self.transferredNumber.stringValue = infotask.transferredNumber!
-                self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes!
-                self.totalNumber.stringValue = infotask.totalNumber!
-                self.totalNumberSizebytes.stringValue = infotask.totalNumberSizebytes!
-                self.totalDirs.stringValue = infotask.totalDirs!
-                self.newfiles.stringValue = infotask.newfiles!
-                self.deletefiles.stringValue = infotask.deletefiles!
+                self.transferredNumber.stringValue = infotask.transferredNumber ?? ""
+                self.transferredNumberSizebytes.stringValue = infotask.transferredNumberSizebytes ?? ""
+                self.totalNumber.stringValue = infotask.totalNumber ?? ""
+                self.totalNumberSizebytes.stringValue = infotask.totalNumberSizebytes ?? ""
+                self.totalDirs.stringValue = infotask.totalDirs ?? ""
+                self.newfiles.stringValue = infotask.newfiles ?? ""
+                self.deletefiles.stringValue = infotask.deletefiles ?? ""
                 self.working.stopAnimation(nil)
                 self.gotit.stringValue = ""
             }
@@ -246,9 +252,12 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 
     private func setinfo() {
         if let hiddenID = self.configurations?.gethiddenID(index: self.index() ?? -1) {
-            self.localcatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .localCatalog)
-            self.remoteserver.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-            self.remotecatalog.stringValue = self.configurations!.getResourceConfiguration(hiddenID, resource: .remoteCatalog)
+            self.localcatalog.stringValue =
+                self.configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? ""
+            self.remoteserver.stringValue =
+                self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? ""
+            self.remotecatalog.stringValue =
+                self.configurations?.getResourceConfiguration(hiddenID, resource: .remoteCatalog) ?? ""
         }
     }
 
@@ -292,8 +301,8 @@ extension ViewControllerVerify: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerVerify: UpdateProgress {
-    func processTermination() {
+extension ViewControllerVerify {
+    func processtermination() {
         ViewControllerReference.shared.process = nil
         if self.gotremoteinfo == false {
             if self.complete == false {
@@ -320,7 +329,7 @@ extension ViewControllerVerify: UpdateProgress {
         }
     }
 
-    func fileHandler() {
+    func filehandler() {
         if self.gotremoteinfo == true {
             globalMainQueue.async { () -> Void in
                 self.outputtable.reloadData()
