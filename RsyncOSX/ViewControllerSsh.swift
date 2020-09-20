@@ -60,7 +60,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     @IBAction func createPublicPrivateRSAKeyPair(_: NSButton) {
         self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(outputprocess: self.outputprocess)
+        self.sshcmd = Ssh(outputprocess: self.outputprocess,
+                          processtermination: self.processtermination,
+                          filehandler: self.filehandler)
         guard self.sshcmd?.islocalpublicrsakeypresent() ?? true == false else { return }
         self.sshcmd?.creatersakeypair()
     }
@@ -89,8 +91,10 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.verifykeycommand.stringValue = ""
     }
 
-    private func checkforPrivateandPublicRSAKeypair() {
-        self.sshcmd = Ssh(outputprocess: nil)
+    func checkforPrivateandPublicRSAKeypair() {
+        self.sshcmd = Ssh(outputprocess: nil,
+                          processtermination: self.processtermination,
+                          filehandler: self.filehandler)
         if self.sshcmd?.islocalpublicrsakeypresent() ?? false {
             self.rsaCheck.state = .on
         } else {
@@ -98,7 +102,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         }
     }
 
-    private func changesshparameters() {
+    func changesshparameters() {
         self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
         if let sshport = ViewControllerReference.shared.sshport {
             self.sshport.stringValue = String(sshport)
@@ -111,7 +115,9 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     func copylocalpubrsakeyfile() {
         guard self.sshcmd?.islocalpublicrsakeypresent() ?? false == true else { return }
         self.outputprocess = OutputProcess()
-        self.sshcmd = Ssh(outputprocess: self.outputprocess)
+        self.sshcmd = Ssh(outputprocess: self.outputprocess,
+                          processtermination: self.processtermination,
+                          filehandler: self.filehandler)
         if let hiddenID = self.hiddenID {
             self.sshcmd?.copykeyfile(hiddenID: hiddenID)
             self.copykeycommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
@@ -146,14 +152,14 @@ extension ViewControllerSsh: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerSsh: UpdateProgress {
-    func processTermination() {
+extension ViewControllerSsh {
+    func processtermination() {
         globalMainQueue.async { () -> Void in
             self.checkforPrivateandPublicRSAKeypair()
         }
     }
 
-    func fileHandler() {
+    func filehandler() {
         self.data = self.outputprocess?.getOutput()
         globalMainQueue.async { () -> Void in
             self.detailsTable.reloadData()

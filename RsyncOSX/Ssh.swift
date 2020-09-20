@@ -10,6 +10,9 @@ import Cocoa
 import Foundation
 
 class Ssh: Catalogsandfiles {
+    // Process termination and filehandler closures
+    var processtermination: () -> Void
+    var filehandler: () -> Void
     var commandCopyPasteTerminal: String?
     var rsaStringPath: String?
     // Arrays listing all key files
@@ -18,8 +21,6 @@ class Ssh: Catalogsandfiles {
     var argumentsssh: ArgumentsSsh?
     var command: String?
     var arguments: [String]?
-    // Process
-    var process: CommandSsh?
     var outputprocess: OutputProcess?
 
     // Create rsa keypair
@@ -60,8 +61,11 @@ class Ssh: Catalogsandfiles {
     // Execute command
     func executeSshCommand() {
         guard self.arguments != nil else { return }
-        self.process = CommandSsh(command: self.command, arguments: self.arguments)
-        self.process?.executeProcess(outputprocess: self.outputprocess)
+        let process = OtherProcessCmdClosure(command: self.command,
+                                             arguments: self.arguments,
+                                             processtermination: self.processtermination,
+                                             filehandler: self.filehandler)
+        process.executeProcess(outputprocess: self.outputprocess)
     }
 
     // get output
@@ -69,7 +73,12 @@ class Ssh: Catalogsandfiles {
         return self.outputprocess?.getOutput()
     }
 
-    init(outputprocess: OutputProcess?) {
+    init(outputprocess: OutputProcess?,
+         processtermination: @escaping () -> Void,
+         filehandler: @escaping () -> Void)
+    {
+        self.processtermination = processtermination
+        self.filehandler = filehandler
         super.init(profileorsshrootpath: .sshroot)
         self.outputprocess = outputprocess
         self.keyFileURLS = self.getcatalogsasURLnames()
