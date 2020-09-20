@@ -10,6 +10,10 @@
 import Cocoa
 import Foundation
 
+protocol Loadsshparameters: AnyObject {
+    func loadsshparameters()
+}
+
 class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrsync, Help {
     var sshcmd: Ssh?
     var hiddenID: Int?
@@ -82,7 +86,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.changesshparameters()
+        self.loadsshparameters()
     }
 
     override func viewDidDisappear() {
@@ -100,16 +104,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         } else {
             self.rsaCheck.state = .off
         }
-    }
-
-    func changesshparameters() {
-        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
-        if let sshport = ViewControllerReference.shared.sshport {
-            self.sshport.stringValue = String(sshport)
-        } else {
-            self.sshport.stringValue = ""
-        }
-        self.checkforPrivateandPublicRSAKeypair()
     }
 
     func copylocalpubrsakeyfile() {
@@ -131,7 +125,7 @@ extension ViewControllerSsh: GetSource {
     func getSourceindex(index: Int) {
         self.hiddenID = index
         self.copylocalpubrsakeyfile()
-        self.changesshparameters()
+        self.loadsshparameters()
     }
 }
 
@@ -178,5 +172,17 @@ extension ViewControllerSsh: OpenQuickBackup {
 extension ViewControllerSsh: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
+    }
+}
+
+extension ViewControllerSsh: Loadsshparameters {
+    func loadsshparameters() {
+        self.sshkeypathandidentityfile.stringValue = ViewControllerReference.shared.sshkeypathandidentityfile ?? ""
+        if let sshport = ViewControllerReference.shared.sshport {
+            self.sshport.stringValue = String(sshport)
+        } else {
+            self.sshport.stringValue = ""
+        }
+        self.checkforPrivateandPublicRSAKeypair()
     }
 }

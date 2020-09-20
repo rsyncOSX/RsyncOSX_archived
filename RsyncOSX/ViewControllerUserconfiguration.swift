@@ -18,6 +18,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
     weak var menuappDelegate: MenuappChanged?
+    weak var loadsshparametersDelegate: Loadsshparameters?
     var oldmarknumberofdayssince: Double?
     var reload: Bool = false
 
@@ -140,7 +141,9 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
                 self.reloadconfigurationsDelegate?.createandreloadconfigurations()
             }
             self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+            self.loadsshparametersDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
             self.menuappDelegate?.menuappchanged()
+            self.loadsshparametersDelegate?.loadsshparameters()
             self.changetemporaryrestorepath()
         }
         self.view.window?.close()
