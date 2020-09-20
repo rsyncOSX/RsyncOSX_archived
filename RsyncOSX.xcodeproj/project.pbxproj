@@ -87,7 +87,6 @@
 		E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */; };
 		E94D6E3321A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */; };
 		E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */; };
-		E9573549201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */; };
 		E957642124BF9F7C008C66E1 /* ShellOut in Frameworks */ = {isa = PBXBuildFile; productRef = E957642024BF9F7C008C66E1 /* ShellOut */; };
 		E957B1121F5F17220099947A /* ViewControllerReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957B1111F5F17220099947A /* ViewControllerReference.swift */; };
 		E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */; };
@@ -254,7 +253,6 @@
 		E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickbackupDispatch.swift; sourceTree = "<group>"; };
 		E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteQuickbackupTask.swift; sourceTree = "<group>"; };
 		E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAllOutput.swift; sourceTree = "<group>"; };
-		E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCommandDeleteCatalogs.swift; sourceTree = "<group>"; };
 		E957B1111F5F17220099947A /* ViewControllerReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerReference.swift; sourceTree = "<group>"; };
 		E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		E958D62422B65ADF00755074 /* Selectprofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectprofile.swift; sourceTree = "<group>"; };
@@ -502,7 +500,6 @@
 			children = (
 				E958BB2723070BBB00349C81 /* Mainprocess */,
 				E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */,
-				E9573548201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift */,
 				E912020622B3CFD90056AEFE /* Remotefilelist.swift */,
 			);
 			name = Process;
@@ -1015,7 +1012,6 @@
 				E9F068F01F27B93E00DDF1A1 /* ConfigurationSchedule.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* Alerts.swift in Sources */,
 				E9C6D24120AAB96800B9D212 /* AllProfilenames.swift in Sources */,
-				E9573549201BB83E00316257 /* SnapshotCommandDeleteCatalogs.swift in Sources */,
 				E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */,
 				E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */,

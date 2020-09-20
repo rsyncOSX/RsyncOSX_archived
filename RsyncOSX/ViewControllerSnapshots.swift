@@ -216,8 +216,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func deletesnapshotcatalogs() {
-        var arguments: SnapshotDeleteCatalogsArguments?
-        var deletecommand: SnapshotCommandDeleteCatalogs?
         guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else {
             self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
@@ -230,16 +228,19 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        let remotecatalog = self.snapshotlogsandcatalogs!.snapshotcatalogstodelete![0]
-        self.snapshotlogsandcatalogs!.snapshotcatalogstodelete!.remove(at: 0)
-        if self.snapshotlogsandcatalogs!.snapshotcatalogstodelete!.count == 0 {
-            self.snapshotlogsandcatalogs!.snapshotcatalogstodelete = nil
-        }
-        if let config = self.config {
-            arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
-            deletecommand = SnapshotCommandDeleteCatalogs(command: arguments?.getCommand(), arguments: arguments?.getArguments())
-            deletecommand?.setdelegate(object: self)
-            deletecommand?.executeProcess(outputprocess: nil)
+        if let remotecatalog = self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?[0] {
+            self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.remove(at: 0)
+            if (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0) == 0 {
+                self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
+            }
+            if let config = self.config {
+                let arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
+                let command = OtherProcessCmdClosure(command: arguments.getCommand(),
+                                                     arguments: arguments.getArguments(),
+                                                     processtermination: self.processtermination,
+                                                     filehandler: self.filehandler)
+                command.executeProcess(outputprocess: nil)
+            }
         }
     }
 
@@ -299,8 +300,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.gettinglogs.startAnimation(nil)
             self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
                                                                    getsnapshots: true,
-                                                                   processtermination: self.processTermination,
-                                                                   filehandler: self.fileHandler)
+                                                                   processtermination: self.processtermination,
+                                                                   filehandler: self.filehandler)
         }
     }
 
@@ -357,8 +358,8 @@ extension ViewControllerSnapshots: DismissViewController {
     }
 }
 
-extension ViewControllerSnapshots: UpdateProgress {
-    func processTermination() {
+extension ViewControllerSnapshots {
+    func processtermination() {
         self.selectplan.isEnabled = true
         self.selectdayofweek.isEnabled = true
         if delete {
@@ -370,8 +371,8 @@ extension ViewControllerSnapshots: UpdateProgress {
                     self.info.stringValue = Infosnapshots().info(num: 3)
                     self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: self.config!,
                                                                            getsnapshots: true,
-                                                                           processtermination: self.processTermination,
-                                                                           filehandler: self.fileHandler)
+                                                                           processtermination: self.processtermination,
+                                                                           filehandler: self.filehandler)
                     if self.abort == true {
                         self.abort = false
                     } else {
@@ -396,7 +397,7 @@ extension ViewControllerSnapshots: UpdateProgress {
         }
     }
 
-    func fileHandler() {
+    func filehandler() {
         //
     }
 }
