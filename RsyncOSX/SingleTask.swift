@@ -31,7 +31,7 @@ protocol SingleTaskProcess: AnyObject {
     func gettransferredNumberSizebytes() -> String
 }
 
-class SingleTask: SetSchedules, SetConfigurations {
+final class SingleTask: SetSchedules, SetConfigurations {
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     weak var singletaskDelegate: SingleTaskProcess?
     weak var setprocessDelegate: SendOutputProcessreference?

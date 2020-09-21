@@ -6,13 +6,6 @@
 
 import Foundation
 
-// The Operation object to execute a scheduled job.
-// The object get the hiddenID for the job, reads the
-// rsync parameters for the job, creates a object to finalize the
-// job after execution as logging. The reference to the finalize object
-// is set in the static object. The finalize object is invoked
-// when the job discover (observs) the termination of the process.
-
 final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
     var outputprocess: OutputProcess?
     var arguments: [String]?
