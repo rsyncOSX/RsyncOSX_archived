@@ -20,7 +20,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     var filterby: Sortandfilter?
     var quickbackup: QuickBackup?
     var executing: Bool = true
-    // weak var inprogresscountDelegate: Count?
     var max: Double?
     var maxInt: Int?
     var diddissappear: Bool = false
