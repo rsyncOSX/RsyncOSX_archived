@@ -1,4 +1,4 @@
-This is the RsyncOSX configurations for executing XCTest runs for RsyncOSX. To execute the tests [create two profile directories (catalogs)](https://rsyncosx.github.io/configfiles) and name them:
+This is the RsyncOSX configurations for executing XCTest runs for RsyncOSX. To execute the tests [create two profile directories (catalogs)](https://rsyncosx.netlify.app/post/configfiles/) and name them:
 
 - `XCTest`
 - `Datacheck`
