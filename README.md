@@ -128,4 +128,4 @@ There are two short YouTube videos of RsyncOSX:
 
 ### XCTest
 
-XCTest configurations are in [development](https://github.com/rsyncOSX/RsyncOSX/blob/master/XCTestconfiguration/XCTest.md).
+There are two [XCTest configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/XCTestconfiguration/XCTest.md) for testing.
