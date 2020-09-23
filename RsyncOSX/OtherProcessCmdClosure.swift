@@ -14,8 +14,8 @@ class OtherProcessCmdClosure: Delay {
     var processtermination: () -> Void
     var filehandler: () -> Void
     // Observers
-    weak var notifications_datahandle: NSObjectProtocol?
-    weak var notifications_termination: NSObjectProtocol?
+    var notifications_datahandle: NSObjectProtocol?
+    var notifications_termination: NSObjectProtocol?
     // Command to be executed, normally rsync
     var command: String?
     // Arguments to command
@@ -73,6 +73,8 @@ class OtherProcessCmdClosure: Delay {
                 NotificationCenter.default.removeObserver(self.notifications_termination as Any)
                 // Enable select profile
                 self.profilepopupDelegate?.enableselectpopupprofile()
+                self.notifications_datahandle = nil
+                self.notifications_termination = nil
             }
         }
         ViewControllerReference.shared.process = task
@@ -103,5 +105,9 @@ class OtherProcessCmdClosure: Delay {
         self.filehandler = filehandler
         self.possibleerrorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.profilepopupDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+    }
+
+    deinit {
+        print("deinit OtherProcessCmdClosure")
     }
 }
