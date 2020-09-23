@@ -68,8 +68,13 @@ class OtherProcessCmdClosure: Delay {
             self.delayWithSeconds(0.5) {
                 self.termination = true
                 self.processtermination()
+                // Must remove for deallocation
+                NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
+                NotificationCenter.default.removeObserver(self.notifications_termination as Any)
                 // Enable select profile
                 self.profilepopupDelegate?.enableselectpopupprofile()
+                self.notifications_datahandle = nil
+                self.notifications_termination = nil
             }
         }
         ViewControllerReference.shared.process = task
@@ -103,10 +108,6 @@ class OtherProcessCmdClosure: Delay {
     }
 
     deinit {
-        // Must remove for deallocation
-        NotificationCenter.default.removeObserver(self.notifications_datahandle as Any)
-        NotificationCenter.default.removeObserver(self.notifications_termination as Any)
-        self.notifications_datahandle = nil
-        self.notifications_termination = nil
+        print("deinit OtherProcessCmdClosure")
     }
 }
