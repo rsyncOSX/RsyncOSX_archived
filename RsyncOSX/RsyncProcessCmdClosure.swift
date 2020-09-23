@@ -128,6 +128,7 @@ class RsyncProcessCmdClosure: Delay {
     }
 
     deinit {
+        print("deinit")
         self.monitor?.stopMonitoring()
         self.monitor = nil
         // Must remove for deallocation

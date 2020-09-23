@@ -8,16 +8,18 @@
 
 import Foundation
 
-struct RsyncVersionString {
+class RsyncVersionString {
     var outputprocess: OutputProcess?
+    var command: RsyncProcessCmdClosure?
     init() {
         if ViewControllerReference.shared.norsync == false {
             self.outputprocess = OutputProcess()
-            let command = RsyncProcessCmdClosure(arguments: ["--version"],
-                                                 config: nil,
-                                                 processtermination: self.processtermination,
-                                                 filehandler: self.filehandler)
-            command.executeProcess(outputprocess: self.outputprocess)
+            self.command = RsyncProcessCmdClosure(arguments: ["--version"],
+                                                  config: nil,
+                                                  processtermination: self.processtermination,
+                                                  filehandler: self.filehandler)
+            self.command?.executeProcess(outputprocess: self.outputprocess)
+            self.command = nil
         }
     }
 }
