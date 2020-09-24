@@ -97,6 +97,9 @@ extension ViewControllerRestore {
             }
         }
         self.working.stopAnimation(nil)
+        // Release the process objects
+        self.restorefilestask = nil
+        self.fullrestoretask = nil
     }
 
     func filehandler() {

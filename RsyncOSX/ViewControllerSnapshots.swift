@@ -363,26 +363,7 @@ extension ViewControllerSnapshots {
         self.selectplan.isEnabled = true
         self.selectdayofweek.isEnabled = true
         if delete {
-            if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
-                if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
-                    self.delete = false
-                    self.deletebutton.isEnabled = true
-                    self.deletesnapshots.isEnabled = true
-                    self.info.stringValue = Infosnapshots().info(num: 3)
-                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: self.config!,
-                                                                           getsnapshots: true,
-                                                                           processtermination: self.processtermination,
-                                                                           filehandler: self.filehandler)
-                    if self.abort == true {
-                        self.abort = false
-                    } else {
-                        vc.processTermination()
-                    }
-                } else {
-                    vc.fileHandler()
-                }
-                self.deletesnapshotcatalogs()
-            }
+            self.processterminationdelete()
         } else {
             self.deletebutton.isEnabled = true
             self.snapshotlogsandcatalogs?.loggdata()
@@ -399,6 +380,32 @@ extension ViewControllerSnapshots {
 
     func filehandler() {
         //
+    }
+
+    // Deleting snapshots
+    func processterminationdelete() {
+        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess,
+            let config = self.config
+        {
+            if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
+                self.delete = false
+                self.deletebutton.isEnabled = true
+                self.deletesnapshots.isEnabled = true
+                self.info.stringValue = Infosnapshots().info(num: 3)
+                self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
+                                                                       getsnapshots: true,
+                                                                       processtermination: self.processtermination,
+                                                                       filehandler: self.filehandler)
+                if self.abort == true {
+                    self.abort = false
+                } else {
+                    vc.processTermination()
+                }
+            } else {
+                vc.fileHandler()
+            }
+            self.deletesnapshotcatalogs()
+        }
     }
 }
 

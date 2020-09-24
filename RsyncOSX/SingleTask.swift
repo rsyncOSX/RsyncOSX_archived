@@ -40,6 +40,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
     var outputprocess: OutputProcess?
     var maxcount: Int = 0
     var workload: SingleTaskWorkQueu?
+    var command: RsyncProcessCmdClosure?
 
     func executesingletask() {
         if self.workload == nil {
@@ -51,11 +52,11 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.indicatorDelegate?.startIndicator()
                 self.outputprocess = OutputProcessRsync()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .argdryRun) {
-                    let process = RsyncProcessCmdClosure(arguments: arguments,
-                                                         config: self.configurations?.getConfigurations()[index],
-                                                         processtermination: self.processtermination,
-                                                         filehandler: self.filehandler)
-                    process.executeProcess(outputprocess: self.outputprocess)
+                    self.command = RsyncProcessCmdClosure(arguments: arguments,
+                                                          config: self.configurations?.getConfigurations()[index],
+                                                          processtermination: self.processtermination,
+                                                          filehandler: self.filehandler)
+                    self.command?.executeProcess(outputprocess: self.outputprocess)
                     self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
             }
@@ -64,11 +65,11 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 self.singletaskDelegate?.presentViewProgress()
                 self.outputprocess = OutputProcessRsync()
                 if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                    let process = RsyncProcessCmdClosure(arguments: arguments,
-                                                         config: self.configurations?.getConfigurations()[index],
-                                                         processtermination: self.processtermination,
-                                                         filehandler: self.filehandler)
-                    process.executeProcess(outputprocess: self.outputprocess)
+                    self.command = RsyncProcessCmdClosure(arguments: arguments,
+                                                          config: self.configurations?.getConfigurations()[index],
+                                                          processtermination: self.processtermination,
+                                                          filehandler: self.filehandler)
+                    self.command?.executeProcess(outputprocess: self.outputprocess)
                     self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
                 }
             }
@@ -122,6 +123,7 @@ extension SingleTask {
         }
         // Reset process referance
         ViewControllerReference.shared.process = nil
+        self.command = nil
     }
 
     func filehandler() {
