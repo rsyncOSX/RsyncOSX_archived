@@ -136,7 +136,5 @@ class RsyncProcessCmdClosure: Delay {
         print("deinit RsyncProcessCmdClosure")
         self.monitor?.stopMonitoring()
         self.monitor = nil
-        self.notifications_datahandle = nil
-        self.notifications_termination = nil
     }
 }
