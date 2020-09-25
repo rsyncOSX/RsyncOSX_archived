@@ -41,7 +41,10 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
         }
     }
 
-    init(processtermination: @escaping () -> Void, filehandler: @escaping () -> Void, outputprocess: OutputProcess?) {
+    init(processtermination: @escaping () -> Void,
+         filehandler: @escaping () -> Void,
+         outputprocess: OutputProcess?)
+    {
         self.processtermination = processtermination
         self.filehandler = filehandler
         self.outputprocess = outputprocess
