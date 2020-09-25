@@ -26,8 +26,8 @@ class RsyncProcessCmdClosure: Delay {
     var config: Configuration?
     var monitor: NetworkMonitor?
     // Observers
-    weak var notifications_datahandle: NSObjectProtocol?
-    weak var notifications_termination: NSObjectProtocol?
+    var notifications_datahandle: NSObjectProtocol?
+    var notifications_termination: NSObjectProtocol?
     // Arguments to command
     var arguments: [String]?
     // true if processtermination
@@ -97,6 +97,8 @@ class RsyncProcessCmdClosure: Delay {
                 NotificationCenter.default.removeObserver(self.notifications_termination as Any)
                 // Enable select profile
                 self.profilepopupDelegate?.enableselectpopupprofile()
+                self.notifications_datahandle = nil
+                self.notifications_termination = nil
             }
         }
         ViewControllerReference.shared.process = task
@@ -131,7 +133,10 @@ class RsyncProcessCmdClosure: Delay {
     }
 
     deinit {
+        print("deinit RsyncProcessCmdClosure")
         self.monitor?.stopMonitoring()
         self.monitor = nil
+        self.notifications_datahandle = nil
+        self.notifications_termination = nil
     }
 }

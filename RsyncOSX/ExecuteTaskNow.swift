@@ -19,16 +19,17 @@ class ExecuteTaskNow: SetConfigurations {
     weak var deinitDelegate: DeinitExecuteTaskNow?
     var outputprocess: OutputProcess?
     var index: Int?
+    var command: RsyncProcessCmdClosure?
 
     func executetasknow() {
         if let index = self.index {
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                let process = RsyncProcessCmdClosure(arguments: arguments,
-                                                     config: self.configurations?.getConfigurations()[index],
-                                                     processtermination: self.processtermination,
-                                                     filehandler: self.filehandler)
-                process.executeProcess(outputprocess: self.outputprocess)
+                self.command = RsyncProcessCmdClosure(arguments: arguments,
+                                                      config: self.configurations?.getConfigurations()[index],
+                                                      processtermination: self.processtermination,
+                                                      filehandler: self.filehandler)
+                self.command?.executeProcess(outputprocess: self.outputprocess)
                 self.startstopindicators?.startIndicatorExecuteTaskNow()
                 self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
             }
@@ -51,6 +52,7 @@ extension ExecuteTaskNow {
             self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
         }
         self.deinitDelegate?.deinitexecutetasknow()
+        self.command = nil
     }
 
     func filehandler() {
