@@ -62,6 +62,10 @@ class ViewControllerAbout: NSViewController {
         self.view.window?.close()
     }
 
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)

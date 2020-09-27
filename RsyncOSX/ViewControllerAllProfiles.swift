@@ -38,6 +38,10 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         _ = InterruptProcess()
     }
 
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
+
     @IBAction func sortdirection(_: NSButton) {
         if self.sortascending == true {
             self.sortascending = false
