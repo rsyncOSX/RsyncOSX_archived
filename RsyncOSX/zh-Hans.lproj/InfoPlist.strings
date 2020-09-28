@@ -2,5 +2,5 @@
 "CFBundleName" = "RsyncOSX";
 
 /* Copyright (human-readable) */
-"NSHumanReadableCopyright" = "版权所有 © 2020 Thomas Evensen. 保留所有权利。";
+"NSHumanReadableCopyright" = "Copyright © 2020 Thomas Evensen. All rights reserved.";
 
