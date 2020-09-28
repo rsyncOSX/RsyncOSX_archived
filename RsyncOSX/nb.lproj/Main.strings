@@ -265,6 +265,9 @@
 /* Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "AEh-Gt-Awg"; */
 "AEh-Gt-Awg.title" = "Antall filer:";
 
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "agF-l0-sEY"; */
+"agF-l0-sEY.title" = "Lukk";
+
 /* Class = "NSButtonCell"; title = "Save"; ObjectID = "AGP-WH-AJy"; */
 "AGP-WH-AJy.title" = "Lagre";
 
@@ -303,6 +306,9 @@
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Hoved Meny";
+
+/* Class = "NSTextFieldCell"; placeholderString = "~/rsyncbin/"; ObjectID = "b2I-ky-1DA"; */
+"b2I-ky-1DA.placeholderString" = "~/rsyncbin/";
 
 /* Class = "NSTextFieldCell"; title = "Remote catalog : "; ObjectID = "B2y-Kc-2LJ"; */
 "B2y-Kc-2LJ.title" = "Ekstern katalog : ";
@@ -1291,6 +1297,9 @@
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "ULX-F5-gk5"; */
 "ULX-F5-gk5.title" = "Item 3";
 
+/* Class = "NSTextFieldCell"; placeholderString = "22"; ObjectID = "upL-UB-qlz"; */
+"upL-UB-qlz.placeholderString" = "22";
+
 /* Class = "NSMenu"; title = "RsyncOSX"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "RsyncOSX";
 
@@ -1399,8 +1408,8 @@
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Hjelp";
 
-/* Class = "NSTextFieldCell"; title = "path RsyncOSX: "; ObjectID = "wrj-tn-Y3v"; */
-"wrj-tn-Y3v.title" = "sti RsyncOSX: ";
+/* Class = "NSTextFieldCell"; title = "RsyncOSX path:"; ObjectID = "wrj-tn-Y3v"; */
+"wrj-tn-Y3v.title" = "RsyncOSX sti:";
 
 /* Class = "NSMenuItem"; title = "Synchronize now"; ObjectID = "wrk-73-4cu"; */
 "wrk-73-4cu.title" = "Synkroniser nå";
@@ -1429,8 +1438,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "XbU-fs-Bir"; */
 "XbU-fs-Bir.title" = "Text Cell";
 
-/* Class = "NSTextFieldCell"; title = "path RsyncOSXsched:"; ObjectID = "XjB-Sb-slI"; */
-"XjB-Sb-slI.title" = "sti RsyncOSXsched:";
+/* Class = "NSTextFieldCell"; title = "RsyncOSXsched path:"; ObjectID = "XjB-Sb-slI"; */
+"XjB-Sb-slI.title" = "RsyncOSXsched sti:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "xKW-0W-Nbb"; */
 "xKW-0W-Nbb.title" = "Text Cell";
@@ -1461,6 +1470,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Date last synchronize:"; ObjectID = "YaD-4f-lEl"; */
 "YaD-4f-lEl.title" = "Dato siste synkronisering:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "e.g. ~/.ssh/id_ed25519"; ObjectID = "YbQ-Q3-lap"; */
+"YbQ-Q3-lap.placeholderString" = "e.g. ~/.ssh/id_ed25519";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "YCe-8d-WsE"; */
 "YCe-8d-WsE.headerCell.title" = "Ekstern tjener";
