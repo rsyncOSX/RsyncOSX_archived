@@ -65,6 +65,10 @@ class ViewControllerAllOutput: NSViewController, Delay {
             self.outputtable.reloadData()
         }
     }
+
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
 }
 
 extension ViewControllerAllOutput: NSTableViewDataSource {
