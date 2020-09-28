@@ -38,7 +38,7 @@ class Ssh: Catalogsandfiles {
         guard self.keyFileStrings != nil else { return false }
         guard self.keyFileStrings?.filter({ $0.contains(self.identityfile ?? "") }).count ?? 0 > 0 else { return false }
         guard self.keyFileStrings?.filter({ $0.contains((self.identityfile ?? "") + ".pub") }).count ?? 0 > 0 else {
-            return false
+            return true
         }
         self.rsaStringPath = self.keyFileStrings?.filter { $0.contains((self.identityfile ?? "") + ".pub") }[0]
         guard self.rsaStringPath?.count ?? 0 > 0 else { return false }
