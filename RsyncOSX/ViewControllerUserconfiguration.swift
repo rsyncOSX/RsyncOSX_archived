@@ -50,6 +50,10 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var closebutton: NSButton!
     @IBOutlet var monitornetworkconnection: NSButton!
 
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
+
     @IBAction func togglehaltonerror(_: NSButton) {
         if ViewControllerReference.shared.haltonerror {
             self.haltonerror.state = .off

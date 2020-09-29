@@ -24,6 +24,10 @@ class ViewControllerProfile: NSViewController, SetConfigurations, Delay {
     @IBOutlet var newprofile: NSTextField!
     @IBOutlet var profilesTable: NSTableView!
 
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
+
     @IBAction func defaultProfile(_: NSButton) {
         _ = Selectprofile(profile: nil, selectedindex: nil)
         self.view.window?.close()
