@@ -59,6 +59,10 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
         self.view.window?.close()
     }
 
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
+
     @IBAction func togglersyncdaemon(_: NSButton) {
         if let index = self.index() {
             switch self.rsyncdaemon.state {

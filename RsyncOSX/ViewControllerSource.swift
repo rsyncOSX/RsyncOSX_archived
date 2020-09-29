@@ -16,6 +16,10 @@ class ViewControllerSource: NSViewController, SetConfigurations {
     weak var getSourceDelegateSsh: ViewControllerSsh?
     private var index: Int?
 
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
+
     private func select() {
         if let pvc = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh {
             self.getSourceDelegateSsh = pvc

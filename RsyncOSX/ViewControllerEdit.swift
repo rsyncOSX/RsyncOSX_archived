@@ -43,6 +43,10 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
         }
     }
 
+    @IBAction func closeview(_: NSButton) {
+        self.view.window?.close()
+    }
+
     // Close and dismiss view
     @IBAction func close(_: NSButton) {
         self.view.window?.close()
@@ -205,6 +209,7 @@ extension ViewControllerEdit: NSTextFieldDelegate {
     }
 }
 
+// Needed for automatically close view if another config is selected
 extension ViewControllerEdit: CloseEdit {
     func closeview() {
         self.view.window?.close()
