@@ -21,6 +21,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     weak var loadsshparametersDelegate: Loadsshparameters?
     var oldmarknumberofdayssince: Double?
     var reload: Bool = false
+    var nameandpaths: NamesandPaths?
 
     @IBOutlet var rsyncPath: NSTextField!
     @IBOutlet var version3rsync: NSButton!
@@ -217,6 +218,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     private func verifyrsync() {
         var rsyncpath: String?
         if self.rsyncPath.stringValue.isEmpty == false {
+            if self.rsyncPath.stringValue.contains("$HOME") {
+                let replaced = self.rsyncPath.stringValue.replacingOccurrences(of: "$HOME",
+                                                                               with: self.nameandpaths?.userHomeDirectoryPath ?? "")
+                self.rsyncPath.stringValue = replaced
+            }
             self.statuslightpathrsync.isHidden = false
             if self.rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncpath = self.rsyncPath.stringValue + "/" + ViewControllerReference.shared.rsync
@@ -250,6 +256,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             self.nopathtorsyncosx()
             return
         }
+        if self.pathRsyncOSX.stringValue.contains("$HOME") {
+            let replaced = self.pathRsyncOSX.stringValue.replacingOccurrences(of: "$HOME",
+                                                                              with: self.nameandpaths?.userHomeDirectoryPath ?? "")
+            self.pathRsyncOSX.stringValue = replaced
+        }
         if self.pathRsyncOSX.stringValue.hasSuffix("/") == false {
             pathtorsyncosx = self.pathRsyncOSX.stringValue + "/"
         } else {
@@ -269,6 +280,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         guard self.pathRsyncOSXsched.stringValue.isEmpty == false else {
             self.nopathtorsyncossched()
             return
+        }
+        if self.pathRsyncOSXsched.stringValue.contains("$HOME") {
+            let replaced = self.pathRsyncOSXsched.stringValue.replacingOccurrences(of: "$HOME",
+                                                                                   with: self.nameandpaths?.userHomeDirectoryPath ?? "")
+            self.pathRsyncOSXsched.stringValue = replaced
         }
         if self.pathRsyncOSXsched.stringValue.hasSuffix("/") == false {
             pathtorsyncosxsched = self.pathRsyncOSXsched.stringValue + "/"
@@ -369,6 +385,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.sshport.delegate = self
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
     }
 
     override func viewDidAppear() {
