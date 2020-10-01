@@ -4,5 +4,7 @@
 <dict>
 	<key>6.4.5</key>
 	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.4.6/RsyncOSX.6.4.6.dmg</string>
+	<key>6.4.2</key>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.4.6/RsyncOSX.6.4.6.dmg</string>
 </dict>
 </plist>
