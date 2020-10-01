@@ -22,7 +22,7 @@
 
 ### Documents, issues and changelog
 
-RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files. From version 6.4.2, RsyncOSX is compiled with support for **macOS Catalina 10.15 - latest version**.  Version 6.4.0 of RsyncOSX is the last version which is compiled with support for macOS El Capitan 10.11 - macOS Catalina 10.15.
+RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files. From version 6.4.6, RsyncOSX is compiled with support for **macOS Catalina 10.15 and later versions**.  Version 6.4.2 of RsyncOSX is the last version which is compiled with support for **macOS Mojave 10.14**.
 
 - [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/)
 - [the changelog](https://rsyncosx.netlify.app/post/changelog/)
