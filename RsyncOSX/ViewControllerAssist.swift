@@ -40,7 +40,7 @@ class ViewControllerAssit: NSViewController {
         self.remotecatalogs = ["GitHub", "Documents", "rcloneencrypted", "Pictures_raw"]
         self.remotebase = ["/backup2/RsyncOSX", "/backup/RsyncOSX"]
         self.localcatalogs = ["GitHub", "Documents", "rcloneencrypted", "Pictures_raw"]
-        for i in 0 ..< (self.numberofsets - 1) {
+        for i in 0 ..< self.numberofsets {
             switch i {
             case 0:
                 self.assist?.append(self.remotecomputers ?? [])

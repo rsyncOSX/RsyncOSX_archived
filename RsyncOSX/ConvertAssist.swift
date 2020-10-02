@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 02/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable cyclomatic_complexity trailing_comma
 
 import Foundation
 
@@ -17,23 +18,37 @@ struct ConvertAssist {
         for i in 0 ..< (assistassets?.count ?? 0) {
             switch i {
             case 0:
-                for j in 0 ..< (assistassets?.count ?? 0) {
+                for val in assistassets![0] {
                     let dict: NSDictionary = [
-                        "remotecomputers": assistassets?[j] ?? "",
+                        "remotecomputers": val,
                     ]
                     self.assist?.append(dict)
                 }
             case 1:
-                for j in 0 ..< (assistassets?.count ?? 0) {
+                for val in assistassets![1] {
                     let dict: NSDictionary = [
-                        "remoteusers": assistassets?[j] ?? "",
+                        "remoteusers": val,
                     ]
                     self.assist?.append(dict)
                 }
             case 2:
-                for j in 0 ..< (assistassets?.count ?? 0) {
+                for val in assistassets![2] {
                     let dict: NSDictionary = [
-                        "remotecatalogs": assistassets?[j] ?? "",
+                        "remotecatalogs": val,
+                    ]
+                    self.assist?.append(dict)
+                }
+            case 3:
+                for val in assistassets![3] {
+                    let dict: NSDictionary = [
+                        "remotebase": val,
+                    ]
+                    self.assist?.append(dict)
+                }
+            case 4:
+                for val in assistassets![4] {
+                    let dict: NSDictionary = [
+                        "localcatalogs": val,
                     ]
                     self.assist?.append(dict)
                 }
