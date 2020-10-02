@@ -96,6 +96,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         }
     }
 
+    @IBAction func assist(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAssist!)
+    }
+
     private func changelabels() {
         switch self.backuptype.indexOfSelectedItem {
         case 2:
