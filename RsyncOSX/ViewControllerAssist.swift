@@ -56,5 +56,6 @@ class ViewControllerAssit: NSViewController {
                 return
             }
         }
+        PersistentStorageAssist(assistassets: self.assist).saveassist()
     }
 }
