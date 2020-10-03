@@ -62,10 +62,6 @@ class ViewControllerAssit: NSViewController, Delay {
         self.initialize()
     }
 
-    @IBAction func witeassist(_: NSButton) {
-        self.write()
-    }
-
     private func write() {
         guard self.remotecomputers != nil,
             self.remoteusers != nil,
@@ -105,10 +101,6 @@ class ViewControllerAssit: NSViewController, Delay {
             }
         }
         PersistentStorageAssist(assistassets: self.assist).saveassist()
-    }
-
-    @IBAction func readassist(_: NSButton) {
-        self.read()
     }
 
     private func read() {
