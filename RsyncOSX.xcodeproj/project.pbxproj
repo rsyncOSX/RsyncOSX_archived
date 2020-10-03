@@ -50,6 +50,7 @@
 		E90F3C41201659720089D68B /* ViewControllerSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */; };
 		E912020722B3CFD90056AEFE /* Remotefilelist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912020622B3CFD90056AEFE /* Remotefilelist.swift */; };
 		E914B7722131197B00FFE398 /* extensionsSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E914B7712131197B00FFE398 /* extensionsSchedules.swift */; };
+		E915568625284F2A007573E1 /* Assist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915568525284F2A007573E1 /* Assist.swift */; };
 		E9196FDD2350CAC30037AA8B /* ComboboxRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */; };
 		E9196FDF2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */; };
 		E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */; };
@@ -212,6 +213,7 @@
 		E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSnapshots.swift; sourceTree = "<group>"; };
 		E912020622B3CFD90056AEFE /* Remotefilelist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remotefilelist.swift; sourceTree = "<group>"; };
 		E914B7712131197B00FFE398 /* extensionsSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsSchedules.swift; sourceTree = "<group>"; };
+		E915568525284F2A007573E1 /* Assist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assist.swift; sourceTree = "<group>"; };
 		E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboboxRsyncParameters.swift; sourceTree = "<group>"; };
 		E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixstringsRsyncParameters.swift; sourceTree = "<group>"; };
 		E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleWriteLoggData.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E915568425284EFA007573E1 /* Assist */,
 				E9764F5E204BEE710018C0D7 /* AllProfiles */,
 				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
 				E99AEC701FF8BBA40004992B /* Userconfiguration */,
@@ -613,6 +616,14 @@
 				E9E8C6DA24F905AC00845BD7 /* Configpath.swift */,
 			);
 			name = PersistentStorage;
+			sourceTree = "<group>";
+		};
+		E915568425284EFA007573E1 /* Assist */ = {
+			isa = PBXGroup;
+			children = (
+				E915568525284F2A007573E1 /* Assist.swift */,
+			);
+			name = Assist;
 			sourceTree = "<group>";
 		};
 		E91A688E1EA7771B0056BCFC /* Loggdata */ = {
@@ -1083,6 +1094,7 @@
 				A04492B41D658F2100B3CE17 /* RestorefilesArguments.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
 				E96059AA2109B63D00DFA08E /* ViewControllerVerify.swift in Sources */,
+				E915568625284F2A007573E1 /* Assist.swift in Sources */,
 				A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */,
 				E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */,
 				E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */,
