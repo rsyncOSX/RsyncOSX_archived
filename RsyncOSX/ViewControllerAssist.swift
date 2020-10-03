@@ -59,11 +59,7 @@ class ViewControllerAssit: NSViewController, Delay {
         super.viewDidAppear()
         self.read()
         // Initialize comboboxes
-        self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
-        self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
-        self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
-        self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
-        self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
+        self.initialize()
     }
 
     @IBAction func witeassist(_: NSButton) {
@@ -175,6 +171,7 @@ class ViewControllerAssit: NSViewController, Delay {
         self.reset()
         self.write()
         self.read()
+        self.initialize()
     }
 
     private func reset() {
@@ -183,6 +180,15 @@ class ViewControllerAssit: NSViewController, Delay {
         self.addremotecomputers.stringValue = ""
         self.addremotehome.stringValue = ""
         self.addremoteusers.stringValue = ""
+    }
+
+    private func initialize() {
+        // Initialize comboboxes
+        self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
+        self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
+        self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
+        self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
+        self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
     }
 }
 
