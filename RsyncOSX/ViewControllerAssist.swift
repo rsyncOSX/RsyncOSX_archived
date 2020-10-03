@@ -20,8 +20,20 @@ class ViewControllerAssit: NSViewController, Delay {
     var nameandpaths: NamesandPaths?
     var assist: [Set<String>]?
 
+    @IBOutlet var comboremoteusers: NSComboBox!
+    @IBOutlet var addremoteusers: NSTextField!
+
+    @IBOutlet var comboremotehome: NSComboBox!
+    @IBOutlet var addremotehome: NSTextField!
+
+    @IBOutlet var comboremotecomputers: NSComboBox!
+    @IBOutlet var addremotecomputers: NSTextField!
+
     @IBOutlet var combocatalogs: NSComboBox!
     @IBOutlet var addcatalogs: NSTextField!
+
+    @IBOutlet var combolocalhome: NSComboBox!
+    @IBOutlet var addlocalhome: NSTextField!
 
     @IBAction func closeview(_: NSButton) {
         self.view.window?.close()
@@ -30,14 +42,22 @@ class ViewControllerAssit: NSViewController, Delay {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
+        self.addremotecomputers.delegate = self
+        self.addremoteusers.delegate = self
+        self.addremotehome.delegate = self
         self.addcatalogs.delegate = self
+        self.addlocalhome.delegate = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         self.read()
         // Initialize comboboxes
+        self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
+        self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
+        self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
         self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
+        self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
     }
 
     @IBAction func witeassist(_: NSButton) {
