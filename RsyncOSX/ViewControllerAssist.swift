@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerAssit: NSViewController {
+class ViewControllerAssit: NSViewController, Delay {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?
     var remotehome: Set<String>?
@@ -20,6 +20,9 @@ class ViewControllerAssit: NSViewController {
     var nameandpaths: NamesandPaths?
     var assist: [Set<String>]?
 
+    @IBOutlet var combocatalogs: NSComboBox!
+    @IBOutlet var addcatalogs: NSTextField!
+
     @IBAction func closeview(_: NSButton) {
         self.view.window?.close()
     }
@@ -27,13 +30,21 @@ class ViewControllerAssit: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
+        self.addcatalogs.delegate = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.read()
+        // Initialize comboboxes
+        self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
     }
 
     @IBAction func witeassist(_: NSButton) {
+        self.write()
+    }
+
+    private func write() {
         guard self.remotecomputers != nil,
             self.remoteusers != nil,
             self.remotehome != nil,
@@ -75,6 +86,10 @@ class ViewControllerAssit: NSViewController {
     }
 
     @IBAction func readassist(_: NSButton) {
+        self.read()
+    }
+
+    private func read() {
         self.assist = Assist(assist: PersistentStorageAssist(assistassets: nil).readassist()).assist
         for i in 0 ..< self.numberofsets {
             switch i {
@@ -93,5 +108,17 @@ class ViewControllerAssit: NSViewController {
             }
         }
         self.assist = nil
+    }
+
+    private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {
+        combobox.removeAllItems()
+        combobox.addItems(withObjectValues: Array(values ?? []))
+        combobox.selectItem(at: 0)
+    }
+}
+
+extension ViewControllerAssit: NSTextFieldDelegate {
+    func controlTextDidChange(_: Notification) {
+        delayWithSeconds(0.5) {}
     }
 }
