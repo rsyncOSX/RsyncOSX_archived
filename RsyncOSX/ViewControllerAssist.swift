@@ -10,6 +10,15 @@
 import Cocoa
 import Foundation
 
+enum Addvalues {
+    case remotecomputers
+    case remoteusers
+    case remotehome
+    case catalogs
+    case localhome
+    case none
+}
+
 class ViewControllerAssit: NSViewController, Delay {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?
@@ -19,19 +28,16 @@ class ViewControllerAssit: NSViewController, Delay {
     var numberofsets: Int = 5
     var nameandpaths: NamesandPaths?
     var assist: [Set<String>]?
+    var addvalues: Addvalues = .none
 
     @IBOutlet var comboremoteusers: NSComboBox!
     @IBOutlet var addremoteusers: NSTextField!
-
     @IBOutlet var comboremotehome: NSComboBox!
     @IBOutlet var addremotehome: NSTextField!
-
     @IBOutlet var comboremotecomputers: NSComboBox!
     @IBOutlet var addremotecomputers: NSTextField!
-
     @IBOutlet var combocatalogs: NSComboBox!
     @IBOutlet var addcatalogs: NSTextField!
-
     @IBOutlet var combolocalhome: NSComboBox!
     @IBOutlet var addlocalhome: NSTextField!
 
@@ -135,10 +141,68 @@ class ViewControllerAssit: NSViewController, Delay {
         combobox.addItems(withObjectValues: Array(values ?? []))
         combobox.selectItem(at: 0)
     }
+
+    @IBAction func addvalue(_: NSButton) {
+        switch self.addvalues {
+        case .remotecomputers:
+            if self.remotecomputers == nil {
+                self.remotecomputers = Set<String>()
+            }
+            self.remotecomputers?.insert(self.addremotecomputers.stringValue)
+        case .remoteusers:
+            if self.remoteusers == nil {
+                self.remoteusers = Set<String>()
+            }
+            self.remoteusers?.insert(self.addremoteusers.stringValue)
+        case .remotehome:
+            if self.remotehome == nil {
+                self.remotehome = Set<String>()
+            }
+            self.remotehome?.insert(self.addremotehome.stringValue)
+        case .localhome:
+            if self.localhome == nil {
+                self.localhome = Set<String>()
+            }
+            self.localhome?.insert(self.addlocalhome.stringValue)
+        case .catalogs:
+            if self.catalogs == nil {
+                self.catalogs = Set<String>()
+            }
+            self.catalogs?.insert(self.addcatalogs.stringValue)
+        default:
+            return
+        }
+        self.reset()
+        self.write()
+        self.read()
+    }
+
+    private func reset() {
+        self.addcatalogs.stringValue = ""
+        self.addlocalhome.stringValue = ""
+        self.addremotecomputers.stringValue = ""
+        self.addremotehome.stringValue = ""
+        self.addremoteusers.stringValue = ""
+    }
 }
 
 extension ViewControllerAssit: NSTextFieldDelegate {
-    func controlTextDidChange(_: Notification) {
-        delayWithSeconds(0.5) {}
+    func controlTextDidChange(_ notification: Notification) {
+        delayWithSeconds(0.5) {
+            switch notification.object as? NSTextField {
+            case self.addremotecomputers:
+                self.addvalues = .remotecomputers
+            case self.addremoteusers:
+                self.addvalues = .remoteusers
+            case self.addremotehome:
+                self.addvalues = .remotehome
+            case self.addlocalhome:
+                self.addvalues = .localhome
+            case self.addcatalogs:
+                self.addvalues = .catalogs
+            default:
+                self.addvalues = .none
+            }
+        }
     }
 }
