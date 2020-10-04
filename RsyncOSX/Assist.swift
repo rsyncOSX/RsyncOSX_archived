@@ -9,6 +9,19 @@
 
 import Foundation
 
+enum Addvalues {
+    case remotecomputers
+    case remoteusers
+    case remotehome
+    case catalogs
+    case localhome
+    case none
+}
+
+protocol AssistTransfer: AnyObject {
+    func assisttransfer(values: [String]?)
+}
+
 final class Assist {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?

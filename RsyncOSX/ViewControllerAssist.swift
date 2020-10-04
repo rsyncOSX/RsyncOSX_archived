@@ -10,15 +10,6 @@
 import Cocoa
 import Foundation
 
-enum Addvalues {
-    case remotecomputers
-    case remoteusers
-    case remotehome
-    case catalogs
-    case localhome
-    case none
-}
-
 class ViewControllerAssit: NSViewController {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?
@@ -28,6 +19,7 @@ class ViewControllerAssit: NSViewController {
     var numberofsets: Int = 5
     var assist: [Set<String>]?
     var addvalues: Addvalues = .none
+    weak var transferdataDelegate: AssistTransfer?
 
     @IBOutlet var comboremoteusers: NSComboBox!
     @IBOutlet var addremoteusers: NSTextField!
@@ -67,6 +59,7 @@ class ViewControllerAssit: NSViewController {
         self.readassistvaluesstorage()
         // Initialize comboboxes
         self.initialize()
+        self.transferdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
     }
 
     private func writeassistvaluesstorage() {
@@ -173,6 +166,36 @@ class ViewControllerAssit: NSViewController {
         self.writeassistvaluesstorage()
         self.readassistvaluesstorage()
         self.initialize()
+    }
+
+    @IBAction func addremote(_: NSButton) {
+        if let home = self.combolocalhome.objectValue as? String,
+            let catalog = self.combocatalogs.objectValue as? String,
+            let remotehome = self.comboremotehome.objectValue as? String,
+            let user = self.comboremoteusers.objectValue as? String,
+            let remotecomputer = self.comboremotecomputers.objectValue as? String
+        {
+            var transfer = [String]()
+            transfer.append(home + "/" + catalog)
+            transfer.append(remotehome + "/" + catalog)
+            transfer.append(user)
+            transfer.append(remotecomputer)
+            self.transferdataDelegate?.assisttransfer(values: transfer)
+            self.view.window?.close()
+        }
+    }
+
+    @IBAction func addlocal(_: NSButton) {
+        if let home = self.combolocalhome.objectValue as? String,
+            let catalog = self.combocatalogs.objectValue as? String,
+            let remotehome = self.comboremotehome.objectValue as? String
+        {
+            var transfer = [String]()
+            transfer.append(home + "/" + catalog)
+            transfer.append(remotehome + "/" + catalog)
+            self.transferdataDelegate?.assisttransfer(values: transfer)
+            self.view.window?.close()
+        }
     }
 
     private func resetstringvalues() {

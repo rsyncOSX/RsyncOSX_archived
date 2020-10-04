@@ -322,3 +322,20 @@ extension ViewControllerNewConfigurations: OpenQuickBackup {
         }
     }
 }
+
+extension ViewControllerNewConfigurations: AssistTransfer {
+    func assisttransfer(values: [String]?) {
+        if let values = values {
+            switch values.count {
+            case 2:
+                // local
+                print(values)
+            case 4:
+                // remote
+                print(values)
+            default:
+                return
+            }
+        }
+    }
+}
