@@ -328,11 +328,15 @@ extension ViewControllerNewConfigurations: AssistTransfer {
         if let values = values {
             switch values.count {
             case 2:
-                // local
+                self.localCatalog.stringValue = values[0]
+                self.offsiteCatalog.stringValue = values[1]
                 print(values)
             case 4:
                 // remote
-                print(values)
+                self.localCatalog.stringValue = values[0]
+                self.offsiteCatalog.stringValue = values[1]
+                self.offsiteUsername.stringValue = values[2]
+                self.offsiteServer.stringValue = values[3]
             default:
                 return
             }
