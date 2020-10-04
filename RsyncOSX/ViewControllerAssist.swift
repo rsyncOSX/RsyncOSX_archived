@@ -19,7 +19,7 @@ enum Addvalues {
     case none
 }
 
-class ViewControllerAssit: NSViewController, Delay {
+class ViewControllerAssit: NSViewController {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?
     var remotehome: Set<String>?
@@ -57,12 +57,12 @@ class ViewControllerAssit: NSViewController, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.read()
+        self.readassistvaluesstorage()
         // Initialize comboboxes
         self.initialize()
     }
 
-    private func write() {
+    private func writeassistvaluesstorage() {
         guard self.remotecomputers != nil,
             self.remoteusers != nil,
             self.remotehome != nil,
@@ -103,7 +103,7 @@ class ViewControllerAssit: NSViewController, Delay {
         PersistentStorageAssist(assistassets: self.assist).saveassist()
     }
 
-    private func read() {
+    private func readassistvaluesstorage() {
         self.assist = Assist(assist: PersistentStorageAssist(assistassets: nil).readassist()).assist
         for i in 0 ..< self.numberofsets {
             switch i {
@@ -160,13 +160,13 @@ class ViewControllerAssit: NSViewController, Delay {
         default:
             return
         }
-        self.reset()
-        self.write()
-        self.read()
+        self.resetstringvalues()
+        self.writeassistvaluesstorage()
+        self.readassistvaluesstorage()
         self.initialize()
     }
 
-    private func reset() {
+    private func resetstringvalues() {
         self.addcatalogs.stringValue = ""
         self.addlocalhome.stringValue = ""
         self.addremotecomputers.stringValue = ""
@@ -186,21 +186,19 @@ class ViewControllerAssit: NSViewController, Delay {
 
 extension ViewControllerAssit: NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
-        delayWithSeconds(0.5) {
-            switch notification.object as? NSTextField {
-            case self.addremotecomputers:
-                self.addvalues = .remotecomputers
-            case self.addremoteusers:
-                self.addvalues = .remoteusers
-            case self.addremotehome:
-                self.addvalues = .remotehome
-            case self.addlocalhome:
-                self.addvalues = .localhome
-            case self.addcatalogs:
-                self.addvalues = .catalogs
-            default:
-                self.addvalues = .none
-            }
+        switch notification.object as? NSTextField {
+        case self.addremotecomputers:
+            self.addvalues = .remotecomputers
+        case self.addremoteusers:
+            self.addvalues = .remoteusers
+        case self.addremotehome:
+            self.addvalues = .remotehome
+        case self.addlocalhome:
+            self.addvalues = .localhome
+        case self.addcatalogs:
+            self.addvalues = .catalogs
+        default:
+            self.addvalues = .none
         }
     }
 }
