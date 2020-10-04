@@ -26,7 +26,6 @@ class ViewControllerAssit: NSViewController {
     var catalogs: Set<String>?
     var localhome: Set<String>?
     var numberofsets: Int = 5
-    var nameandpaths: NamesandPaths?
     var assist: [Set<String>]?
     var addvalues: Addvalues = .none
 
@@ -45,9 +44,17 @@ class ViewControllerAssit: NSViewController {
         self.view.window?.close()
     }
 
+    @IBAction func defaultbutton(_: NSButton) {
+        let defaultvalues = AssistDefault()
+        self.localhome = defaultvalues.localhome
+        self.catalogs = defaultvalues.catalogs
+        self.writeassistvaluesstorage()
+        self.readassistvaluesstorage()
+        self.initialize()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
         self.addremotecomputers.delegate = self
         self.addremoteusers.delegate = self
         self.addremotehome.delegate = self
@@ -127,7 +134,9 @@ class ViewControllerAssit: NSViewController {
     private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {
         combobox.removeAllItems()
         combobox.addItems(withObjectValues: Array(values ?? []))
-        combobox.selectItem(at: 0)
+        if values?.count ?? 0 > 0 {
+            combobox.selectItem(at: 0)
+        }
     }
 
     @IBAction func addvalue(_: NSButton) {
