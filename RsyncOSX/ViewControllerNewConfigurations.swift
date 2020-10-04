@@ -96,6 +96,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         }
     }
 
+    @IBAction func assist(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAssist!)
+    }
+
     private func changelabels() {
         switch self.backuptype.indexOfSelectedItem {
         case 2:
@@ -315,6 +319,27 @@ extension ViewControllerNewConfigurations: OpenQuickBackup {
     func openquickbackup() {
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
+        }
+    }
+}
+
+extension ViewControllerNewConfigurations: AssistTransfer {
+    func assisttransfer(values: [String]?) {
+        if let values = values {
+            switch values.count {
+            case 2:
+                self.localCatalog.stringValue = values[0]
+                self.offsiteCatalog.stringValue = values[1]
+                print(values)
+            case 4:
+                // remote
+                self.localCatalog.stringValue = values[0]
+                self.offsiteCatalog.stringValue = values[1]
+                self.offsiteUsername.stringValue = values[2]
+                self.offsiteServer.stringValue = values[3]
+            default:
+                return
+            }
         }
     }
 }
