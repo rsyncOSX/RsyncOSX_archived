@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerAssit: NSViewController {
+class ViewControllerAssist: NSViewController {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?
     var remotehome: Set<String>?
@@ -52,6 +52,11 @@ class ViewControllerAssit: NSViewController {
         self.addremotehome.delegate = self
         self.addcatalogs.delegate = self
         self.addlocalhome.delegate = self
+        self.combolocalhome.delegate = self
+        self.combocatalogs.delegate = self
+        self.comboremotehome.delegate = self
+        self.comboremoteusers.delegate = self
+        self.comboremotecomputers.delegate = self
     }
 
     override func viewDidAppear() {
@@ -216,7 +221,7 @@ class ViewControllerAssit: NSViewController {
     }
 }
 
-extension ViewControllerAssit: NSTextFieldDelegate {
+extension ViewControllerAssist: NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
         switch notification.object as? NSTextField {
         case self.addremotecomputers:
@@ -231,6 +236,27 @@ extension ViewControllerAssit: NSTextFieldDelegate {
             self.addvalues = .catalogs
         default:
             self.addvalues = .none
+        }
+    }
+}
+
+extension ViewControllerAssist: NSComboBoxDelegate {
+    func comboBoxSelectionIsChanging(_ notification: Notification) {
+        if let combobox = notification.object as? NSComboBox {
+            switch combobox {
+            case self.combolocalhome:
+                return
+            case self.combocatalogs:
+                return
+            case self.comboremotehome:
+                return
+            case self.comboremoteusers:
+                return
+            case self.comboremotecomputers:
+                return
+            default:
+                return
+            }
         }
     }
 }
