@@ -10,6 +10,11 @@
 import Cocoa
 import Foundation
 
+struct AssistEdit {
+    var indexselected: Int = -1
+    var typeselected: Addvalues = .none
+}
+
 class ViewControllerAssist: NSViewController {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?
@@ -20,6 +25,7 @@ class ViewControllerAssist: NSViewController {
     var assist: [Set<String>]?
     var addvalues: Addvalues = .none
     weak var transferdataDelegate: AssistTransfer?
+    var assistedit = AssistEdit()
 
     @IBOutlet var comboremoteusers: NSComboBox!
     @IBOutlet var addremoteusers: NSTextField!
@@ -173,6 +179,26 @@ class ViewControllerAssist: NSViewController {
         self.initialize()
     }
 
+    @IBAction func deletevalue(_: NSButton) {
+        switch self.assistedit.typeselected {
+        case .catalogs:
+            self.catalogs?.remove(self.combocatalogs.objectValue as? String ?? "")
+        case .localhome:
+            self.localhome?.remove(self.combolocalhome.objectValue as? String ?? "")
+        case .remotehome:
+            self.remotehome?.remove(self.comboremotehome.objectValue as? String ?? "")
+        case .remoteusers:
+            self.remoteusers?.remove(self.comboremoteusers.objectValue as? String ?? "")
+        case .remotecomputers:
+            self.remotecomputers?.remove(self.comboremotecomputers.objectValue as? String ?? "")
+        default:
+            return
+        }
+        self.writeassistvaluesstorage()
+        self.readassistvaluesstorage()
+        self.initialize()
+    }
+
     @IBAction func addremote(_: NSButton) {
         if let home = self.combolocalhome.objectValue as? String,
             let catalog = self.combocatalogs.objectValue as? String,
@@ -245,15 +271,20 @@ extension ViewControllerAssist: NSComboBoxDelegate {
         if let combobox = notification.object as? NSComboBox {
             switch combobox {
             case self.combolocalhome:
-                return
+                self.assistedit.typeselected = .localhome
+                self.assistedit.indexselected = self.combolocalhome.indexOfSelectedItem
             case self.combocatalogs:
-                return
+                self.assistedit.typeselected = .catalogs
+                self.assistedit.indexselected = self.combocatalogs.indexOfSelectedItem
             case self.comboremotehome:
-                return
+                self.assistedit.typeselected = .remotehome
+                self.assistedit.indexselected = self.comboremotehome.indexOfSelectedItem
             case self.comboremoteusers:
-                return
+                self.assistedit.typeselected = .remoteusers
+                self.assistedit.indexselected = self.comboremoteusers.indexOfSelectedItem
             case self.comboremotecomputers:
-                return
+                self.assistedit.typeselected = .remotecomputers
+                self.assistedit.indexselected = self.comboremotecomputers.indexOfSelectedItem
             default:
                 return
             }
