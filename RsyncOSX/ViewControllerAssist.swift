@@ -10,11 +10,6 @@
 import Cocoa
 import Foundation
 
-struct AssistEdit {
-    var indexselected: Int = -1
-    var typeselected: Addvalues = .none
-}
-
 class ViewControllerAssist: NSViewController {
     var remotecomputers: Set<String>?
     var remoteusers: Set<String>?
@@ -25,7 +20,7 @@ class ViewControllerAssist: NSViewController {
     var assist: [Set<String>]?
     var addvalues: Addvalues = .none
     weak var transferdataDelegate: AssistTransfer?
-    var assistedit = AssistEdit()
+    var assistedit: Addvalues = .none
 
     @IBOutlet var comboremoteusers: NSComboBox!
     @IBOutlet var addremoteusers: NSTextField!
@@ -180,7 +175,7 @@ class ViewControllerAssist: NSViewController {
     }
 
     @IBAction func deletevalue(_: NSButton) {
-        switch self.assistedit.typeselected {
+        switch self.assistedit {
         case .catalogs:
             self.catalogs?.remove(self.combocatalogs.objectValue as? String ?? "")
         case .localhome:
@@ -271,20 +266,15 @@ extension ViewControllerAssist: NSComboBoxDelegate {
         if let combobox = notification.object as? NSComboBox {
             switch combobox {
             case self.combolocalhome:
-                self.assistedit.typeselected = .localhome
-                self.assistedit.indexselected = self.combolocalhome.indexOfSelectedItem
+                self.assistedit = .localhome
             case self.combocatalogs:
-                self.assistedit.typeselected = .catalogs
-                self.assistedit.indexselected = self.combocatalogs.indexOfSelectedItem
+                self.assistedit = .catalogs
             case self.comboremotehome:
-                self.assistedit.typeselected = .remotehome
-                self.assistedit.indexselected = self.comboremotehome.indexOfSelectedItem
+                self.assistedit = .remotehome
             case self.comboremoteusers:
-                self.assistedit.typeselected = .remoteusers
-                self.assistedit.indexselected = self.comboremoteusers.indexOfSelectedItem
+                self.assistedit = .remoteusers
             case self.comboremotecomputers:
-                self.assistedit.typeselected = .remotecomputers
-                self.assistedit.indexselected = self.comboremotecomputers.indexOfSelectedItem
+                self.assistedit = .remotecomputers
             default:
                 return
             }
