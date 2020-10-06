@@ -63,6 +63,11 @@ class ViewControllerAssist: NSViewController {
         self.transferdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
     }
 
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        self.writeassistvaluesstorage()
+    }
+
     private func writeassistvaluesstorage() {
         if self.assist == nil {
             self.assist = [Set<String>]()
@@ -164,7 +169,6 @@ class ViewControllerAssist: NSViewController {
             self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
         }
         self.resetstringvalues()
-        self.writeassistvaluesstorage()
     }
 
     @IBAction func deletevalue(_: NSButton) {
@@ -187,9 +191,7 @@ class ViewControllerAssist: NSViewController {
         default:
             return
         }
-        // reset selection and write stuff to store
         self.assistedit = .none
-        self.writeassistvaluesstorage()
     }
 
     @IBAction func addremote(_: NSButton) {
