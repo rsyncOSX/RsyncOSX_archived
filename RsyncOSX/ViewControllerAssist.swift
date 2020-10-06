@@ -193,6 +193,8 @@ class ViewControllerAssist: NSViewController {
         default:
             return
         }
+        // reset selection and write stuff to store
+        self.assistedit = .none
         self.writeassistvaluesstorage()
     }
 
@@ -245,7 +247,7 @@ class ViewControllerAssist: NSViewController {
 }
 
 extension ViewControllerAssist: NSComboBoxDelegate {
-    func comboBoxSelectionIsChanging(_ notification: Notification) {
+    func comboBoxWillPopUp(_ notification: Notification) {
         if let combobox = notification.object as? NSComboBox {
             switch combobox {
             case self.combolocalhome:
