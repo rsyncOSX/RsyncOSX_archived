@@ -64,14 +64,6 @@ class ViewControllerAssist: NSViewController {
     }
 
     private func writeassistvaluesstorage() {
-        guard self.remotecomputers != nil,
-            self.remoteusers != nil,
-            self.remotehome != nil,
-            self.catalogs != nil,
-            self.localhome != nil
-        else {
-            return
-        }
         if self.assist == nil {
             self.assist = [Set<String>]()
         }
@@ -130,6 +122,8 @@ class ViewControllerAssist: NSViewController {
         combobox.addItems(withObjectValues: Array(values ?? []))
         if values?.count ?? 0 > 0 {
             combobox.selectItem(at: 0)
+        } else {
+            combobox.stringValue = ""
         }
     }
 
