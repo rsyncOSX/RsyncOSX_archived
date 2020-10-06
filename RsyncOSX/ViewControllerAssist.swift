@@ -48,11 +48,6 @@ class ViewControllerAssist: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addremotecomputers.delegate = self
-        self.addremoteusers.delegate = self
-        self.addremotehome.delegate = self
-        self.addcatalogs.delegate = self
-        self.addlocalhome.delegate = self
         self.combolocalhome.delegate = self
         self.combocatalogs.delegate = self
         self.comboremotehome.delegate = self
@@ -139,59 +134,66 @@ class ViewControllerAssist: NSViewController {
     }
 
     @IBAction func addvalue(_: NSButton) {
-        switch self.addvalues {
-        case .remotecomputers:
+        if self.addremotecomputers.stringValue.isEmpty == false {
             if self.remotecomputers == nil {
                 self.remotecomputers = Set<String>()
             }
             self.remotecomputers?.insert(self.addremotecomputers.stringValue)
-        case .remoteusers:
+            self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
+        }
+        if self.addremoteusers.stringValue.isEmpty == false {
             if self.remoteusers == nil {
                 self.remoteusers = Set<String>()
             }
             self.remoteusers?.insert(self.addremoteusers.stringValue)
-        case .remotehome:
+            self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
+        }
+        if self.addremotehome.stringValue.isEmpty == false {
             if self.remotehome == nil {
                 self.remotehome = Set<String>()
             }
             self.remotehome?.insert(self.addremotehome.stringValue)
-        case .localhome:
+            self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
+        }
+        if self.addlocalhome.stringValue.isEmpty == false {
             if self.localhome == nil {
                 self.localhome = Set<String>()
             }
             self.localhome?.insert(self.addlocalhome.stringValue)
-        case .catalogs:
+            self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
+        }
+        if self.addcatalogs.stringValue.isEmpty == true {
             if self.catalogs == nil {
                 self.catalogs = Set<String>()
             }
             self.catalogs?.insert(self.addcatalogs.stringValue)
-        default:
-            return
+            self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
         }
         self.resetstringvalues()
         self.writeassistvaluesstorage()
-        self.readassistvaluesstorage()
-        self.initialize()
     }
 
     @IBAction func deletevalue(_: NSButton) {
         switch self.assistedit {
         case .catalogs:
             self.catalogs?.remove(self.combocatalogs.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
         case .localhome:
             self.localhome?.remove(self.combolocalhome.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
         case .remotehome:
             self.remotehome?.remove(self.comboremotehome.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
         case .remoteusers:
             self.remoteusers?.remove(self.comboremoteusers.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
         case .remotecomputers:
             self.remotecomputers?.remove(self.comboremotecomputers.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
         default:
             return
         }
         self.writeassistvaluesstorage()
-        self.readassistvaluesstorage()
-        self.initialize()
     }
 
     @IBAction func addremote(_: NSButton) {
@@ -239,25 +241,6 @@ class ViewControllerAssist: NSViewController {
         self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
         self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
         self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
-    }
-}
-
-extension ViewControllerAssist: NSTextFieldDelegate {
-    func controlTextDidChange(_ notification: Notification) {
-        switch notification.object as? NSTextField {
-        case self.addremotecomputers:
-            self.addvalues = .remotecomputers
-        case self.addremoteusers:
-            self.addvalues = .remoteusers
-        case self.addremotehome:
-            self.addvalues = .remotehome
-        case self.addlocalhome:
-            self.addvalues = .localhome
-        case self.addcatalogs:
-            self.addvalues = .catalogs
-        default:
-            self.addvalues = .none
-        }
     }
 }
 
