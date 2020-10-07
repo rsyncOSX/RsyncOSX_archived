@@ -289,7 +289,7 @@
 "Seems not to be connected..." = "看起来没有连接...";
 
 /* Restore */
-"Seems to be nothing to restore" = "Seems to be nothing to restore";
+"Seems to be nothing to restore" = "无内容可以恢复";
 
 /* Execute */
 "Select a task...." = "选择任务......";
