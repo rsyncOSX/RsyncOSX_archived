@@ -55,6 +55,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.view.window?.close()
     }
 
+    @IBAction func copyconfigfiles(_: NSButton) {
+        _ = Backupconfigfiles()
+        self.view.window?.close()
+    }
+
     @IBAction func togglehaltonerror(_: NSButton) {
         if ViewControllerReference.shared.haltonerror {
             self.haltonerror.state = .off
