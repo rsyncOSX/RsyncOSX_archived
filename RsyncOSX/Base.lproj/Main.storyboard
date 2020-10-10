@@ -2693,7 +2693,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WkQ-b5-iVL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="update:" target="rht-JI-asq" id="Jxq-XR-MV2"/>
@@ -3197,13 +3197,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="203"/>
+                                <rect key="frame" x="20" y="61" width="656" height="157"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="202"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="156"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="133"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4726,18 +4726,18 @@ DQ
         <scene sceneID="ExO-HS-EpI">
             <objects>
                 <viewController title="All output" storyboardIdentifier="StoryboardOutputID" id="mal-sc-mlY" customClass="ViewControllerAllOutput" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="sfF-Cw-fbW">
-                        <rect key="frame" x="0.0" y="0.0" width="802" height="284"/>
+                    <view key="view" id="sfF-Cw-fbW">
+                        <rect key="frame" x="0.0" y="0.0" width="802" height="358"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="107"/>
+                                <rect key="frame" x="20" y="61" width="762" height="277"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="106"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="276"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="253"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4842,18 +4842,16 @@ DQ
                             <constraint firstAttribute="bottom" secondItem="4Kl-20-wwi" secondAttribute="bottom" constant="20" id="5NV-Rn-ndf"/>
                             <constraint firstItem="4Kl-20-wwi" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="4" id="6eK-88-vrh"/>
                             <constraint firstAttribute="bottom" secondItem="79S-p9-m7a" secondAttribute="bottom" constant="20" id="71E-b4-5jQ"/>
-                            <constraint firstItem="sCo-k2-Zkk" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" symbolic="YES" id="GGy-Ae-R2q"/>
-                            <constraint firstItem="sCo-k2-Zkk" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" id="JQg-h4-95p"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" symbolic="YES" id="Etq-hm-Hzr"/>
                             <constraint firstItem="sCo-k2-Zkk" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" id="LPN-hr-2DD"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" id="Myn-ze-QkD"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="trailing" constant="5" id="QnU-PF-tyN"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="trailing" constant="5" id="YMk-K4-Atp"/>
+                            <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="ZIE-uJ-mZE"/>
                             <constraint firstAttribute="bottom" secondItem="sCo-k2-Zkk" secondAttribute="bottom" constant="20" id="aLN-VR-wlf"/>
                             <constraint firstItem="79S-p9-m7a" firstAttribute="leading" secondItem="4Kl-20-wwi" secondAttribute="trailing" constant="5" id="cEb-nh-iKA"/>
-                            <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" id="dxw-dq-0aG"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" id="fHV-a2-vXe"/>
+                            <constraint firstItem="sCo-k2-Zkk" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" symbolic="YES" id="cSM-BL-8Oj"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="gw2-lB-S4g"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="baseline" secondItem="sCo-k2-Zkk" secondAttribute="baseline" id="nKC-hO-xzP"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="leading" id="nPD-hY-z4V"/>
                             <constraint firstAttribute="bottom" secondItem="6Ks-5W-3qb" secondAttribute="bottom" constant="20" id="xy9-fU-ykK"/>
                         </constraints>
                     </view>
@@ -4863,7 +4861,7 @@ DQ
                 </viewController>
                 <customObject id="Q22-JH-0wK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2807" y="2"/>
+            <point key="canvasLocation" x="-2739" y="-44"/>
         </scene>
         <!--All profiles-->
         <scene sceneID="AnB-2j-8Cc">
