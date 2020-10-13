@@ -100,8 +100,6 @@ final class ViewControllerReference {
     var namersyncosssched = "RsyncOSXsched.app"
     // Mac serialnumer
     var macserialnumber: String?
-    // Automatic execute local configurations in menuapp when mounting local volumes
-    var automaticexecutelocalvolumes: Bool = false
     // True if menuapp is running
     var menuappisrunning: Bool = false
     // Initial start
