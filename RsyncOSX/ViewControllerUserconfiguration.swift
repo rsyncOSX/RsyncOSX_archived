@@ -219,6 +219,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
                                                                                with: self.nameandpaths?.userHomeDirectoryPath ?? "")
                 self.rsyncPath.stringValue = replaced
             }
+            if self.rsyncPath.stringValue.contains("$home") {
+                let replaced = self.rsyncPath.stringValue.replacingOccurrences(of: "$home",
+                                                                               with: self.nameandpaths?.userHomeDirectoryPath ?? "")
+                self.rsyncPath.stringValue = replaced
+            }
             self.statuslightpathrsync.isHidden = false
             if self.rsyncPath.stringValue.hasSuffix("/") == false {
                 rsyncpath = self.rsyncPath.stringValue + "/" + ViewControllerReference.shared.rsync
