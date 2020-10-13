@@ -18,7 +18,6 @@ struct ConvertUserconfiguration {
         var minimumlogging: Int?
         var fulllogging: Int?
         var marknumberofdayssince: String?
-        var automaticexecutelocalvolumes: Int?
         var haltonerror: Int?
         var monitornetworkconnection: Int?
         var array = [NSMutableDictionary]()
@@ -43,11 +42,6 @@ struct ConvertUserconfiguration {
         } else {
             fulllogging = 0
         }
-        if ViewControllerReference.shared.automaticexecutelocalvolumes {
-            automaticexecutelocalvolumes = 1
-        } else {
-            automaticexecutelocalvolumes = 0
-        }
         if ViewControllerReference.shared.haltonerror {
             haltonerror = 1
         } else {
@@ -65,7 +59,6 @@ struct ConvertUserconfiguration {
             "minimumlogging": minimumlogging ?? 0 as Int,
             "fulllogging": fulllogging ?? 0 as Int,
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
-            "automaticexecutelocalvolumes": automaticexecutelocalvolumes ?? 0 as Int,
             "haltonerror": haltonerror ?? 0 as Int,
             "monitornetworkconnection": monitornetworkconnection ?? 0 as Int,
         ]

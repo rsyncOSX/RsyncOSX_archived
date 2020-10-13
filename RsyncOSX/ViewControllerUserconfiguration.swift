@@ -95,15 +95,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.setdirty()
     }
 
-    @IBAction func toggleautomaticexecutelocalvolumes(_: NSButton) {
-        if automaticexecutelocalvolumes.state == .on {
-            ViewControllerReference.shared.automaticexecutelocalvolumes = true
-        } else {
-            ViewControllerReference.shared.automaticexecutelocalvolumes = false
-        }
-        self.setdirty()
-    }
-
     @IBAction func toggleversion3rsync(_: NSButton) {
         if self.version3rsync.state == .on {
             ViewControllerReference.shared.rsyncversion3 = true
@@ -451,11 +442,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             self.environmentvalue.stringValue = ViewControllerReference.shared.environmentvalue!
         } else {
             self.environmentvalue.stringValue = ""
-        }
-        if ViewControllerReference.shared.automaticexecutelocalvolumes {
-            self.automaticexecutelocalvolumes.state = .on
-        } else {
-            self.automaticexecutelocalvolumes.state = .off
         }
         if ViewControllerReference.shared.checkinput {
             self.togglecheckdatabutton.state = .on

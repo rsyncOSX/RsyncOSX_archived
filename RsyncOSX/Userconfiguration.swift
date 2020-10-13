@@ -82,13 +82,6 @@ struct Userconfiguration {
                 ViewControllerReference.shared.fulllogging = false
             }
         }
-        if let automaticexecutelocalvolumes = dict.value(forKey: "automaticexecutelocalvolumes") as? Int {
-            if automaticexecutelocalvolumes == 1 {
-                ViewControllerReference.shared.automaticexecutelocalvolumes = true
-            } else {
-                ViewControllerReference.shared.automaticexecutelocalvolumes = false
-            }
-        }
         if let environment = dict.value(forKey: "environment") as? String {
             ViewControllerReference.shared.environment = environment
         }
