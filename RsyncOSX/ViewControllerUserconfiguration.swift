@@ -262,6 +262,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
                                                                               with: self.nameandpaths?.userHomeDirectoryPath ?? "")
             self.pathRsyncOSX.stringValue = replaced
         }
+        if self.pathRsyncOSX.stringValue.contains("$home") {
+            let replaced = self.pathRsyncOSX.stringValue.replacingOccurrences(of: "$home",
+                                                                              with: self.nameandpaths?.userHomeDirectoryPath ?? "")
+            self.pathRsyncOSX.stringValue = replaced
+        }
         if self.pathRsyncOSX.stringValue.hasSuffix("/") == false {
             pathtorsyncosx = self.pathRsyncOSX.stringValue + "/"
         } else {
@@ -284,6 +289,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         }
         if self.pathRsyncOSXsched.stringValue.contains("$HOME") {
             let replaced = self.pathRsyncOSXsched.stringValue.replacingOccurrences(of: "$HOME",
+                                                                                   with: self.nameandpaths?.userHomeDirectoryPath ?? "")
+            self.pathRsyncOSXsched.stringValue = replaced
+        }
+        if self.pathRsyncOSXsched.stringValue.contains("$home") {
+            let replaced = self.pathRsyncOSXsched.stringValue.replacingOccurrences(of: "$home",
                                                                                    with: self.nameandpaths?.userHomeDirectoryPath ?? "")
             self.pathRsyncOSXsched.stringValue = replaced
         }
