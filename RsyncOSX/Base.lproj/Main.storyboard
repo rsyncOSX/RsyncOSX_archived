@@ -548,17 +548,6 @@
                                 <view key="contentView" id="dkH-y5-Lww">
                                     <rect key="frame" x="3" y="3" width="260" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D1P-rD-gU0">
-                                            <rect key="frame" x="168" y="33" width="85" height="16"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="dir :" id="iEk-Zm-Qpb">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9R-yL-P6I">
@@ -3192,18 +3181,18 @@ DQ
         <scene sceneID="GIT-ED-d2h">
             <objects>
                 <viewController title="Details about files" storyboardIdentifier="StoryboardInformationID" id="ceM-Kt-SJU" customClass="ViewControllerInformation" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="KBL-J8-CuF">
+                    <view key="view" id="KBL-J8-CuF">
                         <rect key="frame" x="0.0" y="0.0" width="696" height="330"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-vU-qrp">
-                                <rect key="frame" x="20" y="61" width="656" height="65"/>
+                                <rect key="frame" x="20" y="61" width="656" height="249"/>
                                 <clipView key="contentView" id="fsy-MR-0hH">
-                                    <rect key="frame" x="1" y="0.0" width="654" height="64"/>
+                                    <rect key="frame" x="1" y="0.0" width="654" height="248"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" rowSizeStyle="automatic" headerView="miE-cF-Mpr" viewBased="YES" id="Iah-yC-nuy">
-                                            <rect key="frame" x="0.0" y="0.0" width="654" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="654" height="225"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4719,13 +4708,13 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="181"/>
+                                <rect key="frame" x="20" y="61" width="762" height="133"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="180"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="132"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="157"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="109"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
