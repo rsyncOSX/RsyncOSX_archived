@@ -23,7 +23,7 @@ struct Copyconfigfilestonewhome: FileErrors {
     // to new profile catalog.
     func moveplistfilestonewhome() -> Bool {
         if let oldpath = self.oldpath,
-            let newpath = self.newpath
+           let newpath = self.newpath
         {
             var originFolder: Folder?
             var targetFolder: Folder?
@@ -102,7 +102,7 @@ struct Copyconfigfilestonewhome: FileErrors {
 
     func backupbeforemove() -> Bool {
         if let documentscatalog = self.documentscatalog,
-            let oldpath = self.oldpath
+           let oldpath = self.oldpath
         {
             var originFolder: Folder?
             // root of profile catalog

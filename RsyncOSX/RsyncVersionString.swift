@@ -26,7 +26,7 @@ extension RsyncVersionString {
     func processtermination() {
         guard self.outputprocess?.getOutput()?.count ?? 0 > 0 else { return }
         if let rsyncversionshort = self.outputprocess?.getOutput()?[0],
-            let rsyncversionstring = self.outputprocess?.getOutput()?.joined(separator: "\n")
+           let rsyncversionstring = self.outputprocess?.getOutput()?.joined(separator: "\n")
         {
             ViewControllerReference.shared.rsyncversionshort = rsyncversionshort
             ViewControllerReference.shared.rsyncversionstring = rsyncversionstring

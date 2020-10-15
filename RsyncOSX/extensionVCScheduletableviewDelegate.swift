@@ -26,7 +26,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
             if tableView == self.scheduletable {
                 if row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
                     if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row],
-                        let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
+                       let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
                     {
                         switch tableColumn.identifier.rawValue {
                         case "scheduleID":
@@ -94,7 +94,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
             } else {
                 if row < self.scheduledetails?.count ?? 0 {
                     if let object: NSMutableDictionary = self.scheduledetails?[row],
-                        let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
+                       let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
                     {
                         switch tableColumn.identifier.rawValue {
                         case "active":

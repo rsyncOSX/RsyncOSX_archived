@@ -98,7 +98,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
 extension SingleTask {
     func processtermination() {
         if let workload = self.workload,
-            let index = self.index
+           let index = self.index
         {
             switch workload.pop() {
             case .estimatesinglerun:

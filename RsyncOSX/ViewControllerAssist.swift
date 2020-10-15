@@ -196,10 +196,10 @@ class ViewControllerAssist: NSViewController {
 
     @IBAction func addremote(_: NSButton) {
         if let home = self.combolocalhome.objectValue as? String,
-            let catalog = self.combocatalogs.objectValue as? String,
-            let remotehome = self.comboremotehome.objectValue as? String,
-            let user = self.comboremoteusers.objectValue as? String,
-            let remotecomputer = self.comboremotecomputers.objectValue as? String
+           let catalog = self.combocatalogs.objectValue as? String,
+           let remotehome = self.comboremotehome.objectValue as? String,
+           let user = self.comboremoteusers.objectValue as? String,
+           let remotecomputer = self.comboremotecomputers.objectValue as? String
         {
             var transfer = [String]()
             transfer.append(home + "/" + catalog)
@@ -213,8 +213,8 @@ class ViewControllerAssist: NSViewController {
 
     @IBAction func addlocal(_: NSButton) {
         if let home = self.combolocalhome.objectValue as? String,
-            let catalog = self.combocatalogs.objectValue as? String,
-            let remotehome = self.comboremotehome.objectValue as? String
+           let catalog = self.combocatalogs.objectValue as? String,
+           let remotehome = self.comboremotehome.objectValue as? String
         {
             var transfer = [String]()
             transfer.append(home + "/" + catalog)

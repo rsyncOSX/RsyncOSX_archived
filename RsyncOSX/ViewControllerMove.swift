@@ -23,7 +23,7 @@ class ViewControllerMove: NSViewController {
         self.move = Copyconfigfilestonewhome()
         // Verify that configfiles are not previously moved
         if let newcatalogs = self.move?.newprofilecatalogs,
-            let oldcatalogs = self.move?.oldprofilecatalogs
+           let oldcatalogs = self.move?.oldprofilecatalogs
         {
             if newcatalogs != oldcatalogs {
                 self.preparebutton.isEnabled = true

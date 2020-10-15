@@ -385,7 +385,7 @@ extension ViewControllerSnapshots {
     // Deleting snapshots
     func processterminationdelete() {
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess,
-            let config = self.config
+           let config = self.config
         {
             if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
                 self.delete = false

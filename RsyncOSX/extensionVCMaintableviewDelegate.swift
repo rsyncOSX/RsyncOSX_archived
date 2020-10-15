@@ -41,9 +41,9 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
         if let object = self.configurations?.getConfigurationsDataSource()?[row],
-            let hiddenID: Int = self.configurations?.getConfigurations()[row].hiddenID,
-            let markdays = self.configurations?.getConfigurations()[row].markdays,
-            let tableColumn = tableColumn
+           let hiddenID: Int = self.configurations?.getConfigurations()[row].hiddenID,
+           let markdays = self.configurations?.getConfigurations()[row].markdays,
+           let tableColumn = tableColumn
         {
             let celltext = object[tableColumn.identifier] as? String
             if tableColumn.identifier.rawValue == "daysID" {
@@ -99,7 +99,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
             } else {
                 if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
                     if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
-                        tableColumn.identifier.rawValue == "offsiteServerCellID"
+                       tableColumn.identifier.rawValue == "offsiteServerCellID"
                     {
                         return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
                     } else {

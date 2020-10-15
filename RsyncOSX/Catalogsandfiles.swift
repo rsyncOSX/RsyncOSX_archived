@@ -110,7 +110,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
         var catalog: String?
         // First check if profilecatalog exists, if yes bail out
         if let macserialnumber = self.macserialnumber,
-            let fullrootnomacserial = self.fullrootnomacserial
+           let fullrootnomacserial = self.fullrootnomacserial
         {
             do {
                 let pathexists = try Folder(path: fullrootnomacserial).containsSubfolder(named: macserialnumber)
@@ -144,7 +144,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                     }
                 }
                 if let macserialnumber = self.macserialnumber,
-                    let fullrootnomacserial = self.fullrootnomacserial
+                   let fullrootnomacserial = self.fullrootnomacserial
                 {
                     do {
                         try Folder(path: fullrootnomacserial).createSubfolder(at: macserialnumber)
