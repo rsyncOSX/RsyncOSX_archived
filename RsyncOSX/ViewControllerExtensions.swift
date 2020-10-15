@@ -370,7 +370,7 @@ extension Sorting {
         let sortstring = self.filterbystring(filterby: sortby)
         let sorted = notsortedlist?.sorted { (dict1, dict2) -> Bool in
             if let dict1 = dict1.value(forKey: sortstring) as? String,
-                let dict2 = dict2.value(forKey: sortstring) as? String
+               let dict2 = dict2.value(forKey: sortstring) as? String
             {
                 if dict1 > dict2 { return sortdirection } else { return !sortdirection }
             }

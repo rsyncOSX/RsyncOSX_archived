@@ -103,7 +103,7 @@ class Schedules: ScheduleWriteLoggData {
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
                 if let date1 = (sched1.value(forKey: "dateStart") as? String)?.en_us_date_from_string(),
-                    let date2 = (sched2.value(forKey: "dateStart") as? String)?.en_us_date_from_string()
+                   let date2 = (sched2.value(forKey: "dateStart") as? String)?.en_us_date_from_string()
                 {
                     if date1 > date2 { return true } else { return false }
                 }

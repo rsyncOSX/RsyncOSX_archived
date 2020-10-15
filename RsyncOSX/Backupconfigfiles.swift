@@ -15,7 +15,7 @@ struct Backupconfigfiles: FileErrors {
 
     func backup() {
         if let documentscatalog = self.backuppath,
-            let usedpath = self.usedpath
+           let usedpath = self.usedpath
         {
             var originFolder: Folder?
             do {

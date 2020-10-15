@@ -93,7 +93,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     let compare: (NSMutableDictionary, NSMutableDictionary) -> Bool = { number1, number2 in
         if number1.value(forKey: "sibling") as? Int == number2.value(forKey: "sibling") as? Int,
-            number1.value(forKey: "parent") as? Int == number2.value(forKey: "parent") as? Int
+           number1.value(forKey: "parent") as? Int == number2.value(forKey: "parent") as? Int
         {
             return true
         } else {
