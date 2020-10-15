@@ -256,9 +256,6 @@
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "找到 Rsa 公钥。";
 
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "天";
-
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "打开";
 
@@ -345,9 +342,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW"; */
 "Beq-PN-DJW.headerCell.title" = "平均值 (GB)";
-
-/* Class = "NSButtonCell"; title = "Automatic execution of local configurations"; ObjectID = "BG6-Wq-kSc"; */
-"BG6-Wq-kSc.title" = "自动执行本地配置";
 
 /* Class = "NSTableColumn"; headerCell.title = "Used (GB)"; ObjectID = "bgh-eQ-3ly"; */
 "bgh-eQ-3ly.headerCell.title" = "已使用 (GB)";
@@ -775,9 +769,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "IDs-zU-XOw"; */
 "IDs-zU-XOw.headerCell.title" = "任务";
 
-/* Class = "NSTextFieldCell"; title = "dir :"; ObjectID = "iEk-Zm-Qpb"; */
-"iEk-Zm-Qpb.title" = "目录：";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "iEn-jH-KFP"; */
 "iEn-jH-KFP.title" = "Text Cell";
 
@@ -978,6 +969,9 @@
 
 /* Class = "NSBox"; title = "Remote users and servers"; ObjectID = "NLl-Ha-sMA"; */
 "NLl-Ha-sMA.title" = "远程用户和服务器";
+
+/* Class = "NSButtonCell"; title = "Copy"; ObjectID = "NM9-fK-5xs"; */
+"NM9-fK-5xs.title" = "复制";
 
 /* Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS"; */
 "NMo-mM-awS.title" = "简介";
@@ -1614,4 +1608,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "远程目录";
+
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "天";
 

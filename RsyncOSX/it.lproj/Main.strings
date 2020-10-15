@@ -343,9 +343,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW"; */
 "Beq-PN-DJW.headerCell.title" = "Disponibili (GB)";
 
-/* Class = "NSButtonCell"; title = "Automatic execution of local configurations"; ObjectID = "BG6-Wq-kSc"; */
-"BG6-Wq-kSc.title" = "Esecuzione automatica delle configurazioni locali";
-
 /* Class = "NSTableColumn"; headerCell.title = "Used (GB)"; ObjectID = "bgh-eQ-3ly"; */
 "bgh-eQ-3ly.headerCell.title" = "Usato (GB)";
 
@@ -772,9 +769,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "IDs-zU-XOw"; */
 "IDs-zU-XOw.headerCell.title" = "Attività";
 
-/* Class = "NSTextFieldCell"; title = "dir :"; ObjectID = "iEk-Zm-Qpb"; */
-"iEk-Zm-Qpb.title" = "dir :";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "iEn-jH-KFP"; */
 "iEn-jH-KFP.title" = "Text Cell";
 
@@ -975,6 +969,9 @@
 
 /* Class = "NSBox"; title = "Remote users and servers"; ObjectID = "NLl-Ha-sMA"; */
 "NLl-Ha-sMA.title" = "Utenti e server remoti";
+
+/* Class = "NSButtonCell"; title = "Copy"; ObjectID = "NM9-fK-5xs"; */
+"NM9-fK-5xs.title" = "Copia";
 
 /* Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS"; */
 "NMo-mM-awS.title" = "Introduzione";
