@@ -46,10 +46,12 @@ class ConfigurationsXCTEST: Configurations {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
         for i in 0 ..< (store?.count ?? 0) {
-            if ViewControllerReference.shared.synctasks.contains(store![i].task) {
-                self.configurations?.append(store![i])
-                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: store![i])
-                self.argumentAllConfigurations!.append(rsyncArgumentsOneConfig)
+            if ViewControllerReference.shared.synctasks.contains(store?[i].task ?? "") {
+                if let config = store?[i] {
+                    self.configurations?.append(config)
+                    let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: config)
+                    self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+                }
             }
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
@@ -57,7 +59,9 @@ class ConfigurationsXCTEST: Configurations {
         for i in 0 ..< (self.configurations?.count ?? 0) {
             let task = self.configurations?[i].task
             if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                data.append(ConvertOneConfig(config: self.configurations![i]).dict)
+                if let config = self.configurations?[i] {
+                    data.append(ConvertOneConfig(config: config).dict)
+                }
             }
         }
         self.configurationsDataSource = data
