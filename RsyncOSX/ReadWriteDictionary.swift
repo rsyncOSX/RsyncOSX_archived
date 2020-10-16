@@ -31,6 +31,7 @@ class ReadWriteDictionary: NamesandPaths {
     }
 
     // Function for write data to persistent store
+    @discardableResult
     func writeNSDictionaryToPersistentStorage(array: [NSDictionary]) -> Bool {
         let dictionary = NSDictionary(object: array, forKey: (self.key ?? "") as NSCopying)
         let write = dictionary.write(toFile: self.filename ?? "", atomically: true)
