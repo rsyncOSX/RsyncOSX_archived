@@ -134,6 +134,8 @@
 		E9C6D24120AAB96800B9D212 /* AllProfilenames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* Numbers.swift */; };
 		E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */; };
+		E9CD4359253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */; };
+		E9CD435D253A0FA0003FFBB0 /* ReadWriteJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */; };
 		E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */; };
 		E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD3227976030083405C /* InfoPlist.strings */; };
 		E9DF6DD8227976030083405C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD6227976030083405C /* Localizable.strings */; };
@@ -306,6 +308,8 @@
 		E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProfilenames.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertSchedules.swift; sourceTree = "<group>"; };
+		E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertOneConfigCodable.swift; sourceTree = "<group>"; };
+		E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteJSON.swift; sourceTree = "<group>"; };
 		E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypathidentityfile.swift; sourceTree = "<group>"; };
 		E9DE2CCE228A835C003BC663 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E9DF6DD4227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -430,6 +434,7 @@
 				E9F068F31F27BA0200DDF1A1 /* ReadWriteDictionary.swift */,
 				E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */,
 				E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */,
+				E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */,
 			);
 			name = FilesAndCatalogs;
 			sourceTree = "<group>";
@@ -806,6 +811,7 @@
 				E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */,
 				E92276E322995B3500F7D2B6 /* ConvertOneConfig.swift */,
 				E9FE50BC2527765C00076447 /* ConvertAssist.swift */,
+				E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */,
 			);
 			name = Conversions;
 			sourceTree = "<group>";
@@ -1007,6 +1013,7 @@
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */,
 				E9A63064202B425D00F1FFF1 /* Running.swift in Sources */,
+				E9CD435D253A0FA0003FFBB0 /* ReadWriteJSON.swift in Sources */,
 				E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */,
 				E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */,
 				E9BD689B24F940D800F30AE3 /* Copyconfigfilestonewhome.swift in Sources */,
@@ -1106,6 +1113,7 @@
 				E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */,
 				E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
+				E9CD4359253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */,
 				E84C89262529BB1500381618 /* AssistDefault.swift in Sources */,
 				E9EC78711EACE082001EED9B /* Ssh.swift in Sources */,
