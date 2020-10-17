@@ -111,7 +111,6 @@
 		E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF115249E23E100FD4669 /* NetworkMonitor.swift */; };
 		E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994B7C922A39D7A00B435AB /* Environment.swift */; };
 		E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E996431B231AEFA100E05B40 /* ViewControllerSource.swift */; };
-		E99B0BF4253A31C800902A9B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E99B0BF3253A31C800902A9B /* SwiftyJSON */; };
 		E99D18722304199A003F1796 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99D18712304199A003F1796 /* Socket.swift */; };
 		E99D187423041C47003F1796 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99D187323041C47003F1796 /* Result.swift */; };
 		E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */; };
@@ -344,7 +343,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E99B0BF4253A31C800902A9B /* SwiftyJSON in Frameworks */,
 				E97301B724D03E4F00652B28 /* Files in Frameworks */,
 				E957642124BF9F7C008C66E1 /* ShellOut in Frameworks */,
 			);
@@ -891,7 +889,6 @@
 			packageProductDependencies = (
 				E957642024BF9F7C008C66E1 /* ShellOut */,
 				E97301B624D03E4F00652B28 /* Files */,
-				E99B0BF3253A31C800902A9B /* SwiftyJSON */,
 			);
 			productName = RsyncOSX;
 			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
@@ -961,7 +958,6 @@
 			packageReferences = (
 				E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */,
 				E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */,
-				E99B0BF2253A31C800902A9B /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
 			projectDirPath = "";
@@ -1492,14 +1488,6 @@
 				minimumVersion = 4.1.1;
 			};
 		};
-		E99B0BF2253A31C800902A9B /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rsyncOSX/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1512,11 +1500,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
-		};
-		E99B0BF3253A31C800902A9B /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E99B0BF2253A31C800902A9B /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

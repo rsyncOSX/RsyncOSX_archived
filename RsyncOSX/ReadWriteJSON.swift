@@ -71,13 +71,13 @@ class ReadWriteJSON: NamesandPaths {
             } catch {}
         }
     }
-    
+
     // Json test
     /*
-    let json = ReadWriteJSON(configurations: self.configurations, profile: profile)
-    json.writeJSONToPersistentStore()
-    json.readJSONFromPersistentStore()
-    */
+     let json = ReadWriteJSON(configurations: self.configurations, profile: profile)
+     json.writeJSONToPersistentStore()
+     json.readJSONFromPersistentStore()
+     */
 
     init(configurations: [Configuration]?, profile: String?) {
         super.init(profileorsshrootpath: .profileroot)
