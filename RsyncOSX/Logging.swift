@@ -23,7 +23,6 @@ class Logging: NamesandPaths, FileErrors {
                 if let data = self.log {
                     try file.write(data)
                     if let filesize = self.filesize() {
-                        print(filesize)
                         guard Int(truncating: filesize) < ViewControllerReference.shared.logfilesize else {
                             let size = Int(truncating: filesize)
                             self.error(error: String(size), errortype: .filesize)
