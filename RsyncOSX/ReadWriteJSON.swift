@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class ReadWriteJSON: SetConfigurations {
     var jsonstring: String?
-    
+
     func createJSON() {
         var structscodable: [ConvertOneConfigCodable]?
         if let configurations = self.configurations?.configurations {
@@ -40,19 +40,18 @@ class ReadWriteJSON: SetConfigurations {
     }
 
     func writeJSONToPersistentStore() {
-        let jsonString = "{\"location\": \"the moon\"}"
-        if let jsonData = jsonString.data(using: .utf8),
-           let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
                                                             in: .userDomainMask).first
         {
-            let pathWithFileName = documentDirectory.appendingPathComponent("myJsonData")
+            let pathWithFilename = documentDirectory.appendingPathComponent("myJsonString.json")
             do {
-                try jsonData.write(to: pathWithFileName)
+                try self.jsonstring!.write(to: pathWithFilename,
+                                           atomically: true,
+                                           encoding: .utf8)
             } catch {
-                // handle error
+                // Handle error
             }
         }
     }
-
     init() {}
 }
