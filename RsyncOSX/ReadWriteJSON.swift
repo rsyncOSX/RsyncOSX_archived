@@ -15,7 +15,7 @@ class ReadWriteJSON: NamesandPaths {
     var configurations: [Configuration]?
     var decodejson: [Any]?
 
-    func createJSON() {
+    private func createJSON() {
         var structscodable: [ConvertOneConfigCodable]?
         if let configurations = self.configurations {
             structscodable = [ConvertOneConfigCodable]()
@@ -26,7 +26,7 @@ class ReadWriteJSON: NamesandPaths {
         self.jsonstring = self.encodedata(data: structscodable)
     }
 
-    func encodedata(data: [ConvertOneConfigCodable]?) -> String? {
+    private func encodedata(data: [ConvertOneConfigCodable]?) -> String? {
         do {
             let jsonData = try JSONEncoder().encode(data)
             if let jsonString = String(data: jsonData, encoding: .utf8) {
@@ -38,18 +38,23 @@ class ReadWriteJSON: NamesandPaths {
         return nil
     }
 
-    func decodedata() {
-        if let jsonstring = self.jsonstring!.data(using: .utf8) {
+    func readJSONFromPersistentStore() {
+        if var atpath = self.fullroot {
             do {
-                let decoder = JSONDecoder()
-                self.decodejson = try decoder.decode([ConfigurationsJson].self, from: jsonstring)
-
+                if self.profile != nil {
+                    atpath += "/" + (self.profile ?? "")
+                }
+                let jsonfile = atpath + "/" + "configurations.json"
+                let file = try File(path: jsonfile)
+                let jsonfromstore = try file.readAsString()
+                if let jsonstring = jsonfromstore.data(using: .utf8) {
+                    do {
+                        let decoder = JSONDecoder()
+                        self.decodejson = try decoder.decode([ConfigurationsJson].self, from: jsonstring)
+                    } catch {}
+                }
             } catch {}
         }
-    }
-
-    func readJSONFromPersistentStore() -> Any? {
-        return nil
     }
 
     func writeJSONToPersistentStore() {
@@ -66,10 +71,18 @@ class ReadWriteJSON: NamesandPaths {
             } catch {}
         }
     }
+    
+    // Json test
+    /*
+    let json = ReadWriteJSON(configurations: self.configurations, profile: profile)
+    json.writeJSONToPersistentStore()
+    json.readJSONFromPersistentStore()
+    */
 
     init(configurations: [Configuration]?, profile: String?) {
         super.init(profileorsshrootpath: .profileroot)
         self.configurations = configurations
         self.profile = profile
+        self.createJSON()
     }
 }

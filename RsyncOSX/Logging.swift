@@ -15,7 +15,7 @@ class Logging: NamesandPaths, FileErrors {
     var log: String?
     var contentoflogfile: [String]?
 
-    private func writeloggfile() {
+    func writeloggfile() {
         if let atpath = self.fullroot {
             do {
                 let folder = try Folder(path: atpath)
@@ -50,7 +50,7 @@ class Logging: NamesandPaths, FileErrors {
         return 0
     }
 
-    private func readloggfile() {
+    func readloggfile() {
         if var atpath = self.fullroot {
             do {
                 atpath += "/" + ViewControllerReference.shared.logname
@@ -69,16 +69,14 @@ class Logging: NamesandPaths, FileErrors {
         var tmplogg = [String]()
         var startindex = (self.outputprocess?.getOutput()?.count ?? 0) - 8
         if startindex < 0 { startindex = 0 }
-        tmplogg.append("\n")
-        tmplogg.append("-------------------------------------------")
-        tmplogg.append(date + "\n")
+        tmplogg.append("\n" + "-------------------------------------------" + date + "\n")
         for i in startindex ..< (self.outputprocess?.getOutput()?.count ?? 0) {
             tmplogg.append(self.outputprocess?.getOutput()?[i] ?? "")
         }
         if self.log == nil {
             self.log = tmplogg.joined(separator: "\n")
         } else {
-            self.log = self.log! + tmplogg.joined(separator: "\n")
+            self.log! += tmplogg.joined(separator: "\n")
         }
         self.writeloggfile()
     }
@@ -86,12 +84,11 @@ class Logging: NamesandPaths, FileErrors {
     private func fulllogging() {
         let date = Date().localized_string_from_date()
         self.readloggfile()
-        let tmplogg: String = "\n" + "-------------------------------------------\n" + date + "\n"
-            + "-------------------------------------------\n"
+        let tmplogg: String = "\n" + "-------------------------------------------" + date + "\n"
         if self.log == nil {
             self.log = tmplogg + (self.outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
         } else {
-            self.log = self.log! + tmplogg + (self.outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
+            self.log! += tmplogg + (self.outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
         }
         self.writeloggfile()
     }
