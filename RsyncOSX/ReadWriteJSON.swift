@@ -8,7 +8,6 @@
 
 import Files
 import Foundation
-import SwiftyJSON
 
 class ReadWriteJSON: NamesandPaths {
     var jsonstring: String?
