@@ -303,10 +303,12 @@ class Configurations: ReloadTable, SetSchedules {
         self.profile = profile
         self.readconfigurations()
         ViewControllerReference.shared.process = nil
-        // Json test
-        let json = ReadWriteJSON(configurations: self.configurations, profile: profile)
-        json.createJSON()
-        json.writeJSONToPersistentStore()
-        json.decodedata()
+        /*
+         // Json test
+         let json = ReadWriteJSON(configurations: self.configurations, profile: profile)
+         json.createJSON()
+         json.writeJSONToPersistentStore()
+         json.decodedata()
+         */
     }
 }

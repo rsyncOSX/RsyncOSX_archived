@@ -76,7 +76,7 @@ final class ViewControllerReference {
     // Loggfile
     var minimumlogging: Bool = false
     var fulllogging: Bool = false
-    var logname: String = "rsynclog"
+    var logname: String = "rsynclog.txt"
     var fileURL: URL?
     // String tasks
     var synchronize: String = "synchronize"
