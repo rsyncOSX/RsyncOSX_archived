@@ -6,24 +6,27 @@
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
 
+import Files
 import Foundation
 import SwiftyJSON
 
-class ReadWriteJSON: SetConfigurations {
+class ReadWriteJSON: NamesandPaths {
     var jsonstring: String?
+    var configurations: [Configuration]?
+    var decodejson: [Any]?
 
     func createJSON() {
         var structscodable: [ConvertOneConfigCodable]?
-        if let configurations = self.configurations?.configurations {
+        if let configurations = self.configurations {
             structscodable = [ConvertOneConfigCodable]()
             for i in 0 ..< configurations.count {
                 structscodable?.append(ConvertOneConfigCodable(config: configurations[i]))
             }
         }
-        self.jsonstring = self.encode(data: structscodable)
+        self.jsonstring = self.encodedata(data: structscodable)
     }
 
-    func encode(data: [ConvertOneConfigCodable]?) -> String? {
+    func encodedata(data: [ConvertOneConfigCodable]?) -> String? {
         do {
             let jsonData = try JSONEncoder().encode(data)
             if let jsonString = String(data: jsonData, encoding: .utf8) {
@@ -35,15 +38,13 @@ class ReadWriteJSON: SetConfigurations {
         return nil
     }
 
-    func decode() {
+    func decodedata() {
         if let jsonstring = self.jsonstring!.data(using: .utf8) {
             do {
                 let decoder = JSONDecoder()
-                let test = try decoder.decode(ConfigurationsJson.self, from: jsonstring)
-                print(test.backupID)
-            } catch {
-                print("error")
-            }
+                self.decodejson = try decoder.decode([ConfigurationsJson].self, from: jsonstring)
+
+            } catch {}
         }
     }
 
@@ -52,19 +53,23 @@ class ReadWriteJSON: SetConfigurations {
     }
 
     func writeJSONToPersistentStore() {
-        if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
-                                                            in: .userDomainMask).first
-        {
-            let pathWithFilename = documentDirectory.appendingPathComponent("configurations.json")
+        if var atpath = self.fullroot {
             do {
-                try self.jsonstring!.write(to: pathWithFilename,
-                                           atomically: true,
-                                           encoding: .utf8)
-            } catch {
-                // Handle error
-            }
+                if self.profile != nil {
+                    atpath += "/" + (self.profile ?? "")
+                }
+                let folder = try Folder(path: atpath)
+                let file = try folder.createFile(named: "configurations.json")
+                if let data = self.jsonstring {
+                    try file.write(data)
+                }
+            } catch {}
         }
     }
 
-    init() {}
+    init(configurations: [Configuration]?, profile: String?) {
+        super.init(profileorsshrootpath: .profileroot)
+        self.configurations = configurations
+        self.profile = profile
+    }
 }

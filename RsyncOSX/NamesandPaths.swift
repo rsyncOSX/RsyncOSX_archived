@@ -27,7 +27,7 @@ class NamesandPaths {
     var profileorsshroot: Profileorsshrootpath?
     // rootpath without macserialnumber
     var fullrootnomacserial: String?
-    // rootpath with macserianlnumer
+    // rootpath with macserialnumber
     var fullroot: String?
     // If global keypath and identityfile is set must split keypath and identifile
     // create a new key require full path
