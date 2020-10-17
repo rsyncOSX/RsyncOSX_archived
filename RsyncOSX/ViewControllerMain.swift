@@ -41,6 +41,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
     @IBOutlet var errorinfo: NSTextField!
+    @IBOutlet var jsonbutton: NSButton!
 
     // Reference to Configurations and Schedules object
     var configurations: Configurations?
@@ -235,6 +236,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // JSon test
+        self.jsonbutton.isHidden = !ViewControllerReference.shared.json
         // Decide if:
         // 1: First time start, use new profilepath
         // 2: Old profilepath is copied to new, use new profilepath
@@ -435,5 +438,17 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
+    }
+
+    @IBAction func Json(_: NSButton) {
+        var json: ReadWriteJSON?
+        if let profile = self.configurations?.getProfile() {
+            json = ReadWriteJSON(configurations: self.configurations?.configurations, profile: profile)
+
+        } else {
+            json = ReadWriteJSON(configurations: self.configurations?.configurations, profile: nil)
+        }
+        json?.writeJSONToPersistentStore()
+        json?.readJSONFromPersistentStore()
     }
 }

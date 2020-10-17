@@ -69,7 +69,7 @@ class Logging: NamesandPaths, FileErrors {
         var tmplogg = [String]()
         var startindex = (self.outputprocess?.getOutput()?.count ?? 0) - 8
         if startindex < 0 { startindex = 0 }
-        tmplogg.append("\n" + "-------------------------------------------" + date + "\n")
+        tmplogg.append("\n" + date + " -------------------------------------------" + "\n")
         for i in startindex ..< (self.outputprocess?.getOutput()?.count ?? 0) {
             tmplogg.append(self.outputprocess?.getOutput()?[i] ?? "")
         }
@@ -84,7 +84,7 @@ class Logging: NamesandPaths, FileErrors {
     private func fulllogging() {
         let date = Date().localized_string_from_date()
         self.readloggfile()
-        let tmplogg: String = "\n" + "-------------------------------------------" + date + "\n"
+        let tmplogg: String = "\n" + date + " -------------------------------------------" + "\n"
         if self.log == nil {
             self.log = tmplogg + (self.outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
         } else {

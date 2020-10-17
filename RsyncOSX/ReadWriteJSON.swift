@@ -51,6 +51,9 @@ class ReadWriteJSON: NamesandPaths {
                     do {
                         let decoder = JSONDecoder()
                         self.decodejson = try decoder.decode([ConfigurationsJson].self, from: jsonstring)
+                        let logg = OutputProcess()
+                        logg.addlinefromoutput(str: "JSON: readJSONFromPersistentStore success")
+                        _ = Logging(logg, true)
                     } catch {}
                 }
             } catch {}
@@ -67,17 +70,13 @@ class ReadWriteJSON: NamesandPaths {
                 let file = try folder.createFile(named: "configurations.json")
                 if let data = self.jsonstring {
                     try file.write(data)
+                    let logg = OutputProcess()
+                    logg.addlinefromoutput(str: "JSON: writeJSONToPersistentStore success")
+                    _ = Logging(logg, true)
                 }
             } catch {}
         }
     }
-
-    // Json test
-    /*
-     let json = ReadWriteJSON(configurations: self.configurations, profile: profile)
-     json.writeJSONToPersistentStore()
-     json.readJSONFromPersistentStore()
-     */
 
     init(configurations: [Configuration]?, profile: String?) {
         super.init(profileorsshrootpath: .profileroot)
