@@ -111,7 +111,6 @@
 		E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF115249E23E100FD4669 /* NetworkMonitor.swift */; };
 		E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994B7C922A39D7A00B435AB /* Environment.swift */; };
 		E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E996431B231AEFA100E05B40 /* ViewControllerSource.swift */; };
-		E99B0BF4253A31C800902A9B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E99B0BF3253A31C800902A9B /* SwiftyJSON */; };
 		E99D18722304199A003F1796 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99D18712304199A003F1796 /* Socket.swift */; };
 		E99D187423041C47003F1796 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99D187323041C47003F1796 /* Result.swift */; };
 		E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */; };
@@ -135,8 +134,6 @@
 		E9C6D24120AAB96800B9D212 /* AllProfilenames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* Numbers.swift */; };
 		E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */; };
-		E9CD4359253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */; };
-		E9CD435D253A0FA0003FFBB0 /* ReadWriteJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */; };
 		E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */; };
 		E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD3227976030083405C /* InfoPlist.strings */; };
 		E9DF6DD8227976030083405C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD6227976030083405C /* Localizable.strings */; };
@@ -309,8 +306,6 @@
 		E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProfilenames.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertSchedules.swift; sourceTree = "<group>"; };
-		E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertOneConfigCodable.swift; sourceTree = "<group>"; };
-		E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteJSON.swift; sourceTree = "<group>"; };
 		E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypathidentityfile.swift; sourceTree = "<group>"; };
 		E9DE2CCE228A835C003BC663 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E9DF6DD4227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -342,7 +337,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E99B0BF4253A31C800902A9B /* SwiftyJSON in Frameworks */,
 				E97301B724D03E4F00652B28 /* Files in Frameworks */,
 				E957642124BF9F7C008C66E1 /* ShellOut in Frameworks */,
 			);
@@ -436,7 +430,6 @@
 				E9F068F31F27BA0200DDF1A1 /* ReadWriteDictionary.swift */,
 				E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */,
 				E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */,
-				E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */,
 			);
 			name = FilesAndCatalogs;
 			sourceTree = "<group>";
@@ -813,7 +806,6 @@
 				E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */,
 				E92276E322995B3500F7D2B6 /* ConvertOneConfig.swift */,
 				E9FE50BC2527765C00076447 /* ConvertAssist.swift */,
-				E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */,
 			);
 			name = Conversions;
 			sourceTree = "<group>";
@@ -880,7 +872,6 @@
 			packageProductDependencies = (
 				E957642024BF9F7C008C66E1 /* ShellOut */,
 				E97301B624D03E4F00652B28 /* Files */,
-				E99B0BF3253A31C800902A9B /* SwiftyJSON */,
 			);
 			productName = RsyncOSX;
 			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
@@ -950,7 +941,6 @@
 			packageReferences = (
 				E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */,
 				E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */,
-				E99B0BF2253A31C800902A9B /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
 			projectDirPath = "";
@@ -1017,7 +1007,6 @@
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */,
 				E9A63064202B425D00F1FFF1 /* Running.swift in Sources */,
-				E9CD435D253A0FA0003FFBB0 /* ReadWriteJSON.swift in Sources */,
 				E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */,
 				E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */,
 				E9BD689B24F940D800F30AE3 /* Copyconfigfilestonewhome.swift in Sources */,
@@ -1117,7 +1106,6 @@
 				E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */,
 				E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
-				E9CD4359253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */,
 				E84C89262529BB1500381618 /* AssistDefault.swift in Sources */,
 				E9EC78711EACE082001EED9B /* Ssh.swift in Sources */,
@@ -1480,14 +1468,6 @@
 				minimumVersion = 4.1.1;
 			};
 		};
-		E99B0BF2253A31C800902A9B /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rsyncOSX/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1500,11 +1480,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
-		};
-		E99B0BF3253A31C800902A9B /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E99B0BF2253A31C800902A9B /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
