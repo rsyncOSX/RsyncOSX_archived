@@ -408,6 +408,7 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E978EC45253ABD1A002211FC /* Json */,
 				E915568425284EFA007573E1 /* Assist */,
 				E9764F5E204BEE710018C0D7 /* AllProfiles */,
 				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
@@ -436,7 +437,6 @@
 				E9F068F31F27BA0200DDF1A1 /* ReadWriteDictionary.swift */,
 				E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */,
 				E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */,
-				E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */,
 			);
 			name = FilesAndCatalogs;
 			sourceTree = "<group>";
@@ -732,6 +732,15 @@
 			name = AllProfiles;
 			sourceTree = "<group>";
 		};
+		E978EC45253ABD1A002211FC /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				E9CD435C253A0FA0003FFBB0 /* ReadWriteJSON.swift */,
+				E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */,
+			);
+			name = Json;
+			sourceTree = "<group>";
+		};
 		E97D96DA232C3E54004405DD /* XCtest */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,7 +822,6 @@
 				E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */,
 				E92276E322995B3500F7D2B6 /* ConvertOneConfig.swift */,
 				E9FE50BC2527765C00076447 /* ConvertAssist.swift */,
-				E9CD4358253A0E9A003FFBB0 /* ConvertOneConfigCodable.swift */,
 			);
 			name = Conversions;
 			sourceTree = "<group>";
