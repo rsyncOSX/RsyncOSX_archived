@@ -397,10 +397,13 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
+        /*
         // Json test
         let json = ReadWriteJSON()
         json.createJSON()
         json.writeJSONToPersistentStore()
+        json.decode()
+        */
     }
 
     override func viewDidAppear() {

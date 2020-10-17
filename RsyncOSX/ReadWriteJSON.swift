@@ -35,6 +35,18 @@ class ReadWriteJSON: SetConfigurations {
         return nil
     }
 
+    func decode() {
+        if let jsonstring = self.jsonstring!.data(using: .utf8) {
+            do {
+                let decoder = JSONDecoder()
+                let test = try decoder.decode(ConfigurationsJson.self, from: jsonstring)
+                print(test.backupID)
+            } catch {
+                print("error")
+            }
+        }
+    }
+
     func readJSONFromPersistentStore() -> Any? {
         return nil
     }
