@@ -43,7 +43,7 @@ class ReadWriteJSON: SetConfigurations {
         if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
                                                             in: .userDomainMask).first
         {
-            let pathWithFilename = documentDirectory.appendingPathComponent("myJsonString.json")
+            let pathWithFilename = documentDirectory.appendingPathComponent("configurations.json")
             do {
                 try self.jsonstring!.write(to: pathWithFilename,
                                            atomically: true,
@@ -53,5 +53,6 @@ class ReadWriteJSON: SetConfigurations {
             }
         }
     }
+
     init() {}
 }
