@@ -11,7 +11,6 @@ import Foundation
 struct LogrecordsCodable: Codable {
     var dateExecuted: String?
     var resultExecuted: String?
-    
 }
 
 struct ConvertOneScheduleCodable: Codable {
@@ -23,7 +22,7 @@ struct ConvertOneScheduleCodable: Codable {
     var logrecords: [LogrecordsCodable]?
     var delete: Bool?
     var profilename: String?
-    
+
     init(schedule: ConfigurationSchedule) {
         self.hiddenID = schedule.hiddenID
         self.offsiteserver = schedule.offsiteserver
