@@ -9,7 +9,7 @@
 import Files
 import Foundation
 
-class ReadWriteJSON: NamesandPaths {
+class ReadWriteConfigurationsJSON: NamesandPaths {
     var jsonstring: String?
     var configurations: [Configuration]?
     var decodejson: [Any]?
