@@ -9,7 +9,7 @@
 import Files
 import Foundation
 
-class ReadWriteJSON: NamesandPaths {
+class ReadWriteConfigurationsJSON: NamesandPaths {
     var jsonstring: String?
     var configurations: [Configuration]?
     var decodejson: [Any]?
@@ -51,7 +51,7 @@ class ReadWriteJSON: NamesandPaths {
                         let decoder = JSONDecoder()
                         self.decodejson = try decoder.decode([ConfigurationsJson].self, from: jsonstring)
                         let logg = OutputProcess()
-                        logg.addlinefromoutput(str: "JSON: readJSONFromPersistentStore success")
+                        logg.addlinefromoutput(str: "JSON (configurations): readJSONFromPersistentStore success")
                         _ = Logging(logg, true)
                     } catch {}
                 }
@@ -70,7 +70,7 @@ class ReadWriteJSON: NamesandPaths {
                 if let data = self.jsonstring {
                     try file.write(data)
                     let logg = OutputProcess()
-                    logg.addlinefromoutput(str: "JSON: writeJSONToPersistentStore success")
+                    logg.addlinefromoutput(str: "JSON (configurations): writeJSONToPersistentStore success")
                     _ = Logging(logg, true)
                 }
             } catch {}
