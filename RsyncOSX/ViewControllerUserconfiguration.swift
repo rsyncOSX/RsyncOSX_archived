@@ -39,7 +39,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var statuslightpathrsyncosx: NSImageView!
     @IBOutlet var statuslightpathrsyncosxsched: NSImageView!
     @IBOutlet var savebutton: NSButton!
-    @IBOutlet var automaticexecutelocalvolumes: NSButton!
     @IBOutlet var environment: NSTextField!
     @IBOutlet var environmentvalue: NSTextField!
     @IBOutlet var enableenvironment: NSButton!
@@ -48,12 +47,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var sshport: NSTextField!
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var statuslightsshkeypath: NSImageView!
-    @IBOutlet var closebutton: NSButton!
     @IBOutlet var monitornetworkconnection: NSButton!
-
-    @IBAction func closeview(_: NSButton) {
-        self.view.window?.close()
-    }
 
     @IBAction func copyconfigfiles(_: NSButton) {
         _ = Backupconfigfiles()
@@ -151,10 +145,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         _ = RsyncVersionString()
     }
 
-    @IBAction func closenosave(_: NSButton) {
-        self.view.window?.close()
-    }
-
     @IBAction func logging(_: NSButton) {
         if self.fulllogging.state == .on {
             ViewControllerReference.shared.fulllogging = true
@@ -172,8 +162,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     private func setdirty() {
         self.dirty = true
         self.savebutton.title = NSLocalizedString("Save", comment: "Userconfig ")
-        self.closebutton.isHidden = false
-        self.closebutton.isEnabled = true
     }
 
     private func setmarknumberofdayssince() {
@@ -417,7 +405,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.statuslightpathrsyncosx.isHidden = true
         self.statuslightpathrsyncosxsched.isHidden = true
         self.statuslightsshkeypath.isHidden = true
-        self.closebutton.isHidden = true
     }
 
     // Function for check and set user configuration
