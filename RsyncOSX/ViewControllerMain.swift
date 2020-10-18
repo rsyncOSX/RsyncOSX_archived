@@ -454,5 +454,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         jsonconfigurations?.writeJSONToPersistentStore()
         jsonconfigurations?.readJSONFromPersistentStore()
         jsonschedules?.writeJSONToPersistentStore()
+        jsonschedules?.readJSONFromPersistentStore()
     }
 }
