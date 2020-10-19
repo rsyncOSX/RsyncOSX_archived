@@ -271,16 +271,55 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations![index].snapshotnum = num + 1
     }
 
+    private func transform(object: ConfigurationsJson) -> Configuration {
+        let dict = NSDictionary()
+        dict.setValue(object.backupID ?? "", forKey: "backupID")
+        dict.setValue(object.dateRun ?? "", forKey: "dateRun")
+        dict.setValue(object.dayssincelastbackup ?? "", forKey: "dayssincelastbackup")
+        dict.setValue(object.haltshelltasksonerror ?? "", forKey: "haltshelltasksonerror")
+        dict.setValue(object.localCatalog ?? "", forKey: "localCatalog")
+        dict.setValue(object.markdays ?? false, forKey: "markdays")
+        dict.setValue(object.offsiteCatalog ?? "", forKey: "offsiteCatalog")
+        dict.setValue(object.offsiteServer ?? "", forKey: "offsiteServer")
+        dict.setValue(object.offsiteUsername ?? "", forKey: "offsiteUsername")
+        dict.setValue(object.parameter1 ?? "", forKey: "parameter1")
+        dict.setValue(object.parameter2 ?? "", forKey: "parameter2")
+        dict.setValue(object.parameter3 ?? "", forKey: "parameter3")
+        dict.setValue(object.parameter4 ?? "", forKey: "parameter4")
+        dict.setValue(object.parameter5 ?? "", forKey: "parameter5")
+        dict.setValue(object.parameter6 ?? "", forKey: "parameter6")
+        dict.setValue(object.parameter8 ?? "", forKey: "parameter8")
+        dict.setValue(object.parameter9 ?? "", forKey: "parameter9")
+        dict.setValue(object.parameter10 ?? "", forKey: "parameter10")
+        dict.setValue(object.parameter11 ?? "", forKey: "parameter11")
+        dict.setValue(object.parameter12 ?? "", forKey: "parameter12")
+        dict.setValue(object.parameter13 ?? "", forKey: "parameter13")
+        dict.setValue(object.parameter14 ?? "", forKey: "parameter14")
+        dict.setValue(object.rsyncdaemon ?? "", forKey: "rsyncdaemon")
+        dict.setValue(object.sshkeypathandidentityfile ?? "", forKey: "sshkeypathandidentityfile")
+        dict.setValue(object.sshport ?? "", forKey: "sshport")
+        dict.setValue(object.task ?? "", forKey: "task")
+        dict.setValue(object.hiddenID ?? 0, forKey: "hiddenID")
+        dict.setValue(object.snapdayoffweek ?? 0, forKey: "snapdayoffweek")
+        dict.setValue(object.snaplast ?? 0, forKey: "snaplast")
+        dict.setValue(object.snapshotnum ?? 0, forKey: "snapshotnum")
+        dict.setValue(object.pretask ?? "", forKey: "pretask")
+        dict.setValue(object.executepretask ?? 0, forKey: "executepretask")
+        dict.setValue(object.posttask ?? "", forKey: "posttask")
+        dict.setValue(object.executeposttask ?? 0, forKey: "executeposttask")
+        return Configuration(dictionary: dict)
+    }
+
     func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
+        // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
+        let store = ReadWriteConfigurationsJSON(profile: self.profile).decodejson
         for i in 0 ..< (store?.count ?? 0) {
-            if ViewControllerReference.shared.synctasks.contains(store?[i].task ?? "") {
-                if let config = store?[i] {
-                    self.configurations?.append(config)
-                    let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: config)
-                    self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
-                }
+            let transformed = transform(object: (store?[i] as? ConfigurationsJson)!)
+            if ViewControllerReference.shared.synctasks.contains(transformed.task) {
+                self.configurations?.append(transformed)
+                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
+                self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
             }
         }
         // Then prepare the datasource for use in tableviews as Dictionarys

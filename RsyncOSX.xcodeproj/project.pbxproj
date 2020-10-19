@@ -135,7 +135,6 @@
 		E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* Numbers.swift */; };
 		E9C70CA9253C572E00FC75C6 /* ConvertOneScheduleCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C70CA8253C572E00FC75C6 /* ConvertOneScheduleCodable.swift */; };
 		E9C77993253ADF1000642E90 /* ConfigurationsJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C77992253ADF1000642E90 /* ConfigurationsJson.swift */; };
-		E9CB5013253CD1280097A187 /* ReadWriteJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB5012253CD1280097A187 /* ReadWriteJSON.swift */; };
 		E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */; };
 		E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */; };
 		E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD3227976030083405C /* InfoPlist.strings */; };
@@ -314,7 +313,6 @@
 		E9C6EA891ED2AE2F00680D4D /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		E9C70CA8253C572E00FC75C6 /* ConvertOneScheduleCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertOneScheduleCodable.swift; sourceTree = "<group>"; };
 		E9C77992253ADF1000642E90 /* ConfigurationsJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsJson.swift; sourceTree = "<group>"; };
-		E9CB5012253CD1280097A187 /* ReadWriteJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteJSON.swift; sourceTree = "<group>"; };
 		E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertSchedules.swift; sourceTree = "<group>"; };
 		E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypathidentityfile.swift; sourceTree = "<group>"; };
 		E9DE2CCE228A835C003BC663 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -749,7 +747,6 @@
 				E9C70CA8253C572E00FC75C6 /* ConvertOneScheduleCodable.swift */,
 				E9FDDEC9253CADE400D41FD1 /* ReadWriteSchedulesJSON.swift */,
 				E9FDDED1253CB45800D41FD1 /* SchedulesJson.swift */,
-				E9CB5012253CD1280097A187 /* ReadWriteJSON.swift */,
 			);
 			name = Json;
 			sourceTree = "<group>";
@@ -1029,7 +1026,6 @@
 				E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */,
 				E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */,
 				E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */,
-				E9CB5013253CD1280097A187 /* ReadWriteJSON.swift in Sources */,
 				A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */,
 				E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */,
 				E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */,

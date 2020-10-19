@@ -36,6 +36,13 @@ struct ConfigurationsJson: Codable {
     let sshkeypathandidentityfile: String?
     let sshport: Int?
     let task: String?
+    let snapdayoffweek: String?
+    let snaplast: Int?
+    let executepretask: Int?
+    let pretask: String?
+    let executeposttask: Int?
+    let posttask: String?
+    let snapshotnum: Int?
 
     enum CodingKeys: String, CodingKey {
         case backupID
@@ -65,6 +72,13 @@ struct ConfigurationsJson: Codable {
         case sshkeypathandidentityfile
         case sshport
         case task
+        case snapdayoffweek
+        case snaplast
+        case executepretask
+        case pretask
+        case executeposttask
+        case posttask
+        case snapshotnum
     }
 
     init(from decoder: Decoder) throws {
@@ -96,5 +110,12 @@ struct ConfigurationsJson: Codable {
         sshkeypathandidentityfile = try values.decodeIfPresent(String.self, forKey: .sshkeypathandidentityfile)
         sshport = try values.decodeIfPresent(Int.self, forKey: .sshport)
         task = try values.decodeIfPresent(String.self, forKey: .task)
+        snapdayoffweek = try values.decodeIfPresent(String.self, forKey: .snapdayoffweek)
+        snaplast = try values.decodeIfPresent(Int.self, forKey: .snaplast)
+        executepretask = try values.decodeIfPresent(Int.self, forKey: .executepretask)
+        pretask = try values.decodeIfPresent(String.self, forKey: .pretask)
+        executeposttask = try values.decodeIfPresent(Int.self, forKey: .executeposttask)
+        posttask = try values.decodeIfPresent(String.self, forKey: .posttask)
+        snapshotnum = try values.decodeIfPresent(Int.self, forKey: .snapshotnum)
     }
 }
