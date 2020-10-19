@@ -272,41 +272,42 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     private func transform(object: ConfigurationsJson) -> Configuration {
-        let dict = NSDictionary()
-        dict.setValue(object.backupID ?? "", forKey: "backupID")
-        dict.setValue(object.dateRun ?? "", forKey: "dateRun")
-        dict.setValue(object.dayssincelastbackup ?? "", forKey: "dayssincelastbackup")
-        dict.setValue(object.haltshelltasksonerror ?? "", forKey: "haltshelltasksonerror")
-        dict.setValue(object.localCatalog ?? "", forKey: "localCatalog")
-        dict.setValue(object.markdays ?? false, forKey: "markdays")
-        dict.setValue(object.offsiteCatalog ?? "", forKey: "offsiteCatalog")
-        dict.setValue(object.offsiteServer ?? "", forKey: "offsiteServer")
-        dict.setValue(object.offsiteUsername ?? "", forKey: "offsiteUsername")
-        dict.setValue(object.parameter1 ?? "", forKey: "parameter1")
-        dict.setValue(object.parameter2 ?? "", forKey: "parameter2")
-        dict.setValue(object.parameter3 ?? "", forKey: "parameter3")
-        dict.setValue(object.parameter4 ?? "", forKey: "parameter4")
-        dict.setValue(object.parameter5 ?? "", forKey: "parameter5")
-        dict.setValue(object.parameter6 ?? "", forKey: "parameter6")
-        dict.setValue(object.parameter8 ?? "", forKey: "parameter8")
-        dict.setValue(object.parameter9 ?? "", forKey: "parameter9")
-        dict.setValue(object.parameter10 ?? "", forKey: "parameter10")
-        dict.setValue(object.parameter11 ?? "", forKey: "parameter11")
-        dict.setValue(object.parameter12 ?? "", forKey: "parameter12")
-        dict.setValue(object.parameter13 ?? "", forKey: "parameter13")
-        dict.setValue(object.parameter14 ?? "", forKey: "parameter14")
-        dict.setValue(object.rsyncdaemon ?? "", forKey: "rsyncdaemon")
-        dict.setValue(object.sshkeypathandidentityfile ?? "", forKey: "sshkeypathandidentityfile")
-        dict.setValue(object.sshport ?? "", forKey: "sshport")
-        dict.setValue(object.task ?? "", forKey: "task")
-        dict.setValue(object.hiddenID ?? 0, forKey: "hiddenID")
-        dict.setValue(object.snapdayoffweek ?? 0, forKey: "snapdayoffweek")
-        dict.setValue(object.snaplast ?? 0, forKey: "snaplast")
-        dict.setValue(object.snapshotnum ?? 0, forKey: "snapshotnum")
-        dict.setValue(object.pretask ?? "", forKey: "pretask")
-        dict.setValue(object.executepretask ?? 0, forKey: "executepretask")
-        dict.setValue(object.posttask ?? "", forKey: "posttask")
-        dict.setValue(object.executeposttask ?? 0, forKey: "executeposttask")
+        let dict: NSDictionary = [
+            "backupID": object.backupID,
+            "dateRun": object.dateRun,
+            "dayssincelastbackup": object.dayssincelastbackup,
+            "haltshelltasksonerror": object.haltshelltasksonerror,
+            "localCatalog": object.localCatalog,
+            "markdays": object.markdays,
+            "offsiteCatalog": object.offsiteCatalog,
+            "offsiteServer": object.offsiteServer,
+            "offsiteUsername": object.offsiteUsername,
+            "parameter1": object.parameter1,
+            "parameter2": object.parameter2,
+            "parameter3": object.parameter3,
+            "parameter4": object.parameter4,
+            "parameter5": object.parameter5,
+            "parameter6": object.parameter6,
+            "parameter8": object.parameter8,
+            "parameter9": object.parameter9,
+            "parameter10": object.parameter10,
+            "parameter11": object.parameter11,
+            "parameter12": object.parameter12,
+            "parameter13": object.parameter13,
+            "parameter14": object.parameter14,
+            "rsyncdaemon": object.rsyncdaemon,
+            "sshkeypathandidentityfile": object.sshkeypathandidentityfile,
+            "sshport": object.sshport,
+            "task": object.task,
+            "hiddenID": object.hiddenID,
+            "snapdayoffweek": object.snapdayoffweek,
+            "snaplast": object.snaplast,
+            "snapshotnum": object.snapshotnum,
+            "pretask": object.pretask,
+            "executepretask": object.executepretask,
+            "posttask": object.posttask,
+            "executeposttask": object.executeposttask,
+        ]
         return Configuration(dictionary: dict)
     }
 
