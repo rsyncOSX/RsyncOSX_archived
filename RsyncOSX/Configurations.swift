@@ -272,13 +272,31 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     private func transform(object: ConfigurationsJson) -> Configuration {
+        var dayssincelastbackup: String?
+        var markdays: Bool = false
+        var lastruninseconds: Double? {
+            if let date = object.dateRun {
+                let lastbackup = date.en_us_date_from_string()
+                let seconds: TimeInterval = lastbackup.timeIntervalSinceNow
+                return seconds * (-1)
+            } else {
+                return nil
+            }
+        }
+        // Last run of task
+        if object.dateRun != nil {
+            if let secondssince = lastruninseconds {
+                dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
+                if secondssince / (60 * 60 * 24) > ViewControllerReference.shared.marknumberofdayssince {
+                    markdays = true
+                }
+            }
+        }
         let dict: NSDictionary = [
             "backupID": object.backupID ?? "",
             "dateRun": object.dateRun ?? "",
-            "dayssincelastbackup": object.dayssincelastbackup ?? "",
             "haltshelltasksonerror": object.haltshelltasksonerror ?? 0,
             "localCatalog": object.localCatalog ?? "",
-            "markdays": object.markdays ?? false,
             "offsiteCatalog": object.offsiteCatalog ?? "",
             "offsiteServer": object.offsiteServer ?? "",
             "offsiteUsername": object.offsiteUsername ?? "",
@@ -307,6 +325,9 @@ class Configurations: ReloadTable, SetSchedules {
             "executepretask": object.executepretask ?? 0,
             "posttask": object.posttask ?? "",
             "executeposttask": object.executeposttask ?? 0,
+            "lastruninseconds": lastruninseconds ?? 0,
+            "dayssincelastbackup": dayssincelastbackup,
+            "markdays": markdays,
         ]
         return Configuration(dictionary: dict)
     }

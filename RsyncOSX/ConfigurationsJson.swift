@@ -11,7 +11,6 @@ import Foundation
 struct ConfigurationsJson: Codable {
     let backupID: String?
     let dateRun: String?
-    let dayssincelastbackup: String?
     let haltshelltasksonerror: Int?
     let hiddenID: Int?
     let localCatalog: String?
@@ -47,7 +46,6 @@ struct ConfigurationsJson: Codable {
     enum CodingKeys: String, CodingKey {
         case backupID
         case dateRun
-        case dayssincelastbackup
         case haltshelltasksonerror
         case hiddenID
         case localCatalog
@@ -85,7 +83,6 @@ struct ConfigurationsJson: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         backupID = try values.decodeIfPresent(String.self, forKey: .backupID)
         dateRun = try values.decodeIfPresent(String.self, forKey: .dateRun)
-        dayssincelastbackup = try values.decodeIfPresent(String.self, forKey: .dayssincelastbackup)
         haltshelltasksonerror = try values.decodeIfPresent(Int.self, forKey: .haltshelltasksonerror)
         hiddenID = try values.decodeIfPresent(Int.self, forKey: .hiddenID)
         localCatalog = try values.decodeIfPresent(String.self, forKey: .localCatalog)
