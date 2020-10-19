@@ -79,9 +79,6 @@ struct ConvertOneConfigCodable: Codable {
         // SSH parameters
         self.sshport = config.sshport
         self.sshkeypathandidentityfile = config.sshkeypathandidentityfile
-        // Calculated days since last backup
-        self.dayssincelastbackup = config.dayssincelastbackup
-        self.markdays = config.markdays
         self.profile = config.profile
         // Snapshots, day to save and last = 1 or every last=0
         self.snapdayoffweek = config.snapdayoffweek
