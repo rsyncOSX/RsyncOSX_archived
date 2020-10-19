@@ -271,7 +271,7 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations![index].snapshotnum = num + 1
     }
 
-    private func transform(object: ConfigurationsJson) -> Configuration {
+    func transform(object: ConfigurationsJson) -> Configuration {
         var dayssincelastbackup: String?
         var markdays: Bool = false
         var lastruninseconds: Double? {
@@ -318,7 +318,7 @@ class Configurations: ReloadTable, SetSchedules {
             "sshport": object.sshport ?? 22,
             "task": object.task ?? "",
             "hiddenID": object.hiddenID ?? 0,
-            "snapdayoffweek": object.snapdayoffweek ?? 0,
+            "snapdayoffweek": object.snapdayoffweek ?? "",
             "snaplast": object.snaplast ?? 0,
             "snapshotnum": object.snapshotnum ?? 0,
             "pretask": object.pretask ?? "",
@@ -326,7 +326,7 @@ class Configurations: ReloadTable, SetSchedules {
             "posttask": object.posttask ?? "",
             "executeposttask": object.executeposttask ?? 0,
             "lastruninseconds": lastruninseconds ?? 0,
-            "dayssincelastbackup": dayssincelastbackup,
+            "dayssincelastbackup": dayssincelastbackup ?? "",
             "markdays": markdays,
         ]
         return Configuration(dictionary: dict)
