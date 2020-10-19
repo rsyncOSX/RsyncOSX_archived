@@ -31,6 +31,7 @@ struct SchedulesJson: Codable {
     let logrecords: [Logrecord]?
     let offsiteserver: String?
     let schedule: String?
+    let profilename: String?
 
     enum CodingKeys: String, CodingKey {
         case dateStart
@@ -39,6 +40,7 @@ struct SchedulesJson: Codable {
         case logrecords
         case offsiteserver
         case schedule
+        case profilename
     }
 
     init(from decoder: Decoder) throws {
@@ -49,5 +51,6 @@ struct SchedulesJson: Codable {
         logrecords = try values.decodeIfPresent([Logrecord].self, forKey: .logrecords)
         offsiteserver = try values.decodeIfPresent(String.self, forKey: .offsiteserver)
         schedule = try values.decodeIfPresent(String.self, forKey: .schedule)
+        profilename = try values.decodeIfPresent(String.self, forKey: .profilename)
     }
 }

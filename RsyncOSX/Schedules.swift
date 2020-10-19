@@ -182,14 +182,17 @@ class Schedules: ScheduleWriteLoggData {
     // Function for reading all jobs for schedule and all history of past executions.
     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     private func readschedules() {
-        var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
-        guard store != nil else { return }
+        // var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
+        // guard store != nil else { return }
+        let store = ReadWriteSchedulesJSON(profile: self.profile).decodejson
         var data = [ConfigurationSchedule]()
-        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil {
-            store?[i].profilename = self.profile
-            if let store = store?[i] {
-                data.append(store)
-            }
+
+        for i in 0 ..< (store?.count ?? 0) {
+            var transformed = transform(object: (store?[i] as? SchedulesJson)!)
+            // where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil
+
+            transformed.profilename = self.profile
+            data.append(transformed)
         }
         // Sorting schedule after hiddenID
         data.sort { (schedule1, schedule2) -> Bool in
@@ -210,5 +213,28 @@ class Schedules: ScheduleWriteLoggData {
         if ViewControllerReference.shared.checkinput {
             self.schedules = Reorgschedule().mergerecords(data: self.schedules)
         }
+    }
+}
+
+extension Schedules {
+    func transform(object: SchedulesJson) -> ConfigurationSchedule {
+        var log: [Any]?
+        let dict: NSDictionary = [
+            "hiddenID": object.hiddenID ?? 0,
+            "offsiteserver": object.offsiteserver ?? "",
+            "dateStop": object.dateStop ?? "",
+            "dateStart": object.dateStart ?? "",
+            "schedule": object.schedule ?? "",
+            "profilename": object.profilename ?? "",
+        ]
+        for i in 0 ..< (object.logrecords?.count ?? 0) {
+            if i == 0 { log = Array() }
+            let logdict: NSMutableDictionary = [
+                "dateExecuted": object.logrecords![i].dateExecuted ?? "",
+                "resultExecuted": object.logrecords![i].resultExecuted ?? "",
+            ]
+            log?.append(logdict)
+        }
+        return ConfigurationSchedule(dictionary: dict, log: log as NSArray?, nolog: false)
     }
 }

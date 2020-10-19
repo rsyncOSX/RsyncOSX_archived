@@ -271,6 +271,42 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations![index].snapshotnum = num + 1
     }
 
+    func readconfigurations() {
+        self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
+        // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
+        let store = ReadWriteConfigurationsJSON(profile: self.profile).decodejson
+        for i in 0 ..< (store?.count ?? 0) {
+            let transformed = transform(object: (store?[i] as? ConfigurationsJson)!)
+            if ViewControllerReference.shared.synctasks.contains(transformed.task) {
+                self.configurations?.append(transformed)
+                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
+                self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+            }
+        }
+        // Then prepare the datasource for use in tableviews as Dictionarys
+        var data = [NSMutableDictionary]()
+        for i in 0 ..< (self.configurations?.count ?? 0) {
+            let task = self.configurations?[i].task
+            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
+                if let config = self.configurations?[i] {
+                    data.append(ConvertOneConfig(config: config).dict)
+                }
+            }
+        }
+        self.configurationsDataSource = data
+    }
+
+    init(profile: String?) {
+        self.configurations = [Configuration]()
+        self.argumentAllConfigurations = nil
+        self.configurationsDataSource = nil
+        self.profile = profile
+        self.readconfigurations()
+        ViewControllerReference.shared.process = nil
+    }
+}
+
+extension Configurations {
     func transform(object: ConfigurationsJson) -> Configuration {
         var dayssincelastbackup: String?
         var markdays: Bool = false
@@ -330,39 +366,5 @@ class Configurations: ReloadTable, SetSchedules {
             "markdays": markdays,
         ]
         return Configuration(dictionary: dict)
-    }
-
-    func readconfigurations() {
-        self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
-        let store = ReadWriteConfigurationsJSON(profile: self.profile).decodejson
-        for i in 0 ..< (store?.count ?? 0) {
-            let transformed = transform(object: (store?[i] as? ConfigurationsJson)!)
-            if ViewControllerReference.shared.synctasks.contains(transformed.task) {
-                self.configurations?.append(transformed)
-                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
-                self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
-            }
-        }
-        // Then prepare the datasource for use in tableviews as Dictionarys
-        var data = [NSMutableDictionary]()
-        for i in 0 ..< (self.configurations?.count ?? 0) {
-            let task = self.configurations?[i].task
-            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                if let config = self.configurations?[i] {
-                    data.append(ConvertOneConfig(config: config).dict)
-                }
-            }
-        }
-        self.configurationsDataSource = data
-    }
-
-    init(profile: String?) {
-        self.configurations = [Configuration]()
-        self.argumentAllConfigurations = nil
-        self.configurationsDataSource = nil
-        self.profile = profile
-        self.readconfigurations()
-        ViewControllerReference.shared.process = nil
     }
 }

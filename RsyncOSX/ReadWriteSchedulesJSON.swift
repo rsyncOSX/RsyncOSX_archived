@@ -83,4 +83,10 @@ class ReadWriteSchedulesJSON: NamesandPaths {
         self.profile = profile
         self.createJSON()
     }
+
+    init(profile: String?) {
+        super.init(profileorsshrootpath: .profileroot)
+        self.profile = profile
+        self.readJSONFromPersistentStore()
+    }
 }
