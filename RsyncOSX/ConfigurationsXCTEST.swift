@@ -42,7 +42,7 @@ class ConfigurationsXCTEST: Configurations {
         self.appendconfigurationstomemory(dict: array[array.count - 1])
     }
 
-    func readconfigurationsJSNON() {
+    override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
         let store = ReadWriteConfigurationsJSON(profile: self.profile).decodejson
@@ -67,7 +67,7 @@ class ConfigurationsXCTEST: Configurations {
         self.configurationsDataSource = data
     }
 
-    override func readconfigurations() {
+    func readconfigurationsDICT() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
         for i in 0 ..< (store?.count ?? 0) {
