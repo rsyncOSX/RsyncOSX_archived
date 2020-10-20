@@ -19,7 +19,7 @@ class PersistentStorageSchedulingJSON: PersistentStorageScheduling {
     // Writing schedules to persistent store
     // Schedule is [NSDictionary]
     private func writeToStore(schedules _: [ConfigurationSchedule]?) {
-        let store = ReadWriteSchedulesJSON(schedules: nil, profile: self.profile)
+        let store = ReadWriteSchedulesJSON(schedules: schedules?.schedules, profile: self.profile)
         store.writeJSONToPersistentStore()
     }
 }

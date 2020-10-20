@@ -10,6 +10,37 @@
 import Foundation
 
 class SchedulesJSON: Schedules {
+    // Function adds results of task to file (via memory). Memory are
+    // saved after changed. Used in single tasks
+    // - parameter hiddenID : hiddenID for task
+    // - parameter result : String representation of result
+    // - parameter date : String representation of date and time stamp
+    override func addlogpermanentstore(hiddenID: Int, result: String) {
+        if ViewControllerReference.shared.detailedlogging {
+            // Set the current date
+            let currendate = Date()
+            let date = currendate.en_us_string_from_date()
+            if let config = self.getconfig(hiddenID: hiddenID) {
+                var resultannotaded: String?
+                if config.task == ViewControllerReference.shared.snapshot {
+                    let snapshotnum = String(config.snapshotnum!)
+                    resultannotaded = "(" + snapshotnum + ") " + result
+                } else {
+                    resultannotaded = result
+                }
+                var inserted: Bool = self.addlogexisting(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
+                // Record does not exist, create new Schedule (not inserted)
+                if inserted == false {
+                    inserted = self.addlognew(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
+                }
+                if inserted {
+                    PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
+                    self.deselectrowtable(vcontroller: .vctabmain)
+                }
+            }
+        }
+    }
+
     // Function adds new Shcedules (plans). Functions writes
     // schedule plans to permanent store.
     // - parameter hiddenID: hiddenID for task
