@@ -237,7 +237,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     override func viewDidLoad() {
         super.viewDidLoad()
         // JSon test
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.json
+        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
         // Decide if:
         // 1: First time start, use new profilepath
         // 2: Old profilepath is copied to new, use new profilepath
