@@ -42,6 +42,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var profilepopupbutton: NSPopUpButton!
     @IBOutlet var errorinfo: NSTextField!
     @IBOutlet var jsonbutton: NSButton!
+    @IBOutlet var jsonlabel: NSTextField!
 
     // Reference to Configurations and Schedules object
     var configurations: Configurations?
@@ -238,6 +239,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         super.viewDidLoad()
         // JSon test
         self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
+        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
         // Decide if:
         // 1: First time start, use new profilepath
         // 2: Old profilepath is copied to new, use new profilepath

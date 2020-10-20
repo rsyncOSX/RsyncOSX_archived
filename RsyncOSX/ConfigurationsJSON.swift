@@ -139,6 +139,6 @@ extension Configurations {
         if object.offsiteUsername?.isEmpty == false {
             dict.setObject(object.offsiteUsername ?? "", forKey: "offsiteUsername" as NSCopying)
         }
-        return Configuration(dictionary: dict)
+        return Configuration(dictionary: dict as NSDictionary)
     }
 }
