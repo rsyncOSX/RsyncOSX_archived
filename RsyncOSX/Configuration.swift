@@ -119,10 +119,6 @@ struct Configuration {
         if let sshidentityfile = dictionary.object(forKey: "sshkeypathandidentityfile") {
             self.sshkeypathandidentityfile = sshidentityfile as? String
         }
-        // From version 6.3.0, must convert "sshidentityfile" to keypath + identityfile
-        if let sshidentityfile = dictionary.object(forKey: "sshidentityfile") {
-            self.sshkeypathandidentityfile = "~/.ssh/" + (sshidentityfile as? String ?? "")
-        }
         // Pre and post tasks
         if let pretask = dictionary.object(forKey: "pretask") {
             self.pretask = pretask as? String

@@ -49,7 +49,7 @@ class ReadWriteSchedulesJSON: NamesandPaths {
                 if let jsonstring = jsonfromstore.data(using: .utf8) {
                     do {
                         let decoder = JSONDecoder()
-                        self.decodejson = try decoder.decode([SchedulesJson].self, from: jsonstring)
+                        self.decodejson = try decoder.decode([ScheduleJSON].self, from: jsonstring)
                         let logg = OutputProcess()
                         logg.addlinefromoutput(str: "JSON (schedules): readJSONFromPersistentStore success")
                         _ = Logging(logg, true)
@@ -82,5 +82,11 @@ class ReadWriteSchedulesJSON: NamesandPaths {
         self.schedules = schedules
         self.profile = profile
         self.createJSON()
+    }
+
+    init(profile: String?) {
+        super.init(profileorsshrootpath: .profileroot)
+        self.profile = profile
+        self.readJSONFromPersistentStore()
     }
 }
