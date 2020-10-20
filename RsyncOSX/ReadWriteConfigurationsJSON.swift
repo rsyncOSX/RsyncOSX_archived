@@ -49,7 +49,7 @@ class ReadWriteConfigurationsJSON: NamesandPaths {
                 if let jsonstring = jsonfromstore.data(using: .utf8) {
                     do {
                         let decoder = JSONDecoder()
-                        self.decodejson = try decoder.decode([ConfigurationsJson].self, from: jsonstring)
+                        self.decodejson = try decoder.decode([ConfigJSON].self, from: jsonstring)
                         let logg = OutputProcess()
                         logg.addlinefromoutput(str: "JSON (configurations): readJSONFromPersistentStore success")
                         _ = Logging(logg, true)

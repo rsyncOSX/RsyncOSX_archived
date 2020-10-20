@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ConfigurationsJson: Codable {
+struct ConfigJSON: Codable {
     let backupID: String?
     let dateRun: String?
     let haltshelltasksonerror: Int?

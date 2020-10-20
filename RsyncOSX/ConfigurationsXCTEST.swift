@@ -47,7 +47,7 @@ class ConfigurationsXCTEST: Configurations {
         // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
         let store = ReadWriteConfigurationsJSON(profile: self.profile).decodejson
         for i in 0 ..< (store?.count ?? 0) {
-            let transformed = transform(object: (store?[i] as? ConfigurationsJson)!)
+            let transformed = transform(object: (store?[i] as? ConfigJSON)!)
             if ViewControllerReference.shared.synctasks.contains(transformed.task) {
                 self.configurations?.append(transformed)
                 let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
