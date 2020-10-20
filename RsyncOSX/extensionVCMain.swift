@@ -150,7 +150,7 @@ extension ViewControllerMain: Fileerror {
             } else {
                 self.seterrorinfo(info: "Some error")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + "\n" + errorstr)
-                self.info.stringValue = "Error: see ~/Documents/rsynclog.txt"
+                self.info.stringValue = "Error: see loggfile..."
             }
             guard errortype != .filesize else { return }
             _ = Logging(self.outputprocess, true)
