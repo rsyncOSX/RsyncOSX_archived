@@ -388,30 +388,54 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     func createandreloadschedules() {
         guard self.configurations != nil else {
-            self.schedules = Schedules(profile: nil)
+            if ViewControllerReference.shared.json == false {
+                self.schedules = Schedules(profile: nil)
+            } else {
+                self.schedules = SchedulesJSON(profile: nil)
+            }
             return
         }
         if let profile = self.configurations?.getProfile() {
             self.schedules = nil
-            self.schedules = Schedules(profile: profile)
+            if ViewControllerReference.shared.json == false {
+                self.schedules = Schedules(profile: profile)
+            } else {
+                self.schedules = SchedulesJSON(profile: profile)
+            }
         } else {
             self.schedules = nil
-            self.schedules = Schedules(profile: nil)
+            if ViewControllerReference.shared.json == false {
+                self.schedules = Schedules(profile: nil)
+            } else {
+                self.schedules = SchedulesJSON(profile: nil)
+            }
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
     }
 
     func createandreloadconfigurations() {
         guard self.configurations != nil else {
-            self.configurations = Configurations(profile: nil)
+            if ViewControllerReference.shared.json == false {
+                self.configurations = Configurations(profile: nil)
+            } else {
+                self.configurations = ConfigurationsJSON(profile: nil)
+            }
             return
         }
         if let profile = self.configurations?.getProfile() {
             self.configurations = nil
-            self.configurations = Configurations(profile: profile)
+            if ViewControllerReference.shared.json == false {
+                self.configurations = Configurations(profile: profile)
+            } else {
+                self.configurations = ConfigurationsJSON(profile: profile)
+            }
         } else {
             self.configurations = nil
-            self.configurations = Configurations(profile: nil)
+            if ViewControllerReference.shared.json == false {
+                self.configurations = Configurations(profile: nil)
+            } else {
+                self.configurations = ConfigurationsJSON(profile: nil)
+            }
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
