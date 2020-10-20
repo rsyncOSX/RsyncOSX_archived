@@ -119,7 +119,7 @@ final class ViewControllerReference {
     // Reference to the active process
     var process: Process?
     // Json button
-    var json: Bool = true
+    var json: Bool = false
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files
