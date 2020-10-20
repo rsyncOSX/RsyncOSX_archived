@@ -10,6 +10,40 @@
 import Foundation
 
 class ConfigurationsJSON: Configurations {
+    override func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
+        let number = Numbers(outputprocess: outputprocess)
+        let hiddenID = self.gethiddenID(index: index)
+        let numbers = number.stats()
+        self.schedules?.addlogpermanentstore(hiddenID: hiddenID, result: numbers)
+        if self.configurations?[index].task == ViewControllerReference.shared.snapshot {
+            self.increasesnapshotnum(index: index)
+        }
+        let currendate = Date()
+        self.configurations?[index].dateRun = currendate.en_us_string_from_date()
+        // Saving updated configuration in memory to persistent store
+        PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+        // Call the view and do a refresh of tableView
+        self.reloadtable(vcontroller: .vctabmain)
+        _ = Logging(outputprocess: outputprocess)
+    }
+
+    // Function is updating Configurations in memory (by record) and
+    // then saves updated Configurations from memory to persistent store
+    override func updateConfigurations(_ config: Configuration, index: Int) {
+        self.configurations?[index] = config
+        PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+    }
+
+    // Function deletes Configuration in memory at hiddenID and
+    // then saves updated Configurations from memory to persistent store.
+    // Function computes index by hiddenID.
+    override func deleteConfigurationsByhiddenID(hiddenID: Int) {
+        let index = self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
+        guard index > -1 else { return }
+        self.configurations?.remove(at: index)
+        PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+    }
+
     override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
