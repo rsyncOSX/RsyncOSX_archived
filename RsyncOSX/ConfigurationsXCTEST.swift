@@ -42,6 +42,31 @@ class ConfigurationsXCTEST: Configurations {
         self.appendconfigurationstomemory(dict: array[array.count - 1])
     }
 
+    func readconfigurationsJSNON() {
+        self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
+        // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
+        let store = ReadWriteConfigurationsJSON(profile: self.profile).decodejson
+        for i in 0 ..< (store?.count ?? 0) {
+            let transformed = transform(object: (store?[i] as? ConfigJSON)!)
+            if ViewControllerReference.shared.synctasks.contains(transformed.task) {
+                self.configurations?.append(transformed)
+                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
+                self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+            }
+        }
+        // Then prepare the datasource for use in tableviews as Dictionarys
+        var data = [NSMutableDictionary]()
+        for i in 0 ..< (self.configurations?.count ?? 0) {
+            let task = self.configurations?[i].task
+            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
+                if let config = self.configurations?[i] {
+                    data.append(ConvertOneConfig(config: config).dict)
+                }
+            }
+        }
+        self.configurationsDataSource = data
+    }
+
     override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()

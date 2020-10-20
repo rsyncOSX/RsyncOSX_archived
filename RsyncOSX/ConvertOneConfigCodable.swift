@@ -51,46 +51,43 @@ struct ConvertOneConfigCodable: Codable {
     var posttask: String?
     var haltshelltasksonerror: Int?
 
-    init(config: Configuration) {
-        self.hiddenID = config.hiddenID
-        self.task = config.task
-        self.localCatalog = config.localCatalog
-        self.offsiteCatalog = config.offsiteCatalog
-        self.offsiteUsername = config.offsiteUsername
-        self.parameter1 = config.parameter1
-        self.parameter2 = config.parameter2
-        self.parameter3 = config.parameter3
-        self.parameter4 = config.parameter4
-        self.parameter5 = config.parameter5
-        self.parameter6 = config.parameter6
-        self.offsiteServer = config.offsiteServer
-        self.backupID = config.backupID
-        self.dateRun = config.dateRun
-        self.snapshotnum = config.snapshotnum
+    init(config: Configuration?) {
+        self.hiddenID = config?.hiddenID ?? -1
+        self.task = config?.task ?? ""
+        self.localCatalog = config?.localCatalog ?? ""
+        self.offsiteCatalog = config?.offsiteCatalog ?? ""
+        self.offsiteUsername = config?.offsiteUsername ?? ""
+        self.parameter1 = config?.parameter1 ?? ""
+        self.parameter2 = config?.parameter2 ?? ""
+        self.parameter3 = config?.parameter3 ?? ""
+        self.parameter4 = config?.parameter4 ?? ""
+        self.parameter5 = config?.parameter5 ?? ""
+        self.parameter6 = config?.parameter6 ?? ""
+        self.offsiteServer = config?.offsiteServer ?? ""
+        self.backupID = config?.backupID ?? ""
+        self.dateRun = config?.dateRun
+        self.snapshotnum = config?.snapshotnum
         // parameters choosed by user
-        self.parameter8 = config.parameter8
-        self.parameter9 = config.parameter9
-        self.parameter10 = config.parameter10
-        self.parameter11 = config.parameter11
-        self.parameter12 = config.parameter12
-        self.parameter13 = config.parameter13
-        self.parameter14 = config.parameter14
-        self.rsyncdaemon = config.rsyncdaemon
+        self.parameter8 = config?.parameter8
+        self.parameter9 = config?.parameter9
+        self.parameter10 = config?.parameter10
+        self.parameter11 = config?.parameter11
+        self.parameter12 = config?.parameter12
+        self.parameter13 = config?.parameter13
+        self.parameter14 = config?.parameter14
+        self.rsyncdaemon = config?.rsyncdaemon
         // SSH parameters
-        self.sshport = config.sshport
-        self.sshkeypathandidentityfile = config.sshkeypathandidentityfile
-        // Calculated days since last backup
-        self.dayssincelastbackup = config.dayssincelastbackup
-        self.markdays = config.markdays
-        self.profile = config.profile
+        self.sshport = config?.sshport
+        self.sshkeypathandidentityfile = config?.sshkeypathandidentityfile
+        self.profile = config?.profile
         // Snapshots, day to save and last = 1 or every last=0
-        self.snapdayoffweek = config.snapdayoffweek
-        self.snaplast = config.snaplast
+        self.snapdayoffweek = config?.snapdayoffweek
+        self.snaplast = config?.snaplast
         // Pre and post tasks
-        self.executepretask = config.executepretask
-        self.pretask = config.pretask
-        self.executeposttask = config.executeposttask
-        self.posttask = config.posttask
-        self.haltshelltasksonerror = config.haltshelltasksonerror
+        self.executepretask = config?.executepretask
+        self.pretask = config?.pretask
+        self.executeposttask = config?.executeposttask
+        self.posttask = config?.posttask
+        self.haltshelltasksonerror = config?.haltshelltasksonerror
     }
 }
