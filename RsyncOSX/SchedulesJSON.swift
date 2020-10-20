@@ -158,14 +158,16 @@ class SchedulesJSON: Schedules {
 extension Schedules {
     func transform(object: ScheduleJSON) -> ConfigurationSchedule {
         var log: [Any]?
-        let dict: NSDictionary = [
-            "hiddenID": object.hiddenID ?? 0,
+        let dict: NSMutableDictionary = [
+            "hiddenID": object.hiddenID ?? -1,
             "offsiteserver": object.offsiteserver ?? "",
-            "dateStop": object.dateStop ?? "",
             "dateStart": object.dateStart ?? "",
             "schedule": object.schedule ?? "",
             "profilename": object.profilename ?? "",
         ]
+        if object.dateStop?.isEmpty == false {
+            dict.setObject(object.dateStop ?? "", forKey: "dateStop" as NSCopying)
+        }
         for i in 0 ..< (object.logrecords?.count ?? 0) {
             if i == 0 { log = Array() }
             let logdict: NSMutableDictionary = [
@@ -174,6 +176,6 @@ extension Schedules {
             ]
             log?.append(logdict)
         }
-        return ConfigurationSchedule(dictionary: dict, log: log as NSArray?, nolog: false)
+        return ConfigurationSchedule(dictionary: dict as NSDictionary, log: log as NSArray?, nolog: false)
     }
 }

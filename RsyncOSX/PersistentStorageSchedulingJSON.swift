@@ -21,5 +21,6 @@ class PersistentStorageSchedulingJSON: PersistentStorageScheduling {
     private func writeToStore(schedules _: [ConfigurationSchedule]?) {
         let store = ReadWriteSchedulesJSON(schedules: schedules?.schedules, profile: self.profile)
         store.writeJSONToPersistentStore()
+        self.schedulesDelegate?.reloadschedulesobject()
     }
 }

@@ -36,5 +36,10 @@ class PersistentStorageConfigurationJSON: PersistentStorageConfiguration {
     private func writeToStore(configurations _: [Configuration]?) {
         let store = ReadWriteConfigurationsJSON(configurations: configurations?.configurations, profile: self.profile)
         store.writeJSONToPersistentStore()
+        self.configurationsDelegate?.reloadconfigurationsobject()
+        if ViewControllerReference.shared.menuappisrunning {
+            Notifications().showNotification(message: "Sending reload message to menu app")
+            DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("no.blogspot.RsyncOSX.reload"), object: nil, deliverImmediately: true)
+        }
     }
 }
