@@ -67,6 +67,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             let dialog: String = NSLocalizedString("Change", comment: "Userconfig")
             let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
             if answer {
+                _ = Backupconfigfiles()
                 PersistentStorageUserconfiguration().saveuserconfiguration()
                 NSApp.terminate(self)
             } else {
@@ -79,8 +80,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
                     self.convertjsonbutton.state = .off
                 }
             }
-            // self.reload = true
-            // self.setdirty()
         }
     }
 
