@@ -9,7 +9,7 @@
 import Files
 import Foundation
 
-class ReadWriteSchedulesJSON: NamesandPaths {
+class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
     var jsonstring: String?
     var schedules: [ConfigurationSchedule]?
     var decodejson: [Any]?
@@ -31,7 +31,9 @@ class ReadWriteSchedulesJSON: NamesandPaths {
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 return jsonString
             }
-        } catch {
+        } catch let e {
+            let error = e as NSError
+            self.error(error: error.description, errortype: .json)
             return nil
         }
         return nil
@@ -50,12 +52,15 @@ class ReadWriteSchedulesJSON: NamesandPaths {
                     do {
                         let decoder = JSONDecoder()
                         self.decodejson = try decoder.decode([ScheduleJSON].self, from: jsonstring)
-                        let logg = OutputProcess()
-                        logg.addlinefromoutput(str: "JSON (schedules): readJSONFromPersistentStore success")
-                        _ = Logging(logg, true)
-                    } catch {}
+                    } catch let e {
+                        let error = e as NSError
+                        self.error(error: error.description, errortype: .json)
+                    }
                 }
-            } catch {}
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .json)
+            }
         }
     }
 
@@ -69,11 +74,11 @@ class ReadWriteSchedulesJSON: NamesandPaths {
                 let file = try folder.createFile(named: "schedules.json")
                 if let data = self.jsonstring {
                     try file.write(data)
-                    let logg = OutputProcess()
-                    logg.addlinefromoutput(str: "JSON (schedules): writeJSONToPersistentStore success")
-                    _ = Logging(logg, true)
                 }
-            } catch {}
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .json)
+            }
         }
     }
 

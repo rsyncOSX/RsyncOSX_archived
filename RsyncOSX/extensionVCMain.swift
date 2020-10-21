@@ -145,8 +145,8 @@ extension ViewControllerMain: Fileerror {
                 self.outputprocess = OutputProcess()
             }
             if errortype == .filesize {
-                self.seterrorinfo(info: "Logfile size")
-                self.info.stringValue = "Size logfile, filesize= " + errorstr
+                self.seterrorinfo(info: "Logfile size big")
+                self.info.stringValue = "Size logfile is big, filesize: " + errorstr
             } else {
                 self.seterrorinfo(info: "Some error")
                 self.outputprocess?.addlinefromoutput(str: self.errordescription(errortype: errortype) + "\n" + errorstr)
