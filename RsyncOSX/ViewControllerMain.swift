@@ -432,6 +432,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             } else {
                 self.configurations = ConfigurationsJSON(profile: nil)
             }
+            globalMainQueue.async { () -> Void in
+                self.mainTableView.reloadData()
+            }
             return
         }
         if let profile = self.configurations?.getProfile() {

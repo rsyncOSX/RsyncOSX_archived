@@ -23,6 +23,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     var oldmarknumberofdayssince: Double?
     var reload: Bool = false
     var nameandpaths: NamesandPaths?
+    var jsonischanged: Bool = false
 
     @IBOutlet var rsyncPath: NSTextField!
     @IBOutlet var version3rsync: NSButton!
@@ -60,8 +61,27 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             ViewControllerReference.shared.json = false
             self.convertjsonbutton.state = .off
         }
-        self.reload = true
-        self.setdirty()
+        if self.jsonischanged != ViewControllerReference.shared.json {
+            let question: String = NSLocalizedString("Format of config files changed?", comment: "Userconfig")
+            let text: String = NSLocalizedString("Abort or Change?", comment: "Userconfig")
+            let dialog: String = NSLocalizedString("Change", comment: "Userconfig")
+            let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+            if answer {
+                PersistentStorageUserconfiguration().saveuserconfiguration()
+                NSApp.terminate(self)
+            } else {
+                ViewControllerReference.shared.json = self.jsonischanged
+                if self.jsonischanged {
+                    self.json.state = .on
+                    self.convertjsonbutton.state = .off
+                } else {
+                    self.json.state = .off
+                    self.convertjsonbutton.state = .off
+                }
+            }
+            // self.reload = true
+            // self.setdirty()
+        }
     }
 
     @IBAction func enableconvertjsonbutton(_: NSButton) {
@@ -171,6 +191,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             self.menuappDelegate?.menuappchanged()
             self.loadsshparametersDelegate?.loadsshparameters()
             self.changetemporaryrestorepath()
+
+            // NSApp.terminate(self)
         }
         self.view.window?.close()
         _ = RsyncVersionString()
@@ -437,6 +459,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.statuslightpathrsyncosx.isHidden = true
         self.statuslightpathrsyncosxsched.isHidden = true
         self.statuslightsshkeypath.isHidden = true
+        self.jsonischanged = ViewControllerReference.shared.json
     }
 
     // Function for check and set user configuration
