@@ -9,7 +9,7 @@
 import Files
 import Foundation
 
-class ReadWriteConfigurationsJSON: NamesandPaths {
+class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
     var jsonstring: String?
     var configurations: [Configuration]?
     var decodejson: [Any]?
@@ -50,9 +50,15 @@ class ReadWriteConfigurationsJSON: NamesandPaths {
                     do {
                         let decoder = JSONDecoder()
                         self.decodejson = try decoder.decode([ConfigJSON].self, from: jsonstring)
-                    } catch {}
+                    } catch let e {
+                        let error = e as NSError
+                        self.error(error: error.description, errortype: .json)
+                    }
                 }
-            } catch {}
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .json)
+            }
         }
     }
 
@@ -67,7 +73,10 @@ class ReadWriteConfigurationsJSON: NamesandPaths {
                 if let data = self.jsonstring {
                     try file.write(data)
                 }
-            } catch {}
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .json)
+            }
         }
     }
 
