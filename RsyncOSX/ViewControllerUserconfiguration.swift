@@ -190,8 +190,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             self.menuappDelegate?.menuappchanged()
             self.loadsshparametersDelegate?.loadsshparameters()
             self.changetemporaryrestorepath()
-
-            // NSApp.terminate(self)
         }
         self.view.window?.close()
         _ = RsyncVersionString()

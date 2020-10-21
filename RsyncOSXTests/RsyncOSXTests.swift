@@ -125,8 +125,13 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testaddconfig() {
+        var configurations: Configurations?
         // Local snapshot only, if not connected no snapshot task
-        let configurations = ConfigurationsXCTEST(profile: "XCTest")
+        if ViewControllerReference.shared.json {
+            configurations = ConfigurationsXCTESTJSON(profile: "XCTest")
+        } else {
+            configurations = ConfigurationsXCTEST(profile: "XCTest")
+        }
         let dict: NSMutableDictionary = [
             "task": ViewControllerReference.shared.snapshot,
             "backupID": "backupID",
@@ -144,14 +149,20 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dateRun": "",
         ]
         dict.setValue(1, forKey: "snapshotnum")
-        configurations.addNewConfigurations(dict)
-        let count = configurations.getConfigurations().count
+        configurations?.addNewConfigurations(dict)
+        let count = configurations?.getConfigurations().count
         XCTAssertEqual(count, 5, "Should be equal to 5")
     }
 
     func testaddnoconfig1() {
         // Missing "offsiteUsername": "offsiteUsername",
-        let configurations = ConfigurationsXCTEST(profile: "XCTest")
+        var configurations: Configurations?
+        // Local snapshot only, if not connected no snapshot task
+        if ViewControllerReference.shared.json {
+            configurations = ConfigurationsXCTESTJSON(profile: "XCTest")
+        } else {
+            configurations = ConfigurationsXCTEST(profile: "XCTest")
+        }
         let dict: NSMutableDictionary = [
             "task": ViewControllerReference.shared.snapshot,
             "backupID": "backupID",
@@ -168,14 +179,20 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dateRun": "",
         ]
         dict.setValue(1, forKey: "snapshotnum")
-        configurations.addNewConfigurations(dict)
-        let count = configurations.getConfigurations().count
+        configurations?.addNewConfigurations(dict)
+        let count = configurations?.getConfigurations().count
         XCTAssertEqual(count, 4, "Should be equal to 4")
     }
 
     func testaddnoconfig2() {
         // Missing  "offsiteServer": "offsiteServer"
-        let configurations = ConfigurationsXCTEST(profile: "XCTest")
+        var configurations: Configurations?
+        // Local snapshot only, if not connected no snapshot task
+        if ViewControllerReference.shared.json {
+            configurations = ConfigurationsXCTESTJSON(profile: "XCTest")
+        } else {
+            configurations = ConfigurationsXCTEST(profile: "XCTest")
+        }
         let dict: NSMutableDictionary = [
             "task": ViewControllerReference.shared.snapshot,
             "backupID": "backupID",
@@ -192,8 +209,8 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dateRun": "",
         ]
         dict.setValue(1, forKey: "snapshotnum")
-        configurations.addNewConfigurations(dict)
-        let count = configurations.getConfigurations().count
+        configurations?.addNewConfigurations(dict)
+        let count = configurations?.getConfigurations().count
         XCTAssertEqual(count, 4, "Should be equal to 4")
     }
 

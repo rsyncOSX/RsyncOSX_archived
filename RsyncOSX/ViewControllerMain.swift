@@ -322,6 +322,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             } else {
                 self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
+            // JSON button
+            self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
         }
     }
 
