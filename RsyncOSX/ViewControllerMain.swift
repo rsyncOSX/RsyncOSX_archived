@@ -325,13 +325,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
-    func jsonstate() {
-        globalMainQueue.async { () -> Void in
-            self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-            self.jsonlabel.isHidden = !ViewControllerReference.shared.json
-        }
-    }
-
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
         self.executeSingleTask()
@@ -420,9 +413,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             }
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
-        if let reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData {
-            reloadDelegate.reloadtabledata()
-        }
     }
 
     func createandreloadconfigurations() {
@@ -431,9 +421,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 self.configurations = Configurations(profile: nil)
             } else {
                 self.configurations = ConfigurationsJSON(profile: nil)
-            }
-            globalMainQueue.async { () -> Void in
-                self.mainTableView.reloadData()
             }
             return
         }
@@ -455,7 +442,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
-        self.jsonstate()
         if let reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles {
             reloadDelegate.reloadtable()
         }
