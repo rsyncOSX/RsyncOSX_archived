@@ -111,6 +111,13 @@ struct Userconfiguration {
                 ViewControllerReference.shared.monitornetworkconnection = false
             }
         }
+        if let json = dict.value(forKey: "json") as? Int {
+            if json == 1 {
+                ViewControllerReference.shared.json = true
+            } else {
+                ViewControllerReference.shared.json = false
+            }
+        }
     }
 
     init(userconfigRsyncOSX: [NSDictionary]) {

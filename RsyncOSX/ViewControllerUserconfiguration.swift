@@ -492,6 +492,12 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         } else {
             self.monitornetworkconnection.state = .off
         }
+        if ViewControllerReference.shared.json {
+            self.json.state = .on
+            self.convertjsonbutton.state = .off
+        } else {
+            self.json.state = .off
+        }
     }
 }
 
