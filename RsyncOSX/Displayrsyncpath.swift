@@ -21,31 +21,34 @@ enum RsynccommandDisplay {
 struct Displayrsyncpath: SetConfigurations {
     var displayrsyncpath: String?
 
-    init(index: Int, display: RsynccommandDisplay) {
+    init(index _: Int, display: RsynccommandDisplay) {
         var str: String?
-        let config = self.configurations!.getargumentAllConfigurations()[index]
-        str = Getrsyncpath().rsyncpath ?? ""
-        str = str! + " "
-        switch display {
-        case .synchronize:
-            if let count = config.argdryRunDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + config.argdryRunDisplay![i]
+        if let config = self.configurations?.getargumentAllConfigurations(),
+           self.configurations?.getargumentAllConfigurations().count ?? 0 > 0
+        {
+            str = Getrsyncpath().rsyncpath ?? ""
+            str = str! + " "
+            switch display {
+            case .synchronize:
+                if let count = config[0].argdryRunDisplay?.count {
+                    for i in 0 ..< count {
+                        str = str! + config[0].argdryRunDisplay![i]
+                    }
+                }
+            case .restore:
+                if let count = config[0].restoredryRunDisplay?.count {
+                    for i in 0 ..< count {
+                        str = str! + config[0].restoredryRunDisplay![i]
+                    }
+                }
+            case .verify:
+                if let count = config[0].verifyDisplay?.count {
+                    for i in 0 ..< count {
+                        str = str! + config[0].verifyDisplay![i]
+                    }
                 }
             }
-        case .restore:
-            if let count = config.restoredryRunDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + config.restoredryRunDisplay![i]
-                }
-            }
-        case .verify:
-            if let count = config.verifyDisplay?.count {
-                for i in 0 ..< count {
-                    str = str! + config.verifyDisplay![i]
-                }
-            }
+            self.displayrsyncpath = str
         }
-        self.displayrsyncpath = str
     }
 }
