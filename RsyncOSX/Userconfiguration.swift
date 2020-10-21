@@ -46,9 +46,12 @@ struct Userconfiguration {
                 let oldmarknumberofdayssince = ViewControllerReference.shared.marknumberofdayssince
                 ViewControllerReference.shared.marknumberofdayssince = Double(marknumberofdayssince)!
                 if oldmarknumberofdayssince != ViewControllerReference.shared.marknumberofdayssince {
-                    weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
+                    weak var reloadconfigurationsDelegate: GetConfigurationsObject?
+                    weak var reloadschedulesDelegate: GetSchedulesObject?
                     reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                    reloadconfigurationsDelegate?.createandreloadconfigurations()
+                    reloadschedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                    reloadconfigurationsDelegate?.reloadconfigurationsobject()
+                    reloadschedulesDelegate?.reloadschedulesobject()
                 }
             }
         }
@@ -106,6 +109,13 @@ struct Userconfiguration {
                 ViewControllerReference.shared.monitornetworkconnection = true
             } else {
                 ViewControllerReference.shared.monitornetworkconnection = false
+            }
+        }
+        if let json = dict.value(forKey: "json") as? Int {
+            if json == 1 {
+                ViewControllerReference.shared.json = true
+            } else {
+                ViewControllerReference.shared.json = false
             }
         }
     }

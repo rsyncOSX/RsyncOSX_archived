@@ -21,6 +21,7 @@ struct ConvertUserconfiguration {
         var haltonerror: Int?
         var monitornetworkconnection: Int?
         var array = [NSMutableDictionary]()
+        var json: Int?
 
         if ViewControllerReference.shared.rsyncversion3 {
             version3Rsync = 1
@@ -52,6 +53,11 @@ struct ConvertUserconfiguration {
         } else {
             monitornetworkconnection = 0
         }
+        if ViewControllerReference.shared.json {
+            json = 1
+        } else {
+            json = 0
+        }
         marknumberofdayssince = String(ViewControllerReference.shared.marknumberofdayssince)
         let dict: NSMutableDictionary = [
             "version3Rsync": version3Rsync ?? 0 as Int,
@@ -61,6 +67,7 @@ struct ConvertUserconfiguration {
             "marknumberofdayssince": marknumberofdayssince ?? "5.0",
             "haltonerror": haltonerror ?? 0 as Int,
             "monitornetworkconnection": monitornetworkconnection ?? 0 as Int,
+            "json": json ?? 0 as Int,
         ]
         if let rsyncpath = ViewControllerReference.shared.localrsyncpath {
             dict.setObject(rsyncpath, forKey: "rsyncPath" as NSCopying)

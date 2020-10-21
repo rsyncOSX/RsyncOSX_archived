@@ -237,9 +237,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // JSon test
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
         // Decide if:
         // 1: First time start, use new profilepath
         // 2: Old profilepath is copied to new, use new profilepath
@@ -267,6 +264,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.createandreloadschedules()
         self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         self.initpopupbutton()
+        // JSON
+        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
+        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
     }
 
     override func viewDidAppear() {
@@ -322,6 +322,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             } else {
                 self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
+        }
+    }
+
+    func jsonstate() {
+        globalMainQueue.async { () -> Void in
+            self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
+            self.jsonlabel.isHidden = !ViewControllerReference.shared.json
         }
     }
 
@@ -442,6 +449,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
+        self.jsonstate()
         if let reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles {
             reloadDelegate.reloadtable()
         }
