@@ -34,8 +34,8 @@ class PersistentStorageConfigurationJSON: PersistentStorageConfiguration {
         }
     }
 
-    private func writeToStore(configurations _: [Configuration]?) {
-        let store = ReadWriteConfigurationsJSON(configurations: configurations?.configurations, profile: self.profile)
+    private func writeToStore(configurations: [Configuration]?) {
+        let store = ReadWriteConfigurationsJSON(configurations: configurations, profile: self.profile)
         store.writeJSONToPersistentStore()
         self.configurationsDelegate?.reloadconfigurationsobject()
         if ViewControllerReference.shared.menuappisrunning {
