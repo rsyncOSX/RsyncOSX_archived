@@ -44,6 +44,11 @@ class ConfigurationsJSON: Configurations {
         PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
     }
 
+    // Add new configurations
+    override func addNewConfigurations(_ dict: NSMutableDictionary) {
+        PersistentStorageConfigurationJSON(profile: self.profile).newConfigurations(dict: dict)
+    }
+
     override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
