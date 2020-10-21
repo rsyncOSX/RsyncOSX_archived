@@ -15,6 +15,7 @@ enum Fileerrortype {
     case profiledeletedirectory
     case filesize
     case createsshdirectory
+    case json
 }
 
 // Protocol for reporting file errors
@@ -53,6 +54,8 @@ extension ErrorMessage {
             return "Filesize of logfile is getting bigger"
         case .createsshdirectory:
             return "Error creating ssh directory"
+        case .json:
+            return "JSON error"
         }
     }
 }
