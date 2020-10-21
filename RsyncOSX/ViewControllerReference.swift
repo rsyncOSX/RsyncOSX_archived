@@ -119,7 +119,7 @@ final class ViewControllerReference {
     // Reference to the active process
     var process: Process?
     // READ JSON
-    var json: Bool = false
+    var json: Bool = true
     // READ plist, convert to JSON button enabled
     var convertjsonbutton: Bool = false
     // Reference to main View
