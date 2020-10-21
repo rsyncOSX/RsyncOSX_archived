@@ -252,11 +252,6 @@ extension ViewControllerMain: ErrorOutput {
     }
 }
 
-extension ViewControllerMain: Createandreloadconfigurations {
-    // function is defined in ViewControllerMain
-    // func reateandreloadconfigurations()
-}
-
 extension ViewControllerMain: SendOutputProcessreference {
     func sendoutputprocessreference(outputprocess: OutputProcess?) {
         self.outputprocess = outputprocess

@@ -46,9 +46,12 @@ struct Userconfiguration {
                 let oldmarknumberofdayssince = ViewControllerReference.shared.marknumberofdayssince
                 ViewControllerReference.shared.marknumberofdayssince = Double(marknumberofdayssince)!
                 if oldmarknumberofdayssince != ViewControllerReference.shared.marknumberofdayssince {
-                    weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
+                    weak var reloadconfigurationsDelegate: GetConfigurationsObject?
+                    weak var reloadschedulesDelegate: GetSchedulesObject?
                     reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                    reloadconfigurationsDelegate?.createandreloadconfigurations()
+                    reloadschedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                    reloadconfigurationsDelegate?.reloadconfigurationsobject()
+                    reloadschedulesDelegate?.reloadschedulesobject()
                 }
             }
         }

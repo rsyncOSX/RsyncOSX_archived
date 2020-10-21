@@ -333,10 +333,6 @@ extension ChangeTemporaryRestorePath {
     }
 }
 
-protocol Createandreloadconfigurations: AnyObject {
-    func createandreloadconfigurations()
-}
-
 // Protocol for sorting
 protocol Sorting {
     func sortbydate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?

@@ -16,7 +16,8 @@ protocol MenuappChanged: AnyObject {
 
 class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, ChangeTemporaryRestorePath {
     var dirty: Bool = false
-    weak var reloadconfigurationsDelegate: Createandreloadconfigurations?
+    weak var reloadconfigurationsDelegate: GetConfigurationsObject?
+    weak var reloadschedulesDelegate: GetSchedulesObject?
     weak var menuappDelegate: MenuappChanged?
     weak var loadsshparametersDelegate: Loadsshparameters?
     var oldmarknumberofdayssince: Double?
@@ -48,6 +49,35 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var statuslightsshkeypath: NSImageView!
     @IBOutlet var monitornetworkconnection: NSButton!
+    @IBOutlet var json: NSButton!
+    @IBOutlet var convertjsonbutton: NSButton!
+
+    @IBAction func enablejson(_: NSButton) {
+        if self.json.state == .on {
+            ViewControllerReference.shared.json = true
+            self.convertjsonbutton.state = .off
+        } else {
+            ViewControllerReference.shared.json = false
+            self.convertjsonbutton.state = .off
+        }
+        self.reload = true
+        self.setdirty()
+    }
+
+    @IBAction func enableconvertjsonbutton(_: NSButton) {
+        guard ViewControllerReference.shared.json == false else {
+            self.convertjsonbutton.state = .off
+            ViewControllerReference.shared.convertjsonbutton = false
+            return
+        }
+        if self.convertjsonbutton.state == .on {
+            ViewControllerReference.shared.convertjsonbutton = true
+        } else {
+            ViewControllerReference.shared.convertjsonbutton = false
+        }
+        self.reload = true
+        self.setdirty()
+    }
 
     @IBAction func copyconfigfiles(_: NSButton) {
         _ = Backupconfigfiles()
@@ -133,7 +163,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             self.setsshparameters()
             PersistentStorageUserconfiguration().saveuserconfiguration()
             if self.reload {
-                self.reloadconfigurationsDelegate?.createandreloadconfigurations()
+                self.reloadconfigurationsDelegate?.reloadconfigurationsobject()
+                self.reloadschedulesDelegate?.reloadschedulesobject()
             }
             self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             self.loadsshparametersDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
@@ -384,6 +415,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.sshport.delegate = self
         self.nologging.state = .on
         self.reloadconfigurationsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        self.reloadschedulesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
     }
 
