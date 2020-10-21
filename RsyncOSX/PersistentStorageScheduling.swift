@@ -12,7 +12,7 @@
 
 import Foundation
 
-final class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
+class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
     // Variable holds all schedule data from persisten storage
     var schedulesasdictionary: [NSDictionary]?
 

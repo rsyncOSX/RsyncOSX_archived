@@ -90,7 +90,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         return false
     }
 
-    private func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
+    func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
         if ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
             let masterdict = NSMutableDictionary()
             masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
@@ -108,7 +108,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         return false
     }
 
-    private func getconfig(hiddenID: Int) -> Configuration? {
+    func getconfig(hiddenID: Int) -> Configuration? {
         let index = self.configurations?.getIndex(hiddenID) ?? 0
         return self.configurations?.getConfigurations()[index]
     }
