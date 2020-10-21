@@ -420,6 +420,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             }
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
+        if let reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData {
+            reloadDelegate.reloadtabledata()
+        }
     }
 
     func createandreloadconfigurations() {
