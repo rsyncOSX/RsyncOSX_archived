@@ -21,7 +21,7 @@ enum RsynccommandDisplay {
 struct Displayrsyncpath: SetConfigurations {
     var displayrsyncpath: String?
 
-    init(index _: Int, display: RsynccommandDisplay) {
+    init(index: Int, display: RsynccommandDisplay) {
         var str: String?
         if let config = self.configurations?.getargumentAllConfigurations(),
            self.configurations?.getargumentAllConfigurations().count ?? 0 > 0
@@ -30,21 +30,21 @@ struct Displayrsyncpath: SetConfigurations {
             str = str! + " "
             switch display {
             case .synchronize:
-                if let count = config[0].argdryRunDisplay?.count {
+                if let count = config[index].argdryRunDisplay?.count {
                     for i in 0 ..< count {
-                        str = str! + config[0].argdryRunDisplay![i]
+                        str = str! + config[index].argdryRunDisplay![i]
                     }
                 }
             case .restore:
-                if let count = config[0].restoredryRunDisplay?.count {
+                if let count = config[index].restoredryRunDisplay?.count {
                     for i in 0 ..< count {
-                        str = str! + config[0].restoredryRunDisplay![i]
+                        str = str! + config[index].restoredryRunDisplay![i]
                     }
                 }
             case .verify:
-                if let count = config[0].verifyDisplay?.count {
+                if let count = config[index].verifyDisplay?.count {
                     for i in 0 ..< count {
-                        str = str! + config[0].verifyDisplay![i]
+                        str = str! + config[index].verifyDisplay![i]
                     }
                 }
             }
