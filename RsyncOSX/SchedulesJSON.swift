@@ -132,15 +132,14 @@ class SchedulesJSON: Schedules {
     override func readschedules() {
         // var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
         // guard store != nil else { return }
-        let store = ReadWriteSchedulesJSON(profile: self.profile).decodejson
+        let store = ReadWriteSchedulesJSON(profile: self.profile).decodedjson
         var data = [ConfigurationSchedule]()
-
         for i in 0 ..< (store?.count ?? 0) {
-            var transformed = transform(object: (store?[i] as? ScheduleJSON)!)
-            // where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil
-
-            transformed.profilename = self.profile
-            data.append(transformed)
+            if let scheduleitem = (store?[i] as? DecodeScheduleJSON) {
+                var transformed = transform(object: scheduleitem)
+                transformed.profilename = self.profile
+                data.append(transformed)
+            }
         }
         // Sorting schedule after hiddenID
         data.sort { (schedule1, schedule2) -> Bool in
@@ -156,7 +155,7 @@ class SchedulesJSON: Schedules {
 }
 
 extension Schedules {
-    func transform(object: ScheduleJSON) -> ConfigurationSchedule {
+    func transform(object: DecodeScheduleJSON) -> ConfigurationSchedule {
         var log: [Any]?
         let dict: NSMutableDictionary = [
             "hiddenID": object.hiddenID ?? -1,

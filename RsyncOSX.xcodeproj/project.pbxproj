@@ -138,7 +138,7 @@
 		E9C6D24120AAB96800B9D212 /* AllProfilenames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* Numbers.swift */; };
 		E9C70CA9253C572E00FC75C6 /* ConvertOneScheduleCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C70CA8253C572E00FC75C6 /* ConvertOneScheduleCodable.swift */; };
-		E9C77993253ADF1000642E90 /* ConfigJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C77992253ADF1000642E90 /* ConfigJSON.swift */; };
+		E9C77993253ADF1000642E90 /* DecodeConfigJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C77992253ADF1000642E90 /* DecodeConfigJSON.swift */; };
 		E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */; };
 		E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */; };
 		E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD3227976030083405C /* InfoPlist.strings */; };
@@ -160,7 +160,7 @@
 		E9FD8684253B799900482DA1 /* ConvertOneConfigCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD8683253B799900482DA1 /* ConvertOneConfigCodable.swift */; };
 		E9FD8688253B79BE00482DA1 /* ReadWriteConfigurationsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD8687253B79BE00482DA1 /* ReadWriteConfigurationsJSON.swift */; };
 		E9FDDECA253CADE400D41FD1 /* ReadWriteSchedulesJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FDDEC9253CADE400D41FD1 /* ReadWriteSchedulesJSON.swift */; };
-		E9FDDED2253CB45800D41FD1 /* ScheduleJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FDDED1253CB45800D41FD1 /* ScheduleJSON.swift */; };
+		E9FDDED2253CB45800D41FD1 /* DecodeScheduleJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FDDED1253CB45800D41FD1 /* DecodeScheduleJSON.swift */; };
 		E9FE50BD2527765C00076447 /* ConvertAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE50BC2527765C00076447 /* ConvertAssist.swift */; };
 		E9FE50C125277A7600076447 /* PersistentStorageAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE50C025277A7600076447 /* PersistentStorageAssist.swift */; };
 		E9FE959B25134BD800B9AF5D /* OtherProcessCmdClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE959A25134BD800B9AF5D /* OtherProcessCmdClosure.swift */; };
@@ -321,7 +321,7 @@
 		E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProfilenames.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		E9C70CA8253C572E00FC75C6 /* ConvertOneScheduleCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertOneScheduleCodable.swift; sourceTree = "<group>"; };
-		E9C77992253ADF1000642E90 /* ConfigJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigJSON.swift; sourceTree = "<group>"; };
+		E9C77992253ADF1000642E90 /* DecodeConfigJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeConfigJSON.swift; sourceTree = "<group>"; };
 		E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertSchedules.swift; sourceTree = "<group>"; };
 		E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypathidentityfile.swift; sourceTree = "<group>"; };
 		E9DE2CCE228A835C003BC663 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 		E9FD8683253B799900482DA1 /* ConvertOneConfigCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertOneConfigCodable.swift; sourceTree = "<group>"; };
 		E9FD8687253B79BE00482DA1 /* ReadWriteConfigurationsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteConfigurationsJSON.swift; sourceTree = "<group>"; };
 		E9FDDEC9253CADE400D41FD1 /* ReadWriteSchedulesJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteSchedulesJSON.swift; sourceTree = "<group>"; };
-		E9FDDED1253CB45800D41FD1 /* ScheduleJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleJSON.swift; sourceTree = "<group>"; };
+		E9FDDED1253CB45800D41FD1 /* DecodeScheduleJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeScheduleJSON.swift; sourceTree = "<group>"; };
 		E9FE50BC2527765C00076447 /* ConvertAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertAssist.swift; sourceTree = "<group>"; };
 		E9FE50C025277A7600076447 /* PersistentStorageAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageAssist.swift; sourceTree = "<group>"; };
 		E9FE959A25134BD800B9AF5D /* OtherProcessCmdClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProcessCmdClosure.swift; sourceTree = "<group>"; };
@@ -424,7 +424,6 @@
 		A04492BE1D658F8900B3CE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E978EC45253ABD1A002211FC /* JSON */,
 				E915568425284EFA007573E1 /* Assist */,
 				E9764F5E204BEE710018C0D7 /* AllProfiles */,
 				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
@@ -440,6 +439,7 @@
 				A04492C11D658FB900B3CE17 /* Schedule */,
 				A04492C01D658FA600B3CE17 /* Configuration */,
 				A04492BF1D658F9400B3CE17 /* FilesAndCatalogs */,
+				E978EC45253ABD1A002211FC /* JSON */,
 				E90E51051F47094800B71F0F /* PersistentStorage */,
 			);
 			name = Model;
@@ -615,7 +615,7 @@
 		E8C9E056253EAE4300F7D154 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				E9C77992253ADF1000642E90 /* ConfigJSON.swift */,
+				E9C77992253ADF1000642E90 /* DecodeConfigJSON.swift */,
 				E9FD8683253B799900482DA1 /* ConvertOneConfigCodable.swift */,
 				E9FD8687253B79BE00482DA1 /* ReadWriteConfigurationsJSON.swift */,
 			);
@@ -625,7 +625,7 @@
 		E8C9E057253EAE5F00F7D154 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				E9FDDED1253CB45800D41FD1 /* ScheduleJSON.swift */,
+				E9FDDED1253CB45800D41FD1 /* DecodeScheduleJSON.swift */,
 				E9C70CA8253C572E00FC75C6 /* ConvertOneScheduleCodable.swift */,
 				E9FDDEC9253CADE400D41FD1 /* ReadWriteSchedulesJSON.swift */,
 			);
@@ -1166,7 +1166,7 @@
 				E9BC4DE7230277A10058CB52 /* ExecuteTaskNow.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,
 				E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */,
-				E9FDDED2253CB45800D41FD1 /* ScheduleJSON.swift in Sources */,
+				E9FDDED2253CB45800D41FD1 /* DecodeScheduleJSON.swift in Sources */,
 				E92755A42130506000B1F781 /* Dateandtime.swift in Sources */,
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				E9A1725C250F675B00F26529 /* RsyncProcessCmdClosure.swift in Sources */,
@@ -1181,7 +1181,7 @@
 				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
 				E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */,
 				E9F068F21F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift in Sources */,
-				E9C77993253ADF1000642E90 /* ConfigJSON.swift in Sources */,
+				E9C77993253ADF1000642E90 /* DecodeConfigJSON.swift in Sources */,
 				E9F332B425406B6400BA322D /* ConfigurationsXCTESTJSON.swift in Sources */,
 				A091C65B1D86A59500278E74 /* RestorefilesTask.swift in Sources */,
 				E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */,

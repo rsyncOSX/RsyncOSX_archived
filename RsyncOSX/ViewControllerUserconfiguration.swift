@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 30/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length type_body_length cyclomatic_complexity file_length
+// swiftlint:disable line_length type_body_length cyclomatic_complexity file_length function_body_length
 
 import Cocoa
 import Foundation
@@ -67,7 +67,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             let dialog: String = NSLocalizedString("Change", comment: "Userconfig")
             let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
             if answer {
-                _ = Backupconfigfiles()
                 PersistentStorageUserconfiguration().saveuserconfiguration()
                 NSApp.terminate(self)
             } else {
