@@ -470,7 +470,7 @@
 "dsn-9I-wI5.title" = " detaljert logging";
 
 /* Class = "NSButtonCell"; title = "Transform"; ObjectID = "dSq-8M-D1s"; */
-"dSq-8M-D1s.title" = "&Transformer";
+"dSq-8M-D1s.title" = "Transformer";
 
 /* Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi"; */
 "dtI-40-Iqi.headerCell.title" = "Når";
