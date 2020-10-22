@@ -118,10 +118,14 @@ final class ViewControllerReference {
     var monitornetworkconnection: Bool = false
     // Reference to the active process
     var process: Process?
-    // READ JSON
+    // Read JSON
     var json: Bool = false
-    // READ plist, convert to JSON button enabled
+    // Read plist, convert to JSON button enabled
     var convertjsonbutton: Bool = false
+    // JSON names
+    var fileschedulesjson = "schedules.json"
+    var fileconfigurationsjson = "configurations.json"
+
     // Reference to main View
     private var viewControllertabMain: NSViewController?
     // Reference to Copy files

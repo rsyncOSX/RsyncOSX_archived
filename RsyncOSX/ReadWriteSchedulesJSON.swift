@@ -12,9 +12,9 @@ import Foundation
 class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
     var jsonstring: String?
     var schedules: [ConfigurationSchedule]?
-    var decodejson: [Any]?
+    var decodedjson: [Any]?
 
-    private func createJSON() {
+    private func createJSONfromstructs() {
         var structscodable: [ConvertOneScheduleCodable]?
         if let schedules = self.schedules {
             structscodable = [ConvertOneScheduleCodable]()
@@ -45,13 +45,13 @@ class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
                 if self.profile != nil {
                     atpath += "/" + (self.profile ?? "")
                 }
-                let jsonfile = atpath + "/" + "schedules.json"
+                let jsonfile = atpath + "/" + ViewControllerReference.shared.fileschedulesjson
                 let file = try File(path: jsonfile)
                 let jsonfromstore = try file.readAsString()
                 if let jsonstring = jsonfromstore.data(using: .utf8) {
                     do {
                         let decoder = JSONDecoder()
-                        self.decodejson = try decoder.decode([ScheduleJSON].self, from: jsonstring)
+                        self.decodedjson = try decoder.decode([DecodeScheduleJSON].self, from: jsonstring)
                     } catch let e {
                         let error = e as NSError
                         self.error(error: error.description, errortype: .json)
@@ -71,7 +71,7 @@ class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
                     atpath += "/" + (self.profile ?? "")
                 }
                 let folder = try Folder(path: atpath)
-                let file = try folder.createFile(named: "schedules.json")
+                let file = try folder.createFile(named: ViewControllerReference.shared.fileschedulesjson)
                 if let data = self.jsonstring {
                     try file.write(data)
                 }
@@ -86,7 +86,7 @@ class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
         super.init(profileorsshrootpath: .profileroot)
         self.schedules = schedules
         self.profile = profile
-        self.createJSON()
+        self.createJSONfromstructs()
     }
 
     init(profile: String?) {

@@ -52,13 +52,15 @@ class ConfigurationsJSON: Configurations {
     override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
-        let store = ReadWriteConfigurationsJSON(profile: self.profile).decodejson
+        let store = ReadWriteConfigurationsJSON(profile: self.profile).decodedjson
         for i in 0 ..< (store?.count ?? 0) {
-            let transformed = transform(object: (store?[i] as? ConfigJSON)!)
-            if ViewControllerReference.shared.synctasks.contains(transformed.task) {
-                self.configurations?.append(transformed)
-                let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
-                self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+            if let configitem = store?[i] as? DecodeConfigJSON {
+                let transformed = transform(object: configitem)
+                if ViewControllerReference.shared.synctasks.contains(transformed.task) {
+                    self.configurations?.append(transformed)
+                    let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
+                    self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+                }
             }
         }
         // Then prepare the datasource for use in tableviews as Dictionarys
@@ -76,7 +78,7 @@ class ConfigurationsJSON: Configurations {
 }
 
 extension Configurations {
-    func transform(object: ConfigJSON) -> Configuration {
+    func transform(object: DecodeConfigJSON) -> Configuration {
         var dayssincelastbackup: String?
         var markdays: Bool = false
         var lastruninseconds: Double? {

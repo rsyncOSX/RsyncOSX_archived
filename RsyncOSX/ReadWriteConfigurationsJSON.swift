@@ -12,9 +12,9 @@ import Foundation
 class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
     var jsonstring: String?
     var configurations: [Configuration]?
-    var decodejson: [Any]?
+    var decodedjson: [Any]?
 
-    private func createJSON() {
+    private func createJSONfromstructs() {
         var structscodable: [ConvertOneConfigCodable]?
         if let configurations = self.configurations {
             structscodable = [ConvertOneConfigCodable]()
@@ -43,13 +43,13 @@ class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
                 if self.profile != nil {
                     atpath += "/" + (self.profile ?? "")
                 }
-                let jsonfile = atpath + "/" + "configurations.json"
+                let jsonfile = atpath + "/" + ViewControllerReference.shared.fileconfigurationsjson
                 let file = try File(path: jsonfile)
                 let jsonfromstore = try file.readAsString()
                 if let jsonstring = jsonfromstore.data(using: .utf8) {
                     do {
                         let decoder = JSONDecoder()
-                        self.decodejson = try decoder.decode([ConfigJSON].self, from: jsonstring)
+                        self.decodedjson = try decoder.decode([DecodeConfigJSON].self, from: jsonstring)
                     } catch let e {
                         let error = e as NSError
                         self.error(error: error.description, errortype: .json)
@@ -69,7 +69,7 @@ class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
                     atpath += "/" + (self.profile ?? "")
                 }
                 let folder = try Folder(path: atpath)
-                let file = try folder.createFile(named: "configurations.json")
+                let file = try folder.createFile(named: ViewControllerReference.shared.fileconfigurationsjson)
                 if let data = self.jsonstring {
                     try file.write(data)
                 }
@@ -84,7 +84,7 @@ class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
         super.init(profileorsshrootpath: .profileroot)
         self.configurations = configurations
         self.profile = profile
-        self.createJSON()
+        self.createJSONfromstructs()
     }
 
     init(profile: String?) {
