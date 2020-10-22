@@ -59,4 +59,9 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
         super.init(whattoreadwrite: .schedule, profile: profile)
         self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
     }
+
+    init(profile: String?, verify _: Bool) {
+        super.init(whattoreadwrite: .schedule, profile: profile)
+        self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
+    }
 }
