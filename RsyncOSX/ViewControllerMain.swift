@@ -471,7 +471,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBAction func Json(_: NSButton) {
         var jsonconfigurations: ReadWriteConfigurationsJSON?
         var jsonschedules: ReadWriteSchedulesJSON?
-        // _ = Backupconfigfiles()
+        _ = Backupconfigfiles()
         if let profile = self.configurations?.getProfile() {
             jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: profile)
             jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: profile)
@@ -485,7 +485,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false
         let info: String = NSLocalizedString("Now you can enable JSON in userconfig...", comment: "Main")
-        // Alerts.showInfo(info: info)
+        Alerts.showInfo(info: info)
         if let profile = self.configurations?.getProfile() {
             _ = VerifyJSON(profile: profile)
         } else {

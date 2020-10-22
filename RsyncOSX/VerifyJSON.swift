@@ -59,11 +59,33 @@ class VerifyJSON {
     }
 
     func verifyconfigurations() {
-        
+        if (self.plistconfigurations?.count ?? 0) == (self.transformedconfigurations?.count ?? 0) {
+            if let plistconfigurations = self.plistconfigurations,
+               let transformedconfigurations = self.transformedconfigurations
+            {
+                for i in 0 ..< plistconfigurations.count {}
+            }
+        } else {
+            self.error(str: "Configuartions: not equal number of records.")
+        }
     }
-    
+
     func verifyschedules() {
-        
+        if (self.plistschedules?.count ?? 0) == (self.transformedschedules?.count ?? 0) {
+            if let plistschedules = self.plistschedules,
+               let transformedschedules = self.transformedschedules
+            {
+                for i in 0 ..< plistschedules.count {}
+            }
+        } else {
+            self.error(str: "Schedules: not equal number of records.")
+        }
+    }
+
+    func error(str: String) {
+        let errormessage = OutputProcess()
+        errormessage.addlinefromoutput(str: str)
+        _ = Logging(errormessage, true)
     }
 
     init(profile: String?) {
@@ -72,6 +94,8 @@ class VerifyJSON {
         self.readconfigurationsplist()
         self.readschedulesJSON()
         self.readconfigurationsJSON()
+        self.verifyconfigurations()
+        self.verifyschedules()
     }
 }
 
@@ -204,5 +228,3 @@ extension VerifyJSON {
         return Configuration(dictionary: dict as NSDictionary)
     }
 }
-
-
