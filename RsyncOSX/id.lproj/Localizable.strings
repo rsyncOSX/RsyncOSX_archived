@@ -1,0 +1,372 @@
+/* Restore */
+" ... set in User configuration ..." = "... sett i bruker preferanser...";
+
+/* Execute */
+"⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
+
+/* Snapshots */
+"Aborting delete operation..." = "Avslutter slette operasjon...";
+
+/* Add schedule
+   New */
+"Add" = "Legg til";
+
+/* New */
+"Add config?" = "Legge til?";
+
+/* Add schedule */
+"Add Schedule?" = "Legg til oppgave?";
+
+/* Tooltip */
+"By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp filstier.";
+
+/* Cancel NSAlert */
+"Cancel" = "Kanseler";
+
+/* Add schedule */
+"Cancel or Add" = "Kanseler eller legg til";
+
+/* Execute
+   Logg
+   Profiles
+   Snapshots */
+"Cancel or Delete" = "Kanseler eller slett";
+
+/* Restore */
+"Cancel or Restore" = "Kanseler eller gjenopprett";
+
+/* Restore */
+"Cannot copy from a syncremote task..." = "Kan ikke gjenopprett fra syncremote...";
+
+/* Verify */
+"Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
+
+/* chinese */
+"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
+
+/* Snapshots */
+"Cleaning logs completed..." = "Sletting logger utført...";
+
+/* Close NSAlert */
+"Close" = "Lukk";
+
+/* Verify */
+"Completed ..." = "Utført ...";
+
+/* Verify */
+"Computing changed, please wait..." = "Beregning endret, vennligst vent...";
+
+/* Restore */
+"Copy single files or directory?" = "Gjenopprett fil eller katalog?";
+
+/* copyright */
+"Copyright ©2020 Thomas Evensen" = "Opphavsrett ©2020 Thomas Evensen";
+
+/* main */
+"daily" = "daglig";
+
+/* Remote Info
+   Verify */
+"Date last synchronize:" = "Dato siste synkronisering:";
+
+/* datetime */
+"days" = "dager";
+
+/* Remote Info
+   Verify */
+"Days since last synchronize:" = "Dager siden sist synkronisering:";
+
+/* default profile */
+"Default profile" = "Default profil";
+
+/* Execute
+   Logg
+   plan
+   Profiles
+   Snapshots */
+"Delete" = "Slett";
+
+/* plan */
+"Delete number of snapshots:" = "Slett antall snapshots:";
+
+/* Snapshots */
+"Delete operation completed..." = "Slette operasjon gjennomført...";
+
+/* Profiles */
+"Delete profile:" = "Slett profil:";
+
+/* Execute */
+"Delete selected task?" = "Slett valgte oppgave?";
+
+/* plan */
+"Delete snapshots older than:" = "Slett snapshots eldre enn:";
+
+/* Tooltip */
+"Destination catalog:" = "Lokal katalog:";
+
+/* Snapshots */
+"Do you REALLY want to delete selected snapshots" = "Vil du slette valgte snapshots";
+
+/* Restore */
+"Do you REALLY want to start a restore?" = "Vi du starte en full gjenopprett?";
+
+/* Snapshots */
+"Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
+
+/* plan */
+"earlier months" = "tidligere måned";
+
+/* Error rsync */
+"ERROR: no rsync in" = "FEIL: ingen rsync i";
+
+/* Error rsync */
+"ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
+
+/* Remote info */
+"Estimation completed" = "Estimering ferdig";
+
+/* plan */
+"every" = "alle";
+
+/* Restore */
+"Executing restore..." = "Utfører gjenopprett...";
+
+/* Restore */
+"Filelist for snapshot tasks might be huge?" = "Liste over filer i snapshot oppgaver kan være stor?";
+
+/* plan */
+"Friday" = "fredag";
+
+/* german */
+"German translation by: Andre" = "Tysk oversettelse av: Andre";
+
+/* Restore */
+"Getting info, please wait..." = "Henter informasjon, vennligst vent...";
+
+/* Loggdata */
+"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon...";
+
+/* Loggdata */
+"Got index from Synchronize and listing logs for one configuration..." = "Hentet index fra Synkroniser og lister logg for en konfigurasjon...";
+
+/* Schedules */
+"Got index from Synchronize..." = "Hentet index fra Synkroniser...";
+
+/* Remote Info */
+"Got it..." = "Info hentet...";
+
+/* datetime */
+"h" = "t";
+
+/* datetime */
+"hours" = "timer";
+
+/* icon */
+"Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
+
+/* italian */
+"Italian translation by: Stefano Steve Cutelle'" = "Italinsk oversettelse av: Stefano Steve Cutelle'";
+
+/* plan */
+"Keep" = "Behold";
+
+/* plan */
+"last" = "siste";
+
+/* Profile */
+"Load" = "Last";
+
+/* Remote info
+   Remote Info */
+"Loaded cached data..." = "Lastet cached info...";
+
+/* Tooltip */
+"Local catalog:" = "Lokal katalog:";
+
+/* Restore */
+"Local or remote catalog cannot be empty..." = "Lokal og ekstern må fylles ut...";
+
+/* main */
+"manuel" = "manuell";
+
+/* Execute */
+"Menu app is running..." = "Meny appen kjører...";
+
+/* datetime */
+"mins" = "min";
+
+/* plan */
+"Monday" = "mandag";
+
+/* Execute */
+"New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
+
+/* About */
+"New version is available:" = "Ny versjon er tilgjengelig:";
+
+/* Execute */
+"No rsync in path..." = "Ingen rsync i sti...";
+
+/* Schedule details */
+"no startdate" = "ingen startdato";
+
+/* Schedule details */
+"no stopdate" = "ingen stopp dato";
+
+/* Restore */
+"No such temporay catalog for restore, set it in user config." = "Ingen slik lokal katalog for gjenopprett eller sett den i bruker preferanser.";
+
+/* plan */
+"none" = "ingen";
+
+/* norwegian */
+"Norwegian translation by: Thomas Evensen" = "Norsk oversettelse av: Thomas Evensen";
+
+/* Restore */
+"Not a remote task, use Finder to copy files..." = "Ikke en ekstern oppgave, bruk Finder for å gjenopprette filer...";
+
+/* Snapshots */
+"Not a snapshot task..." = "Ikke en snapshot oppgave...";
+
+/* AllProfiles */
+"Number of configurations:" = "Antall konfigurasjoner:";
+
+/* Logg */
+"Number of logs:" = "Antall logger:";
+
+/* Restore */
+"Number of remote files:" = "Antall eksterne filer:";
+
+/* Remote info */
+"Number of tasks to estimate:" = "Antall oppgaver å estimere:";
+
+/* Snapshots */
+"Number snapshots:" = "Antall snapshots:";
+
+/* main */
+"once" = "engang";
+
+/* Verify */
+"Please select a task in Synchronize ..." = "Velg en oppgave i Synkroniser ...";
+
+/* Execute */
+"Possible error logging..." = "Mulig feil logging...";
+
+/* plan */
+"previous month" = "forrige måned";
+
+/* Execute */
+"Profile:" = "Profil:";
+
+/* Execute */
+"Profile: please wait..." = "Profil: vennligst vent...";
+
+/* Tooltip */
+"Remote catalog:" = "Ekstern katalog:";
+
+/* Restore */
+"Restore" = "Gjenopprett";
+
+/* Restore */
+"Restore completed..." = "Gjenopprett er utført...";
+
+/* plan */
+"Saturday" = "lørdag";
+
+/* Profile
+   Userconfig */
+"Save" = "Lagre";
+
+/* Schedules */
+"Scheduled tasks in menu app..." = "Planlagte oppgaver i meny app...";
+
+/* datetime */
+"secs" = "sek";
+
+/* Copy files
+   Remote Info
+   Verify */
+"Seems not to be connected..." = "Synes ikke å være tilgjengelig...";
+
+/* Restore */
+"Seems to be nothing to restore" = "Virker ikke å være noe å gjenopprette";
+
+/* Execute */
+"Select a task...." = "Velg en oppgave...";
+
+/* Execute */
+"Select one or more tasks..." = "Velg en eller flere oppgaver...";
+
+/* Logg */
+"Selected logs:" = "Valgte logger:";
+
+/* Execute */
+"Selection out of range - aborting" = "Utvalg ikke mulig - avslutter";
+
+/* Snapshots */
+"Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
+
+/* Restore */
+"Simulated: execute full restore to SOURCE" = "Simulert: utfør full gjenopprett til KILDE";
+
+/* Restore */
+"Simulated: execute full restore to temporary restore path" = "Simulert: utfør full gjenopprett til midlertidig sti for gjenopprett";
+
+/* Restore */
+"Simulated: execute restore of files to temporary restore path" = "Simulert: utfør gjenopprett av filer til midlertidig sti for gjenopprett";
+
+/* Tooltip */
+"Source catalog:" = "Ekstern katalog:";
+
+/* Restore */
+"Start" = "Start";
+
+/* Restore */
+"Start getting files?" = "Hente filer?";
+
+/* Restore */
+"Start restore?" = "Start gjenopprett?";
+
+/* main */
+"stopped" = "stoppet";
+
+/* dayofweek
+   plan */
+"Sunday" = "søndag";
+
+/* Execute */
+"The menu app" = "Meny app";
+
+/* Quickbackup */
+"There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
+
+/* New */
+"This is added before?" = "Denne er lagt til tidligere?";
+
+/* plan */
+"this month" = "denne måned";
+
+/* plan */
+"this week" = "denne uke";
+
+/* plan */
+"Thursday" = "torsdag";
+
+/* plan */
+"Tuesday" = "tirsdag";
+
+/* Verify */
+"Verifying, please wait..." = "Verifiserer, vennligst vent...";
+
+/* plan */
+"Wednesday" = "onsdag";
+
+/* main */
+"weekly" = "ukentlig";
+
+/* Snapshots */
+"You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
+
+/* About */
+"You have the latest ..." = "Du har siste versjon...";
+
