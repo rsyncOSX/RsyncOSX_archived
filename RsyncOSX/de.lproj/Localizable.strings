@@ -4,6 +4,9 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A zum Abbrechen oder Warten...";
 
+/* Userconfig */
+"Abort or Change?" = "Abbrechen oder ändern?";
+
 /* Snapshots */
 "Aborting delete operation..." = "Löschvorgang wird abgebrochen...";
 
@@ -40,6 +43,9 @@
 
 /* Verify */
 "Cannot verify a syncremote task..." = "Kann eine syncremote Aufgabe nicht überprüfen...";
+
+/* Userconfig */
+"Change" = "Ändern";
 
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "Chinesisch (vereinfacht) Übersetzung von: StringKe";
@@ -134,6 +140,9 @@
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Die Liste für Snapshot-Aufgaben könnte enorm sein?";
 
+/* Userconfig */
+"Format of config files changed?" = "Format der Konfigurationsdateien verändert?";
+
 /* plan */
 "Friday" = "Freitag";
 
@@ -227,6 +236,9 @@
 
 /* Snapshots */
 "Not a snapshot task..." = "Keine snapshot aufgabe...";
+
+/* Main */
+"Now you can enable JSON in userconfig..." = "Nun können Sie JSON in userconfig aktivieren...";
 
 /* AllProfiles */
 "Number of configurations:" = "Anzahl der Konfigurationen:";

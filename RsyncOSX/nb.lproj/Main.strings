@@ -40,6 +40,9 @@
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "1Yh-6C-SGM"; */
 "1Yh-6C-SGM.title" = "Item 3";
 
+/* Class = "NSBox"; title = "JSON"; ObjectID = "2by-Cc-MW0"; */
+"2by-Cc-MW0.title" = "JSON";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "2Cv-Hb-dy9"; */
 "2Cv-Hb-dy9.title" = "Text Cell";
 
@@ -382,6 +385,9 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "c3e-f5-7YK"; */
 "c3e-f5-7YK.title" = "Text Cell";
 
+/* Class = "NSButtonCell"; title = "JSON"; ObjectID = "c3s-Ii-74Q"; */
+"c3s-Ii-74Q.title" = "JSON";
+
 /* Class = "NSTableColumn"; headerCell.title = "Total dir"; ObjectID = "Can-2K-epd"; */
 "Can-2K-epd.headerCell.title" = "Antall kataloger";
 
@@ -430,6 +436,9 @@
 /* Class = "NSTextFieldCell"; title = "Total size (kB):"; ObjectID = "CwH-vm-SWF"; */
 "CwH-vm-SWF.title" = "Total størrelse (kB):";
 
+/* Class = "NSButtonCell"; title = "JSON"; ObjectID = "d0Q-96-jiR"; */
+"d0Q-96-jiR.title" = "JSON";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "D7f-Cg-ZtW"; */
 "D7f-Cg-ZtW.title" = "Text Cell";
 
@@ -459,6 +468,9 @@
 
 /* Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5"; */
 "dsn-9I-wI5.title" = " detaljert logging";
+
+/* Class = "NSButtonCell"; title = "Transform"; ObjectID = "dSq-8M-D1s"; */
+"dSq-8M-D1s.title" = "&Transformer";
 
 /* Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi"; */
 "dtI-40-Iqi.headerCell.title" = "Når";
@@ -970,8 +982,8 @@
 /* Class = "NSBox"; title = "Remote users and servers"; ObjectID = "NLl-Ha-sMA"; */
 "NLl-Ha-sMA.title" = "Eksterne brukere og servere";
 
-/* Class = "NSButtonCell"; title = "Copy"; ObjectID = "NM9-fK-5xs"; */
-"NM9-fK-5xs.title" = "Kopi";
+/* Class = "NSButtonCell"; title = "Backup"; ObjectID = "NM9-fK-5xs"; */
+"NM9-fK-5xs.title" = "Sikkerhetskopi";
 
 /* Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS"; */
 "NMo-mM-awS.title" = "Intro";
@@ -990,6 +1002,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "o1G-0k-G0I"; */
 "o1G-0k-G0I.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "JSON"; ObjectID = "O9B-eL-iDX"; */
+"O9B-eL-iDX.title" = "JSON";
 
 /* Class = "NSTextFieldCell"; title = "New files:"; ObjectID = "o77-iT-bNa"; */
 "o77-iT-bNa.title" = "Nye filer:";
@@ -1077,9 +1092,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "prA-0K-uny"; */
 "prA-0K-uny.title" = "Text Cell";
-
-/* Class = "NSButtonCell"; title = "Close"; ObjectID = "PS2-bk-aN7"; */
-"PS2-bk-aN7.title" = "Lukk";
 
 /* Class = "NSViewController"; title = "View Controller Configuration"; ObjectID = "Psw-ga-cgO"; */
 "Psw-ga-cgO.title" = "View Controller Configuration";

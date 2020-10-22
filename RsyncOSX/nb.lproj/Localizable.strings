@@ -4,6 +4,9 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
 
+/* Userconfig */
+"Abort or Change?" = "Avbryt eller endre?";
+
 /* Snapshots */
 "Aborting delete operation..." = "Avslutter slette operasjon...";
 
@@ -40,6 +43,9 @@
 
 /* Verify */
 "Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
+
+/* Userconfig */
+"Change" = "Endre";
 
 /* chinese */
 "Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
@@ -134,6 +140,9 @@
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Liste over filer i snapshot oppgaver kan være stor?";
 
+/* Userconfig */
+"Format of config files changed?" = "Formatet på config filer endret?";
+
 /* plan */
 "Friday" = "fredag";
 
@@ -227,6 +236,9 @@
 
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
+
+/* Main */
+"Now you can enable JSON in userconfig..." = "Nå kan du aktivere JSON i userconfig...";
 
 /* AllProfiles */
 "Number of configurations:" = "Antall konfigurasjoner:";
