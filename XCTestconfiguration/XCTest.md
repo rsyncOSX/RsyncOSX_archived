@@ -10,4 +10,4 @@ Old catalog: `~/Documents/Rsync/mac_serial_number`
 
 Copy the configurations `configRsync.plist` and `scheduleRsync`to the catalog `~/.rsyncosx/mac_serial_number/XCTest` and likewise for the above files in the `Datacheck` catalog, to `~/.rsyncosx/mac_serial_number/Datacheck`.
 
-There are tests for loading configurations and verifying that parameters for `rsync`.
+There are tests for loading configurations and verifying the parameters for `rsync`.
