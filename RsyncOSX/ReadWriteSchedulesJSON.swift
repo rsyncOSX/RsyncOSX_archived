@@ -46,9 +46,9 @@ class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
                     atpath += "/" + (self.profile ?? "")
                 }
                 let jsonfile = atpath + "/" + ViewControllerReference.shared.fileschedulesjson
-                let file = try File(path: jsonfile)
                 // check if file exists befor reading, if not bail out
                 guard try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileschedulesjson) else { return }
+                let file = try File(path: jsonfile)
                 let jsonfromstore = try file.readAsString()
                 if let jsonstring = jsonfromstore.data(using: .utf8) {
                     do {
