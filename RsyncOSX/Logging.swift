@@ -58,7 +58,7 @@ class Logging: NamesandPaths, FileErrors {
                 self.log = try file.readAsString()
             } catch let e {
                 let error = e as NSError
-                self.error(error: error.description, errortype: .writelogfile)
+                self.error(error: error.description, errortype: .readlogfile)
             }
         }
     }

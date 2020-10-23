@@ -16,6 +16,7 @@ enum Fileerrortype {
     case filesize
     case createsshdirectory
     case json
+    case readlogfile
 }
 
 // Protocol for reporting file errors
@@ -56,6 +57,8 @@ extension ErrorMessage {
             return "Error creating ssh directory"
         case .json:
             return "JSON error"
+        case .readlogfile:
+            return "Empty logfile, creating a new one..."
         }
     }
 }
