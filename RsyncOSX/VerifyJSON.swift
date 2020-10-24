@@ -63,7 +63,11 @@ class VerifyJSON {
             if let plistconfigurations = self.plistconfigurations,
                let transformedconfigurations = self.transformedconfigurations
             {
-                for i in 0 ..< plistconfigurations.count {}
+                for i in 0 ..< plistconfigurations.count {
+                    if Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == false {
+                        self.error(str: "Configuartions: not equal...")
+                    }
+                }
             }
         } else {
             self.error(str: "Configuartions: not equal number of records.")
@@ -75,7 +79,11 @@ class VerifyJSON {
             if let plistschedules = self.plistschedules,
                let transformedschedules = self.transformedschedules
             {
-                for i in 0 ..< plistschedules.count {}
+                for i in 0 ..< plistschedules.count {
+                    if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
+                        self.error(str: "Schedules: not equal...")
+                    }
+                }
             }
         } else {
             self.error(str: "Schedules: not equal number of records.")

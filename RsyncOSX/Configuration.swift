@@ -159,10 +159,42 @@ extension Configuration: Hashable, Equatable {
         return lhs.localCatalog == rhs.localCatalog &&
             lhs.offsiteCatalog == rhs.offsiteCatalog &&
             lhs.offsiteUsername == rhs.offsiteUsername &&
-            lhs.offsiteServer == rhs.offsiteServer
+            lhs.offsiteServer == rhs.offsiteServer &&
+            lhs.hiddenID == rhs.hiddenID &&
+            lhs.task == rhs.task &&
+            lhs.parameter1 == rhs.parameter1 &&
+            lhs.parameter2 == rhs.parameter2 &&
+            lhs.parameter3 == rhs.parameter3 &&
+            lhs.parameter4 == rhs.parameter4 &&
+            lhs.parameter5 == rhs.parameter5 &&
+            lhs.parameter6 == rhs.parameter6 &&
+            lhs.parameter8 == rhs.parameter8 &&
+            lhs.parameter9 == rhs.parameter9 &&
+            lhs.parameter10 == rhs.parameter10 &&
+            lhs.parameter11 == rhs.parameter11 &&
+            lhs.parameter12 == rhs.parameter12 &&
+            lhs.parameter13 == rhs.parameter13 &&
+            lhs.parameter14 == rhs.parameter14
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine([self.localCatalog, self.offsiteCatalog, self.offsiteUsername, self.offsiteServer])
+        hasher.combine(self.localCatalog)
+        hasher.combine(self.offsiteUsername)
+        hasher.combine(self.offsiteServer)
+        hasher.combine(String(self.hiddenID))
+        hasher.combine(self.task)
+        hasher.combine(self.parameter1)
+        hasher.combine(self.parameter2)
+        hasher.combine(self.parameter3)
+        hasher.combine(self.parameter4)
+        hasher.combine(self.parameter5)
+        hasher.combine(self.parameter6)
+        hasher.combine(self.parameter8)
+        hasher.combine(self.parameter9)
+        hasher.combine(self.parameter10)
+        hasher.combine(self.parameter11)
+        hasher.combine(self.parameter12)
+        hasher.combine(self.parameter13)
+        hasher.combine(self.parameter14)
     }
 }

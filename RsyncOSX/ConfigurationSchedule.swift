@@ -42,6 +42,8 @@ extension ConfigurationSchedule: Hashable, Equatable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine([String(self.hiddenID), self.dateStart, self.schedule])
+        hasher.combine(String(self.hiddenID))
+        hasher.combine(self.dateStart)
+        hasher.combine(self.schedule)
     }
 }

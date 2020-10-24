@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Equal {
-    func isequal<T: Hashable>(data: [T]?, element: T) -> Bool {
+struct Equal {
+    func isequalelement<T: Hashable>(data: [T]?, element: T) -> Bool {
         guard data != nil else { return false }
         let filter = data!.filter { $0 == element }
         if filter.count > 0 {
@@ -17,5 +17,9 @@ class Equal {
         } else {
             return false
         }
+    }
+
+    func isequalstructs<T: Hashable>(rhs: T, lhs: T) -> Bool {
+        return rhs == lhs
     }
 }
