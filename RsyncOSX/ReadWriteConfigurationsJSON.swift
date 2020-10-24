@@ -44,9 +44,9 @@ class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
                 if self.profile != nil {
                     atpath += "/" + (self.profile ?? "")
                 }
-                let jsonfile = atpath + "/" + ViewControllerReference.shared.fileconfigurationsjson
                 // check if file exists befor reading, if not bail out
                 guard try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileconfigurationsjson) else { return }
+                let jsonfile = atpath + "/" + ViewControllerReference.shared.fileconfigurationsjson
                 let file = try File(path: jsonfile)
                 let jsonfromstore = try file.readAsString()
                 if let jsonstring = jsonfromstore.data(using: .utf8) {

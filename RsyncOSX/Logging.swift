@@ -40,6 +40,8 @@ class Logging: NamesandPaths, FileErrors {
     func filesize() -> NSNumber? {
         if var atpath = self.fullroot {
             do {
+                // check if file exists befor reading, if not bail out
+                guard try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.logname) else { return 0 }
                 atpath += "/" + ViewControllerReference.shared.logname
                 let file = try File(path: atpath).url
                 return try FileManager.default.attributesOfItem(atPath: file.path)[FileAttributeKey.size] as? NSNumber ?? 0
