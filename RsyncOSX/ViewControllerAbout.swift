@@ -26,9 +26,9 @@ class ViewControllerAbout: NSViewController {
 
     var copyrigthstring: String = NSLocalizedString("Copyright ©2020 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
-    var chinesestring: String = NSLocalizedString("Chinese (Simplified) translation by: StringKe", comment: "chinese")
+    var chinesestring: String = NSLocalizedString("Chinese (Simplified) translation by: StringKe (Chen)", comment: "chinese")
     var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
-    var germanstring: String = NSLocalizedString("German translation by: Andre", comment: "german")
+    var germanstring: String = NSLocalizedString("German translation by: Andre Voigtmann", comment: "german")
     var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle'", comment: "italian")
     var dutchstring: String = NSLocalizedString("Ducth translation by: Marcellino Santoso", comment: "ducth")
     var indonesianstring: String = NSLocalizedString("Indonesian translation by: Marcellino Santoso", comment: "indonesian")
