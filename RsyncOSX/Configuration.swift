@@ -159,10 +159,29 @@ extension Configuration: Hashable, Equatable {
         return lhs.localCatalog == rhs.localCatalog &&
             lhs.offsiteCatalog == rhs.offsiteCatalog &&
             lhs.offsiteUsername == rhs.offsiteUsername &&
-            lhs.offsiteServer == rhs.offsiteServer
+            lhs.offsiteServer == rhs.offsiteServer &&
+            lhs.hiddenID == rhs.hiddenID &&
+            lhs.task == rhs.task &&
+            lhs.parameter1 == rhs.parameter1 &&
+            lhs.parameter2 == rhs.parameter2 &&
+            lhs.parameter3 == rhs.parameter3 &&
+            lhs.parameter4 == rhs.parameter4 &&
+            lhs.parameter5 == rhs.parameter5 &&
+            lhs.parameter6 == rhs.parameter6
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine([self.localCatalog, self.offsiteCatalog, self.offsiteUsername, self.offsiteServer])
+        hasher.combine([self.localCatalog,
+                        self.offsiteCatalog,
+                        self.offsiteUsername,
+                        self.offsiteServer,
+                        String(self.hiddenID),
+                        self.task,
+                        self.parameter1,
+                        self.parameter2,
+                        self.parameter3,
+                        self.parameter4,
+                        self.parameter5,
+                        self.parameter6])
     }
 }

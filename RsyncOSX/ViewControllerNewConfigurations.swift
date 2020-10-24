@@ -242,7 +242,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
         if ViewControllerReference.shared.checkinput {
             let config = Configuration(dictionary: dict)
-            let equal = Equal().isequal(data: self.configurations?.getConfigurations(), element: config)
+            let equal = Equal().isequalelement(data: self.configurations?.getConfigurations(), element: config)
             if equal {
                 let question: String = NSLocalizedString("This is added before?", comment: "New")
                 let text: String = NSLocalizedString("Add config?", comment: "New")

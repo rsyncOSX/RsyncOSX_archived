@@ -64,7 +64,7 @@ class VerifyJSON {
                let transformedconfigurations = self.transformedconfigurations
             {
                 for i in 0 ..< plistconfigurations.count {
-                    if self.test(lhs: plistconfigurations[i], rhs: transformedconfigurations[i]) == false {
+                    if Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == false {
                         self.error(str: "Configuartions: not equal...")
                     }
                 }
@@ -80,7 +80,7 @@ class VerifyJSON {
                let transformedschedules = self.transformedschedules
             {
                 for i in 0 ..< plistschedules.count {
-                    if self.test2(lhs: plistschedules[i], rhs: transformedschedules[i]) == false {
+                    if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
                         self.error(str: "Schedules: not equal...")
                     }
                 }
@@ -234,15 +234,5 @@ extension VerifyJSON {
             dict.setObject(object.offsiteUsername ?? "", forKey: "offsiteUsername" as NSCopying)
         }
         return Configuration(dictionary: dict as NSDictionary)
-    }
-
-    func test(lhs: Configuration, rhs: Configuration) -> Bool {
-        if lhs != rhs { return false }
-        return true
-    }
-
-    func test2(lhs: ConfigurationSchedule, rhs: ConfigurationSchedule) -> Bool {
-        if lhs != rhs { return false }
-        return true
     }
 }
