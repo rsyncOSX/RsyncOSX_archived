@@ -183,6 +183,14 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.presentAsModalWindow(self.viewControllerMove!)
     }
 
+    @IBAction func verifyjson(_: NSButton) {
+        if let profile = self.configurations?.getProfile() {
+            _ = VerifyJSON(profile: profile)
+        } else {
+            _ = VerifyJSON(profile: nil)
+        }
+    }
+
     // Selecting automatic backup
     @IBAction func automaticbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -486,14 +494,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         ViewControllerReference.shared.convertjsonbutton = false
         let info: String = NSLocalizedString("Now you can enable JSON in userconfig...", comment: "Main")
         Alerts.showInfo(info: info)
-        if let profile = self.configurations?.getProfile() {
-            _ = VerifyJSON(profile: profile)
-        } else {
-            _ = VerifyJSON(profile: nil)
-        }
-    }
-
-    @IBAction func VerifyJSONbutton(_: NSButton) {
         if let profile = self.configurations?.getProfile() {
             _ = VerifyJSON(profile: profile)
         } else {
