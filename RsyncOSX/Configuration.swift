@@ -167,21 +167,22 @@ extension Configuration: Hashable, Equatable {
             lhs.parameter3 == rhs.parameter3 &&
             lhs.parameter4 == rhs.parameter4 &&
             lhs.parameter5 == rhs.parameter5 &&
-            lhs.parameter6 == rhs.parameter6
+            lhs.parameter6 == rhs.parameter6 &&
+            lhs.parameter14 == rhs.parameter14
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine([self.localCatalog,
-                        self.offsiteCatalog,
-                        self.offsiteUsername,
-                        self.offsiteServer,
-                        String(self.hiddenID),
-                        self.task,
-                        self.parameter1,
-                        self.parameter2,
-                        self.parameter3,
-                        self.parameter4,
-                        self.parameter5,
-                        self.parameter6])
+        hasher.combine(self.localCatalog)
+        hasher.combine(self.offsiteUsername)
+        hasher.combine(self.offsiteServer)
+        hasher.combine(String(self.hiddenID))
+        hasher.combine(self.task)
+        hasher.combine(self.parameter1)
+        hasher.combine(self.parameter2)
+        hasher.combine(self.parameter3)
+        hasher.combine(self.parameter4)
+        hasher.combine(self.parameter5)
+        hasher.combine(self.parameter6)
+        hasher.combine(self.parameter14)
     }
 }
