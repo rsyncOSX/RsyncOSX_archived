@@ -168,6 +168,12 @@ extension Configuration: Hashable, Equatable {
             lhs.parameter4 == rhs.parameter4 &&
             lhs.parameter5 == rhs.parameter5 &&
             lhs.parameter6 == rhs.parameter6 &&
+            lhs.parameter8 == rhs.parameter8 &&
+            lhs.parameter9 == rhs.parameter9 &&
+            lhs.parameter10 == rhs.parameter10 &&
+            lhs.parameter11 == rhs.parameter11 &&
+            lhs.parameter12 == rhs.parameter12 &&
+            lhs.parameter13 == rhs.parameter13 &&
             lhs.parameter14 == rhs.parameter14
     }
 
@@ -183,6 +189,12 @@ extension Configuration: Hashable, Equatable {
         hasher.combine(self.parameter4)
         hasher.combine(self.parameter5)
         hasher.combine(self.parameter6)
+        hasher.combine(self.parameter8)
+        hasher.combine(self.parameter9)
+        hasher.combine(self.parameter10)
+        hasher.combine(self.parameter11)
+        hasher.combine(self.parameter12)
+        hasher.combine(self.parameter13)
         hasher.combine(self.parameter14)
     }
 }
