@@ -492,4 +492,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             _ = VerifyJSON(profile: nil)
         }
     }
+
+    @IBAction func VerifyJSONbutton(_: NSButton) {
+        if let profile = self.configurations?.getProfile() {
+            _ = VerifyJSON(profile: profile)
+        } else {
+            _ = VerifyJSON(profile: nil)
+        }
+    }
 }

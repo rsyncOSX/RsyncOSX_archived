@@ -63,7 +63,11 @@ class VerifyJSON {
             if let plistconfigurations = self.plistconfigurations,
                let transformedconfigurations = self.transformedconfigurations
             {
-                for i in 0 ..< plistconfigurations.count {}
+                for i in 0 ..< plistconfigurations.count {
+                    if self.test(lhs: plistconfigurations[i], rhs: transformedconfigurations[i]) == false {
+                        self.error(str: "Configuartions: not equal...")
+                    }
+                }
             }
         } else {
             self.error(str: "Configuartions: not equal number of records.")
@@ -75,7 +79,11 @@ class VerifyJSON {
             if let plistschedules = self.plistschedules,
                let transformedschedules = self.transformedschedules
             {
-                for i in 0 ..< plistschedules.count {}
+                for i in 0 ..< plistschedules.count {
+                    if self.test2(lhs: plistschedules[i], rhs: transformedschedules[i]) == false {
+                        self.error(str: "Schedules: not equal...")
+                    }
+                }
             }
         } else {
             self.error(str: "Schedules: not equal number of records.")
@@ -226,5 +234,13 @@ extension VerifyJSON {
             dict.setObject(object.offsiteUsername ?? "", forKey: "offsiteUsername" as NSCopying)
         }
         return Configuration(dictionary: dict as NSDictionary)
+    }
+
+    func test(lhs _: Configuration, rhs _: Configuration) -> Bool {
+        return true
+    }
+
+    func test2(lhs _: ConfigurationSchedule, rhs _: ConfigurationSchedule) -> Bool {
+        return true
     }
 }

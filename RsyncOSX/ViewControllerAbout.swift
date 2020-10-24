@@ -21,6 +21,8 @@ class ViewControllerAbout: NSViewController {
     @IBOutlet var german: NSTextField!
     @IBOutlet var italian: NSTextField!
     @IBOutlet var configpath: NSTextField!
+    @IBOutlet var dutch: NSTextField!
+    @IBOutlet var indonesian: NSTextField!
 
     var copyrigthstring: String = NSLocalizedString("Copyright ©2020 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
@@ -28,6 +30,8 @@ class ViewControllerAbout: NSViewController {
     var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
     var germanstring: String = NSLocalizedString("German translation by: Andre", comment: "german")
     var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle'", comment: "italian")
+    var dutchstring: String = NSLocalizedString("Ducth translation by: Marcellino Santoso", comment: "ducth")
+    var indonesianstring: String = NSLocalizedString("Indonesian translation by: Marcellino Santoso", comment: "indonesian")
 
     var resource: Resources?
     var outputprocess: OutputProcess?
@@ -75,6 +79,8 @@ class ViewControllerAbout: NSViewController {
         self.norwegian.stringValue = self.norwegianstring
         self.german.stringValue = self.germanstring
         self.italian.stringValue = self.italianstring
+        self.dutch.stringValue = self.dutchstring
+        self.indonesian.stringValue = self.indonesianstring
         self.resource = Resources()
     }
 
