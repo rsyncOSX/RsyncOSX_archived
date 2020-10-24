@@ -58,7 +58,7 @@ extension ErrorMessage {
         case .json:
             return "JSON error"
         case .readlogfile:
-            return "Empty logfile, creating a new one..."
+            return "Empty logfile."
         }
     }
 }
