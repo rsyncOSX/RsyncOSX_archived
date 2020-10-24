@@ -236,11 +236,13 @@ extension VerifyJSON {
         return Configuration(dictionary: dict as NSDictionary)
     }
 
-    func test(lhs _: Configuration, rhs _: Configuration) -> Bool {
+    func test(lhs: Configuration, rhs: Configuration) -> Bool {
+        if lhs != rhs { return false }
         return true
     }
 
-    func test2(lhs _: ConfigurationSchedule, rhs _: ConfigurationSchedule) -> Bool {
+    func test2(lhs: ConfigurationSchedule, rhs: ConfigurationSchedule) -> Bool {
+        if lhs != rhs { return false }
         return true
     }
 }
