@@ -76,6 +76,11 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
         self.help()
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     @IBAction func verify(_: NSButton) {
         guard ViewControllerReference.shared.process == nil else { return }
         if let index = self.index() {

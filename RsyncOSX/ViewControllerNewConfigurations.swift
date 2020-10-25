@@ -87,6 +87,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.help()
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     @IBAction func cleartable(_: NSButton) {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()

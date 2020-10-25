@@ -80,6 +80,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.help()
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     @IBAction func savesnapdayofweek(_: NSButton) {
         var configurations = self.configurations?.getConfigurations()
         guard configurations?.count ?? -1 > 0 else { return }

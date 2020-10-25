@@ -174,6 +174,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.presentAsModalWindow(self.viewControllerAbout!)
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     @IBAction func showHelp(_: AnyObject?) {
         self.help()
     }
@@ -189,6 +194,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         } else {
             _ = VerifyJSON(profile: nil)
         }
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
     // Selecting automatic backup

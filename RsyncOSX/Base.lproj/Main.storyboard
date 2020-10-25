@@ -115,7 +115,11 @@
                                                 <action selector="verifyjson:" target="Ady-hI-5gd" id="ODl-ZP-EtY"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="View output" keyEquivalent="o" id="ZjH-mo-3qa" userLabel="Info"/>
+                                        <menuItem title="View output" keyEquivalent="o" id="ZjH-mo-3qa" userLabel="Info">
+                                            <connections>
+                                                <action selector="alloutput:" target="Ady-hI-5gd" id="FD2-Ix-5aR"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>

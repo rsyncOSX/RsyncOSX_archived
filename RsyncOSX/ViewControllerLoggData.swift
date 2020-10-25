@@ -57,6 +57,11 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.help()
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     @IBAction func sortdirection(_: NSButton) {
         if self.sortedascending == true {
             self.sortedascending = false
