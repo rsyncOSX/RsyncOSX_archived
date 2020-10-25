@@ -488,7 +488,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             if let profile = self.configurations?.getProfile() {
                 jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: profile)
                 jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: profile)
-
             } else {
                 jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: nil)
                 jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: nil)
@@ -509,13 +508,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             let info: String = NSLocalizedString("Now you can disable JSON in userconfig...", comment: "Main")
             Alerts.showInfo(info: info)
         }
-
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false
-        if let profile = self.configurations?.getProfile() {
-            _ = VerifyJSON(profile: profile)
-        } else {
-            _ = VerifyJSON(profile: nil)
-        }
     }
 }
