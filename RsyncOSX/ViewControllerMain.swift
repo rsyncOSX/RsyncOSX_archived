@@ -194,7 +194,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         } else {
             _ = VerifyJSON(profile: nil)
         }
-        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
     // Selecting automatic backup
