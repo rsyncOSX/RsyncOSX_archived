@@ -66,7 +66,7 @@ class VerifyJSON {
                 for i in 0 ..< plistconfigurations.count {
                     if Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == false {
                         let errorstring = "Configuartions in record" + String(i) + ": not equal..."
-                        self.error(str:errorstring)
+                        self.error(str: errorstring)
                     }
                 }
             }
@@ -81,6 +81,11 @@ class VerifyJSON {
                let transformedschedules = self.transformedschedules
             {
                 for i in 0 ..< plistschedules.count {
+                    if plistschedules[i].logrecords.count != transformedschedules[i].logrecords.count {
+                        let errorstring = String(plistschedules[i].logrecords.count) + " in plist not equal in JSON " +
+                            String(transformedschedules[i].logrecords.count)
+                        self.error(str: errorstring)
+                    }
                     if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
                         let errorstring = "Schedules in record" + String(i) + ": not equal..."
                         self.error(str: errorstring)
