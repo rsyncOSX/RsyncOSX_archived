@@ -152,6 +152,34 @@ class SchedulesJSON: Schedules {
         // Setting self.Schedule as data
         self.schedules = data
     }
+
+    override func deleteselectedrows(scheduleloggdata: ScheduleLoggData?) {
+        guard scheduleloggdata?.loggdata != nil else { return }
+        var deletes = [Row]()
+        let selectdeletes = scheduleloggdata?.loggdata?.filter { ($0.value(forKey: "deleteCellID") as? Int)! == 1 }.sorted { (dict1, dict2) -> Bool in
+            if (dict1.value(forKey: "parent") as? Int) ?? 0 > (dict2.value(forKey: "parent") as? Int) ?? 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+        for i in 0 ..< (selectdeletes?.count ?? 0) {
+            let parent = selectdeletes?[i].value(forKey: "parent") as? Int ?? 0
+            let sibling = selectdeletes?[i].value(forKey: "sibling") as? Int ?? 0
+            deletes.append((parent, sibling))
+        }
+        deletes.sort(by: { (obj1, obj2) -> Bool in
+            if obj1.0 == obj2.0, obj1.1 > obj2.1 {
+                return obj1 > obj2
+            }
+            return obj1 > obj2
+        })
+        for i in 0 ..< deletes.count {
+            self.schedules?[deletes[i].0].logrecords.remove(at: deletes[i].1)
+        }
+        PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
+        self.reloadtable(vcontroller: .vcloggdata)
+    }
 }
 
 extension Schedules {
