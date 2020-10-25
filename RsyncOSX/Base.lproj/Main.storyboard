@@ -115,6 +115,7 @@
                                                 <action selector="verifyjson:" target="Ady-hI-5gd" id="ODl-ZP-EtY"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="View output" keyEquivalent="o" id="ZjH-mo-3qa" userLabel="Info"/>
                                         <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
@@ -1286,7 +1287,7 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.0061970143127765883" horizontal="YES" id="N8p-IB-Dgv">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="N8p-IB-Dgv">
                                     <rect key="frame" x="2" y="307" width="602" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -4789,18 +4790,18 @@ DQ
         <scene sceneID="ExO-HS-EpI">
             <objects>
                 <viewController title="All output" storyboardIdentifier="StoryboardOutputID" id="mal-sc-mlY" customClass="ViewControllerAllOutput" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="sfF-Cw-fbW">
-                        <rect key="frame" x="0.0" y="0.0" width="802" height="445"/>
+                    <view key="view" id="sfF-Cw-fbW">
+                        <rect key="frame" x="0.0" y="0.0" width="802" height="421"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="356"/>
+                                <rect key="frame" x="20" y="61" width="762" height="340"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="355"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="339"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="332"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="316"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4905,20 +4906,20 @@ DQ
                         </subviews>
                         <constraints>
                             <constraint firstItem="4Kl-20-wwi" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="4" id="0Py-HC-T0x"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="leading" id="3ok-ZG-DzP"/>
                             <constraint firstAttribute="bottom" secondItem="4Kl-20-wwi" secondAttribute="bottom" constant="20" id="5NV-Rn-ndf"/>
                             <constraint firstItem="4Kl-20-wwi" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="4" id="6eK-88-vrh"/>
                             <constraint firstAttribute="bottom" secondItem="79S-p9-m7a" secondAttribute="bottom" constant="20" id="71E-b4-5jQ"/>
-                            <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="8XI-63-GdZ"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="HUU-mQ-dlu"/>
+                            <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="Idl-Ek-tBR"/>
                             <constraint firstItem="sCo-k2-Zkk" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" id="LPN-hr-2DD"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" symbolic="YES" id="QBx-6F-J9W"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="trailing" constant="5" id="QnU-PF-tyN"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="trailing" constant="5" id="YMk-K4-Atp"/>
                             <constraint firstAttribute="bottom" secondItem="sCo-k2-Zkk" secondAttribute="bottom" constant="20" id="aLN-VR-wlf"/>
                             <constraint firstItem="79S-p9-m7a" firstAttribute="leading" secondItem="4Kl-20-wwi" secondAttribute="trailing" constant="5" id="cEb-nh-iKA"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="28" id="dsn-52-U0u"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="leading" id="fVF-uB-WvB"/>
+                            <constraint firstItem="sCo-k2-Zkk" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" symbolic="YES" id="kmq-W4-8Zh"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="baseline" secondItem="sCo-k2-Zkk" secondAttribute="baseline" id="nKC-hO-xzP"/>
-                            <constraint firstItem="sCo-k2-Zkk" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" symbolic="YES" id="pGr-FV-886"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="q54-CH-aUo"/>
                             <constraint firstAttribute="bottom" secondItem="6Ks-5W-3qb" secondAttribute="bottom" constant="20" id="xy9-fU-ykK"/>
                         </constraints>
                     </view>
