@@ -83,11 +83,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     }
 
     @IBAction func enableconvertjsonbutton(_: NSButton) {
-        guard ViewControllerReference.shared.json == false else {
-            self.convertjsonbutton.state = .off
-            ViewControllerReference.shared.convertjsonbutton = false
-            return
-        }
         if self.convertjsonbutton.state == .on {
             ViewControllerReference.shared.convertjsonbutton = true
         } else {
