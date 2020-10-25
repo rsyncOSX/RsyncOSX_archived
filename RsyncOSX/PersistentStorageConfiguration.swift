@@ -94,8 +94,12 @@ class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
         self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
     }
 
-    init(profile: String?, verify _: Bool) {
+    init(profile: String?, readorwrite: Bool) {
         super.init(whattoreadwrite: .configuration, profile: profile)
-        self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
+        if readorwrite == true {
+            self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
+        } else {
+            self.saveconfigInMemoryToPersistentStore()
+        }
     }
 }

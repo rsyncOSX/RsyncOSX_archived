@@ -331,6 +331,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
             // JSON button
+            if ViewControllerReference.shared.json == true {
+                self.jsonbutton.title = "PLIST"
+            } else {
+                self.jsonbutton.title = "JSON"
+            }
             self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
         }
     }
@@ -477,23 +482,36 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func Json(_: NSButton) {
-        var jsonconfigurations: ReadWriteConfigurationsJSON?
-        var jsonschedules: ReadWriteSchedulesJSON?
-        _ = Backupconfigfiles()
-        if let profile = self.configurations?.getProfile() {
-            jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: profile)
-            jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: profile)
+        if ViewControllerReference.shared.json == false {
+            var jsonconfigurations: ReadWriteConfigurationsJSON?
+            var jsonschedules: ReadWriteSchedulesJSON?
+            if let profile = self.configurations?.getProfile() {
+                jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: profile)
+                jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: profile)
 
+            } else {
+                jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: nil)
+                jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: nil)
+            }
+            jsonconfigurations?.writeJSONToPersistentStore()
+            jsonschedules?.writeJSONToPersistentStore()
+
+            let info: String = NSLocalizedString("Now you can enable JSON in userconfig...", comment: "Main")
+            Alerts.showInfo(info: info)
         } else {
-            jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: nil)
-            jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: nil)
+            if let profile = self.configurations?.getProfile() {
+                _ = PersistentStorageConfiguration(profile: profile, readorwrite: false)
+                _ = PersistentStorageScheduling(profile: profile, readorwrite: false)
+            } else {
+                _ = PersistentStorageConfiguration(profile: nil, readorwrite: false)
+                _ = PersistentStorageScheduling(profile: nil, readorwrite: false)
+            }
+            let info: String = NSLocalizedString("Now you can disable JSON in userconfig...", comment: "Main")
+            Alerts.showInfo(info: info)
         }
-        jsonconfigurations?.writeJSONToPersistentStore()
-        jsonschedules?.writeJSONToPersistentStore()
+
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false
-        let info: String = NSLocalizedString("Now you can enable JSON in userconfig...", comment: "Main")
-        Alerts.showInfo(info: info)
         if let profile = self.configurations?.getProfile() {
             _ = VerifyJSON(profile: profile)
         } else {

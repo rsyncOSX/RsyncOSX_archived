@@ -22,12 +22,12 @@ class VerifyJSON {
     var profile: String?
 
     func readschedulesplist() {
-        let store = PersistentStorageScheduling(profile: self.profile, verify: true)
+        let store = PersistentStorageScheduling(profile: self.profile, readorwrite: true)
         self.plistschedules = store.getScheduleandhistory(nolog: false)
     }
 
     func readconfigurationsplist() {
-        let store = PersistentStorageConfiguration(profile: self.profile, verify: true)
+        let store = PersistentStorageConfiguration(profile: self.profile, readorwrite: true)
         self.plistconfigurations = store.readconfigurations()
     }
 
@@ -82,6 +82,9 @@ class VerifyJSON {
                 for i in 0 ..< plistschedules.count {
                     if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
                         self.error(str: "Schedules: not equal...")
+                        print(i)
+                        print(plistschedules[i])
+                        print(transformedschedules[i])
                     }
                 }
             }
