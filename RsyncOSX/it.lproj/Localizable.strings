@@ -38,6 +38,9 @@
 /* Restore */
 "Cancel or Restore" = "Annulla o ripristina";
 
+/* Logg */
+"Cancel or Save" = "Annulla o salva";
+
 /* Restore */
 "Cannot copy from a syncremote task..." = "Impossibile copiare da un' attività di sync remota...";
 
@@ -48,7 +51,7 @@
 "Change" = "Modifica";
 
 /* chinese */
-"Chinese (Simplified) translation by: StringKe" = "Traduzione cinese (Semplificata) da: StringKe";
+"Chinese (Simplified) translation by: StringKe (Chen)" = "Traduzione cinese semplificato da: StringKe (Chen)";
 
 /* Snapshots */
 "Cleaning logs completed..." = "Pulizia log completata...";
@@ -119,6 +122,9 @@
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Non cambiare il numero istantanee se non sai cosa stai facendo...";
 
+/* ducth */
+"Ducth translation by: Marcellino Santoso" = "Traduzione di Ducth di: Marcellino Santoso";
+
 /* plan */
 "earlier months" = "mesi precedenti";
 
@@ -147,7 +153,7 @@
 "Friday" = "Venerdì";
 
 /* german */
-"German translation by: Andre" = "Traduzione in tedesco da: Andre";
+"German translation by: Andre Voigtmann" = "Traduzione in tedesco di: Andre Voigtmann";
 
 /* Restore */
 "Getting info, please wait..." = "Ricezione delle informazioni, attendere prego...";
@@ -173,8 +179,14 @@
 /* icon */
 "Icon by: Zsolt Sándor" = "Icona da: Zsolt Sándor";
 
+/* indonesian */
+"Indonesian translation by: Marcellino Santoso" = "Traduzione indonesiana da: Marcellino Santoso";
+
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Traduzione italiana di: Stefano Steve Cutelle'";
+
+/* Logg */
+"JSON file exists: " = "File JSON esiste: ";
 
 /* plan */
 "Keep" = "Mantieni";
@@ -237,9 +249,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Non è un' attività di istantanea...";
 
-/* Main */
-"Now you can enable JSON in userconfig..." = "Ora è possibile abilitare JSON in userconfig...";
-
 /* AllProfiles */
 "Number of configurations:" = "Numero di configurazioni:";
 
@@ -260,6 +269,9 @@
 
 /* Verify */
 "Please select a task in Synchronize ..." = "Seleziona un'attività in Sincronizzare...";
+
+/* Logg */
+"PLIST file exists: " = "File JSON esiste: ";
 
 /* Execute */
 "Possible error logging..." = "Possibile errore di logging...";
@@ -285,7 +297,8 @@
 /* plan */
 "Saturday" = "Sabato";
 
-/* Profile
+/* Logg
+   Profile
    Userconfig */
 "Save" = "Salva";
 

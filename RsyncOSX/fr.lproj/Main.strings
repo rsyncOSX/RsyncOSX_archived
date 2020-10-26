@@ -439,6 +439,9 @@
 /* Class = "NSButtonCell"; title = "JSON"; ObjectID = "d0Q-96-jiR"; */
 "d0Q-96-jiR.title" = "JSON";
 
+/* Class = "NSTextFieldCell"; title = "Dutch"; ObjectID = "d2p-8S-asI"; */
+"d2p-8S-asI.title" = "Néerlandais";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "D7f-Cg-ZtW"; */
 "D7f-Cg-ZtW.title" = "Text Cell";
 
@@ -1132,6 +1135,9 @@
 /* Class = "NSTextFieldCell"; title = "Remote computers:"; ObjectID = "QHT-Is-bM2"; */
 "QHT-Is-bM2.title" = "Utilisateur distant:";
 
+/* Class = "NSTextFieldCell"; title = "Indonesian"; ObjectID = "qIs-zX-FwQ"; */
+"qIs-zX-FwQ.title" = "Indonésien";
+
 /* Class = "NSToolbarItem"; label = "backupnow"; ObjectID = "QmL-ZM-Xc4"; */
 "QmL-ZM-Xc4.label" = "Sauvegarde";
 
@@ -1323,6 +1329,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U9D-uu-6jC"; */
 "U9D-uu-6jC.title" = "Text Cell";
+
+/* Class = "NSMenuItem"; title = "Verify (JSON)"; ObjectID = "u9U-bE-I7G"; */
+"u9U-bE-I7G.title" = "Vérifier (JSON)";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT"; */
 "uAb-Pv-NUT.title" = "Nombre de répertoires :";
@@ -1590,6 +1599,9 @@
 
 /* Class = "NSButtonCell"; title = "Verify"; ObjectID = "zHz-9r-Cpj"; */
 "zHz-9r-Cpj.title" = "Vérifier";
+
+/* Class = "NSMenuItem"; title = "View output"; ObjectID = "ZjH-mo-3qa"; */
+"ZjH-mo-3qa.title" = "View output";
 
 /* Class = "NSTextFieldCell"; title = "User selected params"; ObjectID = "ZJm-XI-lka"; */
 "ZJm-XI-lka.title" = "Paramètres sélectionnés par l'utilisateur";
