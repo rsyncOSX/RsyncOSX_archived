@@ -98,7 +98,9 @@ class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
                         self.writeJSONToPersistentStore()
                     }
                 }
-            } catch {}
+            } catch {
+                self.writeJSONToPersistentStore()
+            }
         }
     }
 
