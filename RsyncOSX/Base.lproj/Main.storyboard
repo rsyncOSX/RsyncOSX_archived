@@ -120,6 +120,11 @@
                                                 <action selector="alloutput:" target="Ady-hI-5gd" id="FD2-Ix-5aR"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Transform" keyEquivalent="j" id="PI0-Hw-1SW" userLabel="Info">
+                                            <connections>
+                                                <action selector="enableconvertjsonbutton:" target="Ady-hI-5gd" id="PdF-v0-3t3"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
@@ -3786,7 +3791,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A6a-eW-M9U">
-                                <rect key="frame" x="424" y="155" width="57" height="18"/>
+                                <rect key="frame" x="424" y="161" width="57" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="JSON" bezelStyle="regularSquare" imagePosition="left" inset="2" id="c3s-Ii-74Q">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3796,29 +3801,17 @@ DQ
                                     <action selector="enablejson:" target="Psw-ga-cgO" id="A6P-vU-X1U"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vsD-VF-6i4">
-                                <rect key="frame" x="424" y="135" width="84" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Transform" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dSq-8M-D1s">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="enableconvertjsonbutton:" target="Psw-ga-cgO" id="13o-LR-UiK"/>
-                                </connections>
-                            </button>
                             <box fixedFrame="YES" title="JSON" translatesAutoresizingMaskIntoConstraints="NO" id="2by-Cc-MW0">
-                                <rect key="frame" x="411" y="122" width="151" height="80"/>
+                                <rect key="frame" x="411" y="147" width="151" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="DKd-CJ-gpf">
-                                    <rect key="frame" x="3" y="3" width="145" height="62"/>
+                                    <rect key="frame" x="3" y="3" width="145" height="37"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="convertjsonbutton" destination="vsD-VF-6i4" id="WLO-GQ-BIr"/>
                         <outlet property="detailedlogging" destination="dg1-Pc-D5r" id="Z5n-3i-nJ1"/>
                         <outlet property="enableenvironment" destination="I07-48-scn" id="dHw-8Z-G8I"/>
                         <outlet property="environment" destination="9fS-yY-5No" id="AOY-QT-JFC"/>
@@ -4794,18 +4787,18 @@ DQ
         <scene sceneID="ExO-HS-EpI">
             <objects>
                 <viewController title="All output" storyboardIdentifier="StoryboardOutputID" id="mal-sc-mlY" customClass="ViewControllerAllOutput" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="sfF-Cw-fbW">
-                        <rect key="frame" x="0.0" y="0.0" width="802" height="421"/>
+                    <view key="view" misplaced="YES" id="sfF-Cw-fbW">
+                        <rect key="frame" x="0.0" y="0.0" width="802" height="397"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="340"/>
+                                <rect key="frame" x="20" y="61" width="762" height="292"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="339"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="291"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="316"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="268"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>

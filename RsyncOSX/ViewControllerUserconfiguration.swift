@@ -51,16 +51,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var statuslightsshkeypath: NSImageView!
     @IBOutlet var monitornetworkconnection: NSButton!
     @IBOutlet var json: NSButton!
-    @IBOutlet var convertjsonbutton: NSButton!
 
     @IBAction func enablejson(_: NSButton) {
-        if self.json.state == .on {
-            ViewControllerReference.shared.json = true
-            self.convertjsonbutton.state = .off
-        } else {
-            ViewControllerReference.shared.json = false
-            self.convertjsonbutton.state = .off
-        }
         if self.jsonischanged != ViewControllerReference.shared.json {
             let question: String = NSLocalizedString("Format of config files changed?", comment: "Userconfig")
             let text: String = NSLocalizedString("Abort or Change?", comment: "Userconfig")
@@ -69,27 +61,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             if answer {
                 PersistentStorageUserconfiguration().saveuserconfiguration()
                 NSApp.terminate(self)
-            } else {
-                ViewControllerReference.shared.json = self.jsonischanged
-                if self.jsonischanged {
-                    self.json.state = .on
-                    self.convertjsonbutton.state = .off
-                } else {
-                    self.json.state = .off
-                    self.convertjsonbutton.state = .off
-                }
             }
         }
-    }
-
-    @IBAction func enableconvertjsonbutton(_: NSButton) {
-        if self.convertjsonbutton.state == .on {
-            ViewControllerReference.shared.convertjsonbutton = true
-        } else {
-            ViewControllerReference.shared.convertjsonbutton = false
-        }
-        self.reload = true
-        self.setdirty()
     }
 
     @IBAction func copyconfigfiles(_: NSButton) {
@@ -505,12 +478,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             self.monitornetworkconnection.state = .on
         } else {
             self.monitornetworkconnection.state = .off
-        }
-        if ViewControllerReference.shared.json {
-            self.json.state = .on
-            self.convertjsonbutton.state = .off
-        } else {
-            self.json.state = .off
         }
     }
 }
