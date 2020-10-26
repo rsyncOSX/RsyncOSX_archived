@@ -1,10 +1,11 @@
 //
-//  ConfigurationsJson.swift
+//  DecodeConfigJSON.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 17/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
 import Foundation
 
