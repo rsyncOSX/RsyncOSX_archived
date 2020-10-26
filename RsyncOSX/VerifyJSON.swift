@@ -22,8 +22,23 @@ class VerifyJSON {
     var profile: String?
 
     func readschedulesplist() {
-        let store = PersistentStorageScheduling(profile: self.profile, readorwrite: true)
-        self.plistschedules = store.getScheduleandhistory(nolog: false)
+        var store = PersistentStorageScheduling(profile: self.profile, readorwrite: true).getScheduleandhistory(nolog: false)
+        var data = [ConfigurationSchedule]()
+        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil {
+            store?[i].profilename = self.profile
+            if let store = store?[i] {
+                data.append(store)
+            }
+        }
+        // Sorting schedule after hiddenID
+        data.sort { (schedule1, schedule2) -> Bool in
+            if schedule1.hiddenID > schedule2.hiddenID {
+                return false
+            } else {
+                return true
+            }
+        }
+        self.plistschedules = data
     }
 
     func readconfigurationsplist() {
@@ -65,7 +80,7 @@ class VerifyJSON {
             {
                 for i in 0 ..< plistconfigurations.count {
                     if Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == false {
-                        let errorstring = "Configuartions in record" + String(i) + ": not equal..."
+                        let errorstring = "Configuartions in record: " + String(i) + ": not equal..."
                         self.error(str: errorstring)
                     }
                 }
@@ -87,7 +102,7 @@ class VerifyJSON {
                         self.error(str: errorstring)
                     }
                     if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
-                        let errorstring = "Schedules in record" + String(i) + ": not equal..."
+                        let errorstring = "Schedules in record: " + String(i) + ": not equal..."
                         self.error(str: errorstring)
                     }
                 }

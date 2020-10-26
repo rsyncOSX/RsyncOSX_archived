@@ -99,10 +99,10 @@ class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
                     if answer {
                         self.writeJSONToPersistentStore()
                     }
+                } else {
+                    self.writeJSONToPersistentStore()
                 }
-            } catch {
-                self.writeJSONToPersistentStore()
-            }
+            } catch {}
         }
     }
 
