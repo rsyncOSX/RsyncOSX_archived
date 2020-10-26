@@ -38,6 +38,9 @@
 /* Restore */
 "Cancel or Restore" = "Abbrechen oder Wiederherstellen";
 
+/* Logg */
+"Cancel or Save" = "Abbrechen oder Speichern";
+
 /* Restore */
 "Cannot copy from a syncremote task..." = "Kann nicht von einer syncremote Aufgabe kopieren...";
 
@@ -48,7 +51,7 @@
 "Change" = "Ändern";
 
 /* chinese */
-"Chinese (Simplified) translation by: StringKe" = "Chinesisch (vereinfacht) Übersetzung von: StringKe";
+"Chinese (Simplified) translation by: StringKe (Chen)" = "Chinesisch (vereinfacht) Übersetzung von: StringKe (Chen)";
 
 /* Snapshots */
 "Cleaning logs completed..." = "Logs werden bereinigt...";
@@ -119,6 +122,9 @@
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ändern Sie nicht das Snapshot-Num, wenn Sie nicht wissen, was Sie tun...";
 
+/* ducth */
+"Ducth translation by: Marcellino Santoso" = "Ducth Übersetzung von: Marcellino Santoso";
+
 /* plan */
 "earlier months" = "frühere Monate";
 
@@ -147,7 +153,7 @@
 "Friday" = "Freitag";
 
 /* german */
-"German translation by: Andre" = "Deutsche Übersetzung von: Andre";
+"German translation by: Andre Voigtmann" = "Deutsche Übersetzung von: Andre";
 
 /* Restore */
 "Getting info, please wait..." = "Info wird abgerufen, bitte warten...";
@@ -173,8 +179,14 @@
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon von: Zsolt Sándor";
 
+/* indonesian */
+"Indonesian translation by: Marcellino Santoso" = "Ducth Übersetzung von: Marcellino Santoso";
+
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Italienische Übersetzung von: Stefano Steve Cutelle'";
+
+/* Logg */
+"JSON file exists: " = "JSON-Datei existiert: ";
 
 /* plan */
 "Keep" = "Behalten";
@@ -237,9 +249,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Keine snapshot aufgabe...";
 
-/* Main */
-"Now you can enable JSON in userconfig..." = "Nun können Sie JSON in userconfig aktivieren...";
-
 /* AllProfiles */
 "Number of configurations:" = "Anzahl der Konfigurationen:";
 
@@ -260,6 +269,9 @@
 
 /* Verify */
 "Please select a task in Synchronize ..." = "Bitte wählen Sie eine Aufgabe in Synchronisieren ...";
+
+/* Logg */
+"PLIST file exists: " = "JSON-Datei existiert: ";
 
 /* Execute */
 "Possible error logging..." = "Mögliche Fehlermeldung...";
@@ -285,7 +297,8 @@
 /* plan */
 "Saturday" = "Samstag";
 
-/* Profile
+/* Logg
+   Profile
    Userconfig */
 "Save" = "Speichern";
 

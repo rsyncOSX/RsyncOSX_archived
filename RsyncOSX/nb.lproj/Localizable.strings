@@ -38,6 +38,9 @@
 /* Restore */
 "Cancel or Restore" = "Kanseler eller gjenopprett";
 
+/* Logg */
+"Cancel or Save" = "Avbryt eller lagre";
+
 /* Restore */
 "Cannot copy from a syncremote task..." = "Kan ikke gjenopprett fra syncremote...";
 
@@ -48,7 +51,7 @@
 "Change" = "Endre";
 
 /* chinese */
-"Chinese (Simplified) translation by: StringKe" = "Chinese (Simplified) oversettelse av: StringKe";
+"Chinese (Simplified) translation by: StringKe (Chen)" = "Kinesisk (forenklet) oversettelse av: StringKe (Chen)";
 
 /* Snapshots */
 "Cleaning logs completed..." = "Sletting logger utført...";
@@ -119,6 +122,9 @@
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
 
+/* ducth */
+"Ducth translation by: Marcellino Santoso" = "Nederlandsk oversettelsen av: Marcellino Santoso";
+
 /* plan */
 "earlier months" = "tidligere måned";
 
@@ -147,7 +153,7 @@
 "Friday" = "fredag";
 
 /* german */
-"German translation by: Andre" = "Tysk oversettelse av: Andre";
+"German translation by: Andre Voigtmann" = "Tysk oversettelse av: Andre";
 
 /* Restore */
 "Getting info, please wait..." = "Henter informasjon, vennligst vent...";
@@ -173,8 +179,14 @@
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon av: Zsolt Sándor";
 
+/* indonesian */
+"Indonesian translation by: Marcellino Santoso" = "Indonesisk oversettelse av: Marcellino Santoso";
+
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Italinsk oversettelse av: Stefano Steve Cutelle'";
+
+/* Logg */
+"JSON file exists: " = "JSON filen finnes: ";
 
 /* plan */
 "Keep" = "Behold";
@@ -237,9 +249,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
 
-/* Main */
-"Now you can enable JSON in userconfig..." = "Nå kan du aktivere JSON i userconfig...";
-
 /* AllProfiles */
 "Number of configurations:" = "Antall konfigurasjoner:";
 
@@ -260,6 +269,9 @@
 
 /* Verify */
 "Please select a task in Synchronize ..." = "Velg en oppgave i Synkroniser ...";
+
+/* Logg */
+"PLIST file exists: " = "PLIST-fil finnes: ";
 
 /* Execute */
 "Possible error logging..." = "Mulig feil logging...";
@@ -285,7 +297,8 @@
 /* plan */
 "Saturday" = "lørdag";
 
-/* Profile
+/* Logg
+   Profile
    Userconfig */
 "Save" = "Lagre";
 
