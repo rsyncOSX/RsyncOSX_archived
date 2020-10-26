@@ -196,6 +196,21 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
+    @IBAction func enableconvertjsonbutton(_: NSButton) {
+        if ViewControllerReference.shared.convertjsonbutton {
+            ViewControllerReference.shared.convertjsonbutton = false
+        } else {
+            ViewControllerReference.shared.convertjsonbutton = true
+        }
+        // JSON button
+        if ViewControllerReference.shared.json == true {
+            self.jsonbutton.title = "PLIST"
+        } else {
+            self.jsonbutton.title = "JSON"
+        }
+        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
+    }
+
     // Selecting automatic backup
     @IBAction func automaticbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -335,13 +350,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             } else {
                 self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
-            // JSON button
-            if ViewControllerReference.shared.json == true {
-                self.jsonbutton.title = "PLIST"
-            } else {
-                self.jsonbutton.title = "JSON"
-            }
-            self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
         }
     }
 
