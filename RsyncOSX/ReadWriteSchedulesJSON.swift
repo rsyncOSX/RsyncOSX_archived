@@ -85,6 +85,25 @@ class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
         }
     }
 
+    func writeconvertedtostore() {
+        if var atpath = self.fullroot {
+            if self.profile != nil {
+                atpath += "/" + (self.profile ?? "")
+            }
+            do {
+                if try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileschedulesjson) {
+                    let question: String = NSLocalizedString("JSON file exists: ", comment: "Logg")
+                    let text: String = NSLocalizedString("Cancel or Save", comment: "Logg")
+                    let dialog: String = NSLocalizedString("Save", comment: "Logg")
+                    let answer = Alerts.dialogOrCancel(question: question + " " + ViewControllerReference.shared.fileschedulesjson, text: text, dialog: dialog)
+                    if answer {
+                        self.writeJSONToPersistentStore()
+                    }
+                }
+            } catch {}
+        }
+    }
+
     init(schedules: [ConfigurationSchedule]?, profile: String?) {
         super.init(profileorsshrootpath: .profileroot)
         self.schedules = schedules

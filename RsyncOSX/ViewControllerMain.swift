@@ -497,11 +497,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: nil)
                 jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: nil)
             }
-            jsonconfigurations?.writeJSONToPersistentStore()
-            jsonschedules?.writeJSONToPersistentStore()
-
-            let info: String = NSLocalizedString("Now you can enable JSON in userconfig...", comment: "Main")
-            Alerts.showInfo(info: info)
+            jsonconfigurations?.writeconvertedtostore()
+            jsonschedules?.writeconvertedtostore()
         } else {
             if let profile = self.configurations?.getProfile() {
                 _ = PersistentStorageConfiguration(profile: profile, readorwrite: false)
@@ -510,8 +507,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 _ = PersistentStorageConfiguration(profile: nil, readorwrite: false)
                 _ = PersistentStorageScheduling(profile: nil, readorwrite: false)
             }
-            let info: String = NSLocalizedString("Now you can disable JSON in userconfig...", comment: "Main")
-            Alerts.showInfo(info: info)
         }
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false

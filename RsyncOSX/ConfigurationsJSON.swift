@@ -51,7 +51,6 @@ class ConfigurationsJSON: Configurations {
 
     override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        // let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile).readconfigurations()
         let store = ReadWriteConfigurationsJSON(profile: self.profile).decodedjson
         for i in 0 ..< (store?.count ?? 0) {
             if let configitem = store?[i] as? DecodeConfigJSON {

@@ -83,6 +83,25 @@ class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
         }
     }
 
+    func writeconvertedtostore() {
+        if var atpath = self.fullroot {
+            if self.profile != nil {
+                atpath += "/" + (self.profile ?? "")
+            }
+            do {
+                if try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileconfigurationsjson) {
+                    let question: String = NSLocalizedString("JSON file exists: ", comment: "Logg")
+                    let text: String = NSLocalizedString("Cancel or Save", comment: "Logg")
+                    let dialog: String = NSLocalizedString("Save", comment: "Logg")
+                    let answer = Alerts.dialogOrCancel(question: question + " " + ViewControllerReference.shared.fileconfigurationsjson, text: text, dialog: dialog)
+                    if answer {
+                        self.writeJSONToPersistentStore()
+                    }
+                }
+            } catch {}
+        }
+    }
+
     init(configurations: [Configuration]?, profile: String?) {
         super.init(profileorsshrootpath: .profileroot)
         self.configurations = configurations
