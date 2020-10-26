@@ -147,6 +147,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.help()
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)

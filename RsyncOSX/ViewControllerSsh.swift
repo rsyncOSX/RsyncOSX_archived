@@ -62,6 +62,11 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.help()
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     @IBAction func createPublicPrivateRSAKeyPair(_: NSButton) {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess,

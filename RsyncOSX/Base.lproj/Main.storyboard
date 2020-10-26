@@ -115,6 +115,11 @@
                                                 <action selector="verifyjson:" target="Ady-hI-5gd" id="ODl-ZP-EtY"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="View output" keyEquivalent="o" id="ZjH-mo-3qa" userLabel="Info">
+                                            <connections>
+                                                <action selector="alloutput:" target="Ady-hI-5gd" id="FD2-Ix-5aR"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
@@ -4789,18 +4794,18 @@ DQ
         <scene sceneID="ExO-HS-EpI">
             <objects>
                 <viewController title="All output" storyboardIdentifier="StoryboardOutputID" id="mal-sc-mlY" customClass="ViewControllerAllOutput" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="sfF-Cw-fbW">
-                        <rect key="frame" x="0.0" y="0.0" width="802" height="379"/>
+                    <view key="view" id="sfF-Cw-fbW">
+                        <rect key="frame" x="0.0" y="0.0" width="802" height="421"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="61" width="762" height="226"/>
+                                <rect key="frame" x="20" y="61" width="762" height="340"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="225"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="339"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="202"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="316"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4864,6 +4869,9 @@ DQ
                                 <buttonCell key="cell" type="push" title="Logfile" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nxf-lZ-nUJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="readloggfile:" target="mal-sc-mlY" id="Oim-w7-cnT"/>
@@ -4902,21 +4910,21 @@ DQ
                         </subviews>
                         <constraints>
                             <constraint firstItem="4Kl-20-wwi" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="4" id="0Py-HC-T0x"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="leading" id="3ok-ZG-DzP"/>
                             <constraint firstAttribute="bottom" secondItem="4Kl-20-wwi" secondAttribute="bottom" constant="20" id="5NV-Rn-ndf"/>
                             <constraint firstItem="4Kl-20-wwi" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="4" id="6eK-88-vrh"/>
                             <constraint firstAttribute="bottom" secondItem="79S-p9-m7a" secondAttribute="bottom" constant="20" id="71E-b4-5jQ"/>
-                            <constraint firstItem="sCo-k2-Zkk" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" symbolic="YES" id="I7c-V8-tv9"/>
+                            <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="Idl-Ek-tBR"/>
                             <constraint firstItem="sCo-k2-Zkk" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" id="LPN-hr-2DD"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" symbolic="YES" id="Lqg-ai-0X5"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" symbolic="YES" id="QBx-6F-J9W"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="trailing" constant="5" id="QnU-PF-tyN"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="leading" id="Tkp-5F-Hlw"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="sCo-k2-Zkk" secondAttribute="trailing" constant="5" id="YMk-K4-Atp"/>
                             <constraint firstAttribute="bottom" secondItem="sCo-k2-Zkk" secondAttribute="bottom" constant="20" id="aLN-VR-wlf"/>
                             <constraint firstItem="79S-p9-m7a" firstAttribute="leading" secondItem="4Kl-20-wwi" secondAttribute="trailing" constant="5" id="cEb-nh-iKA"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="gZu-Nb-Bf7"/>
+                            <constraint firstItem="sCo-k2-Zkk" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" symbolic="YES" id="kmq-W4-8Zh"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="baseline" secondItem="sCo-k2-Zkk" secondAttribute="baseline" id="nKC-hO-xzP"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="q54-CH-aUo"/>
                             <constraint firstAttribute="bottom" secondItem="6Ks-5W-3qb" secondAttribute="bottom" constant="20" id="xy9-fU-ykK"/>
-                            <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="yoC-A0-h0K"/>
                         </constraints>
                     </view>
                     <connections>
@@ -4925,7 +4933,7 @@ DQ
                 </viewController>
                 <customObject id="Q22-JH-0wK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2732" y="-110.5"/>
+            <point key="canvasLocation" x="-2732" y="-53.5"/>
         </scene>
         <!--All profiles-->
         <scene sceneID="AnB-2j-8Cc">
@@ -6700,11 +6708,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Nkp-ya-iMu">
-                                                            <rect key="frame" x="204" y="1" width="231" height="17"/>
+                                                            <rect key="frame" x="204" y="1" width="232" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1gR-4B-N25">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="231" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="232" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Zsa-We-CKZ">
                                                                         <font key="font" metaFont="system"/>
@@ -6732,7 +6740,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Jfq-8g-Kw8">
-                                                            <rect key="frame" x="438.5" y="1" width="232" height="17"/>
+                                                            <rect key="frame" x="439" y="1" width="232" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A8l-m1-RdA">
@@ -6764,11 +6772,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="ilE-qv-I4v">
-                                                            <rect key="frame" x="673.5" y="1" width="90" height="17"/>
+                                                            <rect key="frame" x="674" y="1" width="89" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIG-Gn-mNs">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="89" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Gw5-qa-AvW">
                                                                         <font key="font" metaFont="system"/>

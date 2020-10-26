@@ -53,6 +53,11 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.help()
     }
 
+    // All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
+
     @IBAction func rsyncosxsched(_: NSButton) {
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else {

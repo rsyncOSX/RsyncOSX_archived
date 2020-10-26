@@ -25,12 +25,17 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
-		<key>RsyncOSX - chinese.xcscheme</key>
+		<key>RsyncOSX - chinese.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>RsyncOSX - english.xcscheme</key>
+		<key>RsyncOSX - dutch.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>RsyncOSX - english.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
@@ -40,7 +45,7 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>RsyncOSX - german.xcscheme</key>
+		<key>RsyncOSX - german.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -50,7 +55,7 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>RsyncOSX - norsk.xcscheme</key>
+		<key>RsyncOSX - norsk.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
