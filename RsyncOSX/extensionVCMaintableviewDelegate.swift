@@ -53,7 +53,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                     return object[tableColumn.identifier] as? String
                 }
             } else if tableColumn.identifier.rawValue == "offsiteServerCellID",
-                ((object[tableColumn.identifier] as? String)?.isEmpty) == true
+                      ((object[tableColumn.identifier] as? String)?.isEmpty) == true
             {
                 return "localhost"
             } else if tableColumn.identifier.rawValue == "schedCellID" {

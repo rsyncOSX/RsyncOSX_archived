@@ -53,6 +53,11 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var json: NSButton!
 
     @IBAction func enablejson(_: NSButton) {
+        if self.json.state == .on {
+            ViewControllerReference.shared.json = true
+        } else {
+            ViewControllerReference.shared.json = false
+        }
         if self.jsonischanged != ViewControllerReference.shared.json {
             let question: String = NSLocalizedString("Format of config files changed?", comment: "Userconfig")
             let text: String = NSLocalizedString("Abort or Change?", comment: "Userconfig")
@@ -61,6 +66,19 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             if answer {
                 PersistentStorageUserconfiguration().saveuserconfiguration()
                 NSApp.terminate(self)
+            } else {
+                ViewControllerReference.shared.json = self.jsonischanged
+                if self.jsonischanged {
+                    self.json.state = .on
+                } else {
+                    self.json.state = .off
+                    ViewControllerReference.shared.json = self.jsonischanged
+                    if self.jsonischanged {
+                        self.json.state = .on
+                    } else {
+                        self.json.state = .off
+                    }
+                }
             }
         }
     }
