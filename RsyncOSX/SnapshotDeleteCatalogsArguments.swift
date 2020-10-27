@@ -17,23 +17,23 @@ final class SnapshotDeleteCatalogsArguments {
     private func remotearguments() {
         var remotearg: String?
         guard self.config != nil else { return }
-        if self.config!.sshport != nil {
-            self.args!.append("-p")
-            self.args!.append(String(self.config!.sshport!))
+        if self.config?.sshport != nil {
+            self.args?.append("-p")
+            self.args?.append(String(self.config!.sshport!))
         }
-        if self.config!.offsiteServer.isEmpty == false {
-            remotearg = self.config!.offsiteUsername + "@" + self.config!.offsiteServer
-            self.args!.append(remotearg!)
+        if self.config?.offsiteServer.isEmpty == false {
+            remotearg = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
+            self.args?.append(remotearg ?? "")
         }
-        let remotecommand = "rm -rf " + self.remotecatalog!
-        self.args!.append(remotecommand)
+        let remotecommand = "rm -rf " + (self.remotecatalog ?? "")
+        self.args?.append(remotecommand)
     }
 
     private func localarguments() {
         guard self.config != nil else { return }
         let remotecatalog = self.remotecatalog!
-        self.args!.append("-rf")
-        self.args!.append(remotecatalog)
+        self.args?.append("-rf")
+        self.args?.append(remotecatalog)
     }
 
     func getArguments() -> [String]? {
