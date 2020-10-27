@@ -74,6 +74,7 @@ class VerifyJSON {
     }
 
     func verifyconfigurations() {
+        var verify: Bool = true
         if (self.plistconfigurations?.count ?? 0) == (self.transformedconfigurations?.count ?? 0) {
             if let plistconfigurations = self.plistconfigurations,
                let transformedconfigurations = self.transformedconfigurations
@@ -82,15 +83,21 @@ class VerifyJSON {
                     if Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == false {
                         let errorstring = "Configuartions in record: " + String(i) + ": not equal..."
                         self.error(str: errorstring)
+                        verify = false
                     }
                 }
             }
         } else {
             self.error(str: "Configuartions: not equal number of records.")
+            verify = false
+        }
+        if verify {
+            self.error(str: "...verify of Configuartions seems OK...")
         }
     }
 
     func verifyschedules() {
+        var verify: Bool = true
         if (self.plistschedules?.count ?? 0) == (self.transformedschedules?.count ?? 0) {
             if let plistschedules = self.plistschedules,
                let transformedschedules = self.transformedschedules
@@ -100,15 +107,21 @@ class VerifyJSON {
                         let errorstring = String(plistschedules[i].logrecords.count) + " in plist not equal in JSON " +
                             String(transformedschedules[i].logrecords.count)
                         self.error(str: errorstring)
+                        verify = false
                     }
                     if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
                         let errorstring = "Schedules in record: " + String(i) + ": not equal..."
                         self.error(str: errorstring)
+                        verify = false
                     }
                 }
             }
         } else {
             self.error(str: "Schedules: not equal number of records.")
+            verify = false
+        }
+        if verify {
+            self.error(str: "...verify of Schedules seems OK...")
         }
     }
 
