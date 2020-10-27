@@ -268,7 +268,6 @@ extension ViewControllerAllProfiles {
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
-        ViewControllerReference.shared.process = nil
         // Release the command object
         self.command = nil
     }

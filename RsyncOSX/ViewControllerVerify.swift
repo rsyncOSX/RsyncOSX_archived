@@ -309,7 +309,6 @@ extension ViewControllerVerify: NSTableViewDelegate {
 
 extension ViewControllerVerify {
     func processtermination() {
-        ViewControllerReference.shared.process = nil
         self.command = nil
         if self.gotremoteinfo == false {
             if self.complete == false {
