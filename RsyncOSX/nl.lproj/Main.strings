@@ -439,6 +439,9 @@
 /* Class = "NSButtonCell"; title = "JSON"; ObjectID = "d0Q-96-jiR"; */
 "d0Q-96-jiR.title" = "JSON";
 
+/* Class = "NSTextFieldCell"; title = "Dutch"; ObjectID = "d2p-8S-asI"; */
+"d2p-8S-asI.title" = "Dutch";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "D7f-Cg-ZtW"; */
 "D7f-Cg-ZtW.title" = "Text Cell";
 
@@ -468,9 +471,6 @@
 
 /* Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5"; */
 "dsn-9I-wI5.title" = " gedetailleerde logging";
-
-/* Class = "NSButtonCell"; title = "Transform"; ObjectID = "dSq-8M-D1s"; */
-"dSq-8M-D1s.title" = "Transform";
 
 /* Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi"; */
 "dtI-40-Iqi.headerCell.title" = "When";
@@ -1078,6 +1078,9 @@
 /* Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO"; */
 "p56-o9-HcO.title" = "Info all";
 
+/* Class = "NSMenuItem"; title = "Transform"; ObjectID = "PI0-Hw-1SW"; */
+"PI0-Hw-1SW.title" = "Transform";
+
 /* Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ"; */
 "PIK-cY-cmQ.title" = "File or catalog to restore";
 
@@ -1131,6 +1134,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Remote computers:"; ObjectID = "QHT-Is-bM2"; */
 "QHT-Is-bM2.title" = "Remote computers:";
+
+/* Class = "NSTextFieldCell"; title = "Indonesian"; ObjectID = "qIs-zX-FwQ"; */
+"qIs-zX-FwQ.title" = "Indonesian";
 
 /* Class = "NSToolbarItem"; label = "backupnow"; ObjectID = "QmL-ZM-Xc4"; */
 "QmL-ZM-Xc4.label" = "backupnow";
@@ -1323,6 +1329,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U9D-uu-6jC"; */
 "U9D-uu-6jC.title" = "Text Cell";
+
+/* Class = "NSMenuItem"; title = "Verify (JSON)"; ObjectID = "u9U-bE-I7G"; */
+"u9U-bE-I7G.title" = "Verify (JSON)";
 
 /* Class = "NSTextFieldCell"; title = "Number of directories:"; ObjectID = "uAb-Pv-NUT"; */
 "uAb-Pv-NUT.title" = "Number of directories:";
@@ -1590,6 +1599,9 @@
 
 /* Class = "NSButtonCell"; title = "Verify"; ObjectID = "zHz-9r-Cpj"; */
 "zHz-9r-Cpj.title" = "Verify";
+
+/* Class = "NSMenuItem"; title = "View output"; ObjectID = "ZjH-mo-3qa"; */
+"ZjH-mo-3qa.title" = "View output";
 
 /* Class = "NSTextFieldCell"; title = "User selected params"; ObjectID = "ZJm-XI-lka"; */
 "ZJm-XI-lka.title" = "User selected params";
