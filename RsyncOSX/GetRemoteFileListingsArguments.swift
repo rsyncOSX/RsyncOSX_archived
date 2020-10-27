@@ -42,7 +42,7 @@ final class GetRemoteFileListingsArguments {
             self.args?.append("-r")
         }
         self.args?.append("--list-only")
-        self.args?.append(config!.offsiteCatalog)
+        self.args?.append(config?.offsiteCatalog ?? "")
     }
 
     func getArguments() -> [String]? {
