@@ -157,11 +157,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Userconfiguration button
     @IBAction func userconfiguration(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
         self.presentAsModalWindow(self.viewControllerUserconfiguration!)
     }
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
         if self.configurations?.tcpconnections?.connectionscheckcompleted ?? true {
             self.presentAsModalWindow(self.viewControllerProfile!)
         } else {
@@ -171,11 +173,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Selecting About
     @IBAction func about(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
         self.presentAsModalWindow(self.viewControllerAbout!)
     }
 
     // All ouput
     @IBAction func alloutput(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
