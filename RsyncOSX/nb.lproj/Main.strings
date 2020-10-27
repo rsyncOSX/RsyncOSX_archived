@@ -472,9 +472,6 @@
 /* Class = "NSButtonCell"; title = " detailed logging"; ObjectID = "dsn-9I-wI5"; */
 "dsn-9I-wI5.title" = " detaljert logging";
 
-/* Class = "NSButtonCell"; title = "Transform"; ObjectID = "dSq-8M-D1s"; */
-"dSq-8M-D1s.title" = "Transformer";
-
 /* Class = "NSTableColumn"; headerCell.title = "When"; ObjectID = "dtI-40-Iqi"; */
 "dtI-40-Iqi.headerCell.title" = "Når";
 
@@ -1080,6 +1077,9 @@
 
 /* Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO"; */
 "p56-o9-HcO.title" = "Info alt";
+
+/* Class = "NSMenuItem"; title = "Transform"; ObjectID = "PI0-Hw-1SW"; */
+"PI0-Hw-1SW.title" = "Transformer";
 
 /* Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ"; */
 "PIK-cY-cmQ.title" = "Fil eller katalog for å gjenopprette";

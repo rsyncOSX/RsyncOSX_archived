@@ -38,6 +38,9 @@
 /* Restore */
 "Cancel or Restore" = "Cancel or Restore";
 
+/* Logg */
+"Cancel or Save" = "Cancel or Save";
+
 /* Restore */
 "Cannot copy from a syncremote task..." = "Cannot copy from a syncremote task...";
 
@@ -46,6 +49,9 @@
 
 /* Userconfig */
 "Change" = "Change";
+
+/* chinese */
+"Chinese (Simplified) translation by: StringKe (Chen)" = "Chinese (Simplified) translation by: StringKe (Chen)";
 
 /* Snapshots */
 "Cleaning logs completed..." = "Cleaning logs completed...";
@@ -116,6 +122,9 @@
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Dont change the snapshot num if you don´t know what you are doing...";
 
+/* ducth */
+"Ducth translation by: Marcellino Santoso" = "Ducth translation by: Marcellino Santoso";
+
 /* plan */
 "earlier months" = "earlier months";
 
@@ -143,6 +152,9 @@
 /* plan */
 "Friday" = "Friday";
 
+/* german */
+"German translation by: Andre Voigtmann" = "German translation by: Andre Voigtmann";
+
 /* Restore */
 "Getting info, please wait..." = "Gegevens ophalen, een ogenblik aub...";
 
@@ -167,8 +179,14 @@
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
 
+/* indonesian */
+"Indonesian translation by: Marcellino Santoso" = "Indonesian translation by: Marcellino Santoso";
+
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Italian translation by: Stefano Steve Cutelle'";
+
+/* Logg */
+"JSON file exists: " = "JSON file exists: ";
 
 /* plan */
 "Keep" = "Keep";
@@ -231,9 +249,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Not a snapshot task...";
 
-/* Main */
-"Now you can enable JSON in userconfig..." = "Now you can enable JSON in userconfig...";
-
 /* AllProfiles */
 "Number of configurations:" = "Number of configurations:";
 
@@ -254,6 +269,9 @@
 
 /* Verify */
 "Please select a task in Synchronize ..." = "Please select a task in Synchronize ...";
+
+/* Logg */
+"PLIST file exists: " = "PLIST file exists: ";
 
 /* Execute */
 "Possible error logging..." = "Possible error logging...";
@@ -279,7 +297,8 @@
 /* plan */
 "Saturday" = "Saturday";
 
-/* Profile
+/* Logg
+   Profile
    Userconfig */
 "Save" = "Save";
 
