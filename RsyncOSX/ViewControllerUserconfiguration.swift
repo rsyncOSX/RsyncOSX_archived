@@ -407,6 +407,14 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         self.reload = true
     }
 
+    private func setjson() {
+        if ViewControllerReference.shared.json {
+            self.json.state = .on
+        } else {
+            self.json.state = .off
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rsyncPath.delegate = self
@@ -436,6 +444,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         }
         self.checkUserConfig()
         self.verifyrsync()
+        self.setjson()
         self.statuslighttemppath.isHidden = true
         self.statuslightpathrsync.isHidden = true
         self.statuslightpathrsyncosx.isHidden = true
