@@ -122,7 +122,6 @@ extension SingleTask {
             }
         }
         // Reset process referance
-        ViewControllerReference.shared.process = nil
         self.command = nil
     }
 
