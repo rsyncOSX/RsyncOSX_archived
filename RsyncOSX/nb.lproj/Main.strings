@@ -983,7 +983,7 @@
 "NLl-Ha-sMA.title" = "Eksterne brukere og servere";
 
 /* Class = "NSButtonCell"; title = "Backup"; ObjectID = "NM9-fK-5xs"; */
-"NM9-fK-5xs.title" = "Sikkerhetskopi";
+"NM9-fK-5xs.title" = "Backup";
 
 /* Class = "NSButtonCell"; title = "Intro"; ObjectID = "NMo-mM-awS"; */
 "NMo-mM-awS.title" = "Intro";
