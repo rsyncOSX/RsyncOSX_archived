@@ -61,6 +61,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
 
     @IBAction func rsyncosxsched(_: NSButton) {
+        guard ViewControllerReference.shared.json == false else { return }
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else {
             self.info.stringValue = Infoexecute().info(num: 5)
