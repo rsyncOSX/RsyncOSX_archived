@@ -5,13 +5,13 @@
 //  Created by Thomas Evensen on 16/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Files
 import Foundation
 
 class ReadWriteConfigurationsJSON: ReadWriteJSON {
     var configurations: [Configuration]?
+    var decodedjson: [Any]?
 
     private func createJSONfromstructs() {
         var structscodable: [ConvertOneConfigCodable]?
@@ -36,31 +36,23 @@ class ReadWriteConfigurationsJSON: ReadWriteJSON {
         return nil
     }
 
-    func readJSONFromPersistentStore() {
-        if var atpath = self.fullroot {
+    private func decode(jsonfileasstring: String) {
+        if let jsonstring = jsonfileasstring.data(using: .utf8) {
             do {
-                if self.profile != nil {
-                    atpath += "/" + (self.profile ?? "")
-                }
-                // check if file exists befor reading, if not bail out
-                guard try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileconfigurationsjson) else { return }
-                let jsonfile = atpath + "/" + ViewControllerReference.shared.fileconfigurationsjson
-                let file = try File(path: jsonfile)
-                let jsonfromstore = try file.readAsString()
-                if let jsonstring = jsonfromstore.data(using: .utf8) {
-                    do {
-                        let decoder = JSONDecoder()
-                        self.decodedjson = try decoder.decode([DecodeConfigJSON].self, from: jsonstring)
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .json)
-                    }
-                }
+                let decoder = JSONDecoder()
+                self.decodedjson = try decoder.decode([DecodeConfigJSON].self, from: jsonstring)
             } catch let e {
                 let error = e as NSError
                 self.error(error: error.description, errortype: .json)
             }
         }
+    }
+
+    func JSONFromPersistentStore() {
+        do {
+            let test = try self.readJSONFromPersistentStore()
+            self.decode(jsonfileasstring: test ?? "")
+        } catch {}
     }
 
     init(configurations: [Configuration]?, profile: String?) {
@@ -73,6 +65,6 @@ class ReadWriteConfigurationsJSON: ReadWriteJSON {
     init(profile: String?) {
         super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
         self.profile = profile
-        self.readJSONFromPersistentStore()
+        self.JSONFromPersistentStore()
     }
 }

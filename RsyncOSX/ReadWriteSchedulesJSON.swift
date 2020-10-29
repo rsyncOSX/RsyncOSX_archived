@@ -5,13 +5,13 @@
 //  Created by Thomas Evensen on 18/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Files
 import Foundation
 
 class ReadWriteSchedulesJSON: ReadWriteJSON {
     var schedules: [ConfigurationSchedule]?
+    var decodedjson: [Any]?
 
     private func createJSONfromstructs() {
         var structscodable: [ConvertOneScheduleCodable]?
@@ -38,31 +38,23 @@ class ReadWriteSchedulesJSON: ReadWriteJSON {
         return nil
     }
 
-    func readJSONFromPersistentStore() {
-        if var atpath = self.fullroot {
+    private func decode(jsonfileasstring: String) {
+        if let jsonstring = jsonfileasstring.data(using: .utf8) {
             do {
-                if self.profile != nil {
-                    atpath += "/" + (self.profile ?? "")
-                }
-                // check if file exists befor reading, if not bail out
-                guard try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileschedulesjson) else { return }
-                let jsonfile = atpath + "/" + ViewControllerReference.shared.fileschedulesjson
-                let file = try File(path: jsonfile)
-                let jsonfromstore = try file.readAsString()
-                if let jsonstring = jsonfromstore.data(using: .utf8) {
-                    do {
-                        let decoder = JSONDecoder()
-                        self.decodedjson = try decoder.decode([DecodeScheduleJSON].self, from: jsonstring)
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .json)
-                    }
-                }
+                let decoder = JSONDecoder()
+                self.decodedjson = try decoder.decode([DecodeScheduleJSON].self, from: jsonstring)
             } catch let e {
                 let error = e as NSError
                 self.error(error: error.description, errortype: .json)
             }
         }
+    }
+
+    func JSONFromPersistentStore() {
+        do {
+            let test = try self.readJSONFromPersistentStore()
+            self.decode(jsonfileasstring: test ?? "")
+        } catch {}
     }
 
     init(schedules: [ConfigurationSchedule]?, profile: String?) {
@@ -75,6 +67,6 @@ class ReadWriteSchedulesJSON: ReadWriteJSON {
     init(profile: String?) {
         super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
         self.profile = profile
-        self.readJSONFromPersistentStore()
+        self.JSONFromPersistentStore()
     }
 }

@@ -9,6 +9,7 @@
 //   presistent store. Class is a interface
 //   for Schedule.
 //
+// swiftlint:disable line_length
 
 import Files
 import Foundation

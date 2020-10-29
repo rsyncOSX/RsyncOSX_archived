@@ -5,37 +5,14 @@
 //  Created by Thomas Evensen on 29/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Files
 import Foundation
 
 class ReadWriteJSON: NamesandPaths, FileErrors {
     var jsonstring: String?
-    var decodedjson: [Any]?
-/*
-    private func createJSONfromstructs<T: Codable>(records: [Any]?, decode: (Any) -> T) {
-        var structscodable: [T]?
-        if let records = records {
-            structscodable = [T]()
-            for i in 0 ..< records.count {
-                structscodable?.append(decode(records[i]))
-            }
-        }
-        self.jsonstring = self.encodedata(data: structscodable)
-    }
 
-    private func encodedata<T: Codable>(data: [T]?) -> String? {
-        do {
-            let jsonData = try JSONEncoder().encode(data)
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-                return jsonString
-            }
-        } catch {
-            return nil
-        }
-        return nil
-    }
-*/
     func writeJSONToPersistentStore() {
         if var atpath = self.fullroot {
             do {
@@ -73,6 +50,26 @@ class ReadWriteJSON: NamesandPaths, FileErrors {
                 }
             } catch {}
         }
+    }
+
+    func readJSONFromPersistentStore() throws -> String? {
+        if var atpath = self.fullroot {
+            do {
+                if self.profile != nil {
+                    atpath += "/" + (self.profile ?? "")
+                }
+                // check if file exists befor reading, if not bail out
+                guard try Folder(path: atpath).containsFile(named: self.filename ?? "") else { return nil }
+                let jsonfile = atpath + "/" + (self.filename ?? "")
+                let file = try File(path: jsonfile)
+                return try file.readAsString()
+            } catch let e {
+                let error = e as NSError
+                self.error(error: error.description, errortype: .json)
+                return nil
+            }
+        }
+        return nil
     }
 
     init(profile: String?, filename: String?) {
