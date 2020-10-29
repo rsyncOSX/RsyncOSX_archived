@@ -105,7 +105,6 @@
 		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
 		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
-		E97301B724D03E4F00652B28 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = E97301B624D03E4F00652B28 /* Files */; };
 		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
 		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
@@ -124,6 +123,7 @@
 		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
 		E9A8307D23925CBA00FB877E /* CountSchedulesandLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8307C23925CBA00FB877E /* CountSchedulesandLogs.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
+		E9AC1335254A0FC600835A3F /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = E9AC1334254A0FC600835A3F /* Files */; };
 		E9AC77602272F4DC0063F324 /* ConvertUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC775F2272F4DC0063F324 /* ConvertUserconfiguration.swift */; };
 		E9B04CFC2388489E0072DA41 /* Reorgschedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B04CFB2388489E0072DA41 /* Reorgschedule.swift */; };
 		E9B9675724BCB68500F623C9 /* PreandPostTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9675624BCB68500F623C9 /* PreandPostTasks.swift */; };
@@ -367,7 +367,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E97301B724D03E4F00652B28 /* Files in Frameworks */,
+				E9AC1335254A0FC600835A3F /* Files in Frameworks */,
 				E957642124BF9F7C008C66E1 /* ShellOut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -969,7 +969,7 @@
 			name = RsyncOSX;
 			packageProductDependencies = (
 				E957642024BF9F7C008C66E1 /* ShellOut */,
-				E97301B624D03E4F00652B28 /* Files */,
+				E9AC1334254A0FC600835A3F /* Files */,
 			);
 			productName = RsyncOSX;
 			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
@@ -1040,7 +1040,7 @@
 			mainGroup = A04492791D658EE800B3CE17;
 			packageReferences = (
 				E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */,
-				E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */,
+				E9AC1333254A0FC600835A3F /* XCRemoteSwiftPackageReference "Files" */,
 			);
 			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
 			projectDirPath = "";
@@ -1578,12 +1578,12 @@
 				minimumVersion = 2.3.0;
 			};
 		};
-		E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */ = {
+		E9AC1333254A0FC600835A3F /* XCRemoteSwiftPackageReference "Files" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rsyncOSX/Files";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.1.1;
+				minimumVersion = 4.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1594,9 +1594,9 @@
 			package = E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */;
 			productName = ShellOut;
 		};
-		E97301B624D03E4F00652B28 /* Files */ = {
+		E9AC1334254A0FC600835A3F /* Files */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E97301B524D03E4F00652B28 /* XCRemoteSwiftPackageReference "Files" */;
+			package = E9AC1333254A0FC600835A3F /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
 		};
 /* End XCSwiftPackageProductDependency section */
