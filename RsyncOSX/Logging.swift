@@ -55,6 +55,8 @@ class Logging: NamesandPaths, FileErrors {
     func readloggfile() {
         if var atpath = self.fullroot {
             do {
+                // check if file exists befor reading, if not bail out
+                guard try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.logname) else { return }
                 atpath += "/" + ViewControllerReference.shared.logname
                 let file = try File(path: atpath)
                 self.log = try file.readAsString()
