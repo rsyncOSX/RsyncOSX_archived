@@ -144,6 +144,7 @@
 		E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD3227976030083405C /* InfoPlist.strings */; };
 		E9DF6DD8227976030083405C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD6227976030083405C /* Localizable.strings */; };
 		E9E3C81724FAAA3E00FFDE00 /* Neworoldprofilepath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E3C81624FAAA3E00FFDE00 /* Neworoldprofilepath.swift */; };
+		E9E58C9F254ADB47005BC169 /* ReadWriteJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E58C9E254ADB47005BC169 /* ReadWriteJSON.swift */; };
 		E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */; };
 		E9E88FD01EB25A080028432F /* ArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E88FCF1EB25A080028432F /* ArgumentsSsh.swift */; };
 		E9E8C6DB24F905AC00845BD7 /* Configpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8C6DA24F905AC00845BD7 /* Configpath.swift */; };
@@ -335,6 +336,7 @@
 		E9DF6DD4227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9DF6DD7227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9E3C81624FAAA3E00FFDE00 /* Neworoldprofilepath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neworoldprofilepath.swift; sourceTree = "<group>"; };
+		E9E58C9E254ADB47005BC169 /* ReadWriteJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteJSON.swift; sourceTree = "<group>"; };
 		E9E70A3B1FF3BCB30099554D /* RsyncVersionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncVersionString.swift; sourceTree = "<group>"; };
 		E9E88FCF1EB25A080028432F /* ArgumentsSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgumentsSsh.swift; sourceTree = "<group>"; };
 		E9E8C6DA24F905AC00845BD7 /* Configpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configpath.swift; sourceTree = "<group>"; };
@@ -456,9 +458,10 @@
 		A04492BF1D658F9400B3CE17 /* FilesAndCatalogs */ = {
 			isa = PBXGroup;
 			children = (
+				E9E58C9D254ADB1D005BC169 /* JSON */,
+				E9E58C9C254ADB0F005BC169 /* PLIST */,
 				A0762A1E1DB4A8F000538CE9 /* CatalogProfile.swift */,
 				E9234FFA1EB068AE00A4C550 /* Catalogsandfiles.swift */,
-				E9F068F31F27BA0200DDF1A1 /* ReadWriteDictionary.swift */,
 				E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */,
 				E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */,
 			);
@@ -926,6 +929,22 @@
 			name = Estimating;
 			sourceTree = "<group>";
 		};
+		E9E58C9C254ADB0F005BC169 /* PLIST */ = {
+			isa = PBXGroup;
+			children = (
+				E9F068F31F27BA0200DDF1A1 /* ReadWriteDictionary.swift */,
+			);
+			name = PLIST;
+			sourceTree = "<group>";
+		};
+		E9E58C9D254ADB1D005BC169 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				E9E58C9E254ADB47005BC169 /* ReadWriteJSON.swift */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
 		E9EC011925416293006C19FA /* VerifyJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,6 +1143,7 @@
 				E9F068F41F27BA0200DDF1A1 /* ReadWriteDictionary.swift in Sources */,
 				E94649652313112300ADDF22 /* extensionVCMaintableviewDelegate.swift in Sources */,
 				E925F9882356E23500DF7943 /* SetrsyncParameter.swift in Sources */,
+				E9E58C9F254ADB47005BC169 /* ReadWriteJSON.swift in Sources */,
 				E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */,
 				E9E88FD01EB25A080028432F /* ArgumentsSsh.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
