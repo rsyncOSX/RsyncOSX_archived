@@ -12,7 +12,7 @@ import Foundation
 class ReadWriteJSON: NamesandPaths, FileErrors {
     var jsonstring: String?
     var decodedjson: [Any]?
-
+/*
     private func createJSONfromstructs<T: Codable>(records: [Any]?, decode: (Any) -> T) {
         var structscodable: [T]?
         if let records = records {
@@ -35,34 +35,7 @@ class ReadWriteJSON: NamesandPaths, FileErrors {
         }
         return nil
     }
-
-    func readJSONFromPersistentStore() {
-        if var atpath = self.fullroot {
-            do {
-                if self.profile != nil {
-                    atpath += "/" + (self.profile ?? "")
-                }
-                // check if file exists befor reading, if not bail out
-                guard try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileconfigurationsjson) else { return }
-                let jsonfile = atpath + "/" + ViewControllerReference.shared.fileconfigurationsjson
-                let file = try File(path: jsonfile)
-                let jsonfromstore = try file.readAsString()
-                if let jsonstring = jsonfromstore.data(using: .utf8) {
-                    do {
-                        let decoder = JSONDecoder()
-                        self.decodedjson = try decoder.decode([DecodeConfigJSON].self, from: jsonstring)
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .json)
-                    }
-                }
-            } catch let e {
-                let error = e as NSError
-                self.error(error: error.description, errortype: .json)
-            }
-        }
-    }
-
+*/
     func writeJSONToPersistentStore() {
         if var atpath = self.fullroot {
             do {
@@ -70,7 +43,7 @@ class ReadWriteJSON: NamesandPaths, FileErrors {
                     atpath += "/" + (self.profile ?? "")
                 }
                 let folder = try Folder(path: atpath)
-                let file = try folder.createFile(named: ViewControllerReference.shared.fileconfigurationsjson)
+                let file = try folder.createFile(named: self.filename ?? "")
                 if let data = self.jsonstring {
                     try file.write(data)
                 }
@@ -81,7 +54,30 @@ class ReadWriteJSON: NamesandPaths, FileErrors {
         }
     }
 
-    override init(whattoreadwrite: WhatToReadWrite, profile: String?) {
-        super.init(whattoreadwrite: whattoreadwrite, profile: profile)
+    func writeconvertedtostore() {
+        if var atpath = self.fullroot {
+            if self.profile != nil {
+                atpath += "/" + (self.profile ?? "")
+            }
+            do {
+                if try Folder(path: atpath).containsFile(named: self.filename ?? "") {
+                    let question: String = NSLocalizedString("JSON file exists: ", comment: "Logg")
+                    let text: String = NSLocalizedString("Cancel or Save", comment: "Logg")
+                    let dialog: String = NSLocalizedString("Save", comment: "Logg")
+                    let answer = Alerts.dialogOrCancel(question: question + " " + (self.filename ?? ""), text: text, dialog: dialog)
+                    if answer {
+                        self.writeJSONToPersistentStore()
+                    }
+                } else {
+                    self.writeJSONToPersistentStore()
+                }
+            } catch {}
+        }
+    }
+
+    init(profile: String?, filename: String?) {
+        super.init(profileorsshrootpath: .profileroot)
+        self.filename = filename
+        self.profile = profile
     }
 }

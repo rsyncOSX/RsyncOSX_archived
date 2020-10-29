@@ -10,10 +10,8 @@
 import Files
 import Foundation
 
-class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
-    var jsonstring: String?
+class ReadWriteConfigurationsJSON: ReadWriteJSON {
     var configurations: [Configuration]?
-    var decodedjson: [Any]?
 
     private func createJSONfromstructs() {
         var structscodable: [ConvertOneConfigCodable]?
@@ -65,54 +63,15 @@ class ReadWriteConfigurationsJSON: NamesandPaths, FileErrors {
         }
     }
 
-    func writeJSONToPersistentStore() {
-        if var atpath = self.fullroot {
-            do {
-                if self.profile != nil {
-                    atpath += "/" + (self.profile ?? "")
-                }
-                let folder = try Folder(path: atpath)
-                let file = try folder.createFile(named: ViewControllerReference.shared.fileconfigurationsjson)
-                if let data = self.jsonstring {
-                    try file.write(data)
-                }
-            } catch let e {
-                let error = e as NSError
-                self.error(error: error.description, errortype: .json)
-            }
-        }
-    }
-
-    func writeconvertedtostore() {
-        if var atpath = self.fullroot {
-            if self.profile != nil {
-                atpath += "/" + (self.profile ?? "")
-            }
-            do {
-                if try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileconfigurationsjson) {
-                    let question: String = NSLocalizedString("JSON file exists: ", comment: "Logg")
-                    let text: String = NSLocalizedString("Cancel or Save", comment: "Logg")
-                    let dialog: String = NSLocalizedString("Save", comment: "Logg")
-                    let answer = Alerts.dialogOrCancel(question: question + " " + ViewControllerReference.shared.fileconfigurationsjson, text: text, dialog: dialog)
-                    if answer {
-                        self.writeJSONToPersistentStore()
-                    }
-                } else {
-                    self.writeJSONToPersistentStore()
-                }
-            } catch {}
-        }
-    }
-
     init(configurations: [Configuration]?, profile: String?) {
-        super.init(profileorsshrootpath: .profileroot)
+        super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
         self.configurations = configurations
         self.profile = profile
         self.createJSONfromstructs()
     }
 
     init(profile: String?) {
-        super.init(profileorsshrootpath: .profileroot)
+        super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
         self.profile = profile
         self.readJSONFromPersistentStore()
     }

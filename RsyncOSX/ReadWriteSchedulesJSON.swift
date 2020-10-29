@@ -10,10 +10,8 @@
 import Files
 import Foundation
 
-class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
-    var jsonstring: String?
+class ReadWriteSchedulesJSON: ReadWriteJSON {
     var schedules: [ConfigurationSchedule]?
-    var decodedjson: [Any]?
 
     private func createJSONfromstructs() {
         var structscodable: [ConvertOneScheduleCodable]?
@@ -67,54 +65,15 @@ class ReadWriteSchedulesJSON: NamesandPaths, FileErrors {
         }
     }
 
-    func writeJSONToPersistentStore() {
-        if var atpath = self.fullroot {
-            do {
-                if self.profile != nil {
-                    atpath += "/" + (self.profile ?? "")
-                }
-                let folder = try Folder(path: atpath)
-                let file = try folder.createFile(named: ViewControllerReference.shared.fileschedulesjson)
-                if let data = self.jsonstring {
-                    try file.write(data)
-                }
-            } catch let e {
-                let error = e as NSError
-                self.error(error: error.description, errortype: .json)
-            }
-        }
-    }
-
-    func writeconvertedtostore() {
-        if var atpath = self.fullroot {
-            if self.profile != nil {
-                atpath += "/" + (self.profile ?? "")
-            }
-            do {
-                if try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.fileschedulesjson) {
-                    let question: String = NSLocalizedString("JSON file exists: ", comment: "Logg")
-                    let text: String = NSLocalizedString("Cancel or Save", comment: "Logg")
-                    let dialog: String = NSLocalizedString("Save", comment: "Logg")
-                    let answer = Alerts.dialogOrCancel(question: question + " " + ViewControllerReference.shared.fileschedulesjson, text: text, dialog: dialog)
-                    if answer {
-                        self.writeJSONToPersistentStore()
-                    }
-                } else {
-                    self.writeJSONToPersistentStore()
-                }
-            } catch {}
-        }
-    }
-
     init(schedules: [ConfigurationSchedule]?, profile: String?) {
-        super.init(profileorsshrootpath: .profileroot)
+        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
         self.schedules = schedules
         self.profile = profile
         self.createJSONfromstructs()
     }
 
     init(profile: String?) {
-        super.init(profileorsshrootpath: .profileroot)
+        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
         self.profile = profile
         self.readJSONFromPersistentStore()
     }
