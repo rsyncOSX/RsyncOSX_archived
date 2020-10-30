@@ -154,66 +154,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         XCTAssertEqual(count, 5, "Should be equal to 5")
     }
 
-    func testaddnoconfig1() {
-        // Missing "offsiteUsername": "offsiteUsername",
-        var configurations: Configurations?
-        // Local snapshot only, if not connected no snapshot task
-        if ViewControllerReference.shared.json {
-            configurations = ConfigurationsXCTESTJSON(profile: "XCTest")
-        } else {
-            configurations = ConfigurationsXCTEST(profile: "XCTest")
-        }
-        let dict: NSMutableDictionary = [
-            "task": ViewControllerReference.shared.snapshot,
-            "backupID": "backupID",
-            "localCatalog": "localCatalog",
-            "offsiteCatalog": "offsiteCatalog",
-            "offsiteServer": "offsiteServer",
-            "parameter1": "parameter1",
-            "parameter2": "parameter2",
-            "parameter3": "parameter3",
-            "parameter4": "parameter4",
-            "parameter5": "parameter5",
-            "parameter6": "parameter6",
-            "dryrun": "dryrun",
-            "dateRun": "",
-        ]
-        dict.setValue(1, forKey: "snapshotnum")
-        configurations?.addNewConfigurations(dict: dict)
-        let count = configurations?.getConfigurations().count
-        XCTAssertEqual(count, 4, "Should be equal to 4")
-    }
-
-    func testaddnoconfig2() {
-        // Missing  "offsiteServer": "offsiteServer"
-        var configurations: Configurations?
-        // Local snapshot only, if not connected no snapshot task
-        if ViewControllerReference.shared.json {
-            configurations = ConfigurationsXCTESTJSON(profile: "XCTest")
-        } else {
-            configurations = ConfigurationsXCTEST(profile: "XCTest")
-        }
-        let dict: NSMutableDictionary = [
-            "task": ViewControllerReference.shared.snapshot,
-            "backupID": "backupID",
-            "localCatalog": "localCatalog",
-            "offsiteCatalog": "offsiteCatalog",
-            "offsiteUsername": "offsiteUsername",
-            "parameter1": "parameter1",
-            "parameter2": "parameter2",
-            "parameter3": "parameter3",
-            "parameter4": "parameter4",
-            "parameter5": "parameter5",
-            "parameter6": "parameter6",
-            "dryrun": "dryrun",
-            "dateRun": "",
-        ]
-        dict.setValue(1, forKey: "snapshotnum")
-        configurations?.addNewConfigurations(dict: dict)
-        let count = configurations?.getConfigurations().count
-        XCTAssertEqual(count, 4, "Should be equal to 4")
-    }
-
     func testreorgschedulesbefore() {
         ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = false
