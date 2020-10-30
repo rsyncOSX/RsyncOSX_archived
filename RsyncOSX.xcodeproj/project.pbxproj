@@ -657,9 +657,8 @@
 		E90E51051F47094800B71F0F /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
+				E95ECA59254C176D00EFDBB4 /* PLIST */,
 				E91E44D1253F08BD00E74150 /* JSON */,
-				A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */,
-				E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */,
 				A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */,
 				E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */,
 				E9FE50C025277A7600076447 /* PersistentStorageAssist.swift */,
@@ -750,6 +749,15 @@
 				E9FE959A25134BD800B9AF5D /* OtherProcessCmdClosure.swift */,
 			);
 			name = Mainprocess;
+			sourceTree = "<group>";
+		};
+		E95ECA59254C176D00EFDBB4 /* PLIST */ = {
+			isa = PBXGroup;
+			children = (
+				E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */,
+				A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */,
+			);
+			name = PLIST;
 			sourceTree = "<group>";
 		};
 		E95EFA3523EF5257005AFD73 /* Restore */ = {
