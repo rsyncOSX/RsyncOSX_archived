@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 09/12/15.
 //  Copyright © 2015 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Files
 import Foundation
@@ -75,7 +76,7 @@ class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
         }
     }
 
-    func writeconvertedtostore() {
+    func writeconfigstostoreasplist() {
         let root = NamesandPaths(profileorsshrootpath: .profileroot)
         if var atpath = root.fullroot {
             if self.profile != nil {
@@ -120,7 +121,7 @@ class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
         if readorwrite == true {
             self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
         } else {
-            self.writeconvertedtostore()
+            self.writeconfigstostoreasplist()
         }
     }
 }

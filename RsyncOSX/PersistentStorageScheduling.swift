@@ -9,6 +9,7 @@
 //   presistent store. Class is a interface
 //   for Schedule.
 //
+// swiftlint:disable line_length
 
 import Files
 import Foundation
@@ -41,7 +42,7 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
         }
     }
 
-    func writeconvertedtostore() {
+    func writeschedulestostoreasplist() {
         let root = NamesandPaths(profileorsshrootpath: .profileroot)
         if var atpath = root.fullroot {
             if self.profile != nil {
@@ -86,7 +87,7 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
         if readorwrite == true {
             self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
         } else {
-            self.writeconvertedtostore()
+            self.writeschedulestostoreasplist()
         }
     }
 }

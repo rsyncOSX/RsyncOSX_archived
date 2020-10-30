@@ -423,54 +423,30 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     func createandreloadschedules() {
         guard self.configurations != nil else {
-            if ViewControllerReference.shared.json == false {
-                self.schedules = Schedules(profile: nil)
-            } else {
-                self.schedules = SchedulesJSON(profile: nil)
-            }
+            self.schedules = Schedules(profile: nil)
             return
         }
         if let profile = self.configurations?.getProfile() {
             self.schedules = nil
-            if ViewControllerReference.shared.json == false {
-                self.schedules = Schedules(profile: profile)
-            } else {
-                self.schedules = SchedulesJSON(profile: profile)
-            }
+            self.schedules = Schedules(profile: profile)
         } else {
             self.schedules = nil
-            if ViewControllerReference.shared.json == false {
-                self.schedules = Schedules(profile: nil)
-            } else {
-                self.schedules = SchedulesJSON(profile: nil)
-            }
+            self.schedules = Schedules(profile: nil)
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
     }
 
     func createandreloadconfigurations() {
         guard self.configurations != nil else {
-            if ViewControllerReference.shared.json == false {
-                self.configurations = Configurations(profile: nil)
-            } else {
-                self.configurations = ConfigurationsJSON(profile: nil)
-            }
+            self.configurations = Configurations(profile: nil)
             return
         }
         if let profile = self.configurations?.getProfile() {
             self.configurations = nil
-            if ViewControllerReference.shared.json == false {
-                self.configurations = Configurations(profile: profile)
-            } else {
-                self.configurations = ConfigurationsJSON(profile: profile)
-            }
+            self.configurations = Configurations(profile: profile)
         } else {
             self.configurations = nil
-            if ViewControllerReference.shared.json == false {
-                self.configurations = Configurations(profile: nil)
-            } else {
-                self.configurations = ConfigurationsJSON(profile: nil)
-            }
+            self.configurations = Configurations(profile: nil)
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
@@ -501,17 +477,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     @IBAction func Json(_: NSButton) {
         if ViewControllerReference.shared.json == false {
-            var jsonconfigurations: ReadWriteConfigurationsJSON?
-            var jsonschedules: ReadWriteSchedulesJSON?
             if let profile = self.configurations?.getProfile() {
-                jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: profile)
-                jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: profile)
+                _ = PersistentStorageConfigurationJSON(profile: profile, true)
+                _ = PersistentStorageSchedulingJSON(profile: profile, true)
             } else {
-                jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: nil)
-                jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: nil)
+                _ = PersistentStorageConfigurationJSON(profile: nil, true)
+                _ = PersistentStorageSchedulingJSON(profile: nil, true)
             }
-            jsonconfigurations?.writeconvertedtostore()
-            jsonschedules?.writeconvertedtostore()
         } else {
             if let profile = self.configurations?.getProfile() {
                 _ = PersistentStorageConfiguration(profile: profile, readorwrite: false)
@@ -523,5 +495,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false
+        if let profile = self.configurations?.getProfile() {
+            _ = VerifyJSON(profile: profile)
+        } else {
+            _ = VerifyJSON(profile: nil)
+        }
     }
 }

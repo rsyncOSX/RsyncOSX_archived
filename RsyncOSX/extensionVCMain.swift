@@ -205,11 +205,7 @@ extension ViewControllerMain: GetConfigurationsObject {
 
     func createconfigurationsobject(profile: String?) -> Configurations? {
         self.configurations = nil
-        if ViewControllerReference.shared.json == false {
-            self.configurations = Configurations(profile: profile)
-        } else {
-            self.configurations = ConfigurationsJSON(profile: profile)
-        }
+        self.configurations = Configurations(profile: profile)
         return self.configurations
     }
 
@@ -234,11 +230,7 @@ extension ViewControllerMain: GetSchedulesObject {
 
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
-        if ViewControllerReference.shared.json == false {
-            self.schedules = Schedules(profile: profile)
-        } else {
-            self.schedules = SchedulesJSON(profile: profile)
-        }
+        self.schedules = Schedules(profile: profile)
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
         return self.schedules
     }
