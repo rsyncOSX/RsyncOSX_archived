@@ -10,7 +10,7 @@
 import Foundation
 
 class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
-    var configurations: [Configuration]?
+    // var configurations: [Configuration]?
     var decodedjson: [Any]?
 
     // Variable computes max hiddenID used
@@ -106,26 +106,21 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
 
     func JSONFromPersistentStore() {
         do {
-            let test = try self.readJSONFromPersistentStore()
-            self.decode(jsonfileasstring: test ?? "")
+            let jsonfile = try self.readJSONFromPersistentStore()
+            self.decode(jsonfileasstring: jsonfile ?? "")
         } catch {}
-    }
-
-    init(configurations: [Configuration]?, profile: String?) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
-        self.configurations = configurations
-        self.profile = profile
-        self.createJSONfromstructs()
-    }
-
-    init(profile: String?, allprofiles _: Bool) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
-        self.JSONFromPersistentStore()
     }
 
     init(profile: String?) {
         super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
         self.profile = profile
         self.JSONFromPersistentStore()
+    }
+
+    init(profile: String?, _: Bool) {
+        super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
+        self.profile = profile
+        self.createJSONfromstructs()
+        self.writeconvertedtostore()
     }
 }

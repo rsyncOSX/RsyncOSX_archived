@@ -11,12 +11,10 @@ import Foundation
 class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
     var profile: String?
 
-    // Configurations
-    // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
         if ViewControllerReference.shared.json {
-            let read = PersistentStorageConfigurationJSON(profile: self.profile, allprofiles: true)
-            return read.configurations
+            let read = PersistentStorageConfigurationJSON(profile: self.profile)
+            return nil
         } else {
             var Configurations = [Configuration]()
             let read = PersistentStorageConfiguration(profile: self.profile, allprofiles: true)
@@ -29,12 +27,10 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
         }
     }
 
-    // Schedules
-    // If no Schedule from persistent store return nil
     func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
         if ViewControllerReference.shared.json {
-            let read = PersistentStorageSchedulingJSON(profile: self.profile, allprofiles: true)
-            return read.schedules
+            let read = PersistentStorageSchedulingJSON(profile: self.profile)
+            return nil
         } else {
             var schedule = [ConfigurationSchedule]()
             let read = PersistentStorageScheduling(profile: self.profile, allprofiles: true)

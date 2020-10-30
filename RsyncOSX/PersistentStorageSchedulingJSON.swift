@@ -9,7 +9,7 @@
 import Foundation
 
 class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
-    var schedules: [ConfigurationSchedule]?
+    // var schedules: [ConfigurationSchedule]?
     var decodedjson: [Any]?
 
     // Saving Schedules from MEMORY to persistent store
@@ -67,26 +67,21 @@ class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
 
     func JSONFromPersistentStore() {
         do {
-            let test = try self.readJSONFromPersistentStore()
-            self.decode(jsonfileasstring: test ?? "")
+            let jsonfile = try self.readJSONFromPersistentStore()
+            self.decode(jsonfileasstring: jsonfile ?? "")
         } catch {}
-    }
-
-    init(schedules: [ConfigurationSchedule]?, profile: String?) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
-        self.schedules = schedules
-        self.profile = profile
-        self.createJSONfromstructs()
-    }
-
-    init(profile: String?, allprofiles _: Bool) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
-        self.JSONFromPersistentStore()
     }
 
     init(profile: String?) {
         super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
         self.profile = profile
         self.JSONFromPersistentStore()
+    }
+
+    init(profile: String?, _: Bool) {
+        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
+        self.profile = profile
+        self.createJSONfromstructs()
+        self.writeconvertedtostore()
     }
 }
