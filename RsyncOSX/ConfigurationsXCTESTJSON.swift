@@ -43,7 +43,7 @@ class ConfigurationsXCTESTJSON: Configurations {
 
     override func readconfigurations() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        let store = ReadWriteConfigurationsJSON(profile: self.profile).decodedjson
+        let store = PersistentStorageConfigurationJSON(profile: self.profile).decodedjson
         for i in 0 ..< (store?.count ?? 0) {
             let transformed = transform(object: (store?[i] as? DecodeConfigJSON)!)
             if ViewControllerReference.shared.synctasks.contains(transformed.task) {

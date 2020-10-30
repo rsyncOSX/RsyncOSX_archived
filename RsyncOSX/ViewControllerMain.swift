@@ -501,13 +501,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     @IBAction func Json(_: NSButton) {
         if ViewControllerReference.shared.json == false {
-            var jsonconfigurations: ReadWriteConfigurationsJSON?
+            var jsonconfigurations: PersistentStorageConfigurationJSON?
             var jsonschedules: ReadWriteSchedulesJSON?
             if let profile = self.configurations?.getProfile() {
-                jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: profile)
+                jsonconfigurations = PersistentStorageConfigurationJSON(configurations: self.configurations?.configurations, profile: profile)
                 jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: profile)
             } else {
-                jsonconfigurations = ReadWriteConfigurationsJSON(configurations: self.configurations?.configurations, profile: nil)
+                jsonconfigurations = PersistentStorageConfigurationJSON(configurations: self.configurations?.configurations, profile: nil)
                 jsonschedules = ReadWriteSchedulesJSON(schedules: self.schedules?.schedules, profile: nil)
             }
             jsonconfigurations?.writeconvertedtostore()

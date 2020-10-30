@@ -60,7 +60,7 @@ class VerifyJSON {
     }
 
     func readconfigurationsJSON() {
-        let store = ReadWriteConfigurationsJSON(profile: self.profile)
+        let store = PersistentStorageConfigurationJSON(profile: self.profile)
         self.jsonconfigurations = store.decodedjson as? [DecodeConfigJSON]
         if let jsonconfigurations = self.jsonconfigurations {
             self.transformedconfigurations = [Configuration]()
