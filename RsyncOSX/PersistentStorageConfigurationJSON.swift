@@ -60,7 +60,7 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
     }
 
     private func writeToStore(configurations _: [Configuration]?) {
-        // let store = ReadWriteConfigurationsJSON(configurations: configurations, profile: self.profile)
+        self.createJSONfromstructs()
         self.writeJSONToPersistentStore()
         self.configurationsDelegate?.reloadconfigurationsobject()
         if ViewControllerReference.shared.menuappisrunning {
@@ -71,7 +71,7 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
 
     private func createJSONfromstructs() {
         var structscodable: [ConvertOneConfigCodable]?
-        if let configurations = self.configurations {
+        if let configurations = self.configurations?.getConfigurations() {
             structscodable = [ConvertOneConfigCodable]()
             for i in 0 ..< configurations.count {
                 structscodable?.append(ConvertOneConfigCodable(config: configurations[i]))
