@@ -207,11 +207,15 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     // Add new configurations
-    func addNewConfigurations(_: NSMutableDictionary) {
+    func addNewConfigurations(dict: NSMutableDictionary) {
         if ViewControllerReference.shared.json {
-            PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+            let store = PersistentStorageConfigurationJSON(profile: self.profile)
+            store.newConfigurations(dict: dict)
+            store.saveconfigInMemoryToPersistentStore()
         } else {
-            PersistentStorageConfiguration(profile: self.profile).saveconfigInMemoryToPersistentStore()
+            let store = PersistentStorageConfiguration(profile: self.profile)
+            store.newConfigurations(dict: dict)
+            store.saveconfigInMemoryToPersistentStore()
         }
     }
 
