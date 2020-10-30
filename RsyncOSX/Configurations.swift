@@ -35,6 +35,28 @@ class Configurations: ReloadTable, SetSchedules {
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
 
+    // Variable computes max hiddenID used
+    // MaxhiddenID is used when new configurations are added.
+    var maxhiddenID: Int {
+        // Reading Configurations from memory
+        if let configurations = self.configurations {
+            if configurations.count > 0 {
+                _ = configurations.sorted { (config1, config2) -> Bool in
+                    if config1.hiddenID > config2.hiddenID {
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+                let index = configurations.count - 1
+                return configurations[index].hiddenID
+            }
+        } else {
+            return 0
+        }
+        return 0
+    }
+
     func setestimatedlistnil() -> Bool {
         if (self.estimatedlist?.count ?? 0) == (self.configurations?.count ?? 0) {
             return false
@@ -208,13 +230,14 @@ class Configurations: ReloadTable, SetSchedules {
 
     // Add new configurations
     func addNewConfigurations(dict: NSMutableDictionary) {
+        var config = Configuration(dictionary: dict)
+        config.hiddenID = self.maxhiddenID + 1
+        self.configurations?.append(config)
         if ViewControllerReference.shared.json {
             let store = PersistentStorageConfigurationJSON(profile: self.profile)
-            store.newConfigurations(dict: dict)
             store.saveconfigInMemoryToPersistentStore()
         } else {
             let store = PersistentStorageConfiguration(profile: self.profile)
-            store.newConfigurations(dict: dict)
             store.saveconfigInMemoryToPersistentStore()
         }
     }

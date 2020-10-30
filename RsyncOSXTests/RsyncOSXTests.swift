@@ -149,7 +149,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dateRun": "",
         ]
         dict.setValue(1, forKey: "snapshotnum")
-        configurations?.addNewConfigurations(dict)
+        configurations?.addNewConfigurations(dict: dict)
         let count = configurations?.getConfigurations().count
         XCTAssertEqual(count, 5, "Should be equal to 5")
     }
@@ -179,7 +179,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dateRun": "",
         ]
         dict.setValue(1, forKey: "snapshotnum")
-        configurations?.addNewConfigurations(dict)
+        configurations?.addNewConfigurations(dict: dict)
         let count = configurations?.getConfigurations().count
         XCTAssertEqual(count, 4, "Should be equal to 4")
     }
@@ -209,7 +209,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "dateRun": "",
         ]
         dict.setValue(1, forKey: "snapshotnum")
-        configurations?.addNewConfigurations(dict)
+        configurations?.addNewConfigurations(dict: dict)
         let count = configurations?.getConfigurations().count
         XCTAssertEqual(count, 4, "Should be equal to 4")
     }
