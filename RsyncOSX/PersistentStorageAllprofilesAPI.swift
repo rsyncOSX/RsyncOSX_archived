@@ -14,32 +14,42 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
     // Configurations
     // Read configurations from persisten store
     func getConfigurations() -> [Configuration]? {
-        let read = PersistentStorageConfiguration(profile: self.profile, allprofiles: true)
-        guard read.configurationsasdictionary != nil else { return nil }
-        var Configurations = [Configuration]()
-        for dict in read.configurationsasdictionary! {
-            let conf = Configuration(dictionary: dict)
-            Configurations.append(conf)
+        if ViewControllerReference.shared.json {
+            let read = PersistentStorageConfigurationJSON(profile: self.profile, allprofiles: true)
+            return read.configurations
+        } else {
+            var Configurations = [Configuration]()
+            let read = PersistentStorageConfiguration(profile: self.profile, allprofiles: true)
+            guard read.configurationsasdictionary != nil else { return nil }
+            for dict in read.configurationsasdictionary! {
+                let conf = Configuration(dictionary: dict)
+                Configurations.append(conf)
+            }
+            return Configurations
         }
-        return Configurations
     }
 
     // Schedules
     // If no Schedule from persistent store return nil
     func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
-        let read = PersistentStorageScheduling(profile: self.profile, allprofiles: true)
-        var schedule = [ConfigurationSchedule]()
-        guard read.schedulesasdictionary != nil else { return nil }
-        for dict in read.schedulesasdictionary! {
-            if let log = dict.value(forKey: "executed") {
-                let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
-                schedule.append(conf)
-            } else {
-                let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: nolog)
-                schedule.append(conf)
+        if ViewControllerReference.shared.json {
+            let read = PersistentStorageSchedulingJSON(profile: self.profile, allprofiles: true)
+            return read.schedules
+        } else {
+            var schedule = [ConfigurationSchedule]()
+            let read = PersistentStorageScheduling(profile: self.profile, allprofiles: true)
+            guard read.schedulesasdictionary != nil else { return nil }
+            for dict in read.schedulesasdictionary! {
+                if let log = dict.value(forKey: "executed") {
+                    let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
+                    schedule.append(conf)
+                } else {
+                    let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: nolog)
+                    schedule.append(conf)
+                }
             }
+            return schedule
         }
-        return schedule
     }
 
     init(profile: String?) {

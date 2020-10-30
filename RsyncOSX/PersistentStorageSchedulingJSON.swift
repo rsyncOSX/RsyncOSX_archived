@@ -79,6 +79,11 @@ class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
         self.createJSONfromstructs()
     }
 
+    init(profile: String?, allprofiles _: Bool) {
+        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
+        self.JSONFromPersistentStore()
+    }
+
     init(profile: String?) {
         super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
         self.profile = profile
