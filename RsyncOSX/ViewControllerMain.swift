@@ -438,27 +438,15 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     func createandreloadconfigurations() {
         guard self.configurations != nil else {
-            if ViewControllerReference.shared.json == false {
-                self.configurations = Configurations(profile: nil)
-            } else {
-                self.configurations = ConfigurationsJSON(profile: nil)
-            }
+            self.configurations = Configurations(profile: nil)
             return
         }
         if let profile = self.configurations?.getProfile() {
             self.configurations = nil
-            if ViewControllerReference.shared.json == false {
-                self.configurations = Configurations(profile: profile)
-            } else {
-                self.configurations = ConfigurationsJSON(profile: profile)
-            }
+            self.configurations = Configurations(profile: profile)
         } else {
             self.configurations = nil
-            if ViewControllerReference.shared.json == false {
-                self.configurations = Configurations(profile: nil)
-            } else {
-                self.configurations = ConfigurationsJSON(profile: nil)
-            }
+            self.configurations = Configurations(profile: nil)
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()

@@ -205,11 +205,7 @@ extension ViewControllerMain: GetConfigurationsObject {
 
     func createconfigurationsobject(profile: String?) -> Configurations? {
         self.configurations = nil
-        if ViewControllerReference.shared.json == false {
-            self.configurations = Configurations(profile: profile)
-        } else {
-            self.configurations = ConfigurationsJSON(profile: profile)
-        }
+        self.configurations = Configurations(profile: profile)
         return self.configurations
     }
 

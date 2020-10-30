@@ -42,7 +42,7 @@ class ConfigurationsXCTEST: Configurations {
         self.appendconfigurationstomemory(dict: array[array.count - 1])
     }
 
-    override func readconfigurations() {
+    override func readconfigurationsplist() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
         for i in 0 ..< (store?.count ?? 0) {
