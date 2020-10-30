@@ -106,8 +106,10 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
 
     func JSONFromPersistentStore() {
         do {
-            let jsonfile = try self.readJSONFromPersistentStore()
-            self.decode(jsonfileasstring: jsonfile ?? "")
+            if let jsonfile = try self.readJSONFromPersistentStore() {
+                guard jsonfile.isEmpty == false else { return }
+                self.decode(jsonfileasstring: jsonfile)
+            }
         } catch {}
     }
 
