@@ -423,27 +423,15 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     func createandreloadschedules() {
         guard self.configurations != nil else {
-            if ViewControllerReference.shared.json == false {
-                self.schedules = Schedules(profile: nil)
-            } else {
-                self.schedules = SchedulesJSON(profile: nil)
-            }
+            self.schedules = Schedules(profile: nil)
             return
         }
         if let profile = self.configurations?.getProfile() {
             self.schedules = nil
-            if ViewControllerReference.shared.json == false {
-                self.schedules = Schedules(profile: profile)
-            } else {
-                self.schedules = SchedulesJSON(profile: profile)
-            }
+            self.schedules = Schedules(profile: profile)
         } else {
             self.schedules = nil
-            if ViewControllerReference.shared.json == false {
-                self.schedules = Schedules(profile: nil)
-            } else {
-                self.schedules = SchedulesJSON(profile: nil)
-            }
+            self.schedules = Schedules(profile: nil)
         }
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
     }

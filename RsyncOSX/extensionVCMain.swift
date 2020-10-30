@@ -234,11 +234,7 @@ extension ViewControllerMain: GetSchedulesObject {
 
     func createschedulesobject(profile: String?) -> Schedules? {
         self.schedules = nil
-        if ViewControllerReference.shared.json == false {
-            self.schedules = Schedules(profile: profile)
-        } else {
-            self.schedules = SchedulesJSON(profile: profile)
-        }
+        self.schedules = Schedules(profile: profile)
         self.schedulesortedandexpanded = ScheduleSortedAndExpand()
         return self.schedules
     }

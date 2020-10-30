@@ -46,7 +46,6 @@
 		E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */; };
 		E8C2866923C6362F0032DCE0 /* Validatenewconfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */; };
 		E8C9E04C253EA9FE00F7D154 /* ConfigurationsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9E04B253EA9FE00F7D154 /* ConfigurationsJSON.swift */; };
-		E8C9E051253EABAF00F7D154 /* SchedulesJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C9E050253EABAF00F7D154 /* SchedulesJSON.swift */; };
 		E903F76322A8F8E6008EA38D /* Setrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E903F76222A8F8E6008EA38D /* Setrsyncpath.swift */; };
 		E903FF39221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */; };
 		E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */; };
@@ -219,7 +218,6 @@
 		E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backupconfigfiles.swift; sourceTree = "<group>"; };
 		E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatenewconfigs.swift; sourceTree = "<group>"; };
 		E8C9E04B253EA9FE00F7D154 /* ConfigurationsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsJSON.swift; sourceTree = "<group>"; };
-		E8C9E050253EABAF00F7D154 /* SchedulesJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesJSON.swift; sourceTree = "<group>"; };
 		E903F76222A8F8E6008EA38D /* Setrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setrsyncpath.swift; sourceTree = "<group>"; };
 		E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageAllprofilesAPI.swift; sourceTree = "<group>"; };
 		E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSsh.swift; sourceTree = "<group>"; };
@@ -577,7 +575,6 @@
 		A0BAA5F31D70C349003BE69F /* Schedules */ = {
 			isa = PBXGroup;
 			children = (
-				E8C9E04F253EAB8300F7D154 /* JSON */,
 				E9B04CFA238848760072DA41 /* Reorg */,
 				E97D96DA232C3E54004405DD /* XCtest */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
@@ -607,14 +604,6 @@
 			isa = PBXGroup;
 			children = (
 				E8C9E04B253EA9FE00F7D154 /* ConfigurationsJSON.swift */,
-			);
-			name = JSON;
-			sourceTree = "<group>";
-		};
-		E8C9E04F253EAB8300F7D154 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				E8C9E050253EABAF00F7D154 /* SchedulesJSON.swift */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -1254,7 +1243,6 @@
 				E946496323130EDC00ADDF22 /* extensionVCMainSingletask.swift in Sources */,
 				E9AC77602272F4DC0063F324 /* ConvertUserconfiguration.swift in Sources */,
 				E94D2603205025790026D18F /* ViewControllerAllProfiles.swift in Sources */,
-				E8C9E051253EABAF00F7D154 /* SchedulesJSON.swift in Sources */,
 				A04492B01D658F2100B3CE17 /* PersistentStorageScheduling.swift in Sources */,
 				E9E8C6DB24F905AC00845BD7 /* Configpath.swift in Sources */,
 				E9591FDA252654EB00F2F95A /* ViewControllerAssist.swift in Sources */,
