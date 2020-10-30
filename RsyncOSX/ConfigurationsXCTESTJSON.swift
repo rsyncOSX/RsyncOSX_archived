@@ -27,7 +27,7 @@ class ConfigurationsXCTESTJSON: Configurations {
         }
     }
 
-    override func addNewConfigurations(_ dict: NSMutableDictionary) {
+    override func addNewConfigurations(dict: NSMutableDictionary) {
         var array = [NSDictionary]()
         let configs: [Configuration] = self.getConfigurations()
         for i in 0 ..< configs.count {
