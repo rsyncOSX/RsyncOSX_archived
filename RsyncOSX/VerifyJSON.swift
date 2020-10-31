@@ -42,8 +42,17 @@ class VerifyJSON {
     }
 
     func readconfigurationsplist() {
-        let store = PersistentStorageConfiguration(profile: self.profile, readorwrite: true)
-        self.plistconfigurations = store.readconfigurations()
+        let store = PersistentStorageConfiguration(profile: self.profile, readorwrite: true).configurationsasdictionary
+        var configurations = [Configuration]()
+        for i in 0 ..< (store?.count ?? 0) {
+            if let dict = store?[i] {
+                let config = Configuration(dictionary: dict)
+                if ViewControllerReference.shared.synctasks.contains(config.task) {
+                    configurations.append(config)
+                }
+            }
+        }
+        self.plistconfigurations = configurations
     }
 
     func readschedulesJSON() {

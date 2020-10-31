@@ -17,7 +17,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
             return nil
         } else {
             var Configurations = [Configuration]()
-            let read = PersistentStorageConfiguration(profile: self.profile, allprofiles: true)
+            let read = PersistentStorageConfiguration(profile: self.profile, readorwrite: true)
             guard read.configurationsasdictionary != nil else { return nil }
             for dict in read.configurationsasdictionary! {
                 let conf = Configuration(dictionary: dict)

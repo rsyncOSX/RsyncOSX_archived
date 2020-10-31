@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 19/12/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -18,10 +17,11 @@ class ConfigurationsXCTEST: Configurations {
 
     override func readconfigurationsplist() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        let store: [Configuration]? = PersistentStorageConfiguration(profile: self.profile, allprofiles: true).readconfigurations()
+        let store = PersistentStorageConfiguration(profile: self.profile, readorwrite: true).configurationsasdictionary
         for i in 0 ..< (store?.count ?? 0) {
-            if ViewControllerReference.shared.synctasks.contains(store?[i].task ?? "") {
-                if let config = store?[i] {
+            if let dict = store?[i] {
+                let config = Configuration(dictionary: dict)
+                if ViewControllerReference.shared.synctasks.contains(config.task) {
                     self.configurations?.append(config)
                     let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: config)
                     self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)

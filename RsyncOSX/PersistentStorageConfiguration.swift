@@ -14,16 +14,6 @@ class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
     // Variable holds all configuration data from persisten storage
     var configurationsasdictionary: [NSDictionary]?
 
-    // Read configurations from persisten store
-    func readconfigurations() -> [Configuration]? {
-        guard self.configurationsasdictionary != nil else { return nil }
-        var configurations = [Configuration]()
-        for dict in self.configurationsasdictionary ?? [] {
-            configurations.append(Configuration(dictionary: dict))
-        }
-        return configurations
-    }
-
     // Saving Configuration from MEMORY to persistent store
     // Reads Configurations from MEMORY and saves to persistent Store
     func saveconfigInMemoryToPersistentStore() {
@@ -71,11 +61,6 @@ class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
         if self.configurations == nil {
             self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
         }
-    }
-
-    init(profile: String?, allprofiles _: Bool) {
-        super.init(whattoreadwrite: .configuration, profile: profile)
-        self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
     }
 
     init(profile: String?, readorwrite: Bool) {
