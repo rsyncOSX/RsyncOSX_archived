@@ -174,7 +174,8 @@ extension Configuration: Hashable, Equatable {
             lhs.parameter11 == rhs.parameter11 &&
             lhs.parameter12 == rhs.parameter12 &&
             lhs.parameter13 == rhs.parameter13 &&
-            lhs.parameter14 == rhs.parameter14
+            lhs.parameter14 == rhs.parameter14 &&
+            lhs.dateRun == rhs.dateRun
     }
 
     func hash(into hasher: inout Hasher) {
@@ -196,5 +197,6 @@ extension Configuration: Hashable, Equatable {
         hasher.combine(self.parameter12)
         hasher.combine(self.parameter13)
         hasher.combine(self.parameter14)
+        hasher.combine(self.dateRun)
     }
 }
