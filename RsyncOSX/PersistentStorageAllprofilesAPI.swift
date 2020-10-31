@@ -12,27 +12,42 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
     var profile: String?
 
     func getConfigurations() -> [Configuration]? {
+        var configurations = [Configuration]()
         if ViewControllerReference.shared.json {
             let read = PersistentStorageConfigurationJSON(profile: self.profile)
-            return nil
+            let transform = TransformConfigfromJSON()
+            for i in 0 ..< (read.decodedjson?.count ?? 0) {
+                if let configitem = read.decodedjson?[i] as? DecodeConfigJSON {
+                    let transformed = transform.transform(object: configitem)
+                    if ViewControllerReference.shared.synctasks.contains(transformed.task) {
+                        configurations.append(transformed)
+                    }
+                }
+            }
         } else {
-            var Configurations = [Configuration]()
             let read = PersistentStorageConfiguration(profile: self.profile, readorwrite: true)
             guard read.configurationsasdictionary != nil else { return nil }
             for dict in read.configurationsasdictionary! {
                 let conf = Configuration(dictionary: dict)
-                Configurations.append(conf)
+                configurations.append(conf)
             }
-            return Configurations
         }
+        return configurations
     }
 
     func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
+        var schedule = [ConfigurationSchedule]()
         if ViewControllerReference.shared.json {
             let read = PersistentStorageSchedulingJSON(profile: self.profile)
-            return nil
+            let transform = TransformSchedulefromJSON()
+            for i in 0 ..< (read.decodedjson?.count ?? 0) {
+                if let scheduleitem = (read.decodedjson?[i] as? DecodeScheduleJSON) {
+                    var transformed = transform.transform(object: scheduleitem)
+                    transformed.profilename = self.profile
+                    schedule.append(transformed)
+                }
+            }
         } else {
-            var schedule = [ConfigurationSchedule]()
             let read = PersistentStorageScheduling(profile: self.profile, allprofiles: true)
             guard read.schedulesasdictionary != nil else { return nil }
             for dict in read.schedulesasdictionary! {
@@ -44,8 +59,8 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
                     schedule.append(conf)
                 }
             }
-            return schedule
         }
+        return schedule
     }
 
     init(profile: String?) {

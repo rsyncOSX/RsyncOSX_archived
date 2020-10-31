@@ -18,8 +18,9 @@ class ConfigurationsXCTESTJSON: Configurations {
     override func readconfigurationsjson() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store = PersistentStorageConfigurationJSON(profile: self.profile).decodedjson
+        let transform = TransformConfigfromJSON()
         for i in 0 ..< (store?.count ?? 0) {
-            let transformed = transform(object: (store?[i] as? DecodeConfigJSON)!)
+            let transformed = transform.transform(object: (store?[i] as? DecodeConfigJSON)!)
             if ViewControllerReference.shared.synctasks.contains(transformed.task) {
                 self.configurations?.append(transformed)
                 let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
