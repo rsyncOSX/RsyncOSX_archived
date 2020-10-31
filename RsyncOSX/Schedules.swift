@@ -20,10 +20,6 @@ class Schedules: ScheduleWriteLoggData {
 
     // Function adds new Shcedules (plans). Functions writes
     // schedule plans to permanent store.
-    // - parameter hiddenID: hiddenID for task
-    // - parameter schedule: schedule
-    // - parameter start: start date and time
-    // - parameter stop: stop date and time
     func addschedule(hiddenID: Int, schedule: Scheduletype, start: Date) {
         var stop: Date?
         if schedule == .once {
@@ -59,8 +55,6 @@ class Schedules: ScheduleWriteLoggData {
 
     // Function deletes all Schedules by hiddenID. Invoked when Configurations are
     // deleted. When a Configuration are deleted all tasks connected to
-    // Configuration has to  be deleted.
-    // - parameter hiddenID : hiddenID for task
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
         for i in 0 ..< (self.schedules?.count ?? 0) where self.schedules?[i].hiddenID == hiddenID {
@@ -81,8 +75,6 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     // Function reads all Schedule data for one task by hiddenID
-    // - parameter hiddenID : hiddenID for task
-    // - returns : array of Schedules sorted after startDate
     func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
         if let hiddenID = hiddenID {
             var data = [NSMutableDictionary]()
@@ -123,7 +115,6 @@ class Schedules: ScheduleWriteLoggData {
     }
 
     // Function either deletes or stops Schedules.
-    // - parameter data : array of Schedules which some of them are either marked for stop or delete
     func deleteandstopschedules(data: [NSMutableDictionary]?) {
         var update: Bool = false
         if (data?.count ?? 0) > 0 {
