@@ -463,6 +463,7 @@
 		A04492C01D658FA600B3CE17 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				E8C9E056253EAE4300F7D154 /* JSON */,
 				E973B6F6238F1AC500B0FD12 /* Equal */,
 				A04492981D658F2100B3CE17 /* Configuration.swift */,
 				E9F068F11F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift */,
@@ -473,6 +474,7 @@
 		A04492C11D658FB900B3CE17 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				E8C9E057253EAE5F00F7D154 /* JSON */,
 				E9F068EF1F27B93E00DDF1A1 /* ConfigurationSchedule.swift */,
 			);
 			name = Schedule;
@@ -597,22 +599,22 @@
 			name = Tagsnapshots;
 			sourceTree = "<group>";
 		};
-		E8C9E056253EAE4300F7D154 /* Config */ = {
+		E8C9E056253EAE4300F7D154 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
 				E9C77992253ADF1000642E90 /* DecodeConfigJSON.swift */,
 				E9FD8683253B799900482DA1 /* ConvertOneConfigCodable.swift */,
 			);
-			name = Config;
+			name = JSON;
 			sourceTree = "<group>";
 		};
-		E8C9E057253EAE5F00F7D154 /* Schedule */ = {
+		E8C9E057253EAE5F00F7D154 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
 				E9FDDED1253CB45800D41FD1 /* DecodeScheduleJSON.swift */,
 				E9C70CA8253C572E00FC75C6 /* ConvertOneScheduleCodable.swift */,
 			);
-			name = Schedule;
+			name = JSON;
 			sourceTree = "<group>";
 		};
 		E8EF5EB8231A86FE00444F9E /* Tabviews */ = {
@@ -790,9 +792,7 @@
 		E978EC45253ABD1A002211FC /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				E9EC011925416293006C19FA /* VerifyJSON */,
-				E8C9E057253EAE5F00F7D154 /* Schedule */,
-				E8C9E056253EAE4300F7D154 /* Config */,
+				E9EC011A254162CD006C19FA /* VerifyJSON.swift */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -923,14 +923,6 @@
 				E9E58C9E254ADB47005BC169 /* ReadWriteJSON.swift */,
 			);
 			name = JSON;
-			sourceTree = "<group>";
-		};
-		E9EC011925416293006C19FA /* VerifyJSON */ = {
-			isa = PBXGroup;
-			children = (
-				E9EC011A254162CD006C19FA /* VerifyJSON.swift */,
-			);
-			name = VerifyJSON;
 			sourceTree = "<group>";
 		};
 		E9EC786F1EACE063001EED9B /* Ssh */ = {
