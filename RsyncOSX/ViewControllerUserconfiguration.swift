@@ -53,16 +53,18 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var json: NSButton!
 
     @IBAction func enablejson(_: NSButton) {
+        var question: String?
         if self.json.state == .on {
             ViewControllerReference.shared.json = true
+            question = NSLocalizedString("Format of config files is about to be changed to JSON.", comment: "Userconfig")
         } else {
             ViewControllerReference.shared.json = false
+            question = NSLocalizedString("Format of config files is about to be changed to PLIST.", comment: "Userconfig")
         }
         if self.jsonischanged != ViewControllerReference.shared.json {
-            let question: String = NSLocalizedString("Format of config files changed?", comment: "Userconfig")
-            let text: String = NSLocalizedString("Abort or Change?", comment: "Userconfig")
-            let dialog: String = NSLocalizedString("Change", comment: "Userconfig")
-            let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+            let text: String = NSLocalizedString("Abort or Reboot?", comment: "Userconfig")
+            let dialog: String = NSLocalizedString("Reboot", comment: "Userconfig")
+            let answer = Alerts.dialogOrCancel(question: question ?? "", text: text, dialog: dialog)
             if answer {
                 PersistentStorageUserconfiguration().saveuserconfiguration()
                 NSApp.terminate(self)
