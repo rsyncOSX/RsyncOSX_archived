@@ -104,6 +104,8 @@
 		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
+		E97446DF254DB8EF00F1C3E8 /* TransformConfigfromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97446DE254DB8EF00F1C3E8 /* TransformConfigfromJSON.swift */; };
+		E97446E6254DB96700F1C3E8 /* TransformSchedulefromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97446E5254DB96700F1C3E8 /* TransformSchedulefromJSON.swift */; };
 		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
 		E97BC78B24FED4D30098447F /* ViewControllerMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BC78A24FED4D30098447F /* ViewControllerMove.swift */; };
@@ -285,6 +287,8 @@
 		E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuArgumentsSsh.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E973B6F7238F1AF600B0FD12 /* Equal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equal.swift; sourceTree = "<group>"; };
+		E97446DE254DB8EF00F1C3E8 /* TransformConfigfromJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformConfigfromJSON.swift; sourceTree = "<group>"; };
+		E97446E5254DB96700F1C3E8 /* TransformSchedulefromJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformSchedulefromJSON.swift; sourceTree = "<group>"; };
 		E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllConfigurations.swift; sourceTree = "<group>"; };
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		E97BC78A24FED4D30098447F /* ViewControllerMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMove.swift; sourceTree = "<group>"; };
@@ -563,6 +567,7 @@
 		A0BAA5F21D70C33A003BE69F /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				E97446DD254DB8BE00F1C3E8 /* JSON */,
 				E9A25FFF23AB5B9E00302280 /* XCtest */,
 				E97E3BA61F6256DB00411D0E /* Configurations.swift */,
 				E9231AFA1F6E3D260055000C /* NewConfigurations.swift */,
@@ -574,6 +579,7 @@
 		A0BAA5F31D70C349003BE69F /* Schedules */ = {
 			isa = PBXGroup;
 			children = (
+				E97446E4254DB93D00F1C3E8 /* JSON */,
 				E9B04CFA238848760072DA41 /* Reorg */,
 				E97D96DA232C3E54004405DD /* XCtest */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
@@ -777,6 +783,22 @@
 				E973B6F7238F1AF600B0FD12 /* Equal.swift */,
 			);
 			name = Equal;
+			sourceTree = "<group>";
+		};
+		E97446DD254DB8BE00F1C3E8 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				E97446DE254DB8EF00F1C3E8 /* TransformConfigfromJSON.swift */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		E97446E4254DB93D00F1C3E8 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				E97446E5254DB96700F1C3E8 /* TransformSchedulefromJSON.swift */,
+			);
+			name = JSON;
 			sourceTree = "<group>";
 		};
 		E9764F5E204BEE710018C0D7 /* AllProfiles */ = {
@@ -1205,6 +1227,7 @@
 				E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */,
 				E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
+				E97446DF254DB8EF00F1C3E8 /* TransformConfigfromJSON.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */,
 				E84C89262529BB1500381618 /* AssistDefault.swift in Sources */,
 				E9EC78711EACE082001EED9B /* Ssh.swift in Sources */,
@@ -1219,6 +1242,7 @@
 				E943DC681FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift in Sources */,
 				E93ADA6C24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift in Sources */,
 				E9FC539524BB2B2A00784238 /* ExecuteTaskNowShellOut.swift in Sources */,
+				E97446E6254DB96700F1C3E8 /* TransformSchedulefromJSON.swift in Sources */,
 				E912020722B3CFD90056AEFE /* Remotefilelist.swift in Sources */,
 				E99D18722304199A003F1796 /* Socket.swift in Sources */,
 				E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */,
