@@ -36,9 +36,11 @@ The application is implemented in pure Swift 5, Cocoa and Foundation. From the l
 - check for TCP connectivity by utilizing [SwiftSocket](https://github.com/swiftsocket/SwiftSocket), some functions require connections to remote servers
 - execute pre and post shellscripts by utilizing John Sundell´s [ShellOut](https://github.com/JohnSundell/ShellOut)
 - utilizing John Sundell´s [Files](https://github.com/JohnSundell/Files) for reading files and catalogs
-- working with JSON require to decode the JSON file, the tool [JSONExport](https://github.com/Ahmed-Ali/JSONExport) is used to create the required Swift structs ([configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeConfigJSON.swift), [schedules and logs](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeScheduleJSON.swift))
 
 All three are available as source code and automatically included as part of building RsyncOSX.
+
+Working with JSON require to encode and decode the JSON file. The tool [JSONExport](https://github.com/Ahmed-Ali/JSONExport) is used to create the required Swift structs ([configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeConfigJSON.swift), [schedules and logs](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeScheduleJSON.swift)) for decode JSON file into the approriate Swift structs.
+
 
 ### Scheduling
 
