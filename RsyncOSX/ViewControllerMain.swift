@@ -486,11 +486,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             }
         } else {
             if let profile = self.configurations?.getProfile() {
-                _ = PersistentStorageConfiguration(profile: profile, readorwrite: false)
-                _ = PersistentStorageScheduling(profile: profile, readorwrite: false)
+                _ = PersistentStorageConfiguration(profile: profile, readonly: false)
+                _ = PersistentStorageScheduling(profile: profile, readonly: false)
             } else {
-                _ = PersistentStorageConfiguration(profile: nil, readorwrite: false)
-                _ = PersistentStorageScheduling(profile: nil, readorwrite: false)
+                _ = PersistentStorageConfiguration(profile: nil, readonly: false)
+                _ = PersistentStorageScheduling(profile: nil, readonly: false)
             }
         }
         self.jsonbutton.isHidden = true
