@@ -22,7 +22,7 @@ class VerifyJSON {
     var profile: String?
 
     func readschedulesplist() {
-        var store = PersistentStorageScheduling(profile: self.profile, readorwrite: true).getScheduleandhistory(nolog: false)
+        var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(nolog: false)
         var data = [ConfigurationSchedule]()
         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil {
             store?[i].profilename = self.profile
@@ -42,7 +42,7 @@ class VerifyJSON {
     }
 
     func readconfigurationsplist() {
-        let store = PersistentStorageConfiguration(profile: self.profile, readorwrite: true).configurationsasdictionary
+        let store = PersistentStorageConfiguration(profile: self.profile, readonly: true).configurationsasdictionary
         var configurations = [Configuration]()
         for i in 0 ..< (store?.count ?? 0) {
             if let dict = store?[i] {

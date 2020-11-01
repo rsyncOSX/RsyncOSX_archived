@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 31/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable trailing_comma
 
 import Foundation
 
