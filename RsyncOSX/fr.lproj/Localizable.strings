@@ -5,7 +5,7 @@
 "⌘A to abort or wait..." = "⌘A interrompre ou attendre...";
 
 /* Userconfig */
-"Abort or Change?" = "Annuler ou modifier ?";
+"Abort or Reboot?" = "Annuler ou Redémarrer ?";
 
 /* Snapshots */
 "Aborting delete operation..." = "Abandon de l'opération de suppression...";
@@ -46,9 +46,6 @@
 
 /* Verify */
 "Cannot verify a syncremote task..." = "Impossible de vérifier une tâche de syncremote...";
-
-/* Userconfig */
-"Change" = "Changer";
 
 /* chinese */
 "Chinese (Simplified) translation by: StringKe (Chen)" = "Traduction en chinois (Simplifié) par : StringKe (Chen)";
@@ -147,7 +144,10 @@
 "Filelist for snapshot tasks might be huge?" = "Une liste de fichiers pour les tâches de snapshot peut être énorme ?";
 
 /* Userconfig */
-"Format of config files changed?" = "Le format des fichiers de configuration a été changé ?";
+"Format of config files is about to be changed to JSON." = "Le format des fichiers de configuration est sur le point d'être changé en JSON.";
+
+/* Userconfig */
+"Format of config files is about to be changed to PLIST." = "Le format des fichiers de configuration est sur le point d'être changé en PLIST.";
 
 /* plan */
 "Friday" = "Vendredi";
@@ -284,6 +284,9 @@
 
 /* Execute */
 "Profile: please wait..." = "Profil : veuillez patienter...";
+
+/* Userconfig */
+"Reboot" = "Redémarrer";
 
 /* Tooltip */
 "Remote catalog:" = "Catalogue distant :";

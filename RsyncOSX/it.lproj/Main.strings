@@ -1573,8 +1573,8 @@
 /* Class = "NSButtonCell"; title = "Full restore"; ObjectID = "z5M-Si-YGE"; */
 "z5M-Si-YGE.title" = "Ripristino totale";
 
-/* Class = "NSButtonCell"; title = "Clear"; ObjectID = "Z5S-KF-h0s"; */
-"Z5S-KF-h0s.title" = "Annulla";
+/* Class = "NSButtonCell"; title = "New"; ObjectID = "Z5S-KF-h0s"; */
+"Z5S-KF-h0s.title" = "Nuovo";
 
 /* Class = "NSTextFieldCell"; title = "Norwegian"; ObjectID = "Z6c-BQ-VEV"; */
 "Z6c-BQ-VEV.title" = "Norvegese";
