@@ -4,9 +4,6 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A interrompre ou attendre...";
 
-/* Userconfig */
-"Abort or Reboot?" = "Annuler ou Redémarrer ?";
-
 /* Snapshots */
 "Aborting delete operation..." = "Abandon de l'opération de suppression...";
 
@@ -24,7 +21,7 @@
 "By using Finder drag and drop filepaths." = "En utilisant Finder glisser-déposer des chemins de fichiers.";
 
 /* Cancel NSAlert */
-"Cancel" = "Abandonner";
+"Cancel" = "Annuler";
 
 /* Add schedule */
 "Cancel or Add" = "Annuler ou ajouter";
@@ -34,6 +31,9 @@
    Profiles
    Snapshots */
 "Cancel or Delete" = "Annuler ou supprimer";
+
+/* Userconfig */
+"Cancel or Reboot?" = "Annuler ou redémarrer ?";
 
 /* Restore */
 "Cancel or Restore" = "Annuler ou restaurer";

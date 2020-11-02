@@ -4,9 +4,6 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A zum Abbrechen oder Warten...";
 
-/* Userconfig */
-"Abort or Reboot?" = "Abbrechen oder Neustarten?";
-
 /* Snapshots */
 "Aborting delete operation..." = "Löschvorgang wird abgebrochen...";
 
@@ -34,6 +31,9 @@
    Profiles
    Snapshots */
 "Cancel or Delete" = "Abbrechen oder Löschen";
+
+/* Userconfig */
+"Cancel or Reboot?" = "Abbrechen oder Neustarten?";
 
 /* Restore */
 "Cancel or Restore" = "Abbrechen oder Wiederherstellen";
