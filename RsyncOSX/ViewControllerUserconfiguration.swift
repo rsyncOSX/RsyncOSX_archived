@@ -62,7 +62,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             question = NSLocalizedString("Format of config files is about to be changed to PLIST.", comment: "Userconfig")
         }
         if self.jsonischanged != ViewControllerReference.shared.json {
-            let text: String = NSLocalizedString("Abort or Reboot?", comment: "Userconfig")
+            let text: String = NSLocalizedString("Cancel or Reboot?", comment: "Userconfig")
             let dialog: String = NSLocalizedString("Reboot", comment: "Userconfig")
             let answer = Alerts.dialogOrCancel(question: question ?? "", text: text, dialog: dialog)
             if answer {

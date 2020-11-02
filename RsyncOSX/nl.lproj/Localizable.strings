@@ -5,7 +5,7 @@
 "⌘A to abort or wait..." = "⌘A to abort or wait...";
 
 /* Userconfig */
-"Abort or Reboot?" = "Abort or Reboot?";
+"Cancel or Reboot?" = "Abort or Reboot?";
 
 /* Snapshots */
 "Aborting delete operation..." = "Verwijderen operatie afbreken...";

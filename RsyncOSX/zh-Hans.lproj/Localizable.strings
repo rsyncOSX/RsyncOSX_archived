@@ -5,7 +5,7 @@
 "⌘A to abort or wait..." = "zA 要中止或等待...";
 
 /* Userconfig */
-"Abort or Reboot?" = "Abort or Reboot?";
+"Cancel or Reboot?" = "Cancel or Reboot?";
 
 /* Snapshots */
 "Aborting delete operation..." = "正在中止删除操作...";

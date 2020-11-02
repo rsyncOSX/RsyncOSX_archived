@@ -5,7 +5,7 @@
 "⌘A to abort or wait..." = "⌘A zum Abbrechen oder Warten...";
 
 /* Userconfig */
-"Abort or Reboot?" = "Abbrechen oder Neustarten?";
+"Cancel or Reboot?" = "Abbrechen oder Neustarten?";
 
 /* Snapshots */
 "Aborting delete operation..." = "Löschvorgang wird abgebrochen...";
