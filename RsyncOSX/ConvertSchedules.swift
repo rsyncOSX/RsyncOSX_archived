@@ -21,7 +21,7 @@ struct ConvertSchedules: SetSchedules {
                     "hiddenID": schedules[i].hiddenID,
                     "dateStart": schedules[i].dateStart,
                     "schedule": schedules[i].schedule,
-                    "executed": schedules[i].logrecords,
+                    "executed": schedules[i].logrecords ?? [],
                     "offsiteserver": schedules[i].offsiteserver ?? "localhost",
                 ]
                 if schedules[i].dateStop != nil {
@@ -30,7 +30,7 @@ struct ConvertSchedules: SetSchedules {
                 if schedules[i].delete ?? false == false {
                     array.append(dict)
                 } else {
-                    if schedules[i].logrecords.isEmpty == false {
+                    if schedules[i].logrecords?.isEmpty == false {
                         if schedules[i].delete ?? false == false {
                             array.append(dict)
                         }
@@ -47,9 +47,11 @@ struct ConvertSchedules: SetSchedules {
             if schedules![i].delete ?? false == false {
                 cleaned.append(schedules![i])
             } else {
-                if schedules![i].logrecords.isEmpty == false {
-                    if schedules![i].delete ?? false == false {
-                        cleaned.append(schedules![i])
+                if schedules?[i].logrecords?.isEmpty == false {
+                    if schedules?[i].delete ?? false == false {
+                        if let schedule = schedules?[i] {
+                            cleaned.append(schedule)
+                        }
                     }
                 }
             }

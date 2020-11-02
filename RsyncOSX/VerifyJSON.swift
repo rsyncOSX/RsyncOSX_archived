@@ -26,7 +26,7 @@ class VerifyJSON {
     func readschedulesplist() {
         var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(nolog: false)
         var data = [ConfigurationSchedule]()
-        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil {
+        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
             store?[i].profilename = self.profile
             if let store = store?[i] {
                 data.append(store)
@@ -118,9 +118,9 @@ class VerifyJSON {
                let transformedschedules = self.transformedschedules
             {
                 for i in 0 ..< plistschedules.count {
-                    if plistschedules[i].logrecords.count != transformedschedules[i].logrecords.count {
-                        let errorstring = String(plistschedules[i].logrecords.count) + " in plist not equal in JSON " +
-                            String(transformedschedules[i].logrecords.count)
+                    if plistschedules[i].logrecords?.count != transformedschedules[i].logrecords?.count {
+                        let errorstring = String(plistschedules[i].logrecords?.count ?? 0) + " in plist not equal in JSON " +
+                            String(transformedschedules[i].logrecords?.count ?? 0)
                         self.error(str: errorstring)
                         verify = false
                         self.verifysched = verify

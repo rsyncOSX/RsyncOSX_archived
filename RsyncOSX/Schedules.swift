@@ -88,7 +88,7 @@ class Schedules: ScheduleWriteLoggData {
                     "dateStop": "",
                     "schedule": allschedulesonetask?[i].schedule ?? "",
                     "hiddenID": allschedulesonetask?[i].hiddenID ?? 0,
-                    "numberoflogs": String(allschedulesonetask?[i].logrecords.count ?? 0),
+                    "numberoflogs": String(allschedulesonetask?[i].logrecords?.count ?? 0),
                 ]
                 if allschedulesonetask?[i].dateStop == nil {
                     row.setValue("no stopdate", forKey: "dateStop")
@@ -188,7 +188,7 @@ class Schedules: ScheduleWriteLoggData {
         var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(nolog: false)
         guard store != nil else { return }
         var data = [ConfigurationSchedule]()
-        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords.isEmpty == false || store?[i].dateStop != nil {
+        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
             store?[i].profilename = self.profile
             if let store = store?[i] {
                 data.append(store)
