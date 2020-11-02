@@ -14,14 +14,12 @@ struct ConvertSchedules: SetSchedules {
     var cleanedschedules: [ConfigurationSchedule]?
     init() {
         var array = [NSDictionary]()
-        // Reading Schedules from memory
         if let schedules = self.schedules?.getSchedule() {
             for i in 0 ..< schedules.count {
                 let dict: NSMutableDictionary = [
                     "hiddenID": schedules[i].hiddenID,
                     "dateStart": schedules[i].dateStart,
                     "schedule": schedules[i].schedule,
-                    // "executed": schedules[i].logrecords ?? [],
                     "offsiteserver": schedules[i].offsiteserver ?? "localhost",
                 ]
                 if let log = schedules[i].logrecords {
