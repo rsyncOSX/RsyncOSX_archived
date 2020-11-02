@@ -4,9 +4,6 @@
 /* Execute */
 "⌘A to abort or wait..." = "zA 要中止或等待...";
 
-/* Userconfig */
-"Cancel or Reboot?" = "Cancel or Reboot?";
-
 /* Snapshots */
 "Aborting delete operation..." = "正在中止删除操作...";
 
@@ -34,6 +31,9 @@
    Profiles
    Snapshots */
 "Cancel or Delete" = "取消或删除";
+
+/* Userconfig */
+"Cancel or Reboot?" = "Cancel or Reboot?";
 
 /* Restore */
 "Cancel or Restore" = "取消或恢复";
