@@ -43,7 +43,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
             for i in 0 ..< input.count {
                 for j in 0 ..< (input[i].logrecords?.count ?? 0) {
                     if let hiddenID = self.schedules?.getSchedule()?[i].hiddenID {
-                        // let dict = input[i].logrecords[j]
                         var date: String?
                         if let stringdate = input[i].logrecords?[j].dateExecuted {
                             if stringdate.isEmpty == false {
@@ -58,7 +57,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                             "backupID": self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
                             "dateExecuted": date ?? "",
                             "resultExecuted": input[i].logrecords?[j].resultExecuted ?? "",
-                            // "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
+                            "deleteCellID": self.loggdata?[j].value(forKey: "deleteCellID") as? Int ?? 0,
                             "hiddenID": hiddenID,
                             "snapCellID": 0,
                             "parent": i,
