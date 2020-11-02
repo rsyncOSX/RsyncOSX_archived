@@ -54,6 +54,25 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
 
     @IBAction func enablejson(_: NSButton) {
         var question: String?
+        var checked = false
+
+        var verifyjson: VerifyJSON?
+        if let profile = self.reloadconfigurationsDelegate?.getconfigurationsobject()?.profile {
+            verifyjson = VerifyJSON(profile: profile)
+        } else {
+            verifyjson = VerifyJSON(profile: nil)
+        }
+        if verifyjson?.verifyconf == true, verifyjson?.verifysched == true {
+            checked = true
+        } else {
+            question = NSLocalizedString("New format is not equal to current.", comment: "Userconfig")
+            let text: String = NSLocalizedString("Cancel or Continue?", comment: "Userconfig")
+            let dialog: String = NSLocalizedString("Continue", comment: "Userconfig")
+            let answer = Alerts.dialogOrCancel(question: question ?? "", text: text, dialog: dialog)
+            if answer {
+                checked = true
+            }
+        }
         if self.json.state == .on {
             ViewControllerReference.shared.json = true
             question = NSLocalizedString("Format of config files is about to be changed to JSON.", comment: "Userconfig")
@@ -61,26 +80,25 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             ViewControllerReference.shared.json = false
             question = NSLocalizedString("Format of config files is about to be changed to PLIST.", comment: "Userconfig")
         }
-        if self.jsonischanged != ViewControllerReference.shared.json {
+        if self.jsonischanged != ViewControllerReference.shared.json, checked == true {
             let text: String = NSLocalizedString("Cancel or Reboot?", comment: "Userconfig")
             let dialog: String = NSLocalizedString("Reboot", comment: "Userconfig")
             let answer = Alerts.dialogOrCancel(question: question ?? "", text: text, dialog: dialog)
             if answer {
                 PersistentStorageUserconfiguration().saveuserconfiguration()
                 NSApp.terminate(self)
+            }
+        }
+        ViewControllerReference.shared.json = self.jsonischanged
+        if self.jsonischanged {
+            self.json.state = .on
+        } else {
+            self.json.state = .off
+            ViewControllerReference.shared.json = self.jsonischanged
+            if self.jsonischanged {
+                self.json.state = .on
             } else {
-                ViewControllerReference.shared.json = self.jsonischanged
-                if self.jsonischanged {
-                    self.json.state = .on
-                } else {
-                    self.json.state = .off
-                    ViewControllerReference.shared.json = self.jsonischanged
-                    if self.jsonischanged {
-                        self.json.state = .on
-                    } else {
-                        self.json.state = .off
-                    }
-                }
+                self.json.state = .off
             }
         }
     }

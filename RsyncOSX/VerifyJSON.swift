@@ -18,8 +18,10 @@ class VerifyJSON {
     var jsonschedules: [DecodeScheduleJSON]?
     var transformedconfigurations: [Configuration]?
     var transformedschedules: [ConfigurationSchedule]?
-
     var profile: String?
+    // Result of verify
+    var verifyconf: Bool?
+    var verifysched: Bool?
 
     func readschedulesplist() {
         var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(nolog: false)
@@ -84,6 +86,7 @@ class VerifyJSON {
 
     func verifyconfigurations() {
         var verify: Bool = true
+        self.verifyconf = verify
         if (self.plistconfigurations?.count ?? 0) == (self.transformedconfigurations?.count ?? 0) {
             if let plistconfigurations = self.plistconfigurations,
                let transformedconfigurations = self.transformedconfigurations
@@ -93,12 +96,14 @@ class VerifyJSON {
                         let errorstring = "Configuartions in record: " + String(i) + ": not equal..."
                         self.error(str: errorstring)
                         verify = false
+                        self.verifyconf = verify
                     }
                 }
             }
         } else {
             self.error(str: "Configuartions: not equal number of records.")
             verify = false
+            self.verifyconf = verify
         }
         if verify {
             self.error(str: "...verify of Configuartions seems OK...")
@@ -107,6 +112,7 @@ class VerifyJSON {
 
     func verifyschedules() {
         var verify: Bool = true
+        self.verifysched = verify
         if (self.plistschedules?.count ?? 0) == (self.transformedschedules?.count ?? 0) {
             if let plistschedules = self.plistschedules,
                let transformedschedules = self.transformedschedules
@@ -117,17 +123,20 @@ class VerifyJSON {
                             String(transformedschedules[i].logrecords.count)
                         self.error(str: errorstring)
                         verify = false
+                        self.verifysched = verify
                     }
                     if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
                         let errorstring = "Schedules in record: " + String(i) + ": not equal..."
                         self.error(str: errorstring)
                         verify = false
+                        self.verifysched = verify
                     }
                 }
             }
         } else {
             self.error(str: "Schedules: not equal number of records.")
             verify = false
+            self.verifysched = verify
         }
         if verify {
             self.error(str: "...verify of Schedules seems OK...")
