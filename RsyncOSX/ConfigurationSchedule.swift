@@ -38,12 +38,18 @@ extension ConfigurationSchedule: Hashable, Equatable {
     static func == (lhs: ConfigurationSchedule, rhs: ConfigurationSchedule) -> Bool {
         return lhs.hiddenID == rhs.hiddenID &&
             lhs.dateStart == rhs.dateStart &&
-            lhs.schedule == rhs.schedule
+            lhs.schedule == rhs.schedule &&
+            lhs.dateStop == rhs.dateStop &&
+            lhs.offsiteserver == rhs.offsiteserver &&
+            lhs.profilename == rhs.profilename
     }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(String(self.hiddenID))
         hasher.combine(self.dateStart)
         hasher.combine(self.schedule)
+        hasher.combine(self.dateStop)
+        hasher.combine(self.offsiteserver)
+        hasher.combine(self.profilename)
     }
 }

@@ -93,7 +93,7 @@ class VerifyJSON {
             {
                 for i in 0 ..< plistconfigurations.count {
                     if Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == false {
-                        let errorstring = "Configuartions in record: " + String(i) + ": not equal..."
+                        let errorstring = "Configurations in record: " + String(i) + ": not equal..."
                         self.error(str: errorstring)
                         verify = false
                         self.verifyconf = verify
@@ -101,12 +101,12 @@ class VerifyJSON {
                 }
             }
         } else {
-            self.error(str: "Configuartions: not equal number of records.")
+            self.error(str: "Configurations: not equal number of records.")
             verify = false
             self.verifyconf = verify
         }
         if verify {
-            self.error(str: "...verify of Configuartions seems OK...")
+            self.error(str: "...verify of Configurations seems OK...")
         }
     }
 
