@@ -21,9 +21,20 @@ struct ConvertSchedules: SetSchedules {
                     "hiddenID": schedules[i].hiddenID,
                     "dateStart": schedules[i].dateStart,
                     "schedule": schedules[i].schedule,
-                    "executed": schedules[i].logrecords ?? [],
+                    // "executed": schedules[i].logrecords ?? [],
                     "offsiteserver": schedules[i].offsiteserver ?? "localhost",
                 ]
+                if let log = schedules[i].logrecords {
+                    var logrecords = [NSDictionary]()
+                    for i in 0 ..< log.count {
+                        let dict: NSDictionary = [
+                            "dateExecuted": log[i].dateExecuted ?? "",
+                            "resultExecuted": log[i].resultExecuted ?? "",
+                        ]
+                        logrecords.append(dict)
+                    }
+                    dict.setObject(logrecords, forKey: "executed" as NSCopying)
+                }
                 if schedules[i].dateStop != nil {
                     dict.setValue(schedules[i].dateStop, forKey: "dateStop")
                 }
