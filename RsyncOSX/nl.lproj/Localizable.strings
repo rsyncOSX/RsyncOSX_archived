@@ -4,9 +4,6 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A to abort or wait...";
 
-/* Userconfig */
-"Cancel or Reboot?" = "Abort or Reboot?";
-
 /* Snapshots */
 "Aborting delete operation..." = "Verwijderen operatie afbreken...";
 
@@ -29,11 +26,17 @@
 /* Add schedule */
 "Cancel or Add" = "Cancel or Add";
 
+/* Userconfig */
+"Cancel or Continue?" = "Cancel or Continue?";
+
 /* Execute
    Logg
    Profiles
    Snapshots */
 "Cancel or Delete" = "Cancel or Delete";
+
+/* Userconfig */
+"Cancel or Reboot?" = "Cancel or Reboot?";
 
 /* Restore */
 "Cancel or Restore" = "Cancel or Restore";
@@ -61,6 +64,9 @@
 
 /* Verify */
 "Computing changed, please wait..." = "Computing changed, please wait...";
+
+/* Userconfig */
+"Continue" = "Continue";
 
 /* Restore */
 "Copy single files or directory?" = "Copy single files or directory?";
@@ -218,6 +224,9 @@
 
 /* plan */
 "Monday" = "Monday";
+
+/* Userconfig */
+"New format is not equal to current." = "New format is not equal to current.";
 
 /* Execute */
 "New version is available - see About" = "New version is available - see About";

@@ -26,6 +26,9 @@
 /* Add schedule */
 "Cancel or Add" = "取消或添加";
 
+/* Userconfig */
+"Cancel or Continue?" = "Cancel or Continue?";
+
 /* Execute
    Logg
    Profiles
@@ -61,6 +64,9 @@
 
 /* Verify */
 "Computing changed, please wait..." = "计算更改中，请稍候...";
+
+/* Userconfig */
+"Continue" = "Continue";
 
 /* Restore */
 "Copy single files or directory?" = "复制单个文件或目录？";
@@ -218,6 +224,9 @@
 
 /* plan */
 "Monday" = "周一";
+
+/* Userconfig */
+"New format is not equal to current." = "New format is not equal to current.";
 
 /* Execute */
 "New version is available - see About" = "新版本可用 - 请参阅关于";
