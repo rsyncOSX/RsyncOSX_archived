@@ -94,11 +94,12 @@ class VerifyJSON {
                let transformedconfigurations = self.transformedconfigurations
             {
                 for i in 0 ..< plistconfigurations.count {
-                    if Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == false {
-                        let errorstring = "Configurations in record: " + String(i) + ": not equal..."
+                    guard Equal().isequalstructs(rhs: plistconfigurations[i], lhs: transformedconfigurations[i]) == true else {
+                        let errorstring = "Configurations in record " + String(i) + ": not equal..." + "\n" + "Stopping further verify of Configurations..."
                         self.error(str: errorstring)
                         verify = false
                         self.verifyconf = verify
+                        return
                     }
                 }
             }
@@ -120,18 +121,29 @@ class VerifyJSON {
                let transformedschedules = self.transformedschedules
             {
                 for i in 0 ..< plistschedules.count {
-                    if plistschedules[i].logrecords?.count != transformedschedules[i].logrecords?.count {
+                    guard plistschedules[i].logrecords?.count == transformedschedules[i].logrecords?.count else {
                         let errorstring = String(plistschedules[i].logrecords?.count ?? 0) + " in plist not equal in JSON " +
-                            String(transformedschedules[i].logrecords?.count ?? 0)
+                            String(transformedschedules[i].logrecords?.count ?? 0) + "\n" + "Stopping further verify of Schedules..."
                         self.error(str: errorstring)
                         verify = false
                         self.verifysched = verify
+                        return
                     }
-                    if Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == false {
-                        let errorstring = "Schedules in record: " + String(i) + ": not equal..."
+                    guard Equal().isequalstructs(rhs: plistschedules[i], lhs: transformedschedules[i]) == true else {
+                        let errorstring = "Schedules in record " + String(i) + ": not equal..." + "\n" + "Stopping further verify of Schedules..."
                         self.error(str: errorstring)
                         verify = false
                         self.verifysched = verify
+                        return
+                    }
+                    for j in 0 ..< plistschedules.count {
+                        guard Equal().isequalstructs(rhs: plistschedules[i].logrecords![j], lhs: transformedschedules[i].logrecords![j]) == true else {
+                            let errorstring = "Logrecord number " + String(j) + " in record " + String(i) + ": not equal..." + "\n" + "Stopping further verify of Schedules..."
+                            self.error(str: errorstring)
+                            verify = false
+                            self.verifysched = verify
+                            return
+                        }
                     }
                 }
             }

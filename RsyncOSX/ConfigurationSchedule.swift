@@ -63,3 +63,15 @@ extension ConfigurationSchedule: Hashable, Equatable {
         hasher.combine(self.profilename)
     }
 }
+
+extension Log: Hashable, Equatable {
+    static func == (lhs: Log, rhs: Log) -> Bool {
+        return lhs.dateExecuted == rhs.dateExecuted &&
+            lhs.resultExecuted == rhs.resultExecuted
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.dateExecuted)
+        hasher.combine(self.resultExecuted)
+    }
+}
