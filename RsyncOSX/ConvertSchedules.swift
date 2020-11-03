@@ -14,23 +14,32 @@ struct ConvertSchedules: SetSchedules {
     var cleanedschedules: [ConfigurationSchedule]?
     init() {
         var array = [NSDictionary]()
-        // Reading Schedules from memory
         if let schedules = self.schedules?.getSchedule() {
             for i in 0 ..< schedules.count {
                 let dict: NSMutableDictionary = [
                     "hiddenID": schedules[i].hiddenID,
                     "dateStart": schedules[i].dateStart,
                     "schedule": schedules[i].schedule,
-                    "executed": schedules[i].logrecords,
                     "offsiteserver": schedules[i].offsiteserver ?? "localhost",
                 ]
+                if let log = schedules[i].logrecords {
+                    var logrecords = [NSDictionary]()
+                    for i in 0 ..< log.count {
+                        let dict: NSDictionary = [
+                            "dateExecuted": log[i].dateExecuted ?? "",
+                            "resultExecuted": log[i].resultExecuted ?? "",
+                        ]
+                        logrecords.append(dict)
+                    }
+                    dict.setObject(logrecords, forKey: "executed" as NSCopying)
+                }
                 if schedules[i].dateStop != nil {
                     dict.setValue(schedules[i].dateStop, forKey: "dateStop")
                 }
                 if schedules[i].delete ?? false == false {
                     array.append(dict)
                 } else {
-                    if schedules[i].logrecords.isEmpty == false {
+                    if schedules[i].logrecords?.isEmpty == false {
                         if schedules[i].delete ?? false == false {
                             array.append(dict)
                         }
@@ -47,9 +56,11 @@ struct ConvertSchedules: SetSchedules {
             if schedules![i].delete ?? false == false {
                 cleaned.append(schedules![i])
             } else {
-                if schedules![i].logrecords.isEmpty == false {
-                    if schedules![i].delete ?? false == false {
-                        cleaned.append(schedules![i])
+                if schedules?[i].logrecords?.isEmpty == false {
+                    if schedules?[i].delete ?? false == false {
+                        if let schedule = schedules?[i] {
+                            cleaned.append(schedule)
+                        }
                     }
                 }
             }

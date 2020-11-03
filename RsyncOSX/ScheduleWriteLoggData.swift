@@ -37,7 +37,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             return obj1 > obj2
         })
         for i in 0 ..< deletes.count {
-            self.schedules?[deletes[i].0].logrecords.remove(at: deletes[i].1)
+            self.schedules?[deletes[i].0].logrecords?.remove(at: deletes[i].1)
         }
         if ViewControllerReference.shared.json {
             PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
@@ -88,10 +88,10 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                     && $0.schedule == Scheduletype.manuel.rawValue
                     && $0.dateStart == "01 Jan 1900 00:00"
             }) {
-                let dict = NSMutableDictionary()
-                dict.setObject(date, forKey: "dateExecuted" as NSCopying)
-                dict.setObject(result, forKey: "resultExecuted" as NSCopying)
-                self.schedules?[index].logrecords.append(dict)
+                var log = Log()
+                log.dateExecuted = date
+                log.resultExecuted = result
+                self.schedules?[index].logrecords?.append(log)
                 return true
             }
         }

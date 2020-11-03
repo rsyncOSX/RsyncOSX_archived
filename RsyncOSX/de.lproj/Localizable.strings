@@ -26,6 +26,9 @@
 /* Add schedule */
 "Cancel or Add" = "Abbrechen oder hinzufügen";
 
+/* Userconfig */
+"Cancel or Continue?" = "Abbrechen oder fortfahren?";
+
 /* Execute
    Logg
    Profiles
@@ -61,6 +64,9 @@
 
 /* Verify */
 "Computing changed, please wait..." = "Berechnung geändert, bitte warten...";
+
+/* Userconfig */
+"Continue" = "Fortfahren";
 
 /* Restore */
 "Copy single files or directory?" = "Einzelne Dateien oder Ordner kopieren?";
@@ -218,6 +224,9 @@
 
 /* plan */
 "Monday" = "Montag";
+
+/* Userconfig */
+"New format is not equal to current." = "Das neue Format entspricht nicht dem aktuelle.";
 
 /* Execute */
 "New version is available - see About" = "Neue Version ist verfügbar - siehe Über";

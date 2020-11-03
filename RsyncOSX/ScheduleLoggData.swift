@@ -41,13 +41,13 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         var data = [NSMutableDictionary]()
         if let input: [ConfigurationSchedule] = self.schedules?.getSchedule() {
             for i in 0 ..< input.count {
-                for j in 0 ..< input[i].logrecords.count {
+                for j in 0 ..< (input[i].logrecords?.count ?? 0) {
                     if let hiddenID = self.schedules?.getSchedule()?[i].hiddenID {
-                        let dict = input[i].logrecords[j]
-                        var date: String = ""
-                        let stringdate = dict.value(forKey: "dateExecuted") as? String ?? ""
-                        if stringdate.isEmpty == false {
-                            date = stringdate.en_us_date_from_string().localized_string_from_date()
+                        var date: String?
+                        if let stringdate = input[i].logrecords?[j].dateExecuted {
+                            if stringdate.isEmpty == false {
+                                date = stringdate.en_us_date_from_string().localized_string_from_date()
+                            }
                         }
                         let logdetail: NSMutableDictionary = [
                             "localCatalog": self.configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? "",
@@ -55,9 +55,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                             "offsiteServer": self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
                             "task": self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
                             "backupID": self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
-                            "dateExecuted": date,
-                            "resultExecuted": dict.value(forKey: "resultExecuted") as? String ?? "",
-                            "deleteCellID": dict.value(forKey: "deleteCellID") as? Int ?? 0,
+                            "dateExecuted": date ?? "",
+                            "resultExecuted": input[i].logrecords?[j].resultExecuted ?? "",
+                            "deleteCellID": self.loggdata?[j].value(forKey: "deleteCellID") as? Int ?? 0,
                             "hiddenID": hiddenID,
                             "snapCellID": 0,
                             "parent": i,

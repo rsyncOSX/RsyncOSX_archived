@@ -31,11 +31,11 @@ struct ConvertOneScheduleCodable: Codable {
         self.schedule = schedule.schedule
         self.delete = schedule.delete
         self.profilename = schedule.profilename
-        if schedule.logrecords.count > 0 { self.logrecords = [LogrecordsCodable]() }
-        for i in 0 ..< schedule.logrecords.count {
+        if (schedule.logrecords?.count ?? 0) > 0 { self.logrecords = [LogrecordsCodable]() }
+        for i in 0 ..< (schedule.logrecords?.count ?? 0) {
             var onelogrecord = LogrecordsCodable()
-            onelogrecord.dateExecuted = schedule.logrecords[i].value(forKey: "dateExecuted") as? String
-            onelogrecord.resultExecuted = schedule.logrecords[i].value(forKey: "resultExecuted") as? String
+            onelogrecord.dateExecuted = schedule.logrecords?[i].dateExecuted
+            onelogrecord.resultExecuted = schedule.logrecords?[i].resultExecuted
             self.logrecords?.append(onelogrecord)
         }
     }
