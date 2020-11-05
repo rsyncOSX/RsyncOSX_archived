@@ -22,6 +22,8 @@ class VerifyJSON {
     // Result of verify
     var verifyconf: Bool?
     var verifysched: Bool?
+    // reload
+    weak var reloadDelegate: Reloadandrefresh?
 
     func readschedulesplist() {
         var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(nolog: false)
@@ -129,7 +131,7 @@ class VerifyJSON {
         {
             for i in 0 ..< plistschedules.count {
                 guard plistschedules[i].logrecords?.count == transformedschedules[i].logrecords?.count else {
-                    let errorstring = String(plistschedules[i].logrecords?.count ?? 0) + " in plist not equal in JSON " +
+                    let errorstring = "Logrecord " + String(plistschedules[i].logrecords?.count ?? 0) + " in plist not equal in JSON " +
                         String(transformedschedules[i].logrecords?.count ?? 0) + "\n" + "Stopping further verify of Schedules..."
                     self.error(str: errorstring)
                     verify = false
@@ -174,5 +176,9 @@ class VerifyJSON {
         self.readconfigurationsJSON()
         self.verifyconfigurations()
         self.verifyschedules()
+        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcalloutput) as? ViewControllerAllOutput {
+            self.reloadDelegate = vc
+            self.reloadDelegate?.reloadtabledata()
+        }
     }
 }

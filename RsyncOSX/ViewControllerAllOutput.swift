@@ -92,8 +92,17 @@ extension ViewControllerAllOutput: NSTableViewDelegate {
 
 extension ViewControllerAllOutput: Reloadandrefresh {
     func reloadtabledata() {
-        globalMainQueue.async { () -> Void in
-            self.outputtable.reloadData()
+        if self.rsyncorlog.state == .on {
+            self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+            globalMainQueue.async { () -> Void in
+                self.outputtable.reloadData()
+            }
+        } else {
+            self.logging = Logging()
+            self.getoutputDelegate = self.logging
+            globalMainQueue.async { () -> Void in
+                self.outputtable.reloadData()
+            }
         }
     }
 }
