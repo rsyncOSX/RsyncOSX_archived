@@ -259,6 +259,9 @@
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "La chiave pubblica Dsa è stata trovata.";
 
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "Giorni";
+
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Apri";
 
@@ -700,9 +703,6 @@
 /* Class = "NSButtonCell"; title = "Load"; ObjectID = "h4F-dN-GN0"; */
 "h4F-dN-GN0.title" = "Carica";
 
-/* Class = "NSButtonCell"; title = "Rsync"; ObjectID = "h8a-b7-dfm"; */
-"h8a-b7-dfm.title" = "Rsync";
-
 /* Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "H79-tQ-7yT"; */
 "H79-tQ-7yT.headerCell.title" = "Disponibile(%)";
 
@@ -996,9 +996,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Local catalog:"; ObjectID = "nsN-YU-MJ2"; */
 "nsN-YU-MJ2.title" = "Percorso locale:";
-
-/* Class = "NSButtonCell"; title = "Logfile"; ObjectID = "Nxf-lZ-nUJ"; */
-"Nxf-lZ-nUJ.title" = "File Registro";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "o1G-0k-G0I"; */
 "o1G-0k-G0I.title" = "Text Cell";
@@ -1632,7 +1629,4 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "Percorso remoto";
-
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "Giorni";
 
