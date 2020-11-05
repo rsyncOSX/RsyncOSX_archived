@@ -14,6 +14,22 @@ class ViewControllerAllOutput: NSViewController, Delay {
     @IBOutlet var outputtable: NSTableView!
     weak var getoutputDelegate: ViewOutputDetails?
     var logging: Logging?
+    @IBOutlet var rsyncorlog: NSSwitch!
+
+    @IBAction func rsyncorlogfile(_: NSButton) {
+        if self.rsyncorlog.state == .on {
+            self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+            globalMainQueue.async { () -> Void in
+                self.outputtable.reloadData()
+            }
+        } else {
+            self.logging = Logging()
+            self.getoutputDelegate = self.logging
+            globalMainQueue.async { () -> Void in
+                self.outputtable.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,21 +56,6 @@ class ViewControllerAllOutput: NSViewController, Delay {
         pasteboard.clearContents()
         for i in 0 ..< (self.getoutputDelegate?.getalloutput().count ?? 0) {
             pasteboard.writeObjects([(self.getoutputDelegate?.getalloutput()[i])! as NSPasteboardWriting])
-        }
-    }
-
-    @IBAction func readloggfile(_: NSButton) {
-        self.logging = Logging()
-        self.getoutputDelegate = self.logging
-        globalMainQueue.async { () -> Void in
-            self.outputtable.reloadData()
-        }
-    }
-
-    @IBAction func reloadoutput(_: NSButton) {
-        self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        globalMainQueue.async { () -> Void in
-            self.outputtable.reloadData()
         }
     }
 
