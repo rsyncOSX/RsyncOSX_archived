@@ -84,7 +84,7 @@ final class Snapshotlogsandcatalogs {
 
     func preparecatalogstodelete() {
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) - 1 {
-            if self.snapshotslogs![i].value(forKey: "selectCellID") as? Int == 1 {
+            if self.snapshotslogs?[i].value(forKey: "selectCellID") as? Int == 1 {
                 if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
                 let snaproot = self.config?.offsiteCatalog
                 let snapcatalog = self.snapshotslogs?[i].value(forKey: "snapshotCatalog") as? String
