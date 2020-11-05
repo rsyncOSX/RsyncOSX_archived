@@ -15,14 +15,17 @@ class ViewControllerAllOutput: NSViewController, Delay {
     weak var getoutputDelegate: ViewOutputDetails?
     var logging: Logging?
     @IBOutlet var rsyncorlog: NSSwitch!
+    @IBOutlet var outputrsyncorlofile: NSTextField!
 
     @IBAction func rsyncorlogfile(_: NSButton) {
         if self.rsyncorlog.state == .on {
+            self.outputrsyncorlofile.stringValue = "Rsync output..."
             self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
             globalMainQueue.async { () -> Void in
                 self.outputtable.reloadData()
             }
         } else {
+            self.outputrsyncorlofile.stringValue = "Logfile..."
             self.logging = Logging()
             self.getoutputDelegate = self.logging
             globalMainQueue.async { () -> Void in
