@@ -74,9 +74,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggdata = self.sortbydate(notsortedlist: data, sortdirection: sortascending)
     }
 
-    let compare: (NSMutableDictionary, NSMutableDictionary) -> Bool = { number1, number2 in
-        if number1.value(forKey: "sibling") as? Int == number2.value(forKey: "sibling") as? Int,
-           number1.value(forKey: "parent") as? Int == number2.value(forKey: "parent") as? Int
+    let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in
+        if number1?.value(forKey: "sibling") as? Int == number2?.value(forKey: "sibling") as? Int,
+           number1?.value(forKey: "parent") as? Int == number2?.value(forKey: "parent") as? Int
         {
             return true
         } else {
@@ -89,14 +89,14 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         guard self.loggdata != nil else { return }
         for i in 0 ..< (self.loggdata?.count ?? 0) {
             for j in 0 ..< (snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) where
-                self.compare(snapshotlogsandcatalogs!.snapshotslogs![j], self.loggdata![i])
+                self.compare(snapshotlogsandcatalogs?.snapshotslogs?[j], self.loggdata?[i])
             {
-                self.loggdata![i].setValue(1, forKey: "snapCellID")
+                self.loggdata?[i].setValue(1, forKey: "snapCellID")
             }
-            if self.loggdata![i].value(forKey: "snapCellID") as? Int == 1 {
-                self.loggdata![i].setValue(0, forKey: "deleteCellID")
+            if self.loggdata?[i].value(forKey: "snapCellID") as? Int == 1 {
+                self.loggdata?[i].setValue(0, forKey: "deleteCellID")
             } else {
-                self.loggdata![i].setValue(1, forKey: "deleteCellID")
+                self.loggdata?[i].setValue(1, forKey: "deleteCellID")
             }
         }
     }
