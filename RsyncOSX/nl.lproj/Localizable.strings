@@ -2,7 +2,7 @@
 " ... set in User configuration ..." = " ... ingesteld in Gebruikersconfiguratie...";
 
 /* Execute */
-"⌘A to abort or wait..." = "⌘A to abort or wait...";
+"⌘A to abort or wait..." = "⌘A om af te breken of te wacht...";
 
 /* Snapshots */
 "Aborting delete operation..." = "Verwijderen operatie afbreken...";
@@ -12,398 +12,326 @@
 "Add" = "Toevoegen";
 
 /* New */
-"Add config?" = "Add config?";
+"Add config?" = "Configuratie toevoegen?";
 
 /* Add schedule */
-"Add Schedule?" = "Add Schedule?";
+"Add Schedule?" = "Schema toevoegen?";
 
 /* Tooltip */
-"By using Finder drag and drop filepaths." = "By using Finder drag and drop filepaths.";
+"By using Finder drag and drop filepaths." = "Door Finder te gebruiken sleep je bestandspaden neerzetten.";
 
 /* Cancel NSAlert */
-"Cancel" = "Cancel";
+"Cancel" = "annuleren";
 
 /* Add schedule */
-"Cancel or Add" = "Cancel or Add";
-
-/* Userconfig */
-"Cancel or Continue?" = "Cancel or Continue?";
+"Cancel or Add" = "Annuleren of toevoegen";
 
 /* Execute
    Logg
    Profiles
    Snapshots */
-"Cancel or Delete" = "Cancel or Delete";
-
-/* Userconfig */
-"Cancel or Reboot?" = "Cancel or Reboot?";
+"Cancel or Delete" = "Annuleren of verwijderen";
 
 /* Restore */
-"Cancel or Restore" = "Cancel or Restore";
-
-/* Logg */
-"Cancel or Save" = "Cancel or Save";
+"Cancel or Restore" = "Annuleren of herstellen";
 
 /* Restore */
-"Cannot copy from a syncremote task..." = "Cannot copy from a syncremote task...";
+"Cannot copy from a syncremote task..." = "Kan niet kopiëren van een syncremote taak...";
 
 /* Verify */
-"Cannot verify a syncremote task..." = "Cannot verify a syncremote task...";
-
-/* chinese */
-"Chinese (Simplified) translation by: StringKe (Chen)" = "Chinese (Simplified) translation by: StringKe (Chen)";
-
-/* Snapshots */
-"Cleaning logs completed..." = "Cleaning logs completed...";
+"Cannot verify a syncremote task..." = "Kan geen syncremote taak verifiëren...";
 
 /* Close NSAlert */
-"Close" = "Close";
+"Close" = "Afsluiten";
 
 /* Verify */
-"Completed ..." = "Completed ...";
+"Completed ..." = "Voltooid ...";
 
 /* Verify */
-"Computing changed, please wait..." = "Computing changed, please wait...";
-
-/* Userconfig */
-"Continue" = "Continue";
+"Computing changed, please wait..." = "Veranderd worden berekend, even geduld...";
 
 /* Restore */
-"Copy single files or directory?" = "Copy single files or directory?";
+"Copy single files or directory?" = "Enkelbestanden of map kopiëren?";
 
 /* copyright */
-"Copyright ©2020 Thomas Evensen" = "Copyright ©2020 Thomas Evensen";
+"Copyright ©2020 Thomas Evensen" = "Copyright © 2020 Thomas Evensen";
 
 /* main */
-"daily" = "daily";
+"daily" = "dagelijks";
 
 /* Remote Info
    Verify */
 "Date last synchronize:" = "Date last synchronize:";
 
 /* datetime */
-"days" = "days";
+"days" = "Dagen";
 
 /* Remote Info
    Verify */
-"Days since last synchronize:" = "Days since last synchronize:";
+"Days since last synchronize:" = "Dagen sinds laatste synchronisatie:";
 
 /* default profile */
-"Default profile" = "Default profile";
+"Default profile" = "Standaard profiel";
 
 /* Execute
    Logg
    plan
    Profiles
    Snapshots */
-"Delete" = "Delete";
+"Delete" = "Verwijderen";
 
 /* plan */
-"Delete number of snapshots:" = "Delete number of snapshots:";
+"Delete number of snapshots:" = "Aantal momentopnames verwijderen:";
 
 /* Snapshots */
-"Delete operation completed..." = "Delete operation completed...";
+"Delete operation completed..." = "Verwijderen van bewerking voltooid...";
 
 /* Profiles */
-"Delete profile:" = "Delete profile:";
+"Delete profile:" = "Profiel verwijderen:";
 
 /* Execute */
-"Delete selected task?" = "Delete selected task?";
+"Delete selected task?" = "Geselecteerde taak verwijderen?";
 
 /* plan */
-"Delete snapshots older than:" = "Delete snapshots older than:";
+"Delete snapshots older than:" = "Momentopnamen verwijderen ouder dan:";
 
 /* Tooltip */
-"Destination catalog:" = "Destination catalog:";
+"Destination catalog:" = "Bestemming catalogus:";
 
 /* Snapshots */
-"Do you REALLY want to delete selected snapshots" = "Do you REALLY want to delete selected snapshots";
-
-/* Restore */
-"Do you REALLY want to start a restore?" = "Do you REALLY want to start a restore?";
-
-/* Snapshots */
-"Dont change the snapshot num if you don´t know what you are doing..." = "Dont change the snapshot num if you don´t know what you are doing...";
-
-/* ducth */
-"Ducth translation by: Marcellino Santoso" = "Ducth translation by: Marcellino Santoso";
+"Dont change the snapshot num if you don´t know what you are doing..." = "Verander de snapshot num niet als je niet «re weet wat je doet...";
 
 /* plan */
-"earlier months" = "earlier months";
+"earlier months" = "Eerder maanden";
 
 /* Error rsync */
-"ERROR: no rsync in" = "ERROR: no rsync in";
+"ERROR: no rsync in" = "FOUT: geen rsync in";
 
 /* Error rsync */
-"ERROR: no rsync in /usr/local/bin" = "ERROR: no rsync in /usr/local/bin";
-
-/* Remote info */
-"Estimation completed" = "Estimation completed";
+"ERROR: no rsync in /usr/local/bin" = "FOUT: geen rsync in /usr/local/bin";
 
 /* plan */
-"every" = "every";
+"every" = "elke";
 
 /* Restore */
-"Executing restore..." = "Executing restore...";
+"Executing restore..." = "Herstellen uitvoeren...";
 
 /* Restore */
-"Filelist for snapshot tasks might be huge?" = "Filelist for snapshot tasks might be huge?";
-
-/* Userconfig */
-"Format of config files is about to be changed to JSON." = "Format of config files is about to be changed to JSON.";
-
-/* Userconfig */
-"Format of config files is about to be changed to PLIST." = "Format of config files is about to be changed to PLIST.";
+"Filelist for snapshot tasks might be huge?" = "Bestandslijst voor snapshot taken kan enorm zijn?";
 
 /* plan */
-"Friday" = "Friday";
-
-/* german */
-"German translation by: Andre Voigtmann" = "German translation by: Andre Voigtmann";
+"Friday" = "vrijdag";
 
 /* Restore */
 "Getting info, please wait..." = "Gegevens ophalen, een ogenblik aub...";
 
 /* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Got index from Snapshots and listing logs for one configuration...";
+"Got index from Snapshots and listing logs for one configuration..." = "Kreeg index uit Snapshots en het vermelden van logs voor één configuratie...";
 
 /* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "Got index from Synchronize and listing logs for one configuration...";
+"Got index from Synchronize and listing logs for one configuration..." = "Kreeg index bij synchroniseren en vermelden van logs voor één configuratie...";
 
 /* Schedules */
-"Got index from Synchronize..." = "Got index from Synchronize...";
+"Got index from Synchronize..." = "Kreeg index van synchronisatie...";
 
 /* Remote Info */
-"Got it..." = "Got it...";
+"Got it..." = "Ik snap het...";
 
 /* datetime */
-"h" = "h";
+"h" = "u";
 
 /* datetime */
-"hours" = "hours";
+"hours" = "Uren";
 
 /* icon */
-"Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
-
-/* indonesian */
-"Indonesian translation by: Marcellino Santoso" = "Indonesian translation by: Marcellino Santoso";
-
-/* italian */
-"Italian translation by: Stefano Steve Cutelle'" = "Italian translation by: Stefano Steve Cutelle'";
-
-/* Logg */
-"JSON file exists: " = "JSON file exists: ";
+"Icon by: Zsolt Sándor" = "Pictogram door: Zsolt Saß ndor";
 
 /* plan */
-"Keep" = "Keep";
+"Keep" = "Behouden";
 
 /* plan */
-"last" = "last";
+"last" = "laatste";
 
 /* Profile */
-"Load" = "Load";
+"Load" = "Belasting";
 
 /* Remote info
    Remote Info */
-"Loaded cached data..." = "Loaded cached data...";
+"Loaded cached data..." = "Geladen gegevens in cache...";
 
 /* Tooltip */
-"Local catalog:" = "Local catalog:";
+"Local catalog:" = "Lokale catalogus:";
 
 /* Restore */
-"Local or remote catalog cannot be empty..." = "Local or remote catalog cannot be empty...";
+"Local or remote catalog cannot be empty..." = "Lokale of externe catalogus kan niet leeg zijn ...";
 
 /* main */
-"manuel" = "manuel";
+"manuel" = "Handleiding";
 
 /* Execute */
-"Menu app is running..." = "Menu app is running...";
+"Menu app is running..." = "Menu-app is actief...";
 
 /* datetime */
-"mins" = "mins";
+"mins" = "minuten";
 
 /* plan */
-"Monday" = "Monday";
-
-/* Userconfig */
-"New format is not equal to current." = "New format is not equal to current.";
+"Monday" = "maandag";
 
 /* Execute */
-"New version is available - see About" = "New version is available - see About";
+"New version is available - see About" = "Nieuwe versie is beschikbaar - zie over";
 
 /* About */
-"New version is available:" = "New version is available:";
+"New version is available:" = "Nieuwe versie is beschikbaar:";
 
 /* Execute */
-"No rsync in path..." = "No rsync in path...";
+"No rsync in path..." = "Geen rsync in pad...";
 
 /* Schedule details */
-"no startdate" = "no startdate";
+"no startdate" = "geen startdatum";
 
 /* Schedule details */
-"no stopdate" = "no stopdate";
+"no stopdate" = "geen stopdatum";
 
 /* Restore */
-"No such temporay catalog for restore, set it in user config." = "No such temporay catalog for restore, set it in user config.";
+"No such temporay catalog for restore, set it in user config." = "Geen dergelijke tijdelijke catalogus voor herstellen, stel deze in in de gebruikersconfiguratie.";
 
 /* plan */
-"none" = "none";
+"none" = "Geen";
 
 /* norwegian */
-"Norwegian translation by: Thomas Evensen" = "Norwegian translation by: Thomas Evensen";
+"Norwegian translation by: Thomas Evensen" = "Noorse vertaling door: Thomas Evensen";
 
 /* Restore */
-"Not a remote task, use Finder to copy files..." = "Not a remote task, use Finder to copy files...";
+"Not a remote task, use Finder to copy files..." = "Geen externe taak, gebruik Finder om bestanden te kopiëren...";
 
 /* Snapshots */
 "Not a snapshot task..." = "Not a snapshot task...";
 
 /* AllProfiles */
-"Number of configurations:" = "Number of configurations:";
+"Number of configurations:" = "Aantal configuraties:";
 
 /* Logg */
-"Number of logs:" = "Number of logs:";
+"Number of logs:" = "Aantal logs:";
 
 /* Restore */
-"Number of remote files:" = "Number of remote files:";
+"Number of remote files:" = "Aantal externe bestanden:";
 
 /* Remote info */
-"Number of tasks to estimate:" = "Number of tasks to estimate:";
+"Number of tasks to estimate:" = "Aantal te schatten taken:";
 
 /* Snapshots */
-"Number snapshots:" = "Number snapshots:";
+"Number snapshots:" = "Aantal momentoptjes:";
 
 /* main */
-"once" = "once";
+"once" = "eenmalig";
 
 /* Verify */
-"Please select a task in Synchronize ..." = "Please select a task in Synchronize ...";
-
-/* Logg */
-"PLIST file exists: " = "PLIST file exists: ";
+"Please select a task in Synchronize ..." = "Selecteer een taak in Synchronisatie ...";
 
 /* Execute */
-"Possible error logging..." = "Possible error logging...";
+"Possible error logging..." = "Mogelijke fout loggen...";
 
 /* plan */
-"previous month" = "previous month";
+"previous month" = "vorige maand";
 
 /* Execute */
-"Profile:" = "Profile:";
+"Profile:" = "Profiel:";
 
 /* Execute */
-"Profile: please wait..." = "Profile: please wait...";
-
-/* Userconfig */
-"Reboot" = "Reboot";
+"Profile: please wait..." = "Profiel: even geduld...";
 
 /* Tooltip */
-"Remote catalog:" = "Remote catalog:";
+"Remote catalog:" = "Afzonderlijke catalogus:";
 
 /* Restore */
-"Restore" = "Restore";
-
-/* Restore */
-"Restore completed..." = "Restore completed...";
+"Restore" = "Herstellen";
 
 /* plan */
-"Saturday" = "Saturday";
+"Saturday" = "zaterdag";
 
 /* Logg
    Profile
    Userconfig */
-"Save" = "Save";
+"Save" = "Opslaan";
 
 /* Schedules */
-"Scheduled tasks in menu app..." = "Scheduled tasks in menu app...";
+"Scheduled tasks in menu app..." = "Geplande taken in menu-app...";
 
 /* datetime */
-"secs" = "secs";
+"secs" = "seconden";
 
 /* Copy files
    Remote Info
    Verify */
-"Seems not to be connected..." = "Seems not to be connected...";
-
-/* Restore */
-"Seems to be nothing to restore" = "Seems to be nothing to restore";
+"Seems not to be connected..." = "Het lijkt erop niet verbonden te zijn...";
 
 /* Execute */
-"Select a task...." = "Select a task....";
+"Select a task...." = "Selecteer een taak....";
 
 /* Execute */
-"Select one or more tasks..." = "Select one or more tasks...";
+"Select one or more tasks..." = "Selecteer een of meer taken...";
 
 /* Logg */
-"Selected logs:" = "Selected logs:";
+"Selected logs:" = "Geselecteerde logs:";
 
 /* Execute */
-"Selection out of range - aborting" = "Selection out of range - aborting";
+"Selection out of range - aborting" = "Selectie buiten bereik - afbreken";
 
 /* Snapshots */
-"Seriously, enter a real number..." = "Seriously, enter a real number...";
-
-/* Restore */
-"Simulated: execute full restore to SOURCE" = "Simulated: execute full restore to SOURCE";
-
-/* Restore */
-"Simulated: execute full restore to temporary restore path" = "Simulated: execute full restore to temporary restore path";
-
-/* Restore */
-"Simulated: execute restore of files to temporary restore path" = "Simulated: execute restore of files to temporary restore path";
+"Seriously, enter a real number..." = "Serieus, voer een reëel nummer in...";
 
 /* Tooltip */
-"Source catalog:" = "Source catalog:";
+"Source catalog:" = "Bron catalogus:";
 
 /* Restore */
-"Start" = "Start";
+"Start" = "Beginnen";
 
 /* Restore */
 "Start getting files?" = "Begin met het ophalen van bestanden?";
 
 /* Restore */
-"Start restore?" = "Start restore?";
+"Start restore?" = "Herstellen starten?";
 
 /* main */
-"stopped" = "stopped";
+"stopped" = "gestopt";
 
 /* dayofweek
    plan */
-"Sunday" = "Sunday";
+"Sunday" = "zondag";
 
 /* Execute */
-"The menu app" = "The menu app";
+"The menu app" = "De menu app";
 
 /* Quickbackup */
-"There seems to be nothing to do..." = "There seems to be nothing to do...";
+"There seems to be nothing to do..." = "Er lijkt niets te doen...";
 
 /* New */
-"This is added before?" = "This is added before?";
+"This is added before?" = "Dit is al eerder toegevoegd?";
 
 /* plan */
-"this month" = "this month";
+"this month" = "deze maand";
 
 /* plan */
-"this week" = "this week";
+"this week" = "deze week";
 
 /* plan */
-"Thursday" = "Thursday";
+"Thursday" = "donderdag";
 
 /* plan */
-"Tuesday" = "Tuesday";
+"Tuesday" = "dinsdag";
 
 /* Verify */
-"Verifying, please wait..." = "Verifying, please wait...";
+"Verifying, please wait..." = "Verifiëren, even geduld...";
 
 /* plan */
-"Wednesday" = "Wednesday";
+"Wednesday" = "woensdag";
 
 /* main */
-"weekly" = "weekly";
+"weekly" = "wekelijks";
 
 /* Snapshots */
-"You cannot delete that many, max are" = "You cannot delete that many, max are";
+"You cannot delete that many, max are" = "U kunt niet verwijderen zoveel max.";
 
 /* About */
-"You have the latest ..." = "You have the latest ...";
+"You have the latest ..." = "Je hebt de laatste ...";
 
