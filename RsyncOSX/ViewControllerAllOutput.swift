@@ -21,16 +21,13 @@ class ViewControllerAllOutput: NSViewController, Delay {
         if self.rsyncorlog.state == .on {
             self.outputrsyncorlofile.stringValue = "Rsync output..."
             self.getoutputDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-            globalMainQueue.async { () -> Void in
-                self.outputtable.reloadData()
-            }
         } else {
             self.outputrsyncorlofile.stringValue = "Logfile..."
             self.logging = Logging()
             self.getoutputDelegate = self.logging
-            globalMainQueue.async { () -> Void in
-                self.outputtable.reloadData()
-            }
+        }
+        globalMainQueue.async { () -> Void in
+            self.outputtable.reloadData()
         }
     }
 
@@ -63,6 +60,8 @@ class ViewControllerAllOutput: NSViewController, Delay {
     }
 
     @IBAction func newcleanlogfile(_: NSButton) {
+        self.outputrsyncorlofile.stringValue = "Logfile..."
+        self.rsyncorlog.state = .off
         self.logging = Logging(nil, false)
         self.getoutputDelegate = self.logging
         globalMainQueue.async { () -> Void in

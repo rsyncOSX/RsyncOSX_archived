@@ -4791,17 +4791,17 @@ DQ
             <objects>
                 <viewController title="All output" storyboardIdentifier="StoryboardOutputID" id="mal-sc-mlY" customClass="ViewControllerAllOutput" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="sfF-Cw-fbW">
-                        <rect key="frame" x="0.0" y="0.0" width="802" height="538"/>
+                        <rect key="frame" x="0.0" y="0.0" width="802" height="514"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="57" width="762" height="461"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
+                                <rect key="frame" x="20" y="57" width="762" height="437"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="460"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="436"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="437"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="413"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4886,9 +4886,8 @@ DQ
                                     <action selector="newcleanlogfile:" target="mal-sc-mlY" id="JGc-ta-gl4"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVg-4h-I7H">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVg-4h-I7H">
                                 <rect key="frame" x="64" y="21" width="91" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Rsync output..." id="bem-Na-cMq">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -4907,7 +4906,9 @@ DQ
                             <constraint firstAttribute="bottom" secondItem="6Ks-5W-3qb" secondAttribute="bottom" constant="20" symbolic="YES" id="V86-zn-ZaX"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="16" id="Z3J-PW-cez"/>
                             <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" symbolic="YES" id="gCt-wk-uqU"/>
+                            <constraint firstItem="FVg-4h-I7H" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" id="grj-Ls-b5K"/>
                             <constraint firstItem="o2i-f4-3Jh" firstAttribute="top" secondItem="6Ks-5W-3qb" secondAttribute="top" id="igN-S5-jVM"/>
+                            <constraint firstAttribute="bottom" secondItem="FVg-4h-I7H" secondAttribute="bottom" constant="21" id="l5m-J0-vuI"/>
                             <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="lCk-S0-ByQ"/>
                             <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="leading" id="xp3-G7-vpN"/>
                         </constraints>
