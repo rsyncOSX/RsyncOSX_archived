@@ -4861,7 +4861,7 @@ DQ
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ks-5W-3qb">
-                                <rect key="frame" x="60" y="13" width="72" height="32"/>
+                                <rect key="frame" x="147" y="13" width="72" height="32"/>
                                 <buttonCell key="cell" type="push" title="Copy" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CKs-PR-CbT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -4877,7 +4877,7 @@ DQ
                                 </connections>
                             </switch>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="79S-p9-m7a">
-                                <rect key="frame" x="132" y="13" width="67" height="32"/>
+                                <rect key="frame" x="212" y="13" width="67" height="32"/>
                                 <buttonCell key="cell" type="push" title="New" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z5S-KF-h0s">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -4887,10 +4887,10 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FVg-4h-I7H">
-                                <rect key="frame" x="18" y="41" width="107" height="16"/>
+                                <rect key="frame" x="64" y="21" width="91" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Rsync output..." id="bem-Na-cMq">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -4899,11 +4899,11 @@ DQ
                         <constraints>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="baseline" secondItem="79S-p9-m7a" secondAttribute="baseline" id="4PG-1J-hFc"/>
                             <constraint firstAttribute="bottom" secondItem="79S-p9-m7a" secondAttribute="bottom" constant="20" symbolic="YES" id="5t1-Pp-XMT"/>
-                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="trailing" constant="8" symbolic="YES" id="74A-an-3RD"/>
+                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="trailing" constant="95" id="74A-an-3RD"/>
                             <constraint firstItem="79S-p9-m7a" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="16" id="D5J-Wp-t7a"/>
                             <constraint firstAttribute="bottom" secondItem="o2i-f4-3Jh" secondAttribute="bottom" constant="20" symbolic="YES" id="Hcx-yK-JDC"/>
                             <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="LNH-xB-ZBT"/>
-                            <constraint firstItem="79S-p9-m7a" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="12" symbolic="YES" id="Sr5-XW-k7O"/>
+                            <constraint firstItem="79S-p9-m7a" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="5" id="Sr5-XW-k7O"/>
                             <constraint firstAttribute="bottom" secondItem="6Ks-5W-3qb" secondAttribute="bottom" constant="20" symbolic="YES" id="V86-zn-ZaX"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="16" id="Z3J-PW-cez"/>
                             <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" symbolic="YES" id="gCt-wk-uqU"/>
