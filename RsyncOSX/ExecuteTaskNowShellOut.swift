@@ -15,9 +15,9 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
 
     func executepretask() throws {
         if let index = self.index {
-            if let pretask = self.configurations?.getConfigurations()[index].pretask {
+            if let pretask = self.configurations?.getConfigurations()?[index].pretask {
                 let task = try shellOut(to: pretask)
-                if task.self.contains("error"), (self.configurations?.getConfigurations()[index].haltshelltasksonerror ?? 0) == 1 {
+                if task.self.contains("error"), (self.configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
                     let outputprocess = OutputProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: pretask containes error, aborting")
                     _ = Logging(outputprocess, true)
@@ -29,9 +29,9 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
 
     func executeposttask() throws {
         if let index = self.index {
-            if let posttask = self.configurations?.getConfigurations()[index].posttask {
+            if let posttask = self.configurations?.getConfigurations()?[index].posttask {
                 let task = try shellOut(to: posttask)
-                if task.self.contains("error"), (self.configurations?.getConfigurations()[index].haltshelltasksonerror ?? 0) == 1 {
+                if task.self.contains("error"), (self.configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
                     let outputprocess = OutputProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: posstak containes error")
                     _ = Logging(outputprocess, true)
@@ -43,7 +43,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     override func executetasknow() {
         if let index = self.index {
             // Execute pretask
-            if self.configurations?.getConfigurations()[index].executepretask == 1 {
+            if self.configurations?.getConfigurations()?[index].executepretask == 1 {
                 do {
                     try self.executepretask()
                 } catch let e {
@@ -60,7 +60,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
             self.outputprocess = OutputProcessRsync()
             if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
                 let process = RsyncProcessCmdClosure(arguments: arguments,
-                                                     config: self.configurations?.getConfigurations()[index],
+                                                     config: self.configurations?.getConfigurations()?[index],
                                                      processtermination: self.processtermination,
                                                      filehandler: self.filehandler)
                 process.executeProcess(outputprocess: self.outputprocess)
@@ -74,7 +74,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
         // Execute posttask
         guard self.error == false else { return }
         if let index = self.index {
-            if self.configurations?.getConfigurations()[index].executeposttask == 1 {
+            if self.configurations?.getConfigurations()?[index].executeposttask == 1 {
                 do {
                     try self.executeposttask()
                 } catch let e {

@@ -32,19 +32,19 @@ final class RemoteinfoEstimation: SetConfigurations {
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = [Row]()
         if self.getmultipleselectedindexesDelegate?.multipleselection() == false {
-            for i in 0 ..< (self.configurations?.getConfigurations().count ?? 0) {
-                let task = self.configurations?.getConfigurations()[i].task
+            for i in 0 ..< (self.configurations?.getConfigurations()?.count ?? 0) {
+                let task = self.configurations?.getConfigurations()?[i].task
                 if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                    self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[i].hiddenID, i))
+                    self.stackoftasktobeestimated?.append((self.configurations?.getConfigurations()?[i].hiddenID ?? 0, i))
                 }
             }
         } else {
             let indexes = self.getmultipleselectedindexesDelegate?.getindexes()
             for i in 0 ..< (indexes?.count ?? 0) {
                 if let index = indexes?[i] {
-                    let task = self.configurations?.getConfigurations()[index].task
+                    let task = self.configurations?.getConfigurations()?[index].task
                     if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                        self.stackoftasktobeestimated?.append((self.configurations!.getConfigurations()[index].hiddenID, index))
+                        self.stackoftasktobeestimated?.append((self.configurations?.getConfigurations()?[index].hiddenID ?? 0, index))
                     }
                 }
             }
@@ -118,13 +118,13 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
 extension RemoteinfoEstimation {
     func processtermination() {
         let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
-        record.setValue(self.configurations?.getConfigurations()[self.index!].localCatalog, forKey: "localCatalog")
-        record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
-        record.setValue(self.configurations?.getConfigurations()[self.index!].hiddenID, forKey: "hiddenID")
-        if self.configurations?.getConfigurations()[self.index!].offsiteServer.isEmpty == true {
+        record.setValue(self.configurations?.getConfigurations()?[self.index!].localCatalog, forKey: "localCatalog")
+        record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
+        record.setValue(self.configurations?.getConfigurations()?[self.index!].hiddenID, forKey: "hiddenID")
+        if self.configurations?.getConfigurations()?[self.index!].offsiteServer.isEmpty == true {
             record.setValue("localhost", forKey: "offsiteServer")
         } else {
-            record.setValue(self.configurations?.getConfigurations()[self.index!].offsiteServer, forKey: "offsiteServer")
+            record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteServer, forKey: "offsiteServer")
         }
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)

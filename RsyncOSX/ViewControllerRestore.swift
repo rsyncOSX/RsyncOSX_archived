@@ -253,12 +253,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func checkforgetremotefiles() -> Bool {
         guard self.checkforrsync() == false else { return false }
         if let index = self.index {
-            guard self.connected(config: self.configurations?.getConfigurations()[index]) == true else {
+            guard self.connected(config: self.configurations?.getConfigurations()?[index]) == true else {
                 self.infolabel.stringValue = Inforestore().info(num: 4)
                 self.infolabel.isHidden = false
                 return false
             }
-            guard self.configurations!.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+            guard self.configurations!.getConfigurations()?[index].task != ViewControllerReference.shared.syncremote else {
                 self.infolabel.stringValue = Inforestore().info(num: 5)
                 self.infolabel.isHidden = false
                 self.restoretabledata = nil
@@ -335,12 +335,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     private func checkforfullrestore() -> Bool {
         if let index = self.index {
-            guard self.connected(config: self.configurations!.getConfigurations()[index]) == true else {
+            guard self.connected(config: self.configurations!.getConfigurations()?[index]) == true else {
                 self.infolabel.stringValue = Inforestore().info(num: 4)
                 self.infolabel.isHidden = false
                 return false
             }
-            guard self.configurations?.getConfigurations()[index].task != ViewControllerReference.shared.syncremote else {
+            guard self.configurations?.getConfigurations()?[index].task != ViewControllerReference.shared.syncremote else {
                 self.infolabel.stringValue = Inforestore().info(num: 5)
                 self.infolabel.isHidden = false
                 return false

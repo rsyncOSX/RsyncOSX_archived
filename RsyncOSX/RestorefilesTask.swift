@@ -44,7 +44,7 @@ final class RestorefilesTask: SetConfigurations {
         self.processtermination = processtermination
         self.filehandler = filehandler
         if let index = self.configurations?.getIndex(hiddenID) {
-            self.config = self.configurations?.getConfigurations()[index]
+            self.config = self.configurations?.getConfigurations()?[index]
         }
     }
 }

@@ -47,7 +47,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         self.complete = false
         self.index = self.index()
         if let index = self.index {
-            let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
+            let datelastbackup = self.configurations?.getConfigurations()?[index].dateRun ?? ""
             if datelastbackup.isEmpty == false {
                 let date = datelastbackup.en_us_date_from_string()
                 self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
@@ -55,13 +55,13 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             } else {
                 self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
             }
-            let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
+            let numberlastbackup = self.configurations?.getConfigurations()?[index].dayssincelastbackup ?? ""
             self.dayslastbackup.stringValue = NSLocalizedString("Days since last synchronize:", comment: "Remote Info")
                 + " " + numberlastbackup
             if self.localremoteinfoDelegate?.getlocalremoteinfo(index: index)?.count ?? 0 > 0 {
                 self.setcachedNumbers(dict: self.localremoteinfoDelegate?.getlocalremoteinfo(index: index))
             } else {
-                if self.connected(config: self.configurations!.getConfigurations()[index]) == true {
+                if self.connected(config: self.configurations!.getConfigurations()?[index]) == true {
                     self.working.startAnimation(nil)
                     self.outputprocess = OutputProcess()
                     _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: true, processtermination: self.processtermination, filehandler: self.filehandler)

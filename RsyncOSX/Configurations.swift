@@ -71,8 +71,8 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     // Function for getting Configurations read into memory
-    func getConfigurations() -> [Configuration] {
-        return self.configurations ?? []
+    func getConfigurations() -> [Configuration]? {
+        return self.configurations
     }
 
     // Function for getting arguments for all Configurations read into memory

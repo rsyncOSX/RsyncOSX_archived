@@ -41,8 +41,8 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
         if let object = self.configurations?.getConfigurationsDataSource()?[row],
-           let hiddenID: Int = self.configurations?.getConfigurations()[row].hiddenID,
-           let markdays = self.configurations?.getConfigurations()[row].markdays,
+           let hiddenID: Int = self.configurations?.getConfigurations()?[row].hiddenID,
+           let markdays = self.configurations?.getConfigurations()?[row].markdays,
            let tableColumn = tableColumn
         {
             let celltext = object[tableColumn.identifier] as? String

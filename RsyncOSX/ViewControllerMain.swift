@@ -79,7 +79,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         guard self.checkforrsync() == false else { return }
         if let index = self.index {
-            if let task = self.configurations?.getConfigurations()[index].task {
+            if let task = self.configurations?.getConfigurations()?[index].task {
                 guard ViewControllerReference.shared.synctasks.contains(task) else {
                     self.info.stringValue = Infoexecute().info(num: 7)
                     return
@@ -233,9 +233,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         if let index = self.index {
-            if let task = self.configurations?.getConfigurations()[index].task {
+            if let task = self.configurations?.getConfigurations()?[index].task {
                 guard ViewControllerReference.shared.synctasks.contains(task) else { return }
-                if let config = self.configurations?.getConfigurations()[index] {
+                if let config = self.configurations?.getConfigurations()?[index] {
                     if PreandPostTasks(config: config).executepretask || PreandPostTasks(config: config).executeposttask {
                         self.executetasknow = ExecuteTaskNowShellOut(index: index)
                     } else {
@@ -254,7 +254,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Display correct rsync command in view
     func showrsynccommandmainview() {
         if let index = self.index {
-            guard index <= self.configurations!.getConfigurations().count else { return }
+            guard index <= (self.configurations?.getConfigurations()?.count ?? 0) else { return }
             if self.backupdryrun.state == .on {
                 self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .synchronize).displayrsyncpath ?? ""
             } else if self.restoredryrun.state == .on {
@@ -366,7 +366,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func executeSingleTask() {
         guard self.checkforrsync() == false else { return }
         if let index = self.index {
-            if let task = self.configurations?.getConfigurations()[index].task {
+            if let task = self.configurations?.getConfigurations()?[index].task {
                 guard ViewControllerReference.shared.synctasks.contains(task) else {
                     self.info.stringValue = Infoexecute().info(num: 6)
                     return
