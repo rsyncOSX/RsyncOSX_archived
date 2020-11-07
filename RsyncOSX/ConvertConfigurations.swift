@@ -22,7 +22,7 @@ struct ConvertConfigurations: SetConfigurations {
     }
 
     init(index: Int) {
-        if var config = self.configurations?.getConfigurations()[index] {
+        if var config = self.configurations?.getConfigurations()?[index] {
             let dict: NSMutableDictionary = [
                 "task": config.task,
                 "backupID": config.backupID,

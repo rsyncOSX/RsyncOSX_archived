@@ -161,7 +161,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
             self.gotremoteinfo = false
             self.complete = false
             if let index = self.index() {
-                let datelastbackup = self.configurations?.getConfigurations()[index].dateRun ?? ""
+                let datelastbackup = self.configurations?.getConfigurations()?[index].dateRun ?? ""
                 if datelastbackup.isEmpty == false {
                     let date = datelastbackup.en_us_date_from_string()
                     self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
@@ -169,7 +169,7 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
                 } else {
                     self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
                 }
-                let numberlastbackup = self.configurations?.getConfigurations()[index].dayssincelastbackup ?? ""
+                let numberlastbackup = self.configurations?.getConfigurations()?[index].dayssincelastbackup ?? ""
                 self.dayslastbackup.stringValue = self.dayssince + " " + numberlastbackup
             }
         } else {
@@ -179,8 +179,8 @@ class ViewControllerVerify: NSViewController, SetConfigurations, Index, VcMain, 
 
     private func reload() -> Bool {
         if let index = self.index() {
-            let config = self.configurations!.getConfigurations()[index]
-            guard config.task != ViewControllerReference.shared.syncremote else {
+            let config = self.configurations?.getConfigurations()?[index]
+            guard config?.task != ViewControllerReference.shared.syncremote else {
                 self.gotit.textColor = setcolor(nsviewcontroller: self, color: .red)
                 let message: String = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
                 self.gotit.stringValue = message

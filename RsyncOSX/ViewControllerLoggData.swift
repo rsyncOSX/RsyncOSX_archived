@@ -134,7 +134,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
-            if let config = self.configurations?.getConfigurations()[index] {
+            if let config = self.configurations?.getConfigurations()?[index] {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
                     self.working.startAnimation(nil)
@@ -290,7 +290,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
-            if let config = self.configurations?.getConfigurations()[index] {
+            if let config = self.configurations?.getConfigurations()?[index] {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
                 if self.connected(config: config) {
                     if config.task == "snapshot" { self.working.startAnimation(nil) }

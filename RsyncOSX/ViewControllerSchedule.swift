@@ -59,7 +59,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func rsyncosxsched(_: NSButton) {
-        guard ViewControllerReference.shared.json == false else { return }
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else {
             self.info.stringValue = Infoexecute().info(num: 5)

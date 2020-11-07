@@ -113,7 +113,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     func getconfig(hiddenID: Int) -> Configuration? {
         let index = self.configurations?.getIndex(hiddenID) ?? 0
-        return self.configurations?.getConfigurations()[index]
+        return self.configurations?.getConfigurations()?[index]
     }
 
     init(profile: String?) {

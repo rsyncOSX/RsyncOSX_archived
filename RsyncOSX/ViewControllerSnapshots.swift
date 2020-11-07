@@ -269,7 +269,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                if let config = self.configurations?.getConfigurations()[index] {
+                if let config = self.configurations?.getConfigurations()?[index] {
                     guard self.connected(config: config) == true else {
                         self.info.stringValue = Infosnapshots().info(num: 6)
                         return
@@ -294,7 +294,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     func getsourcebyindex(index: Int) {
         self.hiddenID = index
-        self.config = self.configurations?.getConfigurations()[self.configurations?.getIndex(index) ?? -1]
+        self.config = self.configurations?.getConfigurations()?[self.configurations?.getIndex(index) ?? -1]
         guard self.config?.task == ViewControllerReference.shared.snapshot else {
             self.info.stringValue = Infosnapshots().info(num: 1)
             self.index = nil

@@ -32,14 +32,15 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
     var index: Int?
 
     @IBAction func enabledisableresetsnapshotnum(_: NSButton) {
-        let config: Configuration = self.configurations!.getConfigurations()[self.index!]
-        guard config.task == "snapshot" else { return }
-        let info: String = NSLocalizedString("Dont change the snapshot num if you don´t know what you are doing...", comment: "Snapshots")
-        Alerts.showInfo(info: info)
-        if self.snapshotnum.isEnabled {
-            self.snapshotnum.isEnabled = false
-        } else {
-            self.snapshotnum.isEnabled = true
+        if let config: Configuration = self.configurations?.getConfigurations()?[self.index!] {
+            guard config.task == "snapshot" else { return }
+            let info: String = NSLocalizedString("Dont change the snapshot num if you don´t know what you are doing...", comment: "Snapshots")
+            Alerts.showInfo(info: info)
+            if self.snapshotnum.isEnabled {
+                self.snapshotnum.isEnabled = false
+            } else {
+                self.snapshotnum.isEnabled = true
+            }
         }
     }
 
@@ -128,7 +129,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
         self.haltshelltasksonerror.state = .off
         if let index = self.index() {
             self.index = index
-            if let config: Configuration = self.configurations?.getConfigurations()[index] {
+            if let config: Configuration = self.configurations?.getConfigurations()?[index] {
                 self.localCatalog.stringValue = config.localCatalog
                 self.offsiteCatalog.stringValue = config.offsiteCatalog
                 self.offsiteUsername.stringValue = config.offsiteUsername
@@ -176,7 +177,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
 
     private func changelabels() {
         if let index = self.index {
-            if let config = self.configurations?.getConfigurations()[index] {
+            if let config = self.configurations?.getConfigurations()?[index] {
                 switch config.task {
                 case ViewControllerReference.shared.syncremote:
                     self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
@@ -194,7 +195,7 @@ extension ViewControllerEdit: NSTextFieldDelegate {
     func controlTextDidChange(_: Notification) {
         delayWithSeconds(0.5) {
             if let index = self.index {
-                if let config = self.configurations?.getConfigurations()[index] {
+                if let config = self.configurations?.getConfigurations()?[index] {
                     if let num = Int(self.snapshotnum.stringValue) {
                         guard num < config.snapshotnum ?? 0, num > 0 else {
                             self.snapshotnum.stringValue = String(config.snapshotnum ?? 1)

@@ -93,7 +93,7 @@ final class ArgumentsSsh: SetConfigurations {
 
     init(hiddenID: Int?, sshkeypathandidentityfile: String?) {
         if let hiddenID = hiddenID {
-            self.config = self.configurations?.getConfigurations()[self.configurations?.getIndex(hiddenID) ?? -1]
+            self.config = self.configurations?.getConfigurations()?[self.configurations?.getIndex(hiddenID) ?? -1]
         }
         self.globalsshkeypathandidentityfile = sshkeypathandidentityfile ?? ""
         if let sshport = ViewControllerReference.shared.sshport {

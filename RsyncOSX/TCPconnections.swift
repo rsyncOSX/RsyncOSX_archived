@@ -52,7 +52,7 @@ class TCPconnections: SetConfigurations, Delay {
         globalDefaultQueue.async { () -> Void in
             var port: Int = 22
             for i in 0 ..< (self.configurations?.configurationsDataSource?.count ?? 0) {
-                if let config = self.configurations?.getConfigurations()[i] {
+                if let config = self.configurations?.getConfigurations()?[i] {
                     if config.offsiteServer.isEmpty == false {
                         if let sshport: Int = config.sshport { port = sshport }
                         let success = self.testTCPconnection(config.offsiteServer, port: port, timeout: 1)
