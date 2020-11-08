@@ -28,7 +28,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testnumberofconfigurations() {
-        let count = self.configurations?.getConfigurations().count
+        let count = self.configurations?.getConfigurations()?.count
         XCTAssertEqual(count, 4, "Should be equal to 4")
     }
 
@@ -150,7 +150,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         ]
         dict.setValue(1, forKey: "snapshotnum")
         configurations?.addNewConfigurations(dict: dict)
-        let count = configurations?.getConfigurations().count
+        let count = configurations?.getConfigurations()?.count
         XCTAssertEqual(count, 5, "Should be equal to 5")
     }
 
