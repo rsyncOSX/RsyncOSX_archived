@@ -259,9 +259,6 @@
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "Öffentlicher RSA-Schlüssel wurde gefunden.";
 
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "Tage";
-
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "Öffnen";
 
@@ -345,6 +342,9 @@
 
 /* Class = "NSMenuItem"; title = "Synchronize all now"; ObjectID = "bCH-Oe-dEC"; */
 "bCH-Oe-dEC.title" = "Jetzt alle synchronisieren";
+
+/* Class = "NSTextFieldCell"; title = "Rsync output..."; ObjectID = "bem-Na-cMq"; */
+"bem-Na-cMq.title" = "Rsync-Ausgabe...";
 
 /* Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW"; */
 "Beq-PN-DJW.headerCell.title" = "Verfügbar (GB)";
@@ -1629,4 +1629,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "Externer Katalog";
+
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "Tage";
 
