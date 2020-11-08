@@ -193,10 +193,22 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func verifyjson(_: NSButton) {
+        self.verify()
+    }
+
+    private func verify() {
+        let verify: VerifyJSON?
         if let profile = self.configurations?.getProfile() {
-            _ = VerifyJSON(profile: profile)
+            verify = VerifyJSON(profile: profile)
         } else {
-            _ = VerifyJSON(profile: nil)
+            verify = VerifyJSON(profile: nil)
+        }
+        if verify?.verifyconf ?? false, verify?.verifysched ?? false == true {
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+            self.info.stringValue = "Verify OK..."
+        } else {
+            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
+            self.info.stringValue = "Verify not OK..."
         }
     }
 
@@ -494,10 +506,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false
-        if let profile = self.configurations?.getProfile() {
-            _ = VerifyJSON(profile: profile)
-        } else {
-            _ = VerifyJSON(profile: nil)
-        }
+        self.verify()
     }
 }
