@@ -11,10 +11,10 @@ import Foundation
 class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
     var profile: String?
 
-    func getConfigurations() -> [Configuration]? {
+    func getallconfigurations() -> [Configuration]? {
         var configurations = [Configuration]()
         if ViewControllerReference.shared.json {
-            let read = PersistentStorageConfigurationJSON(profile: self.profile)
+            let read = PersistentStorageConfigurationJSON(profile: self.profile, readonly: true)
             let transform = TransformConfigfromJSON()
             for i in 0 ..< (read.decodedjson?.count ?? 0) {
                 if let configitem = read.decodedjson?[i] as? DecodeConfigJSON {

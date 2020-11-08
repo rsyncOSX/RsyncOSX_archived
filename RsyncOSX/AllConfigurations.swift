@@ -23,9 +23,9 @@ final class AllConfigurations: Sorting {
                 self.allconfigurations = []
             }
             if profile == NSLocalizedString("Default profile", comment: "default profile") {
-                configurations = PersistentStorageAllprofilesAPI(profile: nil).getConfigurations()
+                configurations = PersistentStorageAllprofilesAPI(profile: nil).getallconfigurations()
             } else {
-                configurations = PersistentStorageAllprofilesAPI(profile: profile).getConfigurations()
+                configurations = PersistentStorageAllprofilesAPI(profile: profile).getallconfigurations()
             }
             guard configurations != nil else { return }
             for j in 0 ..< (configurations?.count ?? 0) {
