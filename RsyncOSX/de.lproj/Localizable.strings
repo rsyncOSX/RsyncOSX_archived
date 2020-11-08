@@ -393,6 +393,12 @@
 "Tuesday" = "Dienstag";
 
 /* Verify */
+"Verify not OK, see logfile (⌘O)..." = "Überprüfen Sie nicht OK, siehe Protokolldatei (⌘O)...";
+
+/* Verify */
+"Verify OK..." = "Wird überprüft...";
+
+/* Verify */
 "Verifying, please wait..." = "Überprüfe, bitte warten...";
 
 /* plan */

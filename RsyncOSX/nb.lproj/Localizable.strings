@@ -393,6 +393,12 @@
 "Tuesday" = "tirsdag";
 
 /* Verify */
+"Verify not OK, see logfile (⌘O)..." = "Verifikasjon ikke OK, se loggfil (⌘O)...";
+
+/* Verify */
+"Verify OK..." = "Verifikasjon OK...";
+
+/* Verify */
 "Verifying, please wait..." = "Verifiserer, vennligst vent...";
 
 /* plan */
