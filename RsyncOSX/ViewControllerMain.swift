@@ -477,11 +477,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBAction func Json(_: NSButton) {
         if ViewControllerReference.shared.json == false {
             if let profile = self.configurations?.getProfile() {
-                _ = PersistentStorageConfigurationJSON(profile: profile, true)
-                _ = PersistentStorageSchedulingJSON(profile: profile, true)
+                _ = PersistentStorageConfigurationJSON(profile: profile, readonly: false)
+                _ = PersistentStorageSchedulingJSON(profile: profile, readonly: false)
             } else {
-                _ = PersistentStorageConfigurationJSON(profile: nil, true)
-                _ = PersistentStorageSchedulingJSON(profile: nil, true)
+                _ = PersistentStorageConfigurationJSON(profile: nil, readonly: false)
+                _ = PersistentStorageSchedulingJSON(profile: nil, readonly: false)
             }
         } else {
             if let profile = self.configurations?.getProfile() {

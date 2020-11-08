@@ -60,7 +60,7 @@ class VerifyJSON {
     }
 
     func readschedulesJSON() {
-        let store = PersistentStorageSchedulingJSON(profile: self.profile)
+        let store = PersistentStorageSchedulingJSON(profile: self.profile, readonly: true)
         self.jsonschedules = store.decodedjson as? [DecodeScheduleJSON]
         if let jsonschedules = self.jsonschedules {
             self.transformedschedules = [ConfigurationSchedule]()
@@ -74,7 +74,7 @@ class VerifyJSON {
     }
 
     func readconfigurationsJSON() {
-        let store = PersistentStorageConfigurationJSON(profile: self.profile)
+        let store = PersistentStorageConfigurationJSON(profile: self.profile, readonly: true)
         self.jsonconfigurations = store.decodedjson as? [DecodeConfigJSON]
         if let jsonconfigurations = self.jsonconfigurations {
             self.transformedconfigurations = [Configuration]()
