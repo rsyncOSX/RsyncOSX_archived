@@ -14,26 +14,33 @@ class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
 
     // Saving Schedules from MEMORY to persistent store
     func savescheduleInMemoryToPersistentStore() {
-        if let schedules = self.schedules?.getSchedule() {
-            let cleanedschedules = ConvertSchedules(schedules: schedules).cleanedschedules
-            self.writeToStore(schedules: cleanedschedules)
+        if let schedules: [ConfigurationSchedule] = ConvertSchedules(JSON: true).cleanedschedules {
+            self.writeToStore(schedules: schedules)
         }
     }
 
     // Writing schedules to persistent store
-    // Schedule is [NSDictionary]
-    private func writeToStore(schedules _: [ConfigurationSchedule]?) {
-        self.createJSONfromstructs()
+    private func writeToStore(schedules: [ConfigurationSchedule]?) {
+        self.createJSONfromstructs(schedules: schedules)
         self.writeJSONToPersistentStore()
         self.schedulesDelegate?.reloadschedulesobject()
     }
 
-    private func createJSONfromstructs() {
+    private func createJSONfromstructs(schedules: [ConfigurationSchedule]?) {
         var structscodable: [ConvertOneScheduleCodable]?
-        if let schedules = self.schedules?.getSchedule() {
-            structscodable = [ConvertOneScheduleCodable]()
-            for i in 0 ..< schedules.count {
-                structscodable?.append(ConvertOneScheduleCodable(schedule: schedules[i]))
+        if schedules == nil {
+            if let schedules = self.schedules?.getSchedule() {
+                structscodable = [ConvertOneScheduleCodable]()
+                for i in 0 ..< schedules.count {
+                    structscodable?.append(ConvertOneScheduleCodable(schedule: schedules[i]))
+                }
+            }
+        } else {
+            if let schedules = schedules {
+                structscodable = [ConvertOneScheduleCodable]()
+                for i in 0 ..< schedules.count {
+                    structscodable?.append(ConvertOneScheduleCodable(schedule: schedules[i]))
+                }
             }
         }
         self.jsonstring = self.encodedata(data: structscodable)
@@ -88,7 +95,7 @@ class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
         if readonly {
             self.JSONFromPersistentStore()
         } else {
-            self.createJSONfromstructs()
+            self.createJSONfromstructs(schedules: nil)
             self.writeconvertedtostore()
         }
     }
