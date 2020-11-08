@@ -17,7 +17,7 @@ class ConfigurationsXCTESTJSON: Configurations {
 
     override func readconfigurationsjson() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        let store = PersistentStorageConfigurationJSON(profile: self.profile).decodedjson
+        let store = PersistentStorageConfigurationJSON(profile: self.profile, readonly: true).decodedjson
         let transform = TransformConfigfromJSON()
         for i in 0 ..< (store?.count ?? 0) {
             let transformed = transform.transform(object: (store?[i] as? DecodeConfigJSON)!)
