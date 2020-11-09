@@ -89,22 +89,25 @@ class Configurations: ReloadTable, SetSchedules {
     // Function for getting all Configurations
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
         guard self.configurations != nil else { return nil }
-        var configurations = self.configurations!.filter {
+        var configurations = self.configurations?.filter {
             ViewControllerReference.shared.synctasks.contains($0.task)
         }
         var data = [NSMutableDictionary]()
-        for i in 0 ..< configurations.count {
-            if configurations[i].offsiteServer.isEmpty == true {
-                configurations[i].offsiteServer = "localhost"
+        for i in 0 ..< (configurations?.count ?? 0) {
+            if configurations?[i].offsiteServer.isEmpty == true {
+                configurations?[i].offsiteServer = "localhost"
             }
-            let row: NSMutableDictionary = ConvertOneConfig(config: self.configurations![i]).dict
-            if self.quickbackuplist != nil {
-                let quickbackup = self.quickbackuplist!.filter { $0 == configurations[i].hiddenID }
-                if quickbackup.count > 0 {
-                    row.setValue(1, forKey: "selectCellID")
+            if let config = self.configurations?[i] {
+                let row: NSMutableDictionary = ConvertOneConfig(config: config).dict
+
+                if self.quickbackuplist != nil {
+                    let quickbackup = self.quickbackuplist!.filter { $0 == config.hiddenID }
+                    if quickbackup.count > 0 {
+                        row.setValue(1, forKey: "selectCellID")
+                    }
                 }
+                data.append(row)
             }
-            data.append(row)
         }
         return data
     }
