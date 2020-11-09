@@ -4787,14 +4787,14 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="802" height="514"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
-                                <rect key="frame" x="20" y="57" width="762" height="317"/>
+                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-5V-aG6">
+                                <rect key="frame" x="20" y="57" width="762" height="437"/>
                                 <clipView key="contentView" id="9de-ez-sUR">
-                                    <rect key="frame" x="1" y="0.0" width="760" height="316"/>
+                                    <rect key="frame" x="1" y="0.0" width="760" height="436"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="C3F-Rb-k7G" viewBased="YES" id="Jq5-FS-rlQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="760" height="293"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="760" height="413"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4854,7 +4854,7 @@ DQ
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ks-5W-3qb">
-                                <rect key="frame" x="147" y="13" width="72" height="32"/>
+                                <rect key="frame" x="14" y="13" width="72" height="32"/>
                                 <buttonCell key="cell" type="push" title="Copy" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CKs-PR-CbT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -4864,13 +4864,13 @@ DQ
                                 </connections>
                             </button>
                             <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="o2i-f4-3Jh">
-                                <rect key="frame" x="18" y="18" width="42" height="24"/>
+                                <rect key="frame" x="152" y="18" width="42" height="24"/>
                                 <connections>
                                     <action selector="rsyncorlogfile:" target="mal-sc-mlY" id="wyr-Gd-4Q4"/>
                                 </connections>
                             </switch>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="79S-p9-m7a">
-                                <rect key="frame" x="212" y="13" width="67" height="32"/>
+                                <rect key="frame" x="79" y="13" width="67" height="32"/>
                                 <buttonCell key="cell" type="push" title="New" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z5S-KF-h0s">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -4880,7 +4880,7 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FVg-4h-I7H">
-                                <rect key="frame" x="64" y="21" width="91" height="16"/>
+                                <rect key="frame" x="198" y="21" width="91" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Rsync output..." id="bem-Na-cMq">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -4891,11 +4891,11 @@ DQ
                         <constraints>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="baseline" secondItem="79S-p9-m7a" secondAttribute="baseline" id="4PG-1J-hFc"/>
                             <constraint firstAttribute="bottom" secondItem="79S-p9-m7a" secondAttribute="bottom" constant="20" symbolic="YES" id="5t1-Pp-XMT"/>
-                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="trailing" constant="95" id="74A-an-3RD"/>
+                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="trailing" constant="-172" id="74A-an-3RD"/>
                             <constraint firstItem="FVg-4h-I7H" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="trailing" constant="8" symbolic="YES" id="A92-Rh-yLr"/>
                             <constraint firstItem="79S-p9-m7a" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="16" id="D5J-Wp-t7a"/>
                             <constraint firstAttribute="bottom" secondItem="o2i-f4-3Jh" secondAttribute="bottom" constant="20" symbolic="YES" id="Hcx-yK-JDC"/>
-                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="FVg-4h-I7H" secondAttribute="trailing" id="LKX-Ed-2RB"/>
+                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="FVg-4h-I7H" secondAttribute="trailing" constant="-267" id="LKX-Ed-2RB"/>
                             <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="LNH-xB-ZBT"/>
                             <constraint firstItem="79S-p9-m7a" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="5" id="Sr5-XW-k7O"/>
                             <constraint firstAttribute="bottom" secondItem="6Ks-5W-3qb" secondAttribute="bottom" constant="20" symbolic="YES" id="V86-zn-ZaX"/>
@@ -4905,7 +4905,7 @@ DQ
                             <constraint firstItem="o2i-f4-3Jh" firstAttribute="top" secondItem="6Ks-5W-3qb" secondAttribute="top" id="igN-S5-jVM"/>
                             <constraint firstAttribute="bottom" secondItem="FVg-4h-I7H" secondAttribute="bottom" constant="21" id="l5m-J0-vuI"/>
                             <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="lCk-S0-ByQ"/>
-                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="leading" id="xp3-G7-vpN"/>
+                            <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="leading" constant="-134" id="xp3-G7-vpN"/>
                         </constraints>
                     </view>
                     <connections>
