@@ -27,7 +27,7 @@
 "Cancel or Add" = "Annuleren of toevoegen";
 
 /* Userconfig */
-"Cancel or Continue?" = "Cancel or Continue?";
+"Cancel or Continue?" = "Annuleren of doorgaan?";
 
 /* Execute
    Logg
@@ -36,13 +36,13 @@
 "Cancel or Delete" = "Annuleren of verwijderen";
 
 /* Userconfig */
-"Cancel or Reboot?" = "Cancel or Reboot?";
+"Cancel or Reboot?" = "Annuleren of herstarten?";
 
 /* Restore */
 "Cancel or Restore" = "Annuleren of herstellen";
 
 /* Logg */
-"Cancel or Save" = "Cancel or Save";
+"Cancel or Save" = "Annuleren of opslaan";
 
 /* Restore */
 "Cannot copy from a syncremote task..." = "Kan niet kopiëren van een syncremote taak...";
@@ -51,10 +51,10 @@
 "Cannot verify a syncremote task..." = "Kan geen syncremote taak verifiëren...";
 
 /* chinese */
-"Chinese (Simplified) translation by: StringKe (Chen)" = "Chinese (Simplified) translation by: StringKe (Chen)";
+"Chinese (Simplified) translation by: StringKe (Chen)" = "Chinese (vereenvoudigd) vertaling door: StringKe (Chen)";
 
 /* Snapshots */
-"Cleaning logs completed..." = "Cleaning logs completed...";
+"Cleaning logs completed..." = "Opschonen logs voltooid...";
 
 /* Close NSAlert */
 "Close" = "Afsluiten";
@@ -66,7 +66,7 @@
 "Computing changed, please wait..." = "Veranderd worden berekend, even geduld...";
 
 /* Userconfig */
-"Continue" = "Continue";
+"Continue" = "Doorgaan";
 
 /* Restore */
 "Copy single files or directory?" = "Enkelbestanden of map kopiëren?";
@@ -79,7 +79,7 @@
 
 /* Remote Info
    Verify */
-"Date last synchronize:" = "Date last synchronize:";
+"Date last synchronize:" = "Dagen sinds laatste synchronisatie:";
 
 /* datetime */
 "days" = "Dagen";
@@ -117,16 +117,16 @@
 "Destination catalog:" = "Bestemming catalogus:";
 
 /* Snapshots */
-"Do you REALLY want to delete selected snapshots" = "Do you REALLY want to delete selected snapshots";
+"Do you REALLY want to delete selected snapshots" = "Wilt u de geselecteerde items werkelijk verwijderen";
 
 /* Restore */
-"Do you REALLY want to start a restore?" = "Do you REALLY want to start a restore?";
+"Do you REALLY want to start a restore?" = "Wil je echt een herstel starten?";
 
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Verander de snapshot num niet als je niet «re weet wat je doet...";
 
 /* ducth */
-"Ducth translation by: Marcellino Santoso" = "Ducth translation by: Marcellino Santoso";
+"Dutch translation by: Marcellino Santoso" = "Nederlandse vertaling door: Marcellino Santoso";
 
 /* plan */
 "earlier months" = "Eerder maanden";
@@ -138,7 +138,7 @@
 "ERROR: no rsync in /usr/local/bin" = "FOUT: geen rsync in /usr/local/bin";
 
 /* Remote info */
-"Estimation completed" = "Estimation completed";
+"Estimation completed" = "Schatting voltooid";
 
 /* plan */
 "every" = "elke";
@@ -150,16 +150,16 @@
 "Filelist for snapshot tasks might be huge?" = "Bestandslijst voor snapshot taken kan enorm zijn?";
 
 /* Userconfig */
-"Format of config files is about to be changed to JSON." = "Format of config files is about to be changed to JSON.";
+"Format of config files is about to be changed to JSON." = "Opmaak van configuratiebestanden is bezig te worden gewijzigd naar JSON.";
 
 /* Userconfig */
-"Format of config files is about to be changed to PLIST." = "Format of config files is about to be changed to PLIST.";
+"Format of config files is about to be changed to PLIST." = "Opmaak van configuratiebestanden is bezig te worden gewijzigd naar PLIST.";
 
 /* plan */
 "Friday" = "vrijdag";
 
 /* german */
-"German translation by: Andre Voigtmann" = "German translation by: Andre Voigtmann";
+"German translation by: Andre Voigtmann" = "Duitse vertaling door: Andre Voigtmann";
 
 /* Restore */
 "Getting info, please wait..." = "Gegevens ophalen, een ogenblik aub...";
@@ -185,14 +185,11 @@
 /* icon */
 "Icon by: Zsolt Sándor" = "Pictogram door: Zsolt Saß ndor";
 
-/* indonesian */
-"Indonesian translation by: Marcellino Santoso" = "Indonesian translation by: Marcellino Santoso";
-
 /* italian */
-"Italian translation by: Stefano Steve Cutelle'" = "Italian translation by: Stefano Steve Cutelle'";
+"Italian translation by: Stefano Steve Cutelle'" = "Italiaanse vertaling door: Stefano Cutelle'";
 
 /* Logg */
-"JSON file exists: " = "JSON file exists: ";
+"JSON file exists: " = "JSON bestand bestaat: ";
 
 /* plan */
 "Keep" = "Behouden";
@@ -226,7 +223,7 @@
 "Monday" = "maandag";
 
 /* Userconfig */
-"New format is not equal to current." = "New format is not equal to current.";
+"New format is not equal to current." = "Nieuwe indeling is niet gelijk aan huidige.";
 
 /* Execute */
 "New version is available - see About" = "Nieuwe versie is beschikbaar - zie over";
@@ -280,7 +277,7 @@
 "Please select a task in Synchronize ..." = "Selecteer een taak in Synchronisatie ...";
 
 /* Logg */
-"PLIST file exists: " = "PLIST file exists: ";
+"PLIST file exists: " = "PLIST bestand bestaat: ";
 
 /* Execute */
 "Possible error logging..." = "Mogelijke fout loggen...";
@@ -295,7 +292,7 @@
 "Profile: please wait..." = "Profiel: even geduld...";
 
 /* Userconfig */
-"Reboot" = "Reboot";
+"Reboot" = "Herstarten";
 
 /* Tooltip */
 "Remote catalog:" = "Afzonderlijke catalogus:";
@@ -304,7 +301,7 @@
 "Restore" = "Herstellen";
 
 /* Restore */
-"Restore completed..." = "Restore completed...";
+"Restore completed..." = "Herstellen voltooid...";
 
 /* plan */
 "Saturday" = "zaterdag";
@@ -326,7 +323,7 @@
 "Seems not to be connected..." = "Het lijkt erop niet verbonden te zijn...";
 
 /* Restore */
-"Seems to be nothing to restore" = "Seems to be nothing to restore";
+"Seems to be nothing to restore" = "Het lijkt niets te zijn om te herstellen";
 
 /* Execute */
 "Select a task...." = "Selecteer een taak....";
@@ -344,13 +341,13 @@
 "Seriously, enter a real number..." = "Serieus, voer een reëel nummer in...";
 
 /* Restore */
-"Simulated: execute full restore to SOURCE" = "Simulated: execute full restore to SOURCE";
+"Simulated: execute full restore to SOURCE" = "Simuleerd: voer volledige herstel uit naar SOURCE";
 
 /* Restore */
-"Simulated: execute full restore to temporary restore path" = "Simulated: execute full restore to temporary restore path";
+"Simulated: execute full restore to temporary restore path" = "Simuleren: volledige herstel uitvoeren naar tijdelijke herstel pad";
 
 /* Restore */
-"Simulated: execute restore of files to temporary restore path" = "Simulated: execute restore of files to temporary restore path";
+"Simulated: execute restore of files to temporary restore path" = "Simuleren: volledige herstel uitvoeren naar tijdelijke herstel pad";
 
 /* Tooltip */
 "Source catalog:" = "Bron catalogus:";
@@ -391,6 +388,12 @@
 
 /* plan */
 "Tuesday" = "dinsdag";
+
+/* Verify */
+"Verify not OK, see logfile (⌘O)..." = "Controleer niet OK, bekijk het logbestand (⌘O)...";
+
+/* Verify */
+"Verify OK..." = "Verifieer OK...";
 
 /* Verify */
 "Verifying, please wait..." = "Verifiëren, even geduld...";

@@ -259,9 +259,6 @@
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "找到 Rsa 公钥。";
 
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
-"Aa2-8Q-PPo.headerCell.title" = "天";
-
 /* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
 "aCU-js-shc.title" = "打开";
 
@@ -345,6 +342,9 @@
 
 /* Class = "NSMenuItem"; title = "Synchronize all now"; ObjectID = "bCH-Oe-dEC"; */
 "bCH-Oe-dEC.title" = "正在同步所有";
+
+/* Class = "NSTextFieldCell"; title = "Rsync output..."; ObjectID = "bem-Na-cMq"; */
+"bem-Na-cMq.title" = "Rsync output...";
 
 /* Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "Beq-PN-DJW"; */
 "Beq-PN-DJW.headerCell.title" = "可用（GB）";
@@ -1132,9 +1132,6 @@
 /* Class = "NSTextFieldCell"; title = "Remote computers:"; ObjectID = "QHT-Is-bM2"; */
 "QHT-Is-bM2.title" = "远程电脑：";
 
-/* Class = "NSTextFieldCell"; title = "Indonesian"; ObjectID = "qIs-zX-FwQ"; */
-"qIs-zX-FwQ.title" = "Indonesian";
-
 /* Class = "NSToolbarItem"; label = "backupnow"; ObjectID = "QmL-ZM-Xc4"; */
 "QmL-ZM-Xc4.label" = "立即备份";
 
@@ -1629,4 +1626,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "zzK-ZO-wvj"; */
 "zzK-ZO-wvj.headerCell.title" = "远程目录";
+
+/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "Aa2-8Q-PPo"; */
+"Aa2-8Q-PPo.headerCell.title" = "天";
 

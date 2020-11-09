@@ -312,9 +312,6 @@
 		E9B06F102541A736000345E2 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		E9B06F112541A736000345E2 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9B06F122541A736000345E2 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E9B06F132541A745000345E2 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
-		E9B06F142541A745000345E2 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E9B06F152541A745000345E2 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9B9675624BCB68500F623C9 /* PreandPostTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreandPostTasks.swift; sourceTree = "<group>"; };
 		E9B9CCA521BC46B00042D5CE /* extensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionDate.swift; sourceTree = "<group>"; };
 		E9BC4DE6230277A10058CB52 /* ExecuteTaskNow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskNow.swift; sourceTree = "<group>"; };
@@ -1048,7 +1045,6 @@
 				fr,
 				it,
 				nl,
-				id,
 			);
 			mainGroup = A04492791D658EE800B3CE17;
 			packageReferences = (
@@ -1290,7 +1286,6 @@
 				E908EF2F23BF58F900491EE1 /* fr */,
 				E9F109402421F22700528BEA /* it */,
 				E9B06F102541A736000345E2 /* nl */,
-				E9B06F132541A745000345E2 /* id */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1304,7 +1299,6 @@
 				E908EF3123BF58F900491EE1 /* fr */,
 				E9F109422421F22700528BEA /* it */,
 				E9B06F122541A736000345E2 /* nl */,
-				E9B06F152541A745000345E2 /* id */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1318,7 +1312,6 @@
 				E908EF3023BF58F900491EE1 /* fr */,
 				E9F109412421F22700528BEA /* it */,
 				E9B06F112541A736000345E2 /* nl */,
-				E9B06F142541A745000345E2 /* id */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

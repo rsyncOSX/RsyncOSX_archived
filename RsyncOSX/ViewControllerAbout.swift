@@ -30,7 +30,7 @@ class ViewControllerAbout: NSViewController {
     var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
     var germanstring: String = NSLocalizedString("German translation by: Andre Voigtmann", comment: "german")
     var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle'", comment: "italian")
-    var dutchstring: String = NSLocalizedString("Ducth translation by: Marcellino Santoso", comment: "ducth")
+    var dutchstring: String = NSLocalizedString("Dutch translation by: Marcellino Santoso", comment: "ducth")
 
     var resource: Resources?
     var outputprocess: OutputProcess?
