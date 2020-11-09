@@ -50,7 +50,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var statuslightsshkeypath: NSImageView!
     @IBOutlet var monitornetworkconnection: NSButton!
-    @IBOutlet var json: NSButton!
+    @IBOutlet var json: NSSwitch!
+    @IBOutlet var jsonlabel: NSTextField!
 
     @IBAction func enablejson(_: NSButton) {
         var question: String?
@@ -429,8 +430,10 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
 
     private func setjson() {
         if ViewControllerReference.shared.json {
+            self.jsonlabel.stringValue = "JSON"
             self.json.state = .on
         } else {
+            self.jsonlabel.stringValue = "PLIST"
             self.json.state = .off
         }
     }
