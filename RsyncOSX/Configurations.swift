@@ -89,42 +89,47 @@ class Configurations: ReloadTable, SetSchedules {
     // Function for getting all Configurations
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
         guard self.configurations != nil else { return nil }
-        var configurations = self.configurations!.filter {
+        var configurations = self.configurations?.filter {
             ViewControllerReference.shared.synctasks.contains($0.task)
         }
         var data = [NSMutableDictionary]()
-        for i in 0 ..< configurations.count {
-            if configurations[i].offsiteServer.isEmpty == true {
-                configurations[i].offsiteServer = "localhost"
+        for i in 0 ..< (configurations?.count ?? 0) {
+            if configurations?[i].offsiteServer.isEmpty == true {
+                configurations?[i].offsiteServer = "localhost"
             }
-            let row: NSMutableDictionary = ConvertOneConfig(config: self.configurations![i]).dict
-            if self.quickbackuplist != nil {
-                let quickbackup = self.quickbackuplist!.filter { $0 == configurations[i].hiddenID }
-                if quickbackup.count > 0 {
-                    row.setValue(1, forKey: "selectCellID")
+            if let config = self.configurations?[i] {
+                let row: NSMutableDictionary = ConvertOneConfig(config: config).dict
+
+                if self.quickbackuplist != nil {
+                    let quickbackup = self.quickbackuplist!.filter { $0 == config.hiddenID }
+                    if quickbackup.count > 0 {
+                        row.setValue(1, forKey: "selectCellID")
+                    }
                 }
+                data.append(row)
             }
-            data.append(row)
         }
         return data
     }
 
     func uniqueserversandlogins() -> [NSDictionary]? {
         guard self.configurations != nil else { return nil }
-        var configurations = self.configurations!.filter {
+        var configurations = self.configurations?.filter {
             ViewControllerReference.shared.synctasks.contains($0.task)
         }
         var data = [NSDictionary]()
-        for i in 0 ..< configurations.count {
-            if configurations[i].offsiteServer.isEmpty == true {
-                configurations[i].offsiteServer = "localhost"
+        for i in 0 ..< (configurations?.count ?? 0) {
+            if configurations?[i].offsiteServer.isEmpty == true {
+                configurations?[i].offsiteServer = "localhost"
             }
-            let row: NSDictionary = ConvertOneConfig(config: self.configurations![i]).dict
-            let server = configurations[i].offsiteServer
-            let user = configurations[i].offsiteUsername
-            if server != "localhost" {
-                if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
-                    data.append(row)
+            if let config = self.configurations?[i] {
+                let row: NSDictionary = ConvertOneConfig(config: config).dict
+                let server = config.offsiteServer
+                let user = config.offsiteUsername
+                if server != "localhost" {
+                    if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
+                        data.append(row)
+                    }
                 }
             }
         }
