@@ -24,7 +24,7 @@ struct Displayrsyncpath: SetConfigurations {
     init(index: Int, display: RsynccommandDisplay) {
         var str: String?
         if let config = self.configurations?.getargumentAllConfigurations(),
-           self.configurations?.getargumentAllConfigurations().count ?? 0 > 0
+           self.configurations?.getargumentAllConfigurations()?.count ?? 0 > 0
         {
             str = Getrsyncpath().rsyncpath ?? ""
             str = str! + " "
@@ -32,19 +32,19 @@ struct Displayrsyncpath: SetConfigurations {
             case .synchronize:
                 if let count = config[index].argdryRunDisplay?.count {
                     for i in 0 ..< count {
-                        str = str! + config[index].argdryRunDisplay![i]
+                        str = str! + (config[index].argdryRunDisplay?[i] ?? "")
                     }
                 }
             case .restore:
                 if let count = config[index].restoredryRunDisplay?.count {
                     for i in 0 ..< count {
-                        str = str! + config[index].restoredryRunDisplay![i]
+                        str = str! + (config[index].restoredryRunDisplay?[i] ?? "")
                     }
                 }
             case .verify:
                 if let count = config[index].verifyDisplay?.count {
                     for i in 0 ..< count {
-                        str = str! + config[index].verifyDisplay![i]
+                        str = str! + (config[index].verifyDisplay?[i] ?? "")
                     }
                 }
             }
