@@ -114,20 +114,22 @@ class Configurations: ReloadTable, SetSchedules {
 
     func uniqueserversandlogins() -> [NSDictionary]? {
         guard self.configurations != nil else { return nil }
-        var configurations = self.configurations!.filter {
+        var configurations = self.configurations?.filter {
             ViewControllerReference.shared.synctasks.contains($0.task)
         }
         var data = [NSDictionary]()
-        for i in 0 ..< configurations.count {
-            if configurations[i].offsiteServer.isEmpty == true {
-                configurations[i].offsiteServer = "localhost"
+        for i in 0 ..< (configurations?.count ?? 0) {
+            if configurations?[i].offsiteServer.isEmpty == true {
+                configurations?[i].offsiteServer = "localhost"
             }
-            let row: NSDictionary = ConvertOneConfig(config: self.configurations![i]).dict
-            let server = configurations[i].offsiteServer
-            let user = configurations[i].offsiteUsername
-            if server != "localhost" {
-                if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
-                    data.append(row)
+            if let config = self.configurations?[i] {
+                let row: NSDictionary = ConvertOneConfig(config: config).dict
+                let server = config.offsiteServer
+                let user = config.offsiteUsername
+                if server != "localhost" {
+                    if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
+                        data.append(row)
+                    }
                 }
             }
         }
