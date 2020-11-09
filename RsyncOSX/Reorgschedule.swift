@@ -10,12 +10,11 @@ import Foundation
 
 class Reorgschedule {
     func uniquelements<T: Hashable>(data: [T]) -> [T] {
-        var elements: [T]?
-        elements = [T]()
+        var elements = [T]()
         for i in 0 ..< data.count {
-            elements!.append(data[i])
+            elements.append(data[i])
         }
-        return elements!.unique()
+        return elements.unique()
     }
 
     func mergerecords<T: Hashable>(data: [T]?) -> [T]? {
