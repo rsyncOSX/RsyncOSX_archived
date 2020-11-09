@@ -126,7 +126,7 @@
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ne changez pas le numéro d'instantané si vous ne savez pas ce que vous faites...";
 
 /* ducth */
-"Ducth translation by: Marcellino Santoso" = "Traduction de Ducth par : Marcellino Santoso";
+"Dutch translation by: Marcellino Santoso" = "Dutch translation by: Marcellino Santoso";
 
 /* plan */
 "earlier months" = "mois précédents";
@@ -184,9 +184,6 @@
 
 /* icon */
 "Icon by: Zsolt Sándor" = "Icône par : Zsolt Sándor";
-
-/* indonesian */
-"Indonesian translation by: Marcellino Santoso" = "Traduction indonésienne par: Marcellino Santoso";
 
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Traduction italienne par: Stefano Steve Cutelle'";
@@ -391,6 +388,12 @@
 
 /* plan */
 "Tuesday" = "Mardi";
+
+/* Verify */
+"Verify not OK, see logfile (⌘O)..." = "Verify not OK, see logfile (⌘O)...";
+
+/* Verify */
+"Verify OK..." = "Verify OK...";
 
 /* Verify */
 "Verifying, please wait..." = "Vérification en cours, veuillez patienter...";
