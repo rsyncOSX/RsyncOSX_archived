@@ -95,16 +95,16 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
         if ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
-            let masterdict = NSMutableDictionary()
-            masterdict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-            masterdict.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
-            masterdict.setObject(Scheduletype.manuel.rawValue, forKey: "schedule" as NSCopying)
+            let main = NSMutableDictionary()
+            main.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
+            main.setObject("01 Jan 1900 00:00", forKey: "dateStart" as NSCopying)
+            main.setObject(Scheduletype.manuel.rawValue, forKey: "schedule" as NSCopying)
             let dict = NSMutableDictionary()
             dict.setObject(date, forKey: "dateExecuted" as NSCopying)
             dict.setObject(result, forKey: "resultExecuted" as NSCopying)
             let executed = NSMutableArray()
             executed.add(dict)
-            let newSchedule = ConfigurationSchedule(dictionary: masterdict, log: executed, nolog: false)
+            let newSchedule = ConfigurationSchedule(dictionary: main, log: executed, nolog: false)
             self.schedules?.append(newSchedule)
             return true
         }
