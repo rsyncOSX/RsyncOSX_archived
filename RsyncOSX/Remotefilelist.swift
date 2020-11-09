@@ -23,8 +23,11 @@ class Remotefilelist: ProcessCmd, SetConfigurations {
         if let index = self.configurations?.getIndex(hiddenID) {
             self.config = self.configurations?.getConfigurations()?[index]
             self.outputprocess = OutputProcess()
-            self.arguments = RestorefilesArguments(task: .rsyncfilelistings, config: self.config,
-                                                   remoteFile: nil, localCatalog: nil, drynrun: nil).getArguments()
+            self.arguments = RestorefilesArguments(task: .rsyncfilelistings,
+                                                   config: self.config,
+                                                   remoteFile: nil,
+                                                   localCatalog: nil,
+                                                   drynrun: nil).getArguments()
             self.command = nil
             self.setupdateDelegate(object: self)
             self.executeProcess(outputprocess: self.outputprocess)
