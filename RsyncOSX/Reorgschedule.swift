@@ -40,7 +40,9 @@ class Reorgschedule {
                             }
                         }
                     }
-                    mergedelements[index] = (mergedrecord as? T)!
+                    if let mergedrecord = mergedrecord as? T {
+                        mergedelements[index] = mergedrecord
+                    }
                 }
             }
             return mergedelements
