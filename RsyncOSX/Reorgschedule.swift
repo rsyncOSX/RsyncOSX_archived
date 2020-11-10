@@ -18,31 +18,33 @@ class Reorgschedule {
     }
 
     func mergerecords<T: Hashable>(data: [T]?) -> [T]? {
-        guard data != nil else { return nil }
-        var mergedelements = [T]()
-        let uniqueelements = self.uniquelements(data: data!)
-        for i in 0 ..< uniqueelements.count {
-            let element = uniqueelements[i]
-            let filter = data!.filter { $0 == element }
-            switch filter.count {
-            case 0:
-                return nil
-            case 1:
-                mergedelements.append(element)
-            default:
-                mergedelements.append(element)
-                let index = mergedelements.count - 1
-                var mergedrecord = mergedelements[index] as? ConfigurationSchedule
-                for j in 1 ..< filter.count {
-                    let record = filter[j] as? ConfigurationSchedule
-                    for k in 0 ..< (record?.logrecords?.count ?? 0) {
-                        mergedrecord?.logrecords?.append((record!.logrecords?[k])!)
+        if let data = data {
+            var mergedelements = [T]()
+            let uniqueelements = self.uniquelements(data: data)
+            for i in 0 ..< uniqueelements.count {
+                let element = uniqueelements[i]
+                let filter = data.filter { $0 == element }
+                switch filter.count {
+                case 0:
+                    return nil
+                case 1:
+                    mergedelements.append(element)
+                default:
+                    mergedelements.append(element)
+                    let index = mergedelements.count - 1
+                    var mergedrecord = mergedelements[index] as? ConfigurationSchedule
+                    for j in 1 ..< filter.count {
+                        let record = filter[j] as? ConfigurationSchedule
+                        for k in 0 ..< (record?.logrecords?.count ?? 0) {
+                            mergedrecord?.logrecords?.append((record!.logrecords?[k])!)
+                        }
                     }
+                    mergedelements[index] = (mergedrecord as? T)!
                 }
-                mergedelements[index] = (mergedrecord as? T)!
             }
+            return mergedelements
         }
-        return mergedelements
+        return nil
     }
 }
 
