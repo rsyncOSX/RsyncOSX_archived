@@ -34,9 +34,10 @@ class Reorgschedule {
                     let index = mergedelements.count - 1
                     var mergedrecord = mergedelements[index] as? ConfigurationSchedule
                     for j in 1 ..< filter.count {
-                        let record = filter[j] as? ConfigurationSchedule
-                        for k in 0 ..< (record?.logrecords?.count ?? 0) {
-                            mergedrecord?.logrecords?.append((record!.logrecords?[k])!)
+                        if let record = filter[j] as? ConfigurationSchedule {
+                            for k in 0 ..< (record.logrecords?.count ?? 0) {
+                                mergedrecord?.logrecords?.append((record.logrecords?[k])!)
+                            }
                         }
                     }
                     mergedelements[index] = (mergedrecord as? T)!
