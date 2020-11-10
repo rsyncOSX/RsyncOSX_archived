@@ -63,6 +63,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         } else {
             verifyjson = VerifyJSON(profile: nil)
         }
+        if self.json.state == .on { self.jsonlabel.stringValue = "JSON" } else { self.jsonlabel.stringValue = "PLIST" }
         if verifyjson?.verifyconf == true, verifyjson?.verifysched == true {
             checked = true
         } else {
@@ -102,6 +103,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
                 self.json.state = .off
             }
         }
+        if self.json.state == .on { self.jsonlabel.stringValue = "JSON" } else { self.jsonlabel.stringValue = "PLIST" }
     }
 
     @IBAction func copyconfigfiles(_: NSButton) {
