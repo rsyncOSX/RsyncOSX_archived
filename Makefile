@@ -8,3 +8,4 @@ clean:
 	rm -Rf ModuleCache.noindex
 	rm -Rf info.plist
 	rm -Rf Logs
+	rm -rf SourcePackages
