@@ -59,12 +59,6 @@
 /* Close NSAlert */
 "Close" = "Schließen";
 
-/* Verify */
-"Completed ..." = "Abgeschlossen ...";
-
-/* Verify */
-"Computing changed, please wait..." = "Berechnung geändert, bitte warten...";
-
 /* Userconfig */
 "Continue" = "Fortfahren";
 
@@ -77,15 +71,13 @@
 /* main */
 "daily" = "täglich";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Date last synchronize:" = "Datum der letzten Synchronisierung:";
 
 /* datetime */
 "days" = "tage";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Days since last synchronize:" = "Tage seit der letzten Synchronisierung:";
 
 /* default profile */
@@ -273,9 +265,6 @@
 /* main */
 "once" = "einmal";
 
-/* Verify */
-"Please select a task in Synchronize ..." = "Bitte wählen Sie eine Aufgabe in Synchronisieren ...";
-
 /* Logg */
 "PLIST file exists: " = "JSON-Datei existiert: ";
 
@@ -394,9 +383,6 @@
 
 /* Verify */
 "Verify OK..." = "Wird überprüft...";
-
-/* Verify */
-"Verifying, please wait..." = "Überprüfe, bitte warten...";
 
 /* plan */
 "Wednesday" = "Mittwoch";
