@@ -6,7 +6,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, ErrorMessage, Setcolor, Checkforrsync, Help {
+class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, ErrorMessage, Setcolor, Checkforrsync, Help, Connected {
     // Main tableview
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -508,5 +508,22 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false
         self.verify()
+    }
+
+    @IBAction func checksynchronizedfiles(_: NSButton) {
+        if let index = self.index {
+            if let config = self.configurations?.getConfigurations()?[index] {
+                guard config.task != ViewControllerReference.shared.syncremote else {
+                    self.info.stringValue = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
+                    return
+                }
+                guard self.connected(config: config) == true else {
+                    self.info.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Verify")
+                    return
+                }
+                let check = Checksynchronizedfiles(index: index)
+                check.checksynchronizedfiles()
+            }
+        }
     }
 }

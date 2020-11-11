@@ -103,6 +103,11 @@
                                                 <action selector="TCP:" target="Ady-hI-5gd" id="PyO-tg-h9Y"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check synchronized" keyEquivalent="k" id="gwI-oo-PuE" userLabel="Info">
+                                            <connections>
+                                                <action selector="checksynchronizedfiles:" target="Ady-hI-5gd" id="CW0-je-jHy"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="doz-B8-buN"/>
                                         <menuItem title="Move config" keyEquivalent="m" id="qEr-u7-PyK" userLabel="Info">
                                             <connections>

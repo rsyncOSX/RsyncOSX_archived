@@ -16,7 +16,7 @@ final class Checksynchronizedfiles: SetConfigurations {
     var outputprocess: OutputProcess?
     var command: RsyncProcessCmdClosure?
 
-    func verify() {
+    func checksynchronizedfiles() {
         guard ViewControllerReference.shared.process == nil else { return }
         if let index = self.index {
             if let arguments = self.configurations?.arguments4verify(index: index) {
