@@ -18,7 +18,6 @@ enum ViewController {
     case vcrestore
     case vcssh
     case vcsnapshot
-    case vcverify
     case vcabout
     case vcprogressview
     case vcquickbackup
@@ -193,8 +192,6 @@ final class ViewControllerReference {
             return self.viewControllerEstimatingTasks
         case .vcinfolocalremote:
             return self.viewControllerInfoLocalRemote
-        case .vcverify:
-            return self.viewControllerVerify
         case .vcalloutput:
             return self.viewControllerAlloutput
         case .vcedit:
@@ -234,8 +231,6 @@ final class ViewControllerReference {
             self.viewControllerEstimatingTasks = nsviewcontroller
         case .vcinfolocalremote:
             self.viewControllerInfoLocalRemote = nsviewcontroller
-        case .vcverify:
-            self.viewControllerVerify = nsviewcontroller
         case .vcalloutput:
             self.viewControllerAlloutput = nsviewcontroller
         case .vcedit:

@@ -76,8 +76,6 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
             self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
         } else if (self.presentingViewController as? ViewControllerSsh) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcverify)
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
         }
@@ -112,8 +110,6 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         } else if (self.presentingViewController as? ViewControllerSsh) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-        } else if (self.presentingViewController as? ViewControllerVerify) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcverify) as? ViewControllerVerify
         } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
             openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
         } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
