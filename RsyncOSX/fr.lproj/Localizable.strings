@@ -27,7 +27,7 @@
 "Cancel or Add" = "Annuler ou ajouter";
 
 /* Userconfig */
-"Cancel or Continue?" = "Cancel or Continue?";
+"Cancel or Continue?" = "Annuler ou continuer ?";
 
 /* Execute
    Logg
@@ -59,14 +59,8 @@
 /* Close NSAlert */
 "Close" = "Fermer";
 
-/* Verify */
-"Completed ..." = "Terminé...";
-
-/* Verify */
-"Computing changed, please wait..." = "Calcul changé, veuillez patienter...";
-
 /* Userconfig */
-"Continue" = "Continue";
+"Continue" = "Continuer";
 
 /* Restore */
 "Copy single files or directory?" = "Copier un seul fichier ou un seul répertoire ?";
@@ -77,15 +71,13 @@
 /* main */
 "daily" = "tous les jours";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Date last synchronize:" = "Jours écoulés depuis la dernière synchronisation :";
 
 /* datetime */
 "days" = "Jours";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Days since last synchronize:" = "Jours écoulés depuis la dernière synchronisation :";
 
 /* default profile */
@@ -126,7 +118,7 @@
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ne changez pas le numéro d'instantané si vous ne savez pas ce que vous faites...";
 
 /* ducth */
-"Dutch translation by: Marcellino Santoso" = "Dutch translation by: Marcellino Santoso";
+"Dutch translation by: Marcellino Santoso" = "Traduction de Ducth par : Marcellino Santoso";
 
 /* plan */
 "earlier months" = "mois précédents";
@@ -223,7 +215,7 @@
 "Monday" = "Lundi";
 
 /* Userconfig */
-"New format is not equal to current." = "New format is not equal to current.";
+"New format is not equal to current." = "Le nouveau format n'est pas égal au courant.";
 
 /* Execute */
 "New version is available - see About" = "Une nouvelle version est disponible - voir A propos";
@@ -272,9 +264,6 @@
 
 /* main */
 "once" = "une fois";
-
-/* Verify */
-"Please select a task in Synchronize ..." = "Veuillez sélectionner une tâche dans Synchroniser ...";
 
 /* Logg */
 "PLIST file exists: " = "Le fichier PLIST existe: ";
@@ -390,13 +379,10 @@
 "Tuesday" = "Mardi";
 
 /* Verify */
-"Verify not OK, see logfile (⌘O)..." = "Verify not OK, see logfile (⌘O)...";
+"Verify not OK, see logfile (⌘O)..." = "Ne pas vérifier, voir le fichier journal (⌘O)...";
 
 /* Verify */
-"Verify OK..." = "Verify OK...";
-
-/* Verify */
-"Verifying, please wait..." = "Vérification en cours, veuillez patienter...";
+"Verify OK..." = "Vérification...";
 
 /* plan */
 "Wednesday" = "Mercredi";

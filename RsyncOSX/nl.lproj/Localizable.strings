@@ -59,12 +59,6 @@
 /* Close NSAlert */
 "Close" = "Afsluiten";
 
-/* Verify */
-"Completed ..." = "Voltooid ...";
-
-/* Verify */
-"Computing changed, please wait..." = "Veranderd worden berekend, even geduld...";
-
 /* Userconfig */
 "Continue" = "Doorgaan";
 
@@ -77,15 +71,13 @@
 /* main */
 "daily" = "dagelijks";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Date last synchronize:" = "Dagen sinds laatste synchronisatie:";
 
 /* datetime */
 "days" = "Dagen";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Days since last synchronize:" = "Dagen sinds laatste synchronisatie:";
 
 /* default profile */
@@ -273,9 +265,6 @@
 /* main */
 "once" = "eenmalig";
 
-/* Verify */
-"Please select a task in Synchronize ..." = "Selecteer een taak in Synchronisatie ...";
-
 /* Logg */
 "PLIST file exists: " = "PLIST bestand bestaat: ";
 
@@ -394,9 +383,6 @@
 
 /* Verify */
 "Verify OK..." = "Verifieer OK...";
-
-/* Verify */
-"Verifying, please wait..." = "Verifiëren, even geduld...";
 
 /* plan */
 "Wednesday" = "woensdag";

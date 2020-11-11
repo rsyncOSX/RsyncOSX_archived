@@ -59,12 +59,6 @@
 /* Close NSAlert */
 "Close" = "Lukk";
 
-/* Verify */
-"Completed ..." = "Utført ...";
-
-/* Verify */
-"Computing changed, please wait..." = "Beregning endret, vennligst vent...";
-
 /* Userconfig */
 "Continue" = "Fortsett";
 
@@ -77,15 +71,13 @@
 /* main */
 "daily" = "daglig";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Date last synchronize:" = "Dato siste synkronisering:";
 
 /* datetime */
 "days" = "dager";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Days since last synchronize:" = "Dager siden sist synkronisering:";
 
 /* default profile */
@@ -273,9 +265,6 @@
 /* main */
 "once" = "engang";
 
-/* Verify */
-"Please select a task in Synchronize ..." = "Velg en oppgave i Synkroniser ...";
-
 /* Logg */
 "PLIST file exists: " = "PLIST-fil finnes: ";
 
@@ -394,9 +383,6 @@
 
 /* Verify */
 "Verify OK..." = "Verifikasjon OK...";
-
-/* Verify */
-"Verifying, please wait..." = "Verifiserer, vennligst vent...";
 
 /* plan */
 "Wednesday" = "onsdag";

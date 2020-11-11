@@ -59,12 +59,6 @@
 /* Close NSAlert */
 "Close" = "关闭";
 
-/* Verify */
-"Completed ..." = "已完成...";
-
-/* Verify */
-"Computing changed, please wait..." = "计算更改中，请稍候...";
-
 /* Userconfig */
 "Continue" = "Continue";
 
@@ -77,15 +71,13 @@
 /* main */
 "daily" = "每天";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Date last synchronize:" = "自上次同步以来的天数：";
 
 /* datetime */
 "days" = "天";
 
-/* Remote Info
-   Verify */
+/* Remote Info */
 "Days since last synchronize:" = "自上次同步以来的天数：";
 
 /* default profile */
@@ -273,9 +265,6 @@
 /* main */
 "once" = "一次";
 
-/* Verify */
-"Please select a task in Synchronize ..." = "请选择同步任务...";
-
 /* Logg */
 "PLIST file exists: " = "PLIST file exists: ";
 
@@ -394,9 +383,6 @@
 
 /* Verify */
 "Verify OK..." = "Verify OK...";
-
-/* Verify */
-"Verifying, please wait..." = "正在校验，请稍候...";
 
 /* plan */
 "Wednesday" = "星期三";
