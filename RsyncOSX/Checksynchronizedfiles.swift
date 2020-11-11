@@ -34,6 +34,7 @@ final class Checksynchronizedfiles: SetConfigurations {
                                               processtermination: self.processtermination,
                                               filehandler: self.filehandler)
         self.command?.executeProcess(outputprocess: self.outputprocess)
+        self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
     }
 
     init(index: Int?) {
@@ -51,9 +52,6 @@ extension Checksynchronizedfiles {
 
     func filehandler() {
         weak var outputeverythingDelegate: ViewOutputDetails?
-        weak var localprocessupdateDelegate: UpdateProgress?
-        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
-        localprocessupdateDelegate?.fileHandler()
         outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
