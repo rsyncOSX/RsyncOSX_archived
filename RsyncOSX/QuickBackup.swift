@@ -62,8 +62,8 @@ final class QuickBackup: SetConfigurations {
         if let list = self.sortedlist {
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
-                self.sortedlist![i].setObject(false, forKey: "completeCellID" as NSCopying)
-                self.sortedlist![i].setObject(false, forKey: "inprogressCellID" as NSCopying)
+                self.sortedlist![i].setObject(false, forKey: DictionaryStrings.completeCellID.rawValue as NSCopying)
+                self.sortedlist![i].setObject(false, forKey: DictionaryStrings.inprogressCellID.rawValue as NSCopying)
                 if list[i].value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int == 1 {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!, i))
                 }
@@ -80,7 +80,7 @@ final class QuickBackup: SetConfigurations {
             // Kick off first task
             self.hiddenID = self.stackoftasktobeexecuted![0].0
             self.index = self.stackoftasktobeexecuted![0].1
-            self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
+            self.sortedlist![self.index!].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
             self.maxcount = Int(self.sortedlist![self.index!].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
             self.stackoftasktobeexecuted?.remove(at: 0)
             self.executequickbackuptask(hiddenID: self.hiddenID!)
@@ -91,8 +91,8 @@ final class QuickBackup: SetConfigurations {
         let dict = self.sortedlist!.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == self.hiddenID! }
         guard dict.count == 1 else { return }
         self.index = self.sortedlist!.firstIndex(of: dict[0])
-        self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
-        self.sortedlist![self.index!].setValue(false, forKey: "inprogressCellID")
+        self.sortedlist![self.index!].setValue(true, forKey: DictionaryStrings.completeCellID.rawValue)
+        self.sortedlist![self.index!].setValue(false, forKey: DictionaryStrings.inprogressCellID.rawValue)
     }
 
     init() {
@@ -127,7 +127,7 @@ extension QuickBackup {
         self.hiddenID = self.stackoftasktobeexecuted![0].0
         self.index = self.stackoftasktobeexecuted![0].1
         self.stackoftasktobeexecuted?.remove(at: 0)
-        self.sortedlist![self.index!].setValue(true, forKey: "inprogressCellID")
+        self.sortedlist![self.index!].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
         self.maxcount = Int(self.sortedlist![self.index!].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
         self.executequickbackuptask(hiddenID: self.hiddenID!)
         self.reloadtableDelegate?.reloadtabledata()

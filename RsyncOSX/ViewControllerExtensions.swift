@@ -492,8 +492,6 @@ enum DictionaryStrings: String {
     case startsin
     case stopCellID
     case delta
+    case completeCellID
+    case inprogressCellID
 }
-
-/*
-
- */
