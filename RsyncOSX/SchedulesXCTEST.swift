@@ -18,17 +18,17 @@ class SchedulesXCTEST: Schedules {
         }
         let dict = NSMutableDictionary()
         let offsiteserver = self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-        dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-        dict.setObject(start.en_us_string_from_date(), forKey: "dateStart" as NSCopying)
-        dict.setObject(stop!.en_us_string_from_date(), forKey: "dateStop" as NSCopying)
-        dict.setObject(offsiteserver as Any, forKey: "offsiteserver" as NSCopying)
+        dict.setObject(hiddenID, forKey: DictionaryStrings.hiddenID.rawValue as NSCopying)
+        dict.setObject(start.en_us_string_from_date(), forKey: DictionaryStrings.dateStart.rawValue as NSCopying)
+        dict.setObject(stop!.en_us_string_from_date(), forKey: DictionaryStrings.dateStop.rawValue as NSCopying)
+        dict.setObject(offsiteserver as Any, forKey: DictionaryStrings.offsiteServer.rawValue as NSCopying)
         switch schedule {
         case .once:
-            dict.setObject(Scheduletype.once.rawValue, forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.once.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
         case .daily:
-            dict.setObject(Scheduletype.daily.rawValue, forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.daily.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
         case .weekly:
-            dict.setObject(Scheduletype.weekly.rawValue, forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.weekly.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
         default:
             return
         }

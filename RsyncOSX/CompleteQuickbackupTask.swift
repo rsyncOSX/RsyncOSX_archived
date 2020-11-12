@@ -22,7 +22,7 @@ final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
     }
 
     init(dict: NSDictionary) {
-        if let hiddenID = dict.value(forKey: "hiddenID") as? Int {
+        if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
             self.index = self.configurations?.getIndex(hiddenID)
         }
     }

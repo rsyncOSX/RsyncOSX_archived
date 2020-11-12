@@ -26,7 +26,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
             if tableView == self.scheduletable {
                 if row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
                     if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row],
-                       let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
+                       let hiddenID: Int = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                     {
                         switch tableColumn.identifier.rawValue {
                         case "scheduleID":
@@ -70,7 +70,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                                 return taskintime ?? ""
                             }
                         case "delta":
-                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
+                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0 {
                                 if (delta?.count ?? 0) > 1 {
                                     return (delta?[0].value(forKey: "delta") as? String ?? "") + "+"
@@ -94,12 +94,12 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
             } else {
                 if row < self.scheduledetails?.count ?? 0 {
                     if let object: NSMutableDictionary = self.scheduledetails?[row],
-                       let hiddenID: Int = object.value(forKey: "hiddenID") as? Int
+                       let hiddenID: Int = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                     {
                         switch tableColumn.identifier.rawValue {
                         case "active":
-                            let datestopstring = object.value(forKey: "dateStop") as? String ?? ""
-                            let schedule = object.value(forKey: "schedule") as? String ?? ""
+                            let datestopstring = object.value(forKey: DictionaryStrings.dateStop.rawValue) as? String ?? ""
+                            let schedule = object.value(forKey: DictionaryStrings.schedule.rawValue) as? String ?? ""
                             guard datestopstring.isEmpty == false, datestopstring != "no stopdate" else { return nil }
                             let dateStop: Date = datestopstring.en_us_date_from_string()
                             if dateStop.timeIntervalSinceNow > 0, schedule != Scheduletype.stopped.rawValue {
@@ -109,7 +109,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                             }
                         case "stopCellID", "deleteCellID":
                             return object[tableColumn.identifier] as? Int
-                        case "schedule":
+                        case DictionaryStrings.schedule.rawValue:
                             switch object[tableColumn.identifier] as? String {
                             case Scheduletype.once.rawValue:
                                 return NSLocalizedString("once", comment: "main")
@@ -124,7 +124,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                             default:
                                 return ""
                             }
-                        case "dateStart":
+                        case DictionaryStrings.dateStart.rawValue:
                             if object[tableColumn.identifier] as? String == "01 Jan 1900 00:00" {
                                 return NSLocalizedString("no startdate", comment: "Schedule details")
                             } else {
@@ -135,7 +135,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                                     return stringdate.en_us_date_from_string().localized_string_from_date()
                                 }
                             }
-                        case "dateStop":
+                        case DictionaryStrings.dateStop.rawValue:
                             if object[tableColumn.identifier] as? String == "01 Jan 2100 00:00" {
                                 return NSLocalizedString("no stopdate", comment: "Schedule details")
                             } else {
@@ -149,7 +149,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         case "numberoflogs", "dayinweek":
                             return object[tableColumn.identifier] as? String
                         case "inCellID":
-                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: "hiddenID") as? Int == hiddenID }
+                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0, row < (delta?.count ?? 0) {
                                 return delta?[row].value(forKey: "startsin")
                             } else {

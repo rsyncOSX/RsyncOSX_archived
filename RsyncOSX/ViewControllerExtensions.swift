@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length file_length
+// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
@@ -346,8 +346,8 @@ extension Sorting {
         dateformatter.dateStyle = .medium
         dateformatter.timeStyle = .short
         let sorted = notsortedlist?.sorted { (dict1, dict2) -> Bool in
-            if let date1localized = dateformatter.date(from: (dict1.value(forKey: "dateExecuted") as? String) ?? "") {
-                if let date2localized = dateformatter.date(from: (dict2.value(forKey: "dateExecuted") as? String) ?? "") {
+            if let date1localized = dateformatter.date(from: (dict1.value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String) ?? "") {
+                if let date2localized = dateformatter.date(from: (dict2.value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String) ?? "") {
                     if date1localized.timeIntervalSince(date2localized) > 0 {
                         return sortdirection
                     } else {
@@ -378,23 +378,56 @@ extension Sorting {
     func filterbystring(filterby: Sortandfilter?) -> String {
         switch filterby ?? .none {
         case .localcatalog:
-            return "localCatalog"
+            return DictionaryStrings.localCatalog.rawValue
         case .profile:
-            return "profile"
+            return DictionaryStrings.profile.rawValue
         case .offsitecatalog:
-            return "remoteCatalog"
+            return DictionaryStrings.remoteCatalog.rawValue
         case .offsiteserver:
-            return "offsiteServer"
+            return DictionaryStrings.offsiteServer.rawValue
         case .task:
-            return "task"
+            return DictionaryStrings.task.rawValue
         case .backupid:
-            return "backupID"
+            return DictionaryStrings.backupID.rawValue
         case .numberofdays:
-            return "daysID"
+            return DictionaryStrings.daysID.rawValue
         case .executedate:
-            return "dateExecuted"
+            return DictionaryStrings.dateExecuted.rawValue
         default:
             return ""
         }
     }
+}
+
+enum DictionaryStrings: String {
+    case localCatalog
+    case profile
+    case remoteCatalog
+    case offsiteServer
+    case task
+    case backupID
+    case daysID
+    case dateExecuted
+    case offsiteUsername
+    case markdays
+    case selectCellID
+    case hiddenID
+    case offsiteCatalog
+    case dateStart
+    case schedule
+    case dateStop
+    case resultExecuted
+    
+    case "snapshotnum"
+    case "snapdayoffweek"
+    case "dateRun"
+    case "executepretask"
+    case "executeposttask"
+    case "snapCellID"
+    case "localCatalogCellID"
+    case "offsiteCatalogCellID"
+    case "offsiteUsernameID"
+    case "offsiteServerCellID"
+    case "backupIDCellID"
+    case "runDateCellID"
 }

@@ -103,7 +103,7 @@ class Configurations: ReloadTable, SetSchedules {
                 if self.quickbackuplist != nil {
                     let quickbackup = self.quickbackuplist!.filter { $0 == config.hiddenID }
                     if quickbackup.count > 0 {
-                        row.setValue(1, forKey: "selectCellID")
+                        row.setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
                     }
                 }
                 data.append(row)

@@ -17,7 +17,7 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
 
     private func executetask() {
         if let dict: NSDictionary = ViewControllerReference.shared.quickbackuptask {
-            if let hiddenID: Int = dict.value(forKey: "hiddenID") as? Int {
+            if let hiddenID: Int = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                 let getconfigurations: [Configuration]? = configurations?.getConfigurations()
                 guard getconfigurations != nil else { return }
                 let configArray = getconfigurations!.filter { ($0.hiddenID == hiddenID) }

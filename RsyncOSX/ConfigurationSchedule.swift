@@ -25,18 +25,18 @@ struct ConfigurationSchedule {
     var profilename: String?
 
     init(dictionary: NSDictionary, log: NSArray?, nolog: Bool) {
-        self.hiddenID = dictionary.object(forKey: "hiddenID") as? Int ?? -1
-        self.dateStart = dictionary.object(forKey: "dateStart") as? String ?? ""
-        self.schedule = dictionary.object(forKey: "schedule") as? String ?? ""
-        self.offsiteserver = dictionary.object(forKey: "offsiteserver") as? String ?? ""
-        if let date = dictionary.object(forKey: "dateStop") as? String { self.dateStop = date }
+        self.hiddenID = dictionary.object(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
+        self.dateStart = dictionary.object(forKey: DictionaryStrings.dateStart.rawValue) as? String ?? ""
+        self.schedule = dictionary.object(forKey: DictionaryStrings.schedule.rawValue) as? String ?? ""
+        self.offsiteserver = dictionary.object(forKey: DictionaryStrings.offsiteServer.rawValue) as? String ?? ""
+        if let date = dictionary.object(forKey: DictionaryStrings.dateStop.rawValue) as? String { self.dateStop = date }
         if log != nil, nolog == false {
             for i in 0 ..< (log?.count ?? 0) {
                 if i == 0 { self.logrecords = [Log]() }
                 var logrecord = Log()
                 if let dict = log?[i] as? NSDictionary {
-                    logrecord.dateExecuted = dict.object(forKey: "dateExecuted") as? String
-                    logrecord.resultExecuted = dict.object(forKey: "resultExecuted") as? String
+                    logrecord.dateExecuted = dict.object(forKey: DictionaryStrings.dateExecuted.rawValue) as? String
+                    logrecord.resultExecuted = dict.object(forKey: DictionaryStrings.resultExecuted.rawValue) as? String
                 }
                 self.logrecords?.append(logrecord)
             }

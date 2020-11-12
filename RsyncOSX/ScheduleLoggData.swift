@@ -50,15 +50,15 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                             }
                         }
                         let logdetail: NSMutableDictionary = [
-                            "localCatalog": self.configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? "",
-                            "remoteCatalog": self.configurations?.getResourceConfiguration(hiddenID, resource: .remoteCatalog) ?? "",
-                            "offsiteServer": self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
-                            "task": self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
-                            "backupID": self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
-                            "dateExecuted": date ?? "",
-                            "resultExecuted": input[i].logrecords?[j].resultExecuted ?? "",
+                            DictionaryStrings.localCatalog.rawValue: self.configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? "",
+                            DictionaryStrings.remoteCatalog.rawValue: self.configurations?.getResourceConfiguration(hiddenID, resource: .remoteCatalog) ?? "",
+                            DictionaryStrings.offsiteServer.rawValue: self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
+                            DictionaryStrings.task.rawValue: self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
+                            DictionaryStrings.backupID.rawValue: self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
+                            DictionaryStrings.dateExecuted.rawValue: date ?? "",
+                            DictionaryStrings.resultExecuted.rawValue: input[i].logrecords?[j].resultExecuted ?? "",
                             "deleteCellID": self.loggdata?[j].value(forKey: "deleteCellID") as? Int ?? 0,
-                            "hiddenID": hiddenID,
+                            DictionaryStrings.hiddenID.rawValue: hiddenID,
                             "snapCellID": 0,
                             "parent": i,
                             "sibling": j,
@@ -69,7 +69,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
             }
         }
         if hiddenID != nil {
-            data = data.filter { ($0.value(forKey: "hiddenID") as? Int) == hiddenID }
+            data = data.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID }
         }
         self.loggdata = self.sortbydate(notsortedlist: data, sortdirection: sortascending)
     }

@@ -38,7 +38,7 @@ final class Snapshotlogsandcatalogs {
 
     private func reducetosnapshotlogs() {
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) {
-            if let dateRun = self.snapshotslogs?[i].object(forKey: "dateExecuted") {
+            if let dateRun = self.snapshotslogs?[i].object(forKey: DictionaryStrings.dateExecuted.rawValue) {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun as? String ?? "") {
                     let dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
                     self.snapshotslogs?[i].setObject(dayssincelastbackup, forKey: "days" as NSCopying)
@@ -51,12 +51,12 @@ final class Snapshotlogsandcatalogs {
         for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
             if self.snapshotcatalogs?[i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + (self.snapshotcatalogs?[i] ?? "").dropFirst(2) + ")"
-                let filter = self.snapshotslogs?.filter { ($0.value(forKey: "resultExecuted") as? String ?? "").contains(snapshotnum) }
+                let filter = self.snapshotslogs?.filter { ($0.value(forKey: DictionaryStrings.resultExecuted.rawValue) as? String ?? "").contains(snapshotnum) }
                 if filter?.count == 1 {
                     filter?[0].setObject(self.snapshotcatalogs![i], forKey: "snapshotCatalog" as NSCopying)
                 } else {
                     let dict: NSMutableDictionary = ["snapshotCatalog": self.snapshotcatalogs![i],
-                                                     "dateExecuted": "no log"]
+                                                     DictionaryStrings.dateExecuted.rawValue: "no log"]
                     self.snapshotslogs?.append(dict)
                 }
             }
@@ -84,7 +84,7 @@ final class Snapshotlogsandcatalogs {
 
     func preparecatalogstodelete() {
         for i in 0 ..< (self.snapshotslogs?.count ?? 0) - 1 {
-            if self.snapshotslogs?[i].value(forKey: "selectCellID") as? Int == 1 {
+            if self.snapshotslogs?[i].value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int == 1 {
                 if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
                 let snaproot = self.config?.offsiteCatalog
                 let snapcatalog = self.snapshotslogs?[i].value(forKey: "snapshotCatalog") as? String

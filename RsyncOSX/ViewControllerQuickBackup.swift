@@ -121,7 +121,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
         guard self.quickbackup?.sortedlist != nil else { return nil }
         guard row < (self.quickbackup?.sortedlist?.count ?? 0) else { return nil }
         if let object: NSDictionary = self.quickbackup?.sortedlist?[row] {
-            let hiddenID = object.value(forKey: "hiddenID") as? Int
+            let hiddenID = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
             let cellIdentifier: String = tableColumn!.identifier.rawValue
             switch cellIdentifier {
             case "percentCellID":

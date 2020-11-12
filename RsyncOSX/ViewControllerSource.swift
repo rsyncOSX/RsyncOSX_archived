@@ -61,7 +61,7 @@ class ViewControllerSource: NSViewController, SetConfigurations {
         self.selectButton.isEnabled = true
         if let index = indexes.first {
             if let object = self.configurations?.uniqueserversandlogins()?[index] {
-                if let hiddenID = object.value(forKey: "hiddenID") as? Int {
+                if let hiddenID = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                     self.index = hiddenID
                 }
             }

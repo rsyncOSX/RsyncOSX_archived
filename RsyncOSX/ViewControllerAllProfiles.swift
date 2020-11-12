@@ -156,12 +156,12 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         if let tableColumn = tableColumn {
             if row > (self.allprofiles?.allconfigurationsasdictionary?.count ?? 0) - 1 { return nil }
             if let object: NSDictionary = self.allprofiles?.allconfigurationsasdictionary?[row] {
-                let hiddenID = object.value(forKey: "hiddenID") as? Int ?? -1
-                let profile = object.value(forKey: "profile") as? String ?? NSLocalizedString("Default profile", comment: "default profile")
+                let hiddenID = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
+                let profile = object.value(forKey: DictionaryStrings.profile.rawValue) as? String ?? NSLocalizedString("Default profile", comment: "default profile")
                 if tableColumn.identifier.rawValue == "intime" {
                     let taskintime: String? = self.allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: true)
                     return taskintime ?? ""
-                } else if tableColumn.identifier.rawValue == "schedule" {
+                } else if tableColumn.identifier.rawValue == DictionaryStrings.schedule.rawValue {
                     let schedule = self.allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: false)
                     switch schedule {
                     case Scheduletype.once.rawValue:

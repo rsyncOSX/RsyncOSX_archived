@@ -13,20 +13,20 @@ struct TransformSchedulefromJSON {
     func transform(object: DecodeScheduleJSON) -> ConfigurationSchedule {
         var log: [Any]?
         let dict: NSMutableDictionary = [
-            "hiddenID": object.hiddenID ?? -1,
-            "offsiteserver": object.offsiteserver ?? "",
-            "dateStart": object.dateStart ?? "",
-            "schedule": object.schedule ?? "",
+            DictionaryStrings.hiddenID.rawValue: object.hiddenID ?? -1,
+            DictionaryStrings.offsiteServer.rawValue: object.offsiteserver ?? "",
+            DictionaryStrings.dateStart.rawValue: object.dateStart ?? "",
+            DictionaryStrings.schedule.rawValue: object.schedule ?? "",
             "profilename": object.profilename ?? "",
         ]
         if object.dateStop?.isEmpty == false {
-            dict.setObject(object.dateStop ?? "", forKey: "dateStop" as NSCopying)
+            dict.setObject(object.dateStop ?? "", forKey: DictionaryStrings.dateStop.rawValue as NSCopying)
         }
         for i in 0 ..< (object.logrecords?.count ?? 0) {
             if i == 0 { log = Array() }
             let logdict: NSMutableDictionary = [
-                "dateExecuted": object.logrecords![i].dateExecuted ?? "",
-                "resultExecuted": object.logrecords![i].resultExecuted ?? "",
+                DictionaryStrings.dateExecuted.rawValue: object.logrecords![i].dateExecuted ?? "",
+                DictionaryStrings.resultExecuted.rawValue: object.logrecords![i].resultExecuted ?? "",
             ]
             log?.append(logdict)
         }

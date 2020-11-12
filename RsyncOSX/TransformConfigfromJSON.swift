@@ -32,19 +32,19 @@ struct TransformConfigfromJSON {
             }
         }
         let dict: NSMutableDictionary = [
-            "localCatalog": object.localCatalog ?? "",
-            "offsiteCatalog": object.offsiteCatalog ?? "",
+            DictionaryStrings.localCatalog.rawValue: object.localCatalog ?? "",
+            DictionaryStrings.offsiteCatalog.rawValue: object.offsiteCatalog ?? "",
             "parameter1": object.parameter1 ?? "",
             "parameter2": object.parameter2 ?? "",
             "parameter3": object.parameter3 ?? "",
             "parameter4": object.parameter4 ?? "",
             "parameter5": object.parameter5 ?? "",
             "parameter6": object.parameter6 ?? "",
-            "task": object.task ?? "",
-            "hiddenID": object.hiddenID ?? 0,
+            DictionaryStrings.task.rawValue: object.task ?? "",
+            DictionaryStrings.hiddenID.rawValue: object.hiddenID ?? 0,
             "lastruninseconds": lastruninseconds ?? 0,
             "dayssincelastbackup": dayssincelastbackup ?? "",
-            "markdays": markdays,
+            DictionaryStrings.markdays.rawValue: markdays,
         ]
         if object.parameter8?.isEmpty == false {
             dict.setObject(object.parameter8 ?? "", forKey: "parameter8" as NSCopying)
@@ -104,13 +104,13 @@ struct TransformConfigfromJSON {
             dict.setObject(object.snapshotnum ?? 0, forKey: "snapshotnum" as NSCopying)
         }
         if object.backupID?.isEmpty == false {
-            dict.setObject(object.backupID ?? "", forKey: "backupID" as NSCopying)
+            dict.setObject(object.backupID ?? "", forKey: DictionaryStrings.backupID.rawValue as NSCopying)
         }
         if object.offsiteServer?.isEmpty == false {
-            dict.setObject(object.offsiteServer ?? "", forKey: "offsiteServer" as NSCopying)
+            dict.setObject(object.offsiteServer ?? "", forKey: DictionaryStrings.offsiteServer.rawValue as NSCopying)
         }
         if object.offsiteUsername?.isEmpty == false {
-            dict.setObject(object.offsiteUsername ?? "", forKey: "offsiteUsername" as NSCopying)
+            dict.setObject(object.offsiteUsername ?? "", forKey: DictionaryStrings.offsiteUsername.rawValue as NSCopying)
         }
         return Configuration(dictionary: dict as NSDictionary)
     }

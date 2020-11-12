@@ -24,12 +24,12 @@ struct ConvertConfigurations: SetConfigurations {
     init(index: Int) {
         if var config = self.configurations?.getConfigurations()?[index] {
             let dict: NSMutableDictionary = [
-                "task": config.task,
-                "backupID": config.backupID,
-                "localCatalog": config.localCatalog,
-                "offsiteCatalog": config.offsiteCatalog,
-                "offsiteServer": config.offsiteServer,
-                "offsiteUsername": config.offsiteUsername,
+                DictionaryStrings.task.rawValue: config.task,
+                DictionaryStrings.backupID.rawValue: config.backupID,
+                DictionaryStrings.localCatalog.rawValue: config.localCatalog,
+                DictionaryStrings.offsiteCatalog.rawValue: config.offsiteCatalog,
+                DictionaryStrings.offsiteServer.rawValue: config.offsiteServer,
+                DictionaryStrings.offsiteUsername.rawValue: config.offsiteUsername,
                 "parameter1": config.parameter1,
                 "parameter2": config.parameter2,
                 "parameter3": config.parameter3,
@@ -37,7 +37,7 @@ struct ConvertConfigurations: SetConfigurations {
                 "parameter5": config.parameter5,
                 "parameter6": config.parameter6,
                 "dateRun": config.dateRun ?? "",
-                "hiddenID": config.hiddenID,
+                DictionaryStrings.hiddenID.rawValue: config.hiddenID,
             ]
             // All parameters parameter8 - parameter14 are set
             config.parameter8 = self.checkparameter(param: config.parameter8)

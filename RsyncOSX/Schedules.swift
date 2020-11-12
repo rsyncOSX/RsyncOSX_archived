@@ -29,17 +29,17 @@ class Schedules: ScheduleWriteLoggData {
         }
         let dict = NSMutableDictionary()
         let offsiteserver = self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-        dict.setObject(hiddenID, forKey: "hiddenID" as NSCopying)
-        dict.setObject(start.en_us_string_from_date(), forKey: "dateStart" as NSCopying)
-        dict.setObject(stop!.en_us_string_from_date(), forKey: "dateStop" as NSCopying)
-        dict.setObject(offsiteserver as Any, forKey: "offsiteserver" as NSCopying)
+        dict.setObject(hiddenID, forKey: DictionaryStrings.hiddenID.rawValue as NSCopying)
+        dict.setObject(start.en_us_string_from_date(), forKey: DictionaryStrings.dateStart.rawValue as NSCopying)
+        dict.setObject(stop!.en_us_string_from_date(), forKey: DictionaryStrings.dateStop.rawValue as NSCopying)
+        dict.setObject(offsiteserver as Any, forKey: DictionaryStrings.offsiteServer.rawValue as NSCopying)
         switch schedule {
         case .once:
-            dict.setObject(Scheduletype.once.rawValue, forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.once.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
         case .daily:
-            dict.setObject(Scheduletype.daily.rawValue, forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.daily.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
         case .weekly:
-            dict.setObject(Scheduletype.weekly.rawValue, forKey: "schedule" as NSCopying)
+            dict.setObject(Scheduletype.weekly.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
         default:
             return
         }
@@ -81,19 +81,19 @@ class Schedules: ScheduleWriteLoggData {
             let allschedulesonetask = self.schedules?.filter { $0.hiddenID == hiddenID }
             for i in 0 ..< (allschedulesonetask?.count ?? 0) {
                 let row: NSMutableDictionary = [
-                    "dateStart": allschedulesonetask?[i].dateStart ?? "",
+                    DictionaryStrings.dateStart.rawValue: allschedulesonetask?[i].dateStart ?? "",
                     "dayinweek": allschedulesonetask?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
                     "stopCellID": 0,
                     "deleteCellID": 0,
-                    "dateStop": "",
-                    "schedule": allschedulesonetask?[i].schedule ?? "",
-                    "hiddenID": allschedulesonetask?[i].hiddenID ?? 0,
+                    DictionaryStrings.dateStop.rawValue: "",
+                    DictionaryStrings.schedule.rawValue: allschedulesonetask?[i].schedule ?? "",
+                    DictionaryStrings.hiddenID.rawValue: allschedulesonetask?[i].hiddenID ?? 0,
                     "numberoflogs": String(allschedulesonetask?[i].logrecords?.count ?? 0),
                 ]
                 if allschedulesonetask?[i].dateStop == nil {
-                    row.setValue("no stopdate", forKey: "dateStop")
+                    row.setValue("no stopdate", forKey: DictionaryStrings.dateStop.rawValue)
                 } else {
-                    row.setValue(allschedulesonetask?[i].dateStop, forKey: "dateStop")
+                    row.setValue(allschedulesonetask?[i].dateStop, forKey: DictionaryStrings.dateStop.rawValue)
                 }
                 if allschedulesonetask?[i].schedule == Scheduletype.stopped.rawValue {
                     row.setValue(1, forKey: "stopCellID")
@@ -102,8 +102,8 @@ class Schedules: ScheduleWriteLoggData {
             }
             // Sorting schedule after dateStart, last startdate on top
             data.sort { (sched1, sched2) -> Bool in
-                if let date1 = (sched1.value(forKey: "dateStart") as? String)?.en_us_date_from_string(),
-                   let date2 = (sched2.value(forKey: "dateStart") as? String)?.en_us_date_from_string()
+                if let date1 = (sched1.value(forKey: DictionaryStrings.dateStart.rawValue) as? String)?.en_us_date_from_string(),
+                   let date2 = (sched2.value(forKey: DictionaryStrings.dateStart.rawValue) as? String)?.en_us_date_from_string()
                 {
                     if date1 > date2 { return true } else { return false }
                 }
@@ -151,9 +151,9 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to delete or not
     func delete(dict: NSDictionary) {
-        if let hiddenID = dict.value(forKey: "hiddenID") as? Int {
-            if let schedule = dict.value(forKey: "schedule") as? String {
-                if let datestart = dict.value(forKey: "dateStart") as? String {
+        if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
+            if let schedule = dict.value(forKey: DictionaryStrings.schedule.rawValue) as? String {
+                if let datestart = dict.value(forKey: DictionaryStrings.dateStart.rawValue) as? String {
                     if let i = self.schedules?.firstIndex(where: { $0.hiddenID == hiddenID
                             && $0.schedule == schedule
                             && $0.dateStart == datestart
@@ -167,9 +167,9 @@ class Schedules: ScheduleWriteLoggData {
 
     // Test if Schedule record in memory is set to stop er not
     func stop(dict: NSDictionary) {
-        if let hiddenID = dict.value(forKey: "hiddenID") as? Int {
-            if let schedule = dict.value(forKey: "schedule") as? String {
-                if let datestart = dict.value(forKey: "dateStart") as? String {
+        if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
+            if let schedule = dict.value(forKey: DictionaryStrings.schedule.rawValue) as? String {
+                if let datestart = dict.value(forKey: DictionaryStrings.dateStart.rawValue) as? String {
                     if let i = self.schedules?.firstIndex(where: { $0.hiddenID == hiddenID
                             && $0.schedule == schedule
                             && $0.dateStart == datestart

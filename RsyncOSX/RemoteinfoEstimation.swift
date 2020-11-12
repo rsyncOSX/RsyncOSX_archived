@@ -70,7 +70,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     func setbackuplist(list: [NSMutableDictionary]) {
         self.configurations?.quickbackuplist = [Int]()
         for i in 0 ..< list.count {
-            self.configurations?.quickbackuplist!.append((list[i].value(forKey: "hiddenID") as? Int)!)
+            self.configurations?.quickbackuplist!.append((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
         }
     }
 
@@ -79,7 +79,7 @@ final class RemoteinfoEstimation: SetConfigurations {
         self.configurations?.quickbackuplist = [Int]()
         for i in 0 ..< (self.records?.count ?? 0) {
             if self.records![i].value(forKey: "select") as? Int == 1 {
-                self.configurations?.quickbackuplist?.append((self.records![i].value(forKey: "hiddenID") as? Int)!)
+                self.configurations?.quickbackuplist?.append((self.records![i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
             }
         }
     }
@@ -118,13 +118,13 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
 extension RemoteinfoEstimation {
     func processtermination() {
         let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
-        record.setValue(self.configurations?.getConfigurations()?[self.index!].localCatalog, forKey: "localCatalog")
-        record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteCatalog, forKey: "offsiteCatalog")
-        record.setValue(self.configurations?.getConfigurations()?[self.index!].hiddenID, forKey: "hiddenID")
+        record.setValue(self.configurations?.getConfigurations()?[self.index!].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
+        record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
+        record.setValue(self.configurations?.getConfigurations()?[self.index!].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
         if self.configurations?.getConfigurations()?[self.index!].offsiteServer.isEmpty == true {
-            record.setValue("localhost", forKey: "offsiteServer")
+            record.setValue("localhost", forKey: DictionaryStrings.offsiteServer.rawValue)
         } else {
-            record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteServer, forKey: "offsiteServer")
+            record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteServer, forKey: DictionaryStrings.offsiteServer.rawValue)
         }
         self.records?.append(record)
         self.configurations?.estimatedlist?.append(record)

@@ -153,9 +153,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func markfordelete(numberstomark: Int) {
         for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) - 1 {
             if i <= numberstomark {
-                self.snapshotlogsandcatalogs?.snapshotslogs![i].setValue(1, forKey: "selectCellID")
+                self.snapshotlogsandcatalogs?.snapshotslogs![i].setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
             } else {
-                self.snapshotlogsandcatalogs?.snapshotslogs![i].setValue(0, forKey: "selectCellID")
+                self.snapshotlogsandcatalogs?.snapshotslogs![i].setValue(0, forKey: DictionaryStrings.selectCellID.rawValue)
             }
         }
     }
@@ -168,7 +168,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     @IBAction func delete(_: NSButton) {
         guard self.snapshotlogsandcatalogs != nil else { return }
-        let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: "selectCellID") as? Int) == 1 }.count
+        let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) == 1 }.count
         let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
         let dialog: String = NSLocalizedString("Delete", comment: "Snapshots")
@@ -257,9 +257,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             if let index = indexes.first {
                 if let dict = self.snapshotlogsandcatalogs?.snapshotslogs?[index] {
                     self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-                    let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: "selectCellID") as? Int) == 1 }.count
+                    let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) == 1 }.count
                     self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(num ?? 0)
-                    self.hiddenID = dict.value(forKey: "hiddenID") as? Int
+                    self.hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                     guard self.hiddenID != nil else { return }
                     self.index = self.configurations?.getIndex(hiddenID!)
                 }
@@ -277,7 +277,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     self.selectplan.isEnabled = false
                     self.selectdayofweek.isEnabled = false
                     self.info.stringValue = Infosnapshots().info(num: 0)
-                    let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int ?? -1
+                    let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
                     self.index = self.configurations?.getIndex(hiddenID)
                     self.getsourcebyindex(index: hiddenID)
                 }
@@ -455,7 +455,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
         } else {
             guard row < (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) else { return nil }
             if let object: NSDictionary = self.snapshotlogsandcatalogs?.snapshotslogs?[row] {
-                if tableColumn!.identifier.rawValue == "selectCellID" {
+                if tableColumn!.identifier.rawValue == DictionaryStrings.selectCellID.rawValue {
                     return object[tableColumn!.identifier] as? Int
                 } else {
                     return object[tableColumn!.identifier] as? String
@@ -468,11 +468,11 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard tableView == self.snapshotstableView else { return }
-        if tableColumn!.identifier.rawValue == "selectCellID" {
-            var select: Int = (self.snapshotlogsandcatalogs?.snapshotslogs![row].value(forKey: "selectCellID") as? Int) ?? 0
+        if tableColumn!.identifier.rawValue == DictionaryStrings.selectCellID.rawValue {
+            var select: Int = (self.snapshotlogsandcatalogs?.snapshotslogs![row].value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
             guard row < (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) - 1 else { return }
-            self.snapshotlogsandcatalogs?.snapshotslogs?[row].setValue(select, forKey: "selectCellID")
+            self.snapshotlogsandcatalogs?.snapshotslogs?[row].setValue(select, forKey: DictionaryStrings.selectCellID.rawValue)
         }
     }
 }

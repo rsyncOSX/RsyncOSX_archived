@@ -46,7 +46,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
            let tableColumn = tableColumn
         {
             let celltext = object[tableColumn.identifier] as? String
-            if tableColumn.identifier.rawValue == "daysID" {
+            if tableColumn.identifier.rawValue == DictionaryStrings.daysID.rawValue {
                 if markdays {
                     return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
                 } else {

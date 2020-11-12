@@ -133,12 +133,12 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             configurations = ConfigurationsXCTEST(profile: "XCTest")
         }
         let dict: NSMutableDictionary = [
-            "task": ViewControllerReference.shared.snapshot,
-            "backupID": "backupID",
-            "localCatalog": "localCatalog",
-            "offsiteCatalog": "offsiteCatalog",
-            // "offsiteServer": "offsiteServer",
-            // "offsiteUsername": "offsiteUsername",
+            DictionaryStrings.task.rawValue: ViewControllerReference.shared.snapshot,
+            DictionaryStrings.backupID.rawValue: DictionaryStrings.backupID.rawValue,
+            DictionaryStrings.localCatalog.rawValue: DictionaryStrings.localCatalog.rawValue,
+            DictionaryStrings.offsiteCatalog.rawValue: DictionaryStrings.offsiteCatalog.rawValue,
+            // DictionaryStrings.offsiteServer.rawValue: DictionaryStrings.offsiteServer.rawValue,
+            // DictionaryStrings.offsiteUsername.rawValue: DictionaryStrings.offsiteUsername.rawValue,
             "parameter1": "parameter1",
             "parameter2": "parameter2",
             "parameter3": "parameter3",

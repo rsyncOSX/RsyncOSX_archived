@@ -31,8 +31,8 @@ final class QuickBackup: SetConfigurations {
     func sortbydays() {
         guard self.sortedlist != nil else { return }
         let sorted = self.sortedlist!.sorted { (di1, di2) -> Bool in
-            let di1 = (di1.value(forKey: "daysID") as? NSString)!.doubleValue
-            let di2 = (di2.value(forKey: "daysID") as? NSString)!.doubleValue
+            let di1 = (di1.value(forKey: DictionaryStrings.daysID.rawValue) as? NSString)!.doubleValue
+            let di2 = (di2.value(forKey: DictionaryStrings.daysID.rawValue) as? NSString)!.doubleValue
             if di1 > di2 {
                 return false
             } else {
@@ -47,9 +47,9 @@ final class QuickBackup: SetConfigurations {
         let now = Date()
         ViewControllerReference.shared.quickbackuptask = [
             "start": now,
-            "hiddenID": hiddenID,
-            "dateStart": "01 Jan 1900 00:00".en_us_date_from_string(),
-            "schedule": Scheduletype.manuel.rawValue,
+            DictionaryStrings.hiddenID.rawValue: hiddenID,
+            DictionaryStrings.dateStart.rawValue: "01 Jan 1900 00:00".en_us_date_from_string(),
+            DictionaryStrings.schedule.rawValue: Scheduletype.manuel.rawValue,
         ]
         self.outputprocess = nil
         self.outputprocess = OutputProcessRsync()
@@ -64,12 +64,12 @@ final class QuickBackup: SetConfigurations {
             for i in 0 ..< list.count {
                 self.sortedlist![i].setObject(false, forKey: "completeCellID" as NSCopying)
                 self.sortedlist![i].setObject(false, forKey: "inprogressCellID" as NSCopying)
-                if list[i].value(forKey: "selectCellID") as? Int == 1 {
-                    self.stackoftasktobeexecuted?.append(((list[i].value(forKey: "hiddenID") as? Int)!, i))
+                if list[i].value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int == 1 {
+                    self.stackoftasktobeexecuted?.append(((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!, i))
                 }
-                let hiddenID = list[i].value(forKey: "hiddenID") as? Int
+                let hiddenID = list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                 if self.estimatedlist != nil {
-                    let estimated = self.estimatedlist!.filter { ($0.value(forKey: "hiddenID") as? Int) == hiddenID! }
+                    let estimated = self.estimatedlist!.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID! }
                     if estimated.count > 0 {
                         let transferredNumber = estimated[0].value(forKey: "transferredNumber") as? String ?? ""
                         self.sortedlist![i].setObject(transferredNumber, forKey: "transferredNumber" as NSCopying)
@@ -88,7 +88,7 @@ final class QuickBackup: SetConfigurations {
     }
 
     func setcompleted() {
-        let dict = self.sortedlist!.filter { ($0.value(forKey: "hiddenID") as? Int) == self.hiddenID! }
+        let dict = self.sortedlist!.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == self.hiddenID! }
         guard dict.count == 1 else { return }
         self.index = self.sortedlist!.firstIndex(of: dict[0])
         self.sortedlist![self.index!].setValue(true, forKey: "completeCellID")
@@ -98,7 +98,7 @@ final class QuickBackup: SetConfigurations {
     init() {
         self.estimatedlist = self.configurations?.estimatedlist
         if self.estimatedlist != nil {
-            self.sortedlist = self.configurations?.getConfigurationsDataSourceSynchronize()?.filter { ($0.value(forKey: "selectCellID") as? Int) == 1 }
+            self.sortedlist = self.configurations?.getConfigurationsDataSourceSynchronize()?.filter { ($0.value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) == 1 }
             guard self.sortedlist!.count > 0 else { return }
         } else {
             self.sortedlist = self.configurations?.getConfigurationsDataSourceSynchronize()

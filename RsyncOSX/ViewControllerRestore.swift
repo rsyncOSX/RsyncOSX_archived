@@ -227,7 +227,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         if let index = self.index {
             self.infolabel.isHidden = true
             self.remotefiles.stringValue = ""
-            let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int ?? -1
+            let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
             if self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "taskCellID") as? String ?? "" != ViewControllerReference.shared.snapshot {
                 self.restorefilestask = RestorefilesTask(hiddenID: hiddenID, processtermination: self.processtermination, filehandler: self.filehandler)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)

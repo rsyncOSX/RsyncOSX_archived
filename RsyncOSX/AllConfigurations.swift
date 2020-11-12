@@ -51,18 +51,18 @@ final class AllConfigurations: Sorting {
                 date = stringdate.en_us_date_from_string().localized_string_from_date()
             }
             let row: NSMutableDictionary = [
-                "profile": configurations[i].profile ?? "",
-                "task": configurations[i].task,
-                "hiddenID": configurations[i].hiddenID,
-                "localCatalog": configurations[i].localCatalog,
-                "offsiteCatalog": configurations[i].offsiteCatalog,
-                "offsiteServer": configurations[i].offsiteServer,
-                "offsiteUsername": configurations[i].offsiteUsername,
-                "backupID": configurations[i].backupID,
-                "dateExecuted": date,
-                "daysID": configurations[i].dayssincelastbackup ?? "",
-                "markdays": configurations[i].markdays,
-                "selectCellID": 0,
+                DictionaryStrings.profile.rawValue: configurations[i].profile ?? "",
+                DictionaryStrings.task.rawValue: configurations[i].task,
+                DictionaryStrings.hiddenID.rawValue: configurations[i].hiddenID,
+                DictionaryStrings.localCatalog.rawValue: configurations[i].localCatalog,
+                DictionaryStrings.offsiteCatalog.rawValue: configurations[i].offsiteCatalog,
+                DictionaryStrings.offsiteServer.rawValue: configurations[i].offsiteServer,
+                DictionaryStrings.offsiteUsername.rawValue: configurations[i].offsiteUsername,
+                DictionaryStrings.backupID.rawValue: configurations[i].backupID,
+                DictionaryStrings.dateExecuted.rawValue: date,
+                DictionaryStrings.daysID.rawValue: configurations[i].dayssincelastbackup ?? "",
+                DictionaryStrings.markdays.rawValue: configurations[i].markdays,
+                DictionaryStrings.selectCellID.rawValue: 0,
             ]
             data.append(row)
         }

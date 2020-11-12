@@ -18,24 +18,24 @@ struct ConvertSchedules: SetSchedules {
         if let schedules = self.schedules?.getSchedule() {
             for i in 0 ..< schedules.count {
                 let dict: NSMutableDictionary = [
-                    "hiddenID": schedules[i].hiddenID,
-                    "dateStart": schedules[i].dateStart,
-                    "schedule": schedules[i].schedule,
-                    "offsiteserver": schedules[i].offsiteserver ?? "localhost",
+                    DictionaryStrings.hiddenID.rawValue: schedules[i].hiddenID,
+                    DictionaryStrings.dateStart.rawValue: schedules[i].dateStart,
+                    DictionaryStrings.schedule.rawValue: schedules[i].schedule,
+                    DictionaryStrings.offsiteServer.rawValue: schedules[i].offsiteserver ?? "localhost",
                 ]
                 if let log = schedules[i].logrecords {
                     var logrecords = [NSDictionary]()
                     for i in 0 ..< log.count {
                         let dict: NSDictionary = [
-                            "dateExecuted": log[i].dateExecuted ?? "",
-                            "resultExecuted": log[i].resultExecuted ?? "",
+                            DictionaryStrings.dateExecuted.rawValue: log[i].dateExecuted ?? "",
+                            DictionaryStrings.resultExecuted.rawValue: log[i].resultExecuted ?? "",
                         ]
                         logrecords.append(dict)
                     }
                     dict.setObject(logrecords, forKey: "executed" as NSCopying)
                 }
                 if schedules[i].dateStop != nil {
-                    dict.setValue(schedules[i].dateStop, forKey: "dateStop")
+                    dict.setValue(schedules[i].dateStop, forKey: DictionaryStrings.dateStop.rawValue)
                 }
                 if schedules[i].delete ?? false == false {
                     array.append(dict)

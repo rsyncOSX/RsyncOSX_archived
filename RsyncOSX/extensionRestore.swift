@@ -17,7 +17,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async { () -> Void in
                         if let index = self.index {
-                            if let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int {
+                            if let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                             }
                         }
@@ -34,7 +34,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_: NSSearchField) {
         if let index = self.index {
-            if self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: "hiddenID") as? Int != nil {
+            if self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int != nil {
                 self.working.startAnimation(nil)
             }
         }

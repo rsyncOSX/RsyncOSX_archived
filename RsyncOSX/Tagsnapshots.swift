@@ -79,12 +79,12 @@ class Tagsnapshots {
         for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) {
             let index = (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) - 1 - i
             if self.currentweek(index: index) {
-                self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(0, forKey: "selectCellID")
+                self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(0, forKey: DictionaryStrings.selectCellID.rawValue)
             } else if self.currentdaymonth(index: index) {
-                self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+                self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
             } else {
                 if self.keepallorlastdayinperiod(index: index) {
-                    self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(1, forKey: "selectCellID")
+                    self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
                 }
             }
         }
@@ -93,7 +93,7 @@ class Tagsnapshots {
 
     // Keep all snapshots current week.
     private func currentweek(index: Int) -> Bool {
-        let datesnapshotstring = (self.snapshotlogsandcatalogs?.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        let datesnapshotstring = (self.snapshotlogsandcatalogs?.snapshotslogs![index].value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String)!
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).weekOfYear ==
             self.datecomponentsfromstring(datestringlocalized: self.now).weekOfYear,
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year ==
@@ -108,7 +108,7 @@ class Tagsnapshots {
 
     // Keep snapshots every choosen day this month ex current week
     private func currentdaymonth(index: Int) -> Bool {
-        let datesnapshotstring = (self.snapshotlogsandcatalogs?.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        let datesnapshotstring = (self.snapshotlogsandcatalogs?.snapshotslogs![index].value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String)!
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month ==
@@ -137,7 +137,7 @@ class Tagsnapshots {
         } else {
             check = self.islastSelectedDayinMonth
         }
-        let datesnapshotstring = (self.snapshotlogsandcatalogs!.snapshotslogs![index].value(forKey: "dateExecuted") as? String)!
+        let datesnapshotstring = (self.snapshotlogsandcatalogs!.snapshotslogs![index].value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String)!
         let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
         let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
@@ -183,7 +183,7 @@ class Tagsnapshots {
 
     private func reset() {
         for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) {
-            self.snapshotlogsandcatalogs?.snapshotslogs?[i].setValue(0, forKey: "selectCellID")
+            self.snapshotlogsandcatalogs?.snapshotslogs?[i].setValue(0, forKey: DictionaryStrings.selectCellID.rawValue)
         }
     }
 

@@ -181,12 +181,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     @IBAction func addConfig(_: NSButton) {
         let dict: NSMutableDictionary = [
-            "task": ViewControllerReference.shared.synchronize,
-            "backupID": backupID.stringValue,
-            "localCatalog": localCatalog.stringValue,
-            "offsiteCatalog": offsiteCatalog.stringValue,
-            "offsiteServer": offsiteServer.stringValue,
-            "offsiteUsername": offsiteUsername.stringValue,
+            DictionaryStrings.task.rawValue: ViewControllerReference.shared.synchronize,
+            DictionaryStrings.backupID.rawValue: backupID.stringValue,
+            DictionaryStrings.localCatalog.rawValue: localCatalog.stringValue,
+            DictionaryStrings.offsiteCatalog.rawValue: offsiteCatalog.stringValue,
+            DictionaryStrings.offsiteServer.rawValue: offsiteServer.stringValue,
+            DictionaryStrings.offsiteUsername.rawValue: offsiteUsername.stringValue,
             "parameter1": self.archive,
             "parameter2": self.verbose,
             "parameter3": self.compress,
@@ -198,14 +198,14 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         ]
         if self.localCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
             self.localCatalog.stringValue += "/"
-            dict.setValue(self.localCatalog.stringValue, forKey: "localCatalog")
+            dict.setValue(self.localCatalog.stringValue, forKey: DictionaryStrings.localCatalog.rawValue)
         }
         if self.offsiteCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
             self.offsiteCatalog.stringValue += "/"
-            dict.setValue(self.offsiteCatalog.stringValue, forKey: "offsiteCatalog")
+            dict.setValue(self.offsiteCatalog.stringValue, forKey: DictionaryStrings.offsiteCatalog.rawValue)
         }
         if self.backuptypeselected == .snapshots {
-            dict.setValue(ViewControllerReference.shared.snapshot, forKey: "task")
+            dict.setValue(ViewControllerReference.shared.snapshot, forKey: DictionaryStrings.task.rawValue)
             dict.setValue(1, forKey: "snapshotnum")
             // Must be connected to create base remote snapshot catalog
             guard Validatenewconfigs(dict: dict).validated == true else { return }
@@ -214,7 +214,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             self.snapshotcreateremotecatalog(dict: dict, outputprocess: self.outputprocess)
         } else if self.backuptypeselected == .syncremote {
             guard self.offsiteServer.stringValue.isEmpty == false else { return }
-            dict.setValue(ViewControllerReference.shared.syncremote, forKey: "task")
+            dict.setValue(ViewControllerReference.shared.syncremote, forKey: DictionaryStrings.task.rawValue)
         }
         // Pre task
         if self.pretask.stringValue.isEmpty == false {
