@@ -21,7 +21,9 @@ final class Checksynchronizedfiles: SetConfigurations {
         if let index = self.index {
             if let arguments = self.configurations?.arguments4verify(index: index) {
                 self.outputprocess = OutputProcess()
-                self.outputprocess?.addlinefromoutput(str: "*** Verify ***")
+                self.outputprocess?.addlinefromoutput(str: "*** Checking synchronized data ***")
+                self.outputprocess?.addlinefromoutput(str: "*** using --checksum parameter ***")
+                self.outputprocess?.addlinefromoutput(str: "")
                 self.verifyandchanged(arguments: arguments)
             }
         }
