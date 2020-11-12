@@ -17,7 +17,7 @@ struct TransformSchedulefromJSON {
             DictionaryStrings.offsiteserver.rawValue: object.offsiteserver ?? "",
             DictionaryStrings.dateStart.rawValue: object.dateStart ?? "",
             DictionaryStrings.schedule.rawValue: object.schedule ?? "",
-            "profilename": object.profilename ?? "",
+            DictionaryStrings.profilename.rawValue: object.profilename ?? "",
         ]
         if object.dateStop?.isEmpty == false {
             dict.setObject(object.dateStop ?? "", forKey: DictionaryStrings.dateStop.rawValue as NSCopying)

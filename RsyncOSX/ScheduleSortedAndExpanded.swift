@@ -29,7 +29,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 if let hiddenID = (dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) {
-                    let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
+                    let profilename = dict.value(forKey: DictionaryStrings.profilename.rawValue) ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = start.timeIntervalSinceNow
                     let dictschedule: NSMutableDictionary = [
                         DictionaryStrings.start.rawValue: start,
@@ -37,7 +37,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         DictionaryStrings.dateStart.rawValue: dateStart,
                         DictionaryStrings.schedule.rawValue: schedule,
                         DictionaryStrings.timetostart.rawValue: time,
-                        "profilename": profilename,
+                        DictionaryStrings.profilename.rawValue: profilename,
                     ]
                     self.expandedData?.append(dictschedule)
                 }
@@ -58,7 +58,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if let start: Date = calendar.date(byAdding: components, to: dateStart) {
             if start.timeIntervalSinceNow > 0 {
                 if let hiddenID = (dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) {
-                    let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
+                    let profilename = dict.value(forKey: DictionaryStrings.profilename.rawValue) ?? NSLocalizedString("Default profile", comment: "default profile")
                     let time = start.timeIntervalSinceNow
                     let dictschedule: NSMutableDictionary = [
                         DictionaryStrings.start.rawValue: start,
@@ -66,7 +66,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         DictionaryStrings.dateStart.rawValue: dateStart,
                         DictionaryStrings.schedule.rawValue: schedule,
                         DictionaryStrings.timetostart.rawValue: time,
-                        "profilename": profilename,
+                        DictionaryStrings.profilename.rawValue: profilename,
                     ]
                     self.expandedData?.append(dictschedule)
                 }
@@ -87,7 +87,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 switch schedule {
                 case Scheduletype.once.rawValue:
                     if let hiddenID = (dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) {
-                        let profilename = dict.value(forKey: "profilename") ?? NSLocalizedString("Default profile", comment: "default profile")
+                        let profilename = dict.value(forKey: DictionaryStrings.profilename.rawValue) ?? NSLocalizedString("Default profile", comment: "default profile")
                         let time = seconds
                         let dictschedule: NSMutableDictionary = [
                             DictionaryStrings.start.rawValue: dateStart,
@@ -95,7 +95,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                             DictionaryStrings.dateStart.rawValue: dateStart,
                             DictionaryStrings.schedule.rawValue: schedule,
                             DictionaryStrings.timetostart.rawValue: time,
-                            "profilename": profilename,
+                            DictionaryStrings.profilename.rawValue: profilename,
                         ]
                         self.expandedData?.append(dictschedule)
                     }
@@ -160,7 +160,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         if profilename != nil {
             result = self.sortedschedules?.filter { (($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID
                     && ($0.value(forKey: DictionaryStrings.start.rawValue) as? Date)?.timeIntervalSinceNow ?? -1 > 0)
-                && ($0.value(forKey: "profilename") as? String) == profilename ?? ""
+                && ($0.value(forKey: DictionaryStrings.profilename.rawValue) as? String) == profilename ?? ""
             }
         } else {
             result = self.sortedschedules?.filter { (($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID
@@ -204,7 +204,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 DictionaryStrings.dateStop.rawValue: self.scheduleConfiguration?[i].dateStop ?? "",
                 DictionaryStrings.hiddenID.rawValue: self.scheduleConfiguration?[i].hiddenID ?? -1,
                 DictionaryStrings.schedule.rawValue: self.scheduleConfiguration?[i].schedule ?? "",
-                "profilename": self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile"),
+                DictionaryStrings.profilename.rawValue: self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile"),
             ]
             data.append(dict as NSMutableDictionary)
         }
