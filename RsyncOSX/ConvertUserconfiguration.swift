@@ -60,38 +60,38 @@ struct ConvertUserconfiguration {
         }
         marknumberofdayssince = String(ViewControllerReference.shared.marknumberofdayssince)
         let dict: NSMutableDictionary = [
-            "version3Rsync": version3Rsync ?? 0 as Int,
-            "detailedlogging": detailedlogging ?? 0 as Int,
-            "minimumlogging": minimumlogging ?? 0 as Int,
-            "fulllogging": fulllogging ?? 0 as Int,
-            "marknumberofdayssince": marknumberofdayssince ?? "5.0",
-            "haltonerror": haltonerror ?? 0 as Int,
-            "monitornetworkconnection": monitornetworkconnection ?? 0 as Int,
-            "json": json ?? 0 as Int,
+            DictionaryStrings.version3Rsync.rawValue: version3Rsync ?? 0 as Int,
+            DictionaryStrings.detailedlogging.rawValue: detailedlogging ?? 0 as Int,
+            DictionaryStrings.minimumlogging.rawValue: minimumlogging ?? 0 as Int,
+            DictionaryStrings.fulllogging.rawValue: fulllogging ?? 0 as Int,
+            DictionaryStrings.marknumberofdayssince.rawValue: marknumberofdayssince ?? "5.0",
+            DictionaryStrings.haltonerror.rawValue: haltonerror ?? 0 as Int,
+            DictionaryStrings.monitornetworkconnection.rawValue: monitornetworkconnection ?? 0 as Int,
+            DictionaryStrings.json.rawValue: json ?? 0 as Int,
         ]
         if let rsyncpath = ViewControllerReference.shared.localrsyncpath {
-            dict.setObject(rsyncpath, forKey: "rsyncPath" as NSCopying)
+            dict.setObject(rsyncpath, forKey: DictionaryStrings.rsyncPath.rawValue as NSCopying)
         }
         if let restorepath = ViewControllerReference.shared.temporarypathforrestore {
-            dict.setObject(restorepath, forKey: "restorePath" as NSCopying)
+            dict.setObject(restorepath, forKey: DictionaryStrings.restorePath.rawValue as NSCopying)
         } else {
-            dict.setObject("", forKey: "restorePath" as NSCopying)
+            dict.setObject("", forKey: DictionaryStrings.restorePath.rawValue as NSCopying)
         }
         if let pathrsyncosx = ViewControllerReference.shared.pathrsyncosx {
             if pathrsyncosx.isEmpty == false {
-                dict.setObject(pathrsyncosx, forKey: "pathrsyncosx" as NSCopying)
+                dict.setObject(pathrsyncosx, forKey: DictionaryStrings.pathrsyncosx.rawValue as NSCopying)
             }
         }
         if let pathrsyncosxsched = ViewControllerReference.shared.pathrsyncosxsched {
             if pathrsyncosxsched.isEmpty == false {
-                dict.setObject(pathrsyncosxsched, forKey: "pathrsyncosxsched" as NSCopying)
+                dict.setObject(pathrsyncosxsched, forKey: DictionaryStrings.pathrsyncosxsched.rawValue as NSCopying)
             }
         }
         if let environment = ViewControllerReference.shared.environment {
-            dict.setObject(environment, forKey: "environment" as NSCopying)
+            dict.setObject(environment, forKey: DictionaryStrings.environment.rawValue as NSCopying)
         }
         if let environmentvalue = ViewControllerReference.shared.environmentvalue {
-            dict.setObject(environmentvalue, forKey: "environmentvalue" as NSCopying)
+            dict.setObject(environmentvalue, forKey: DictionaryStrings.environmentvalue.rawValue as NSCopying)
         }
         if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
             dict.setObject(sshkeypathandidentityfile, forKey: DictionaryStrings.sshkeypathandidentityfile.rawValue as NSCopying)

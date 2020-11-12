@@ -84,10 +84,10 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBAction func selectlogs(_: NSButton) {
         guard self.scheduleloggdata?.loggdata != nil else { return }
         for i in 0 ..< (self.scheduleloggdata?.loggdata?.count ?? 0) {
-            if self.scheduleloggdata?.loggdata?[i].value(forKey: "deleteCellID") as? Int == 1 {
-                self.scheduleloggdata?.loggdata?[i].setValue(0, forKey: "deleteCellID")
+            if self.scheduleloggdata?.loggdata?[i].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int == 1 {
+                self.scheduleloggdata?.loggdata?[i].setValue(0, forKey: DictionaryStrings.deleteCellID.rawValue)
             } else {
-                self.scheduleloggdata?.loggdata?[i].setValue(1, forKey: "deleteCellID")
+                self.scheduleloggdata?.loggdata?[i].setValue(1, forKey: DictionaryStrings.deleteCellID.rawValue)
             }
         }
         globalMainQueue.async { () -> Void in
@@ -109,7 +109,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     private func selectednumber() -> String {
-        if let number = self.scheduleloggdata?.loggdata?.filter({ ($0.value(forKey: "deleteCellID") as? Int) == 1 }).count {
+        if let number = self.scheduleloggdata?.loggdata?.filter({ ($0.value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int) == 1 }).count {
             return String(number)
         } else {
             return "0"
@@ -217,7 +217,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         if let tableColumn = tableColumn {
             guard row < self.scheduleloggdata?.loggdata?.count ?? -1 else { return nil }
             if let object: NSDictionary = self.scheduleloggdata?.loggdata?[row] {
-                if tableColumn.identifier.rawValue == "deleteCellID" ||
+                if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue ||
                     tableColumn.identifier.rawValue == DictionaryStrings.snapCellID.rawValue
                 {
                     return object[tableColumn.identifier] as? Int
@@ -268,12 +268,12 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if let tableColumn = tableColumn {
-            if tableColumn.identifier.rawValue == "deleteCellID" {
-                var delete: Int = (self.scheduleloggdata?.loggdata![row].value(forKey: "deleteCellID") as? Int)!
+            if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {
+                var delete: Int = (self.scheduleloggdata?.loggdata![row].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int)!
                 if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
                 switch tableColumn.identifier.rawValue {
-                case "deleteCellID":
-                    self.scheduleloggdata?.loggdata?[row].setValue(delete, forKey: "deleteCellID")
+                case DictionaryStrings.deleteCellID.rawValue:
+                    self.scheduleloggdata?.loggdata?[row].setValue(delete, forKey: DictionaryStrings.deleteCellID.rawValue)
                 default:
                     break
                 }

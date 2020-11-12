@@ -260,10 +260,10 @@ extension ViewControllerAllProfiles {
         guard ViewControllerReference.shared.process != nil else { return }
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         if let index = self.index {
-            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getused(), forKey: "used")
-            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getavail(), forKey: "avail")
+            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getused(), forKey: DictionaryStrings.used.rawValue)
+            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getavail(), forKey: DictionaryStrings.avail.rawValue)
             self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getpercentavaliable(),
-                                                                             forKey: "availpercent")
+                                                                             forKey: DictionaryStrings.availpercent.rawValue)
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()

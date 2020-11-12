@@ -18,7 +18,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     func deleteselectedrows(scheduleloggdata: ScheduleLoggData?) {
         guard scheduleloggdata?.loggdata != nil else { return }
         var deletes = [Row]()
-        let selectdeletes = scheduleloggdata?.loggdata?.filter { ($0.value(forKey: "deleteCellID") as? Int) == 1 }.sorted { (dict1, dict2) -> Bool in
+        let selectdeletes = scheduleloggdata?.loggdata?.filter { ($0.value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int) == 1 }.sorted { (dict1, dict2) -> Bool in
             if (dict1.value(forKey: "parent") as? Int) ?? 0 > (dict2.value(forKey: "parent") as? Int) ?? 0 {
                 return true
             } else {

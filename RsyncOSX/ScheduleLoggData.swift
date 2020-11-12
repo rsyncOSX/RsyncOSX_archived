@@ -57,7 +57,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                             DictionaryStrings.backupID.rawValue: self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
                             DictionaryStrings.dateExecuted.rawValue: date ?? "",
                             DictionaryStrings.resultExecuted.rawValue: input[i].logrecords?[j].resultExecuted ?? "",
-                            "deleteCellID": self.loggdata?[j].value(forKey: "deleteCellID") as? Int ?? 0,
+                            DictionaryStrings.deleteCellID.rawValue: self.loggdata?[j].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int ?? 0,
                             DictionaryStrings.hiddenID.rawValue: hiddenID,
                             DictionaryStrings.snapCellID.rawValue: 0,
                             "parent": i,
@@ -94,9 +94,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 self.loggdata?[i].setValue(1, forKey: DictionaryStrings.snapCellID.rawValue)
             }
             if self.loggdata?[i].value(forKey: DictionaryStrings.snapCellID.rawValue) as? Int == 1 {
-                self.loggdata?[i].setValue(0, forKey: "deleteCellID")
+                self.loggdata?[i].setValue(0, forKey: DictionaryStrings.deleteCellID.rawValue)
             } else {
-                self.loggdata?[i].setValue(1, forKey: "deleteCellID")
+                self.loggdata?[i].setValue(1, forKey: DictionaryStrings.deleteCellID.rawValue)
             }
         }
     }

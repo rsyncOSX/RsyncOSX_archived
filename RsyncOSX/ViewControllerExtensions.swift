@@ -452,26 +452,22 @@ enum DictionaryStrings: String {
     case posttask
     case executed
     case offsiteserver
+    case version3Rsync
+    case detailedlogging
+    case rsyncPath
+    case restorePath
+    case marknumberofdayssince
+    case pathrsyncosx
+    case pathrsyncosxsched
+    case minimumlogging
+    case fulllogging
+    case environment
+    case environmentvalue
+    case haltonerror
+    case monitornetworkconnection
+    case json
+    case used
+    case avail
+    case availpercent
+    case deleteCellID
 }
-
-
-/*
- "version3Rsync"
- "detailedlogging"
- "rsyncPath"
- "restorePath"
- "marknumberofdayssince"
- "pathrsyncosx"
- "pathrsyncosxsched"
- "minimumlogging"
- "fulllogging"
- "environment"
- "environmentvalue"
- "haltonerror"
- "monitornetworkconnection"
- "json"
- "used"
- "avail"
- "availpercent"
- "deleteCellID"
- */

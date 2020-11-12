@@ -13,7 +13,7 @@ import Foundation
 struct Userconfiguration {
     private func readUserconfiguration(dict: NSDictionary) {
         // Another version of rsync
-        if let version3rsync = dict.value(forKey: "version3Rsync") as? Int {
+        if let version3rsync = dict.value(forKey: DictionaryStrings.version3Rsync.rawValue) as? Int {
             if version3rsync == 1 {
                 ViewControllerReference.shared.rsyncversion3 = true
             } else {
@@ -21,7 +21,7 @@ struct Userconfiguration {
             }
         }
         // Detailed logging
-        if let detailedlogging = dict.value(forKey: "detailedlogging") as? Int {
+        if let detailedlogging = dict.value(forKey: DictionaryStrings.detailedlogging.rawValue) as? Int {
             if detailedlogging == 1 {
                 ViewControllerReference.shared.detailedlogging = true
             } else {
@@ -29,11 +29,11 @@ struct Userconfiguration {
             }
         }
         // Optional path for rsync
-        if let rsyncPath = dict.value(forKey: "rsyncPath") as? String {
+        if let rsyncPath = dict.value(forKey: DictionaryStrings.rsyncPath.rawValue) as? String {
             ViewControllerReference.shared.localrsyncpath = rsyncPath
         }
         // Temporary path for restores single files or directory
-        if let restorePath = dict.value(forKey: "restorePath") as? String {
+        if let restorePath = dict.value(forKey: DictionaryStrings.restorePath.rawValue) as? String {
             if restorePath.count > 0 {
                 ViewControllerReference.shared.temporarypathforrestore = restorePath
             } else {
@@ -41,7 +41,7 @@ struct Userconfiguration {
             }
         }
         // Mark tasks
-        if let marknumberofdayssince = dict.value(forKey: "marknumberofdayssince") as? String {
+        if let marknumberofdayssince = dict.value(forKey: DictionaryStrings.marknumberofdayssince.rawValue) as? String {
             if Double(marknumberofdayssince)! > 0 {
                 let oldmarknumberofdayssince = ViewControllerReference.shared.marknumberofdayssince
                 ViewControllerReference.shared.marknumberofdayssince = Double(marknumberofdayssince)!
@@ -56,14 +56,14 @@ struct Userconfiguration {
             }
         }
         // Paths rsyncOSX and RsyncOSXsched
-        if let pathrsyncosx = dict.value(forKey: "pathrsyncosx") as? String {
+        if let pathrsyncosx = dict.value(forKey: DictionaryStrings.pathrsyncosx.rawValue) as? String {
             if pathrsyncosx.isEmpty == true {
                 ViewControllerReference.shared.pathrsyncosx = nil
             } else {
                 ViewControllerReference.shared.pathrsyncosx = pathrsyncosx
             }
         }
-        if let pathrsyncosxsched = dict.value(forKey: "pathrsyncosxsched") as? String {
+        if let pathrsyncosxsched = dict.value(forKey: DictionaryStrings.pathrsyncosxsched.rawValue) as? String {
             if pathrsyncosxsched.isEmpty == true {
                 ViewControllerReference.shared.pathrsyncosxsched = nil
             } else {
@@ -71,27 +71,27 @@ struct Userconfiguration {
             }
         }
         // No logging, minimum logging or full logging
-        if let minimumlogging = dict.value(forKey: "minimumlogging") as? Int {
+        if let minimumlogging = dict.value(forKey: DictionaryStrings.minimumlogging.rawValue) as? Int {
             if minimumlogging == 1 {
                 ViewControllerReference.shared.minimumlogging = true
             } else {
                 ViewControllerReference.shared.minimumlogging = false
             }
         }
-        if let fulllogging = dict.value(forKey: "fulllogging") as? Int {
+        if let fulllogging = dict.value(forKey: DictionaryStrings.fulllogging.rawValue) as? Int {
             if fulllogging == 1 {
                 ViewControllerReference.shared.fulllogging = true
             } else {
                 ViewControllerReference.shared.fulllogging = false
             }
         }
-        if let environment = dict.value(forKey: "environment") as? String {
+        if let environment = dict.value(forKey: DictionaryStrings.environment.rawValue) as? String {
             ViewControllerReference.shared.environment = environment
         }
-        if let environmentvalue = dict.value(forKey: "environmentvalue") as? String {
+        if let environmentvalue = dict.value(forKey: DictionaryStrings.environmentvalue.rawValue) as? String {
             ViewControllerReference.shared.environmentvalue = environmentvalue
         }
-        if let haltonerror = dict.value(forKey: "haltonerror") as? Int {
+        if let haltonerror = dict.value(forKey: DictionaryStrings.haltonerror.rawValue) as? Int {
             if haltonerror == 1 {
                 ViewControllerReference.shared.haltonerror = true
             } else {
@@ -104,14 +104,14 @@ struct Userconfiguration {
         if let sshport = dict.value(forKey: DictionaryStrings.sshport.rawValue) as? Int {
             ViewControllerReference.shared.sshport = sshport
         }
-        if let monitornetworkconnection = dict.value(forKey: "monitornetworkconnection") as? Int {
+        if let monitornetworkconnection = dict.value(forKey: DictionaryStrings.monitornetworkconnection.rawValue) as? Int {
             if monitornetworkconnection == 1 {
                 ViewControllerReference.shared.monitornetworkconnection = true
             } else {
                 ViewControllerReference.shared.monitornetworkconnection = false
             }
         }
-        if let json = dict.value(forKey: "json") as? Int {
+        if let json = dict.value(forKey: DictionaryStrings.json.rawValue) as? Int {
             if json == 1 {
                 ViewControllerReference.shared.json = true
             } else {

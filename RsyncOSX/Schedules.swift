@@ -84,7 +84,7 @@ class Schedules: ScheduleWriteLoggData {
                     DictionaryStrings.dateStart.rawValue: allschedulesonetask?[i].dateStart ?? "",
                     "dayinweek": allschedulesonetask?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
                     "stopCellID": 0,
-                    "deleteCellID": 0,
+                    DictionaryStrings.deleteCellID.rawValue: 0,
                     DictionaryStrings.dateStop.rawValue: "",
                     DictionaryStrings.schedule.rawValue: allschedulesonetask?[i].schedule ?? "",
                     DictionaryStrings.hiddenID.rawValue: allschedulesonetask?[i].hiddenID ?? 0,
@@ -127,7 +127,7 @@ class Schedules: ScheduleWriteLoggData {
                     }
                 }
             }
-            if let delete = data?.filter({ (($0.value(forKey: "deleteCellID") as? Int) == 1) }) {
+            if let delete = data?.filter({ (($0.value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int) == 1) }) {
                 if delete.count > 0 {
                     update = true
                     for i in 0 ..< delete.count {
