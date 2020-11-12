@@ -146,9 +146,9 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
             "parameter5": "parameter5",
             "parameter6": "parameter6",
             "dryrun": "dryrun",
-            "dateRun": "",
+            DictionaryStrings.dateRun.rawValue: "",
         ]
-        dict.setValue(1, forKey: "snapshotnum")
+        dict.setValue(1, forKey: DictionaryStrings.snapshotnum.rawValue)
         configurations?.addNewConfigurations(dict: dict)
         let count = configurations?.getConfigurations()?.count
         XCTAssertEqual(count, 5, "Should be equal to 5")

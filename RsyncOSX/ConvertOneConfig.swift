@@ -14,20 +14,20 @@ struct ConvertOneConfig {
 
     var dict: NSMutableDictionary {
         let row: NSMutableDictionary = [
-            "taskCellID": self.config?.task ?? "",
+            DictionaryStrings.taskCellID.rawValue: self.config?.task ?? "",
             DictionaryStrings.hiddenID.rawValue: self.config?.hiddenID ?? "",
-            "localCatalogCellID": self.config?.localCatalog ?? "",
-            "offsiteCatalogCellID": self.config?.offsiteCatalog ?? "",
-            "offsiteUsernameID": self.config?.offsiteUsername ?? "",
-            "offsiteServerCellID": self.config?.offsiteServer ?? "",
-            "backupIDCellID": self.config?.backupID ?? "",
-            "runDateCellID": self.config?.dateRun ?? "",
+            DictionaryStrings.localCatalogCellID.rawValue: self.config?.localCatalog ?? "",
+            DictionaryStrings.offsiteCatalogCellID.rawValue: self.config?.offsiteCatalog ?? "",
+            DictionaryStrings.offsiteUsernameID.rawValue: self.config?.offsiteUsername ?? "",
+            DictionaryStrings.offsiteServerCellID.rawValue: self.config?.offsiteServer ?? "",
+            DictionaryStrings.backupIDCellID.rawValue: self.config?.backupID ?? "",
+            DictionaryStrings.runDateCellID.rawValue: self.config?.dateRun ?? "",
             DictionaryStrings.daysID.rawValue: self.config?.dayssincelastbackup ?? "",
             DictionaryStrings.markdays.rawValue: self.config?.markdays ?? "",
-            "snapCellID": self.config?.snapshotnum ?? "",
+            DictionaryStrings.snapCellID.rawValue: self.config?.snapshotnum ?? "",
             DictionaryStrings.selectCellID.rawValue: 0,
-            "executepretask": self.config?.executepretask ?? 0,
-            "executeposttask": self.config?.executeposttask ?? 0,
+            DictionaryStrings.executepretask.rawValue: self.config?.executepretask ?? 0,
+            DictionaryStrings.executeposttask.rawValue: self.config?.executeposttask ?? 0,
         ]
         return row
     }

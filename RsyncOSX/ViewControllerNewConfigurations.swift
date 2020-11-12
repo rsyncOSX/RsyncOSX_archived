@@ -194,7 +194,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             "parameter5": self.eparam,
             "parameter6": self.ssh,
             "dryrun": self.dryrun,
-            "dateRun": "",
+            DictionaryStrings.dateRun.rawValue: "",
         ]
         if self.localCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
             self.localCatalog.stringValue += "/"
@@ -206,7 +206,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         }
         if self.backuptypeselected == .snapshots {
             dict.setValue(ViewControllerReference.shared.snapshot, forKey: DictionaryStrings.task.rawValue)
-            dict.setValue(1, forKey: "snapshotnum")
+            dict.setValue(1, forKey: DictionaryStrings.snapshotnum.rawValue)
             // Must be connected to create base remote snapshot catalog
             guard Validatenewconfigs(dict: dict).validated == true else { return }
             self.outputprocess = OutputProcess()
@@ -219,30 +219,30 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         // Pre task
         if self.pretask.stringValue.isEmpty == false {
             if self.executepretask.state == .on {
-                dict.setObject(1, forKey: "executepretask" as NSCopying)
+                dict.setObject(1, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
             } else {
-                dict.setObject(0, forKey: "executepretask" as NSCopying)
+                dict.setObject(0, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
             }
             dict.setObject(self.pretask.stringValue, forKey: "pretask" as NSCopying)
         } else {
-            dict.setObject(0, forKey: "executepretask" as NSCopying)
+            dict.setObject(0, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
         }
         // Post task
         if self.posttask.stringValue.isEmpty == false {
             if self.executeposttask.state == .on {
-                dict.setObject(1, forKey: "executeposttask" as NSCopying)
+                dict.setObject(1, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
             } else {
-                dict.setObject(0, forKey: "executeposttask" as NSCopying)
+                dict.setObject(0, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
             }
             dict.setObject(self.pretask.stringValue, forKey: "posttask" as NSCopying)
         } else {
-            dict.setObject(0, forKey: "executeposttask" as NSCopying)
+            dict.setObject(0, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
         }
         // Haltpretast on error
         if self.haltshelltasksonerror.state == .on {
-            dict.setObject(1, forKey: "haltshelltasksonerror" as NSCopying)
+            dict.setObject(1, forKey: DictionaryStrings.haltshelltasksonerror.rawValue as NSCopying)
         } else {
-            dict.setObject(0, forKey: "haltshelltasksonerror" as NSCopying)
+            dict.setObject(0, forKey: DictionaryStrings.haltshelltasksonerror.rawValue as NSCopying)
         }
 
         if ViewControllerReference.shared.checkinput {

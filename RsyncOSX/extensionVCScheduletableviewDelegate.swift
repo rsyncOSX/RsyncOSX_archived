@@ -49,7 +49,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                                     return ""
                                 }
                             }
-                        case "offsiteServerCellID":
+                        case DictionaryStrings.offsiteServerCellID.rawValue:
                             if (object[tableColumn.identifier] as? String)!.isEmpty {
                                 if self.index() ?? -1 == row, self.index == nil {
                                     return self.attributedstring(str: "localhost", color: NSColor.green, align: .left)

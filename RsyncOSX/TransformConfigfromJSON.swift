@@ -77,10 +77,10 @@ struct TransformConfigfromJSON {
             dict.setObject(object.posttask ?? "", forKey: "posttask" as NSCopying)
         }
         if object.executepretask != nil {
-            dict.setObject(object.executepretask ?? 0, forKey: "executepretask" as NSCopying)
+            dict.setObject(object.executepretask ?? 0, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
         }
         if object.executeposttask != nil {
-            dict.setObject(object.executeposttask ?? 0, forKey: "executeposttask" as NSCopying)
+            dict.setObject(object.executeposttask ?? 0, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
         }
         if object.sshport != nil {
             dict.setObject(object.sshport ?? 22, forKey: "sshport" as NSCopying)
@@ -89,19 +89,19 @@ struct TransformConfigfromJSON {
             dict.setObject(object.rsyncdaemon ?? 0, forKey: "rsyncdaemon" as NSCopying)
         }
         if object.haltshelltasksonerror != nil {
-            dict.setObject(object.haltshelltasksonerror ?? 0, forKey: "haltshelltasksonerror" as NSCopying)
+            dict.setObject(object.haltshelltasksonerror ?? 0, forKey: DictionaryStrings.haltshelltasksonerror.rawValue as NSCopying)
         }
         if object.dateRun?.isEmpty == false {
-            dict.setObject(object.dateRun ?? "", forKey: "dateRun" as NSCopying)
+            dict.setObject(object.dateRun ?? "", forKey: DictionaryStrings.dateRun.rawValue as NSCopying)
         }
         if object.snapdayoffweek?.isEmpty == false {
-            dict.setObject(object.snapdayoffweek ?? "", forKey: "snapdayoffweek" as NSCopying)
+            dict.setObject(object.snapdayoffweek ?? "", forKey: DictionaryStrings.snapdayoffweek.rawValue as NSCopying)
         }
         if object.snaplast != nil {
             dict.setObject(object.snaplast ?? 0, forKey: "snaplast" as NSCopying)
         }
         if object.snapshotnum != nil {
-            dict.setObject(object.snapshotnum ?? 0, forKey: "snapshotnum" as NSCopying)
+            dict.setObject(object.snapshotnum ?? 0, forKey: DictionaryStrings.snapshotnum.rawValue as NSCopying)
         }
         if object.backupID?.isEmpty == false {
             dict.setObject(object.backupID ?? "", forKey: DictionaryStrings.backupID.rawValue as NSCopying)

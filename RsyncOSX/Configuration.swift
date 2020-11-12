@@ -73,13 +73,13 @@ struct Configuration {
         self.parameter6 = dictionary.object(forKey: "parameter6") as? String ?? ""
         self.offsiteServer = dictionary.object(forKey: DictionaryStrings.offsiteServer.rawValue) as? String ?? ""
         self.backupID = dictionary.object(forKey: DictionaryStrings.backupID.rawValue) as? String ?? ""
-        if let snapshotnum = dictionary.object(forKey: "snapshotnum") as? Int {
+        if let snapshotnum = dictionary.object(forKey: DictionaryStrings.snapshotnum.rawValue) as? Int {
             self.snapshotnum = snapshotnum
-            self.snapdayoffweek = dictionary.object(forKey: "snapdayoffweek") as? String ?? StringDayofweek.Sunday.rawValue
+            self.snapdayoffweek = dictionary.object(forKey: DictionaryStrings.snapdayoffweek.rawValue) as? String ?? StringDayofweek.Sunday.rawValue
             self.snaplast = dictionary.object(forKey: "snaplast") as? Int ?? 1
         }
         // Last run of task
-        if let dateRun = dictionary.object(forKey: "dateRun") {
+        if let dateRun = dictionary.object(forKey: DictionaryStrings.dateRun.rawValue) {
             self.dateRun = dateRun as? String
             if let secondssince = self.lastruninseconds {
                 self.dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
@@ -123,16 +123,16 @@ struct Configuration {
         if let pretask = dictionary.object(forKey: "pretask") {
             self.pretask = pretask as? String
         }
-        if let executepretask = dictionary.object(forKey: "executepretask") {
+        if let executepretask = dictionary.object(forKey: DictionaryStrings.executepretask.rawValue) {
             self.executepretask = executepretask as? Int
         }
         if let posttask = dictionary.object(forKey: "posttask") {
             self.posttask = posttask as? String
         }
-        if let executeposttask = dictionary.object(forKey: "executeposttask") {
+        if let executeposttask = dictionary.object(forKey: DictionaryStrings.executeposttask.rawValue) {
             self.executeposttask = executeposttask as? Int
         }
-        if let haltshelltasksonerror = dictionary.object(forKey: "haltshelltasksonerror") {
+        if let haltshelltasksonerror = dictionary.object(forKey: DictionaryStrings.haltshelltasksonerror.rawValue) {
             self.haltshelltasksonerror = haltshelltasksonerror as? Int
         }
     }

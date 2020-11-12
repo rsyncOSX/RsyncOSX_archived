@@ -36,7 +36,7 @@ struct ConvertConfigurations: SetConfigurations {
                 "parameter4": config.parameter4,
                 "parameter5": config.parameter5,
                 "parameter6": config.parameter6,
-                "dateRun": config.dateRun ?? "",
+                DictionaryStrings.dateRun.rawValue: config.dateRun ?? "",
                 DictionaryStrings.hiddenID.rawValue: config.hiddenID,
             ]
             // All parameters parameter8 - parameter14 are set
@@ -75,12 +75,12 @@ struct ConvertConfigurations: SetConfigurations {
                 dict.setObject(config.sshport!, forKey: "sshport" as NSCopying)
             }
             if config.snapshotnum != nil {
-                dict.setObject(config.snapshotnum!, forKey: "snapshotnum" as NSCopying)
+                dict.setObject(config.snapshotnum!, forKey: DictionaryStrings.snapshotnum.rawValue as NSCopying)
                 if config.snaplast != nil {
                     dict.setObject(config.snaplast!, forKey: "snaplast" as NSCopying)
                 }
                 if config.snapdayoffweek != nil {
-                    dict.setObject(config.snapdayoffweek!, forKey: "snapdayoffweek" as NSCopying)
+                    dict.setObject(config.snapdayoffweek!, forKey: DictionaryStrings.snapdayoffweek.rawValue as NSCopying)
                 }
             }
             if config.sshkeypathandidentityfile != nil {
@@ -91,16 +91,16 @@ struct ConvertConfigurations: SetConfigurations {
                 dict.setObject(config.pretask!, forKey: "pretask" as NSCopying)
             }
             if config.executepretask != nil {
-                dict.setObject(config.executepretask!, forKey: "executepretask" as NSCopying)
+                dict.setObject(config.executepretask!, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
             }
             if config.posttask != nil {
                 dict.setObject(config.posttask!, forKey: "posttask" as NSCopying)
             }
             if config.executeposttask != nil {
-                dict.setObject(config.executeposttask!, forKey: "executeposttask" as NSCopying)
+                dict.setObject(config.executeposttask!, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
             }
             if config.haltshelltasksonerror != nil {
-                dict.setObject(config.haltshelltasksonerror!, forKey: "haltshelltasksonerror" as NSCopying)
+                dict.setObject(config.haltshelltasksonerror!, forKey: DictionaryStrings.haltshelltasksonerror.rawValue as NSCopying)
             }
             self.configuration = dict
         }

@@ -127,7 +127,7 @@ class Configurations: ReloadTable, SetSchedules {
                 let server = config.offsiteServer
                 let user = config.offsiteUsername
                 if server != "localhost" {
-                    if data.filter({ $0.value(forKey: "offsiteServerCellID") as? String ?? "" == server && $0.value(forKey: "offsiteUsernameID") as? String ?? "" == user }).count == 0 {
+                    if data.filter({ $0.value(forKey: DictionaryStrings.offsiteServerCellID.rawValue) as? String ?? "" == server && $0.value(forKey: DictionaryStrings.offsiteUsernameID.rawValue) as? String ?? "" == user }).count == 0 {
                         data.append(row)
                     }
                 }

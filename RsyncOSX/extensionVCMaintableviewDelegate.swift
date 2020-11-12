@@ -52,7 +52,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                 } else {
                     return object[tableColumn.identifier] as? String
                 }
-            } else if tableColumn.identifier.rawValue == "offsiteServerCellID",
+            } else if tableColumn.identifier.rawValue == DictionaryStrings.offsiteServerCellID.rawValue,
                       ((object[tableColumn.identifier] as? String)?.isEmpty) == true
             {
                 return "localhost"
@@ -74,14 +74,14 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                         return #imageLiteral(resourceName: "green")
                     }
                 }
-            } else if tableColumn.identifier.rawValue == "snapCellID" {
-                let snap = object.value(forKey: "snapCellID") as? Int ?? -1
+            } else if tableColumn.identifier.rawValue == DictionaryStrings.snapCellID.rawValue {
+                let snap = object.value(forKey: DictionaryStrings.snapCellID.rawValue) as? Int ?? -1
                 if snap > 0 {
                     return String(snap - 1)
                 } else {
                     return ""
                 }
-            } else if tableColumn.identifier.rawValue == "runDateCellID" {
+            } else if tableColumn.identifier.rawValue == DictionaryStrings.runDateCellID.rawValue {
                 let stringdate: String = object[tableColumn.identifier] as? String ?? ""
                 if stringdate.isEmpty {
                     return ""
@@ -89,8 +89,8 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                     return stringdate.en_us_date_from_string().localized_string_from_date()
                 }
             } else if tableColumn.identifier.rawValue == "Shell" {
-                let pre = object.value(forKey: "executepretask") as? Int ?? 0
-                let post = object.value(forKey: "executeposttask") as? Int ?? 0
+                let pre = object.value(forKey: DictionaryStrings.executepretask.rawValue) as? Int ?? 0
+                let post = object.value(forKey: DictionaryStrings.executeposttask.rawValue) as? Int ?? 0
                 if pre == 1 || post == 1 {
                     return 1
                 } else {
@@ -99,7 +99,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
             } else {
                 if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
                     if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
-                       tableColumn.identifier.rawValue == "offsiteServerCellID"
+                       tableColumn.identifier.rawValue == DictionaryStrings.offsiteServerCellID.rawValue
                     {
                         return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
                     } else {

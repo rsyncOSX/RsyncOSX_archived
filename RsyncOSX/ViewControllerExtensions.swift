@@ -417,17 +417,18 @@ enum DictionaryStrings: String {
     case schedule
     case dateStop
     case resultExecuted
-    
-    case "snapshotnum"
-    case "snapdayoffweek"
-    case "dateRun"
-    case "executepretask"
-    case "executeposttask"
-    case "snapCellID"
-    case "localCatalogCellID"
-    case "offsiteCatalogCellID"
-    case "offsiteUsernameID"
-    case "offsiteServerCellID"
-    case "backupIDCellID"
-    case "runDateCellID"
+    case snapshotnum
+    case snapdayoffweek
+    case dateRun
+    case executepretask
+    case executeposttask
+    case snapCellID
+    case localCatalogCellID
+    case offsiteCatalogCellID
+    case offsiteUsernameID
+    case offsiteServerCellID
+    case backupIDCellID
+    case runDateCellID
+    case haltshelltasksonerror
+    case taskCellID
 }
