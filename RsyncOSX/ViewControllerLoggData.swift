@@ -293,7 +293,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
             if let config = self.configurations?.getConfigurations()?[index] {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
                 if self.connected(config: config) {
-                    if config.task == "snapshot" { self.working.startAnimation(nil) }
+                    if config.task == ViewControllerReference.shared.snapshot { self.working.startAnimation(nil) }
                     self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
                                                                            getsnapshots: false,
                                                                            processtermination: self.processtermination,

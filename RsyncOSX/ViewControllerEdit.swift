@@ -33,7 +33,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
 
     @IBAction func enabledisableresetsnapshotnum(_: NSButton) {
         if let config: Configuration = self.configurations?.getConfigurations()?[self.index!] {
-            guard config.task == "snapshot" else { return }
+            guard config.task == ViewControllerReference.shared.snapshot else { return }
             let info: String = NSLocalizedString("Dont change the snapshot num if you don´t know what you are doing...", comment: "Snapshots")
             Alerts.showInfo(info: info)
             if self.snapshotnum.isEnabled {

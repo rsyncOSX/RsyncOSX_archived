@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Cocoa
 import Foundation
@@ -453,3 +453,25 @@ enum DictionaryStrings: String {
     case executed
     case offsiteserver
 }
+
+
+/*
+ "version3Rsync"
+ "detailedlogging"
+ "rsyncPath"
+ "restorePath"
+ "marknumberofdayssince"
+ "pathrsyncosx"
+ "pathrsyncosxsched"
+ "minimumlogging"
+ "fulllogging"
+ "environment"
+ "environmentvalue"
+ "haltonerror"
+ "monitornetworkconnection"
+ "json"
+ "used"
+ "avail"
+ "availpercent"
+ "deleteCellID"
+ */
