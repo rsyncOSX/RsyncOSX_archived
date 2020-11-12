@@ -20,7 +20,7 @@ class RemoteinfonumbersOnetask {
 
     func record() -> NSMutableDictionary {
         let dict: NSMutableDictionary = [
-            "transferredNumber": self.transferredNumber ?? "",
+            DictionaryStrings.transferredNumber.rawValue: self.transferredNumber ?? "",
             "transferredNumberSizebytes": self.transferredNumberSizebytes ?? "",
             "totalNumber": self.totalNumber ?? "",
             "totalNumberSizebytes": self.totalNumberSizebytes ?? "",
@@ -34,7 +34,7 @@ class RemoteinfonumbersOnetask {
 
     func recordremotenumbers(index: Int) -> NSMutableDictionary {
         let dict: NSMutableDictionary = [
-            "transferredNumber": self.transferredNumber ?? "",
+            DictionaryStrings.transferredNumber.rawValue: self.transferredNumber ?? "",
             "transferredNumberSizebytes": self.transferredNumberSizebytes ?? "",
             "totalNumber": self.totalNumber ?? "",
             "totalNumberSizebytes": self.totalNumberSizebytes ?? "",

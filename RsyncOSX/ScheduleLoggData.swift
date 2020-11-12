@@ -60,8 +60,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                             DictionaryStrings.deleteCellID.rawValue: self.loggdata?[j].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int ?? 0,
                             DictionaryStrings.hiddenID.rawValue: hiddenID,
                             DictionaryStrings.snapCellID.rawValue: 0,
-                            "parent": i,
-                            "sibling": j,
+                            DictionaryStrings.parent.rawValue: i,
+                            DictionaryStrings.sibling.rawValue: j,
                         ]
                         data.append(logdetail)
                     }
@@ -75,8 +75,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     }
 
     let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in
-        if number1?.value(forKey: "sibling") as? Int == number2?.value(forKey: "sibling") as? Int,
-           number1?.value(forKey: "parent") as? Int == number2?.value(forKey: "parent") as? Int
+        if number1?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int,
+           number1?.value(forKey: DictionaryStrings.parent.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.parent.rawValue) as? Int
         {
             return true
         } else {

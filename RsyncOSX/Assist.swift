@@ -33,27 +33,27 @@ final class Assist {
 
     private func readassist(assist: [NSDictionary]?) {
         for i in 0 ..< (assist?.count ?? 0) {
-            if let remotecomputers = assist?[i].value(forKey: "remotecomputers") as? String {
+            if let remotecomputers = assist?[i].value(forKey: DictionaryStrings.remotecomputers.rawValue) as? String {
                 if self.remotecomputers == nil {
                     self.remotecomputers = Set<String>()
                 }
                 self.remotecomputers?.insert(remotecomputers)
-            } else if let remoteusers = assist?[i].value(forKey: "remoteusers") as? String {
+            } else if let remoteusers = assist?[i].value(forKey: DictionaryStrings.remoteusers.rawValue) as? String {
                 if self.remoteusers == nil {
                     self.remoteusers = Set<String>()
                 }
                 self.remoteusers?.insert(remoteusers)
-            } else if let remotehome = assist?[i].value(forKey: "remotehome") as? String {
+            } else if let remotehome = assist?[i].value(forKey: DictionaryStrings.remotehome.rawValue) as? String {
                 if self.remotehome == nil {
                     self.remotehome = Set<String>()
                 }
                 self.remotehome?.insert(remotehome)
-            } else if let catalogs = assist?[i].value(forKey: "catalogs") as? String {
+            } else if let catalogs = assist?[i].value(forKey: DictionaryStrings.catalogs.rawValue) as? String {
                 if self.catalogs == nil {
                     self.catalogs = Set<String>()
                 }
                 self.catalogs?.insert(catalogs)
-            } else if let localhome = assist?[i].value(forKey: "localhome") as? String {
+            } else if let localhome = assist?[i].value(forKey: DictionaryStrings.localhome.rawValue) as? String {
                 if self.localhome == nil {
                     self.localhome = Set<String>()
                 }

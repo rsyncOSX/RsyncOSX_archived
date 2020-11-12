@@ -20,35 +20,35 @@ struct ConvertAssist {
             case 0:
                 for val in assistassets![0] {
                     let dict: NSDictionary = [
-                        "remotecomputers": val,
+                        DictionaryStrings.remotecomputers.rawValue: val,
                     ]
                     self.assist?.append(dict)
                 }
             case 1:
                 for val in assistassets![1] {
                     let dict: NSDictionary = [
-                        "remoteusers": val,
+                        DictionaryStrings.remoteusers.rawValue: val,
                     ]
                     self.assist?.append(dict)
                 }
             case 2:
                 for val in assistassets![2] {
                     let dict: NSDictionary = [
-                        "remotehome": val,
+                        DictionaryStrings.remotehome.rawValue: val,
                     ]
                     self.assist?.append(dict)
                 }
             case 3:
                 for val in assistassets![3] {
                     let dict: NSDictionary = [
-                        "catalogs": val,
+                        DictionaryStrings.catalogs.rawValue: val,
                     ]
                     self.assist?.append(dict)
                 }
             case 4:
                 for val in assistassets![4] {
                     let dict: NSDictionary = [
-                        "localhome": val,
+                        DictionaryStrings.localhome.rawValue: val,
                     ]
                     self.assist?.append(dict)
                 }

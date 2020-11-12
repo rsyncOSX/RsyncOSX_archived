@@ -55,7 +55,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     func selectalltaskswithnumbers(deselect: Bool) {
         guard self.records != nil else { return }
         for i in 0 ..< (self.records?.count ?? 0) {
-            let number = (self.records![i].value(forKey: "transferredNumber") as? String) ?? "0"
+            let number = (self.records![i].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String) ?? "0"
             let delete = (self.records![i].value(forKey: "deletefiles") as? String) ?? "0"
             if Int(number) ?? 0 > 0 || Int(delete) ?? 0 > 0 {
                 if deselect {

@@ -109,7 +109,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             self.localtotalNumber.stringValue = (infodictes[0].value(forKey: "totalNumber") as? String) ?? ""
             self.localtotalNumberSizebytes.stringValue = (infodictes[0].value(forKey: "totalNumberSizebytes") as? String) ?? ""
             self.localtotalDirs.stringValue = (infodictes[0].value(forKey: "totalDirs") as? String) ?? ""
-            self.transferredNumber.stringValue = (infodictes[1].value(forKey: "transferredNumber") as? String) ?? ""
+            self.transferredNumber.stringValue = (infodictes[1].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String) ?? ""
             self.transferredNumberSizebytes.stringValue = (infodictes[1].value(forKey: "transferredNumberSizebytes") as? String) ?? ""
             self.totalNumber.stringValue = (infodictes[1].value(forKey: "totalNumber") as? String) ?? ""
             self.totalNumberSizebytes.stringValue = (infodictes[1].value(forKey: "totalNumberSizebytes") as? String) ?? ""

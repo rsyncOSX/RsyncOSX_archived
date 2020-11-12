@@ -470,4 +470,30 @@ enum DictionaryStrings: String {
     case avail
     case availpercent
     case deleteCellID
+    case remotecomputers
+    case remoteusers
+    case remotehome
+    case catalogs
+    case localhome
+    case transferredNumber
+    case sibling
+    case parent
+    case timetostart
+    case start
 }
+
+/*
+ case "snapshotCatalog"
+ case "days"
+ case "totalNumber"
+ case "totalDirs"
+ case DictionaryStrings.transferredNumber.rawValue
+ case "transferredNumberSizebytes"
+ case "totalNumberSizebytes"
+ case "newfiles"
+ case "deletefiles"
+ case "select"
+ case "startsin"
+ case "stopCellID"
+ case "delta"
+ */

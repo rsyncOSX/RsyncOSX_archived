@@ -170,7 +170,7 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
         guard row < (self.remoteinfotask!.records?.count)! else { return nil }
         let object: NSDictionary = (self.remoteinfotask?.records?[row])!
         switch tableColumn!.identifier.rawValue {
-        case "transferredNumber":
+        case DictionaryStrings.transferredNumber.rawValue:
             let celltext = object[tableColumn!.identifier] as? String
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
         case "transferredNumberSizebytes":
