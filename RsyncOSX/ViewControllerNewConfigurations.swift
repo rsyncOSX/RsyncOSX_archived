@@ -187,12 +187,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             DictionaryStrings.offsiteCatalog.rawValue: offsiteCatalog.stringValue,
             DictionaryStrings.offsiteServer.rawValue: offsiteServer.stringValue,
             DictionaryStrings.offsiteUsername.rawValue: offsiteUsername.stringValue,
-            "parameter1": self.archive,
-            "parameter2": self.verbose,
-            "parameter3": self.compress,
-            "parameter4": self.delete,
-            "parameter5": self.eparam,
-            "parameter6": self.ssh,
+            DictionaryStrings.parameter1.rawValue: self.archive,
+            DictionaryStrings.parameter2.rawValue: self.verbose,
+            DictionaryStrings.parameter3.rawValue: self.compress,
+            DictionaryStrings.parameter4.rawValue: self.delete,
+            DictionaryStrings.parameter5.rawValue: self.eparam,
+            DictionaryStrings.parameter6.rawValue: self.ssh,
             "dryrun": self.dryrun,
             DictionaryStrings.dateRun.rawValue: "",
         ]
@@ -223,7 +223,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             } else {
                 dict.setObject(0, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
             }
-            dict.setObject(self.pretask.stringValue, forKey: "pretask" as NSCopying)
+            dict.setObject(self.pretask.stringValue, forKey: DictionaryStrings.pretask.rawValue as NSCopying)
         } else {
             dict.setObject(0, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
         }
@@ -234,7 +234,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             } else {
                 dict.setObject(0, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
             }
-            dict.setObject(self.pretask.stringValue, forKey: "posttask" as NSCopying)
+            dict.setObject(self.pretask.stringValue, forKey: DictionaryStrings.posttask.rawValue as NSCopying)
         } else {
             dict.setObject(0, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
         }

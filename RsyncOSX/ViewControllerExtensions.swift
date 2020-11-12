@@ -431,4 +431,23 @@ enum DictionaryStrings: String {
     case runDateCellID
     case haltshelltasksonerror
     case taskCellID
+    case parameter1
+    case parameter2
+    case parameter3
+    case parameter4
+    case parameter5
+    case parameter6
+    case parameter8
+    case parameter9
+    case parameter10
+    case parameter11
+    case parameter12
+    case parameter13
+    case parameter14
+    case rsyncdaemon
+    case sshport
+    case snaplast
+    case sshkeypathandidentityfile
+    case pretask
+    case posttask
 }

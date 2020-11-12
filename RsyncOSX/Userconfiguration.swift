@@ -98,10 +98,10 @@ struct Userconfiguration {
                 ViewControllerReference.shared.haltonerror = false
             }
         }
-        if let sshkeypathandidentityfile = dict.value(forKey: "sshkeypathandidentityfile") as? String {
+        if let sshkeypathandidentityfile = dict.value(forKey: DictionaryStrings.sshkeypathandidentityfile.rawValue) as? String {
             ViewControllerReference.shared.sshkeypathandidentityfile = sshkeypathandidentityfile
         }
-        if let sshport = dict.value(forKey: "sshport") as? Int {
+        if let sshport = dict.value(forKey: DictionaryStrings.sshport.rawValue) as? Int {
             ViewControllerReference.shared.sshport = sshport
         }
         if let monitornetworkconnection = dict.value(forKey: "monitornetworkconnection") as? Int {
