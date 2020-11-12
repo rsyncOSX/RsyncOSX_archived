@@ -450,4 +450,6 @@ enum DictionaryStrings: String {
     case sshkeypathandidentityfile
     case pretask
     case posttask
+    case executed
+    case offsiteserver
 }

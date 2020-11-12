@@ -24,7 +24,7 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
         var schedule = [ConfigurationSchedule]()
         guard self.schedulesasdictionary != nil else { return nil }
         for dict in self.schedulesasdictionary! {
-            if let log = dict.value(forKey: "executed") {
+            if let log = dict.value(forKey: DictionaryStrings.executed.rawValue) {
                 let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
                 schedule.append(conf)
             } else {

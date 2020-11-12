@@ -14,7 +14,7 @@ struct TransformSchedulefromJSON {
         var log: [Any]?
         let dict: NSMutableDictionary = [
             DictionaryStrings.hiddenID.rawValue: object.hiddenID ?? -1,
-            DictionaryStrings.offsiteServer.rawValue: object.offsiteserver ?? "",
+            DictionaryStrings.offsiteserver.rawValue: object.offsiteserver ?? "",
             DictionaryStrings.dateStart.rawValue: object.dateStart ?? "",
             DictionaryStrings.schedule.rawValue: object.schedule ?? "",
             "profilename": object.profilename ?? "",
