@@ -34,7 +34,7 @@ struct Dateandtime {
             result = String(format: "%.0f", hr) + " " + NSLocalizedString("hours", comment: "datetime")
                 + String(format: "%.0f", min) + " " + "mins"
         } else {
-            result = String(format: "%.0f", hr / 24) + " " + NSLocalizedString("days", comment: "datetime")
+            result = String(format: "%.0f", hr / 24) + " " + NSLocalizedString(DictionaryStrings.days.rawValue, comment: "datetime")
         }
         if secf <= 0 {
             result = "... working ..."

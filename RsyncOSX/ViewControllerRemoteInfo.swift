@@ -130,7 +130,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     }
 
     private func dobackups() -> [NSMutableDictionary]? {
-        let backup = self.remoteinfotask?.records?.filter { $0.value(forKey: "select") as? Int == 1 }
+        let backup = self.remoteinfotask?.records?.filter { $0.value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 }
         return backup
     }
 
@@ -173,16 +173,16 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
         case DictionaryStrings.transferredNumber.rawValue:
             let celltext = object[tableColumn!.identifier] as? String
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-        case "transferredNumberSizebytes":
+        case DictionaryStrings.transferredNumberSizebytes.rawValue:
             let celltext = object[tableColumn!.identifier] as? String
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-        case "newfiles":
+        case DictionaryStrings.newfiles.rawValue:
             let celltext = object[tableColumn!.identifier] as? String
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-        case "deletefiles":
+        case DictionaryStrings.deletefiles.rawValue:
             let celltext = object[tableColumn!.identifier] as? String
             return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-        case "select":
+        case DictionaryStrings.select.rawValue:
             return object[tableColumn!.identifier] as? Int
         default:
             return object[tableColumn!.identifier] as? String
@@ -192,10 +192,10 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
     // Toggling selection
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard self.remoteinfotask?.records != nil else { return }
-        if tableColumn!.identifier.rawValue == "select" {
-            var select: Int = self.remoteinfotask?.records![row].value(forKey: "select") as? Int ?? 0
+        if tableColumn!.identifier.rawValue == DictionaryStrings.select.rawValue {
+            var select: Int = self.remoteinfotask?.records![row].value(forKey: DictionaryStrings.select.rawValue) as? Int ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            self.remoteinfotask?.records![row].setValue(select, forKey: "select")
+            self.remoteinfotask?.records![row].setValue(select, forKey: DictionaryStrings.select.rawValue)
         }
         self.enableexecutebutton()
     }

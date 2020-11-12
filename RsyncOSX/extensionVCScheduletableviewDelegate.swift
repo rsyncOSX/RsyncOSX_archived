@@ -69,13 +69,13 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                                 let taskintime: String? = self.sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
                                 return taskintime ?? ""
                             }
-                        case "delta":
+                        case DictionaryStrings.delta.rawValue:
                             let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0 {
                                 if (delta?.count ?? 0) > 1 {
-                                    return (delta?[0].value(forKey: "delta") as? String ?? "") + "+"
+                                    return (delta?[0].value(forKey: DictionaryStrings.delta.rawValue) as? String ?? "") + "+"
                                 } else {
-                                    return delta?[0].value(forKey: "delta") as? String
+                                    return delta?[0].value(forKey: DictionaryStrings.delta.rawValue) as? String
                                 }
                             }
                         default:
@@ -107,7 +107,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                             } else {
                                 return nil
                             }
-                        case "stopCellID", DictionaryStrings.deleteCellID.rawValue:
+                        case DictionaryStrings.stopCellID.rawValue, DictionaryStrings.deleteCellID.rawValue:
                             return object[tableColumn.identifier] as? Int
                         case DictionaryStrings.schedule.rawValue:
                             switch object[tableColumn.identifier] as? String {
@@ -151,7 +151,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         case "inCellID":
                             let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0, row < (delta?.count ?? 0) {
-                                return delta?[row].value(forKey: "startsin")
+                                return delta?[row].value(forKey: DictionaryStrings.startsin.rawValue)
                             } else {
                                 return ""
                             }
@@ -168,14 +168,14 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
     }
 
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        if tableColumn!.identifier.rawValue == "stopCellID" || tableColumn!.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {
-            var stop: Int = (self.scheduledetails![row].value(forKey: "stopCellID") as? Int)!
+        if tableColumn!.identifier.rawValue == DictionaryStrings.stopCellID.rawValue || tableColumn!.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {
+            var stop: Int = (self.scheduledetails![row].value(forKey: DictionaryStrings.stopCellID.rawValue) as? Int)!
             var delete: Int = (self.scheduledetails![row].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int)!
             if stop == 0 { stop = 1 } else if stop == 1 { stop = 0 }
             if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
             switch tableColumn!.identifier.rawValue {
-            case "stopCellID":
-                self.scheduledetails![row].setValue(stop, forKey: "stopCellID")
+            case DictionaryStrings.stopCellID.rawValue:
+                self.scheduledetails![row].setValue(stop, forKey: DictionaryStrings.stopCellID.rawValue)
             case DictionaryStrings.deleteCellID.rawValue:
                 self.scheduledetails![row].setValue(delete, forKey: DictionaryStrings.deleteCellID.rawValue)
             default:

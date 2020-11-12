@@ -127,17 +127,17 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
         // calculate delta time
         guard (self.sortedschedules?.count ?? 0) > 1 else { return }
         let timestring = Dateandtime()
-        self.sortedschedules?[0].setValue(timestring.timestring(seconds: 0), forKey: "delta")
+        self.sortedschedules?[0].setValue(timestring.timestring(seconds: 0), forKey: DictionaryStrings.delta.rawValue)
         if let timetostart = self.sortedschedules?[0].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
-            self.sortedschedules?[0].setValue(timestring.timestring(seconds: timetostart), forKey: "startsin")
+            self.sortedschedules?[0].setValue(timestring.timestring(seconds: timetostart), forKey: DictionaryStrings.startsin.rawValue)
         }
         self.sortedschedules?[0].setValue(0, forKey: "queuenumber")
         for i in 1 ..< (self.sortedschedules?.count ?? 0) {
             if let t1 = self.sortedschedules?[i - 1].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
                 if let t2 = self.sortedschedules?[i].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
-                    self.sortedschedules?[i].setValue(timestring.timestring(seconds: t2 - t1), forKey: "delta")
+                    self.sortedschedules?[i].setValue(timestring.timestring(seconds: t2 - t1), forKey: DictionaryStrings.delta.rawValue)
                     self.sortedschedules?[i].setValue(i, forKey: "queuenumber")
-                    self.sortedschedules?[i].setValue(timestring.timestring(seconds: t2), forKey: "startsin")
+                    self.sortedschedules?[i].setValue(timestring.timestring(seconds: t2), forKey: DictionaryStrings.startsin.rawValue)
                 }
             }
         }

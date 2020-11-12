@@ -21,26 +21,26 @@ class RemoteinfonumbersOnetask {
     func record() -> NSMutableDictionary {
         let dict: NSMutableDictionary = [
             DictionaryStrings.transferredNumber.rawValue: self.transferredNumber ?? "",
-            "transferredNumberSizebytes": self.transferredNumberSizebytes ?? "",
-            "totalNumber": self.totalNumber ?? "",
-            "totalNumberSizebytes": self.totalNumberSizebytes ?? "",
-            "totalDirs": self.totalDirs ?? "",
-            "newfiles": self.newfiles ?? "",
+            DictionaryStrings.transferredNumberSizebytes.rawValue: self.transferredNumberSizebytes ?? "",
+            DictionaryStrings.totalNumber.rawValue: self.totalNumber ?? "",
+            DictionaryStrings.totalNumberSizebytes.rawValue: self.totalNumberSizebytes ?? "",
+            DictionaryStrings.totalDirs.rawValue: self.totalDirs ?? "",
+            DictionaryStrings.newfiles.rawValue: self.newfiles ?? "",
         ]
-        dict.setValue(self.deletefiles ?? "", forKey: "deletefiles")
-        dict.setValue(0, forKey: "select")
+        dict.setValue(self.deletefiles ?? "", forKey: DictionaryStrings.deletefiles.rawValue)
+        dict.setValue(0, forKey: DictionaryStrings.select.rawValue)
         return dict
     }
 
     func recordremotenumbers(index: Int) -> NSMutableDictionary {
         let dict: NSMutableDictionary = [
             DictionaryStrings.transferredNumber.rawValue: self.transferredNumber ?? "",
-            "transferredNumberSizebytes": self.transferredNumberSizebytes ?? "",
-            "totalNumber": self.totalNumber ?? "",
-            "totalNumberSizebytes": self.totalNumberSizebytes ?? "",
-            "totalDirs": self.totalDirs ?? "",
-            "newfiles": self.newfiles ?? "",
-            "deletefiles": self.deletefiles ?? "",
+            DictionaryStrings.transferredNumberSizebytes.rawValue: self.transferredNumberSizebytes ?? "",
+            DictionaryStrings.totalNumber.rawValue: self.totalNumber ?? "",
+            DictionaryStrings.totalNumberSizebytes.rawValue: self.totalNumberSizebytes ?? "",
+            DictionaryStrings.totalDirs.rawValue: self.totalDirs ?? "",
+            DictionaryStrings.newfiles.rawValue: self.newfiles ?? "",
+            DictionaryStrings.deletefiles.rawValue: self.deletefiles ?? "",
             "index": index,
         ]
         return dict

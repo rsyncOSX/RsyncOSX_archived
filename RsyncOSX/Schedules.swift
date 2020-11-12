@@ -83,7 +83,7 @@ class Schedules: ScheduleWriteLoggData {
                 let row: NSMutableDictionary = [
                     DictionaryStrings.dateStart.rawValue: allschedulesonetask?[i].dateStart ?? "",
                     "dayinweek": allschedulesonetask?[i].dateStart.en_us_date_from_string().dayNameShort() ?? "",
-                    "stopCellID": 0,
+                    DictionaryStrings.stopCellID.rawValue: 0,
                     DictionaryStrings.deleteCellID.rawValue: 0,
                     DictionaryStrings.dateStop.rawValue: "",
                     DictionaryStrings.schedule.rawValue: allschedulesonetask?[i].schedule ?? "",
@@ -96,7 +96,7 @@ class Schedules: ScheduleWriteLoggData {
                     row.setValue(allschedulesonetask?[i].dateStop, forKey: DictionaryStrings.dateStop.rawValue)
                 }
                 if allschedulesonetask?[i].schedule == Scheduletype.stopped.rawValue {
-                    row.setValue(1, forKey: "stopCellID")
+                    row.setValue(1, forKey: DictionaryStrings.stopCellID.rawValue)
                 }
                 data.append(row)
             }
@@ -118,7 +118,7 @@ class Schedules: ScheduleWriteLoggData {
     func deleteandstopschedules(data: [NSMutableDictionary]?) {
         var update: Bool = false
         if (data?.count ?? 0) > 0 {
-            if let stop = data?.filter({ (($0.value(forKey: "stopCellID") as? Int) == 1) }) {
+            if let stop = data?.filter({ (($0.value(forKey: DictionaryStrings.stopCellID.rawValue) as? Int) == 1) }) {
                 // Stop Schedules
                 if stop.count > 0 {
                     update = true

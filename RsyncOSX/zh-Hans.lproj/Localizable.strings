@@ -75,7 +75,7 @@
 "Date last synchronize:" = "自上次同步以来的天数：";
 
 /* datetime */
-"days" = "天";
+DictionaryStrings.days.rawValue = "天";
 
 /* Remote Info */
 "Days since last synchronize:" = "自上次同步以来的天数：";

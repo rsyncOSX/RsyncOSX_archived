@@ -56,12 +56,12 @@ final class RemoteinfoEstimation: SetConfigurations {
         guard self.records != nil else { return }
         for i in 0 ..< (self.records?.count ?? 0) {
             let number = (self.records![i].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String) ?? "0"
-            let delete = (self.records![i].value(forKey: "deletefiles") as? String) ?? "0"
+            let delete = (self.records![i].value(forKey: DictionaryStrings.deletefiles.rawValue) as? String) ?? "0"
             if Int(number) ?? 0 > 0 || Int(delete) ?? 0 > 0 {
                 if deselect {
-                    self.records![i].setValue(0, forKey: "select")
+                    self.records![i].setValue(0, forKey: DictionaryStrings.select.rawValue)
                 } else {
-                    self.records![i].setValue(1, forKey: "select")
+                    self.records![i].setValue(1, forKey: DictionaryStrings.select.rawValue)
                 }
             }
         }
@@ -78,7 +78,7 @@ final class RemoteinfoEstimation: SetConfigurations {
         guard self.records != nil else { return }
         self.configurations?.quickbackuplist = [Int]()
         for i in 0 ..< (self.records?.count ?? 0) {
-            if self.records![i].value(forKey: "select") as? Int == 1 {
+            if self.records![i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
                 self.configurations?.quickbackuplist?.append((self.records![i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
             }
         }

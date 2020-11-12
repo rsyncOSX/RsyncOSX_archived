@@ -480,20 +480,20 @@ enum DictionaryStrings: String {
     case parent
     case timetostart
     case start
+    case snapshotCatalog
+    case days
+    case totalNumber
+    case totalDirs
+    case transferredNumberSizebytes
+    case totalNumberSizebytes
+    case newfiles
+    case deletefiles
+    case select
+    case startsin
+    case stopCellID
+    case delta
 }
 
 /*
- case "snapshotCatalog"
- case "days"
- case "totalNumber"
- case "totalDirs"
- case DictionaryStrings.transferredNumber.rawValue
- case "transferredNumberSizebytes"
- case "totalNumberSizebytes"
- case "newfiles"
- case "deletefiles"
- case "select"
- case "startsin"
- case "stopCellID"
- case "delta"
+ 
  */

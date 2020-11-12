@@ -75,7 +75,7 @@
 "Date last synchronize:" = "Data ultima sincronizzazione:";
 
 /* datetime */
-"days" = "giorni";
+DictionaryStrings.days.rawValue = "giorni";
 
 /* Remote Info */
 "Days since last synchronize:" = "Giorni dall'ultima sincronizzazione:";
