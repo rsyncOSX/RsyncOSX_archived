@@ -27,8 +27,6 @@ protocol SingleTaskProcess: AnyObject {
     func terminateProgressProcess()
     func seterrorinfo(info: String)
     func setNumbers(outputprocess: OutputProcess?)
-    func gettransferredNumber() -> String
-    func gettransferredNumberSizebytes() -> String
 }
 
 final class SingleTask: SetSchedules, SetConfigurations {

@@ -70,14 +70,4 @@ extension ViewControllerMain: SingleTaskProcess {
             self.deletefiles.stringValue = remoteinfotask.deletefiles!
         }
     }
-
-    // Returns number set from dryrun to use in logging run
-    // after a real run. Logging is in newSingleTask object.
-    func gettransferredNumber() -> String {
-        return self.transferredNumber.stringValue
-    }
-
-    func gettransferredNumberSizebytes() -> String {
-        return self.transferredNumberSizebytes.stringValue
-    }
 }
