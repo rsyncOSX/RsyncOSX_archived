@@ -2,6 +2,7 @@
 
 RsyncOSX require macOS Catalina 10.15 or later versions of macOS.
 
+![](images/main1.png)
 ![](images/main2.png)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
 - [Dependencies](#dependencies)
