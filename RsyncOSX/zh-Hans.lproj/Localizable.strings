@@ -74,9 +74,6 @@
 /* Remote Info */
 "Date last synchronize:" = "自上次同步以来的天数：";
 
-/* datetime */
-DictionaryStrings.days.rawValue = "天";
-
 /* Remote Info */
 "Days since last synchronize:" = "自上次同步以来的天数：";
 
@@ -189,7 +186,7 @@ DictionaryStrings.days.rawValue = "天";
 /* plan */
 "last" = "最后一个";
 
-/* Profile */
+/* No comment provided by engineer. */
 "Load" = "负载";
 
 /* Remote info
@@ -296,7 +293,6 @@ DictionaryStrings.days.rawValue = "天";
 "Saturday" = "周六";
 
 /* Logg
-   Profile
    Userconfig */
 "Save" = "保存";
 

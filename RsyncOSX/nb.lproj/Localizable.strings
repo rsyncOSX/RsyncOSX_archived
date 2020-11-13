@@ -74,9 +74,6 @@
 /* Remote Info */
 "Date last synchronize:" = "Dato siste synkronisering:";
 
-/* datetime */
-DictionaryStrings.days.rawValue = "dager";
-
 /* Remote Info */
 "Days since last synchronize:" = "Dager siden sist synkronisering:";
 
@@ -189,7 +186,7 @@ DictionaryStrings.days.rawValue = "dager";
 /* plan */
 "last" = "siste";
 
-/* Profile */
+/* No comment provided by engineer. */
 "Load" = "Last";
 
 /* Remote info
@@ -296,7 +293,6 @@ DictionaryStrings.days.rawValue = "dager";
 "Saturday" = "lørdag";
 
 /* Logg
-   Profile
    Userconfig */
 "Save" = "Lagre";
 

@@ -662,7 +662,7 @@
 "Gw5-qa-AvW.title" = "Tabelweergavecel";
 
 /* Class = "NSMenuItem"; title = "Check synchronized"; ObjectID = "gwI-oo-PuE"; */
-"gwI-oo-PuE.title" = "Check synchronized";
+"gwI-oo-PuE.title" = "Controleer gesynchroniseerd";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "GZS-gl-N62"; */
 "GZS-gl-N62.title" = "Text Cell";
