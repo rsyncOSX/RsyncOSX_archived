@@ -151,7 +151,7 @@ DictionaryStrings.days.rawValue = "tage";
 "Friday" = "Freitag";
 
 /* german */
-"German translation by: Andre Voigtmann" = "Deutsche Übersetzung von: Andre";
+"German translation by: Andre Voigtmann" = "Deutsche Übersetzung von: Andre Voigtmann";
 
 /* Restore */
 "Getting info, please wait..." = "Info wird abgerufen, bitte warten...";
