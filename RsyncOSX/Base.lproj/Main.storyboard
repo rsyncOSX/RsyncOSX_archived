@@ -1009,7 +1009,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="839" minWidth="40" maxWidth="1000" id="wh3-18-AJ4">
+                                                <tableColumn width="810" minWidth="40" maxWidth="1000" id="wh3-18-AJ4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Output">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1022,7 +1022,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="outputID" id="19R-gb-VcL">
-                                                            <rect key="frame" x="1" y="1" width="848" height="17"/>
+                                                            <rect key="frame" x="11" y="1" width="819" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4iQ-TL-PRC">
@@ -1544,7 +1544,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteServerCellID" width="78" minWidth="40" maxWidth="1000" id="CiR-sD-XpQ" userLabel="server">
+                                                <tableColumn identifier="offsiteServerCellID" width="49" minWidth="40" maxWidth="1000" id="CiR-sD-XpQ" userLabel="server">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Remote server">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1620,7 +1620,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="files" width="456" minWidth="40" maxWidth="1000" id="cKa-xb-U4B" userLabel="files">
+                                                <tableColumn identifier="files" width="427" minWidth="40" maxWidth="1000" id="cKa-xb-U4B" userLabel="files">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Select file or catalog to restore (and double click to copy in one go)">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1633,11 +1633,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="h6c-WS-8eq">
-                                                            <rect key="frame" x="1" y="1" width="465" height="17"/>
+                                                            <rect key="frame" x="11" y="1" width="436" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2rB-k2-TH5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="465" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="436" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="aHy-27-4y5">
                                                                         <font key="font" metaFont="system"/>
@@ -1731,7 +1731,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="lBq-Ag-Kd8">
-                                                            <rect key="frame" x="1" y="1" width="69" height="20"/>
+                                                            <rect key="frame" x="11" y="1" width="69" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v8z-0D-6oJ">
@@ -1763,7 +1763,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="tch-c1-OKf">
-                                                            <rect key="frame" x="73" y="1" width="59" height="20"/>
+                                                            <rect key="frame" x="83" y="1" width="59" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vWA-zP-NHF">
@@ -1795,7 +1795,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Irb-YI-yNf">
-                                                            <rect key="frame" x="135" y="1" width="172" height="20"/>
+                                                            <rect key="frame" x="145" y="1" width="172" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAo-QI-TSm">
@@ -1827,7 +1827,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gja-8Y-Qy8">
-                                                            <rect key="frame" x="310" y="1" width="177" height="20"/>
+                                                            <rect key="frame" x="320" y="1" width="177" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmP-H2-sqH">
@@ -1846,7 +1846,7 @@ DQ
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteServerCellID" width="76" minWidth="40" maxWidth="1000" id="pZb-i1-xyG" userLabel="server">
+                                                <tableColumn identifier="offsiteServerCellID" width="47" minWidth="40" maxWidth="1000" id="pZb-i1-xyG" userLabel="server">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Remote server">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1859,11 +1859,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="hfF-Nn-XRQ">
-                                                            <rect key="frame" x="490" y="1" width="80" height="20"/>
+                                                            <rect key="frame" x="500" y="1" width="51" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tB2-EV-EQv">
-                                                                    <rect key="frame" x="0.0" y="3" width="80" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="3" width="51" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="mEQ-aD-Owg">
                                                                         <font key="font" metaFont="system"/>
@@ -1936,7 +1936,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fm0-Sw-gRd">
-                                            <rect key="frame" x="393" y="23.5" width="149" height="18"/>
+                                            <rect key="frame" x="393" y="24" width="149" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Select tmp" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Rfo-bd-8hM">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2650,7 +2650,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="numberoflogs" width="55" minWidth="10" maxWidth="3.4028234663852886e+38" id="BrN-3s-w3t">
+                                                <tableColumn identifier="numberoflogs" width="26" minWidth="10" maxWidth="3.4028234663852886e+38" id="BrN-3s-w3t">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Logs">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3027,7 +3027,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="backupID" width="63.4453125" minWidth="10" maxWidth="3.4028234663852886e+38" id="E9g-tP-EaI" userLabel="ID">
+                                                <tableColumn identifier="backupID" width="34.4453125" minWidth="10" maxWidth="3.4028234663852886e+38" id="E9g-tP-EaI" userLabel="ID">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="ID">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3242,7 +3242,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="outputID" width="642" minWidth="40" maxWidth="1000" id="DDM-6v-WfN">
+                                                <tableColumn identifier="outputID" width="613" minWidth="40" maxWidth="1000" id="DDM-6v-WfN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Information">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -3255,11 +3255,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Rx7-Ga-8Rx">
-                                                            <rect key="frame" x="1" y="1" width="651" height="19"/>
+                                                            <rect key="frame" x="11" y="1" width="622" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ncN-gb-Z9j">
-                                                                    <rect key="frame" x="0.0" y="1" width="649" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="620" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="tnf-Zx-OML"/>
                                                                     </constraints>
@@ -4803,7 +4803,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="outputID" width="748" minWidth="40" maxWidth="1000" id="302-lC-sbl">
+                                                <tableColumn identifier="outputID" width="719" minWidth="40" maxWidth="1000" id="302-lC-sbl">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="All output">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -4816,11 +4816,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="TbX-Z5-nMb">
-                                                            <rect key="frame" x="1" y="1" width="757" height="17"/>
+                                                            <rect key="frame" x="11" y="1" width="728" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fcB-nT-bXg">
-                                                                    <rect key="frame" x="0.0" y="1" width="757" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="728" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Y5P-iP-A70">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -5284,7 +5284,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="profilesID" width="182" minWidth="40" maxWidth="1000" id="241-VI-fhB">
+                                                <tableColumn identifier="profilesID" width="153" minWidth="40" maxWidth="1000" id="241-VI-fhB">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Double click to select or Default">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -5297,7 +5297,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="sBn-4Y-0C1">
-                                                            <rect key="frame" x="1" y="1" width="191" height="17"/>
+                                                            <rect key="frame" x="11" y="1" width="162" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIA-Cj-xjk">
@@ -5947,7 +5947,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteServerCellID" width="124.8515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="T8X-dP-h3a" userLabel="Offsite server">
+                                                <tableColumn identifier="offsiteServerCellID" width="95.8515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="T8X-dP-h3a" userLabel="Offsite server">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote server">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6032,7 +6032,7 @@ DQ
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="outputID" width="642" minWidth="40" maxWidth="1000" id="Icw-Qm-VbA">
+                                                <tableColumn identifier="outputID" width="613" minWidth="40" maxWidth="1000" id="Icw-Qm-VbA">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="files copied">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -6045,7 +6045,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="8z5-ja-oKQ">
-                                                            <rect key="frame" x="1" y="1" width="651" height="18"/>
+                                                            <rect key="frame" x="11" y="1" width="622" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1i-BI-qBc">
