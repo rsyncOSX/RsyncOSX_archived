@@ -94,10 +94,6 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
         //
     }
 
-    func complete() {
-        //
-    }
-
     func stop() {
         weak var openDelegate: OpenQuickBackup?
         if (self.presentingViewController as? ViewControllerMain) != nil {

@@ -76,7 +76,6 @@ final class ViewControllerReference {
     var minimumlogging: Bool = false
     var fulllogging: Bool = false
     var logname: String = "rsynclog.txt"
-    var fileURL: URL?
     // String tasks
     var synchronize: String = "synchronize"
     var snapshot: String = "snapshot"
@@ -153,8 +152,6 @@ final class ViewControllerReference {
     private var viewControllerEstimatingTasks: NSViewController?
     // Local and remote info
     private var viewControllerInfoLocalRemote: NSViewController?
-    // Verify
-    private var viewControllerVerify: NSViewController?
     // Alloutput
     private var viewControllerAlloutput: NSViewController?
     // Edit

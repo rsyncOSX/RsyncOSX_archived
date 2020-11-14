@@ -23,7 +23,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
 
     private var remoteinfotask: RemoteinfoEstimation?
     weak var remoteinfotaskDelegate: SetRemoteInfo?
-    var selected: Bool = false
     var loaded: Bool = false
     var diddissappear: Bool = false
 
@@ -224,11 +223,6 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
         self.progress.isHidden = true
         self.count.stringValue = NSLocalizedString("Estimation completed", comment: "Remote info") + "..."
         self.count.textColor = setcolor(nsviewcontroller: self, color: .green)
-        self.selected = true
         self.enableexecutebutton()
-    }
-
-    func complete() {
-        //
     }
 }

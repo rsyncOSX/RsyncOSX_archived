@@ -10,10 +10,6 @@
 import Cocoa
 import Foundation
 
-protocol GetSource: AnyObject {
-    func getSourceindex(index: Int)
-}
-
 protocol Updateremotefilelist: AnyObject {
     func updateremotefilelist()
 }
