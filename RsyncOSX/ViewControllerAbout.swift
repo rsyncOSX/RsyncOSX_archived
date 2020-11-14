@@ -33,7 +33,6 @@ class ViewControllerAbout: NSViewController {
     var dutchstring: String = NSLocalizedString("Dutch translation by: Marcellino Santoso", comment: "ducth")
 
     var resource: Resources?
-    var outputprocess: OutputProcess?
 
     @IBAction func changelog(_: NSButton) {
         if let resource = self.resource {

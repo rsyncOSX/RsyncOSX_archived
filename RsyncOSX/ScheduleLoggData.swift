@@ -26,7 +26,6 @@ enum Sortandfilter {
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     var loggdata: [NSMutableDictionary]?
-    private var scheduleConfiguration: [ConfigurationSchedule]?
 
     func filter(search: String?, filterby: Sortandfilter?) {
         globalDefaultQueue.async { () -> Void in

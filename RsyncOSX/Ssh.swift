@@ -71,11 +71,6 @@ class Ssh: Catalogsandfiles {
         process.executeProcess(outputprocess: self.outputprocess)
     }
 
-    // get output
-    func getOutput() -> [String]? {
-        return self.outputprocess?.getOutput()
-    }
-
     init(outputprocess: OutputProcess?,
          processtermination: @escaping () -> Void,
          filehandler: @escaping () -> Void)

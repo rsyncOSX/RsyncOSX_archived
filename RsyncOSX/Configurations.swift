@@ -181,12 +181,6 @@ class Configurations: ReloadTable, SetSchedules {
         return allarguments?.verify ?? []
     }
 
-    // Function is adding new Configurations to existing in memory.
-    func appendconfigurationstomemory(dict: NSDictionary) {
-        let config = Configuration(dictionary: dict)
-        self.configurations?.append(config)
-    }
-
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
         let hiddenID = self.gethiddenID(index: index)

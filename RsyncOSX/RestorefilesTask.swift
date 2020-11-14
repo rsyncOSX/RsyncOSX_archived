@@ -11,7 +11,6 @@ import Foundation
 
 final class RestorefilesTask: SetConfigurations {
     private var config: Configuration?
-    private var commandDisplay: String?
     var process: RsyncProcessCmdClosure?
     var outputprocess: OutputProcess?
     weak var sendprocess: SendOutputProcessreference?
@@ -19,14 +18,6 @@ final class RestorefilesTask: SetConfigurations {
     // Process termination and filehandler closures
     var processtermination: () -> Void
     var filehandler: () -> Void
-
-    func getOutput() -> [String] {
-        return self.outputprocess?.getOutput() ?? []
-    }
-
-    func abort() {
-        self.process?.abortProcess()
-    }
 
     func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool) {
         if let config = self.config {

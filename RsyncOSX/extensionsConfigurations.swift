@@ -12,7 +12,6 @@ import Foundation
 // Protocol for returning object Configurations
 protocol GetConfigurationsObject: AnyObject {
     func getconfigurationsobject() -> Configurations?
-    func createconfigurationsobject(profile: String?) -> Configurations?
     func reloadconfigurationsobject()
     func getschedulesortedandexpanded() -> ScheduleSortedAndExpand?
 }

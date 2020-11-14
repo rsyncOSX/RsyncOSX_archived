@@ -163,10 +163,6 @@ struct Copyconfigfilestonewhome: FileErrors {
         return self.getnewcatalogsasstringnames() == self.getoldcatalogsasstringnames()
     }
 
-    func veriyreadytomoveprofiles() -> Bool {
-        return self.oldprofilecatalogs == self.newprofilecatalogs
-    }
-
     init() {
         ViewControllerReference.shared.usenewconfigpath = false
         let oldfolder = NamesandPaths(profileorsshrootpath: .profileroot)

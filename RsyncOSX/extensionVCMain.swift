@@ -71,6 +71,19 @@ extension ViewControllerMain: NewProfile {
             self.displayProfile()
         }
     }
+
+    func createschedulesobject(profile: String?) -> Schedules? {
+        self.schedules = nil
+        self.schedules = Schedules(profile: profile)
+        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
+        return self.schedules
+    }
+
+    func createconfigurationsobject(profile: String?) -> Configurations? {
+        self.configurations = nil
+        self.configurations = Configurations(profile: profile)
+        return self.configurations
+    }
 }
 
 // Rsync path is changed, update displayed rsync command
@@ -203,12 +216,6 @@ extension ViewControllerMain: GetConfigurationsObject {
         return self.configurations
     }
 
-    func createconfigurationsobject(profile: String?) -> Configurations? {
-        self.configurations = nil
-        self.configurations = Configurations(profile: profile)
-        return self.configurations
-    }
-
     // After a write, a reload is forced.
     func reloadconfigurationsobject() {
         self.createandreloadconfigurations()
@@ -225,13 +232,6 @@ extension ViewControllerMain: GetSchedulesObject {
     }
 
     func getschedulesobject() -> Schedules? {
-        return self.schedules
-    }
-
-    func createschedulesobject(profile: String?) -> Schedules? {
-        self.schedules = nil
-        self.schedules = Schedules(profile: profile)
-        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
         return self.schedules
     }
 }
@@ -395,7 +395,6 @@ extension Checkforrsync {
 protocol StartStopProgressIndicator: AnyObject {
     func start()
     func stop()
-    func complete()
 }
 
 // Protocol for either completion of work or update progress when Process discovers a
