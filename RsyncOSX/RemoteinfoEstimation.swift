@@ -23,7 +23,6 @@ final class RemoteinfoEstimation: SetConfigurations {
     var records: [NSMutableDictionary]?
     // weak var updateprogressDelegate: UpdateProgress?
     var updateviewprocesstermination: () -> Void
-    weak var reloadtableDelegate: Reloadandrefresh?
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     weak var getmultipleselectedindexesDelegate: GetMultipleSelectedIndexes?
     var index: Int?

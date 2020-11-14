@@ -12,7 +12,6 @@ final class RsyncParametersSingleFilesArguments {
     let archive: String = "--archive"
     let verbose: String = "--verbose"
     let compress: String = "--compress"
-    let delete: String = "--delete"
     let eparam: String = "-e"
     let ssh: String = "ssh"
     let sshp: String = "ssh -p"

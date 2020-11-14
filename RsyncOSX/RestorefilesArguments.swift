@@ -17,7 +17,6 @@ enum Enumrestorefiles {
 
 final class RestorefilesArguments {
     private var arguments: [String]?
-    private var argdisplay: String?
 
     func getArguments() -> [String]? {
         return self.arguments
@@ -30,7 +29,6 @@ final class RestorefilesArguments {
             case .rsync:
                 let arguments = RsyncParametersSingleFilesArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
                 self.arguments = arguments.getArguments()
-                self.argdisplay = arguments.getArgumentsDisplay()
             case .rsyncfilelistings:
                 let arguments = GetRemoteFileListingsArguments(config: config, recursive: true)
                 self.arguments = arguments.getArguments()
