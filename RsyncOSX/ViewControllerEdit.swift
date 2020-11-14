@@ -44,10 +44,6 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
         }
     }
 
-    @IBAction func closeview(_: NSButton) {
-        self.view.window?.close()
-    }
-
     // Close and dismiss view
     @IBAction func close(_: NSButton) {
         self.view.window?.close()
