@@ -16,7 +16,6 @@ class Ssh: Catalogsandfiles {
     var commandCopyPasteTerminal: String?
     var rsaStringPath: String?
     // Arrays listing all key files
-    var keyFileURLS: [URL]?
     var keyFileStrings: [String]?
     var argumentsssh: ArgumentsSsh?
     var command: String?
@@ -79,7 +78,6 @@ class Ssh: Catalogsandfiles {
         self.filehandler = filehandler
         super.init(profileorsshrootpath: .sshroot)
         self.outputprocess = outputprocess
-        self.keyFileURLS = self.getcatalogsasURLnames()
         self.keyFileStrings = self.getfilesasstringnames()
         self.createsshkeyrootpath()
     }
