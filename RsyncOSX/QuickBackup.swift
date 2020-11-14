@@ -9,13 +9,6 @@
 
 import Foundation
 
-enum Sort {
-    case localCatalog
-    case offsiteCatalog
-    case offsiteServer
-    case backupId
-}
-
 final class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
     var estimatedlist: [NSDictionary]?
