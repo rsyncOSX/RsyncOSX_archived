@@ -43,8 +43,6 @@ class NamesandPaths {
     var profile: String?
     // task to do
     var task: WhatToReadWrite?
-    // Path for configuration files
-    var filepath: String?
     // Set which file to read
     var filename: String?
     // Documentscatalog
@@ -126,14 +124,12 @@ class NamesandPaths {
             } else {
                 self.filename = (self.documentscatalog ?? "") + config + "/" + profile + plist
             }
-            self.filepath = config + "/" + profile + "/"
         } else {
             if ViewControllerReference.shared.usenewconfigpath == true {
                 self.filename = (self.userHomeDirectoryPath ?? "") + config + plist
             } else {
                 self.filename = (self.documentscatalog ?? "") + config + plist
             }
-            self.filepath = config + "/"
         }
     }
 
