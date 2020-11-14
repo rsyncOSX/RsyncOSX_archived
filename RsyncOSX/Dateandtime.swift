@@ -9,15 +9,6 @@
 import Foundation
 
 struct Dateandtime {
-    // Calculate seconds from now to startdate
-    private func seconds(startdate: Date, enddate: Date?) -> Double {
-        if enddate == nil {
-            return startdate.timeIntervalSinceNow
-        } else {
-            return enddate!.timeIntervalSince(startdate)
-        }
-    }
-
     // Calculation of time to a spesific date
     func timestring(seconds: Double) -> String {
         var result: String?

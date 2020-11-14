@@ -15,7 +15,6 @@ struct DecodeConfigJSON: Codable {
     let haltshelltasksonerror: Int?
     let hiddenID: Int?
     let localCatalog: String?
-    let markdays: Bool?
     let offsiteCatalog: String?
     let offsiteServer: String?
     let offsiteUsername: String?
@@ -50,7 +49,6 @@ struct DecodeConfigJSON: Codable {
         case haltshelltasksonerror
         case hiddenID
         case localCatalog
-        case markdays
         case offsiteCatalog
         case offsiteServer
         case offsiteUsername
@@ -87,7 +85,6 @@ struct DecodeConfigJSON: Codable {
         haltshelltasksonerror = try values.decodeIfPresent(Int.self, forKey: .haltshelltasksonerror)
         hiddenID = try values.decodeIfPresent(Int.self, forKey: .hiddenID)
         localCatalog = try values.decodeIfPresent(String.self, forKey: .localCatalog)
-        markdays = try values.decodeIfPresent(Bool.self, forKey: .markdays)
         offsiteCatalog = try values.decodeIfPresent(String.self, forKey: .offsiteCatalog)
         offsiteServer = try values.decodeIfPresent(String.self, forKey: .offsiteServer)
         offsiteUsername = try values.decodeIfPresent(String.self, forKey: .offsiteUsername)
