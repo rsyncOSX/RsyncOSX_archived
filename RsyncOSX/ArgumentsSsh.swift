@@ -20,7 +20,6 @@ final class ArgumentsSsh: SetConfigurations {
     private var args: [String]?
     private var command: String?
     private var globalsshkeypathandidentityfile: String?
-    private var globalsshport: String?
 
     // Set parameters for ssh-copy-id for copy public ssh key to server
     // ssh-address = "backup@server.com"
@@ -96,8 +95,5 @@ final class ArgumentsSsh: SetConfigurations {
             self.config = self.configurations?.getConfigurations()?[self.configurations?.getIndex(hiddenID) ?? -1]
         }
         self.globalsshkeypathandidentityfile = sshkeypathandidentityfile ?? ""
-        if let sshport = ViewControllerReference.shared.sshport {
-            self.globalsshport = String(sshport)
-        }
     }
 }
