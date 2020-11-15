@@ -118,6 +118,6 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     init(profile: String?) {
         self.profile = profile
-        self.schedules = [ConfigurationSchedule]()
+        self.schedules = nil
     }
 }

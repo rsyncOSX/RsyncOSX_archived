@@ -15,7 +15,7 @@ class ConfigurationsXCTEST: Configurations {
         self.configurations?.append(config)
     }
 
-    override func readconfigurationsplist() {
+    func readconfigurationsplist() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store = PersistentStorageConfiguration(profile: self.profile, readonly: true).configurationsasdictionary
         for i in 0 ..< (store?.count ?? 0) {

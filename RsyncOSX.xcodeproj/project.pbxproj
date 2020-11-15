@@ -110,6 +110,8 @@
 		E97BC78B24FED4D30098447F /* ViewControllerMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97BC78A24FED4D30098447F /* ViewControllerMove.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
 		E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */; };
+		E989E51E256197C3007A0F7B /* ConfigurationsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989E51D256197C3007A0F7B /* ConfigurationsData.swift */; };
+		E989E524256197D9007A0F7B /* SchedulesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989E523256197D9007A0F7B /* SchedulesData.swift */; };
 		E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF115249E23E100FD4669 /* NetworkMonitor.swift */; };
 		E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994B7C922A39D7A00B435AB /* Environment.swift */; };
 		E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E996431B231AEFA100E05B40 /* ViewControllerSource.swift */; };
@@ -293,6 +295,8 @@
 		E97BC78A24FED4D30098447F /* ViewControllerMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMove.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullrestoreTask.swift; sourceTree = "<group>"; };
+		E989E51D256197C3007A0F7B /* ConfigurationsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsData.swift; sourceTree = "<group>"; };
+		E989E523256197D9007A0F7B /* SchedulesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesData.swift; sourceTree = "<group>"; };
 		E98EF115249E23E100FD4669 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E994B7C922A39D7A00B435AB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		E996431B231AEFA100E05B40 /* ViewControllerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSource.swift; sourceTree = "<group>"; };
@@ -662,6 +666,7 @@
 		E90E51051F47094800B71F0F /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
+				E989E51C25619795007A0F7B /* Data */,
 				E95ECA59254C176D00EFDBB4 /* PLIST */,
 				E91E44D1253F08BD00E74150 /* JSON */,
 				A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */,
@@ -833,6 +838,15 @@
 				E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */,
 			);
 			name = QuickbackupOperation;
+			sourceTree = "<group>";
+		};
+		E989E51C25619795007A0F7B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E989E51D256197C3007A0F7B /* ConfigurationsData.swift */,
+				E989E523256197D9007A0F7B /* SchedulesData.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		E99AEC701FF8BBA40004992B /* Userconfiguration */ = {
@@ -1119,6 +1133,7 @@
 				E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */,
 				A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */,
 				E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */,
+				E989E51E256197C3007A0F7B /* ConfigurationsData.swift in Sources */,
 				E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */,
 				E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */,
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
@@ -1216,6 +1231,7 @@
 				E9E3C81724FAAA3E00FFDE00 /* Neworoldprofilepath.swift in Sources */,
 				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
 				E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */,
+				E989E524256197D9007A0F7B /* SchedulesData.swift in Sources */,
 				E9F068F21F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift in Sources */,
 				E9C77993253ADF1000642E90 /* DecodeConfigJSON.swift in Sources */,
 				E9F332B425406B6400BA322D /* ConfigurationsXCTESTJSON.swift in Sources */,

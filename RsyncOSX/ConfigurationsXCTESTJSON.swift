@@ -15,7 +15,7 @@ class ConfigurationsXCTESTJSON: Configurations {
         self.configurations?.append(config)
     }
 
-    override func readconfigurationsjson() {
+    func readconfigurationsjson() {
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         let store = PersistentStorageConfigurationJSON(profile: self.profile, readonly: true).decodedjson
         let transform = TransformConfigfromJSON()
