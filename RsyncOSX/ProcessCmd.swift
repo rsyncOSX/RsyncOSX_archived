@@ -92,11 +92,6 @@ class ProcessCmd: Delay {
         }
     }
 
-    // Terminate Process, used when user Aborts task.
-    func abortProcess() {
-        _ = InterruptProcess()
-    }
-
     init(command: String?, arguments: [String]?) {
         self.command = command
         self.arguments = arguments

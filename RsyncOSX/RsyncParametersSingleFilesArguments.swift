@@ -19,7 +19,6 @@ final class RsyncParametersSingleFilesArguments {
 
     private var config: Configuration?
     private var args: [String]?
-    private var argDisplay: String?
 
     // Set parameters for rsync
     private func arguments(remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
@@ -59,23 +58,8 @@ final class RsyncParametersSingleFilesArguments {
         }
     }
 
-    private func argumentstodisplay() {
-        self.argDisplay = Getrsyncpath().rsyncpath ?? "" + " "
-        for i in 0 ..< (self.args?.count ?? 0) {
-            if i == 1, self.config?.sshport != nil {
-                self.argDisplay = (self.argDisplay ?? "") + "\"" + (self.args?[i] ?? "") + "\"  "
-            } else {
-                self.argDisplay = (self.argDisplay ?? "") + (self.args?[i] ?? "") + " "
-            }
-        }
-    }
-
     func getArguments() -> [String]? {
         return self.args
-    }
-
-    func getArgumentsDisplay() -> String? {
-        return self.argDisplay
     }
 
     init(config: Configuration?, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
@@ -83,7 +67,6 @@ final class RsyncParametersSingleFilesArguments {
             self.config = config
             self.args = [String]()
             self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
-            self.argumentstodisplay()
         }
     }
 }

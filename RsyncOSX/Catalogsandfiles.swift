@@ -58,27 +58,12 @@ extension ErrorMessage {
         case .json:
             return "JSON error"
         case .readlogfile:
-            return "Empty logfile."
+            return "Empty logfile"
         }
     }
 }
 
 class Catalogsandfiles: NamesandPaths, FileErrors {
-    func getcatalogsasURLnames() -> [URL]? {
-        if let atpath = self.fullroot {
-            do {
-                var array = [URL]()
-                for file in try Folder(path: atpath).files {
-                    array.append(file.url)
-                }
-                return array
-            } catch {
-                return nil
-            }
-        }
-        return nil
-    }
-
     func getfilesasstringnames() -> [String]? {
         if let atpath = self.fullroot {
             do {
