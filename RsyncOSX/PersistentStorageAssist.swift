@@ -31,7 +31,7 @@ final class PersistentStorageAssist: ReadWriteDictionary {
     }
 
     init(assistassets: [Set<String>]?) {
-        super.init(whattoreadwrite: .assist, profile: nil)
+        super.init(profile: nil, whattoreadwrite: .assist)
         self.assist = assistassets
     }
 }

@@ -57,14 +57,14 @@ class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
     }
 
     init(profile: String?) {
-        super.init(whattoreadwrite: .configuration, profile: profile)
+        super.init(profile: profile, whattoreadwrite: .configuration)
         if self.configurations == nil {
             self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
         }
     }
 
     init(profile: String?, readonly: Bool) {
-        super.init(whattoreadwrite: .configuration, profile: profile)
+        super.init(profile: profile, whattoreadwrite: .configuration)
         if readonly == true {
             self.configurationsasdictionary = self.readNSDictionaryFromPersistentStore()
         } else {

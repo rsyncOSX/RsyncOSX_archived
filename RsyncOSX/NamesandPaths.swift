@@ -161,7 +161,7 @@ class NamesandPaths {
         self.setrootpath()
     }
 
-    init(whattoreadwrite: WhatToReadWrite, profile: String?) {
+    init(profile: String?, whattoreadwrite: WhatToReadWrite) {
         self.configpath = Configpath().configpath
         self.profile = profile
         self.setpreferencesforreadingplist(whattoreadwrite: whattoreadwrite)

@@ -71,14 +71,14 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
     }
 
     init(profile: String?) {
-        super.init(whattoreadwrite: .schedule, profile: profile)
+        super.init(profile: profile, whattoreadwrite: .schedule)
         if self.schedules == nil {
             self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
         }
     }
 
     init(profile: String?, readonly: Bool) {
-        super.init(whattoreadwrite: .schedule, profile: profile)
+        super.init(profile: profile, whattoreadwrite: .schedule)
         if readonly == true {
             self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
         } else {
