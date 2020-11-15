@@ -124,30 +124,6 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
         XCTAssertEqual("11t 59m", schedulesortedandexpanded.sortandcountscheduledonetask(1, profilename: nil, number: true), "11t 59m")
     }
 
-    func testaddconfig() {
-        _ = Selectprofile(profile: "XCTest", selectedindex: nil)
-        let dict: NSMutableDictionary = [
-            DictionaryStrings.task.rawValue: ViewControllerReference.shared.snapshot,
-            DictionaryStrings.backupID.rawValue: DictionaryStrings.backupID.rawValue,
-            DictionaryStrings.localCatalog.rawValue: DictionaryStrings.localCatalog.rawValue,
-            DictionaryStrings.offsiteCatalog.rawValue: DictionaryStrings.offsiteCatalog.rawValue,
-            // DictionaryStrings.offsiteServer.rawValue: DictionaryStrings.offsiteServer.rawValue,
-            // DictionaryStrings.offsiteUsername.rawValue: DictionaryStrings.offsiteUsername.rawValue,
-            DictionaryStrings.parameter1.rawValue: DictionaryStrings.parameter1.rawValue,
-            DictionaryStrings.parameter2.rawValue: DictionaryStrings.parameter2.rawValue,
-            DictionaryStrings.parameter3.rawValue: DictionaryStrings.parameter3.rawValue,
-            DictionaryStrings.parameter4.rawValue: DictionaryStrings.parameter4.rawValue,
-            DictionaryStrings.parameter5.rawValue: DictionaryStrings.parameter5.rawValue,
-            DictionaryStrings.parameter6.rawValue: DictionaryStrings.parameter6.rawValue,
-            "dryrun": "dryrun",
-            DictionaryStrings.dateRun.rawValue: "",
-        ]
-        dict.setValue(1, forKey: DictionaryStrings.snapshotnum.rawValue)
-        configurations?.addNewConfigurations(dict: dict)
-        let count = configurations?.getConfigurations()?.count
-        XCTAssertEqual(count, 5, "Should be equal to 5")
-    }
-
     func testreorgschedulesbefore() {
         ViewControllerReference.shared.temporarypathforrestore = "/temporaryrestore"
         ViewControllerReference.shared.checkinput = false
