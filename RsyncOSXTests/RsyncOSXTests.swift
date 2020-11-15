@@ -125,13 +125,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
     }
 
     func testaddconfig() {
-        var configurations: Configurations?
-        // Local snapshot only, if not connected no snapshot task
-        if ViewControllerReference.shared.json {
-            configurations = ConfigurationsXCTESTJSON(profile: "XCTest")
-        } else {
-            configurations = ConfigurationsXCTEST(profile: "XCTest")
-        }
+        _ = Selectprofile(profile: "XCTest", selectedindex: nil)
         let dict: NSMutableDictionary = [
             DictionaryStrings.task.rawValue: ViewControllerReference.shared.snapshot,
             DictionaryStrings.backupID.rawValue: DictionaryStrings.backupID.rawValue,
