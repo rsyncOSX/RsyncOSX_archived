@@ -15,7 +15,6 @@ import Foundation
 struct ArgumentsOneConfiguration {
     var arg: [String]?
     var argdryRun: [String]?
-    // var argDisplay: [String]?
     var argdryRunDisplay: [String]?
     var argdryRunLocalcatalogInfo: [String]?
     // Restore
