@@ -72,9 +72,13 @@ class ReadWriteJSON: NamesandPaths, FileErrors {
         return nil
     }
 
-    init(profile: String?, filename: String?) {
+    override init(profile: String?, whattoreadwrite: WhatToReadWrite) {
         super.init(profileorsshrootpath: .profileroot)
-        self.filename = filename
+        if whattoreadwrite == .configuration {
+            self.filename = ViewControllerReference.shared.fileconfigurationsjson
+        } else {
+            self.filename = ViewControllerReference.shared.fileschedulesjson
+        }
         self.profile = profile
     }
 }

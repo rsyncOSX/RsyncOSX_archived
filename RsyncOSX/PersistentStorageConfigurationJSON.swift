@@ -75,7 +75,7 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
     }
 
     init(profile: String?) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
+        super.init(profile: profile, whattoreadwrite: .configuration)
         self.profile = profile
         if self.configurations == nil {
             self.JSONFromPersistentStore()
@@ -83,7 +83,7 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
     }
 
     init(profile: String?, readonly: Bool) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileconfigurationsjson)
+        super.init(profile: profile, whattoreadwrite: .configuration)
         self.profile = profile
         if readonly {
             self.JSONFromPersistentStore()

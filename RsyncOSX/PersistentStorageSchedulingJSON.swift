@@ -82,7 +82,7 @@ class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
     }
 
     init(profile: String?) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
+        super.init(profile: profile, whattoreadwrite: .schedule)
         self.profile = profile
         if self.schedules == nil {
             self.JSONFromPersistentStore()
@@ -90,7 +90,7 @@ class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
     }
 
     init(profile: String?, readonly: Bool) {
-        super.init(profile: profile, filename: ViewControllerReference.shared.fileschedulesjson)
+        super.init(profile: profile, whattoreadwrite: .schedule)
         self.profile = profile
         if readonly {
             self.JSONFromPersistentStore()
