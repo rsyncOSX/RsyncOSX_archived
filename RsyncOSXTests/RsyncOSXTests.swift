@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 25/06/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length trailing_comma
+// swiftlint:disable line_length
 
 @testable import RsyncOSX
 import XCTest

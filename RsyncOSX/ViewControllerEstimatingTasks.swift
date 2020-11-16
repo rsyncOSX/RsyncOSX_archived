@@ -17,10 +17,6 @@ protocol CountRemoteEstimatingNumberoftasks: AnyObject {
 }
 
 class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations, SetDismisser {
-    var count: Double = 0
-    var maxcount: Double = 0
-    var calculatedNumberOfFiles: Int?
-
     weak var countDelegate: CountRemoteEstimatingNumberoftasks?
     private var remoteinfotask: RemoteinfoEstimation?
     var diddissappear: Bool = false
