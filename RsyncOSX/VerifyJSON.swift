@@ -24,14 +24,19 @@ class VerifyJSON {
     var verifysched: Bool?
     // reload
     weak var reloadDelegate: Reloadandrefresh?
+    // valid hiddenIDS
+    var validplisthiddenID: Set<Int>?
+    var validjsonhiddenID: Set<Int>?
 
     func readschedulesplist() {
         var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(nolog: false)
         var data = [ConfigurationSchedule]()
         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
             store?[i].profilename = self.profile
-            if let store = store?[i] {
-                data.append(store)
+            if let store = store?[i], let validplisthiddenID = self.validplisthiddenID {
+                if validplisthiddenID.contains(store.hiddenID) {
+                    data.append(store)
+                }
             }
         }
         // Sorting schedule after hiddenID
@@ -53,6 +58,7 @@ class VerifyJSON {
                 let config = Configuration(dictionary: dict)
                 if ViewControllerReference.shared.synctasks.contains(config.task) {
                     configurations.append(config)
+                    self.validplisthiddenID?.insert(config.hiddenID)
                 }
             }
         }
@@ -62,13 +68,15 @@ class VerifyJSON {
     func readschedulesJSON() {
         let store = PersistentStorageSchedulingJSON(profile: self.profile, readonly: true)
         self.jsonschedules = store.decodedjson as? [DecodeScheduleJSON]
-        if let jsonschedules = self.jsonschedules {
+        if let jsonschedules = self.jsonschedules, let validjsonhiddenID = self.validjsonhiddenID {
             self.transformedschedules = [ConfigurationSchedule]()
             let transform = TransformSchedulefromJSON()
             for i in 0 ..< jsonschedules.count {
                 var transformed = transform.transform(object: jsonschedules[i])
                 transformed.profilename = self.profile
-                self.transformedschedules?.append(transformed)
+                if validjsonhiddenID.contains(transformed.hiddenID) {
+                    self.transformedschedules?.append(transformed)
+                }
             }
         }
     }
@@ -170,6 +178,8 @@ class VerifyJSON {
 
     init(profile: String?) {
         self.profile = profile
+        self.validjsonhiddenID = Set()
+        self.validplisthiddenID = Set()
         self.readschedulesplist()
         self.readconfigurationsplist()
         self.readschedulesJSON()
