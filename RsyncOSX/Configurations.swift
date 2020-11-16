@@ -316,6 +316,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     init(profile: String?) {
+        self.profile = profile
         self.configurations = nil
         self.argumentAllConfigurations = nil
         self.configurationsDataSource = nil
