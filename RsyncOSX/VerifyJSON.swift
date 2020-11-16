@@ -50,21 +50,6 @@ class VerifyJSON {
         self.plistschedules = data
     }
 
-    func readconfigurationsplist() {
-        let store = PersistentStorageConfiguration(profile: self.profile, readonly: true).configurationsasdictionary
-        var configurations = [Configuration]()
-        for i in 0 ..< (store?.count ?? 0) {
-            if let dict = store?[i] {
-                let config = Configuration(dictionary: dict)
-                if ViewControllerReference.shared.synctasks.contains(config.task) {
-                    configurations.append(config)
-                    self.validplisthiddenID?.insert(config.hiddenID)
-                }
-            }
-        }
-        self.plistconfigurations = configurations
-    }
-
     func readschedulesJSON() {
         let store = PersistentStorageSchedulingJSON(profile: self.profile, readonly: true)
         self.jsonschedules = store.decodedjson as? [DecodeScheduleJSON]
@@ -81,6 +66,21 @@ class VerifyJSON {
         }
     }
 
+    func readconfigurationsplist() {
+        let store = PersistentStorageConfiguration(profile: self.profile, readonly: true).configurationsasdictionary
+        var configurations = [Configuration]()
+        for i in 0 ..< (store?.count ?? 0) {
+            if let dict = store?[i] {
+                let config = Configuration(dictionary: dict)
+                if ViewControllerReference.shared.synctasks.contains(config.task) {
+                    configurations.append(config)
+                    self.validplisthiddenID?.insert(config.hiddenID)
+                }
+            }
+        }
+        self.plistconfigurations = configurations
+    }
+
     func readconfigurationsJSON() {
         let store = PersistentStorageConfigurationJSON(profile: self.profile, readonly: true)
         self.jsonconfigurations = store.decodedjson as? [DecodeConfigJSON]
@@ -91,6 +91,7 @@ class VerifyJSON {
                 let transformed = transform.transform(object: jsonconfigurations[i])
                 if ViewControllerReference.shared.synctasks.contains(transformed.task) {
                     self.transformedconfigurations?.append(transformed)
+                    self.validjsonhiddenID?.insert(transformed.hiddenID)
                 }
             }
         }
@@ -180,10 +181,12 @@ class VerifyJSON {
         self.profile = profile
         self.validjsonhiddenID = Set()
         self.validplisthiddenID = Set()
-        self.readschedulesplist()
-        self.readconfigurationsplist()
-        self.readschedulesJSON()
+        // Configurations
         self.readconfigurationsJSON()
+        self.readconfigurationsplist()
+        // Schedules
+        self.readschedulesJSON()
+        self.readschedulesplist()
         self.verifyconfigurations()
         self.verifyschedules()
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcalloutput) as? ViewControllerAllOutput {
