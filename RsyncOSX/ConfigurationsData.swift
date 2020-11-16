@@ -16,6 +16,8 @@ final class ConfigurationsData {
     var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // Datasource for NSTableViews
     var configurationsDataSource: [NSMutableDictionary]?
+    // valid hiddenIDs
+    var validhiddenID: Set<Int>?
 
     func readconfigurationsplist() {
         let store = PersistentStorageConfiguration(profile: self.profile).configurationsasdictionary
@@ -74,11 +76,17 @@ final class ConfigurationsData {
         self.configurations = nil
         self.argumentAllConfigurations = nil
         self.configurations = [Configuration]()
+        self.validhiddenID = Set()
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
         if ViewControllerReference.shared.json {
             self.readconfigurationsjson()
         } else {
             self.readconfigurationsplist()
+        }
+        for i in 0 ..< (self.configurations?.count ?? 0) {
+            if let hiddenID = self.configurations?[i].hiddenID {
+                self.validhiddenID?.insert(hiddenID)
+            }
         }
     }
 }

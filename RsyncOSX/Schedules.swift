@@ -185,7 +185,8 @@ class Schedules: ScheduleWriteLoggData {
     override init(profile: String?) {
         super.init(profile: profile)
         self.profile = profile
-        let schedulesdata = SchedulesData(profile: profile)
+        let schedulesdata = SchedulesData(profile: profile,
+                                          validhiddenID: self.configurations?.validhiddenID)
         self.schedules = schedulesdata.schedules
     }
 }

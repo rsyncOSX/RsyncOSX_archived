@@ -34,6 +34,8 @@ class Configurations: ReloadTable, SetSchedules {
     var remoteinfoestimation: RemoteinfoEstimation?
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
+    // valid hiddenIDs
+    var validhiddenID: Set<Int>?
 
     // Variable computes max hiddenID used
     // MaxhiddenID is used when new configurations are added.
@@ -322,6 +324,7 @@ class Configurations: ReloadTable, SetSchedules {
         self.configurations = configurationsdata.configurations
         self.argumentAllConfigurations = configurationsdata.argumentAllConfigurations
         self.configurationsDataSource = configurationsdata.configurationsDataSource
+        self.validhiddenID = configurationsdata.validhiddenID
         ViewControllerReference.shared.process = nil
     }
 }

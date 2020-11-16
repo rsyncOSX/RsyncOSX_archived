@@ -11,6 +11,7 @@ import Foundation
 final class SchedulesData {
     var schedules: [ConfigurationSchedule]?
     var profile: String?
+    var validhiddenID: Set<Int>?
     // Function for reading all jobs for schedule and all history of past executions.
     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
     func readschedulesplist() {
@@ -19,8 +20,10 @@ final class SchedulesData {
         // var data = [ConfigurationSchedule]()
         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
             store?[i].profilename = self.profile
-            if let store = store?[i] {
-                self.schedules?.append(store)
+            if let store = store?[i], let validhiddenID = self.validhiddenID {
+                if validhiddenID.contains(store.hiddenID) {
+                    self.schedules?.append(store)
+                }
             }
         }
         // Sorting schedule after hiddenID
@@ -40,10 +43,12 @@ final class SchedulesData {
         // var data = [ConfigurationSchedule]()
         let transform = TransformSchedulefromJSON()
         for i in 0 ..< (store?.count ?? 0) {
-            if let scheduleitem = (store?[i] as? DecodeScheduleJSON) {
+            if let scheduleitem = (store?[i] as? DecodeScheduleJSON), let validhiddenID = self.validhiddenID {
                 var transformed = transform.transform(object: scheduleitem)
                 transformed.profilename = self.profile
-                self.schedules?.append(transformed)
+                if validhiddenID.contains(transformed.hiddenID) {
+                    self.schedules?.append(transformed)
+                }
             }
         }
         // Sorting schedule after hiddenID
@@ -56,9 +61,10 @@ final class SchedulesData {
         }
     }
 
-    init(profile: String?) {
+    init(profile: String?, validhiddenID: Set<Int>?) {
         self.profile = profile
         self.schedules = nil
+        self.validhiddenID = validhiddenID
         self.schedules = [ConfigurationSchedule]()
         if ViewControllerReference.shared.json {
             self.readschedulesjson()
