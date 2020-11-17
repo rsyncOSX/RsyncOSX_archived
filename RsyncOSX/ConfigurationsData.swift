@@ -25,9 +25,12 @@ final class ConfigurationsData {
             if let dict = store?[i] {
                 let config = Configuration(dictionary: dict)
                 if ViewControllerReference.shared.synctasks.contains(config.task) {
-                    self.configurations?.append(config)
-                    let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: config)
-                    self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+                    if self.validhiddenID?.contains(config.hiddenID) == false {
+                        self.configurations?.append(config)
+                        let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: config)
+                        self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+                        self.validhiddenID?.insert(config.hiddenID)
+                    }
                 }
             }
         }
@@ -51,9 +54,12 @@ final class ConfigurationsData {
             if let configitem = store?[i] as? DecodeConfigJSON {
                 let transformed = transform.transform(object: configitem)
                 if ViewControllerReference.shared.synctasks.contains(transformed.task) {
-                    self.configurations?.append(transformed)
-                    let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
-                    self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+                    if self.validhiddenID?.contains(transformed.hiddenID) == false {
+                        self.configurations?.append(transformed)
+                        let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
+                        self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+                        self.validhiddenID?.insert(transformed.hiddenID)
+                    }
                 }
             }
         }
@@ -82,11 +88,6 @@ final class ConfigurationsData {
             self.readconfigurationsjson()
         } else {
             self.readconfigurationsplist()
-        }
-        for i in 0 ..< (self.configurations?.count ?? 0) {
-            if let hiddenID = self.configurations?[i].hiddenID {
-                self.validhiddenID?.insert(hiddenID)
-            }
         }
     }
 }
