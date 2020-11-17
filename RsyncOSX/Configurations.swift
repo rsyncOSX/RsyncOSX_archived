@@ -312,8 +312,9 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func increasesnapshotnum(index: Int) {
-        let num = self.configurations?[index].snapshotnum ?? 0
-        self.configurations![index].snapshotnum = num + 1
+        if let num = self.configurations?[index].snapshotnum {
+            self.configurations?[index].snapshotnum = num + 1
+        }
     }
 
     init(profile: String?) {
