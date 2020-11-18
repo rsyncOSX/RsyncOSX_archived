@@ -43,6 +43,8 @@ class PersistentStorageConfiguration: ReadWriteDictionary, SetConfigurations {
                     if answer {
                         self.saveconfigInMemoryToPersistentStore()
                     }
+                } else {
+                    self.saveconfigInMemoryToPersistentStore()
                 }
             } catch {}
         }

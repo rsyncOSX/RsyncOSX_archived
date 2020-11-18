@@ -45,6 +45,7 @@ struct TransformConfigfromJSON {
             "lastruninseconds": lastruninseconds ?? 0,
             "dayssincelastbackup": dayssincelastbackup ?? "",
             DictionaryStrings.markdays.rawValue: markdays,
+            DictionaryStrings.dateRun.rawValue: object.dateRun ?? "",
         ]
         if object.parameter8?.isEmpty == false {
             dict.setObject(object.parameter8 ?? "", forKey: DictionaryStrings.parameter8.rawValue as NSCopying)

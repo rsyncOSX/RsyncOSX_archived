@@ -57,6 +57,8 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
                     if answer {
                         self.savescheduleInMemoryToPersistentStore()
                     }
+                } else {
+                    self.savescheduleInMemoryToPersistentStore()
                 }
             } catch {}
         }
