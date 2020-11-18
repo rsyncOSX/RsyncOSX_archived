@@ -151,6 +151,9 @@ struct Configuration {
         self.parameter6 = dictionary.object(forKey: DictionaryStrings.parameter6.rawValue) as? String ?? ""
         self.offsiteServer = dictionary.object(forKey: DictionaryStrings.offsiteServer.rawValue) as? String ?? ""
         self.backupID = dictionary.object(forKey: DictionaryStrings.backupID.rawValue) as? String ?? ""
+        if self.task == ViewControllerReference.shared.snapshot {
+            self.snapshotnum = dictionary.object(forKey: DictionaryStrings.snapshotnum.rawValue) as? Int
+        }
     }
 }
 
