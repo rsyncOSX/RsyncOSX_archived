@@ -55,7 +55,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             if let config = self.getconfig(hiddenID: hiddenID) {
                 var resultannotaded: String?
                 if config.task == ViewControllerReference.shared.snapshot {
-                    let snapshotnum = String(config.snapshotnum!)
+                    let snapshotnum = String(config.snapshotnum ?? 1)
                     resultannotaded = "(" + snapshotnum + ") " + result
                 } else {
                     resultannotaded = result
