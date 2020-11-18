@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length cyclomatic_complexity trailing_comma
+//  swiftlint:disable function_body_length cyclomatic_complexity trailing_comma line_length
 
 import Cocoa
 import Foundation
