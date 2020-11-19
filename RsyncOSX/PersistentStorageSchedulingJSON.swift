@@ -27,26 +27,26 @@ class PersistentStorageSchedulingJSON: ReadWriteJSON, SetSchedules {
     }
 
     private func createJSONfromstructs(schedules: [ConfigurationSchedule]?) {
-        var structscodable: [CodableSchedule]?
+        var structscodable: [CodableConfigurationSchedule]?
         if schedules == nil {
             if let schedules = self.schedules?.getSchedule() {
-                structscodable = [CodableSchedule]()
+                structscodable = [CodableConfigurationSchedule]()
                 for i in 0 ..< schedules.count {
-                    structscodable?.append(CodableSchedule(schedule: schedules[i]))
+                    structscodable?.append(CodableConfigurationSchedule(schedule: schedules[i]))
                 }
             }
         } else {
             if let schedules = schedules {
-                structscodable = [CodableSchedule]()
+                structscodable = [CodableConfigurationSchedule]()
                 for i in 0 ..< schedules.count {
-                    structscodable?.append(CodableSchedule(schedule: schedules[i]))
+                    structscodable?.append(CodableConfigurationSchedule(schedule: schedules[i]))
                 }
             }
         }
         self.jsonstring = self.encodedata(data: structscodable)
     }
 
-    private func encodedata(data: [CodableSchedule]?) -> String? {
+    private func encodedata(data: [CodableConfigurationSchedule]?) -> String? {
         do {
             let jsonData = try JSONEncoder().encode(data)
             if let jsonString = String(data: jsonData, encoding: .utf8) {

@@ -137,7 +137,7 @@
 		E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A4122353139200BCF1C4 /* ArgumentsVerify.swift */; };
 		E9C6D24120AAB96800B9D212 /* AllProfilenames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* Numbers.swift */; };
-		E9C70CA9253C572E00FC75C6 /* CodableSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C70CA8253C572E00FC75C6 /* CodableSchedule.swift */; };
+		E9C70CA9253C572E00FC75C6 /* CodableConfigurationSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C70CA8253C572E00FC75C6 /* CodableConfigurationSchedule.swift */; };
 		E9C77993253ADF1000642E90 /* DecodeConfigJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C77992253ADF1000642E90 /* DecodeConfigJSON.swift */; };
 		E9CB57F52272FFDD0021FFEF /* ConvertSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */; };
 		E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */; };
@@ -323,7 +323,7 @@
 		E9C4A4122353139200BCF1C4 /* ArgumentsVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsVerify.swift; sourceTree = "<group>"; };
 		E9C6D24020AAB96800B9D212 /* AllProfilenames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProfilenames.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
-		E9C70CA8253C572E00FC75C6 /* CodableSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableSchedule.swift; sourceTree = "<group>"; };
+		E9C70CA8253C572E00FC75C6 /* CodableConfigurationSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableConfigurationSchedule.swift; sourceTree = "<group>"; };
 		E9C77992253ADF1000642E90 /* DecodeConfigJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeConfigJSON.swift; sourceTree = "<group>"; };
 		E9CB57F42272FFDD0021FFEF /* ConvertSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertSchedules.swift; sourceTree = "<group>"; };
 		E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypathidentityfile.swift; sourceTree = "<group>"; };
@@ -784,7 +784,7 @@
 		E989E51C25619795007A0F7B /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				E9C70CA8253C572E00FC75C6 /* CodableSchedule.swift */,
+				E9C70CA8253C572E00FC75C6 /* CodableConfigurationSchedule.swift */,
 				E9FDDED1253CB45800D41FD1 /* DecodeScheduleJSON.swift */,
 				E9FD8683253B799900482DA1 /* CodableConfiguration.swift */,
 				E9C77992253ADF1000642E90 /* DecodeConfigJSON.swift */,
@@ -1103,7 +1103,7 @@
 				E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */,
 				E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */,
-				E9C70CA9253C572E00FC75C6 /* CodableSchedule.swift in Sources */,
+				E9C70CA9253C572E00FC75C6 /* CodableConfigurationSchedule.swift in Sources */,
 				E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */,
 				E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */,
 				E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */,

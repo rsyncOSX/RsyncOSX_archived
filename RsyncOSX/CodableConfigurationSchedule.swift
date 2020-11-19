@@ -13,7 +13,7 @@ struct CodableLogrecords: Codable {
     var resultExecuted: String?
 }
 
-struct CodableSchedule: Codable {
+struct CodableConfigurationSchedule: Codable {
     var hiddenID: Int
     var offsiteserver: String?
     var dateStart: String
