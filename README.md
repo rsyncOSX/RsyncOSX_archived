@@ -1,11 +1,12 @@
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.5.0/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.4.6/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-RsyncOSX require macOS Catalina 10.15 or later versions of macOS.
+RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
 ![](images/main1.png)
 ![](images/main2.png)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
 - [Dependencies](#dependencies)
+- [Tools used](#tools-used)
 - [Scheduling](#scheduling)
 - [Remote servers](#remote-servers)
 - [Signing and notarizing](#signing-and-notarizing)
@@ -46,6 +47,18 @@ All three are available as source code and automatically included as part of bui
 
 Working with JSON require to encode and decode the JSON file. The tool [JSONExport](https://github.com/Ahmed-Ali/JSONExport) is used to create the required Swift structs ([configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeConfigJSON.swift), [schedules and logs](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeScheduleJSON.swift)) for decode JSON file into the approriate Swift structs.
 
+### Tools used
+
+The following tools are used inm development:
+
+- Xcode (the main tool)
+- make to compile new versions in terminal
+- [create-dmg](https://github.com/sindresorhus/create-dmg) to create new releases
+- [periphery](https://github.com/peripheryapp/periphery) to identify unused code
+- [SwiftLint](https://github.com/realm/SwiftLint) to enforce Swift style and conventions
+- [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) for reformatting Swift code
+
+All the above, except Xcode are installed by using [Homebrew](https://brew.sh/).
 
 ### Scheduling
 
