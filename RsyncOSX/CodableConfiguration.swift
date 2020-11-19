@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct ConvertOneConfigCodable: Codable {
+struct CodableConfiguration: Codable {
     var hiddenID: Int
     var task: String
     var localCatalog: String

@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct LogrecordsCodable: Codable {
+struct CodableLogrecords: Codable {
     var dateExecuted: String?
     var resultExecuted: String?
 }
 
-struct ConvertOneScheduleCodable: Codable {
+struct CodableSchedule: Codable {
     var hiddenID: Int
     var offsiteserver: String?
     var dateStart: String
     var dateStop: String?
     var schedule: String
-    var logrecords: [LogrecordsCodable]?
+    var logrecords: [CodableLogrecords]?
     var delete: Bool?
     var profilename: String?
 
@@ -31,9 +31,9 @@ struct ConvertOneScheduleCodable: Codable {
         self.schedule = schedule.schedule
         self.delete = schedule.delete
         self.profilename = schedule.profilename
-        if (schedule.logrecords?.count ?? 0) > 0 { self.logrecords = [LogrecordsCodable]() }
+        if (schedule.logrecords?.count ?? 0) > 0 { self.logrecords = [CodableLogrecords]() }
         for i in 0 ..< (schedule.logrecords?.count ?? 0) {
-            var onelogrecord = LogrecordsCodable()
+            var onelogrecord = CodableLogrecords()
             onelogrecord.dateExecuted = schedule.logrecords?[i].dateExecuted
             onelogrecord.resultExecuted = schedule.logrecords?[i].resultExecuted
             self.logrecords?.append(onelogrecord)

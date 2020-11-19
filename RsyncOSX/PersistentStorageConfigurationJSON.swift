@@ -31,17 +31,17 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
     }
 
     private func createJSONfromstructs() {
-        var structscodable: [ConvertOneConfigCodable]?
+        var structscodable: [CodableConfiguration]?
         if let configurations = self.configurations?.getConfigurations() {
-            structscodable = [ConvertOneConfigCodable]()
+            structscodable = [CodableConfiguration]()
             for i in 0 ..< configurations.count {
-                structscodable?.append(ConvertOneConfigCodable(config: configurations[i]))
+                structscodable?.append(CodableConfiguration(config: configurations[i]))
             }
         }
         self.jsonstring = self.encodedata(data: structscodable)
     }
 
-    private func encodedata(data: [ConvertOneConfigCodable]?) -> String? {
+    private func encodedata(data: [CodableConfiguration]?) -> String? {
         do {
             let jsonData = try JSONEncoder().encode(data)
             if let jsonString = String(data: jsonData, encoding: .utf8) {
