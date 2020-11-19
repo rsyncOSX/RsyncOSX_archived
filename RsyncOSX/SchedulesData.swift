@@ -12,17 +12,46 @@ final class SchedulesData {
     var schedules: [ConfigurationSchedule]?
     var profile: String?
     var validhiddenID: Set<Int>?
-    // Function for reading all jobs for schedule and all history of past executions.
-    // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
+
+    /*
+     // Function for reading all jobs for schedule and all history of past executions.
+     // Schedules are stored in self.schedules. Schedules are sorted after hiddenID.
+     func rreadschedulesplist() {
+         var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(includelog: true)
+         guard store != nil else { return }
+         // var data = [ConfigurationSchedule]()
+         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
+             store?[i].profilename = self.profile
+             if let store = store?[i], let validhiddenID = self.validhiddenID {
+                 if validhiddenID.contains(store.hiddenID) {
+                     self.schedules?.append(store)
+                 }
+             }
+         }
+         // Sorting schedule after hiddenID
+         self.schedules?.sort { (schedule1, schedule2) -> Bool in
+             if schedule1.hiddenID > schedule2.hiddenID {
+                 return false
+             } else {
+                 return true
+             }
+         }
+     }
+     */
     func readschedulesplist() {
-        var store = PersistentStorageScheduling(profile: self.profile).getScheduleandhistory(includelog: true)
-        guard store != nil else { return }
-        // var data = [ConfigurationSchedule]()
-        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
-            store?[i].profilename = self.profile
-            if let store = store?[i], let validhiddenID = self.validhiddenID {
-                if validhiddenID.contains(store.hiddenID) {
-                    self.schedules?.append(store)
+        let store = PersistentStorageScheduling(profile: self.profile).schedulesasdictionary
+        for i in 0 ..< (store?.count ?? 0) {
+            if let dict = store?[i], let validhiddenID = self.validhiddenID {
+                if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
+                    if validhiddenID.contains(hiddenID) {
+                        if let log = dict.value(forKey: DictionaryStrings.executed.rawValue) {
+                            let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, includelog: true)
+                            self.schedules?.append(conf)
+                        } else {
+                            let conf = ConfigurationSchedule(dictionary: dict, log: nil, includelog: true)
+                            self.schedules?.append(conf)
+                        }
+                    }
                 }
             }
         }

@@ -18,23 +18,24 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
     // Variable holds all schedule data from persisten storage
     var schedulesasdictionary: [NSDictionary]?
 
-    // Read schedules and history
-    // If no Schedule from persistent store return nil
-    func getScheduleandhistory(includelog: Bool) -> [ConfigurationSchedule]? {
-        var schedule = [ConfigurationSchedule]()
-        guard self.schedulesasdictionary != nil else { return nil }
-        for dict in self.schedulesasdictionary! {
-            if let log = dict.value(forKey: DictionaryStrings.executed.rawValue) {
-                let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, includelog: includelog)
-                schedule.append(conf)
-            } else {
-                let conf = ConfigurationSchedule(dictionary: dict, log: nil, includelog: includelog)
-                schedule.append(conf)
-            }
-        }
-        return schedule
-    }
-
+    /*
+     // Read schedules and history
+     // If no Schedule from persistent store return nil
+     func getScheduleandhistory(includelog: Bool) -> [ConfigurationSchedule]? {
+         var schedule = [ConfigurationSchedule]()
+         guard self.schedulesasdictionary != nil else { return nil }
+         for dict in self.schedulesasdictionary! {
+             if let log = dict.value(forKey: DictionaryStrings.executed.rawValue) {
+                 let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, includelog: includelog)
+                 schedule.append(conf)
+             } else {
+                 let conf = ConfigurationSchedule(dictionary: dict, log: nil, includelog: includelog)
+                 schedule.append(conf)
+             }
+         }
+         return schedule
+     }
+     */
     // Saving Schedules from MEMORY to persistent store
     func savescheduleInMemoryToPersistentStore() {
         if let dicts: [NSDictionary] = ConvertSchedules(JSON: false).schedules {

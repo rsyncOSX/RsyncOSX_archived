@@ -28,14 +28,44 @@ class VerifyJSON {
     var validplisthiddenID: Set<Int>?
     var validjsonhiddenID: Set<Int>?
 
+    /*
+     func readschedulesplist() {
+         var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(includelog: true)
+         var data = [ConfigurationSchedule]()
+         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
+             store?[i].profilename = self.profile
+             if let store = store?[i], let validplisthiddenID = self.validplisthiddenID {
+                 if validplisthiddenID.contains(store.hiddenID) {
+                     data.append(store)
+                 }
+             }
+         }
+         // Sorting schedule after hiddenID
+         data.sort { (schedule1, schedule2) -> Bool in
+             if schedule1.hiddenID > schedule2.hiddenID {
+                 return false
+             } else {
+                 return true
+             }
+         }
+         self.plistschedules = data
+     }
+     */
     func readschedulesplist() {
-        var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(includelog: true)
+        let store = PersistentStorageScheduling(profile: self.profile).schedulesasdictionary
         var data = [ConfigurationSchedule]()
-        for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
-            store?[i].profilename = self.profile
-            if let store = store?[i], let validplisthiddenID = self.validplisthiddenID {
-                if validplisthiddenID.contains(store.hiddenID) {
-                    data.append(store)
+        for i in 0 ..< (store?.count ?? 0) {
+            if let dict = store?[i], let validplisthiddenID = self.validplisthiddenID {
+                if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
+                    if validplisthiddenID.contains(hiddenID) {
+                        if let log = dict.value(forKey: DictionaryStrings.executed.rawValue) {
+                            let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, includelog: true)
+                            data.append(conf)
+                        } else {
+                            let conf = ConfigurationSchedule(dictionary: dict, log: nil, includelog: true)
+                            data.append(conf)
+                        }
+                    }
                 }
             }
         }
