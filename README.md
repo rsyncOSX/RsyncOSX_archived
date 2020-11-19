@@ -49,7 +49,7 @@ Working with JSON require to encode and decode the JSON file. The tool [JSONExpo
 
 ### Tools used
 
-The following tools are used inm development:
+The following tools are used in development:
 
 - Xcode (the main tool)
 - make to compile new versions in terminal
