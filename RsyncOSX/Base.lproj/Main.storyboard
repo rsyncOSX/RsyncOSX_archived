@@ -99,6 +99,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Connections" keyEquivalent="c" id="d42-5A-02m" userLabel="Info">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="TCP:" target="Ady-hI-5gd" id="PyO-tg-h9Y"/>
                                             </connections>
@@ -116,6 +117,7 @@
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="INC-7u-Mk7"/>
                                         <menuItem title="Verify (JSON)" keyEquivalent="v" id="u9U-bE-I7G" userLabel="Info">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
                                                 <action selector="verifyjson:" target="Ady-hI-5gd" id="ODl-ZP-EtY"/>
                                             </connections>
@@ -143,17 +145,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="5A9-Q1-SN9">
                                     <items>
-                                        <menuItem title="Open" keyEquivalent="o" id="aCU-js-shc">
-                                            <connections>
-                                                <action selector="openDocument:" target="Ady-hI-5gd" id="yYK-Wj-dsy"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="r1N-OS-dMb"/>
-                                        <menuItem title="Cut" keyEquivalent="x" id="Hah-L7-Bvj">
-                                            <connections>
-                                                <action selector="cut:" target="Ady-hI-5gd" id="XZt-rJ-JVm"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Copy" keyEquivalent="c" id="P4M-Uu-xLy">
                                             <connections>
                                                 <action selector="copy:" target="Ady-hI-5gd" id="zDV-AC-YGO"/>
@@ -1936,7 +1927,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fm0-Sw-gRd">
-                                            <rect key="frame" x="393" y="24" width="149" height="17"/>
+                                            <rect key="frame" x="393" y="24.5" width="149" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Select tmp" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Rfo-bd-8hM">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
