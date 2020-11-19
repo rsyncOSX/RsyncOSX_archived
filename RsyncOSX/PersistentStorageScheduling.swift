@@ -81,7 +81,7 @@ class PersistentStorageScheduling: ReadWriteDictionary, SetSchedules {
 
     init(profile: String?, readonly: Bool) {
         super.init(profile: profile, whattoreadwrite: .schedule)
-        if readonly == true {
+        if readonly {
             self.schedulesasdictionary = self.readNSDictionaryFromPersistentStore()
         } else {
             self.writeschedulestostoreasplist()
