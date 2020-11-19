@@ -30,6 +30,6 @@ struct TransformSchedulefromJSON {
             ]
             log?.append(logdict)
         }
-        return ConfigurationSchedule(dictionary: dict as NSDictionary, log: log as NSArray?, nolog: false)
+        return ConfigurationSchedule(dictionary: dict as NSDictionary, log: log as NSArray?, includelog: true)
     }
 }

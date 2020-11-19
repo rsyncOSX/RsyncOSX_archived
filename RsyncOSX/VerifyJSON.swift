@@ -29,7 +29,7 @@ class VerifyJSON {
     var validjsonhiddenID: Set<Int>?
 
     func readschedulesplist() {
-        var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(nolog: false)
+        var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(includelog: true)
         var data = [ConfigurationSchedule]()
         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
             store?[i].profilename = self.profile

@@ -108,7 +108,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     func reloadallprofiles() {
         self.allprofiles = AllConfigurations()
-        self.allschedules = Allschedules(nolog: true)
+        self.allschedules = Allschedules(includelog: false)
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
         self.sortascending = true

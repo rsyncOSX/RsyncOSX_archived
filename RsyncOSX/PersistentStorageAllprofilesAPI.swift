@@ -35,7 +35,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
         return configurations
     }
 
-    func getScheduleandhistory(nolog: Bool) -> [ConfigurationSchedule]? {
+    func getScheduleandhistory(includelog: Bool) -> [ConfigurationSchedule]? {
         var schedule = [ConfigurationSchedule]()
         if ViewControllerReference.shared.json {
             let read = PersistentStorageSchedulingJSON(profile: self.profile)
@@ -52,10 +52,10 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
             guard read.schedulesasdictionary != nil else { return nil }
             for dict in read.schedulesasdictionary! {
                 if let log = dict.value(forKey: DictionaryStrings.executed.rawValue) {
-                    let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, nolog: nolog)
+                    let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, includelog: includelog)
                     schedule.append(conf)
                 } else {
-                    let conf = ConfigurationSchedule(dictionary: dict, log: nil, nolog: nolog)
+                    let conf = ConfigurationSchedule(dictionary: dict, log: nil, includelog: includelog)
                     schedule.append(conf)
                 }
             }

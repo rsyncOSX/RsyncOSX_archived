@@ -43,7 +43,7 @@ class Schedules: ScheduleWriteLoggData {
         default:
             return
         }
-        let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, nolog: true)
+        let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, includelog: false)
         self.schedules?.append(newSchedule)
         if ViewControllerReference.shared.json {
             PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()

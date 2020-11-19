@@ -24,13 +24,13 @@ struct ConfigurationSchedule {
     var delete: Bool?
     var profilename: String?
 
-    init(dictionary: NSDictionary, log: NSArray?, nolog: Bool) {
+    init(dictionary: NSDictionary, log: NSArray?, includelog: Bool) {
         self.hiddenID = dictionary.object(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
         self.dateStart = dictionary.object(forKey: DictionaryStrings.dateStart.rawValue) as? String ?? ""
         self.schedule = dictionary.object(forKey: DictionaryStrings.schedule.rawValue) as? String ?? ""
         self.offsiteserver = dictionary.object(forKey: DictionaryStrings.offsiteserver.rawValue) as? String ?? ""
         if let date = dictionary.object(forKey: DictionaryStrings.dateStop.rawValue) as? String { self.dateStop = date }
-        if log != nil, nolog == false {
+        if log != nil, includelog == true {
             for i in 0 ..< (log?.count ?? 0) {
                 if i == 0 { self.logrecords = [Log]() }
                 var logrecord = Log()
