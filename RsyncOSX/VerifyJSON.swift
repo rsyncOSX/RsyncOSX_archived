@@ -52,7 +52,7 @@ class VerifyJSON {
      }
      */
     func readschedulesplist() {
-        let store = PersistentStorageScheduling(profile: self.profile).schedulesasdictionary
+        let store = PersistentStorageScheduling(profile: self.profile, readonly: true).schedulesasdictionary
         var data = [ConfigurationSchedule]()
         for i in 0 ..< (store?.count ?? 0) {
             if let dict = store?[i], let validplisthiddenID = self.validplisthiddenID {
