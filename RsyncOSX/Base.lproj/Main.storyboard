@@ -6377,31 +6377,31 @@ DQ
                 </viewController>
                 <customObject id="tYc-nC-URw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759.5" y="2787.5"/>
+            <point key="canvasLocation" x="-807" y="2779"/>
         </scene>
         <!--View Controller Remote Info-->
         <scene sceneID="UZZ-3R-We2">
             <objects>
                 <viewController storyboardIdentifier="StoryboardRemoteInfoID" id="X0A-DI-J7J" customClass="ViewControllerRemoteInfo" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="EWA-oR-pUD">
-                        <rect key="frame" x="0.0" y="0.0" width="959" height="322"/>
+                        <rect key="frame" x="0.0" y="0.0" width="992" height="347"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="MXn-RQ-9vD">
-                                <rect key="frame" x="20" y="58" width="919" height="244"/>
+                                <rect key="frame" x="20" y="54" width="952" height="273"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="Tdb-C5-z3M">
-                                    <rect key="frame" x="2" y="2" width="915" height="240"/>
+                                    <rect key="frame" x="2" y="2" width="948" height="269"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="wAF-BP-eeN" id="cdd-YP-oPa">
-                                            <rect key="frame" x="0.0" y="0.0" width="915" height="217"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="948" height="246"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="localCatalog" width="220.47265625" minWidth="40" maxWidth="1000" id="tBD-wX-XO5">
+                                                <tableColumn identifier="localCatalog" width="154.47265625" minWidth="40" maxWidth="1000" id="tBD-wX-XO5">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Local catalog">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -6413,7 +6413,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="select" editable="NO" width="42" minWidth="10" maxWidth="3.4028234663852886e+38" id="zv2-BP-T5J" userLabel="Select">
+                                                <tableColumn identifier="select" editable="NO" width="46" minWidth="10" maxWidth="3.4028234663852886e+38" id="zv2-BP-T5J" userLabel="Select">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Select">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6424,7 +6424,7 @@ DQ
                                                     </buttonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="offsiteCatalog" width="107.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="V8a-eh-20b">
+                                                <tableColumn identifier="offsiteCatalog" width="112.98828125" minWidth="10" maxWidth="3.4028234663852886e+38" id="V8a-eh-20b">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Remote catalog">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6448,7 +6448,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="transferredNumber" width="44" minWidth="10" maxWidth="3.4028234663852886e+38" id="8pt-99-AYJ" userLabel="transferredNumber">
+                                                <tableColumn identifier="transferredNumber" width="53.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="8pt-99-AYJ" userLabel="transferredNumber">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Files ">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6460,7 +6460,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="deletefiles" width="51.58203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="HEg-kc-zdY" userLabel="deletefiles">
+                                                <tableColumn identifier="deletefiles" width="61.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="HEg-kc-zdY" userLabel="deletefiles">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Delete">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6472,7 +6472,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="newfiles" width="41.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="GiH-5F-U37" userLabel="newfiles">
+                                                <tableColumn identifier="newfiles" width="51.58203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="GiH-5F-U37" userLabel="newfiles">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="New">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6484,7 +6484,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="transferredNumberSizebytes" width="69" minWidth="10" maxWidth="3.4028234663852886e+38" id="SWF-DA-TlU" userLabel="transferredNumberSizebytes">
+                                                <tableColumn identifier="transferredNumberSizebytes" width="77.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="SWF-DA-TlU" userLabel="transferredNumberSizebytes">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Size (kB)">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6496,7 +6496,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="totalNumber" width="69" minWidth="10" maxWidth="3.4028234663852886e+38" id="fwm-ch-a0w" userLabel="totalNumber">
+                                                <tableColumn identifier="totalNumber" width="84" minWidth="10" maxWidth="3.4028234663852886e+38" id="fwm-ch-a0w" userLabel="totalNumber">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Total num">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6508,7 +6508,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="totalNumberSizebytes" width="96" minWidth="10" maxWidth="3.4028234663852886e+38" id="zoV-D2-sU8" userLabel="totalNumberSizebytes">
+                                                <tableColumn identifier="totalNumberSizebytes" width="102.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="zoV-D2-sU8" userLabel="totalNumberSizebytes">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Total size (kB)">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6520,7 +6520,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="totalDirs" width="31.08203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Can-2K-epd" userLabel="totalDirs">
+                                                <tableColumn identifier="totalDirs" width="82.58203125" minWidth="10" maxWidth="3.4028234663852886e+38" id="Can-2K-epd" userLabel="totalDirs">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Total dir">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6537,7 +6537,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="tUz-4f-HKr">
-                                    <rect key="frame" x="2" y="9" width="0.0" height="16"/>
+                                    <rect key="frame" x="2" y="255" width="948" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Wq8-8Y-9Sb">
@@ -6545,12 +6545,12 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="wAF-BP-eeN">
-                                    <rect key="frame" x="0.0" y="0.0" width="915" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="948" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wwa-AM-h7f">
-                                <rect key="frame" x="884" y="18" width="40" height="25"/>
+                                <rect key="frame" x="933" y="18" width="40" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SEK-UT-7qI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -6561,7 +6561,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DqZ-XV-BIT">
-                                <rect key="frame" x="839" y="18" width="40" height="25"/>
+                                <rect key="frame" x="888" y="18" width="40" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="batch" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cyu-a4-ZIK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -6596,7 +6596,7 @@ DQ
                 </viewController>
                 <customObject id="EeF-i6-w3M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-627" y="2353"/>
+            <point key="canvasLocation" x="-715" y="2368"/>
         </scene>
         <!--Estimating progress-->
         <scene sceneID="X1y-0Z-sdi">
