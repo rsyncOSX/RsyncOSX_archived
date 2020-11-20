@@ -41,6 +41,7 @@ class VerifyJSON {
                         } else {
                             schedule = ConfigurationSchedule(dictionary: dict, log: nil, includelog: true)
                         }
+                        schedule?.profilename = self.profile
                         if let conf = schedule { schedules.append(conf) }
                     }
                 }

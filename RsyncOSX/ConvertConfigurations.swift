@@ -39,6 +39,9 @@ struct ConvertConfigurations: SetConfigurations {
                 DictionaryStrings.dateRun.rawValue: config.dateRun ?? "",
                 DictionaryStrings.hiddenID.rawValue: config.hiddenID,
             ]
+            if config.profile != nil {
+                dict.setObject(config.profile!, forKey: DictionaryStrings.profile.rawValue as NSCopying)
+            }
             // All parameters parameter8 - parameter14 are set
             config.parameter8 = self.checkparameter(param: config.parameter8)
             if config.parameter8 != nil {
