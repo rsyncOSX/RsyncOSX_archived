@@ -28,56 +28,33 @@ class VerifyJSON {
     var validplisthiddenID: Set<Int>?
     var validjsonhiddenID: Set<Int>?
 
-    /*
-     func readschedulesplist() {
-         var store = PersistentStorageScheduling(profile: self.profile, readonly: true).getScheduleandhistory(includelog: true)
-         var data = [ConfigurationSchedule]()
-         for i in 0 ..< (store?.count ?? 0) where store?[i].logrecords?.isEmpty == false || store?[i].dateStop != nil {
-             store?[i].profilename = self.profile
-             if let store = store?[i], let validplisthiddenID = self.validplisthiddenID {
-                 if validplisthiddenID.contains(store.hiddenID) {
-                     data.append(store)
-                 }
-             }
-         }
-         // Sorting schedule after hiddenID
-         data.sort { (schedule1, schedule2) -> Bool in
-             if schedule1.hiddenID > schedule2.hiddenID {
-                 return false
-             } else {
-                 return true
-             }
-         }
-         self.plistschedules = data
-     }
-     */
     func readschedulesplist() {
         let store = PersistentStorageScheduling(profile: self.profile, readonly: true).schedulesasdictionary
-        var data = [ConfigurationSchedule]()
+        var schedules = [ConfigurationSchedule]()
+        var schedule: ConfigurationSchedule?
         for i in 0 ..< (store?.count ?? 0) {
             if let dict = store?[i], let validplisthiddenID = self.validplisthiddenID {
                 if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                     if validplisthiddenID.contains(hiddenID) {
                         if let log = dict.value(forKey: DictionaryStrings.executed.rawValue) {
-                            let conf = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, includelog: true)
-                            data.append(conf)
+                            schedule = ConfigurationSchedule(dictionary: dict, log: log as? NSArray, includelog: true)
                         } else {
-                            let conf = ConfigurationSchedule(dictionary: dict, log: nil, includelog: true)
-                            data.append(conf)
+                            schedule = ConfigurationSchedule(dictionary: dict, log: nil, includelog: true)
                         }
+                        if let conf = schedule { schedules.append(conf) }
                     }
                 }
             }
         }
         // Sorting schedule after hiddenID
-        data.sort { (schedule1, schedule2) -> Bool in
+        schedules.sort { (schedule1, schedule2) -> Bool in
             if schedule1.hiddenID > schedule2.hiddenID {
                 return false
             } else {
                 return true
             }
         }
-        self.plistschedules = data
+        self.plistschedules = schedules
     }
 
     func readschedulesJSON() {
