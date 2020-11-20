@@ -29,9 +29,6 @@ struct ConfigurationSchedule {
         self.dateStart = dictionary.object(forKey: DictionaryStrings.dateStart.rawValue) as? String ?? ""
         self.schedule = dictionary.object(forKey: DictionaryStrings.schedule.rawValue) as? String ?? ""
         self.offsiteserver = dictionary.object(forKey: DictionaryStrings.offsiteserver.rawValue) as? String ?? ""
-        if let profilename = dictionary.object(forKey: DictionaryStrings.profilename.rawValue) as? String {
-            self.profilename = profilename
-        }
         if let date = dictionary.object(forKey: DictionaryStrings.dateStop.rawValue) as? String { self.dateStop = date }
         if log != nil, includelog == true {
             for i in 0 ..< (log?.count ?? 0) {
@@ -53,8 +50,7 @@ extension ConfigurationSchedule: Hashable, Equatable {
             lhs.dateStart == rhs.dateStart &&
             lhs.schedule == rhs.schedule &&
             lhs.dateStop == rhs.dateStop &&
-            lhs.offsiteserver == rhs.offsiteserver &&
-            lhs.profilename == rhs.profilename
+            lhs.offsiteserver == rhs.offsiteserver
     }
 
     func hash(into hasher: inout Hasher) {
@@ -63,7 +59,6 @@ extension ConfigurationSchedule: Hashable, Equatable {
         hasher.combine(self.schedule)
         hasher.combine(self.dateStop)
         hasher.combine(self.offsiteserver)
-        hasher.combine(self.profilename)
     }
 }
 

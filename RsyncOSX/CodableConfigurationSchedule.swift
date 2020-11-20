@@ -21,7 +21,6 @@ struct CodableConfigurationSchedule: Codable {
     var schedule: String
     var logrecords: [CodableLogrecords]?
     var delete: Bool?
-    var profilename: String?
 
     init(schedule: ConfigurationSchedule) {
         self.hiddenID = schedule.hiddenID
@@ -30,7 +29,6 @@ struct CodableConfigurationSchedule: Codable {
         self.dateStop = schedule.dateStop
         self.schedule = schedule.schedule
         self.delete = schedule.delete
-        self.profilename = schedule.profilename
         if (schedule.logrecords?.count ?? 0) > 0 { self.logrecords = [CodableLogrecords]() }
         for i in 0 ..< (schedule.logrecords?.count ?? 0) {
             var onelogrecord = CodableLogrecords()
