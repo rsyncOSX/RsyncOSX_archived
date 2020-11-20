@@ -32,7 +32,7 @@ class SchedulesXCTEST: Schedules {
         default:
             return
         }
-        let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, includelog: false)
+        let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, includelog: true)
         self.schedules?.append(newSchedule)
     }
 
