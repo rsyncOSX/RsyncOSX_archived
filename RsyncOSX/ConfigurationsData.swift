@@ -20,7 +20,7 @@ final class ConfigurationsData {
     var validhiddenID: Set<Int>?
 
     func readconfigurationsplist() {
-        let store = PersistentStorageConfigurationPlist(profile: self.profile).configurationsasdictionary
+        let store = PersistentStorageConfigurationPLIST(profile: self.profile).configurationsasdictionary
         for i in 0 ..< (store?.count ?? 0) {
             if let dict = store?[i] {
                 var config = Configuration(dictionary: dict)

@@ -498,10 +498,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             }
         } else {
             if let profile = self.configurations?.getProfile() {
-                _ = PersistentStorageConfigurationPlist(profile: profile, readonly: false)
+                _ = PersistentStorageConfigurationPLIST(profile: profile, readonly: false)
                 _ = PersistentStorageSchedulingPLIST(profile: profile, readonly: false)
             } else {
-                _ = PersistentStorageConfigurationPlist(profile: nil, readonly: false)
+                _ = PersistentStorageConfigurationPLIST(profile: nil, readonly: false)
                 _ = PersistentStorageSchedulingPLIST(profile: nil, readonly: false)
             }
         }

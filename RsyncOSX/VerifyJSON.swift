@@ -75,7 +75,7 @@ class VerifyJSON {
     }
 
     func readconfigurationsplist() {
-        let store = PersistentStorageConfigurationPlist(profile: self.profile, readonly: true).configurationsasdictionary
+        let store = PersistentStorageConfigurationPLIST(profile: self.profile, readonly: true).configurationsasdictionary
         var configurations = [Configuration]()
         for i in 0 ..< (store?.count ?? 0) {
             if let dict = store?[i] {

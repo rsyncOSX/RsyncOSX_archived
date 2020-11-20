@@ -25,7 +25,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
                 }
             }
         } else {
-            let read = PersistentStorageConfigurationPlist(profile: self.profile, readonly: true)
+            let read = PersistentStorageConfigurationPLIST(profile: self.profile, readonly: true)
             guard read.configurationsasdictionary != nil else { return nil }
             for dict in read.configurationsasdictionary! {
                 let conf = Configuration(dictionary: dict)

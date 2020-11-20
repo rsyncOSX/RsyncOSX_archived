@@ -197,7 +197,7 @@ class Configurations: ReloadTable, SetSchedules {
         if ViewControllerReference.shared.json {
             PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
         } else {
-            PersistentStorageConfigurationPlist(profile: self.profile).saveconfigInMemoryToPersistentStore()
+            PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
         }
         // Call the view and do a refresh of tableView
         self.reloadtable(vcontroller: .vctabmain)
@@ -211,7 +211,7 @@ class Configurations: ReloadTable, SetSchedules {
         if ViewControllerReference.shared.json {
             PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
         } else {
-            PersistentStorageConfigurationPlist(profile: self.profile).saveconfigInMemoryToPersistentStore()
+            PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
         }
     }
 
@@ -225,7 +225,7 @@ class Configurations: ReloadTable, SetSchedules {
         if ViewControllerReference.shared.json {
             PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
         } else {
-            PersistentStorageConfigurationPlist(profile: self.profile).saveconfigInMemoryToPersistentStore()
+            PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
         }
     }
 
@@ -238,7 +238,7 @@ class Configurations: ReloadTable, SetSchedules {
             let store = PersistentStorageConfigurationJSON(profile: self.profile)
             store.saveconfigInMemoryToPersistentStore()
         } else {
-            let store = PersistentStorageConfigurationPlist(profile: self.profile)
+            let store = PersistentStorageConfigurationPLIST(profile: self.profile)
             store.saveconfigInMemoryToPersistentStore()
         }
     }
