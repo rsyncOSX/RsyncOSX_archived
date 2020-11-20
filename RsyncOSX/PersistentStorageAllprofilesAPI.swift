@@ -17,7 +17,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
             let read = PersistentStorageConfigurationJSON(profile: self.profile, readonly: true)
             let transform = TransformConfigfromJSON()
             for i in 0 ..< (read.decodedjson?.count ?? 0) {
-                if let configitem = read.decodedjson?[i] as? DecodeConfigJSON {
+                if let configitem = read.decodedjson?[i] as? DecodeConfiguration {
                     let transformed = transform.transform(object: configitem)
                     if ViewControllerReference.shared.synctasks.contains(transformed.task) {
                         configurations.append(transformed)
@@ -41,7 +41,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
             let read = PersistentStorageSchedulingJSON(profile: self.profile)
             let transform = TransformSchedulefromJSON()
             for i in 0 ..< (read.decodedjson?.count ?? 0) {
-                if let scheduleitem = (read.decodedjson?[i] as? DecodeScheduleJSON) {
+                if let scheduleitem = (read.decodedjson?[i] as? DecodeSchedule) {
                     var transformed = transform.transform(object: scheduleitem)
                     transformed.profilename = self.profile
                     schedule.append(transformed)

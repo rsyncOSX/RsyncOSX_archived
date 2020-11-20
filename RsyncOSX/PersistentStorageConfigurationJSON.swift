@@ -57,7 +57,7 @@ class PersistentStorageConfigurationJSON: ReadWriteJSON, SetConfigurations {
         if let jsonstring = jsonfileasstring.data(using: .utf8) {
             do {
                 let decoder = JSONDecoder()
-                self.decodedjson = try decoder.decode([DecodeConfigJSON].self, from: jsonstring)
+                self.decodedjson = try decoder.decode([DecodeConfiguration].self, from: jsonstring)
             } catch let e {
                 let error = e as NSError
                 self.error(error: error.description, errortype: .json)
