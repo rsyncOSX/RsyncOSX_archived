@@ -541,7 +541,6 @@
 			isa = PBXGroup;
 			children = (
 				E973B6F6238F1AC500B0FD12 /* Equal */,
-				A04492981D658F2100B3CE17 /* Configuration.swift */,
 				E9F068F11F27B9C100DDF1A1 /* ArgumentsOneConfiguration.swift */,
 				E97E3BA61F6256DB00411D0E /* Configurations.swift */,
 				E9231AFA1F6E3D260055000C /* NewConfigurations.swift */,
@@ -553,7 +552,6 @@
 		A0BAA5F31D70C349003BE69F /* Schedules */ = {
 			isa = PBXGroup;
 			children = (
-				E9F068EF1F27B93E00DDF1A1 /* ConfigurationSchedule.swift */,
 				E9B04CFA238848760072DA41 /* Reorg */,
 				E97D96DA232C3E54004405DD /* XCtest */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
@@ -784,6 +782,7 @@
 		E989E51C25619795007A0F7B /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E9F068EF1F27B93E00DDF1A1 /* ConfigurationSchedule.swift */,
 				E9C70CA8253C572E00FC75C6 /* CodableConfigurationSchedule.swift */,
 				E9FDDED1253CB45800D41FD1 /* DecodeSchedule.swift */,
 				E9FD8683253B799900482DA1 /* CodableConfiguration.swift */,
@@ -791,6 +790,7 @@
 				E97446DE254DB8EF00F1C3E8 /* TransformConfigfromJSON.swift */,
 				E97446E5254DB96700F1C3E8 /* TransformSchedulefromJSON.swift */,
 				E989E51D256197C3007A0F7B /* ConfigurationsData.swift */,
+				A04492981D658F2100B3CE17 /* Configuration.swift */,
 				E989E523256197D9007A0F7B /* SchedulesData.swift */,
 			);
 			name = Data;
