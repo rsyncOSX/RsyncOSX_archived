@@ -21,7 +21,7 @@
 		A04492A91D658F2100B3CE17 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = A04492951D658F2100B3CE17 /* ytcpsocket.c */; };
 		A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = A04492961D658F2100B3CE17 /* yudpsocket.c */; };
 		A04492AC1D658F2100B3CE17 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492981D658F2100B3CE17 /* Configuration.swift */; };
-		A04492B01D658F2100B3CE17 /* PersistentStorageScheduling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */; };
+		A04492B01D658F2100B3CE17 /* PersistentStorageSchedulingPLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929C1D658F2100B3CE17 /* PersistentStorageSchedulingPLIST.swift */; };
 		A04492B21D658F2100B3CE17 /* RsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A044929E1D658F2100B3CE17 /* RsyncParameters.swift */; };
 		A04492B41D658F2100B3CE17 /* RestorefilesArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A01D658F2100B3CE17 /* RestorefilesArguments.swift */; };
 		A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492A71D658F2100B3CE17 /* ytcpsocket.swift */; };
@@ -97,7 +97,7 @@
 		E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */; };
 		E958D62522B65ADF00755074 /* Selectprofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958D62422B65ADF00755074 /* Selectprofile.swift */; };
 		E9591FDA252654EB00F2F95A /* ViewControllerAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9591FD9252654EB00F2F95A /* ViewControllerAssist.swift */; };
-		E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */; };
+		E9609EF51F229F5900F5BFAA /* PersistentStorageConfigurationPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9609EF41F229F5900F5BFAA /* PersistentStorageConfigurationPlist.swift */; };
 		E9614AD61F231AFC00CAE21A /* Displayrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* Displayrsyncpath.swift */; };
 		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
 		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
@@ -194,7 +194,7 @@
 		A04492951D658F2100B3CE17 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
 		A04492961D658F2100B3CE17 /* yudpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yudpsocket.c; sourceTree = "<group>"; };
 		A04492981D658F2100B3CE17 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStorageScheduling.swift; sourceTree = "<group>"; };
+		A044929C1D658F2100B3CE17 /* PersistentStorageSchedulingPLIST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentStorageSchedulingPLIST.swift; sourceTree = "<group>"; };
 		A044929E1D658F2100B3CE17 /* RsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParameters.swift; sourceTree = "<group>"; };
 		A04492A01D658F2100B3CE17 /* RestorefilesArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestorefilesArguments.swift; sourceTree = "<group>"; };
 		A04492A71D658F2100B3CE17 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 		E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		E958D62422B65ADF00755074 /* Selectprofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectprofile.swift; sourceTree = "<group>"; };
 		E9591FD9252654EB00F2F95A /* ViewControllerAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAssist.swift; sourceTree = "<group>"; };
-		E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageConfiguration.swift; sourceTree = "<group>"; };
+		E9609EF41F229F5900F5BFAA /* PersistentStorageConfigurationPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageConfigurationPlist.swift; sourceTree = "<group>"; };
 		E9614AD51F231AFC00CAE21A /* Displayrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displayrsyncpath.swift; sourceTree = "<group>"; };
 		E96291B0213049D7005119A7 /* TCPconnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPconnections.swift; sourceTree = "<group>"; };
 		E96604E5228A7FAB00BE6161 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -654,7 +654,7 @@
 		E91E44D1253F08BD00E74150 /* Schedules */ = {
 			isa = PBXGroup;
 			children = (
-				A044929C1D658F2100B3CE17 /* PersistentStorageScheduling.swift */,
+				A044929C1D658F2100B3CE17 /* PersistentStorageSchedulingPLIST.swift */,
 				E91E44D8253F0DA300E74150 /* PersistentStorageSchedulingJSON.swift */,
 			);
 			name = Schedules;
@@ -719,7 +719,7 @@
 		E95ECA59254C176D00EFDBB4 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				E9609EF41F229F5900F5BFAA /* PersistentStorageConfiguration.swift */,
+				E9609EF41F229F5900F5BFAA /* PersistentStorageConfigurationPlist.swift */,
 				E91E44D2253F08FE00E74150 /* PersistentStorageConfigurationJSON.swift */,
 			);
 			name = Configurations;
@@ -1057,7 +1057,7 @@
 				E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */,
 				E989E51E256197C3007A0F7B /* ConfigurationsData.swift in Sources */,
 				E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */,
-				E9609EF51F229F5900F5BFAA /* PersistentStorageConfiguration.swift in Sources */,
+				E9609EF51F229F5900F5BFAA /* PersistentStorageConfigurationPlist.swift in Sources */,
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */,
 				E9A63064202B425D00F1FFF1 /* Running.swift in Sources */,
@@ -1195,7 +1195,7 @@
 				E946496323130EDC00ADDF22 /* extensionVCMainSingletask.swift in Sources */,
 				E9AC77602272F4DC0063F324 /* ConvertUserconfiguration.swift in Sources */,
 				E94D2603205025790026D18F /* ViewControllerAllProfiles.swift in Sources */,
-				A04492B01D658F2100B3CE17 /* PersistentStorageScheduling.swift in Sources */,
+				A04492B01D658F2100B3CE17 /* PersistentStorageSchedulingPLIST.swift in Sources */,
 				E9E8C6DB24F905AC00845BD7 /* Configpath.swift in Sources */,
 				E9591FDA252654EB00F2F95A /* ViewControllerAssist.swift in Sources */,
 			);

@@ -14,7 +14,7 @@ final class SchedulesData {
     var validhiddenID: Set<Int>?
 
     func readschedulesplist() {
-        let schedulesfromstore = PersistentStorageScheduling(profile: self.profile).schedulesasdictionary
+        let schedulesfromstore = PersistentStorageSchedulingPLIST(profile: self.profile).schedulesasdictionary
         var schedule: ConfigurationSchedule?
         for i in 0 ..< (schedulesfromstore?.count ?? 0) {
             if let dict = schedulesfromstore?[i], let validhiddenID = self.validhiddenID {

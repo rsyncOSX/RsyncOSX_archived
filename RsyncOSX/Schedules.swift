@@ -48,7 +48,7 @@ class Schedules: ScheduleWriteLoggData {
         if ViewControllerReference.shared.json {
             PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
         } else {
-            PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
+            PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
         }
         self.reloadtable(vcontroller: .vctabschedule)
     }
@@ -67,7 +67,7 @@ class Schedules: ScheduleWriteLoggData {
             if ViewControllerReference.shared.json {
                 PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
             } else {
-                PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
+                PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
             }
             // Send message about refresh tableView
             self.reloadtable(vcontroller: .vctabmain)
@@ -140,7 +140,7 @@ class Schedules: ScheduleWriteLoggData {
                 if ViewControllerReference.shared.json {
                     PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 } else {
-                    PersistentStorageScheduling(profile: self.profile).savescheduleInMemoryToPersistentStore()
+                    PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
                 }
                 // Send message about refresh tableView
                 self.reloadtable(vcontroller: .vctabmain)
