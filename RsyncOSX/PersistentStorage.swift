@@ -15,6 +15,26 @@ final class PersistentStorage {
     var schedulePLIST: PersistentStorageSchedulingPLIST?
     var whattoreadorwrite: WhatToReadWrite?
 
+    func convert(profile: String?) {
+        if ViewControllerReference.shared.json == false {
+            if let profile = profile {
+                _ = PersistentStorageConfigurationJSON(profile: profile, readonly: false)
+                _ = PersistentStorageSchedulingJSON(profile: profile, readonly: false)
+            } else {
+                _ = PersistentStorageConfigurationJSON(profile: nil, readonly: false)
+                _ = PersistentStorageSchedulingJSON(profile: nil, readonly: false)
+            }
+        } else {
+            if let profile = profile {
+                _ = PersistentStorageConfigurationPLIST(profile: profile, readonly: false)
+                _ = PersistentStorageSchedulingPLIST(profile: profile, readonly: false)
+            } else {
+                _ = PersistentStorageConfigurationPLIST(profile: nil, readonly: false)
+                _ = PersistentStorageSchedulingPLIST(profile: nil, readonly: false)
+            }
+        }
+    }
+
     func saveMemoryToPersistentStore() {
         if ViewControllerReference.shared.json {
             switch self.whattoreadorwrite {
@@ -82,6 +102,8 @@ final class PersistentStorage {
             }
         }
     }
+
+    init() {}
 
     deinit {
         self.configJSON = nil

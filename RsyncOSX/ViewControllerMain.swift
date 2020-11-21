@@ -488,22 +488,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func Json(_: NSButton) {
-        if ViewControllerReference.shared.json == false {
-            if let profile = self.configurations?.getProfile() {
-                _ = PersistentStorageConfigurationJSON(profile: profile, readonly: false)
-                _ = PersistentStorageSchedulingJSON(profile: profile, readonly: false)
-            } else {
-                _ = PersistentStorageConfigurationJSON(profile: nil, readonly: false)
-                _ = PersistentStorageSchedulingJSON(profile: nil, readonly: false)
-            }
+        if let profile = self.configurations?.getProfile() {
+            PersistentStorage().convert(profile: profile)
         } else {
-            if let profile = self.configurations?.getProfile() {
-                _ = PersistentStorageConfigurationPLIST(profile: profile, readonly: false)
-                _ = PersistentStorageSchedulingPLIST(profile: profile, readonly: false)
-            } else {
-                _ = PersistentStorageConfigurationPLIST(profile: nil, readonly: false)
-                _ = PersistentStorageSchedulingPLIST(profile: nil, readonly: false)
-            }
+            PersistentStorage().convert(profile: nil)
         }
         self.jsonbutton.isHidden = true
         ViewControllerReference.shared.convertjsonbutton = false
