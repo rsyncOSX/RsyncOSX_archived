@@ -73,7 +73,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                             let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0 {
                                 if (delta?.count ?? 0) > 1 {
-                                    return (delta?[0].value(forKey: DictionaryStrings.delta.rawValue) as? String ?? "") + "(+)"
+                                    return (delta?[0].value(forKey: DictionaryStrings.delta.rawValue) as? String ?? "") + "*"
                                 } else {
                                     return delta?[0].value(forKey: DictionaryStrings.delta.rawValue) as? String
                                 }
