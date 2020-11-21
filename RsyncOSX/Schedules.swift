@@ -45,11 +45,14 @@ class Schedules: ScheduleWriteLoggData {
         }
         let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, includelog: false)
         self.schedules?.append(newSchedule)
-        if ViewControllerReference.shared.json {
-            PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
-        } else {
-            PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
-        }
+        /*
+         if ViewControllerReference.shared.json {
+             PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
+         } else {
+             PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
+         }
+         */
+        PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vctabschedule)
     }
 
@@ -64,11 +67,14 @@ class Schedules: ScheduleWriteLoggData {
             delete = true
         }
         if delete {
-            if ViewControllerReference.shared.json {
-                PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
-            } else {
-                PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
-            }
+            /*
+             if ViewControllerReference.shared.json {
+                 PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
+             } else {
+                 PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
+             }
+             */
+            PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
             // Send message about refresh tableView
             self.reloadtable(vcontroller: .vctabmain)
         }
@@ -136,12 +142,15 @@ class Schedules: ScheduleWriteLoggData {
                 }
             }
             if update {
-                // Saving the resulting data file
-                if ViewControllerReference.shared.json {
-                    PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
-                } else {
-                    PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
-                }
+                /*
+                 // Saving the resulting data file
+                 if ViewControllerReference.shared.json {
+                     PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
+                 } else {
+                     PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
+                 }
+                 */
+                PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
                 // Send message about refresh tableView
                 self.reloadtable(vcontroller: .vctabmain)
                 self.reloadtable(vcontroller: .vctabschedule)

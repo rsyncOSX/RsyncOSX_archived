@@ -37,7 +37,7 @@ final class PersistentStorage {
         }
     }
 
-    init(profile: String, whattoreadorwrite: WhatToReadWrite, readonly: Bool) {
+    init(profile: String?, whattoreadorwrite: WhatToReadWrite, readonly: Bool) {
         self.whattoreadorwrite = whattoreadorwrite
         if ViewControllerReference.shared.json {
             switch whattoreadorwrite {
@@ -60,7 +60,7 @@ final class PersistentStorage {
         }
     }
 
-    init(profile: String, whattoreadorwrite: WhatToReadWrite) {
+    init(profile: String?, whattoreadorwrite: WhatToReadWrite) {
         self.whattoreadorwrite = whattoreadorwrite
         if ViewControllerReference.shared.json {
             switch whattoreadorwrite {
@@ -82,7 +82,7 @@ final class PersistentStorage {
             }
         }
     }
-    
+
     deinit {
         self.configJSON = nil
         self.configPLIST = nil

@@ -194,11 +194,14 @@ class Configurations: ReloadTable, SetSchedules {
         let currendate = Date()
         self.configurations?[index].dateRun = currendate.en_us_string_from_date()
         // Saving updated configuration in memory to persistent store
-        if ViewControllerReference.shared.json {
-            PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
-        } else {
-            PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
-        }
+        /*
+         if ViewControllerReference.shared.json {
+             PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+         } else {
+             PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
+         }
+         */
+        PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
         // Call the view and do a refresh of tableView
         self.reloadtable(vcontroller: .vctabmain)
         _ = Logging(outputprocess: outputprocess)
@@ -208,11 +211,14 @@ class Configurations: ReloadTable, SetSchedules {
     // then saves updated Configurations from memory to persistent store
     func updateConfigurations(_ config: Configuration, index: Int) {
         self.configurations?[index] = config
-        if ViewControllerReference.shared.json {
-            PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
-        } else {
-            PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
-        }
+        /*
+         if ViewControllerReference.shared.json {
+             PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+         } else {
+             PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
+         }
+         */
+        PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
     }
 
     // Function deletes Configuration in memory at hiddenID and
@@ -222,11 +228,14 @@ class Configurations: ReloadTable, SetSchedules {
         let index = self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
         guard index > -1 else { return }
         self.configurations?.remove(at: index)
-        if ViewControllerReference.shared.json {
-            PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
-        } else {
-            PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
-        }
+        /*
+         if ViewControllerReference.shared.json {
+             PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+         } else {
+             PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
+         }
+         */
+        PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
     }
 
     // Add new configurations
@@ -234,13 +243,14 @@ class Configurations: ReloadTable, SetSchedules {
         var config = Configuration(dictionary: dict)
         config.hiddenID = self.maxhiddenID + 1
         self.configurations?.append(config)
-        if ViewControllerReference.shared.json {
-            let store = PersistentStorageConfigurationJSON(profile: self.profile)
-            store.saveconfigInMemoryToPersistentStore()
-        } else {
-            let store = PersistentStorageConfigurationPLIST(profile: self.profile)
-            store.saveconfigInMemoryToPersistentStore()
-        }
+        /*
+          if ViewControllerReference.shared.json {
+              PersistentStorageConfigurationJSON(profile: self.profile).saveconfigInMemoryToPersistentStore()
+          } else {
+              PersistentStorageConfigurationPLIST(profile: self.profile).saveconfigInMemoryToPersistentStore()
+          }
+         */
+        PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
     }
 
     func getResourceConfiguration(_ hiddenID: Int, resource: ResourceInConfiguration) -> String? {
