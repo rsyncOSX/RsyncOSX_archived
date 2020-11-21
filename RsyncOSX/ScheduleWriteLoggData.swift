@@ -39,13 +39,6 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
         for i in 0 ..< deletes.count {
             self.schedules?[deletes[i].0].logrecords?.remove(at: deletes[i].1)
         }
-        /*
-         if ViewControllerReference.shared.json {
-             PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
-         } else {
-             PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
-         }
-         */
         PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
         self.reloadtable(vcontroller: .vcloggdata)
     }
@@ -69,13 +62,6 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
                     inserted = self.addlognew(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
                 }
                 if inserted {
-                    /*
-                     if ViewControllerReference.shared.json {
-                         PersistentStorageSchedulingJSON(profile: self.profile).savescheduleInMemoryToPersistentStore()
-                     } else {
-                         PersistentStorageSchedulingPLIST(profile: self.profile).savescheduleInMemoryToPersistentStore()
-                     }
-                     */
                     PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
                     self.deselectrowtable(vcontroller: .vctabmain)
                 }
