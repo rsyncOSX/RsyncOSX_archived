@@ -18,11 +18,12 @@ final class ConfigurationsData {
     var configurationsDataSource: [NSMutableDictionary]?
     // valid hiddenIDs
     var validhiddenID: Set<Int>?
+    var persistentstorage: PersistentStorage?
 
     func readconfigurationsplist() {
-        let store = PersistentStorageConfigurationPLIST(profile: self.profile).configurationsasdictionary
-        for i in 0 ..< (store?.count ?? 0) {
-            if let dict = store?[i] {
+        if let store = self.persistentstorage?.configPLIST?.configurationsasdictionary {
+            for i in 0 ..< store.count {
+                let dict = store[i]
                 var config = Configuration(dictionary: dict)
                 config.profile = self.profile
                 if ViewControllerReference.shared.synctasks.contains(config.task) {
@@ -34,47 +35,48 @@ final class ConfigurationsData {
                     }
                 }
             }
-        }
-        // Then prepare the datasource for use in tableviews as Dictionarys
-        var data = [NSMutableDictionary]()
-        for i in 0 ..< (self.configurations?.count ?? 0) {
-            let task = self.configurations?[i].task
-            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                if let config = self.configurations?[i] {
-                    data.append(ConvertOneConfig(config: config).dict)
-                }
-            }
-        }
-        self.configurationsDataSource = data
-    }
-
-    func readconfigurationsjson() {
-        let store = PersistentStorageConfigurationJSON(profile: self.profile).decodedjson
-        let transform = TransformConfigfromJSON()
-        for i in 0 ..< (store?.count ?? 0) {
-            if let configitem = store?[i] as? DecodeConfiguration {
-                let transformed = transform.transform(object: configitem)
-                if ViewControllerReference.shared.synctasks.contains(transformed.task) {
-                    if self.validhiddenID?.contains(transformed.hiddenID) == false {
-                        self.configurations?.append(transformed)
-                        let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
-                        self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
-                        self.validhiddenID?.insert(transformed.hiddenID)
+            // Then prepare the datasource for use in tableviews as Dictionarys
+            var data = [NSMutableDictionary]()
+            for i in 0 ..< (self.configurations?.count ?? 0) {
+                let task = self.configurations?[i].task
+                if ViewControllerReference.shared.synctasks.contains(task ?? "") {
+                    if let config = self.configurations?[i] {
+                        data.append(ConvertOneConfig(config: config).dict)
                     }
                 }
             }
+            self.configurationsDataSource = data
         }
-        // Then prepare the datasource for use in tableviews as Dictionarys
-        var data = [NSMutableDictionary]()
-        for i in 0 ..< (self.configurations?.count ?? 0) {
-            let task = self.configurations?[i].task
-            if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                if let config = self.configurations?[i] {
-                    data.append(ConvertOneConfig(config: config).dict)
+    }
+
+    func readconfigurationsjson() {
+        if let store = self.persistentstorage?.configJSON?.decodedjson {
+            let transform = TransformConfigfromJSON()
+            for i in 0 ..< store.count {
+                if let configitem = store[i] as? DecodeConfiguration {
+                    let transformed = transform.transform(object: configitem)
+                    if ViewControllerReference.shared.synctasks.contains(transformed.task) {
+                        if self.validhiddenID?.contains(transformed.hiddenID) == false {
+                            self.configurations?.append(transformed)
+                            let rsyncArgumentsOneConfig = ArgumentsOneConfiguration(config: transformed)
+                            self.argumentAllConfigurations?.append(rsyncArgumentsOneConfig)
+                            self.validhiddenID?.insert(transformed.hiddenID)
+                        }
+                    }
                 }
             }
+            // Then prepare the datasource for use in tableviews as Dictionarys
+            var data = [NSMutableDictionary]()
+            for i in 0 ..< (self.configurations?.count ?? 0) {
+                let task = self.configurations?[i].task
+                if ViewControllerReference.shared.synctasks.contains(task ?? "") {
+                    if let config = self.configurations?[i] {
+                        data.append(ConvertOneConfig(config: config).dict)
+                    }
+                }
+            }
+            self.configurationsDataSource = data
         }
-        self.configurationsDataSource = data
     }
 
     init(profile: String?) {
@@ -85,10 +87,8 @@ final class ConfigurationsData {
         self.configurations = [Configuration]()
         self.validhiddenID = Set()
         self.argumentAllConfigurations = [ArgumentsOneConfiguration]()
-        if ViewControllerReference.shared.json {
-            self.readconfigurationsjson()
-        } else {
-            self.readconfigurationsplist()
-        }
+        self.persistentstorage = PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration)
+        self.readconfigurationsjson()
+        self.readconfigurationsplist()
     }
 }
