@@ -130,8 +130,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5PJ-QW-PyL"; */
 "5PJ-QW-PyL.title" = "Text Cell";
 
-/* Class = "NSTableColumn"; headerCell.title = "Stop schedule"; ObjectID = "5TL-a2-yBQ"; */
-"5TL-a2-yBQ.headerCell.title" = "Zeitplan stoppen";
+/* Class = "NSTableColumn"; headerCell.title = "Stop"; ObjectID = "5TL-a2-yBQ"; */
+"5TL-a2-yBQ.headerCell.title" = "Beenden";
 
 /* Class = "NSTextFieldCell"; title = "Remote users:"; ObjectID = "5z4-RJ-zsN"; */
 "5z4-RJ-zsN.title" = "Remote Benutzer:";
@@ -244,9 +244,6 @@
 /* Class = "NSButtonCell"; title = "Rsa public key is found."; ObjectID = "a0m-Z1-grn"; */
 "a0m-Z1-grn.title" = "Öffentlicher RSA-Schlüssel wurde gefunden.";
 
-/* Class = "NSMenuItem"; title = "Open"; ObjectID = "aCU-js-shc"; */
-"aCU-js-shc.title" = "Öffnen";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ACw-EV-vDL"; */
 "ACw-EV-vDL.title" = "Text Cell";
 
@@ -262,8 +259,8 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "aHy-27-4y5"; */
 "aHy-27-4y5.title" = "Tabellenansicht Zelle";
 
-/* Class = "NSTableColumn"; headerCell.title = "Stop date schedule"; ObjectID = "AIr-rt-OLN"; */
-"AIr-rt-OLN.headerCell.title" = "Zeitplan stoppen";
+/* Class = "NSTableColumn"; headerCell.title = "Stop date"; ObjectID = "AIr-rt-OLN"; */
+"AIr-rt-OLN.headerCell.title" = "Enddatum";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "AkJ-MA-346"; */
 "AkJ-MA-346.headerCell.title" = "Aufgabe";
@@ -577,8 +574,8 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "fnk-Kq-6LU"; */
 "fnk-Kq-6LU.headerCell.title" = "Externer Katalog";
 
-/* Class = "NSTableColumn"; headerCell.title = "Delete schedule"; ObjectID = "Fpf-1W-JiM"; */
-"Fpf-1W-JiM.headerCell.title" = "Zeitplan löschen";
+/* Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "Fpf-1W-JiM"; */
+"Fpf-1W-JiM.headerCell.title" = "Löschen";
 
 /* Class = "NSBox"; title = "Number of days"; ObjectID = "FrI-lc-qcT"; */
 "FrI-lc-qcT.title" = "Anzahl der Tage";
@@ -672,9 +669,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "H79-tQ-7yT"; */
 "H79-tQ-7yT.headerCell.title" = "Verfügbar (%)";
-
-/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "Hah-L7-Bvj"; */
-"Hah-L7-Bvj.title" = "Schneide";
 
 /* Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "hBf-gt-Mxo"; */
 "hBf-gt-Mxo.title" = "Remote-Benutzername:";
@@ -1015,8 +1009,8 @@
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "P4M-Uu-xLy"; */
 "P4M-Uu-xLy.title" = "Kopieren";
 
-/* Class = "NSTableColumn"; headerCell.title = "Start date schedule"; ObjectID = "p7O-cs-wwA"; */
-"p7O-cs-wwA.headerCell.title" = "Startdatum";
+/* Class = "NSTableColumn"; headerCell.title = "Start date"; ObjectID = "p7O-cs-wwA"; */
+"p7O-cs-wwA.headerCell.title" = "Anfangsdatum";
 
 /* Class = "NSMenuItem"; title = "Info all"; ObjectID = "p56-o9-HcO"; */
 "p56-o9-HcO.title" = "Info alle";

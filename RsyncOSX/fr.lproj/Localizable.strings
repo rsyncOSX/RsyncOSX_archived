@@ -168,9 +168,6 @@
 /* datetime */
 "h" = "h";
 
-/* datetime */
-"hours" = "heures";
-
 /* icon */
 "Icon by: Zsolt Sándor" = "Icône par : Zsolt Sándor";
 
@@ -204,9 +201,6 @@
 
 /* Execute */
 "Menu app is running..." = "L'application du menu est en cours d'exécution...";
-
-/* datetime */
-"mins" = "minutes";
 
 /* plan */
 "Monday" = "Lundi";
@@ -298,9 +292,6 @@
 
 /* Schedules */
 "Scheduled tasks in menu app..." = "Tâches planifiées dans l'application du menu...";
-
-/* datetime */
-"secs" = "secondes";
 
 /* Copy files
    Remote Info

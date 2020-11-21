@@ -168,9 +168,6 @@
 /* datetime */
 "h" = "小时";
 
-/* datetime */
-"hours" = "小时";
-
 /* icon */
 "Icon by: Zsolt Sándor" = "Icon by: Zsolt Sándor";
 
@@ -204,9 +201,6 @@
 
 /* Execute */
 "Menu app is running..." = "菜单应用正在运行...";
-
-/* datetime */
-"mins" = "分钟";
 
 /* plan */
 "Monday" = "周一";
@@ -298,9 +292,6 @@
 
 /* Schedules */
 "Scheduled tasks in menu app..." = "菜单应用中的预定任务...";
-
-/* datetime */
-"secs" = "秒";
 
 /* Copy files
    Remote Info
