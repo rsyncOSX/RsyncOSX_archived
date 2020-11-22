@@ -5,21 +5,12 @@
 //  Created by Thomas Evensen on 01/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable cyclomatic_complexity line_length
+// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
 
 class ViewControllerAssist: NSViewController {
-    /*
-     var remotecomputers: Set<String>?
-     var remoteusers: Set<String>?
-     var remotehome: Set<String>?
-     var catalogs: Set<String>?
-     var localhome: Set<String>?
-     */
-    var numberofsets: Int = 5
-    // var assist: [Set<String>]?
     var assist: Assist?
     var addvalues: Addvalues = .none
     weak var transferdataDelegate: AssistTransfer?
