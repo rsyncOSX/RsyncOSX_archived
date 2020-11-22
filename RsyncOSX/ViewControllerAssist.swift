@@ -37,13 +37,6 @@ class ViewControllerAssist: NSViewController {
         self.view.window?.close()
     }
 
-    func getdafultvalues() {
-        let defaultvalues = AssistDefault()
-        self.localhome = defaultvalues.localhome
-        self.catalogs = defaultvalues.catalogs
-        self.writeassistvaluesstorage()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.combolocalhome.delegate = self
@@ -51,14 +44,11 @@ class ViewControllerAssist: NSViewController {
         self.comboremotehome.delegate = self
         self.comboremoteusers.delegate = self
         self.comboremotecomputers.delegate = self
-        // Create default values
-        self.getdafultvalues()
+        self.assist = Assist().assist
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.readassistvaluesstorage()
-        // Initialize comboboxes
         self.initialize()
         self.transferdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
     }
@@ -69,9 +59,7 @@ class ViewControllerAssist: NSViewController {
     }
 
     private func writeassistvaluesstorage() {
-        if self.assist == nil {
-            self.assist = [Set<String>]()
-        }
+        if self.assist == nil { self.assist = [Set<String>]() }
         for i in 0 ..< self.numberofsets {
             switch i {
             case 0:
@@ -99,27 +87,6 @@ class ViewControllerAssist: NSViewController {
             }
         }
         PersistentStorageAssist(assistassets: self.assist).saveassist()
-    }
-
-    private func readassistvaluesstorage() {
-        self.assist = Assist(assist: PersistentStorageAssist(assistassets: nil).readassist()).assist
-        for i in 0 ..< self.numberofsets {
-            switch i {
-            case 0:
-                self.remotecomputers = self.assist?[0]
-            case 1:
-                self.remoteusers = self.assist?[1]
-            case 2:
-                self.remotehome = self.assist?[2]
-            case 3:
-                self.catalogs = self.assist?[3]
-            case 4:
-                self.localhome = self.assist?[4]
-            default:
-                return
-            }
-        }
-        self.assist = nil
     }
 
     private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {
