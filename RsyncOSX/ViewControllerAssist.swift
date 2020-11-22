@@ -37,13 +37,11 @@ class ViewControllerAssist: NSViewController {
         self.view.window?.close()
     }
 
-    @IBAction func defaultbutton(_: NSButton) {
+    func getdafultvalues() {
         let defaultvalues = AssistDefault()
         self.localhome = defaultvalues.localhome
         self.catalogs = defaultvalues.catalogs
         self.writeassistvaluesstorage()
-        self.readassistvaluesstorage()
-        self.initialize()
     }
 
     override func viewDidLoad() {
@@ -53,6 +51,8 @@ class ViewControllerAssist: NSViewController {
         self.comboremotehome.delegate = self
         self.comboremoteusers.delegate = self
         self.comboremotecomputers.delegate = self
+        // Create default values
+        self.getdafultvalues()
     }
 
     override func viewDidAppear() {

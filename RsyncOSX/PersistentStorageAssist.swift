@@ -6,6 +6,7 @@
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
 
+import Files
 import Foundation
 
 final class PersistentStorageAssist: ReadWriteDictionary {
@@ -13,8 +14,25 @@ final class PersistentStorageAssist: ReadWriteDictionary {
 
     // Save assist configuration
     func saveassist() {
-        if let array: [NSDictionary] = ConvertAssist(assistassets: self.assist).assist {
-            self.writeToStore(array: array)
+        let root = NamesandPaths(profileorsshrootpath: .profileroot)
+        if let atpath = root.fullroot {
+            do {
+                if try Folder(path: atpath).containsFile(named: ViewControllerReference.shared.assistplist) {
+                    let question: String = NSLocalizedString("PLIST file exists: ", comment: "Logg")
+                    let text: String = NSLocalizedString("Cancel or Save", comment: "Logg")
+                    let dialog: String = NSLocalizedString("Save", comment: "Logg")
+                    let answer = Alerts.dialogOrCancel(question: question + " " + ViewControllerReference.shared.assistplist, text: text, dialog: dialog)
+                    if answer {
+                        if let array: [NSDictionary] = ConvertAssist(assistassets: self.assist).assist {
+                            self.writeToStore(array: array)
+                        }
+                    }
+                } else {
+                    if let array: [NSDictionary] = ConvertAssist(assistassets: self.assist).assist {
+                        self.writeToStore(array: array)
+                    }
+                }
+            } catch {}
         }
     }
 
