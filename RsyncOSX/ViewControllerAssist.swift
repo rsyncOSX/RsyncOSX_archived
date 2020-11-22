@@ -11,13 +11,16 @@ import Cocoa
 import Foundation
 
 class ViewControllerAssist: NSViewController {
-    var remotecomputers: Set<String>?
-    var remoteusers: Set<String>?
-    var remotehome: Set<String>?
-    var catalogs: Set<String>?
-    var localhome: Set<String>?
+    /*
+     var remotecomputers: Set<String>?
+     var remoteusers: Set<String>?
+     var remotehome: Set<String>?
+     var catalogs: Set<String>?
+     var localhome: Set<String>?
+     */
     var numberofsets: Int = 5
-    var assist: [Set<String>]?
+    // var assist: [Set<String>]?
+    var assist: Assist?
     var addvalues: Addvalues = .none
     weak var transferdataDelegate: AssistTransfer?
     var assistedit: Addvalues = .none
@@ -44,7 +47,6 @@ class ViewControllerAssist: NSViewController {
         self.comboremotehome.delegate = self
         self.comboremoteusers.delegate = self
         self.comboremotecomputers.delegate = self
-        self.assist = Assist().assist
     }
 
     override func viewDidAppear() {
@@ -55,38 +57,11 @@ class ViewControllerAssist: NSViewController {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.writeassistvaluesstorage()
+        // self.writeassistvaluesstorage()
     }
 
     private func writeassistvaluesstorage() {
-        if self.assist == nil { self.assist = [Set<String>]() }
-        for i in 0 ..< self.numberofsets {
-            switch i {
-            case 0:
-                if self.remotecomputers != nil {
-                    self.assist?.append(self.remotecomputers ?? [])
-                }
-            case 1:
-                if self.remoteusers != nil {
-                    self.assist?.append(self.remoteusers ?? [])
-                }
-            case 2:
-                if self.remotehome != nil {
-                    self.assist?.append(self.remotehome ?? [])
-                }
-            case 3:
-                if self.catalogs != nil {
-                    self.assist?.append(self.catalogs ?? [])
-                }
-            case 4:
-                if self.localhome != nil {
-                    self.assist?.append(self.localhome ?? [])
-                }
-            default:
-                return
-            }
-        }
-        PersistentStorageAssist(assistassets: self.assist).saveassist()
+        PersistentStorageAssist(assistassets: self.assist?.assist).saveassist()
     }
 
     private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {
@@ -101,39 +76,29 @@ class ViewControllerAssist: NSViewController {
 
     @IBAction func addvalue(_: NSButton) {
         if self.addremotecomputers.stringValue.isEmpty == false {
-            if self.remotecomputers == nil {
-                self.remotecomputers = Set<String>()
-            }
-            self.remotecomputers?.insert(self.addremotecomputers.stringValue)
-            self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
+            if self.assist?.remotecomputers == nil { self.assist?.remotecomputers = Set() }
+            self.assist?.remotecomputers?.insert(self.addremotecomputers.stringValue)
+            self.initcomboxes(combobox: self.comboremotecomputers, values: self.assist?.remotecomputers)
         }
         if self.addremoteusers.stringValue.isEmpty == false {
-            if self.remoteusers == nil {
-                self.remoteusers = Set<String>()
-            }
-            self.remoteusers?.insert(self.addremoteusers.stringValue)
-            self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
+            if self.assist?.remoteusers == nil { self.assist?.remoteusers = Set() }
+            self.assist?.remoteusers?.insert(self.addremoteusers.stringValue)
+            self.initcomboxes(combobox: self.comboremoteusers, values: self.assist?.remoteusers)
         }
         if self.addremotehome.stringValue.isEmpty == false {
-            if self.remotehome == nil {
-                self.remotehome = Set<String>()
-            }
-            self.remotehome?.insert(self.addremotehome.stringValue)
-            self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
+            if self.assist?.remotehome == nil { self.assist?.remotehome = Set() }
+            self.assist?.remotehome?.insert(self.addremotehome.stringValue)
+            self.initcomboxes(combobox: self.comboremotehome, values: self.assist?.remotehome)
         }
         if self.addlocalhome.stringValue.isEmpty == false {
-            if self.localhome == nil {
-                self.localhome = Set<String>()
-            }
-            self.localhome?.insert(self.addlocalhome.stringValue)
-            self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
+            if self.assist?.localhome == nil { self.assist?.localhome = Set() }
+            self.assist?.localhome?.insert(self.addlocalhome.stringValue)
+            self.initcomboxes(combobox: self.combolocalhome, values: self.assist?.localhome)
         }
         if self.addcatalogs.stringValue.isEmpty == true {
-            if self.catalogs == nil {
-                self.catalogs = Set<String>()
-            }
-            self.catalogs?.insert(self.addcatalogs.stringValue)
-            self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
+            if self.assist?.catalogs == nil { self.assist?.catalogs = Set() }
+            self.assist?.catalogs?.insert(self.addcatalogs.stringValue)
+            self.initcomboxes(combobox: self.combocatalogs, values: self.assist?.catalogs)
         }
         self.resetstringvalues()
     }
@@ -141,20 +106,20 @@ class ViewControllerAssist: NSViewController {
     @IBAction func deletevalue(_: NSButton) {
         switch self.assistedit {
         case .catalogs:
-            self.catalogs?.remove(self.combocatalogs.objectValue as? String ?? "")
-            self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
+            self.assist?.catalogs?.remove(self.combocatalogs.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.combocatalogs, values: self.assist?.catalogs)
         case .localhome:
-            self.localhome?.remove(self.combolocalhome.objectValue as? String ?? "")
-            self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
+            self.assist?.localhome?.remove(self.combolocalhome.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.combolocalhome, values: self.assist?.localhome)
         case .remotehome:
-            self.remotehome?.remove(self.comboremotehome.objectValue as? String ?? "")
-            self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
+            self.assist?.remotehome?.remove(self.comboremotehome.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.comboremotehome, values: self.assist?.remotehome)
         case .remoteusers:
-            self.remoteusers?.remove(self.comboremoteusers.objectValue as? String ?? "")
-            self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
+            self.assist?.remoteusers?.remove(self.comboremoteusers.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.comboremoteusers, values: self.assist?.remoteusers)
         case .remotecomputers:
-            self.remotecomputers?.remove(self.comboremotecomputers.objectValue as? String ?? "")
-            self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
+            self.assist?.remotecomputers?.remove(self.comboremotecomputers.objectValue as? String ?? "")
+            self.initcomboxes(combobox: self.comboremotecomputers, values: self.assist?.remotecomputers)
         default:
             return
         }
@@ -200,12 +165,15 @@ class ViewControllerAssist: NSViewController {
     }
 
     private func initialize() {
-        // Initialize comboboxes
-        self.initcomboxes(combobox: self.comboremotecomputers, values: self.remotecomputers)
-        self.initcomboxes(combobox: self.comboremoteusers, values: self.remoteusers)
-        self.initcomboxes(combobox: self.comboremotehome, values: self.remotehome)
-        self.initcomboxes(combobox: self.combocatalogs, values: self.catalogs)
-        self.initcomboxes(combobox: self.combolocalhome, values: self.localhome)
+        self.assist = Assist()
+        if let assist = self.assist?.assist {
+            guard assist.count == 5 else { return }
+            self.initcomboxes(combobox: self.comboremotecomputers, values: assist[0])
+            self.initcomboxes(combobox: self.comboremoteusers, values: assist[1])
+            self.initcomboxes(combobox: self.comboremotehome, values: assist[2])
+            self.initcomboxes(combobox: self.combocatalogs, values: assist[3])
+            self.initcomboxes(combobox: self.combolocalhome, values: assist[4])
+        }
     }
 }
 
