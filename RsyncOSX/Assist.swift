@@ -26,23 +26,18 @@ final class Assist {
     var remotecomputers: Set<String>? {
         didSet { self.dirty = true }
     }
-
     var remoteusers: Set<String>? {
         didSet { self.dirty = true }
     }
-
     var remotehome: Set<String>? {
         didSet { self.dirty = true }
     }
-
     var catalogs: Set<String>? {
         didSet { self.dirty = true }
     }
-
     var localhome: Set<String>? {
         didSet { self.dirty = true }
     }
-
     var numberofsets: Int = 5
     var assist: [Set<String>]?
     var dirty: Bool = false
