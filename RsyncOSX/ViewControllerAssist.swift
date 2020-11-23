@@ -48,11 +48,13 @@ class ViewControllerAssist: NSViewController {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        // self.writeassistvaluesstorage()
+        if self.assist?.dirty ?? false {
+            self.writeassistvaluesstorage()
+        }
     }
 
     private func writeassistvaluesstorage() {
-        PersistentStorageAssist(assistassets: self.assist?.assist).saveassist()
+        PersistentStorageAssist(assist: self.assist).saveassist()
     }
 
     private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {

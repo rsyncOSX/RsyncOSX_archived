@@ -23,16 +23,32 @@ protocol AssistTransfer: AnyObject {
 }
 
 final class Assist {
-    var remotecomputers: Set<String>?
-    var remoteusers: Set<String>?
-    var remotehome: Set<String>?
-    var catalogs: Set<String>?
-    var localhome: Set<String>?
+    var remotecomputers: Set<String>? {
+        didSet { self.dirty = true }
+    }
+
+    var remoteusers: Set<String>? {
+        didSet { self.dirty = true }
+    }
+
+    var remotehome: Set<String>? {
+        didSet { self.dirty = true }
+    }
+
+    var catalogs: Set<String>? {
+        didSet { self.dirty = true }
+    }
+
+    var localhome: Set<String>? {
+        didSet { self.dirty = true }
+    }
+
     var numberofsets: Int = 5
     var assist: [Set<String>]?
+    var dirty: Bool = false
 
     func assistvalues() {
-        if let store = PersistentStorageAssist(assistassets: nil).readassist() {
+        if let store = PersistentStorageAssist(assist: nil).readassist() {
             for i in 0 ..< store.count {
                 if let remotecomputers = store[i].value(forKey: DictionaryStrings.remotecomputers.rawValue) as? String {
                     if self.remotecomputers == nil {
@@ -83,6 +99,7 @@ final class Assist {
                 return
             }
         }
+        self.dirty = false
     }
 
     init() {
