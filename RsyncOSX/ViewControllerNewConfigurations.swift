@@ -25,7 +25,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     let delete: String = "--delete"
     let eparam: String = "-e"
     let ssh: String = "ssh"
-    let dryrun: String = "--dry-run"
     var outputprocess: OutputProcess?
     // Reference to rsync parameters to use in combox
     var comboBoxValues = [ViewControllerReference.shared.synchronize,
@@ -193,7 +192,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             DictionaryStrings.parameter4.rawValue: self.delete,
             DictionaryStrings.parameter5.rawValue: self.eparam,
             DictionaryStrings.parameter6.rawValue: self.ssh,
-            "dryrun": self.dryrun,
             DictionaryStrings.dateRun.rawValue: "",
         ]
         if self.localCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
