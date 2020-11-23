@@ -21,7 +21,8 @@ final class PersistentStorageAssist: ReadWriteDictionary {
                     let question: String = NSLocalizedString("PLIST file exists: ", comment: "Logg")
                     let text: String = NSLocalizedString("Cancel or Save", comment: "Logg")
                     let dialog: String = NSLocalizedString("Save", comment: "Logg")
-                    let answer = Alerts.dialogOrCancel(question: question + " " + ViewControllerReference.shared.assistplist, text: text, dialog: dialog)
+                    let answer = Alerts.dialogOrCancel(question: question + " " +
+                        ViewControllerReference.shared.assistplist, text: text, dialog: dialog)
                     if answer {
                         if let array: [NSDictionary] = ConvertAssist(assistassets: self.assistsets).assist {
                             self.writeToStore(array: array)
@@ -52,11 +53,11 @@ final class PersistentStorageAssist: ReadWriteDictionary {
         super.init(profile: nil, whattoreadwrite: .assist)
         if let assist = assist {
             self.assistsets = [Set]()
-            if let catalogs = assist.catalogs {self.assistsets?.append(catalogs) }
-            if let localhome = assist.localhome {self.assistsets?.append(localhome) }
-            if let remotecomputers = assist.remotecomputers {self.assistsets?.append(remotecomputers) }
-            if let remotehome = assist.remotehome {self.assistsets?.append(remotehome) }
-            if let remoteusers = assist.remoteusers {self.assistsets?.append(remoteusers) }
+            if let remotecomputers = assist.remotecomputers { self.assistsets?.append(remotecomputers) }
+            if let remoteusers = assist.remoteusers { self.assistsets?.append(remoteusers) }
+            if let remotehome = assist.remotehome { self.assistsets?.append(remotehome) }
+            if let catalogs = assist.catalogs { self.assistsets?.append(catalogs) }
+            if let localhome = assist.localhome { self.assistsets?.append(localhome) }
         }
     }
 }
