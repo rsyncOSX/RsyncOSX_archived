@@ -10,8 +10,8 @@ import Files
 import Foundation
 
 final class AssistDefault {
-    var catalogs: Set<String>?
-    var localhome: Set<String>?
+    var catalogs = Set<String>()
+    var localhome = Set<String>()
     var nameandpaths: NamesandPaths?
 
     func setcatalogs() -> Set<String>? {
@@ -29,7 +29,7 @@ final class AssistDefault {
         return nil
     }
 
-    func setlocalhome() -> Set<String>? {
+    func setlocalhome() -> Set<String> {
         var home = Set<String>()
         home.insert(self.nameandpaths?.userHomeDirectoryPath ?? "")
         return home
@@ -38,6 +38,8 @@ final class AssistDefault {
     init() {
         self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
         self.localhome = setlocalhome()
-        self.catalogs = setcatalogs()
+        if let catalogs = self.setcatalogs() {
+            self.catalogs = catalogs
+        }
     }
 }
