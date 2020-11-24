@@ -339,4 +339,5 @@ enum DictionaryStrings: String {
     case completeCellID
     case inprogressCellID
     case profilename
+    case index
 }

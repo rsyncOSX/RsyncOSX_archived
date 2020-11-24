@@ -41,7 +41,7 @@ class RemoteinfonumbersOnetask {
             DictionaryStrings.totalDirs.rawValue: self.totalDirs ?? "",
             DictionaryStrings.newfiles.rawValue: self.newfiles ?? "",
             DictionaryStrings.deletefiles.rawValue: self.deletefiles ?? "",
-            "index": index,
+            DictionaryStrings.index.rawValue: index,
         ]
         return dict
     }

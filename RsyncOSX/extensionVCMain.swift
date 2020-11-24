@@ -295,7 +295,7 @@ extension ViewControllerMain: MenuappChanged {
 extension ViewControllerMain: SetLocalRemoteInfo {
     func getlocalremoteinfo(index: Int) -> [NSDictionary]? {
         guard self.configurations?.localremote != nil else { return nil }
-        if let info = self.configurations?.localremote?.filter({ ($0.value(forKey: "index") as? Int)! == index }) {
+        if let info = self.configurations?.localremote?.filter({ ($0.value(forKey: DictionaryStrings.index.rawValue) as? Int)! == index }) {
             return info
         } else {
             return nil
