@@ -174,6 +174,11 @@ extension ViewControllerMain: NSTableViewDelegate {
                     }
                     return cell
                 }
+            case DictionaryStrings.workCellID.rawValue:
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    // cell.startAnimation(nil) as? NSProgressIndicator
+                    return cell
+                }
             default:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
