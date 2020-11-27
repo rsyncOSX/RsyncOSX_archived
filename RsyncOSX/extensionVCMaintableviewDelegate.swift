@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 25/08/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable cyclomatic_complexity function_body_length
+//  swiftlint:disable cyclomatic_complexity line_length
 
 import Cocoa
 import Foundation
@@ -154,7 +154,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         guard self.configurations != nil else { return nil }
         if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
         if let object: NSDictionary = self.configurations?.getConfigurationsDataSource()?[row],
-           let markdays: Bool = self.configurations?.getConfigurations()?[row].markdays,
+           // let markdays: Bool = self.configurations?.getConfigurations()?[row].markdays,
            let tableColumn = tableColumn
         {
             let cellIdentifier: String = tableColumn.identifier.rawValue
@@ -179,6 +179,15 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                         cell.textField?.stringValue = "localhost"
                     }
                     return cell
+                }
+            case "ShellID":
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    let pre = object.value(forKey: DictionaryStrings.executepretask.rawValue) as? Int ?? 0
+                    let post = object.value(forKey: DictionaryStrings.executeposttask.rawValue) as? Int ?? 0
+                    if pre == 1 || post == 1 {
+                        cell.imageView?.image = NSImage(#imageLiteral(resourceName: "yellow"))
+                        return cell
+                    }
                 }
             default:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
