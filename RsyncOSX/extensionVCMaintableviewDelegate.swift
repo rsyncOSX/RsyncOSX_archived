@@ -58,18 +58,17 @@ extension ViewControllerMain: NSTableViewDelegate {
         self.showrsynccommandmainview()
     }
 
-    func tableView(_: NSTableView, rowActionsForRow _: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+    func tableView(_: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         if edge == .leading {
-            let printAction = NSTableViewRowAction(style: .regular, title: "Print") { _, _ in
-                print("Now printing...")
+            let printAction = NSTableViewRowAction(style: .regular, title: NSLocalizedString("Execute", comment: "Main")) { _, _ in
+                self.executetask(index: row)
             }
             printAction.backgroundColor = NSColor.gray
             return [printAction]
 
         } else {
-            let deleteAction = NSTableViewRowAction(style: .destructive, title: "Delete") { _, _ in
-                // self.viewModel.removePurchase(atIndex: row)
-                // self.tableView.reloadData()
+            let deleteAction = NSTableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Main")) { _, _ in
+                self.deleterow(index: row)
             }
             return [deleteAction]
         }

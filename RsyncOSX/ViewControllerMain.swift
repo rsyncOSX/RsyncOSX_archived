@@ -116,6 +116,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         if let index = self.index {
+            self.deleterow(index: index)
+        }
+    }
+
+    func deleterow(index: Int?) {
+        if let index = index {
             if let hiddenID = self.configurations?.gethiddenID(index: index) {
                 let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
                 let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
@@ -248,6 +254,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         if let index = self.index {
+            self.executetask(index: index)
+        }
+    }
+
+    func executetask(index: Int?) {
+        if let index = index {
             if let task = self.configurations?.getConfigurations()?[index].task {
                 guard ViewControllerReference.shared.synctasks.contains(task) else { return }
                 if let config = self.configurations?.getConfigurations()?[index] {
