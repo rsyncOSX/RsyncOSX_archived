@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 25/08/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable cyclomatic_complexity line_length
+//  swiftlint:disable cyclomatic_complexity line_length function_body_length
 
 import Cocoa
 import Foundation
@@ -31,86 +31,7 @@ extension ViewControllerMain: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
-    /*
-     // TableView delegates
-     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-         if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
-         if let object = self.configurations?.getConfigurationsDataSource()?[row],
-            let hiddenID: Int = self.configurations?.getConfigurations()?[row].hiddenID,
-            let markdays = self.configurations?.getConfigurations()?[row].markdays,
-            let tableColumn = tableColumn
-         {
-             let celltext = object[tableColumn.identifier] as? String
-             if tableColumn.identifier.rawValue == DictionaryStrings.daysID.rawValue {
-                 if markdays {
-                     return self.attributedstring(str: celltext!, color: NSColor.red, align: .right)
-                 } else {
-                     return object[tableColumn.identifier] as? String
-                 }
-             } else if tableColumn.identifier.rawValue == DictionaryStrings.offsiteServerCellID.rawValue,
-                       ((object[tableColumn.identifier] as? String)?.isEmpty) == true
-             {
-                 return "localhost"
-             } else if tableColumn.identifier.rawValue == "schedCellID" {
-                 if let obj = self.schedulesortedandexpanded {
-                     if obj.numberoftasks(hiddenID).0 > 0 {
-                         if obj.numberoftasks(hiddenID).1 > 3600 {
-                             return #imageLiteral(resourceName: "yellow")
-                         } else {
-                             return #imageLiteral(resourceName: "green")
-                         }
-                     }
-                 }
-             } else if tableColumn.identifier.rawValue == "statCellID" {
-                 if row == self.index {
-                     if self.singletask == nil {
-                         return #imageLiteral(resourceName: "yellow")
-                     } else {
-                         return #imageLiteral(resourceName: "green")
-                     }
-                 }
-             } else if tableColumn.identifier.rawValue == DictionaryStrings.snapCellID.rawValue {
-                 let snap = object.value(forKey: DictionaryStrings.snapCellID.rawValue) as? Int ?? -1
-                 if snap > 0 {
-                     return String(snap - 1)
-                 } else {
-                     return ""
-                 }
-             } else if tableColumn.identifier.rawValue == DictionaryStrings.runDateCellID.rawValue {
-                 let stringdate: String = object[tableColumn.identifier] as? String ?? ""
-                 if stringdate.isEmpty {
-                     return ""
-                 } else {
-                     return stringdate.en_us_date_from_string().localized_string_from_date()
-                 }
-             } else if tableColumn.identifier.rawValue == "Shell" {
-                 let pre = object.value(forKey: DictionaryStrings.executepretask.rawValue) as? Int ?? 0
-                 let post = object.value(forKey: DictionaryStrings.executeposttask.rawValue) as? Int ?? 0
-                 if pre == 1 || post == 1 {
-                     return 1
-                 } else {
-                     return 0
-                 }
-             } else {
-                 if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
-                     if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
-                        tableColumn.identifier.rawValue == DictionaryStrings.offsiteServerCellID.rawValue
-                     {
-                         return self.attributedstring(str: celltext ?? "", color: NSColor.red, align: .left)
-                     } else {
-                         return object[tableColumn.identifier] as? String
-                     }
-                 } else {
-                     return object[tableColumn.identifier] as? String
-                 }
-             }
-             return nil
-         }
-         return nil
-     }
-     */
-    // when row is selected
+extension ViewControllerMain: NSTableViewDelegate {
     // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {
         self.seterrorinfo(info: "")
@@ -129,7 +50,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         }
         self.reset()
         self.showrsynccommandmainview()
-        self.reloadtabledata()
+        // self.reloadtabledata()
     }
 
     func tableView(_: NSTableView, rowActionsForRow _: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
@@ -155,13 +76,12 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
         if let object: NSDictionary = self.configurations?.getConfigurationsDataSource()?[row],
            let hiddenID: Int = self.configurations?.getConfigurations()?[row].hiddenID,
-           // let markdays: Bool = self.configurations?.getConfigurations()?[row].markdays,
+           let markdays: Bool = self.configurations?.getConfigurations()?[row].markdays,
            let tableColumn = tableColumn
         {
             let cellIdentifier: String = tableColumn.identifier.rawValue
-            print(cellIdentifier)
             switch cellIdentifier {
-            case "taskCellID":
+            case DictionaryStrings.taskCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
                     if row == self.index {
@@ -173,15 +93,24 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                     }
                     return cell
                 }
-            case "offsiteServerCellID":
+            case DictionaryStrings.offsiteServerCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
                     if cell.textField?.stringValue.isEmpty ?? true {
                         cell.textField?.stringValue = "localhost"
                     }
+                    if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
+                        if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
+                           tableColumn.identifier.rawValue == DictionaryStrings.offsiteServerCellID.rawValue
+                        {
+                            cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .red)
+                        } else {
+                            cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .black)
+                        }
+                    }
                     return cell
                 }
-            case "ShellID":
+            case DictionaryStrings.ShellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     let pre = object.value(forKey: DictionaryStrings.executepretask.rawValue) as? Int ?? 0
                     let post = object.value(forKey: DictionaryStrings.executeposttask.rawValue) as? Int ?? 0
@@ -192,7 +121,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                         return nil
                     }
                 }
-            case "schedCellID":
+            case DictionaryStrings.schedCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     if let obj = self.schedulesortedandexpanded {
                         if obj.numberoftasks(hiddenID).0 > 0 {
@@ -215,7 +144,27 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                     }
                     return cell
                 }
-
+            case DictionaryStrings.runDateCellID.rawValue:
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    let stringdate = object.value(forKey: DictionaryStrings.runDateCellID.rawValue) as? String ?? ""
+                    if stringdate.isEmpty {
+                        cell.textField?.stringValue = ""
+                    } else {
+                        cell.textField?.stringValue = stringdate.en_us_date_from_string().localized_string_from_date()
+                    }
+                    return cell
+                }
+            case DictionaryStrings.daysID.rawValue:
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                    cell.textField?.alignment = .right
+                    if markdays {
+                        cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .red)
+                    } else {
+                        cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .black)
+                    }
+                    return cell
+                }
             default:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""

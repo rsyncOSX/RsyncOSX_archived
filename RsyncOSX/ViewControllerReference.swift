@@ -340,4 +340,6 @@ enum DictionaryStrings: String {
     case inprogressCellID
     case profilename
     case index
+    case ShellID
+    case schedCellID
 }

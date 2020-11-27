@@ -57,12 +57,12 @@ class TCPconnections: SetConfigurations, Delay {
                         if let sshport: Int = config.sshport { port = sshport }
                         let success = self.testTCPconnection(config.offsiteServer, port: port, timeout: 1)
                         if success {
-                            self.indexBoolremoteserverOff!.append(false)
+                            self.indexBoolremoteserverOff?.append(false)
                         } else {
-                            self.indexBoolremoteserverOff!.append(true)
+                            self.indexBoolremoteserverOff?.append(true)
                         }
                     } else {
-                        self.indexBoolremoteserverOff!.append(false)
+                        self.indexBoolremoteserverOff?.append(false)
                     }
                     // Reload table when all remote servers are checked
                     if i == ((self.configurations?.configurationsDataSource?.count ?? 0) - 1) {
