@@ -133,6 +133,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 }
             }
             self.reset()
+            self.singletask = nil
         }
     }
 
@@ -342,7 +343,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func reset() {
-        // self.singletask = nil
         self.setNumbers(outputprocess: nil)
         self.seterrorinfo(info: "")
         // Close edit and parameters view if open
