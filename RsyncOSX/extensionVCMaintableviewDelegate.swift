@@ -46,13 +46,13 @@ extension ViewControllerMain: NSTableViewDelegate {
             self.indexes = self.mainTableView.selectedRowIndexes
             if self.lastindex != index {
                 self.singletask = nil
-                self.reloadtabledata()
             }
             self.lastindex = index
         } else {
             self.index = nil
             self.indexes = nil
             self.singletask = nil
+            self.reloadtabledata()
         }
         self.reset()
         self.showrsynccommandmainview()
@@ -87,13 +87,11 @@ extension ViewControllerMain: NSTableViewDelegate {
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
                     cell.imageView?.image = nil
+                    cell.imageView?.alignment = .right
                     if row == self.index {
-                        if self.singletask == nil {
-                            cell.imageView?.image = NSImage(#imageLiteral(resourceName: "yellow"))
-                        } else {
+                        if self.singletask != nil {
                             cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
                         }
-                        cell.imageView?.alignment = .right
                     }
                     return cell
                 }
