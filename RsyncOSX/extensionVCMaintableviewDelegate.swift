@@ -60,17 +60,16 @@ extension ViewControllerMain: NSTableViewDelegate {
 
     func tableView(_: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         if edge == .leading {
-            let printAction = NSTableViewRowAction(style: .regular, title: NSLocalizedString("Execute", comment: "Main")) { _, _ in
-                self.executetask(index: row)
-            }
-            printAction.backgroundColor = NSColor.gray
-            return [printAction]
-
-        } else {
-            let deleteAction = NSTableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Main")) { _, _ in
+            let delete = NSTableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Main")) { _, _ in
                 self.deleterow(index: row)
             }
-            return [deleteAction]
+            return [delete]
+        } else {
+            let execute = NSTableViewRowAction(style: .regular, title: NSLocalizedString("Execute", comment: "Main")) { _, _ in
+                self.executetask(index: row)
+            }
+            execute.backgroundColor = NSColor.gray
+            return [execute]
         }
     }
 
@@ -172,11 +171,6 @@ extension ViewControllerMain: NSTableViewDelegate {
                     } else {
                         cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .black)
                     }
-                    return cell
-                }
-            case DictionaryStrings.workCellID.rawValue:
-                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                    // cell.startAnimation(nil) as? NSProgressIndicator
                     return cell
                 }
             default:
