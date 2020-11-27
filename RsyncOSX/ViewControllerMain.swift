@@ -52,6 +52,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var executetasknow: ExecuteTaskNow?
     // Index to selected row, index is set when row is selected
     var index: Int?
+    var lastindex: Int?
     // Indexes, multiple selection
     var indexes: IndexSet?
     var multipeselection: Bool = false
@@ -341,7 +342,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func reset() {
-        self.singletask = nil
+        // self.singletask = nil
         self.setNumbers(outputprocess: nil)
         self.seterrorinfo(info: "")
         // Close edit and parameters view if open

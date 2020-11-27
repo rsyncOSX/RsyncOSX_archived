@@ -44,13 +44,18 @@ extension ViewControllerMain: NSTableViewDelegate {
         if let index = indexes.first {
             self.index = index
             self.indexes = self.mainTableView.selectedRowIndexes
+            if self.lastindex != index {
+                self.singletask = nil
+                self.reloadtabledata()
+            }
+            self.lastindex = index
         } else {
             self.index = nil
             self.indexes = nil
+            self.singletask = nil
         }
         self.reset()
         self.showrsynccommandmainview()
-        // self.reloadtabledata()
     }
 
     func tableView(_: NSTableView, rowActionsForRow _: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
