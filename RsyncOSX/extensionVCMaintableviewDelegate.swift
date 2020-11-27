@@ -66,7 +66,6 @@ extension ViewControllerMain: NSTableViewDelegate {
                 // self.viewModel.removePurchase(atIndex: row)
                 // self.tableView.reloadData()
             }
-
             return [deleteAction]
         }
     }
@@ -84,12 +83,14 @@ extension ViewControllerMain: NSTableViewDelegate {
             case DictionaryStrings.taskCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
+                    cell.imageView?.image = nil
                     if row == self.index {
                         if self.singletask == nil {
                             cell.imageView?.image = NSImage(#imageLiteral(resourceName: "yellow"))
                         } else {
                             cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
                         }
+                        cell.imageView?.alignment = .right
                     }
                     return cell
                 }
@@ -97,7 +98,7 @@ extension ViewControllerMain: NSTableViewDelegate {
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
                     if cell.textField?.stringValue.isEmpty ?? true {
-                        cell.textField?.stringValue = "localhost"
+                        cell.textField?.stringValue = DictionaryStrings.localhost.rawValue
                     }
                     if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
                         if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
@@ -112,27 +113,31 @@ extension ViewControllerMain: NSTableViewDelegate {
                 }
             case DictionaryStrings.ShellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    cell.textField?.stringValue = ""
+                    cell.imageView?.image = nil
                     let pre = object.value(forKey: DictionaryStrings.executepretask.rawValue) as? Int ?? 0
                     let post = object.value(forKey: DictionaryStrings.executeposttask.rawValue) as? Int ?? 0
                     if pre == 1 || post == 1 {
                         cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
-                        return cell
-                    } else {
-                        return nil
+                        cell.imageView?.alignment = .right
                     }
+                    return cell
                 }
             case DictionaryStrings.schedCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     if let obj = self.schedulesortedandexpanded {
+                        cell.textField?.stringValue = ""
+                        cell.imageView?.image = nil
                         if obj.numberoftasks(hiddenID).0 > 0 {
                             if obj.numberoftasks(hiddenID).1 > 3600 {
                                 cell.imageView?.image = NSImage(#imageLiteral(resourceName: "yellow"))
                             } else {
                                 cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
                             }
-                            return cell
+                            cell.imageView?.alignment = .right
                         }
                     }
+                    return cell
                 }
             case DictionaryStrings.snapCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {

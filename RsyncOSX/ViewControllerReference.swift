@@ -342,4 +342,5 @@ enum DictionaryStrings: String {
     case index
     case ShellID
     case schedCellID
+    case localhost
 }

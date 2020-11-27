@@ -52,9 +52,9 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                         case DictionaryStrings.offsiteServerCellID.rawValue:
                             if (object[tableColumn.identifier] as? String)!.isEmpty {
                                 if self.index() ?? -1 == row, self.index == nil {
-                                    return self.attributedstring(str: "localhost", color: NSColor.green, align: .left)
+                                    return self.attributedstring(str: DictionaryStrings.localhost.rawValue, color: NSColor.green, align: .left)
                                 } else {
-                                    return "localhost"
+                                    return DictionaryStrings.localhost.rawValue
                                 }
                             } else {
                                 if self.index() ?? -1 == row, self.index == nil {

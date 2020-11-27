@@ -44,7 +44,7 @@ final class AllConfigurations: Sorting {
         var data = [NSMutableDictionary]()
         for i in 0 ..< (configurations?.count ?? 0) {
             if configurations?[i].offsiteServer.isEmpty == true {
-                configurations?[i].offsiteServer = "localhost"
+                configurations?[i].offsiteServer = DictionaryStrings.localhost.rawValue
             }
             var date: String = ""
             let stringdate = configurations?[i].dateRun ?? ""

@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 26/04/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable trailing_comma
+// swiftlint:disable trailing_comma line_length
 
 import Foundation
 
@@ -21,7 +21,7 @@ struct ConvertSchedules: SetSchedules {
                     DictionaryStrings.hiddenID.rawValue: schedules[i].hiddenID,
                     DictionaryStrings.dateStart.rawValue: schedules[i].dateStart,
                     DictionaryStrings.schedule.rawValue: schedules[i].schedule,
-                    DictionaryStrings.offsiteserver.rawValue: schedules[i].offsiteserver ?? "localhost",
+                    DictionaryStrings.offsiteserver.rawValue: schedules[i].offsiteserver ?? DictionaryStrings.localhost.rawValue,
                 ]
                 if let log = schedules[i].logrecords {
                     var logrecords = [NSDictionary]()
