@@ -154,6 +154,7 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
         guard self.configurations != nil else { return nil }
         if row > (self.configurations?.configurationsDataSource?.count ?? 0) - 1 { return nil }
         if let object: NSDictionary = self.configurations?.getConfigurationsDataSource()?[row],
+           let hiddenID: Int = self.configurations?.getConfigurations()?[row].hiddenID,
            // let markdays: Bool = self.configurations?.getConfigurations()?[row].markdays,
            let tableColumn = tableColumn
         {
@@ -185,10 +186,36 @@ extension ViewControllerMain: NSTableViewDelegate, Attributedestring {
                     let pre = object.value(forKey: DictionaryStrings.executepretask.rawValue) as? Int ?? 0
                     let post = object.value(forKey: DictionaryStrings.executeposttask.rawValue) as? Int ?? 0
                     if pre == 1 || post == 1 {
-                        cell.imageView?.image = NSImage(#imageLiteral(resourceName: "yellow"))
+                        cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
                         return cell
+                    } else {
+                        return nil
                     }
                 }
+            case "schedCellID":
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    if let obj = self.schedulesortedandexpanded {
+                        if obj.numberoftasks(hiddenID).0 > 0 {
+                            if obj.numberoftasks(hiddenID).1 > 3600 {
+                                cell.imageView?.image = NSImage(#imageLiteral(resourceName: "yellow"))
+                            } else {
+                                cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
+                            }
+                            return cell
+                        }
+                    }
+                }
+            case DictionaryStrings.snapCellID.rawValue:
+                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
+                    let snap = object.value(forKey: DictionaryStrings.snapCellID.rawValue) as? Int ?? -1
+                    if snap > 0 {
+                        cell.textField?.stringValue = String(snap - 1)
+                    } else {
+                        cell.textField?.stringValue = ""
+                    }
+                    return cell
+                }
+
             default:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
