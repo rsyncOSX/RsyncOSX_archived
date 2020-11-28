@@ -213,7 +213,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         if verify?.verifyconf ?? false, verify?.verifysched ?? false == true {
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-
             self.info.stringValue = NSLocalizedString("Verify OK...", comment: "Verify")
         } else {
             self.info.textColor = setcolor(nsviewcontroller: self, color: .red)

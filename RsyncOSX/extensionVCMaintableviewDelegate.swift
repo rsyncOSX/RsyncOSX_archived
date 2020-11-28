@@ -66,7 +66,11 @@ extension ViewControllerMain: NSTableViewDelegate {
             return [delete]
         } else {
             let execute = NSTableViewRowAction(style: .regular, title: NSLocalizedString("Execute", comment: "Main")) { _, _ in
-                self.executetask(index: row)
+                if self.index != nil, self.singletask != nil {
+                    if self.index == row { self.executeSingleTask() }
+                } else {
+                    self.executetask(index: row)
+                }
             }
             execute.backgroundColor = NSColor.gray
             return [execute]
