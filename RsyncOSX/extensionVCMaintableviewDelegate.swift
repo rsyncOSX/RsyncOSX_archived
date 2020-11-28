@@ -59,6 +59,7 @@ extension ViewControllerMain: NSTableViewDelegate {
     }
 
     func tableView(_: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+        guard ViewControllerReference.shared.process == nil else { return [] }
         if edge == .leading {
             let delete = NSTableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Main")) { _, _ in
                 self.deleterow(index: row)
