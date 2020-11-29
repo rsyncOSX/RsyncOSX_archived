@@ -484,7 +484,6 @@
 				E8EF5EB8231A86FE00444F9E /* Tabviews */,
 				E958BB2523070ACE00349C81 /* RemoteEstimation */,
 				E957B1131F5F2A3A0099947A /* ViewControllerReference */,
-				E801A0692573FFA90014212A /* ViewControllerSideBar.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -590,6 +589,7 @@
 		E8EF5EB8231A86FE00444F9E /* Tabviews */ = {
 			isa = PBXGroup;
 			children = (
+				E801A0692573FFA90014212A /* ViewControllerSideBar.swift */,
 				A091C6571D86A0A800278E74 /* ViewControllerRestore.swift */,
 				E82F9F1023F0306100E3DEBC /* extensionRestore */,
 				E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */,

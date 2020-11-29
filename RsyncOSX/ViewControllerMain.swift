@@ -192,7 +192,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
-
         self.initpopupbutton()
     }
 
