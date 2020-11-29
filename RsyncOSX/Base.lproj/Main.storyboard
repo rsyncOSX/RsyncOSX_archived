@@ -130,7 +130,7 @@
                                         </menuItem>
                                         <menuItem title="Transform" keyEquivalent="j" id="PI0-Hw-1SW" userLabel="Info">
                                             <connections>
-                                                <action selector="enableconvertjsonbutton:" target="Ady-hI-5gd" id="PdF-v0-3t3"/>
+                                                <action selector="enableconvertjsonbutton:" target="Ady-hI-5gd" id="wIw-bg-vCP"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
@@ -282,8 +282,17 @@ DQ
 </string>
                                 </buttonCell>
                             </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9AI-DS-EC9">
+                                <rect key="frame" x="62" y="12" width="34" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="JSON" id="O9B-eL-iDX">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-A0-aHr">
-                                <rect key="frame" x="11" y="359" width="35" height="28"/>
+                                <rect key="frame" x="31" y="359" width="35" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="menuapp" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Z6y-9e-b4T">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -294,22 +303,13 @@ DQ
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXa-DA-hNS">
-                                <rect key="frame" x="50" y="366" width="13" height="13"/>
+                                <rect key="frame" x="70" y="366" width="13" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HxN-48-tto">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9AI-DS-EC9">
-                                <rect key="frame" x="62" y="12" width="34" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="JSON" id="O9B-eL-iDX">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2nI-S8-MCI"/>
                         <viewLayoutGuide key="layoutMargins" id="vvh-gv-FED"/>
@@ -784,7 +784,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="776" y="1" width="50" height="17"/>
+                                                            <rect key="frame" x="776" y="1" width="19" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -852,7 +852,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="936" y="1" width="125" height="17"/>
+                                                            <rect key="frame" x="936" y="1" width="94" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -976,10 +976,7 @@ DQ
                     </view>
                     <connections>
                         <outlet property="info" destination="RQt-Hs-8vg" id="ALk-ui-Bwg"/>
-                        <outlet property="jsonlabel" destination="9AI-DS-EC9" id="vxH-vp-2R1"/>
                         <outlet property="mainTableView" destination="gd0-mk-eEg" id="V0X-hS-6qu"/>
-                        <outlet property="menuappisrunning" destination="KXa-DA-hNS" id="aCd-nb-zzG"/>
-                        <outlet property="pathtorsyncosxschedbutton" destination="Tk3-A0-aHr" id="vMw-5e-wEk"/>
                         <outlet property="profilInfo" destination="Gg2-se-FkF" id="XIe-l3-YkS"/>
                         <outlet property="profilepopupbutton" destination="PpM-WV-OB6" id="bqc-10-qbR"/>
                         <outlet property="rsyncversionshort" destination="n3L-Il-K5w" id="5oc-tn-kTn"/>
