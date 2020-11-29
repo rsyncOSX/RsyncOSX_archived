@@ -6,44 +6,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--RsyncOSX-->
-        <scene sceneID="4Bv-eJ-Dej">
-            <objects>
-                <splitViewController title="RsyncOSX" id="izv-0x-JbJ" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem id="xSH-iO-1MI"/>
-                        <splitViewItem id="YKp-z9-WAt"/>
-                    </splitViewItems>
-                    <splitView key="splitView" dividerStyle="thin" vertical="YES" id="6Q1-t1-Gk5">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="izv-0x-JbJ" id="mdS-FO-fW5"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <outlet property="splitView" destination="6Q1-t1-Gk5" id="CIg-QT-2Eg"/>
-                        <segue destination="rFS-B5-RaJ" kind="relationship" relationship="splitItems" id="ltB-Zn-ah6"/>
-                        <segue destination="CHy-OK-nPY" kind="relationship" relationship="splitItems" id="D8l-b2-k8s"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="bT2-vw-Bxz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-248" y="-691"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="GQs-xo-bKM">
-            <objects>
-                <viewController id="rFS-B5-RaJ" sceneMemberID="viewController">
-                    <view key="view" id="Nq0-uX-pWV">
-                        <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="C2D-fT-Fj1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="242" y="-174"/>
-        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -256,7 +218,7 @@
                     <window key="window" title="RsyncOSX" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="EVd-zs-u1i">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="1705" y="-141" width="657" height="241"/>
+                        <rect key="contentRect" x="1705" y="-206" width="657" height="306"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
                         <toolbar key="toolbar" implicitIdentifier="51D9436B-B5BB-4558-9639-8FADD388211E" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="V2V-E5-Ln9">
                             <allowedToolbarItems>
@@ -379,7 +341,7 @@
                 </windowController>
                 <customObject id="Rv5-yv-lsc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1053" y="-406"/>
+            <point key="canvasLocation" x="-1294" y="-697"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hwe-jL-WAZ">
@@ -668,7 +630,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="678.5" y="1" width="62" height="17"/>
+                                                            <rect key="frame" x="679" y="1" width="62" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -732,7 +694,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="805.5" y="1" width="100" height="17"/>
+                                                            <rect key="frame" x="806" y="1" width="100" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -4541,9 +4503,6 @@ DQ
             <point key="canvasLocation" x="-1940" y="636"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="D8l-b2-k8s"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="abort" width="48" height="48"/>
