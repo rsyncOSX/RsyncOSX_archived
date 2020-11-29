@@ -98,6 +98,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
+        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
     }
 }
 
