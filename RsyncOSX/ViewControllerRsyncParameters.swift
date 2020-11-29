@@ -23,7 +23,6 @@ protocol GetSelecetedIndex: AnyObject {
 }
 
 class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index {
-    weak var userparamsupdatedDelegate: RsyncUserParams?
     var comboBoxValues = [String]()
     var diddissappear: Bool = false
 
@@ -200,7 +199,6 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.userparamsupdatedDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     override func viewDidAppear() {
@@ -318,8 +316,6 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
                 }
                 // Update configuration in memory before saving
                 self.configurations?.updateConfigurations(configurations[index], index: index)
-                // notify an update
-                self.userparamsupdatedDelegate?.rsyncuserparamsupdated()
             }
         }
         self.view.window?.close()

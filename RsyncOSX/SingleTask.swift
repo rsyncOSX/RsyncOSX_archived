@@ -26,7 +26,6 @@ protocol SingleTaskProcess: AnyObject {
     func presentViewInformation(outputprocess: OutputProcess?)
     func terminateProgressProcess()
     func seterrorinfo(info: String)
-    func setNumbers(outputprocess: OutputProcess?)
 }
 
 final class SingleTask: SetSchedules, SetConfigurations {
@@ -101,7 +100,6 @@ extension SingleTask {
             switch workload.pop() {
             case .estimatesinglerun:
                 self.indicatorDelegate?.stopIndicator()
-                self.singletaskDelegate?.setNumbers(outputprocess: self.outputprocess)
                 self.maxcount = self.outputprocess?.getMaxcount() ?? 0
                 self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
             case .error:

@@ -106,3 +106,52 @@ extension ViewControllerSideBar: MenuappChanged {
         self.menuappicons()
     }
 }
+
+/*
+ // Function for display rsync command
+ @IBAction func showrsynccommand(_: NSButton) {
+     self.showrsynccommandmainview()
+ }
+
+ // Display correct rsync command in view
+ func showrsynccommandmainview() {
+     if let index = self.index {
+         guard index <= (self.configurations?.getConfigurations()?.count ?? 0) else { return }
+         if self.backupdryrun.state == .on {
+             self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .synchronize).displayrsyncpath ?? ""
+         } else if self.restoredryrun.state == .on {
+             self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .restore).displayrsyncpath ?? ""
+         } else {
+             self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .verify).displayrsyncpath ?? ""
+         }
+     } else {
+         self.rsyncCommand.stringValue = ""
+     }
+ }
+
+ // Function for getting numbers out of output object updated when
+ // Process object executes the job.
+ func setNumbers(outputprocess: OutputProcess?) {
+     globalMainQueue.async { () -> Void in
+         guard outputprocess != nil else {
+             self.transferredNumber.stringValue = ""
+             self.transferredNumberSizebytes.stringValue = ""
+             self.totalNumber.stringValue = ""
+             self.totalNumberSizebytes.stringValue = ""
+             self.totalDirs.stringValue = ""
+             self.newfiles.stringValue = ""
+             self.deletefiles.stringValue = ""
+             return
+         }
+         let remoteinfotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
+         self.transferredNumber.stringValue = remoteinfotask.transferredNumber!
+         self.transferredNumberSizebytes.stringValue = remoteinfotask.transferredNumberSizebytes!
+         self.totalNumber.stringValue = remoteinfotask.totalNumber!
+         self.totalNumberSizebytes.stringValue = remoteinfotask.totalNumberSizebytes!
+         self.totalDirs.stringValue = remoteinfotask.totalDirs!
+         self.newfiles.stringValue = remoteinfotask.newfiles!
+         self.deletefiles.stringValue = remoteinfotask.deletefiles!
+     }
+ }
+
+ */

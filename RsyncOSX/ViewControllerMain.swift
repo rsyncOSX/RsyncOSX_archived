@@ -12,33 +12,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Progressbar indicating work
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var workinglabel: NSTextField!
-    // Displays the rsyncCommand
-    @IBOutlet var rsyncCommand: NSTextField!
-    // If On result of Dryrun is presented before
-    // executing the real run
-    // number of files to be transferred
-    @IBOutlet var transferredNumber: NSTextField!
-    // size of files to be transferred
-    @IBOutlet var transferredNumberSizebytes: NSTextField!
-    // total number of files in remote volume
-    @IBOutlet var totalNumber: NSTextField!
-    // total size of files in remote volume
-    @IBOutlet var totalNumberSizebytes: NSTextField!
-    // total number of directories remote volume
-    @IBOutlet var totalDirs: NSTextField!
     // Showing info about profile
     @IBOutlet var profilInfo: NSTextField!
-    // New files
-    @IBOutlet var newfiles: NSTextField!
-    // Delete files
-    @IBOutlet var deletefiles: NSTextField!
     @IBOutlet var rsyncversionshort: NSTextField!
-    @IBOutlet var backupdryrun: NSButton!
-    @IBOutlet var restoredryrun: NSButton!
-    @IBOutlet var verifydryrun: NSButton!
     @IBOutlet var info: NSTextField!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
-    @IBOutlet var errorinfo: NSTextField!
 
     // Reference to Configurations and Schedules object
     var configurations: Configurations?
@@ -188,27 +166,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
-    // Function for display rsync command
-    @IBAction func showrsynccommand(_: NSButton) {
-        self.showrsynccommandmainview()
-    }
-
-    // Display correct rsync command in view
-    func showrsynccommandmainview() {
-        if let index = self.index {
-            guard index <= (self.configurations?.getConfigurations()?.count ?? 0) else { return }
-            if self.backupdryrun.state == .on {
-                self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .synchronize).displayrsyncpath ?? ""
-            } else if self.restoredryrun.state == .on {
-                self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .restore).displayrsyncpath ?? ""
-            } else {
-                self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .verify).displayrsyncpath ?? ""
-            }
-        } else {
-            self.rsyncCommand.stringValue = ""
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Decide if:
@@ -232,7 +189,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
-        self.backupdryrun.state = .on
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
@@ -264,7 +220,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func reset() {
-        self.setNumbers(outputprocess: nil)
         self.seterrorinfo(info: "")
         // Close edit and parameters view if open
         if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
@@ -339,7 +294,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         localprofileinfo2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
         localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
-        self.showrsynccommandmainview()
     }
 
     func createandreloadschedules() {
