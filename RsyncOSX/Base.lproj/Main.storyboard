@@ -938,16 +938,17 @@ DQ
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="751" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ZhK-mF-Dgw">
                                 <rect key="frame" x="20" y="389" width="16" height="16"/>
                             </progressIndicator>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="752" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lb5-Xb-uyK">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="752" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lb5-Xb-uyK">
                                 <rect key="frame" x="383" y="388" width="323" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="estimating" id="RX2-fV-dtX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gg2-se-FkF">
-                                <rect key="frame" x="42" y="389" width="51" height="16"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gg2-se-FkF">
+                                <rect key="frame" x="42" y="389" width="246" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="60W-M7-Vqr">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -977,20 +978,15 @@ DQ
                             <constraint firstItem="PpM-WV-OB6" firstAttribute="bottom" secondItem="ZhK-mF-Dgw" secondAttribute="bottom" id="KeP-Zo-WY7"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="top" secondItem="PpM-WV-OB6" secondAttribute="bottom" constant="2" id="M0T-yz-DQA"/>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="baseline" secondItem="RQt-Hs-8vg" secondAttribute="baseline" id="M4u-Nb-CF1"/>
-                            <constraint firstItem="lb5-Xb-uyK" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="385" id="Njo-YH-t7l"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="leading" secondItem="ihR-vZ-M7c" secondAttribute="leading" id="Oxz-OJ-h7t"/>
                             <constraint firstItem="Gg2-se-FkF" firstAttribute="leading" secondItem="ZhK-mF-Dgw" secondAttribute="trailing" constant="8" id="PAr-b4-nos"/>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="baseline" secondItem="9AI-DS-EC9" secondAttribute="baseline" id="PmP-ZH-OrZ"/>
-                            <constraint firstItem="PpM-WV-OB6" firstAttribute="top" secondItem="lb5-Xb-uyK" secondAttribute="top" id="SSu-8h-uZv"/>
-                            <constraint firstItem="PpM-WV-OB6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lb5-Xb-uyK" secondAttribute="trailing" constant="8" symbolic="YES" id="TeG-cz-CZE"/>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="trailing" secondItem="ihR-vZ-M7c" secondAttribute="trailing" id="VOq-Cb-OgM"/>
                             <constraint firstItem="PpM-WV-OB6" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="2" id="aVA-dj-jW2"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="20" symbolic="YES" id="bmc-40-iyO"/>
                             <constraint firstItem="PpM-WV-OB6" firstAttribute="top" secondItem="Gg2-se-FkF" secondAttribute="top" id="dlz-ba-VgG"/>
                             <constraint firstItem="RQt-Hs-8vg" firstAttribute="leading" secondItem="9AI-DS-EC9" secondAttribute="trailing" constant="263" id="gt1-iW-3dN"/>
-                            <constraint firstItem="lb5-Xb-uyK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gg2-se-FkF" secondAttribute="trailing" constant="8" symbolic="YES" id="m7O-qy-Ycm"/>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="leading" secondItem="RQt-Hs-8vg" secondAttribute="trailing" constant="81" id="q3T-W6-hj3"/>
-                            <constraint firstItem="PpM-WV-OB6" firstAttribute="baseline" secondItem="lb5-Xb-uyK" secondAttribute="baseline" id="tBV-Aj-5Gt"/>
                         </constraints>
                     </view>
                     <connections>
