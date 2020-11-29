@@ -82,6 +82,7 @@
 
 /* Execute
    Logg
+   Main
    plan
    Profiles
    Snapshots */
@@ -131,6 +132,9 @@
 
 /* plan */
 "every" = "jede";
+
+/* Main */
+"Execute" = "Execute";
 
 /* Restore */
 "Executing restore..." = "Wiederherstellung wird ausgeführt...";
