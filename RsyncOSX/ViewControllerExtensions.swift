@@ -19,22 +19,8 @@ extension VcMain {
         return NSStoryboard(name: "Main", bundle: nil)
     }
 
-    // Information about rsync output
-    var viewControllerInformation: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardInformationID")
-            as? NSViewController)
-    }
-
-    // Progressbar process
-    var viewControllerProgress: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardProgressID")
-            as? NSViewController)
-    }
-
-    // Userconfiguration
-    var viewControllerUserconfiguration: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardUserconfigID")
-            as? NSViewController)
+    var sheetviewstoryboard: NSStoryboard? {
+        return NSStoryboard(name: "SheetViews", bundle: nil)
     }
 
     // Rsync userparams
@@ -49,57 +35,77 @@ extension VcMain {
             as? NSViewController)
     }
 
-    // Profile
-    var viewControllerProfile: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "ProfileID")
+    // StoryboardOutputID
+    var viewControllerAllOutput: NSViewController? {
+        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardOutputID")
             as? NSViewController)
     }
 
-    // About
-    var viewControllerAbout: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "AboutID")
+    // Sheetviews
+
+    // Userconfiguration
+    var viewControllerUserconfiguration: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardUserconfigID")
             as? NSViewController)
     }
 
-    // Quick backup process
-    var viewControllerQuickBackup: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardQuickBackupID")
-            as? NSViewController)
-    }
-
-    // Remote Info
-    var viewControllerRemoteInfo: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardRemoteInfoID")
-            as? NSViewController)
-    }
-
-    // Estimating
-    var viewControllerEstimating: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardEstimatingID")
-            as? NSViewController)
-    }
-
-    // local and remote info
-    var viewControllerInformationLocalRemote: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
-            as? NSViewController)
-    }
-
-    // Move config files
-    var viewControllerMove: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "MoveID")
+    // Information about rsync output
+    var viewControllerInformation: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardInformationID")
             as? NSViewController)
     }
 
     // AssistID
     var viewControllerAssist: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "AssistID")
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "AssistID")
             as? NSViewController)
     }
 
-    // StoryboardOutputID
-    var viewControllerAllOutput: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardOutputID")
+    // Move config files
+    var viewControllerMove: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "MoveID")
+            as? NSViewController)
+    }
+
+    // Profile
+    var viewControllerProfile: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "ProfileID")
+            as? NSViewController)
+    }
+
+    // About
+    var viewControllerAbout: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "AboutID")
+            as? NSViewController)
+    }
+
+    // Remote Info
+    var viewControllerRemoteInfo: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardRemoteInfoID")
+            as? NSViewController)
+    }
+
+    // Quick backup process
+    var viewControllerQuickBackup: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardQuickBackupID")
+            as? NSViewController)
+    }
+
+    // local and remote info
+    var viewControllerInformationLocalRemote: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
+            as? NSViewController)
+    }
+
+    // Estimating
+    var viewControllerEstimating: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEstimatingID")
+            as? NSViewController)
+    }
+
+    // Progressbar process
+    var viewControllerProgress: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardProgressID")
             as? NSViewController)
     }
 }

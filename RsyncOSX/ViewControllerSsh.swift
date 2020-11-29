@@ -31,10 +31,11 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var verifykeycommand: NSTextField!
 
-    lazy var viewControllerSource: NSViewController? = {
-        (self.storyboard!.instantiateController(withIdentifier: "CopyFilesID")
+    // Userconfiguration
+    var viewControllerSource: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "CopyFilesID")
             as? NSViewController)
-    }()
+    }
 
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
