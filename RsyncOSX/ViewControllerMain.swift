@@ -41,8 +41,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
     @IBOutlet var errorinfo: NSTextField!
-    @IBOutlet var jsonbutton: NSButton!
-    @IBOutlet var jsonlabel: NSTextField!
 
     // Reference to Configurations and Schedules object
     var configurations: Configurations?
@@ -110,39 +108,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.openquickbackup()
     }
 
-    @IBAction func delete(_: NSButton) {
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
-            return
-        }
-        if let index = self.index {
-            self.deleterow(index: index)
-        }
-    }
-
-    func deleterow(index: Int?) {
-        if let index = index {
-            if let hiddenID = self.configurations?.gethiddenID(index: index) {
-                let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
-                let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
-                let dialog: String = NSLocalizedString("Delete", comment: "Execute")
-                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-                if answer {
-                    // Delete Configurations and Schedules by hiddenID
-                    self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
-                    self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
-                    self.deselect()
-                    self.reloadtabledata()
-                    // Reset in tabSchedule
-                    self.reloadtable(vcontroller: .vctabschedule)
-                    self.reloadtable(vcontroller: .vcsnapshot)
-                }
-            }
-            self.reset()
-            self.singletask = nil
-        }
-    }
-
     @IBAction func TCP(_: NSButton) {
         self.configurations?.tcpconnections = TCPconnections()
         self.configurations?.tcpconnections?.testAllremoteserverConnections()
@@ -198,41 +163,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBAction func moveconfig(_: NSButton) {
         guard ViewControllerReference.shared.usenewconfigpath == false else { return }
         self.presentAsModalWindow(self.viewControllerMove!)
-    }
-
-    @IBAction func verifyjson(_: NSButton) {
-        self.verify()
-    }
-
-    private func verify() {
-        let verify: VerifyJSON?
-        if let profile = self.configurations?.getProfile() {
-            verify = VerifyJSON(profile: profile)
-        } else {
-            verify = VerifyJSON(profile: nil)
-        }
-        if verify?.verifyconf ?? false, verify?.verifysched ?? false == true {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Verify OK...", comment: "Verify")
-        } else {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            self.info.stringValue = NSLocalizedString("Verify not OK, see logfile (⌘O)...", comment: "Verify")
-        }
-    }
-
-    @IBAction func enableconvertjsonbutton(_: NSButton) {
-        if ViewControllerReference.shared.convertjsonbutton {
-            ViewControllerReference.shared.convertjsonbutton = false
-        } else {
-            ViewControllerReference.shared.convertjsonbutton = true
-        }
-        // JSON button
-        if ViewControllerReference.shared.json == true {
-            self.jsonbutton.title = "PLIST"
-        } else {
-            self.jsonbutton.title = "JSON"
-        }
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
     }
 
     // Selecting automatic backup
@@ -322,9 +252,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.createandreloadschedules()
         self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         self.initpopupbutton()
-        // JSON
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
     }
 
     override func viewDidAppear() {
@@ -499,17 +426,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 
-    @IBAction func Json(_: NSButton) {
-        if let profile = self.configurations?.getProfile() {
-            PersistentStorage().convert(profile: profile)
-        } else {
-            PersistentStorage().convert(profile: nil)
-        }
-        self.jsonbutton.isHidden = true
-        ViewControllerReference.shared.convertjsonbutton = false
-        self.verify()
-    }
-
     @IBAction func checksynchronizedfiles(_: NSButton) {
         if let index = self.index {
             if let config = self.configurations?.getConfigurations()?[index] {
@@ -524,6 +440,39 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 let check = Checksynchronizedfiles(index: index)
                 check.checksynchronizedfiles()
             }
+        }
+    }
+
+    func delete() {
+        guard self.index != nil else {
+            self.info.stringValue = Infoexecute().info(num: 1)
+            return
+        }
+        if let index = self.index {
+            self.deleterow(index: index)
+        }
+    }
+
+    func deleterow(index: Int?) {
+        if let index = index {
+            if let hiddenID = self.configurations?.gethiddenID(index: index) {
+                let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
+                let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
+                let dialog: String = NSLocalizedString("Delete", comment: "Execute")
+                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                if answer {
+                    // Delete Configurations and Schedules by hiddenID
+                    self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
+                    self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
+                    self.deselect()
+                    self.reloadtabledata()
+                    // Reset in tabSchedule
+                    self.reloadtable(vcontroller: .vctabschedule)
+                    self.reloadtable(vcontroller: .vcsnapshot)
+                }
+            }
+            self.reset()
+            self.singletask = nil
         }
     }
 }
