@@ -37,8 +37,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var restoredryrun: NSButton!
     @IBOutlet var verifydryrun: NSButton!
     @IBOutlet var info: NSTextField!
-    @IBOutlet var pathtorsyncosxschedbutton: NSButton!
-    @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
     @IBOutlet var errorinfo: NSTextField!
 
@@ -58,18 +56,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var outputprocess: OutputProcess?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
-
-    @IBAction func rsyncosxsched(_: NSButton) {
-        let running = Running()
-        guard running.rsyncOSXschedisrunning == false else {
-            self.info.stringValue = Infoexecute().info(num: 5)
-            self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            return
-        }
-        guard running.verifyrsyncosxsched() == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched))
-        NSApp.terminate(self)
-    }
 
     @IBAction func infoonetask(_: NSButton) {
         guard self.index != nil else {
@@ -250,7 +236,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
-        self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
+
         self.initpopupbutton()
     }
 
@@ -268,9 +254,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.rsyncischanged()
         self.displayProfile()
-        self.delayWithSeconds(0.5) {
-            self.menuappicons()
-        }
     }
 
     override func viewDidDisappear() {
@@ -293,19 +276,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             weak var closeview: ViewControllerEdit?
             closeview = view
             closeview?.closeview()
-        }
-    }
-
-    func menuappicons() {
-        globalMainQueue.async { () -> Void in
-            let running = Running()
-            if running.rsyncOSXschedisrunning == true {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                self.info.stringValue = Infoexecute().info(num: 5)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            } else {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
-            }
         }
     }
 

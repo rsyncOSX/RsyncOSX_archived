@@ -193,7 +193,7 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
                 self.reloadconfigurationsDelegate?.reloadconfigurationsobject()
                 self.reloadschedulesDelegate?.reloadschedulesobject()
             }
-            self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+            self.menuappDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
             self.loadsshparametersDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
             self.menuappDelegate?.menuappchanged()
             self.loadsshparametersDelegate?.loadsshparameters()

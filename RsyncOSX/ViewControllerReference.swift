@@ -28,6 +28,7 @@ enum ViewController {
     case vcalloutput
     case vcedit
     case vcrsyncparameters
+    case vcsidebar
 }
 
 final class ViewControllerReference {
@@ -158,6 +159,8 @@ final class ViewControllerReference {
     private var viewControllerEdit: NSViewController?
     // Rsync parameters
     private var viewControllerRsyncParameters: NSViewController?
+    // Sidebar
+    private var viewcontrollerSideBar: NSViewController?
 
     func getvcref(viewcontroller: ViewController) -> NSViewController? {
         switch viewcontroller {
@@ -195,6 +198,8 @@ final class ViewControllerReference {
             return self.viewControllerEdit
         case .vcrsyncparameters:
             return self.viewControllerRsyncParameters
+        case .vcsidebar:
+            return self.viewcontrollerSideBar
         }
     }
 
@@ -234,6 +239,8 @@ final class ViewControllerReference {
             self.viewControllerEdit = nsviewcontroller
         case .vcrsyncparameters:
             self.viewControllerRsyncParameters = nsviewcontroller
+        case .vcsidebar:
+            self.viewcontrollerSideBar = nsviewcontroller
         }
     }
 

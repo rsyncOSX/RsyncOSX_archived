@@ -9,9 +9,19 @@
 import Cocoa
 import Foundation
 
-class ViewControllerSideBar: NSViewController, SetConfigurations {
+class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
     @IBOutlet var jsonbutton: NSButton!
     @IBOutlet var jsonlabel: NSTextField!
+    @IBOutlet var pathtorsyncosxschedbutton: NSButton!
+    @IBOutlet var menuappisrunning: NSButton!
+
+    @IBAction func rsyncosxsched(_: NSButton) {
+        let running = Running()
+        guard running.rsyncOSXschedisrunning == false else { return }
+        guard running.verifyrsyncosxsched() == true else { return }
+        NSWorkspace.shared.open(URL(fileURLWithPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched))
+        NSApp.terminate(self)
+    }
 
     @IBAction func delete(_: NSButton) {}
 
@@ -61,14 +71,38 @@ class ViewControllerSideBar: NSViewController, SetConfigurations {
         }
     }
 
+    func menuappicons() {
+        globalMainQueue.async { () -> Void in
+            let running = Running()
+            if running.rsyncOSXschedisrunning == true {
+                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
+                // self.info.stringValue = Infoexecute().info(num: 5)
+                // self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+            } else {
+                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        ViewControllerReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
         // JSON
         self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
         self.jsonlabel.isHidden = !ViewControllerReference.shared.json
+        self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
+        self.delayWithSeconds(0.5) {
+            self.menuappicons()
+        }
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+    }
+}
+
+extension ViewControllerSideBar: MenuappChanged {
+    func menuappchanged() {
+        self.menuappicons()
     }
 }

@@ -287,12 +287,6 @@ extension ViewControllerMain: Count {
     }
 }
 
-extension ViewControllerMain: MenuappChanged {
-    func menuappchanged() {
-        self.menuappicons()
-    }
-}
-
 extension ViewControllerMain: SetLocalRemoteInfo {
     func getlocalremoteinfo(index: Int) -> [NSDictionary]? {
         guard self.configurations?.localremote != nil else { return nil }
