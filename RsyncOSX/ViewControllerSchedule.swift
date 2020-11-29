@@ -14,7 +14,7 @@ protocol SetProfileinfo: AnyObject {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync, Setcolor, Help {
+class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Index, VcMain, Checkforrsync, Setcolor, Help {
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
@@ -28,8 +28,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var dailybutton: NSButton!
     @IBOutlet var oncebutton: NSButton!
     @IBOutlet var info: NSTextField!
-    @IBOutlet var rsyncosxschedbutton: NSButton!
-    @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var scheduletabledetails: NSTableView!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
@@ -164,7 +162,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.scheduletabledetails.delegate = self
         self.scheduletabledetails.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.rsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         self.initpopupbutton()
     }
 
@@ -183,9 +180,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
         self.reloadtabledata()
-        self.delayWithSeconds(0.5) {
-            self.menuappicons()
-        }
     }
 
     // setting which table row is selected
@@ -205,19 +199,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             globalMainQueue.async { () -> Void in
                 self.scheduletabledetails.reloadData()
                 self.scheduletable.reloadData()
-            }
-        }
-    }
-
-    func menuappicons() {
-        globalMainQueue.async { () -> Void in
-            let running = Running()
-            if running.rsyncOSXschedisrunning == true {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                self.info.stringValue = Infoexecute().info(num: 5)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            } else {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
         }
     }
