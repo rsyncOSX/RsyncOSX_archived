@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="g7N-DU-JLt">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
@@ -212,46 +212,6 @@
             </objects>
             <point key="canvasLocation" x="-608" y="-10"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="AYc-qU-qtT">
-            <objects>
-                <windowController id="g7N-DU-JLt" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="fP9-Me-VlX">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="516" y="577" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="3008" height="1692"/>
-                        <view key="contentView" id="2r1-EN-lhW">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </view>
-                        <toolbar key="toolbar" implicitIdentifier="09D11707-F4A3-4FD5-970E-AC5832E91C2B" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="e26-Zl-dv6">
-                            <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="Viv-xh-sHK"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="g67-u0-cVX"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="xpT-X7-3gC"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="3wg-w5-0pi"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="c9q-F8-rj5"/>
-                            </allowedToolbarItems>
-                            <defaultToolbarItems>
-                                <toolbarItem reference="Viv-xh-sHK"/>
-                                <toolbarItem reference="g67-u0-cVX"/>
-                                <toolbarItem reference="c9q-F8-rj5"/>
-                                <toolbarItem reference="xpT-X7-3gC"/>
-                            </defaultToolbarItems>
-                        </toolbar>
-                        <connections>
-                            <outlet property="delegate" destination="g7N-DU-JLt" id="3DT-a4-KjH"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="MAd-2Q-Nzg" kind="relationship" relationship="window.shadowedContentViewController" id="vPO-hH-gSg"/>
-                    </connections>
-                </windowController>
-                <customObject id="5fg-t4-qF7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1442" y="-1148"/>
-        </scene>
         <!--Split View Controller-->
         <scene sceneID="neB-u7-h1h">
             <objects>
@@ -413,12 +373,12 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="CHy-OK-nPY" kind="relationship" relationship="window.shadowedContentViewController" id="RmP-KY-cFd"/>
+                        <segue destination="MAd-2Q-Nzg" kind="relationship" relationship="window.shadowedContentViewController" id="8yK-Q1-Bo5"/>
                     </connections>
                 </windowController>
                 <customObject id="Rv5-yv-lsc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1254" y="-484"/>
+            <point key="canvasLocation" x="-1482" y="-944"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Hwe-jL-WAZ">
@@ -707,7 +667,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="678.5" y="1" width="62" height="17"/>
+                                                            <rect key="frame" x="679" y="1" width="62" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -771,7 +731,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="805.5" y="1" width="100" height="17"/>
+                                                            <rect key="frame" x="806" y="1" width="100" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -4580,9 +4540,6 @@ DQ
             <point key="canvasLocation" x="-1940" y="636"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="RmP-KY-cFd"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="abort" width="48" height="48"/>
