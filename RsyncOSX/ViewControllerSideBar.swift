@@ -13,22 +13,25 @@ import Foundation
 enum Sidebarmessages {
     case enableconvertjsonbutton
     case verifyjson
-    case disablemainbuttons
-    case enablemainbuttons
+    case mainviewbuttons
+    case addviewbuttons
 }
 
 protocol Sidebaractions: AnyObject {
     func sidebaractions(action: Sidebarmessages)
 }
 
-class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
+class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain {
     @IBOutlet var jsonbutton: NSButton!
     @IBOutlet var jsonlabel: NSTextField!
     @IBOutlet var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet var menuappisrunning: NSButton!
-    @IBOutlet var deletebutton: NSButton!
-    @IBOutlet var editbutton: NSButton!
-    @IBOutlet var parameterbutton: NSButton!
+    // Buttons
+    @IBOutlet var button1: NSButton!
+    @IBOutlet var button2: NSButton!
+    @IBOutlet var button3: NSButton!
+
+    var whichviewispresented: Sidebarmessages?
 
     @IBAction func rsyncosxsched(_: NSButton) {
         let running = Running()
@@ -38,8 +41,43 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
         NSApp.terminate(self)
     }
 
-    @IBAction func delete(_: NSButton) {
-        // send delete message
+    @IBAction func actionbutton1(_: NSButton) {
+        if let view = self.whichviewispresented {
+            switch view {
+            case .mainviewbuttons:
+                self.presentAsModalWindow(self.editViewController!)
+            case .addviewbuttons:
+                return
+            default:
+                return
+            }
+        }
+    }
+
+    @IBAction func actionbutton2(_: NSButton) {
+        if let view = self.whichviewispresented {
+            switch view {
+            case .mainviewbuttons:
+                self.presentAsModalWindow(self.viewControllerRsyncParams!)
+            case .addviewbuttons:
+                self.presentAsModalWindow(self.viewControllerAssist!)
+            default:
+                return
+            }
+        }
+    }
+
+    @IBAction func actionbutton3(_: NSButton) {
+        if let view = self.whichviewispresented {
+            switch view {
+            case .mainviewbuttons:
+                return
+            case .addviewbuttons:
+                return
+            default:
+                return
+            }
+        }
     }
 
     func verifyjson() {
@@ -133,14 +171,16 @@ extension ViewControllerSideBar: Sidebaractions {
             self.enableconvertjsonbutton()
         case .verifyjson:
             self.verify()
-        case .disablemainbuttons:
-            self.deletebutton.isEnabled = false
-            self.editbutton.isEnabled = false
-            self.parameterbutton.isEnabled = false
-        case .enablemainbuttons:
-            self.deletebutton.isEnabled = true
-            self.editbutton.isEnabled = true
-            self.parameterbutton.isEnabled = true
+        case .mainviewbuttons:
+            self.whichviewispresented = .mainviewbuttons
+            self.button1.title = NSLocalizedString("Change", comment: "Sidebar")
+            self.button2.title = NSLocalizedString("Parameter", comment: "Sidebar")
+            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+        case .addviewbuttons:
+            self.whichviewispresented = .addviewbuttons
+            self.button1.title = NSLocalizedString("Add", comment: "Sidebar")
+            self.button2.title = NSLocalizedString("Assist", comment: "Sidebar")
+            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
         }
     }
 }

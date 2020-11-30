@@ -23,18 +23,6 @@ extension VcMain {
         return NSStoryboard(name: "SheetViews", bundle: nil)
     }
 
-    // Rsync userparams
-    var viewControllerRsyncParams: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
-            as? NSViewController)
-    }
-
-    // Edit
-    var editViewController: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardEditID")
-            as? NSViewController)
-    }
-
     // StoryboardOutputID
     var viewControllerAllOutput: NSViewController? {
         return (self.storyboard?.instantiateController(withIdentifier: "StoryboardOutputID")
@@ -106,6 +94,18 @@ extension VcMain {
     // Progressbar process
     var viewControllerProgress: NSViewController? {
         return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardProgressID")
+            as? NSViewController)
+    }
+
+    // Rsync userparams
+    var viewControllerRsyncParams: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
+            as? NSViewController)
+    }
+
+    // Edit
+    var editViewController: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEditID")
             as? NSViewController)
     }
 }

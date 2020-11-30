@@ -198,12 +198,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.createandreloadconfigurations()
         self.createandreloadschedules()
         self.initpopupbutton()
-        // For sending messages to the sidebar
-        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        // For sending messages to the sidebar
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .mainviewbuttons)
         if ViewControllerReference.shared.initialstart == 0 {
             self.view.window?.center()
             ViewControllerReference.shared.initialstart = 1
@@ -216,7 +217,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.rsyncischanged()
         self.displayProfile()
-        self.sidebaractionsDelegate?.sidebaractions(action: .enablemainbuttons)
     }
 
     override func viewDidDisappear() {
@@ -224,7 +224,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.multipeselection = false
         self.configurations?.remoteinfoestimation = nil
         self.configurations?.estimatedlist = nil
-        self.sidebaractionsDelegate?.sidebaractions(action: .disablemainbuttons)
     }
 
     func reset() {
