@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 29/11/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length function_body_length
 
 import Cocoa
 import Foundation
@@ -16,6 +16,8 @@ enum Sidebarmessages {
     case mainviewbuttons
     case addviewbuttons
     case scheduleviewbuttons
+    case snapshotviewbuttons
+    case reset
 }
 
 protocol Sidebaractions: AnyObject {
@@ -52,6 +54,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .scheduleviewbuttons:
                 return
+            case .snapshotviewbuttons:
+                return
             default:
                 return
             }
@@ -66,6 +70,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .addviewbuttons:
                 self.presentAsModalWindow(self.viewControllerAssist!)
             case .scheduleviewbuttons:
+                return
+            case .snapshotviewbuttons:
                 return
             default:
                 return
@@ -82,6 +88,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .scheduleviewbuttons:
                 return
+            case .snapshotviewbuttons:
+                return
             default:
                 return
             }
@@ -96,6 +104,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .addviewbuttons:
                 return
             case .scheduleviewbuttons:
+                return
+            case .snapshotviewbuttons:
                 return
             default:
                 return
@@ -140,7 +150,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
         } else {
             ViewControllerReference.shared.convertjsonbutton = true
         }
-        // JSON button
         if ViewControllerReference.shared.json == true {
             self.jsonbutton.title = "PLIST"
         } else {
@@ -154,8 +163,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             let running = Running()
             if running.rsyncOSXschedisrunning == true {
                 self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                // self.info.stringValue = Infoexecute().info(num: 5)
-                // self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
             } else {
                 self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
@@ -165,19 +172,12 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
-        // JSON
         self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
         self.jsonlabel.isHidden = !ViewControllerReference.shared.json
         self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         self.delayWithSeconds(0.5) {
             self.menuappicons()
         }
-    }
-
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
     }
 }
 
@@ -221,6 +221,18 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button2.title = NSLocalizedString("Daily", comment: "Sidebar")
             self.button3.title = NSLocalizedString("Weekly", comment: "Sidebar")
             self.button4.title = NSLocalizedString("Update", comment: "Sidebar")
+        case .snapshotviewbuttons:
+            self.button1.isHidden = true
+            self.button2.isHidden = true
+            self.button3.isHidden = false
+            self.button4.isHidden = false
+            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+            self.button4.title = NSLocalizedString("Save", comment: "Sidebar")
+        case .reset:
+            self.button1.isHidden = true
+            self.button2.isHidden = true
+            self.button3.isHidden = true
+            self.button4.isHidden = true
         }
     }
 }

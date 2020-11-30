@@ -17,6 +17,8 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private var filterby: Sortandfilter?
     private var index: Int?
     private var sortedascending: Bool = true
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBOutlet var scheduletable: NSTableView!
     @IBOutlet var search: NSSearchField!
@@ -129,6 +131,8 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .reset)
         self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
         self.index = self.index()
         if let index = self.index {

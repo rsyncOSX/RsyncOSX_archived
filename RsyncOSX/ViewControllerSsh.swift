@@ -23,6 +23,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     var hiddenID: Int?
     var data: [String]?
     var outputprocess: OutputProcess?
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBOutlet var rsaCheck: NSButton!
     @IBOutlet var detailsTable: NSTableView!
@@ -96,6 +98,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .reset)
         self.loadsshparameters()
     }
 
