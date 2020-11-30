@@ -157,10 +157,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func executetask(index: Int?) {
+        
         if let index = index {
             if let task = self.configurations?.getConfigurations()?[index].task {
                 guard ViewControllerReference.shared.synctasks.contains(task) else { return }
                 if let config = self.configurations?.getConfigurations()?[index] {
+                    self.info.stringValue = Infoexecute().info(num: 11)
+                    self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
                     if PreandPostTasks(config: config).executepretask || PreandPostTasks(config: config).executeposttask {
                         self.executetasknow = ExecuteTaskNowShellOut(index: index)
                     } else {
