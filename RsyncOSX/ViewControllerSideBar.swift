@@ -15,6 +15,7 @@ enum Sidebarmessages {
     case verifyjson
     case mainviewbuttons
     case addviewbuttons
+    case scheduleviewbuttons
 }
 
 protocol Sidebaractions: AnyObject {
@@ -49,6 +50,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 self.presentAsModalWindow(self.editViewController!)
             case .addviewbuttons:
                 return
+            case .scheduleviewbuttons:
+                return
             default:
                 return
             }
@@ -62,6 +65,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 self.presentAsModalWindow(self.viewControllerRsyncParams!)
             case .addviewbuttons:
                 self.presentAsModalWindow(self.viewControllerAssist!)
+            case .scheduleviewbuttons:
+                return
             default:
                 return
             }
@@ -75,6 +80,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .addviewbuttons:
                 return
+            case .scheduleviewbuttons:
+                return
             default:
                 return
             }
@@ -87,6 +94,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .mainviewbuttons:
                 self.presentAsModalWindow(self.rsynccommand!)
             case .addviewbuttons:
+                return
+            case .scheduleviewbuttons:
                 return
             default:
                 return
@@ -180,13 +189,13 @@ extension ViewControllerSideBar: MenuappChanged {
 
 extension ViewControllerSideBar: Sidebaractions {
     func sidebaractions(action: Sidebarmessages) {
+        self.whichviewispresented = action
         switch action {
         case .enableconvertjsonbutton:
             self.enableconvertjsonbutton()
         case .verifyjson:
             self.verify()
         case .mainviewbuttons:
-            self.whichviewispresented = .mainviewbuttons
             self.button1.isHidden = false
             self.button2.isHidden = false
             self.button3.isHidden = false
@@ -200,10 +209,18 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button2.isHidden = false
             self.button3.isHidden = false
             self.button4.isHidden = true
-            self.whichviewispresented = .addviewbuttons
             self.button1.title = NSLocalizedString("Add", comment: "Sidebar")
             self.button2.title = NSLocalizedString("Assist", comment: "Sidebar")
             self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+        case .scheduleviewbuttons:
+            self.button1.isHidden = false
+            self.button2.isHidden = false
+            self.button3.isHidden = false
+            self.button4.isHidden = false
+            self.button1.title = NSLocalizedString("Once", comment: "Sidebar")
+            self.button2.title = NSLocalizedString("Daily", comment: "Sidebar")
+            self.button3.title = NSLocalizedString("Weekly", comment: "Sidebar")
+            self.button4.title = NSLocalizedString("Update", comment: "Sidebar")
         }
     }
 }

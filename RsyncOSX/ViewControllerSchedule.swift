@@ -20,13 +20,12 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     var schedule: Scheduletype?
     // Scheduleetails
     var scheduledetails: [NSMutableDictionary]?
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     // Main tableview
     @IBOutlet var scheduletable: NSTableView!
     @IBOutlet var profilInfo: NSTextField!
-    @IBOutlet var weeklybutton: NSButton!
-    @IBOutlet var dailybutton: NSButton!
-    @IBOutlet var oncebutton: NSButton!
     @IBOutlet var info: NSTextField!
     @IBOutlet var scheduletabledetails: NSTableView!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
@@ -56,31 +55,27 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
-    @IBAction func rsyncosxsched(_: NSButton) {
-        let running = Running()
-        guard running.rsyncOSXschedisrunning == false else {
-            self.info.stringValue = Infoexecute().info(num: 5)
-            self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            return
-        }
-        guard running.verifyrsyncosxsched() == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched))
-        NSApp.terminate(self)
-    }
-
-    @IBAction func once(_: NSButton) {
+    // Sidebar Once
+    func once() {
         self.schedule = .once
         self.addschedule()
     }
 
-    @IBAction func daily(_: NSButton) {
+    // Sidebar Daily
+    func daily() {
         self.schedule = .daily
         self.addschedule()
     }
 
-    @IBAction func weekly(_: NSButton) {
+    // Sidebar Weekly
+    func weekly() {
         self.schedule = .weekly
         self.addschedule()
+    }
+
+    // Sidebar update
+    func update() {
+        self.schedules?.deleteandstopschedules(data: scheduledetails)
     }
 
     @IBAction func selectdate(_: NSDatePicker) {
@@ -120,17 +115,17 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         let secondstostart = startime.timeIntervalSinceNow
         if secondstostart < 60 {
             self.selectedstart.isHidden = true
-            self.weeklybutton.isEnabled = false
-            self.dailybutton.isEnabled = false
-            self.oncebutton.isEnabled = false
+            // self.weeklybutton.isEnabled = false
+            // self.dailybutton.isEnabled = false
+            // self.oncebutton.isEnabled = false
         }
         if secondstostart > 60 {
             self.selectedstart.isHidden = false
             self.selectedstart.stringValue = startime.localized_string_from_date() + " (" + Dateandtime().timestring(seconds: secondstostart) + ")"
             self.selectedstart.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            self.weeklybutton.isEnabled = true
-            self.dailybutton.isEnabled = true
-            self.oncebutton.isEnabled = true
+            // self.weeklybutton.isEnabled = true
+            // self.dailybutton.isEnabled = true
+            // self.oncebutton.isEnabled = true
         }
     }
 
@@ -150,10 +145,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var starttime: NSDatePicker!
     @IBOutlet var selectedstart: NSTextField!
 
-    @IBAction func update(_: NSButton) {
-        self.schedules?.deleteandstopschedules(data: scheduledetails)
-    }
-
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,15 +158,14 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
         if self.index() != nil, self.index == nil {
             self.info.stringValue = Infoschedule().info(num: 3)
             self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
         } else {
             self.info.stringValue = Infoschedule().info(num: 0)
         }
-        self.weeklybutton.isEnabled = false
-        self.dailybutton.isEnabled = false
-        self.oncebutton.isEnabled = false
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()

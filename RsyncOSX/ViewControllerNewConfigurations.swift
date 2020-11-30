@@ -93,17 +93,14 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
-    @IBAction func cleartable(_: NSButton) {
+    // Sidebar Clear button
+    func cleartable() {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
         globalMainQueue.async { () -> Void in
             self.addtable.reloadData()
             self.resetinputfields()
         }
-    }
-
-    @IBAction func assist(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerAssist!)
     }
 
     private func changelabels() {
@@ -183,7 +180,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.haltshelltasksonerror.state = .off
     }
 
-    @IBAction func addConfig(_: NSButton) {
+    // Sidebar Add button
+    func addConfig() {
         let dict: NSMutableDictionary = [
             DictionaryStrings.task.rawValue: ViewControllerReference.shared.synchronize,
             DictionaryStrings.backupID.rawValue: backupID.stringValue,
