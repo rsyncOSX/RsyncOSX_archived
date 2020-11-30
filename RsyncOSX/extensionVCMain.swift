@@ -175,7 +175,6 @@ extension ViewControllerMain: Abort {
             }
         }
         self.working.stopAnimation(nil)
-        self.workinglabel.isHidden = true
         self.index = nil
     }
 }
@@ -189,12 +188,10 @@ extension ViewControllerMain: StartStopProgressIndicatorSingleTask {
 
     func startIndicator() {
         self.working.startAnimation(nil)
-        self.workinglabel.isHidden = false
     }
 
     func stopIndicator() {
         self.working.stopAnimation(nil)
-        self.workinglabel.isHidden = true
     }
 }
 

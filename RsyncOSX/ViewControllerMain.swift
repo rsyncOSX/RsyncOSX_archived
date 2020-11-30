@@ -11,7 +11,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work
     @IBOutlet var working: NSProgressIndicator!
-    @IBOutlet var workinglabel: NSTextField!
     // Showing info about profile
     @IBOutlet var profilInfo: NSTextField!
     @IBOutlet var rsyncversionshort: NSTextField!
@@ -259,11 +258,15 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 }
                 guard self.singletask != nil else {
                     // Dry run
+                    self.info.stringValue = Infoexecute().info(num: 10)
+                    self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
                     self.singletask = SingleTask(index: index)
                     self.singletask?.executesingletask()
                     return
                 }
                 // Real run
+                self.info.stringValue = Infoexecute().info(num: 11)
+                self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
                 self.singletask?.executesingletask()
             }
         }
