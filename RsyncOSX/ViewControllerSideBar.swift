@@ -5,9 +5,21 @@
 //  Created by Thomas Evensen on 29/11/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
+
+enum Sidebarmessages {
+    case enableconvertjsonbutton
+    case verifyjson
+    case hidemainbuttons
+    case enablemainbuttons
+}
+
+protocol Sidebaractions: AnyObject {
+    func sidebaractions(action: Sidebarmessages)
+}
 
 class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
     @IBOutlet var jsonbutton: NSButton!
@@ -23,35 +35,11 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
         NSApp.terminate(self)
     }
 
-    @IBAction func delete(_: NSButton) {}
-
-    @IBAction func verifyjson(_: NSButton) {
-        self.verify()
+    @IBAction func delete(_: NSButton) {
+        // send delete message
     }
 
-    @IBAction func enableconvertjsonbutton(_: NSButton) {
-        if ViewControllerReference.shared.convertjsonbutton {
-            ViewControllerReference.shared.convertjsonbutton = false
-        } else {
-            ViewControllerReference.shared.convertjsonbutton = true
-        }
-        // JSON button
-        if ViewControllerReference.shared.json == true {
-            self.jsonbutton.title = "PLIST"
-        } else {
-            self.jsonbutton.title = "JSON"
-        }
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-    }
-
-    @IBAction func Json(_: NSButton) {
-        if let profile = self.configurations?.getProfile() {
-            PersistentStorage().convert(profile: profile)
-        } else {
-            PersistentStorage().convert(profile: nil)
-        }
-        self.jsonbutton.isHidden = true
-        ViewControllerReference.shared.convertjsonbutton = false
+    func verifyjson() {
         self.verify()
     }
 
@@ -69,6 +57,32 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
             // self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
             // self.info.stringValue = NSLocalizedString("Verify not OK, see logfile (⌘O)...", comment: "Verify")
         }
+    }
+
+    @IBAction func Json(_: NSButton) {
+        if let profile = self.configurations?.getProfile() {
+            PersistentStorage().convert(profile: profile)
+        } else {
+            PersistentStorage().convert(profile: nil)
+        }
+        self.jsonbutton.isHidden = true
+        ViewControllerReference.shared.convertjsonbutton = false
+        self.verify()
+    }
+
+    func enableconvertjsonbutton() {
+        if ViewControllerReference.shared.convertjsonbutton {
+            ViewControllerReference.shared.convertjsonbutton = false
+        } else {
+            ViewControllerReference.shared.convertjsonbutton = true
+        }
+        // JSON button
+        if ViewControllerReference.shared.json == true {
+            self.jsonbutton.title = "PLIST"
+        } else {
+            self.jsonbutton.title = "JSON"
+        }
+        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
     }
 
     func menuappicons() {
@@ -106,6 +120,21 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
 extension ViewControllerSideBar: MenuappChanged {
     func menuappchanged() {
         self.menuappicons()
+    }
+}
+
+extension ViewControllerSideBar: Sidebaractions {
+    func sidebaractions(action: Sidebarmessages) {
+        switch action {
+        case .enableconvertjsonbutton:
+            self.enableconvertjsonbutton()
+        case .verifyjson:
+            self.verify()
+        case .hidemainbuttons:
+            return
+        case .enablemainbuttons:
+            return
+        }
     }
 }
 

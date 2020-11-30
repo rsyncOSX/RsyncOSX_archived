@@ -34,6 +34,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var outputprocess: OutputProcess?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBAction func infoonetask(_: NSButton) {
         guard self.index != nil else {
@@ -151,6 +153,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
+    @IBAction func delete(_: NSButton) {
+        self.delete()
+    }
+
     func executetask(index: Int?) {
         if let index = index {
             if let task = self.configurations?.getConfigurations()?[index].task {
@@ -193,6 +199,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.createandreloadconfigurations()
         self.createandreloadschedules()
         self.initpopupbutton()
+        // For sending messages to the sidebar
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
     }
 
     override func viewDidAppear() {
@@ -397,5 +405,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             self.reset()
             self.singletask = nil
         }
+    }
+
+    @IBAction func enableconvertjsonbutton(_: NSButton) {
+        self.sidebaractionsDelegate?.sidebaractions(action: .enableconvertjsonbutton)
+    }
+
+    @IBAction func verifyjson(_: NSButton) {
+        self.sidebaractionsDelegate?.sidebaractions(action: .verifyjson)
     }
 }
