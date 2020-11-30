@@ -13,7 +13,7 @@ import Foundation
 enum Sidebarmessages {
     case enableconvertjsonbutton
     case verifyjson
-    case hidemainbuttons
+    case disablemainbuttons
     case enablemainbuttons
 }
 
@@ -26,6 +26,9 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay {
     @IBOutlet var jsonlabel: NSTextField!
     @IBOutlet var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet var menuappisrunning: NSButton!
+    @IBOutlet var deletebutton: NSButton!
+    @IBOutlet var editbutton: NSButton!
+    @IBOutlet var parameterbutton: NSButton!
 
     @IBAction func rsyncosxsched(_: NSButton) {
         let running = Running()
@@ -130,10 +133,14 @@ extension ViewControllerSideBar: Sidebaractions {
             self.enableconvertjsonbutton()
         case .verifyjson:
             self.verify()
-        case .hidemainbuttons:
-            return
+        case .disablemainbuttons:
+            self.deletebutton.isEnabled = false
+            self.editbutton.isEnabled = false
+            self.parameterbutton.isEnabled = false
         case .enablemainbuttons:
-            return
+            self.deletebutton.isEnabled = true
+            self.editbutton.isEnabled = true
+            self.parameterbutton.isEnabled = true
         }
     }
 }

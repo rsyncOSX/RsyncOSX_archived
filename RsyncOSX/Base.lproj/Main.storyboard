@@ -321,9 +321,12 @@ DQ
                         <viewLayoutGuide key="layoutMargins" id="vvh-gv-FED"/>
                     </view>
                     <connections>
+                        <outlet property="deletebutton" destination="btH-xq-kOR" id="PuB-mx-ZPV"/>
+                        <outlet property="editbutton" destination="FNu-ck-XhD" id="TdN-C2-nnx"/>
                         <outlet property="jsonbutton" destination="sNJ-eB-6hc" id="QfS-WK-tAF"/>
                         <outlet property="jsonlabel" destination="9AI-DS-EC9" id="hej-In-UBR"/>
                         <outlet property="menuappisrunning" destination="KXa-DA-hNS" id="sfz-zK-d93"/>
+                        <outlet property="parameterbutton" destination="HyA-OL-xUh" id="hXA-g0-3ct"/>
                         <outlet property="pathtorsyncosxschedbutton" destination="Tk3-A0-aHr" id="gft-Ym-sMq"/>
                     </connections>
                 </viewController>
@@ -790,7 +793,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="776" y="1" width="59" height="17"/>
+                                                            <rect key="frame" x="776" y="1" width="67" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -858,7 +861,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="936" y="1" width="134" height="17"/>
+                                                            <rect key="frame" x="936" y="1" width="142" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">

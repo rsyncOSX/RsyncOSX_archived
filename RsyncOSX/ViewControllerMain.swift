@@ -217,6 +217,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.rsyncischanged()
         self.displayProfile()
+        self.sidebaractionsDelegate?.sidebaractions(action: .enablemainbuttons)
     }
 
     override func viewDidDisappear() {
@@ -224,6 +225,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.multipeselection = false
         self.configurations?.remoteinfoestimation = nil
         self.configurations?.estimatedlist = nil
+        self.sidebaractionsDelegate?.sidebaractions(action: .disablemainbuttons)
     }
 
     func reset() {
