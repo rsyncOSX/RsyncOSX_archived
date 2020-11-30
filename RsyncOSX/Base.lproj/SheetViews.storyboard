@@ -1551,7 +1551,7 @@ DQ
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YoV-Ua-AK5">
                                 <rect key="frame" x="135" y="20" width="452" height="122"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ju2-DG-kjN">
+                                <textFieldCell key="cell" selectable="YES" borderStyle="bezel" baseWritingDirection="leftToRight" alignment="left" usesSingleLineMode="YES" bezelStyle="round" id="ju2-DG-kjN">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

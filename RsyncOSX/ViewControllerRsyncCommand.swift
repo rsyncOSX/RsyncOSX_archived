@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 30/11/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
@@ -33,9 +34,8 @@ class ViewControllerRsyncCommand: NSViewController, SetConfigurations, Index {
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrsynccommand, nsviewcontroller: self)
-    }
-
-    override func viewDidAppear() {
-        super.viewDidAppear()
+        if let index = self.index() {
+            self.rsynccommand.stringValue = Displayrsyncpath(index: index, display: .synchronize).displayrsyncpath ?? ""
+        }
     }
 }
