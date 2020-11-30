@@ -1538,7 +1538,70 @@ DQ
                 </viewController>
                 <customObject id="eOi-aB-Jtb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="-151"/>
+            <point key="canvasLocation" x="1047" y="-162"/>
+        </scene>
+        <!--RsyncCommand-->
+        <scene sceneID="GL4-sL-vb9">
+            <objects>
+                <viewController title="RsyncCommand" storyboardIdentifier="RsyncCommand" id="eyg-hn-auR" customClass="ViewControllerRsyncCommand" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Kay-Xx-qn8">
+                        <rect key="frame" x="0.0" y="0.0" width="607" height="162"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YoV-Ua-AK5">
+                                <rect key="frame" x="135" y="20" width="452" height="122"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ju2-DG-kjN">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ykN-03-gCM">
+                                <rect key="frame" x="26" y="99" width="101" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Synchronize" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="wUh-Rp-o41">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showrsynccommand:" target="eyg-hn-auR" id="oEt-tQ-eoO"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-nj-ySW">
+                                <rect key="frame" x="26" y="77" width="73" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Restore" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3bW-VD-4P5">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showrsynccommand:" target="eyg-hn-auR" id="EnH-iG-r9M"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="51e-SN-tr6">
+                                <rect key="frame" x="26" y="55" width="62" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Verify" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="HBk-Xx-Rus">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showrsynccommand:" target="eyg-hn-auR" id="qLV-AT-p7F"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="restoredryrun" destination="NKd-nj-ySW" id="7Qh-K3-2Lw"/>
+                        <outlet property="rsynccommand" destination="YoV-Ua-AK5" id="ft7-M8-yyj"/>
+                        <outlet property="synchronizedryrun" destination="ykN-03-gCM" id="X3Q-Ap-6z8"/>
+                        <outlet property="verifydryrun" destination="51e-SN-tr6" id="eN4-gg-jH8"/>
+                    </connections>
+                </viewController>
+                <customObject id="zsD-hT-YnE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945.5" y="138"/>
         </scene>
         <!--View Controller Remote Info-->
         <scene sceneID="u8D-J1-5HX">
@@ -1757,7 +1820,7 @@ DQ
                 </viewController>
                 <customObject id="7Xa-IT-P97" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1138" y="-543"/>
+            <point key="canvasLocation" x="1138" y="-555"/>
         </scene>
         <!--Progress-->
         <scene sceneID="ao7-in-vqo">

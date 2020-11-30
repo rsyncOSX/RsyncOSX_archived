@@ -108,6 +108,12 @@ extension VcMain {
         return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEditID")
             as? NSViewController)
     }
+
+    // RsyncCommand
+    var rsynccommand: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "RsyncCommand")
+            as? NSViewController)
+    }
 }
 
 // Protocol for dismissing a viewcontroller

@@ -30,6 +30,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
     @IBOutlet var button1: NSButton!
     @IBOutlet var button2: NSButton!
     @IBOutlet var button3: NSButton!
+    @IBOutlet var button4: NSButton!
 
     var whichviewispresented: Sidebarmessages?
 
@@ -72,6 +73,19 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             switch view {
             case .mainviewbuttons:
                 return
+            case .addviewbuttons:
+                return
+            default:
+                return
+            }
+        }
+    }
+
+    @IBAction func actionbutton4(_: NSButton) {
+        if let view = self.whichviewispresented {
+            switch view {
+            case .mainviewbuttons:
+                self.presentAsModalWindow(self.rsynccommand!)
             case .addviewbuttons:
                 return
             default:
@@ -173,10 +187,19 @@ extension ViewControllerSideBar: Sidebaractions {
             self.verify()
         case .mainviewbuttons:
             self.whichviewispresented = .mainviewbuttons
+            self.button1.isHidden = false
+            self.button2.isHidden = false
+            self.button3.isHidden = false
+            self.button4.isHidden = false
             self.button1.title = NSLocalizedString("Change", comment: "Sidebar")
             self.button2.title = NSLocalizedString("Parameter", comment: "Sidebar")
             self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+            self.button4.title = NSLocalizedString("Command", comment: "Sidebar")
         case .addviewbuttons:
+            self.button1.isHidden = false
+            self.button2.isHidden = false
+            self.button3.isHidden = false
+            self.button4.isHidden = true
             self.whichviewispresented = .addviewbuttons
             self.button1.title = NSLocalizedString("Add", comment: "Sidebar")
             self.button2.title = NSLocalizedString("Assist", comment: "Sidebar")
@@ -186,27 +209,6 @@ extension ViewControllerSideBar: Sidebaractions {
 }
 
 /*
- // Function for display rsync command
- @IBAction func showrsynccommand(_: NSButton) {
-     self.showrsynccommandmainview()
- }
-
- // Display correct rsync command in view
- func showrsynccommandmainview() {
-     if let index = self.index {
-         guard index <= (self.configurations?.getConfigurations()?.count ?? 0) else { return }
-         if self.backupdryrun.state == .on {
-             self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .synchronize).displayrsyncpath ?? ""
-         } else if self.restoredryrun.state == .on {
-             self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .restore).displayrsyncpath ?? ""
-         } else {
-             self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .verify).displayrsyncpath ?? ""
-         }
-     } else {
-         self.rsyncCommand.stringValue = ""
-     }
- }
-
  // Function for getting numbers out of output object updated when
  // Process object executes the job.
  func setNumbers(outputprocess: OutputProcess?) {
