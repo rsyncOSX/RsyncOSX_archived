@@ -157,7 +157,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func executetask(index: Int?) {
-        
         if let index = index {
             if let task = self.configurations?.getConfigurations()?[index].task {
                 guard ViewControllerReference.shared.synctasks.contains(task) else { return }
