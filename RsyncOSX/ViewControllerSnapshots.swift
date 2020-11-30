@@ -170,6 +170,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // Sidebar delete button
     func deleteaction() {
         guard self.snapshotlogsandcatalogs != nil else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
         let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) == 1 }.count
         let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
@@ -591,5 +592,18 @@ extension ViewControllerSnapshots: OpenQuickBackup {
 extension ViewControllerSnapshots: GetSelecetedIndex {
     func getindex() -> Int? {
         return self.index
+    }
+}
+
+extension ViewControllerSnapshots: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Delete:
+            self.deleteaction()
+        case .Save:
+            self.savesnapdayofweek()
+        default:
+            return
+        }
     }
 }

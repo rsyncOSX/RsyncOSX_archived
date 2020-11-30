@@ -21,8 +21,24 @@ enum Sidebarmessages {
     case JSONlabel
 }
 
+enum Sidebaractionsmessages {
+    case Change
+    case Parameter
+    case Delete
+    case Add
+    case Once
+    case Daily
+    case Weekly
+    case Update
+    case Save
+}
+
 protocol Sidebaractions: AnyObject {
     func sidebaractions(action: Sidebarmessages)
+}
+
+protocol Sidebarbuttonactions: AnyObject {
+    func sidebarbuttonactions(action: Sidebaractionsmessages)
 }
 
 class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain {

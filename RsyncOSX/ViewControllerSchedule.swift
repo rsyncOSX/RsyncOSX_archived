@@ -256,3 +256,20 @@ extension ViewControllerSchedule: OpenQuickBackup {
         }
     }
 }
+
+extension ViewControllerSchedule: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Once:
+            self.once()
+        case .Daily:
+            self.daily()
+        case .Weekly:
+            self.weekly()
+        case .Update:
+            self.update()
+        default:
+            return
+        }
+    }
+}

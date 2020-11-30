@@ -349,3 +349,16 @@ extension ViewControllerNewConfigurations: AssistTransfer {
         }
     }
 }
+
+extension ViewControllerNewConfigurations: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Delete:
+            self.cleartable()
+        case .Add:
+            self.addConfig()
+        default:
+            return
+        }
+    }
+}

@@ -424,3 +424,14 @@ extension ViewControllerMain: DisableEnablePopupSelectProfile {
         self.profilepopupbutton.isEnabled = false
     }
 }
+
+extension ViewControllerMain: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Delete:
+            self.delete()
+        default:
+            return
+        }
+    }
+}
