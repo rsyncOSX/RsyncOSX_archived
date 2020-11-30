@@ -18,6 +18,7 @@ enum Sidebarmessages {
     case scheduleviewbuttons
     case snapshotviewbuttons
     case reset
+    case JSONlabel
 }
 
 protocol Sidebaractions: AnyObject {
@@ -172,8 +173,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
         self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         self.delayWithSeconds(0.5) {
             self.menuappicons()
@@ -233,6 +232,8 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button2.isHidden = true
             self.button3.isHidden = true
             self.button4.isHidden = true
+        case .JSONlabel:
+            self.jsonlabel.isHidden = !ViewControllerReference.shared.json
         }
     }
 }

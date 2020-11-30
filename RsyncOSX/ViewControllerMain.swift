@@ -207,6 +207,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         // For sending messages to the sidebar
         self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         self.sidebaractionsDelegate?.sidebaractions(action: .mainviewbuttons)
+        self.sidebaractionsDelegate?.sidebaractions(action: .JSONlabel)
+
         if ViewControllerReference.shared.initialstart == 0 {
             self.view.window?.center()
             ViewControllerReference.shared.initialstart = 1
