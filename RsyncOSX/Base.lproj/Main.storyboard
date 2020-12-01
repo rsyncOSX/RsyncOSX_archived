@@ -447,6 +447,13 @@ DQ
                                         <segue destination="ngh-0r-Hwj" kind="show" id="SYz-Wa-W9d"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="BB4E4D3A-8E20-459D-AA49-FA7C14E4C6C4" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" image="NSAddTemplate" id="q3e-No-zIK" userLabel="Toggle">
+                                    <size key="minSize" width="33.5" height="26"/>
+                                    <size key="maxSize" width="33.5" height="26"/>
+                                    <connections>
+                                        <action selector="toggleSidebar:" target="Rv5-yv-lsc" id="3AF-EU-PEF"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
@@ -461,6 +468,7 @@ DQ
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="VYu-Xf-XJc"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
+                                <toolbarItem reference="q3e-No-zIK"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -763,7 +771,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="687" y="1" width="29" height="17"/>
+                                                            <rect key="frame" x="687" y="1" width="58" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -827,7 +835,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="826" y="1" width="125" height="17"/>
+                                                            <rect key="frame" x="826" y="1" width="154" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -3354,6 +3362,7 @@ DQ
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
         <image name="abort" width="48" height="48"/>
         <image name="backupnow" width="64" height="64"/>
         <image name="batch" width="64" height="64"/>

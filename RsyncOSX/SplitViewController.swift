@@ -9,4 +9,8 @@
 import Cocoa
 import Foundation
 
-class SplitViewController: NSSplitViewController {}
+class SplitViewController: NSSplitViewController {
+    override func toggleSidebar(_ sender: Any?) {
+        super.toggleSidebar(sender)
+    }
+}
