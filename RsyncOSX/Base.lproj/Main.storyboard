@@ -450,13 +450,6 @@ DQ
                                         <segue destination="ngh-0r-Hwj" kind="show" id="SYz-Wa-W9d"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="949F7E5C-CD44-40FD-BB93-115191E5A0F9" label="Collapse" paletteLabel="Collapse" tag="-1" image="NSInfo" id="jUq-RO-jQU">
-                                    <size key="minSize" width="22" height="22"/>
-                                    <size key="maxSize" width="22" height="22"/>
-                                    <connections>
-                                        <action selector="toggleSidebar:" target="Rv5-yv-lsc" id="Wvb-ct-CWk"/>
-                                    </connections>
-                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
@@ -471,7 +464,6 @@ DQ
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
                                 <toolbarItem reference="VYu-Xf-XJc"/>
                                 <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="jUq-RO-jQU"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -931,8 +923,8 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <popUpButton ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-WV-OB6">
-                                <rect key="frame" x="794" y="391" width="191" height="14"/>
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="PpM-WV-OB6">
+                                <rect key="frame" x="893" y="391" width="52" height="14"/>
                                 <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" transparent="YES" imageScaling="proportionallyDown" inset="2" selectedItem="Esk-bF-GFr" id="C4G-cF-gUf">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="11" name="HelveticaNeue"/>
@@ -948,16 +940,16 @@ DQ
                                     <action selector="selectprofile:" target="egt-C3-u4G" id="AzD-Ed-Y05"/>
                                 </connections>
                             </popUpButton>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="751" ambiguous="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ZhK-mF-Dgw">
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="751" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ZhK-mF-Dgw">
                                 <rect key="frame" x="20" y="389" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="uO5-P1-8RN"/>
                                 </constraints>
                             </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gg2-se-FkF">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gg2-se-FkF">
                                 <rect key="frame" x="42" y="390" width="246" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="242" id="PlQ-lr-5CW"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="242" id="PlQ-lr-5CW"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="60W-M7-Vqr">
                                     <font key="font" metaFont="smallSystem"/>
@@ -977,9 +969,8 @@ DQ
                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3L-Il-K5w">
-                                <rect key="frame" x="747" y="10" width="217" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3L-Il-K5w">
+                                <rect key="frame" x="770" y="10" width="217" height="14"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="rsyncversionshort" id="EU9-bF-96n">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -988,17 +979,22 @@ DQ
                             </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="n3L-Il-K5w" firstAttribute="baseline" secondItem="RQt-Hs-8vg" secondAttribute="baseline" id="08O-eV-M2B"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="top" secondItem="PpM-WV-OB6" secondAttribute="top" id="4Xv-Qp-WRU"/>
                             <constraint firstItem="Gg2-se-FkF" firstAttribute="baseline" secondItem="PpM-WV-OB6" secondAttribute="baseline" id="5VR-Ug-Rm0"/>
+                            <constraint firstItem="n3L-Il-K5w" firstAttribute="leading" secondItem="RQt-Hs-8vg" secondAttribute="trailing" constant="103" id="9o9-xc-32i"/>
                             <constraint firstAttribute="trailing" secondItem="ihR-vZ-M7c" secondAttribute="trailing" constant="20" symbolic="YES" id="Auo-1c-da8"/>
                             <constraint firstItem="RQt-Hs-8vg" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="334" id="Bny-ZW-bNe"/>
                             <constraint firstItem="Gg2-se-FkF" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="3" id="Cos-3B-VFu"/>
                             <constraint firstAttribute="bottom" secondItem="RQt-Hs-8vg" secondAttribute="bottom" constant="6" id="FJs-Tx-1ht"/>
                             <constraint firstItem="RQt-Hs-8vg" firstAttribute="top" secondItem="ihR-vZ-M7c" secondAttribute="bottom" constant="4" id="R5G-0B-m2m"/>
+                            <constraint firstAttribute="trailing" secondItem="PpM-WV-OB6" secondAttribute="trailing" constant="40" id="SLX-hC-SXH"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="20" symbolic="YES" id="XFX-Sy-V00"/>
                             <constraint firstItem="RQt-Hs-8vg" firstAttribute="top" secondItem="ihR-vZ-M7c" secondAttribute="bottom" constant="4" id="c2u-FD-8Ao"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="top" secondItem="ZhK-mF-Dgw" secondAttribute="bottom" constant="8" symbolic="YES" id="fDj-Z1-a0V"/>
                             <constraint firstItem="Gg2-se-FkF" firstAttribute="leading" secondItem="ZhK-mF-Dgw" secondAttribute="trailing" constant="8" symbolic="YES" id="h24-Cp-xa7"/>
+                            <constraint firstAttribute="trailing" secondItem="n3L-Il-K5w" secondAttribute="trailing" constant="20" id="iAt-Cb-lTZ"/>
+                            <constraint firstItem="ZhK-mF-Dgw" firstAttribute="leading" secondItem="ihR-vZ-M7c" secondAttribute="leading" id="rra-a1-iOi"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="2" id="wxF-vT-W5f"/>
                         </constraints>
                     </view>
@@ -3504,7 +3500,6 @@ DQ
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
-        <image name="NSInfo" width="32" height="32"/>
         <image name="abort" width="48" height="48"/>
         <image name="backupnow" width="64" height="64"/>
         <image name="batch" width="64" height="64"/>

@@ -10,7 +10,5 @@ import Cocoa
 import Foundation
 
 class SplitViewController: NSSplitViewController {
-    @IBAction override func toggleSidebar(_ sender: Any?) {
-        super.toggleSidebar(sender)
-    }
+    
 }
