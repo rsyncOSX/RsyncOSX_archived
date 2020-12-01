@@ -811,8 +811,9 @@ DQ
                                                             <rect key="frame" x="676" y="1" width="54" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
                                                                     <rect key="frame" x="0.0" y="1" width="60" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="v67-PZ-Hu6">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -820,11 +821,6 @@ DQ
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="wz0-fC-zkL" firstAttribute="centerY" secondItem="Aw0-NM-D64" secondAttribute="centerY" id="2Yr-hE-WUQ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="wz0-fC-zkL" secondAttribute="trailing" constant="-4" id="Rom-yi-3Dz"/>
-                                                                <constraint firstItem="wz0-fC-zkL" firstAttribute="leading" secondItem="Aw0-NM-D64" secondAttribute="leading" constant="2" id="buU-da-ynj"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="wz0-fC-zkL" id="UBX-8J-rc5"/>
                                                             </connections>
