@@ -18,6 +18,7 @@ enum Sidebarmessages {
     case scheduleviewbuttons
     case snapshotviewbuttons
     case logsviewbuttons
+    case sshviewbuttons
     case reset
     case JSONlabel
 }
@@ -76,6 +77,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .logsviewbuttons:
                 return
+            case .sshviewbuttons:
+                return
             default:
                 return
             }
@@ -94,6 +97,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .snapshotviewbuttons:
                 return
             case .logsviewbuttons:
+                return
+            case .sshviewbuttons:
                 return
             default:
                 return
@@ -114,6 +119,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .logsviewbuttons:
                 return
+            case .sshviewbuttons:
+                return
             default:
                 return
             }
@@ -132,6 +139,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .snapshotviewbuttons:
                 return
             case .logsviewbuttons:
+                return
+            case .sshviewbuttons:
                 return
             default:
                 return
@@ -258,6 +267,13 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button3.isHidden = false
             self.button4.isHidden = true
             self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+        case .sshviewbuttons:
+            self.button1.isHidden = true
+            self.button2.isHidden = true
+            self.button3.isHidden = false
+            self.button4.isHidden = false
+            self.button3.title = NSLocalizedString("Create key", comment: "Sidebar")
+            self.button4.title = NSLocalizedString("Remote", comment: "Sidebar")
         case .reset:
             self.button1.isHidden = true
             self.button2.isHidden = true

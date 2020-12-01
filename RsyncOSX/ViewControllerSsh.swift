@@ -74,7 +74,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
-    @IBAction func createPublicPrivateRSAKeyPair(_: NSButton) {
+    // Sidebar create keys
+    func createPublicPrivateRSAKeyPair() {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess,
                           processtermination: self.processtermination,
@@ -83,7 +84,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshcmd?.creatersakeypair()
     }
 
-    @IBAction func source(_: NSButton) {
+    // Sidebar kilde
+   func source() {
         guard self.sshcmd != nil else { return }
         self.presentAsModalWindow(self.viewControllerSource!)
     }
@@ -99,7 +101,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     override func viewDidAppear() {
         super.viewDidAppear()
         self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        self.sidebaractionsDelegate?.sidebaractions(action: .reset)
+        self.sidebaractionsDelegate?.sidebaractions(action: .sshviewbuttons)
         self.loadsshparameters()
     }
 
