@@ -85,7 +85,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 
     // Sidebar kilde
-   func source() {
+    func source() {
         guard self.sshcmd != nil else { return }
         self.presentAsModalWindow(self.viewControllerSource!)
     }
