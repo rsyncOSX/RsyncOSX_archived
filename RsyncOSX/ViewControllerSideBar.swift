@@ -288,7 +288,7 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button2.isHidden = false
             self.button3.isHidden = false
             self.button4.isHidden = false
-            self.button1.title = NSLocalizedString("Filelest", comment: "Sidebar")
+            self.button1.title = NSLocalizedString("Filelist", comment: "Sidebar")
             self.button2.title = NSLocalizedString("Estimate", comment: "Sidebar")
             self.button3.title = NSLocalizedString("Restore", comment: "Sidebar")
             self.button4.title = NSLocalizedString("Reset", comment: "Sidebar")
