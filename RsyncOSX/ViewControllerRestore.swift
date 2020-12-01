@@ -168,7 +168,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     override func viewDidAppear() {
         super.viewDidAppear()
         self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        self.sidebaractionsDelegate?.sidebaractions(action: .reset)
+        self.sidebaractionsDelegate?.sidebaractions(action: .restoreviewbuttons)
         guard self.diddissappear == false else {
             globalMainQueue.async { () -> Void in
                 self.rsynctableView.reloadData()
@@ -310,12 +310,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func getremotefilelist(_: NSButton) {
+    // Sidebar filelist
+    func getremotefilelist() {
         guard self.restoreactions?.getfilelistrestorefiles() ?? false else { return }
         self.prepareforfilesrestoreandandgetremotefilelist()
     }
 
-    @IBAction func reset(_: NSButton) {
+    // Sidebar reset
+    func reset() {
         self.reset()
     }
 
@@ -450,7 +452,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func restore(_: NSButton) {
+    // Sidebar restore
+    func restore() {
         if self.fullrestoreradiobutton.state == .on {
             self.executefullrestore()
         } else {
@@ -458,7 +461,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func estimate(_: NSButton) {
+    // Sidebar estimate
+    func estimate() {
         guard self.checkforrsync() == false else { return }
         if (self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false) || (self.restoreactions?.goforfullrestoreestimate() ?? false) {
             guard self.checkforfullrestore() == true else { return }
