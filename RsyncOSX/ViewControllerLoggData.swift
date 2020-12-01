@@ -98,7 +98,8 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         }
     }
 
-    @IBAction func deletealllogs(_: NSButton) {
+    // Sidebar delete
+    func deletealllogs() {
         guard self.selectednumber() != "0" else { return }
         let question: String = NSLocalizedString("Delete", comment: "Logg")
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Logg")
@@ -132,7 +133,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     override func viewDidAppear() {
         super.viewDidAppear()
         self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        self.sidebaractionsDelegate?.sidebaractions(action: .reset)
+        self.sidebaractionsDelegate?.sidebaractions(action: .logsviewbuttons)
         self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
         self.index = self.index()
         if let index = self.index {

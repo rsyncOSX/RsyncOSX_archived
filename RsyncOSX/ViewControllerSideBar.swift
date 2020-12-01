@@ -17,6 +17,7 @@ enum Sidebarmessages {
     case addviewbuttons
     case scheduleviewbuttons
     case snapshotviewbuttons
+    case logsviewbuttons
     case reset
     case JSONlabel
 }
@@ -243,6 +244,12 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button4.isHidden = false
             self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
             self.button4.title = NSLocalizedString("Save", comment: "Sidebar")
+        case .logsviewbuttons:
+            self.button1.isHidden = true
+            self.button2.isHidden = true
+            self.button3.isHidden = false
+            self.button4.isHidden = true
+            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
         case .reset:
             self.button1.isHidden = true
             self.button2.isHidden = true
