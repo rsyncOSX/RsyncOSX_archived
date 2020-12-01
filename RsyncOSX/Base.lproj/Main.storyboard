@@ -215,7 +215,7 @@
         <!--Split View Controller-->
         <scene sceneID="neB-u7-h1h">
             <objects>
-                <splitViewController id="MAd-2Q-Nzg" customClass="SplitViewController" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="MAd-2Q-Nzg" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="Rqz-my-GDy"/>
                         <splitViewItem id="4vq-he-hHa"/>
