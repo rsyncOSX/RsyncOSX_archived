@@ -522,9 +522,8 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="1005" height="407"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="ihR-vZ-M7c">
+                            <scrollView borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="ihR-vZ-M7c">
                                 <rect key="frame" x="20" y="32" width="965" height="349"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="Hhj-xS-jUd">
                                     <rect key="frame" x="2" y="2" width="961" height="345"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -830,7 +829,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="816" y="1" width="89" height="17"/>
+                                                            <rect key="frame" x="816" y="1" width="84" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -853,6 +852,9 @@ DQ
                                         </tableView>
                                     </subviews>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="349" id="Pma-MZ-ItY"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9Do-RL-EKP">
                                     <rect key="frame" x="2" y="331" width="961" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -877,9 +879,8 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Hs-8vg">
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Hs-8vg">
                                 <rect key="frame" x="334" y="6" width="335" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="1IX-LA-PS2">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -913,10 +914,18 @@ DQ
                             </popUpButton>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="RQt-Hs-8vg" firstAttribute="top" secondItem="ihR-vZ-M7c" secondAttribute="bottom" constant="4" id="43R-mU-fWo"/>
+                            <constraint firstItem="RQt-Hs-8vg" firstAttribute="top" secondItem="ihR-vZ-M7c" secondAttribute="bottom" constant="4" id="5hb-Xh-sit"/>
                             <constraint firstItem="PpM-WV-OB6" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="10" id="6z3-zC-R9V"/>
                             <constraint firstAttribute="trailing" secondItem="PpM-WV-OB6" secondAttribute="trailing" constant="20" symbolic="YES" id="8Wx-lj-9MG"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="20" symbolic="YES" id="OD2-fv-Leg"/>
                             <constraint firstAttribute="bottom" secondItem="n3L-Il-K5w" secondAttribute="bottom" constant="10" id="PED-02-DZ7"/>
+                            <constraint firstAttribute="bottom" secondItem="RQt-Hs-8vg" secondAttribute="bottom" constant="6" id="Ulh-8f-quf"/>
+                            <constraint firstAttribute="trailing" secondItem="ihR-vZ-M7c" secondAttribute="trailing" constant="20" symbolic="YES" id="XY3-OX-iw7"/>
+                            <constraint firstItem="ihR-vZ-M7c" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="20" symbolic="YES" id="eRv-JM-FsO"/>
+                            <constraint firstItem="ihR-vZ-M7c" firstAttribute="top" secondItem="ZhK-mF-Dgw" secondAttribute="bottom" constant="1" id="gTq-c4-4KE"/>
+                            <constraint firstItem="RQt-Hs-8vg" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="334" id="iBr-LM-SRL"/>
+                            <constraint firstItem="n3L-Il-K5w" firstAttribute="leading" secondItem="RQt-Hs-8vg" secondAttribute="trailing" constant="221" id="iCm-dh-JWG"/>
                             <constraint firstAttribute="trailing" secondItem="n3L-Il-K5w" secondAttribute="trailing" constant="20" symbolic="YES" id="jnd-Y2-cEI"/>
                             <constraint firstItem="Gg2-se-FkF" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="10" id="pMS-u4-bPs"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="9" id="pvh-aX-G4z"/>
