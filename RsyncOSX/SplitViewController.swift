@@ -9,6 +9,4 @@
 import Cocoa
 import Foundation
 
-class SplitViewController: NSSplitViewController {
-    
-}
+class SplitViewController: NSSplitViewController {}

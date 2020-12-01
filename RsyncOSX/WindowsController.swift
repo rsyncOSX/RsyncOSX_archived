@@ -6,9 +6,7 @@
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
 import Cocoa
+import Foundation
 
-class WindowsController: NSWindowController {
-    
-}
+class WindowsController: NSWindowController {}
