@@ -74,6 +74,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .snapshotviewbuttons:
                 return
+            case .logsviewbuttons:
+                return
             default:
                 return
             }
@@ -90,6 +92,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .scheduleviewbuttons:
                 return
             case .snapshotviewbuttons:
+                return
+            case .logsviewbuttons:
                 return
             default:
                 return
@@ -108,6 +112,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .snapshotviewbuttons:
                 return
+            case .logsviewbuttons:
+                return
             default:
                 return
             }
@@ -124,6 +130,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .scheduleviewbuttons:
                 return
             case .snapshotviewbuttons:
+                return
+            case .logsviewbuttons:
                 return
             default:
                 return
