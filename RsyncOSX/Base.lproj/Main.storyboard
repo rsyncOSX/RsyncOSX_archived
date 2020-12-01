@@ -210,7 +210,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RsyncOSX" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-277" y="-725"/>
+            <point key="canvasLocation" x="-401" y="-1025"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="neB-u7-h1h">
@@ -512,7 +512,7 @@ DQ
                 </tabViewController>
                 <customObject id="am9-td-Qjg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-372" y="-437"/>
+            <point key="canvasLocation" x="-288" y="-723"/>
         </scene>
         <!--Synchronize-->
         <scene sceneID="84s-6a-t0v">
@@ -3065,7 +3065,7 @@ DQ
                 </viewController>
                 <customObject id="Q22-JH-0wK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1171" y="-534"/>
+            <point key="canvasLocation" x="-2157" y="-527"/>
         </scene>
         <!--All profiles-->
         <scene sceneID="AnB-2j-8Cc">
@@ -3352,7 +3352,7 @@ DQ
                 </viewController>
                 <customObject id="WYi-qW-oH6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2142" y="-587"/>
+            <point key="canvasLocation" x="-1186" y="-581"/>
         </scene>
     </scenes>
     <resources>
