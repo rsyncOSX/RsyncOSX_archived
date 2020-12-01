@@ -317,7 +317,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     // Sidebar reset
-    func reset() {
+    func resetaction() {
         self.reset()
     }
 
