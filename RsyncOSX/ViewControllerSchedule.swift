@@ -14,7 +14,7 @@ protocol SetProfileinfo: AnyObject {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Index, VcMain, Checkforrsync, Setcolor, Help {
+class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, VcMain, Checkforrsync, Setcolor, Help {
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
@@ -87,7 +87,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     }
 
     private func addschedule() {
-        guard self.index != nil || self.index() != nil else { return }
+        guard self.index != nil else { return }
         let question: String = NSLocalizedString("Add Schedule?", comment: "Add schedule")
         let text: String = NSLocalizedString("Cancel or Add", comment: "Add schedule")
         let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
@@ -96,14 +96,11 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             self.info.stringValue = Infoschedule().info(num: 2)
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
-            if let index = self.index() {
-                if self.index == nil {
-                    self.index = index
+            if let index = self.index {
+                if let hiddenID = self.configurations?.gethiddenID(index: index) {
+                    guard hiddenID != -1 else { return }
+                    self.schedules?.addschedule(hiddenID: hiddenID, schedule: self.schedule ?? .once, start: startdate)
                 }
-            }
-            if let hiddenID = self.configurations?.gethiddenID(index: self.index ?? -1) {
-                guard hiddenID != -1 else { return }
-                self.schedules!.addschedule(hiddenID: hiddenID, schedule: self.schedule ?? .once, start: startdate)
             }
         }
     }
@@ -160,12 +157,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         super.viewDidAppear()
         self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         self.sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
-        if self.index() != nil, self.index == nil {
-            self.info.stringValue = Infoschedule().info(num: 3)
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-        } else {
-            self.info.stringValue = Infoschedule().info(num: 0)
-        }
+        self.info.stringValue = Infoschedule().info(num: 0)
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
@@ -222,8 +214,11 @@ extension ViewControllerSchedule: DismissViewController {
 
 extension ViewControllerSchedule: Reloadandrefresh {
     func reloadtabledata() {
-        let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
-        self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
+        if let index = self.index {
+            if let hiddendID = self.configurations?.gethiddenID(index: index) {
+                self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
+            }
+        }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
             self.scheduletabledetails.reloadData()
