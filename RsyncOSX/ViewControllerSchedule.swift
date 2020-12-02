@@ -22,6 +22,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     var scheduledetails: [NSMutableDictionary]?
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
+    var addschduleisallowed = false
 
     // Main tableview
     @IBOutlet var scheduletable: NSTableView!
@@ -57,18 +58,21 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     // Sidebar Once
     func once() {
+        guard self.addschduleisallowed else { return }
         self.schedule = .once
         self.addschedule()
     }
 
     // Sidebar Daily
     func daily() {
+        guard self.addschduleisallowed else { return }
         self.schedule = .daily
         self.addschedule()
     }
 
     // Sidebar Weekly
     func weekly() {
+        guard self.addschduleisallowed else { return }
         self.schedule = .weekly
         self.addschedule()
     }
@@ -112,11 +116,13 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         let secondstostart = startime.timeIntervalSinceNow
         if secondstostart < 60 {
             self.selectedstart.isHidden = true
+            self.addschduleisallowed = false
             // self.weeklybutton.isEnabled = false
             // self.dailybutton.isEnabled = false
             // self.oncebutton.isEnabled = false
         }
         if secondstostart > 60 {
+            self.addschduleisallowed = true
             self.selectedstart.isHidden = false
             self.selectedstart.stringValue = startime.localized_string_from_date() + " (" + Dateandtime().timestring(seconds: secondstostart) + ")"
             self.selectedstart.textColor = self.setcolor(nsviewcontroller: self, color: .green)

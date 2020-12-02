@@ -202,3 +202,16 @@ extension ViewControllerSsh: Loadsshparameters {
         self.checkforPrivateandPublicRSAKeypair()
     }
 }
+
+extension ViewControllerSsh: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .CreateKey:
+            self.createPublicPrivateRSAKeyPair()
+        case .Remote:
+            self.source()
+        default:
+            return
+        }
+    }
+}

@@ -353,3 +353,14 @@ extension ViewControllerLoggData: NewProfile {
         //
     }
 }
+
+extension ViewControllerLoggData: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Delete:
+            self.deletealllogs()
+        default:
+            return
+        }
+    }
+}

@@ -80,7 +80,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
                 deleteDelegate?.sidebarbuttonactions(action: .Add)
             case .scheduleviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                deleteDelegate?.sidebarbuttonactions(action: .Once)
             case .snapshotviewbuttons:
                 return
             case .logsviewbuttons:
@@ -103,7 +104,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .addviewbuttons:
                 self.presentAsModalWindow(self.viewControllerAssist!)
             case .scheduleviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                deleteDelegate?.sidebarbuttonactions(action: .Daily)
             case .snapshotviewbuttons:
                 return
             case .logsviewbuttons:
@@ -130,13 +132,17 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .scheduleviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                deleteDelegate?.sidebarbuttonactions(action: .Weekly)
             case .snapshotviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .logsviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+                deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .sshviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+                deleteDelegate?.sidebarbuttonactions(action: .CreateKey)
             case .restoreviewbuttons:
                 return
             default:
@@ -153,13 +159,16 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .addviewbuttons:
                 return
             case .scheduleviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                deleteDelegate?.sidebarbuttonactions(action: .Update)
             case .snapshotviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                deleteDelegate?.sidebarbuttonactions(action: .Save)
             case .logsviewbuttons:
                 return
             case .sshviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+                deleteDelegate?.sidebarbuttonactions(action: .Remote)
             case .restoreviewbuttons:
                 return
             default:
