@@ -34,6 +34,12 @@ enum Sidebaractionsmessages {
     case Weekly
     case Update
     case Save
+    case Filelist
+    case Esitimate
+    case Restore
+    case Reset
+    case CreateKey
+    case Remote
 }
 
 protocol Sidebaractions: AnyObject {
@@ -71,7 +77,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .mainviewbuttons:
                 self.presentAsModalWindow(self.editViewController!)
             case .addviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+                deleteDelegate?.sidebarbuttonactions(action: .Add)
             case .scheduleviewbuttons:
                 return
             case .snapshotviewbuttons:
@@ -115,9 +122,13 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
         if let view = self.whichviewispresented {
             switch view {
             case .mainviewbuttons:
-                return
+                // Delete
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .addviewbuttons:
-                return
+                // Delete
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+                deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .scheduleviewbuttons:
                 return
             case .snapshotviewbuttons:
@@ -162,18 +173,10 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
     }
 
     func verify() {
-        let verify: VerifyJSON?
         if let profile = self.configurations?.getProfile() {
-            verify = VerifyJSON(profile: profile)
+            _ = VerifyJSON(profile: profile)
         } else {
-            verify = VerifyJSON(profile: nil)
-        }
-        if verify?.verifyconf ?? false, verify?.verifysched ?? false == true {
-            // self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            // self.info.stringValue = NSLocalizedString("Verify OK...", comment: "Verify")
-        } else {
-            // self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            // self.info.stringValue = NSLocalizedString("Verify not OK, see logfile (⌘O)...", comment: "Verify")
+            _ = VerifyJSON(profile: nil)
         }
     }
 
