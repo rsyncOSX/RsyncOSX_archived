@@ -355,7 +355,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 globalMainQueue.async { () -> Void in
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
-                self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, processtermination: self.processtermination, filehandler: self.filehandler)
+                self.fullrestoretask = FullrestoreTask(dryrun: false, processtermination: self.processtermination, filehandler: self.filehandler)
+                self.fullrestoretask?.executerestore(index: index)
                 self.outputprocess = self.fullrestoretask?.outputprocess
             }
         }
@@ -439,7 +440,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.infolabel.isHidden = false
                 self.working.startAnimation(nil)
                 if self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
-                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, processtermination: self.processtermination, filehandler: self.filehandler)
+                    self.fullrestoretask = FullrestoreTask(dryrun: true, processtermination: self.processtermination, filehandler: self.filehandler)
+                    self.fullrestoretask?.executerestore(index: index)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                 }
             }
