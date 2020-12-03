@@ -1408,7 +1408,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="oTG-dZ-vLI">
-                                                            <rect key="frame" x="453.5" y="1" width="232" height="40"/>
+                                                            <rect key="frame" x="454" y="1" width="232" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2y-Ka-0se">
@@ -1440,7 +1440,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="dsQ-7K-RHQ">
-                                                            <rect key="frame" x="688.5" y="1" width="89" height="40"/>
+                                                            <rect key="frame" x="689" y="1" width="89" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-Oh-T0L">
@@ -2149,11 +2149,11 @@ DQ
             <objects>
                 <viewController title="Source" storyboardIdentifier="CopyFilesID" id="8Fc-Qd-eCt" customClass="ViewControllerSource" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="1a6-cr-K0n">
-                        <rect key="frame" x="0.0" y="0.0" width="306" height="235"/>
+                        <rect key="frame" x="0.0" y="0.0" width="306" height="194"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" borderType="groove" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="dark" translatesAutoresizingMaskIntoConstraints="NO" id="b8U-3h-ekW">
-                                <rect key="frame" x="20" y="61" width="266" height="148"/>
+                                <rect key="frame" x="20" y="20" width="266" height="148"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="eC8-L8-UNX">
                                     <rect key="frame" x="2" y="2" width="262" height="144"/>
@@ -2208,7 +2208,7 @@ DQ
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-RF-LU3">
-                                <rect key="frame" x="18" y="208" width="458" height="21"/>
+                                <rect key="frame" x="18" y="167" width="458" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Either double click on row or select Load button" id="gvt-fV-eXv">
                                     <font key="font" metaFont="message" size="11"/>
@@ -2216,30 +2216,15 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IXu-1J-YLD">
-                                <rect key="frame" x="222" y="13" width="70" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Load" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B35-hF-yoh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="select:" target="8Fc-Qd-eCt" id="B9t-sc-uiv"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="mainTableView" destination="aTT-Pf-8e3" id="zeY-2q-Mih"/>
-                        <outlet property="selectButton" destination="IXu-1J-YLD" id="TGb-GV-8PF"/>
                     </connections>
                 </viewController>
                 <customObject id="LQA-SJ-6H6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-558" y="-194"/>
+            <point key="canvasLocation" x="-558" y="-215"/>
         </scene>
         <!--Estimating progress-->
         <scene sceneID="uTH-Tp-7XF">
