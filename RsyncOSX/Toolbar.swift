@@ -21,7 +21,7 @@ extension NSToolbarItem.Identifier {
 }
 
 extension Selector {
-    static let report = #selector(ViewControllerSideBar.totinfo(_:))
+    static let report = #selector(ViewControllerSideBar.alloutput(_:))
     static let allprofiles = #selector(ViewControllerSideBar.allprofiles(_:))
     static let backupnow = #selector(ViewControllerSideBar.automaticbackup(_:))
     static let estimateandquickbackup = #selector(ViewControllerSideBar.totinfo(_:))
@@ -374,27 +374,8 @@ extension ViewControllerSsh {
         self.presentAsModalWindow(self.allprofiles!)
     }
 
-    // Toolbar - Estimate and Quickbackup
-    @IBAction func totinfo(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
-        }
-    }
-
-    // Toolbar -  Estimate and execute automatic backup
-    @IBAction func automaticbackup(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        self.presentAsSheet(self.viewControllerEstimating!)
-    }
-
     // Toolbar - Userconfiguration button
     @IBAction func userconfiguration(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerUserconfiguration!)
-    }
-
-    // Toolbar - All ouput
-    @IBAction func alloutput(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 }

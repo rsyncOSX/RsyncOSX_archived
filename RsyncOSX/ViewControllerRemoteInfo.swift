@@ -39,8 +39,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
                 } else if (self.presentingViewController as? ViewControllerRestore) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
-                } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-                    openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
                     openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
                 } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {

@@ -150,14 +150,6 @@ extension ViewControllerSsh {
     }
 }
 
-extension ViewControllerSsh: OpenQuickBackup {
-    func openquickbackup() {
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerQuickBackup!)
-        }
-    }
-}
-
 extension ViewControllerSsh: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         self.dismiss(viewcontroller)
