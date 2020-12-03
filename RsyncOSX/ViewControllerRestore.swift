@@ -181,7 +181,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restoretabledata = nil
         self.restorefilestask = nil
         self.fullrestoretask = nil
-        self.checkedforfullrestore.state = .off
         self.dotherealthing.state = .off
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
