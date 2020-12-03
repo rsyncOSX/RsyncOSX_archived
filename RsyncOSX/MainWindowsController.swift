@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 01/12/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable trailing_comma line_length cyclomatic_complexity
 
 import Cocoa
 import Foundation
@@ -30,19 +31,17 @@ class MainWindowsController: NSWindowController {
             toolbar.delegate = self
             self.window?.toolbar = toolbar
         }
-        window?.toolbar?.validateVisibleItems()
+        // window?.toolbar?.validateVisibleItems()
     }
 
     func buildToolbarButton(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _ selector: String) -> NSToolbarItem {
         let toolbarItem = RSToolbarItem(itemIdentifier: itemIdentifier)
         toolbarItem.autovalidates = true
-
         let button = NSButton()
         button.bezelStyle = .texturedRounded
         button.image = image
         button.imageScaling = .scaleProportionallyDown
         button.action = Selector((selector))
-
         toolbarItem.view = button
         toolbarItem.toolTip = title
         toolbarItem.label = title
@@ -61,11 +60,31 @@ extension NSToolbarItem.Identifier {
 }
 
 extension MainWindowsController: NSToolbarDelegate {
-    func toolbar(_: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem? {
+    func toolbar(_: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+                 willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem?
+    {
         switch itemIdentifier {
+        case .report:
+            let title = NSLocalizedString("Display output from rsync singletasks...", comment: "Toolbar")
+            return buildToolbarButton(.allprofiles, title, AppAssets.report, "alloutput")
         case .allprofiles:
-            let title = NSLocalizedString("All profiles", comment: "Star")
-            return buildToolbarButton(.allprofiles, title, AppAssets.sum, "allprofiles")
+            let title = NSLocalizedString("List all profiles and configurations...", comment: "Toolbar")
+            return buildToolbarButton(.allprofiles, title, AppAssets.allprofiles, "allprofiles")
+        case .backupnow:
+            let title = NSLocalizedString("Execute all tasks now...", comment: "Toolbar")
+            return buildToolbarButton(.allprofiles, title, AppAssets.backupnow, "allprofiles")
+        case .quickbackup:
+            let title = NSLocalizedString("Execute estimate and quickbackup for all tasks...", comment: "Toolbar")
+            return buildToolbarButton(.allprofiles, title, AppAssets.quickbackup, "allprofiles")
+        case .execute:
+            let title = NSLocalizedString("Execute selected tasks...", comment: "Toolbar")
+            return buildToolbarButton(.allprofiles, title, AppAssets.execute, "allprofiles")
+        case .abort:
+            let title = NSLocalizedString("Abort task...", comment: "Toolbar")
+            return buildToolbarButton(.allprofiles, title, AppAssets.abort, "allprofiles")
+        case .config:
+            let title = NSLocalizedString("Show userconfig...", comment: "Toolbar")
+            return buildToolbarButton(.allprofiles, title, AppAssets.config, "allprofiles")
         default:
             break
         }
@@ -112,119 +131,94 @@ extension MainWindowsController: NSToolbarDelegate {
 import AppKit
 
 struct AppAssets {
-    static var sum: RSImage! = {
+    static var report: RSImage! = {
+        RSImage(named: "report")
+    }()
+
+    static var allprofiles: RSImage! = {
         RSImage(named: "allprofiles")
+    }()
+
+    static var backupnow: RSImage! = {
+        RSImage(named: "backupnow")
+    }()
+
+    static var quickbackup: RSImage! = {
+        RSImage(named: "quickbackup")
+    }()
+
+    static var execute: RSImage! = {
+        RSImage(named: "execute")
+    }()
+
+    static var abort: RSImage! = {
+        RSImage(named: "abort")
+    }()
+
+    static var config: RSImage! = {
+        RSImage(named: "config")
     }()
 }
 
 public typealias RSImage = NSImage
 
 public extension RSImage {
-    /// Create a colored image from the source image using a specified color.
-    ///
-    /// - Parameter color: The color with which to fill the mask image.
-    /// - Returns: A new masked image.
-    func maskWithColor(color: CGColor) -> RSImage? {
-        guard let maskImage = cgImage(forProposedRect: nil, context: nil, hints: nil) else { return nil }
-
-        let width = size.width
-        let height = size.height
-        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
-
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
-
-        context.clip(to: bounds, mask: maskImage)
-        context.setFillColor(color)
-        context.fill(bounds)
-
-        if let cgImage = context.makeImage() {
-            let coloredImage = RSImage(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
-            return coloredImage
-        } else {
-            return nil
-        }
-    }
-
-    /// Create a scaled image from image data.
-    ///
-    /// - Note: the returned image may be larger than `maxPixelSize`, but not more than `maxPixelSize * 2`.
-    /// - Parameters:
-    ///   - data: The data object containing the image data.
-    ///   - maxPixelSize: The maximum dimension of the image.
-    static func scaleImage(_ data: Data, maxPixelSize: Int) -> CGImage? {
+    static func sscaleImage(_ data: Data, maxPixelSize: Int) -> CGImage? {
         guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else {
             return nil
         }
-
         let numberOfImages = CGImageSourceGetCount(imageSource)
-
         // If the image size matches exactly, then return it.
         for i in 0 ..< numberOfImages {
             guard let cfImageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, nil) else {
                 continue
             }
-
             let imageProperties = cfImageProperties as NSDictionary
-
             guard let imagePixelWidth = imageProperties[kCGImagePropertyPixelWidth] as? NSNumber else {
                 continue
             }
             if imagePixelWidth.intValue != maxPixelSize {
                 continue
             }
-
             guard let imagePixelHeight = imageProperties[kCGImagePropertyPixelHeight] as? NSNumber else {
                 continue
             }
             if imagePixelHeight.intValue != maxPixelSize {
                 continue
             }
-
             return CGImageSourceCreateImageAtIndex(imageSource, i, nil)
         }
-
         // If image height > maxPixelSize, but <= maxPixelSize * 2, then return it.
         for i in 0 ..< numberOfImages {
             guard let cfImageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, nil) else {
                 continue
             }
-
             let imageProperties = cfImageProperties as NSDictionary
-
             guard let imagePixelWidth = imageProperties[kCGImagePropertyPixelWidth] as? NSNumber else {
                 continue
             }
             if imagePixelWidth.intValue > maxPixelSize * 2 || imagePixelWidth.intValue < maxPixelSize {
                 continue
             }
-
             guard let imagePixelHeight = imageProperties[kCGImagePropertyPixelHeight] as? NSNumber else {
                 continue
             }
             if imagePixelHeight.intValue > maxPixelSize * 2 || imagePixelHeight.intValue < maxPixelSize {
                 continue
             }
-
             return CGImageSourceCreateImageAtIndex(imageSource, i, nil)
         }
-
-        // If the image data contains a smaller image than the max size, just return it.
         for i in 0 ..< numberOfImages {
             guard let cfImageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, nil) else {
                 continue
             }
-
             let imageProperties = cfImageProperties as NSDictionary
-
             guard let imagePixelWidth = imageProperties[kCGImagePropertyPixelWidth] as? NSNumber else {
                 continue
             }
             if imagePixelWidth.intValue < 1 || imagePixelWidth.intValue > maxPixelSize {
                 continue
             }
-
             guard let imagePixelHeight = imageProperties[kCGImagePropertyPixelHeight] as? NSNumber else {
                 continue
             }
@@ -234,15 +228,9 @@ public extension RSImage {
                 }
             }
         }
-
         return RSImage.createThumbnail(imageSource, maxPixelSize: maxPixelSize)
     }
 
-    /// Create a thumbnail from a CGImageSource.
-    ///
-    /// - Parameters:
-    ///   - imageSource: The `CGImageSource` from which to create the thumbnail.
-    ///   - maxPixelSize: The maximum dimension of the resulting image.
     static func createThumbnail(_ imageSource: CGImageSource, maxPixelSize: Int) -> CGImage? {
         let options = [kCGImageSourceCreateThumbnailWithTransform: true,
                        kCGImageSourceCreateThumbnailFromImageIfAbsent: true,
@@ -265,17 +253,13 @@ public class RSToolbarItem: NSToolbarItem {
 
 private extension RSToolbarItem {
     func isValidAsUserInterfaceItem() -> Bool {
-        // Use NSValidatedUserInterfaceItem protocol rather than calling validateToolbarItem:.
-
         if let target = target as? NSResponder {
             return validateWithResponder(target) ?? false
         }
-
         var responder = view?.window?.firstResponder
         if responder == nil {
             return false
         }
-
         while true {
             if let validated = validateWithResponder(responder!) {
                 return validated
@@ -285,13 +269,11 @@ private extension RSToolbarItem {
                 break
             }
         }
-
         if let appDelegate = NSApplication.shared.delegate {
             if let validated = validateWithResponder(appDelegate) {
                 return validated
             }
         }
-
         return false
     }
 

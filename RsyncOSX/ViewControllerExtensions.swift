@@ -30,7 +30,6 @@ extension VcMain {
     }
 
     // Sheetviews
-
     // Userconfiguration
     var viewControllerUserconfiguration: NSViewController? {
         return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardUserconfigID")
@@ -112,6 +111,12 @@ extension VcMain {
     // RsyncCommand
     var rsynccommand: NSViewController? {
         return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "RsyncCommand")
+            as? NSViewController)
+    }
+
+    // All profiles
+    var allprofiles: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "ViewControllerAllProfilesID")
             as? NSViewController)
     }
 }

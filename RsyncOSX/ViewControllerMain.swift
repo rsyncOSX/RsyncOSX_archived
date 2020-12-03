@@ -36,6 +36,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
 
+    @IBAction func allprofiles(_: NSButton) {
+        self.presentAsSheet(self.allprofiles!)
+    }
+
     @IBAction func infoonetask(_: NSButton) {
         guard self.index != nil else {
             self.info.stringValue = Infoexecute().info(num: 1)
