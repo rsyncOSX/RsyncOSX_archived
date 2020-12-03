@@ -39,18 +39,8 @@ struct RestoreActions {
         return true
     }
 
-    func goforfullrestore() -> Bool {
-        guard self.tmprestorepathselected == false, self.index, self.estimated, self.fullrestore else { return false }
-        return true
-    }
-
     func goforrestorefilestotemporarypath() -> Bool {
         guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.restorefiles, self.remotefileverified else { return false }
-        return true
-    }
-
-    func goforfullrestoreestimate() -> Bool {
-        guard self.tmprestorepathselected == false, self.index, self.estimated == false, self.fullrestore else { return false }
         return true
     }
 
@@ -66,9 +56,6 @@ struct RestoreActions {
 
     func reset() -> Bool {
         var reset = false
-        if self.goforfullrestore() == true {
-            reset = true
-        }
         if self.goforfullrestoretotemporarypath() == true {
             reset = true
         }
@@ -147,7 +134,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBAction func alloutput(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
-    
+
     @IBAction func doareset(_: NSButton) {
         self.reset()
     }
@@ -353,19 +340,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func executefullrestore() {
-        var tmprestore: Bool = true
         switch self.selecttmptorestore.state {
         case .on:
             guard self.restoreactions?.goforfullrestoretotemporarypath() ?? false else { return }
             guard (self.restoreactions?.executerealrestore ?? false) == true else {
                 self.infolabel.stringValue = NSLocalizedString("Simulated: execute full restore to temporary restore path", comment: "Restore")
-                return
-            }
-        case .off:
-            tmprestore = false
-            guard self.restoreactions?.goforfullrestore() ?? false else { return }
-            guard (self.restoreactions?.executerealrestore ?? false) == true else {
-                self.infolabel.stringValue = NSLocalizedString("Simulated: execute full restore to SOURCE", comment: "Restore")
                 return
             }
         default:
@@ -383,13 +362,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 globalMainQueue.async { () -> Void in
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
-                if tmprestore {
-                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, processtermination: self.processtermination, filehandler: self.filehandler)
-                    self.outputprocess = self.fullrestoretask?.outputprocess
-                } else {
-                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: false, processtermination: self.processtermination, filehandler: self.filehandler)
-                    self.outputprocess = self.fullrestoretask?.outputprocess
-                }
+                self.fullrestoretask = FullrestoreTask(index: index, dryrun: false, tmprestore: true, processtermination: self.processtermination, filehandler: self.filehandler)
+                self.outputprocess = self.fullrestoretask?.outputprocess
             }
         }
     }
@@ -467,7 +441,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Sidebar estimate
     func estimate() {
         guard self.checkforrsync() == false else { return }
-        if (self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false) || (self.restoreactions?.goforfullrestoreestimate() ?? false) {
+        if self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
             guard self.checkforfullrestore() == true else { return }
             if let index = self.index {
                 let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
@@ -476,10 +450,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.working.startAnimation(nil)
                 if self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
                     self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: true, processtermination: self.processtermination, filehandler: self.filehandler)
-                    self.outputprocess = self.fullrestoretask?.outputprocess
-                } else if self.restoreactions?.goforfullrestoreestimate() ?? false {
-                    self.selecttmptorestore.state = .off
-                    self.fullrestoretask = FullrestoreTask(index: index, dryrun: true, tmprestore: false, processtermination: self.processtermination, filehandler: self.filehandler)
                     self.outputprocess = self.fullrestoretask?.outputprocess
                 }
             }
