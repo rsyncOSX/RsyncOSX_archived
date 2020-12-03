@@ -37,7 +37,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBAction func allprofiles(_: NSButton) {
-        self.presentAsSheet(self.allprofiles!)
+        self.presentAsModalWindow(self.allprofiles!)
     }
 
     @IBAction func infoonetask(_: NSButton) {
