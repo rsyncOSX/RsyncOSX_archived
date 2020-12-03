@@ -209,16 +209,17 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Restore files
     func executerestorefiles() {
         guard self.restoreactions?.goforrestorefilestotemporarypath() ?? false else { return }
+        guard self.restorefilestask != nil else { return }
         guard (self.restoreactions?.executerealrestore ?? false) == true else {
             self.infolabel.isHidden = false
             self.infolabel.stringValue = NSLocalizedString("Simulated: execute restore of files to temporary restore path", comment: "Restore")
             return
         }
+        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles.stringValue, localCatalog: self.tmprestorepath.stringValue, dryrun: false)
+        self.outputprocess = self.restorefilestask?.outputprocess
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProgress!)
         }
-        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles.stringValue, localCatalog: self.tmprestorepath.stringValue, dryrun: false)
-        self.outputprocess = self.restorefilestask?.outputprocess
     }
 
     func prepareforfilesrestoreandandgetremotefilelist() {
@@ -449,6 +450,23 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
+        }
+    }
+    
+    func goforrestorebyfile() {
+        if self.selecttmptorestore.state == .on {
+            self.restoreactions?.restorefiles = true
+        } else {
+            self.restoreactions?.restorefiles = false
+        }
+    }
+    
+    func goforfullrestore() {
+        if self.selecttmptorestore.state == .on {
+            self.restoretabledata = nil
+            self.restoreactions?.fullrestore = true
+            self.restoreactions?.restorefiles = false
+            self.restoreactions?.tmprestorepathselected = true
         }
     }
 

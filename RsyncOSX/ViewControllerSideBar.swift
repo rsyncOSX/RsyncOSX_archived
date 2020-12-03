@@ -89,7 +89,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .sshviewbuttons:
                 return
             case .restoreviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                deleteDelegate?.sidebarbuttonactions(action: .Filelist)
             default:
                 return
             }
@@ -113,7 +114,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
             case .sshviewbuttons:
                 return
             case .restoreviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                deleteDelegate?.sidebarbuttonactions(action: .Esitimate)
             default:
                 return
             }
@@ -144,7 +146,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 deleteDelegate?.sidebarbuttonactions(action: .CreateKey)
             case .restoreviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                deleteDelegate?.sidebarbuttonactions(action: .Restore)
             default:
                 return
             }
@@ -170,7 +173,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 deleteDelegate?.sidebarbuttonactions(action: .Remote)
             case .restoreviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                deleteDelegate?.sidebarbuttonactions(action: .Reset)
             default:
                 return
             }
@@ -314,31 +318,3 @@ extension ViewControllerSideBar: Sidebaractions {
         }
     }
 }
-
-/*
- // Function for getting numbers out of output object updated when
- // Process object executes the job.
- func setNumbers(outputprocess: OutputProcess?) {
-     globalMainQueue.async { () -> Void in
-         guard outputprocess != nil else {
-             self.transferredNumber.stringValue = ""
-             self.transferredNumberSizebytes.stringValue = ""
-             self.totalNumber.stringValue = ""
-             self.totalNumberSizebytes.stringValue = ""
-             self.totalDirs.stringValue = ""
-             self.newfiles.stringValue = ""
-             self.deletefiles.stringValue = ""
-             return
-         }
-         let remoteinfotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
-         self.transferredNumber.stringValue = remoteinfotask.transferredNumber!
-         self.transferredNumberSizebytes.stringValue = remoteinfotask.transferredNumberSizebytes!
-         self.totalNumber.stringValue = remoteinfotask.totalNumber!
-         self.totalNumberSizebytes.stringValue = remoteinfotask.totalNumberSizebytes!
-         self.totalDirs.stringValue = remoteinfotask.totalDirs!
-         self.newfiles.stringValue = remoteinfotask.newfiles!
-         self.deletefiles.stringValue = remoteinfotask.deletefiles!
-     }
- }
-
- */

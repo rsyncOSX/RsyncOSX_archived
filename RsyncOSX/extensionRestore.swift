@@ -174,3 +174,20 @@ extension ViewControllerRestore: Updateremotefilelist {
         self.remotefilelist = nil
     }
 }
+
+extension ViewControllerRestore: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Filelist:
+            self.getremotefilelist()
+        case .Esitimate:
+            self.estimate()
+        case .Restore:
+            self.restore()
+        case .Reset:
+            self.resetaction()
+        default:
+            return
+        }
+    }
+}
