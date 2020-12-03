@@ -20,6 +20,10 @@ extension NSToolbarItem.Identifier {
     static let config = NSToolbarItem.Identifier("config")
 }
 
+extension Selector {
+    static let profiles = #selector(ViewControllerSideBar.allprofiles(_:))
+}
+
 extension MainWindowsController: NSToolbarDelegate {
     func buildToolbarButton(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _: String) -> NSToolbarItem {
         let toolbarItem = RSToolbarItem(itemIdentifier: itemIdentifier)
@@ -30,6 +34,7 @@ extension MainWindowsController: NSToolbarDelegate {
         button.imageScaling = .scaleProportionallyDown
         // button.action = Selector((selector))
         button.action = #selector(ViewControllerSideBar.allprofiles(_:))
+        button.action = Selector.profiles
         toolbarItem.view = button
         toolbarItem.toolTip = title
         toolbarItem.label = title
@@ -182,11 +187,57 @@ extension ViewControllerSideBar {
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
     }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
+    // Toolbar -  Estimate and execute automatic backup
+    @IBAction func automaticbackup(_: NSButton) {
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
 }
 
 extension ViewControllerNewConfigurations {
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
+    }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
+    // Toolbar -  Estimate and execute automatic backup
+    @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 }
 
@@ -194,11 +245,59 @@ extension ViewControllerSchedule {
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
     }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
+    // Toolbar -  Estimate and execute automatic backup
+    @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
 }
 
 extension ViewControllerSnapshots {
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
+    }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
+    // Toolbar -  Estimate and execute automatic backup
+    @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 }
 
@@ -206,16 +305,88 @@ extension ViewControllerRestore {
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
     }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
+    // Toolbar -  Estimate and execute automatic backup
+    @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
 }
 
 extension ViewControllerLoggData {
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
     }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
+    // Toolbar -  Estimate and execute automatic backup
+    @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
+    }
 }
 
 extension ViewControllerSsh {
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
+    }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
+    // Toolbar -  Estimate and execute automatic backup
+    @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 }

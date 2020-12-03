@@ -29,34 +29,13 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var selectbutton: NSButton!
 
-    @IBAction func totinfo(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
-        }
-    }
-
-    @IBAction func automaticbackup(_: NSButton) {
-        self.presentAsSheet(self.viewControllerEstimating!)
-    }
-
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerProfile!)
     }
 
-    // Userconfiguration button
-    @IBAction func userconfiguration(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
-    }
-
     @IBAction func showHelp(_: AnyObject?) {
         self.help()
-    }
-
-    // All ouput
-    @IBAction func alloutput(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
     @IBAction func sortdirection(_: NSButton) {

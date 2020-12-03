@@ -50,34 +50,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet var lastorevery: NSTextField!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
-    @IBAction func totinfo(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
-        }
-    }
-
-    @IBAction func automaticbackup(_: NSButton) {
-        self.presentAsSheet(self.viewControllerEstimating!)
-    }
-
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerProfile!)
     }
 
-    // Userconfiguration button
-    @IBAction func userconfiguration(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
-    }
-
     @IBAction func showHelp(_: AnyObject?) {
         self.help()
-    }
-
-    // All ouput
-    @IBAction func alloutput(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
     // Sidebar save day of week

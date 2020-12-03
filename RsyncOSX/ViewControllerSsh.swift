@@ -33,29 +33,6 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var verifykeycommand: NSTextField!
 
-    // Toolbar - Estimate and Quickbackup
-    @IBAction func totinfo(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
-        }
-    }
-
-    // Toolbar -  Estimate and execute automatic backup
-    @IBAction func automaticbackup(_: NSButton) {
-        self.presentAsSheet(self.viewControllerEstimating!)
-    }
-
-    // Toolbar - Userconfiguration button
-    @IBAction func userconfiguration(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
-    }
-
-    // Toolbar - All ouput
-    @IBAction func alloutput(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerAllOutput!)
-    }
-
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerProfile!)
