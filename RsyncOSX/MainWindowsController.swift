@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class MainWindowsController: NSWindowController {
+class MainWindowsController: NSWindowController, VcMain {
     private var viewcontrollersidebar: ViewControllerSideBar?
     private var tabviewcontroller: TabViewController?
     private var splitviewcontroller: NSSplitViewController? {
@@ -25,18 +25,18 @@ class MainWindowsController: NSWindowController {
 
         DispatchQueue.main.async {
             let toolbar = NSToolbar(identifier: "Toolbar")
-            toolbar.allowsUserCustomization = true
-            toolbar.autosavesConfiguration = true
+            toolbar.allowsUserCustomization = false
+            toolbar.autosavesConfiguration = false
             toolbar.displayMode = .iconOnly
             toolbar.delegate = self
             self.window?.toolbar = toolbar
         }
-        // window?.toolbar?.validateVisibleItems()
+        window?.toolbar?.validateVisibleItems()
     }
 
     func buildToolbarButton(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _ selector: String) -> NSToolbarItem {
         let toolbarItem = RSToolbarItem(itemIdentifier: itemIdentifier)
-        toolbarItem.autovalidates = true
+        toolbarItem.autovalidates = false
         let button = NSButton()
         button.bezelStyle = .texturedRounded
         button.image = image
@@ -46,6 +46,10 @@ class MainWindowsController: NSWindowController {
         toolbarItem.toolTip = title
         toolbarItem.label = title
         return toolbarItem
+    }
+
+    @IBAction func allprofiles(_: Any?) {
+        print("test")
     }
 }
 
@@ -72,19 +76,19 @@ extension MainWindowsController: NSToolbarDelegate {
             return buildToolbarButton(.allprofiles, title, AppAssets.allprofiles, "allprofiles")
         case .backupnow:
             let title = NSLocalizedString("Execute all tasks now...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.backupnow, "allprofiles")
+            return buildToolbarButton(.allprofiles, title, AppAssets.backupnow, "automaticbackup")
         case .quickbackup:
             let title = NSLocalizedString("Execute estimate and quickbackup for all tasks...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.quickbackup, "allprofiles")
+            return buildToolbarButton(.allprofiles, title, AppAssets.quickbackup, "quickbackup")
         case .execute:
             let title = NSLocalizedString("Execute selected tasks...", comment: "Toolbar")
             return buildToolbarButton(.allprofiles, title, AppAssets.execute, "allprofiles")
         case .abort:
             let title = NSLocalizedString("Abort task...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.abort, "allprofiles")
+            return buildToolbarButton(.allprofiles, title, AppAssets.abort, "abort")
         case .config:
             let title = NSLocalizedString("Show userconfig...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.config, "allprofiles")
+            return buildToolbarButton(.allprofiles, title, AppAssets.config, "userconfiguration")
         default:
             break
         }

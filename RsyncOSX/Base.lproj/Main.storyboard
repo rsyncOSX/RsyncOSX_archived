@@ -369,11 +369,11 @@ DQ
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" toolTip="Execute selected tasks..." image="batch" sizingBehavior="auto" id="OrH-Ty-gyv">
+                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" toolTip="Execute selected tasks..." image="execute" sizingBehavior="auto" id="OrH-Ty-gyv">
                                     <button key="view" verticalHuggingPriority="750" id="WXA-Ge-ie7">
                                         <rect key="frame" x="4" y="14" width="30" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="batch" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2uR-Ky-UIF">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="execute" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2uR-Ky-UIF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -434,14 +434,17 @@ DQ
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="31C698DB-35FE-46CA-863B-1240AE46611E" label="All" paletteLabel="All" toolTip="List all profiles and configurations..." image="sum" sizingBehavior="auto" id="1Xq-6O-MUE">
+                                <toolbarItem implicitItemIdentifier="31C698DB-35FE-46CA-863B-1240AE46611E" label="All" paletteLabel="All" toolTip="List all profiles and configurations..." image="allprofiles" sizingBehavior="auto" id="1Xq-6O-MUE">
                                     <button key="view" verticalHuggingPriority="750" id="oI3-Sh-5SZ">
                                         <rect key="frame" x="0.0" y="14" width="30" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="sum" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mbP-Tc-gJr">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="allprofiles" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mbP-Tc-gJr">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="allprofiles:" target="Rv5-yv-lsc" id="9SW-Oh-jrb"/>
+                                        </connections>
                                     </button>
                                 </toolbarItem>
                             </allowedToolbarItems>
@@ -760,7 +763,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="687" y="1" width="54" height="17"/>
+                                                            <rect key="frame" x="687" y="1" width="52" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -824,7 +827,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="826" y="1" width="150" height="17"/>
+                                                            <rect key="frame" x="826" y="1" width="148" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -3053,15 +3056,15 @@ DQ
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="abort" width="48" height="48"/>
+        <image name="allprofiles" width="48" height="48"/>
         <image name="backupnow" width="64" height="64"/>
-        <image name="batch" width="64" height="64"/>
         <image name="complete" width="48" height="48"/>
         <image name="config" width="64" height="64"/>
+        <image name="execute" width="64" height="64"/>
         <image name="menuapp" width="16" height="16"/>
         <image name="quickbackup" width="64" height="64"/>
         <image name="red" width="512" height="512"/>
         <image name="report" width="64" height="64"/>
-        <image name="sum" width="48" height="48"/>
         <image name="up" width="256" height="256"/>
     </resources>
 </document>
