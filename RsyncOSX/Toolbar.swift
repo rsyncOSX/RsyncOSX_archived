@@ -52,7 +52,7 @@ extension MainWindowsController: NSToolbarDelegate {
          */
         case .config:
             let title = NSLocalizedString("Show userconfig...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.config, Selector.config)
+            return buildToolbarButton(.allprofiles, title, AppAssets.userconfig, Selector.config)
         default:
             break
         }
@@ -129,8 +129,8 @@ struct AppAssets {
         NSImage(named: "abort")
     }()
 
-    static var config: NSImage! = {
-        NSImage(named: "config")
+    static var userconfig: NSImage! = {
+        NSImage(named: "userconfig")
     }()
 }
 
