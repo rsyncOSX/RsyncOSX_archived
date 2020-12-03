@@ -134,7 +134,7 @@
 "every" = "ogni";
 
 /* Main */
-"Execute" = "Execute";
+"Execute" = "Esegui";
 
 /* Restore */
 "Executing restore..." = "Esecuzione del ripristino...";
@@ -319,9 +319,6 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Scherzi a parte, inserisci un numero reale...";
-
-/* Restore */
-"Simulated: execute full restore to SOURCE" = "Simulato: esegui il ripristino completo a SOURCE";
 
 /* Restore */
 "Simulated: execute full restore to temporary restore path" = "Simulato: esegui il ripristino completo al percorso di ripristino temporaneo";

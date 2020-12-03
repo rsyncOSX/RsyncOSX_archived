@@ -61,9 +61,6 @@
 /* Class = "NSBox"; title = "Add and delete values"; ObjectID = "a01-TH-BQL"; */
 "a01-TH-BQL.title" = "Hinzufügen und Entfernen von Werten";
 
-/* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "Aa8-4k-FF5"; */
-"Aa8-4k-FF5.headerCell.title" = "Lokaler Katalog";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aGI-eL-V5x"; */
 "aGI-eL-V5x.title" = "Text Cell";
 
@@ -416,7 +413,7 @@
 "yPJ-qu-8B2.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Remote home:"; ObjectID = "yS2-bv-Hou"; */
-"yS2-bv-Hou.title" = "Remote home:";
+"yS2-bv-Hou.title" = "Remote Home:";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "zbw-bj-5gr"; */
 "zbw-bj-5gr.title" = "Table View Cell";
@@ -428,7 +425,7 @@
 "ZhB-NV-OhW.title" = "Vorbereiten";
 
 /* Class = "NSTextFieldCell"; title = "optional path for rsync:"; ObjectID = "zHo-02-nlD"; */
-"zHo-02-nlD.title" = "optional path for rsync:";
+"zHo-02-nlD.title" = "optionaler Pfad für rsync:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ZNY-O3-2Wf"; */
 "ZNY-O3-2Wf.title" = "Text Cell";
@@ -437,7 +434,7 @@
 "ZQn-mZ-Oad.title" = "Informationen werden abgerufen, bitte warten ...";
 
 /* Class = "NSTableColumn"; headerCell.title = "Size (kB)"; ObjectID = "zRE-4T-8R7"; */
-"zRE-4T-8R7.headerCell.title" = "Size (kB)";
+"zRE-4T-8R7.headerCell.title" = "Größe (kB)";
 
 /* Class = "NSTextFieldCell"; placeholderString = "e.g $HOME/rsyncbin/"; ObjectID = "ZRI-dL-G4D"; */
 "ZRI-dL-G4D.placeholderString" = "z. B. $HOME/rsyncbin/";
@@ -447,4 +444,7 @@
 
 /* Class = "NSButtonCell"; title = "Enable move config files"; ObjectID = "ZUB-ir-nl8"; */
 "ZUB-ir-nl8.title" = "Konfigurationsdateien verschieben aktivieren";
+
+/* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "Aa8-4k-FF5"; */
+"Aa8-4k-FF5.headerCell.title" = "Lokaler Katalog";
 

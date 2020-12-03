@@ -134,7 +134,7 @@
 "every" = "elke";
 
 /* Main */
-"Execute" = "Execute";
+"Execute" = "Uitvoeren";
 
 /* Restore */
 "Executing restore..." = "Herstellen uitvoeren...";
@@ -319,9 +319,6 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Serieus, voer een reëel nummer in...";
-
-/* Restore */
-"Simulated: execute full restore to SOURCE" = "Simuleerd: voer volledige herstel uit naar SOURCE";
 
 /* Restore */
 "Simulated: execute full restore to temporary restore path" = "Simuleren: volledige herstel uitvoeren naar tijdelijke herstel pad";

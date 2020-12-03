@@ -134,7 +134,7 @@
 "every" = "alle";
 
 /* Main */
-"Execute" = "Execute";
+"Execute" = "Utfør";
 
 /* Restore */
 "Executing restore..." = "Utfører gjenopprett...";
@@ -319,9 +319,6 @@
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
-
-/* Restore */
-"Simulated: execute full restore to SOURCE" = "Simulert: utfør full gjenopprett til KILDE";
 
 /* Restore */
 "Simulated: execute full restore to temporary restore path" = "Simulert: utfør full gjenopprett til midlertidig sti for gjenopprett";

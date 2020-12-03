@@ -321,9 +321,6 @@
 "Seriously, enter a real number..." = "请输入一个真实号码...";
 
 /* Restore */
-"Simulated: execute full restore to SOURCE" = "模拟：完全还原到SOURCE";
-
-/* Restore */
 "Simulated: execute full restore to temporary restore path" = "模拟：执行完全还原到临时恢复路径";
 
 /* Restore */

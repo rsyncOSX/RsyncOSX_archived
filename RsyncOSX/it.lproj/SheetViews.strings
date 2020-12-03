@@ -61,9 +61,6 @@
 /* Class = "NSBox"; title = "Add and delete values"; ObjectID = "a01-TH-BQL"; */
 "a01-TH-BQL.title" = "Aggiungi ed elimina valori";
 
-/* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "Aa8-4k-FF5"; */
-"Aa8-4k-FF5.headerCell.title" = "Percorso locale";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aGI-eL-V5x"; */
 "aGI-eL-V5x.title" = "Text Cell";
 
@@ -416,7 +413,7 @@
 "yPJ-qu-8B2.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Remote home:"; ObjectID = "yS2-bv-Hou"; */
-"yS2-bv-Hou.title" = "Remote home:";
+"yS2-bv-Hou.title" = "Edificio distante:";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "zbw-bj-5gr"; */
 "zbw-bj-5gr.title" = "Table View Cell";
@@ -428,7 +425,7 @@
 "ZhB-NV-OhW.title" = "Preparare";
 
 /* Class = "NSTextFieldCell"; title = "optional path for rsync:"; ObjectID = "zHo-02-nlD"; */
-"zHo-02-nlD.title" = "optional path for rsync:";
+"zHo-02-nlD.title" = "imposta un percorso opzionale rsync:";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ZNY-O3-2Wf"; */
 "ZNY-O3-2Wf.title" = "Text Cell";
@@ -447,4 +444,7 @@
 
 /* Class = "NSButtonCell"; title = "Enable move config files"; ObjectID = "ZUB-ir-nl8"; */
 "ZUB-ir-nl8.title" = "Abilita sposta file di configurazione";
+
+/* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "Aa8-4k-FF5"; */
+"Aa8-4k-FF5.headerCell.title" = "Percorso locale";
 
