@@ -8,7 +8,8 @@
 "Aborting delete operation..." = "正在中止删除操作...";
 
 /* Add schedule
-   New */
+   New
+   Sidebar */
 "Add" = "添加";
 
 /* New */
@@ -16,6 +17,9 @@
 
 /* Add schedule */
 "Add Schedule?" = "添加日程安排？";
+
+/* Sidebar */
+"Assist" = "Assist";
 
 /* Tooltip */
 "By using Finder drag and drop filepaths." = "使用 Finder 拖放文件路径。";
@@ -50,6 +54,9 @@
 /* Verify */
 "Cannot verify a syncremote task..." = "无法验证同步任务...";
 
+/* Sidebar */
+"Change" = "Change";
+
 /* chinese */
 "Chinese (Simplified) translation by: StringKe (Chen)" = "Chinese (Simplified) translation by: StringKe (Chen)";
 
@@ -58,6 +65,9 @@
 
 /* Close NSAlert */
 "Close" = "关闭";
+
+/* Sidebar */
+"Command" = "Command";
 
 /* Userconfig */
 "Continue" = "Continue";
@@ -68,8 +78,14 @@
 /* copyright */
 "Copyright ©2020 Thomas Evensen" = "版权 ©2020 Thomas Evensen";
 
+/* Sidebar */
+"Create key" = "Create key";
+
 /* main */
 "daily" = "每天";
+
+/* Sidebar */
+"Daily" = "Daily";
 
 /* Remote Info */
 "Date last synchronize:" = "自上次同步以来的天数：";
@@ -85,6 +101,7 @@
    Main
    plan
    Profiles
+   Sidebar
    Snapshots */
 "Delete" = "删除";
 
@@ -127,6 +144,12 @@
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "错误：/usr/local/bin 中不同步";
 
+/* Sidebar */
+"Estimate" = "Estimate";
+
+/* Execute */
+"Estimating..." = "Estimating...";
+
 /* Remote info */
 "Estimation completed" = "估计完成";
 
@@ -138,6 +161,12 @@
 
 /* Restore */
 "Executing restore..." = "正在执行还原...";
+
+/* Execute */
+"Executing..." = "Executing...";
+
+/* Sidebar */
+"Filelist" = "Filelist";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "快照任务的文件列表可能是巨大的吗？";
@@ -260,6 +289,12 @@
 /* main */
 "once" = "一次";
 
+/* Sidebar */
+"Once" = "Once";
+
+/* Sidebar */
+"Parameter" = "Parameter";
+
 /* Logg */
 "PLIST file exists: " = "PLIST file exists: ";
 
@@ -278,10 +313,17 @@
 /* Userconfig */
 "Reboot" = "Reboot";
 
+/* Sidebar */
+"Remote" = "Remote";
+
 /* Tooltip */
 "Remote catalog:" = "远程目录：";
 
-/* Restore */
+/* Sidebar */
+"Reset" = "Reset";
+
+/* Restore
+   Sidebar */
 "Restore" = "恢复";
 
 /* Restore */
@@ -291,6 +333,7 @@
 "Saturday" = "周六";
 
 /* Logg
+   Sidebar
    Userconfig */
 "Save" = "保存";
 
@@ -313,9 +356,6 @@
 
 /* Logg */
 "Selected logs:" = "选中的日志：";
-
-/* Execute */
-"Selection out of range - aborting" = "选择超出范围 - 中止";
 
 /* Snapshots */
 "Seriously, enter a real number..." = "请输入一个真实号码...";
@@ -366,17 +406,17 @@
 /* plan */
 "Tuesday" = "星期二";
 
-/* Verify */
-"Verify not OK, see logfile (⌘O)..." = "Verify not OK, see logfile (⌘O)...";
-
-/* Verify */
-"Verify OK..." = "Verify OK...";
+/* Sidebar */
+"Update" = "Update";
 
 /* plan */
 "Wednesday" = "星期三";
 
 /* main */
 "weekly" = "每周";
+
+/* Sidebar */
+"Weekly" = "Weekly";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "你不能删除这么多, 最大是";

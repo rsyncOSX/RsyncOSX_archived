@@ -185,19 +185,20 @@ class Configurations: ReloadTable, SetSchedules {
 
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputProcess?) {
         let number = Numbers(outputprocess: outputprocess)
-        let hiddenID = self.gethiddenID(index: index)
-        let numbers = number.stats()
-        self.schedules?.addlogpermanentstore(hiddenID: hiddenID, result: numbers)
-        if self.configurations?[index].task == ViewControllerReference.shared.snapshot {
-            self.increasesnapshotnum(index: index)
+        if let hiddenID = self.gethiddenID(index: index) {
+            let numbers = number.stats()
+            self.schedules?.addlogpermanentstore(hiddenID: hiddenID, result: numbers)
+            if self.configurations?[index].task == ViewControllerReference.shared.snapshot {
+                self.increasesnapshotnum(index: index)
+            }
+            let currendate = Date()
+            self.configurations?[index].dateRun = currendate.en_us_string_from_date()
+            // Saving updated configuration in memory to persistent store
+            PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
+            // Call the view and do a refresh of tableView
+            self.reloadtable(vcontroller: .vctabmain)
+            _ = Logging(outputprocess: outputprocess)
         }
-        let currendate = Date()
-        self.configurations?[index].dateRun = currendate.en_us_string_from_date()
-        // Saving updated configuration in memory to persistent store
-        PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
-        // Call the view and do a refresh of tableView
-        self.reloadtable(vcontroller: .vctabmain)
-        _ = Logging(outputprocess: outputprocess)
     }
 
     // Function is updating Configurations in memory (by record) and
@@ -261,13 +262,13 @@ class Configurations: ReloadTable, SetSchedules {
         return self.configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
     }
 
-    func gethiddenID(index: Int) -> Int {
-        guard index != -1, index < (self.configurations?.count ?? -1) else { return -1 }
-        return self.configurations?[index].hiddenID ?? -1
+    func gethiddenID(index: Int) -> Int? {
+        guard index < (self.configurations?.count ?? 0) else { return nil }
+        return self.configurations?[index].hiddenID
     }
 
     func removecompressparameter(index: Int, delete: Bool) {
-        guard index < (self.configurations?.count ?? -1) else { return }
+        guard index < (self.configurations?.count ?? 0) else { return }
         if delete {
             self.configurations?[index].parameter3 = ""
         } else {
@@ -276,7 +277,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func removeedeleteparameter(index: Int, delete: Bool) {
-        guard index < (self.configurations?.count ?? -1) else { return }
+        guard index < (self.configurations?.count ?? 0) else { return }
         if delete {
             self.configurations?[index].parameter4 = ""
         } else {
@@ -285,7 +286,7 @@ class Configurations: ReloadTable, SetSchedules {
     }
 
     func removeesshparameter(index: Int, delete: Bool) {
-        guard index < (self.configurations?.count ?? -1) else { return }
+        guard index < (self.configurations?.count ?? 0) else { return }
         if delete {
             self.configurations?[index].parameter5 = ""
         } else {

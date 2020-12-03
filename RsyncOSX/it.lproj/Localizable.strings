@@ -8,7 +8,8 @@
 "Aborting delete operation..." = "Interruzione operazione cancellata...";
 
 /* Add schedule
-   New */
+   New
+   Sidebar */
 "Add" = "Aggiungi";
 
 /* New */
@@ -16,6 +17,9 @@
 
 /* Add schedule */
 "Add Schedule?" = "Aggiungi una pianificazione?";
+
+/* Sidebar */
+"Assist" = "Assist";
 
 /* Tooltip */
 "By using Finder drag and drop filepaths." = "Utilizzando Finder trascina e rilascia i percorsi.";
@@ -50,6 +54,9 @@
 /* Verify */
 "Cannot verify a syncremote task..." = "Impossibile verificare da un'attività sync remota...";
 
+/* Sidebar */
+"Change" = "Modifica";
+
 /* chinese */
 "Chinese (Simplified) translation by: StringKe (Chen)" = "Traduzione cinese semplificato da: StringKe (Chen)";
 
@@ -58,6 +65,9 @@
 
 /* Close NSAlert */
 "Close" = "Chiudi";
+
+/* Sidebar */
+"Command" = "Comando";
 
 /* Userconfig */
 "Continue" = "Continua";
@@ -68,8 +78,14 @@
 /* copyright */
 "Copyright ©2020 Thomas Evensen" = "Copyright ©2020 Thomas Evensen";
 
+/* Sidebar */
+"Create key" = "Crea chiave";
+
 /* main */
 "daily" = "ogni giorno";
+
+/* Sidebar */
+"Daily" = "Giornaliero";
 
 /* Remote Info */
 "Date last synchronize:" = "Data ultima sincronizzazione:";
@@ -85,6 +101,7 @@
    Main
    plan
    Profiles
+   Sidebar
    Snapshots */
 "Delete" = "Elimina";
 
@@ -127,6 +144,12 @@
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "ERRORE: non trovo rsync in /usr/local/bin";
 
+/* Sidebar */
+"Estimate" = "Stima";
+
+/* Execute */
+"Estimating..." = "Estimating...";
+
 /* Remote info */
 "Estimation completed" = "Stima completata";
 
@@ -138,6 +161,12 @@
 
 /* Restore */
 "Executing restore..." = "Esecuzione del ripristino...";
+
+/* Execute */
+"Executing..." = "Executing...";
+
+/* Sidebar */
+"Filelist" = "Filelist";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "La lista dei file per le attività istantanee potrebbe essere enorme?";
@@ -260,6 +289,12 @@
 /* main */
 "once" = "una sola volta";
 
+/* Sidebar */
+"Once" = "Once";
+
+/* Sidebar */
+"Parameter" = "Parameter";
+
 /* Logg */
 "PLIST file exists: " = "File JSON esiste: ";
 
@@ -278,10 +313,17 @@
 /* Userconfig */
 "Reboot" = "Riavvio";
 
+/* Sidebar */
+"Remote" = "Remote";
+
 /* Tooltip */
 "Remote catalog:" = "Percorso remoto:";
 
-/* Restore */
+/* Sidebar */
+"Reset" = "Reset";
+
+/* Restore
+   Sidebar */
 "Restore" = "Ripristina";
 
 /* Restore */
@@ -291,6 +333,7 @@
 "Saturday" = "Sabato";
 
 /* Logg
+   Sidebar
    Userconfig */
 "Save" = "Salva";
 
@@ -313,9 +356,6 @@
 
 /* Logg */
 "Selected logs:" = "Logs selezionati:";
-
-/* Execute */
-"Selection out of range - aborting" = "Selezione fuori intervallo - interruzione";
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Scherzi a parte, inserisci un numero reale...";
@@ -366,17 +406,17 @@
 /* plan */
 "Tuesday" = "Martedì";
 
-/* Verify */
-"Verify not OK, see logfile (⌘O)..." = "Verifica non OK, vedi file di log (⌘O)...";
-
-/* Verify */
-"Verify OK..." = "Verifica...";
+/* Sidebar */
+"Update" = "Update";
 
 /* plan */
 "Wednesday" = "Mercoledì";
 
 /* main */
 "weekly" = "settimanale";
+
+/* Sidebar */
+"Weekly" = "Weekly";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Non è possibile eliminare così tante istantanee, limite raggiunto";

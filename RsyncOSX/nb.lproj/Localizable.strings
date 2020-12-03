@@ -8,7 +8,8 @@
 "Aborting delete operation..." = "Avslutter slette operasjon...";
 
 /* Add schedule
-   New */
+   New
+   Sidebar */
 "Add" = "Legg til";
 
 /* New */
@@ -16,6 +17,9 @@
 
 /* Add schedule */
 "Add Schedule?" = "Legg til oppgave?";
+
+/* Sidebar */
+"Assist" = "Assist";
 
 /* Tooltip */
 "By using Finder drag and drop filepaths." = "Bruk Finder for dra og slipp filstier.";
@@ -50,6 +54,9 @@
 /* Verify */
 "Cannot verify a syncremote task..." = "Kan ikke verifisere syncremote...";
 
+/* Sidebar */
+"Change" = "Endre";
+
 /* chinese */
 "Chinese (Simplified) translation by: StringKe (Chen)" = "Kinesisk (forenklet) oversettelse av: StringKe (Chen)";
 
@@ -58,6 +65,9 @@
 
 /* Close NSAlert */
 "Close" = "Lukk";
+
+/* Sidebar */
+"Command" = "Kommando";
 
 /* Userconfig */
 "Continue" = "Fortsett";
@@ -68,8 +78,14 @@
 /* copyright */
 "Copyright ©2020 Thomas Evensen" = "Opphavsrett ©2020 Thomas Evensen";
 
+/* Sidebar */
+"Create key" = "Lag nøkkel";
+
 /* main */
 "daily" = "daglig";
+
+/* Sidebar */
+"Daily" = "Daglig";
 
 /* Remote Info */
 "Date last synchronize:" = "Dato siste synkronisering:";
@@ -85,6 +101,7 @@
    Main
    plan
    Profiles
+   Sidebar
    Snapshots */
 "Delete" = "Slett";
 
@@ -127,6 +144,12 @@
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FEIL: ingen rsync i /usr/local/bin";
 
+/* Sidebar */
+"Estimate" = "Estimer";
+
+/* Execute */
+"Estimating..." = "Estimating...";
+
 /* Remote info */
 "Estimation completed" = "Estimering ferdig";
 
@@ -138,6 +161,12 @@
 
 /* Restore */
 "Executing restore..." = "Utfører gjenopprett...";
+
+/* Execute */
+"Executing..." = "Executing...";
+
+/* Sidebar */
+"Filelist" = "Filelist";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Liste over filer i snapshot oppgaver kan være stor?";
@@ -260,6 +289,12 @@
 /* main */
 "once" = "engang";
 
+/* Sidebar */
+"Once" = "Once";
+
+/* Sidebar */
+"Parameter" = "Parameter";
+
 /* Logg */
 "PLIST file exists: " = "PLIST-fil finnes: ";
 
@@ -278,10 +313,17 @@
 /* Userconfig */
 "Reboot" = "Omstart";
 
+/* Sidebar */
+"Remote" = "Remote";
+
 /* Tooltip */
 "Remote catalog:" = "Ekstern katalog:";
 
-/* Restore */
+/* Sidebar */
+"Reset" = "Reset";
+
+/* Restore
+   Sidebar */
 "Restore" = "Gjenopprett";
 
 /* Restore */
@@ -291,6 +333,7 @@
 "Saturday" = "lørdag";
 
 /* Logg
+   Sidebar
    Userconfig */
 "Save" = "Lagre";
 
@@ -313,9 +356,6 @@
 
 /* Logg */
 "Selected logs:" = "Valgte logger:";
-
-/* Execute */
-"Selection out of range - aborting" = "Utvalg ikke mulig - avslutter";
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
@@ -366,17 +406,17 @@
 /* plan */
 "Tuesday" = "tirsdag";
 
-/* Verify */
-"Verify not OK, see logfile (⌘O)..." = "Verifikasjon ikke OK, se loggfil (⌘O)...";
-
-/* Verify */
-"Verify OK..." = "Verifikasjon OK...";
+/* Sidebar */
+"Update" = "Update";
 
 /* plan */
 "Wednesday" = "onsdag";
 
 /* main */
 "weekly" = "ukentlig";
+
+/* Sidebar */
+"Weekly" = "Weekly";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";

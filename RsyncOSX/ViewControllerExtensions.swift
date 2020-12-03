@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Cocoa
 import Foundation
@@ -21,18 +21,6 @@ extension VcMain {
 
     var sheetviewstoryboard: NSStoryboard? {
         return NSStoryboard(name: "SheetViews", bundle: nil)
-    }
-
-    // Rsync userparams
-    var viewControllerRsyncParams: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
-            as? NSViewController)
-    }
-
-    // Edit
-    var editViewController: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardEditID")
-            as? NSViewController)
     }
 
     // StoryboardOutputID
@@ -106,6 +94,24 @@ extension VcMain {
     // Progressbar process
     var viewControllerProgress: NSViewController? {
         return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardProgressID")
+            as? NSViewController)
+    }
+
+    // Rsync userparams
+    var viewControllerRsyncParams: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
+            as? NSViewController)
+    }
+
+    // Edit
+    var editViewController: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEditID")
+            as? NSViewController)
+    }
+
+    // RsyncCommand
+    var rsynccommand: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "RsyncCommand")
             as? NSViewController)
     }
 }

@@ -11,38 +11,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work
     @IBOutlet var working: NSProgressIndicator!
-    @IBOutlet var workinglabel: NSTextField!
-    // Displays the rsyncCommand
-    @IBOutlet var rsyncCommand: NSTextField!
-    // If On result of Dryrun is presented before
-    // executing the real run
-    // number of files to be transferred
-    @IBOutlet var transferredNumber: NSTextField!
-    // size of files to be transferred
-    @IBOutlet var transferredNumberSizebytes: NSTextField!
-    // total number of files in remote volume
-    @IBOutlet var totalNumber: NSTextField!
-    // total size of files in remote volume
-    @IBOutlet var totalNumberSizebytes: NSTextField!
-    // total number of directories remote volume
-    @IBOutlet var totalDirs: NSTextField!
     // Showing info about profile
     @IBOutlet var profilInfo: NSTextField!
-    // New files
-    @IBOutlet var newfiles: NSTextField!
-    // Delete files
-    @IBOutlet var deletefiles: NSTextField!
     @IBOutlet var rsyncversionshort: NSTextField!
-    @IBOutlet var backupdryrun: NSButton!
-    @IBOutlet var restoredryrun: NSButton!
-    @IBOutlet var verifydryrun: NSButton!
     @IBOutlet var info: NSTextField!
-    @IBOutlet var pathtorsyncosxschedbutton: NSButton!
-    @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
-    @IBOutlet var errorinfo: NSTextField!
-    @IBOutlet var jsonbutton: NSButton!
-    @IBOutlet var jsonlabel: NSTextField!
 
     // Reference to Configurations and Schedules object
     var configurations: Configurations?
@@ -60,18 +33,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var outputprocess: OutputProcess?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
-
-    @IBAction func rsyncosxsched(_: NSButton) {
-        let running = Running()
-        guard running.rsyncOSXschedisrunning == false else {
-            self.info.stringValue = Infoexecute().info(num: 5)
-            self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            return
-        }
-        guard running.verifyrsyncosxsched() == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched))
-        NSApp.terminate(self)
-    }
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBAction func infoonetask(_: NSButton) {
         guard self.index != nil else {
@@ -108,39 +71,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.configurations?.estimatedlist = nil
         self.multipeselection = false
         self.openquickbackup()
-    }
-
-    @IBAction func delete(_: NSButton) {
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
-            return
-        }
-        if let index = self.index {
-            self.deleterow(index: index)
-        }
-    }
-
-    func deleterow(index: Int?) {
-        if let index = index {
-            if let hiddenID = self.configurations?.gethiddenID(index: index) {
-                let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
-                let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
-                let dialog: String = NSLocalizedString("Delete", comment: "Execute")
-                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-                if answer {
-                    // Delete Configurations and Schedules by hiddenID
-                    self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
-                    self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
-                    self.deselect()
-                    self.reloadtabledata()
-                    // Reset in tabSchedule
-                    self.reloadtable(vcontroller: .vctabschedule)
-                    self.reloadtable(vcontroller: .vcsnapshot)
-                }
-            }
-            self.reset()
-            self.singletask = nil
-        }
     }
 
     @IBAction func TCP(_: NSButton) {
@@ -200,41 +130,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.presentAsModalWindow(self.viewControllerMove!)
     }
 
-    @IBAction func verifyjson(_: NSButton) {
-        self.verify()
-    }
-
-    private func verify() {
-        let verify: VerifyJSON?
-        if let profile = self.configurations?.getProfile() {
-            verify = VerifyJSON(profile: profile)
-        } else {
-            verify = VerifyJSON(profile: nil)
-        }
-        if verify?.verifyconf ?? false, verify?.verifysched ?? false == true {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.info.stringValue = NSLocalizedString("Verify OK...", comment: "Verify")
-        } else {
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-            self.info.stringValue = NSLocalizedString("Verify not OK, see logfile (⌘O)...", comment: "Verify")
-        }
-    }
-
-    @IBAction func enableconvertjsonbutton(_: NSButton) {
-        if ViewControllerReference.shared.convertjsonbutton {
-            ViewControllerReference.shared.convertjsonbutton = false
-        } else {
-            ViewControllerReference.shared.convertjsonbutton = true
-        }
-        // JSON button
-        if ViewControllerReference.shared.json == true {
-            self.jsonbutton.title = "PLIST"
-        } else {
-            self.jsonbutton.title = "JSON"
-        }
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-    }
-
     // Selecting automatic backup
     @IBAction func automaticbackup(_: NSButton) {
         guard self.checkforrsync() == false else { return }
@@ -257,11 +152,17 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
+    @IBAction func delete(_: NSButton) {
+        self.delete()
+    }
+
     func executetask(index: Int?) {
         if let index = index {
             if let task = self.configurations?.getConfigurations()?[index].task {
                 guard ViewControllerReference.shared.synctasks.contains(task) else { return }
                 if let config = self.configurations?.getConfigurations()?[index] {
+                    self.info.stringValue = Infoexecute().info(num: 11)
+                    self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
                     if PreandPostTasks(config: config).executepretask || PreandPostTasks(config: config).executeposttask {
                         self.executetasknow = ExecuteTaskNowShellOut(index: index)
                     } else {
@@ -269,27 +170,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                     }
                 }
             }
-        }
-    }
-
-    // Function for display rsync command
-    @IBAction func showrsynccommand(_: NSButton) {
-        self.showrsynccommandmainview()
-    }
-
-    // Display correct rsync command in view
-    func showrsynccommandmainview() {
-        if let index = self.index {
-            guard index <= (self.configurations?.getConfigurations()?.count ?? 0) else { return }
-            if self.backupdryrun.state == .on {
-                self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .synchronize).displayrsyncpath ?? ""
-            } else if self.restoredryrun.state == .on {
-                self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .restore).displayrsyncpath ?? ""
-            } else {
-                self.rsyncCommand.stringValue = Displayrsyncpath(index: index, display: .verify).displayrsyncpath ?? ""
-            }
-        } else {
-            self.rsyncCommand.stringValue = ""
         }
     }
 
@@ -316,19 +196,18 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         self.mainTableView.target = self
         self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
-        self.backupdryrun.state = .on
         // configurations and schedules
         self.createandreloadconfigurations()
         self.createandreloadschedules()
-        self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         self.initpopupbutton()
-        // JSON
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
-        self.jsonlabel.isHidden = !ViewControllerReference.shared.json
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        // For sending messages to the sidebar
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .JSONlabel)
+        self.sidebaractionsDelegate?.sidebaractions(action: .mainviewbuttons)
         if ViewControllerReference.shared.initialstart == 0 {
             self.view.window?.center()
             ViewControllerReference.shared.initialstart = 1
@@ -341,9 +220,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         self.rsyncischanged()
         self.displayProfile()
-        self.delayWithSeconds(0.5) {
-            self.menuappicons()
-        }
     }
 
     override func viewDidDisappear() {
@@ -354,7 +230,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func reset() {
-        self.setNumbers(outputprocess: nil)
         self.seterrorinfo(info: "")
         // Close edit and parameters view if open
         if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
@@ -366,19 +241,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             weak var closeview: ViewControllerEdit?
             closeview = view
             closeview?.closeview()
-        }
-    }
-
-    func menuappicons() {
-        globalMainQueue.async { () -> Void in
-            let running = Running()
-            if running.rsyncOSXschedisrunning == true {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                self.info.stringValue = Infoexecute().info(num: 5)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            } else {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
-            }
         }
     }
 
@@ -398,11 +260,15 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 }
                 guard self.singletask != nil else {
                     // Dry run
+                    self.info.stringValue = Infoexecute().info(num: 10)
+                    self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
                     self.singletask = SingleTask(index: index)
                     self.singletask?.executesingletask()
                     return
                 }
                 // Real run
+                self.info.stringValue = Infoexecute().info(num: 11)
+                self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
                 self.singletask?.executesingletask()
             }
         }
@@ -442,7 +308,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         localprofileinfo2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
         localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
         localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
-        self.showrsynccommandmainview()
     }
 
     func createandreloadschedules() {
@@ -499,17 +364,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 
-    @IBAction func Json(_: NSButton) {
-        if let profile = self.configurations?.getProfile() {
-            PersistentStorage().convert(profile: profile)
-        } else {
-            PersistentStorage().convert(profile: nil)
-        }
-        self.jsonbutton.isHidden = true
-        ViewControllerReference.shared.convertjsonbutton = false
-        self.verify()
-    }
-
     @IBAction func checksynchronizedfiles(_: NSButton) {
         if let index = self.index {
             if let config = self.configurations?.getConfigurations()?[index] {
@@ -525,5 +379,46 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 check.checksynchronizedfiles()
             }
         }
+    }
+
+    func delete() {
+        guard self.index != nil else {
+            self.info.stringValue = Infoexecute().info(num: 1)
+            return
+        }
+        if let index = self.index {
+            self.deleterow(index: index)
+        }
+    }
+
+    func deleterow(index: Int?) {
+        if let index = index {
+            if let hiddenID = self.configurations?.gethiddenID(index: index) {
+                let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
+                let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
+                let dialog: String = NSLocalizedString("Delete", comment: "Execute")
+                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                if answer {
+                    // Delete Configurations and Schedules by hiddenID
+                    self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
+                    self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
+                    self.deselect()
+                    self.reloadtabledata()
+                    // Reset in tabSchedule
+                    self.reloadtable(vcontroller: .vctabschedule)
+                    self.reloadtable(vcontroller: .vcsnapshot)
+                }
+            }
+            self.reset()
+            self.singletask = nil
+        }
+    }
+
+    @IBAction func enableconvertjsonbutton(_: NSButton) {
+        self.sidebaractionsDelegate?.sidebaractions(action: .enableconvertjsonbutton)
+    }
+
+    @IBAction func verifyjson(_: NSButton) {
+        self.sidebaractionsDelegate?.sidebaractions(action: .verifyjson)
     }
 }

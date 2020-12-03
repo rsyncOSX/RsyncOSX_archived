@@ -14,22 +14,20 @@ protocol SetProfileinfo: AnyObject {
     func setprofile(profile: String, color: NSColor)
 }
 
-class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, Delay, Index, VcMain, Checkforrsync, Setcolor, Help {
+class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, VcMain, Checkforrsync, Setcolor, Help {
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
     // Scheduleetails
     var scheduledetails: [NSMutableDictionary]?
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
+    var addschduleisallowed = false
 
     // Main tableview
     @IBOutlet var scheduletable: NSTableView!
     @IBOutlet var profilInfo: NSTextField!
-    @IBOutlet var weeklybutton: NSButton!
-    @IBOutlet var dailybutton: NSButton!
-    @IBOutlet var oncebutton: NSButton!
     @IBOutlet var info: NSTextField!
-    @IBOutlet var rsyncosxschedbutton: NSButton!
-    @IBOutlet var menuappisrunning: NSButton!
     @IBOutlet var scheduletabledetails: NSTableView!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
@@ -58,31 +56,30 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
-    @IBAction func rsyncosxsched(_: NSButton) {
-        let running = Running()
-        guard running.rsyncOSXschedisrunning == false else {
-            self.info.stringValue = Infoexecute().info(num: 5)
-            self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            return
-        }
-        guard running.verifyrsyncosxsched() == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched))
-        NSApp.terminate(self)
-    }
-
-    @IBAction func once(_: NSButton) {
+    // Sidebar Once
+    func once() {
+        guard self.addschduleisallowed else { return }
         self.schedule = .once
         self.addschedule()
     }
 
-    @IBAction func daily(_: NSButton) {
+    // Sidebar Daily
+    func daily() {
+        guard self.addschduleisallowed else { return }
         self.schedule = .daily
         self.addschedule()
     }
 
-    @IBAction func weekly(_: NSButton) {
+    // Sidebar Weekly
+    func weekly() {
+        guard self.addschduleisallowed else { return }
         self.schedule = .weekly
         self.addschedule()
+    }
+
+    // Sidebar update
+    func update() {
+        self.schedules?.deleteandstopschedules(data: scheduledetails)
     }
 
     @IBAction func selectdate(_: NSDatePicker) {
@@ -94,7 +91,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     }
 
     private func addschedule() {
-        guard self.index != nil || self.index() != nil else { return }
+        guard self.index != nil else { return }
         let question: String = NSLocalizedString("Add Schedule?", comment: "Add schedule")
         let text: String = NSLocalizedString("Cancel or Add", comment: "Add schedule")
         let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
@@ -103,14 +100,11 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             self.info.stringValue = Infoschedule().info(num: 2)
             let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
-            if let index = self.index() {
-                if self.index == nil {
-                    self.index = index
+            if let index = self.index {
+                if let hiddenID = self.configurations?.gethiddenID(index: index) {
+                    guard hiddenID != -1 else { return }
+                    self.schedules?.addschedule(hiddenID: hiddenID, schedule: self.schedule ?? .once, start: startdate)
                 }
-            }
-            if let hiddenID = self.configurations?.gethiddenID(index: self.index ?? -1) {
-                guard hiddenID != -1 else { return }
-                self.schedules!.addschedule(hiddenID: hiddenID, schedule: self.schedule ?? .once, start: startdate)
             }
         }
     }
@@ -122,17 +116,13 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         let secondstostart = startime.timeIntervalSinceNow
         if secondstostart < 60 {
             self.selectedstart.isHidden = true
-            self.weeklybutton.isEnabled = false
-            self.dailybutton.isEnabled = false
-            self.oncebutton.isEnabled = false
+            self.addschduleisallowed = false
         }
         if secondstostart > 60 {
+            self.addschduleisallowed = true
             self.selectedstart.isHidden = false
             self.selectedstart.stringValue = startime.localized_string_from_date() + " (" + Dateandtime().timestring(seconds: secondstostart) + ")"
             self.selectedstart.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            self.weeklybutton.isEnabled = true
-            self.dailybutton.isEnabled = true
-            self.oncebutton.isEnabled = true
         }
     }
 
@@ -152,10 +142,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var starttime: NSDatePicker!
     @IBOutlet var selectedstart: NSTextField!
 
-    @IBAction func update(_: NSButton) {
-        self.schedules?.deleteandstopschedules(data: scheduledetails)
-    }
-
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,28 +150,18 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         self.scheduletabledetails.delegate = self
         self.scheduletabledetails.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.rsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         self.initpopupbutton()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        if self.index() != nil, self.index == nil {
-            self.info.stringValue = Infoschedule().info(num: 3)
-            self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-        } else {
-            self.info.stringValue = Infoschedule().info(num: 0)
-        }
-        self.weeklybutton.isEnabled = false
-        self.dailybutton.isEnabled = false
-        self.oncebutton.isEnabled = false
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
+        self.info.stringValue = Infoschedule().info(num: 0)
         self.selectedstart.isHidden = true
         self.startdate.dateValue = Date()
         self.starttime.dateValue = Date()
         self.reloadtabledata()
-        self.delayWithSeconds(0.5) {
-            self.menuappicons()
-        }
     }
 
     // setting which table row is selected
@@ -205,19 +181,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             globalMainQueue.async { () -> Void in
                 self.scheduletabledetails.reloadData()
                 self.scheduletable.reloadData()
-            }
-        }
-    }
-
-    func menuappicons() {
-        globalMainQueue.async { () -> Void in
-            let running = Running()
-            if running.rsyncOSXschedisrunning == true {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-                self.info.stringValue = Infoexecute().info(num: 5)
-                self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-            } else {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
             }
         }
     }
@@ -251,8 +214,11 @@ extension ViewControllerSchedule: DismissViewController {
 
 extension ViewControllerSchedule: Reloadandrefresh {
     func reloadtabledata() {
-        let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
-        self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
+        if let index = self.index {
+            if let hiddendID = self.configurations?.gethiddenID(index: index) {
+                self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
+            }
+        }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
             self.scheduletabledetails.reloadData()
@@ -282,6 +248,23 @@ extension ViewControllerSchedule: OpenQuickBackup {
     func openquickbackup() {
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerQuickBackup!)
+        }
+    }
+}
+
+extension ViewControllerSchedule: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Once:
+            self.once()
+        case .Daily:
+            self.daily()
+        case .Weekly:
+            self.weekly()
+        case .Update:
+            self.update()
+        default:
+            return
         }
     }
 }

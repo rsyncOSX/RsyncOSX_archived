@@ -8,7 +8,8 @@
 "Aborting delete operation..." = "Verwijderen operatie afbreken...";
 
 /* Add schedule
-   New */
+   New
+   Sidebar */
 "Add" = "Toevoegen";
 
 /* New */
@@ -16,6 +17,9 @@
 
 /* Add schedule */
 "Add Schedule?" = "Schema toevoegen?";
+
+/* Sidebar */
+"Assist" = "Assisteren";
 
 /* Tooltip */
 "By using Finder drag and drop filepaths." = "Door Finder te gebruiken sleep je bestandspaden neerzetten.";
@@ -50,6 +54,9 @@
 /* Verify */
 "Cannot verify a syncremote task..." = "Kan geen syncremote taak verifiëren...";
 
+/* Sidebar */
+"Change" = "Wijzigen";
+
 /* chinese */
 "Chinese (Simplified) translation by: StringKe (Chen)" = "Chinese (vereenvoudigd) vertaling door: StringKe (Chen)";
 
@@ -58,6 +65,9 @@
 
 /* Close NSAlert */
 "Close" = "Afsluiten";
+
+/* Sidebar */
+"Command" = "Commando";
 
 /* Userconfig */
 "Continue" = "Doorgaan";
@@ -68,8 +78,14 @@
 /* copyright */
 "Copyright ©2020 Thomas Evensen" = "Copyright © 2020 Thomas Evensen";
 
+/* Sidebar */
+"Create key" = "Sleutel aanmaken";
+
 /* main */
 "daily" = "dagelijks";
+
+/* Sidebar */
+"Daily" = "Dagelijks";
 
 /* Remote Info */
 "Date last synchronize:" = "Dagen sinds laatste synchronisatie:";
@@ -85,6 +101,7 @@
    Main
    plan
    Profiles
+   Sidebar
    Snapshots */
 "Delete" = "Verwijderen";
 
@@ -127,6 +144,12 @@
 /* Error rsync */
 "ERROR: no rsync in /usr/local/bin" = "FOUT: geen rsync in /usr/local/bin";
 
+/* Sidebar */
+"Estimate" = "Schatting";
+
+/* Execute */
+"Estimating..." = "Estimating...";
+
 /* Remote info */
 "Estimation completed" = "Schatting voltooid";
 
@@ -138,6 +161,12 @@
 
 /* Restore */
 "Executing restore..." = "Herstellen uitvoeren...";
+
+/* Execute */
+"Executing..." = "Executing...";
+
+/* Sidebar */
+"Filelist" = "Filelist";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Bestandslijst voor snapshot taken kan enorm zijn?";
@@ -260,6 +289,12 @@
 /* main */
 "once" = "eenmalig";
 
+/* Sidebar */
+"Once" = "Once";
+
+/* Sidebar */
+"Parameter" = "Parameter";
+
 /* Logg */
 "PLIST file exists: " = "PLIST bestand bestaat: ";
 
@@ -278,10 +313,17 @@
 /* Userconfig */
 "Reboot" = "Herstarten";
 
+/* Sidebar */
+"Remote" = "Remote";
+
 /* Tooltip */
 "Remote catalog:" = "Afzonderlijke catalogus:";
 
-/* Restore */
+/* Sidebar */
+"Reset" = "Reset";
+
+/* Restore
+   Sidebar */
 "Restore" = "Herstellen";
 
 /* Restore */
@@ -291,6 +333,7 @@
 "Saturday" = "zaterdag";
 
 /* Logg
+   Sidebar
    Userconfig */
 "Save" = "Opslaan";
 
@@ -313,9 +356,6 @@
 
 /* Logg */
 "Selected logs:" = "Geselecteerde logs:";
-
-/* Execute */
-"Selection out of range - aborting" = "Selectie buiten bereik - afbreken";
 
 /* Snapshots */
 "Seriously, enter a real number..." = "Serieus, voer een reëel nummer in...";
@@ -366,17 +406,17 @@
 /* plan */
 "Tuesday" = "dinsdag";
 
-/* Verify */
-"Verify not OK, see logfile (⌘O)..." = "Controleer niet OK, bekijk het logbestand (⌘O)...";
-
-/* Verify */
-"Verify OK..." = "Verifieer OK...";
+/* Sidebar */
+"Update" = "Update";
 
 /* plan */
 "Wednesday" = "woensdag";
 
 /* main */
 "weekly" = "wekelijks";
+
+/* Sidebar */
+"Weekly" = "Weekly";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "U kunt niet verwijderen zoveel max.";

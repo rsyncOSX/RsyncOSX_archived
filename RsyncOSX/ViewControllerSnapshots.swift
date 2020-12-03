@@ -32,11 +32,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                                           NSLocalizedString("Friday", comment: "plan"),
                                           NSLocalizedString("Saturday", comment: "plan")]
     var diddissappear: Bool = false
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBOutlet var snapshotstableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
     @IBOutlet var info: NSTextField!
-    @IBOutlet var deletebutton: NSButton!
     @IBOutlet var numberOflogfiles: NSTextField!
     @IBOutlet var deletesnapshots: NSSlider!
     @IBOutlet var stringdeletesnapshotsnum: NSTextField!
@@ -44,7 +45,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     @IBOutlet var deletesnapshotsdays: NSSlider!
     @IBOutlet var stringdeletesnapshotsdaysnum: NSTextField!
     @IBOutlet var selectplan: NSComboBox!
-    @IBOutlet var savebutton: NSButton!
     @IBOutlet var selectdayofweek: NSComboBox!
     @IBOutlet var dayofweek: NSTextField!
     @IBOutlet var lastorevery: NSTextField!
@@ -85,7 +85,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
-    @IBAction func savesnapdayofweek(_: NSButton) {
+    // Sidebar save day of week
+    func savesnapdayofweek() {
         var configurations = self.configurations?.getConfigurations()
         guard configurations?.count ?? -1 > 0 else { return }
         if let index = self.index {
@@ -166,8 +167,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
     }
 
-    @IBAction func delete(_: NSButton) {
+    // Sidebar delete button
+    func deleteaction() {
         guard self.snapshotlogsandcatalogs != nil else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
         let num = self.snapshotlogsandcatalogs?.snapshotslogs?.filter { ($0.value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) == 1 }.count
         let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
@@ -178,7 +181,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.snapshotlogsandcatalogs?.preparecatalogstodelete()
             guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
             self.presentAsSheet(self.viewControllerProgress!)
-            self.deletebutton.isEnabled = false
             self.deletesnapshots.isEnabled = false
             self.deletesnapshotcatalogs()
             self.delete = true
@@ -196,13 +198,15 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.stringdeletesnapshotsdaysnum.delegate = self
         self.selectplan.delegate = self
         self.selectdayofweek.delegate = self
-        self.savebutton.isEnabled = false
         ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
         self.initpopupbutton()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        // For sending messages to the sidebar
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .snapshotviewbuttons)
         guard self.diddissappear == false else { return }
         self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
         self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
@@ -222,13 +226,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func deletesnapshotcatalogs() {
         guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else {
-            self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
         }
         guard (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? -1) > 0 else {
-            self.deletebutton.isEnabled = true
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
             return
@@ -370,7 +372,6 @@ extension ViewControllerSnapshots {
         if delete {
             self.processterminationdelete()
         } else {
-            self.deletebutton.isEnabled = true
             self.snapshotlogsandcatalogs?.loggdata()
             self.initslidersdeletesnapshots()
             self.gettinglogs.stopAnimation(nil)
@@ -394,7 +395,6 @@ extension ViewControllerSnapshots {
         {
             if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
                 self.delete = false
-                self.deletebutton.isEnabled = true
                 self.deletesnapshots.isEnabled = true
                 self.info.stringValue = Infosnapshots().info(num: 3)
                 self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
@@ -549,7 +549,6 @@ extension ViewControllerSnapshots: NewProfile {
 extension ViewControllerSnapshots: NSComboBoxDelegate {
     func comboBoxSelectionDidChange(_: Notification) {
         guard self.config != nil else { return }
-        self.savebutton.isEnabled = true
         switch self.selectdayofweek.indexOfSelectedItem {
         case 0:
             self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
@@ -593,5 +592,18 @@ extension ViewControllerSnapshots: OpenQuickBackup {
 extension ViewControllerSnapshots: GetSelecetedIndex {
     func getindex() -> Int? {
         return self.index
+    }
+}
+
+extension ViewControllerSnapshots: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Delete:
+            self.deleteaction()
+        case .Save:
+            self.savesnapdayofweek()
+        default:
+            return
+        }
     }
 }

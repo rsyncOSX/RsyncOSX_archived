@@ -28,13 +28,6 @@ extension ViewControllerMain: Reloadandrefresh {
     }
 }
 
-// Parameters to rsync is changed
-extension ViewControllerMain: RsyncUserParams {
-    func rsyncuserparamsupdated() {
-        self.showrsynccommandmainview()
-    }
-}
-
 // Get index of selected row
 extension ViewControllerMain: GetSelecetedIndex {
     func getindex() -> Int? {
@@ -53,7 +46,6 @@ extension ViewControllerMain: NewProfile {
         }
         self.reset()
         self.singletask = nil
-        self.showrsynccommandmainview()
         self.deselect()
         // Read configurations and Scheduledata
         self.configurations = self.createconfigurationsobject(profile: profile)
@@ -90,7 +82,6 @@ extension ViewControllerMain: NewProfile {
 // Rsync path is changed, update displayed rsync command
 extension ViewControllerMain: RsyncIsChanged {
     func rsyncischanged() {
-        self.showrsynccommandmainview()
         self.setinfoaboutrsync()
     }
 }
@@ -142,7 +133,6 @@ extension ViewControllerMain: RsyncError {
         globalMainQueue.async { () -> Void in
             self.seterrorinfo(info: "Rsync error")
             self.info.stringValue = "See loggfile..."
-            self.showrsynccommandmainview()
             guard ViewControllerReference.shared.haltonerror == true else { return }
             self.deselect()
             _ = InterruptProcess()
@@ -180,15 +170,11 @@ extension ViewControllerMain: Abort {
         if ViewControllerReference.shared.process != nil {
             _ = InterruptProcess()
             self.seterrorinfo(info: "Abort")
-            self.rsyncCommand.stringValue = ""
             if self.configurations?.remoteinfoestimation != nil, self.configurations?.estimatedlist != nil {
                 self.configurations?.remoteinfoestimation = nil
             }
-        } else {
-            self.rsyncCommand.stringValue = NSLocalizedString("Selection out of range - aborting", comment: "Execute")
         }
         self.working.stopAnimation(nil)
-        self.workinglabel.isHidden = true
         self.index = nil
     }
 }
@@ -202,12 +188,10 @@ extension ViewControllerMain: StartStopProgressIndicatorSingleTask {
 
     func startIndicator() {
         self.working.startAnimation(nil)
-        self.workinglabel.isHidden = false
     }
 
     func stopIndicator() {
         self.working.stopAnimation(nil)
-        self.workinglabel.isHidden = true
     }
 }
 
@@ -284,12 +268,6 @@ extension ViewControllerMain: Count {
 
     func inprogressCount() -> Int {
         return self.outputprocess?.count() ?? 0
-    }
-}
-
-extension ViewControllerMain: MenuappChanged {
-    func menuappchanged() {
-        self.menuappicons()
     }
 }
 
@@ -434,6 +412,7 @@ extension ViewControllerMain: GetMultipleSelectedIndexes {
 extension ViewControllerMain: DeinitExecuteTaskNow {
     func deinitexecutetasknow() {
         self.executetasknow = nil
+        self.info.stringValue = Infoexecute().info(num: 0)
     }
 }
 
@@ -444,5 +423,16 @@ extension ViewControllerMain: DisableEnablePopupSelectProfile {
 
     func disableselectpopupprofile() {
         self.profilepopupbutton.isEnabled = false
+    }
+}
+
+extension ViewControllerMain: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Delete:
+            self.delete()
+        default:
+            return
+        }
     }
 }

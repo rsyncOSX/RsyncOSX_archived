@@ -20,7 +20,7 @@ extension ViewControllerSchedule: NSTableViewDataSource {
     }
 }
 
-extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
+extension ViewControllerSchedule: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if let tableColumn = tableColumn {
             if tableView == self.scheduletable {
@@ -49,21 +49,6 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                                     return ""
                                 }
                             }
-                        case DictionaryStrings.offsiteServerCellID.rawValue:
-                            if (object[tableColumn.identifier] as? String)!.isEmpty {
-                                if self.index() ?? -1 == row, self.index == nil {
-                                    return self.attributedstring(str: DictionaryStrings.localhost.rawValue, color: NSColor.green, align: .left)
-                                } else {
-                                    return DictionaryStrings.localhost.rawValue
-                                }
-                            } else {
-                                if self.index() ?? -1 == row, self.index == nil {
-                                    let text = object[tableColumn.identifier] as? String
-                                    return self.attributedstring(str: text ?? "", color: NSColor.green, align: .left)
-                                } else {
-                                    return object[tableColumn.identifier] as? String
-                                }
-                            }
                         case "inCellID":
                             if self.sortedandexpanded != nil {
                                 let taskintime: String? = self.sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
@@ -79,12 +64,7 @@ extension ViewControllerSchedule: NSTableViewDelegate, Attributedestring {
                                 }
                             }
                         default:
-                            if self.index() ?? -1 == row, self.index == nil {
-                                let text = object[tableColumn.identifier] as? String
-                                return self.attributedstring(str: text!, color: NSColor.green, align: .left)
-                            } else {
-                                return object[tableColumn.identifier] as? String
-                            }
+                            return object[tableColumn.identifier] as? String
                         }
                     }
 

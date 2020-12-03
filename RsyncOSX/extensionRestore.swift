@@ -98,8 +98,8 @@ extension ViewControllerRestore {
         }
         self.working.stopAnimation(nil)
         // Release the process objects
-        self.restorefilestask = nil
-        self.fullrestoretask = nil
+        // self.restorefilestask = nil
+        // self.fullrestoretask = nil
     }
 
     func filehandler() {
@@ -172,5 +172,26 @@ extension ViewControllerRestore: Updateremotefilelist {
         }
         self.working.stopAnimation(nil)
         self.remotefilelist = nil
+    }
+}
+
+extension ViewControllerRestore: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Filelist:
+            self.goforrestorebyfile()
+            self.getremotefilelist()
+        case .Estimate:
+            if self.checkedforfullrestore.state == .on {
+                self.goforfullrestore()
+            }
+            self.estimate()
+        case .Restore:
+            self.restore()
+        case .Reset:
+            self.resetaction()
+        default:
+            return
+        }
     }
 }

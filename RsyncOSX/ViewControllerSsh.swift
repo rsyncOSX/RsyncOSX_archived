@@ -23,6 +23,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     var hiddenID: Int?
     var data: [String]?
     var outputprocess: OutputProcess?
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBOutlet var rsaCheck: NSButton!
     @IBOutlet var detailsTable: NSTableView!
@@ -72,7 +74,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
-    @IBAction func createPublicPrivateRSAKeyPair(_: NSButton) {
+    // Sidebar create keys
+    func createPublicPrivateRSAKeyPair() {
         self.outputprocess = OutputProcess()
         self.sshcmd = Ssh(outputprocess: self.outputprocess,
                           processtermination: self.processtermination,
@@ -81,7 +84,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.sshcmd?.creatersakeypair()
     }
 
-    @IBAction func source(_: NSButton) {
+    // Sidebar kilde
+    func source() {
         guard self.sshcmd != nil else { return }
         self.presentAsModalWindow(self.viewControllerSource!)
     }
@@ -96,6 +100,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .sshviewbuttons)
         self.loadsshparameters()
     }
 
@@ -194,5 +200,18 @@ extension ViewControllerSsh: Loadsshparameters {
             self.sshport.stringValue = ""
         }
         self.checkforPrivateandPublicRSAKeypair()
+    }
+}
+
+extension ViewControllerSsh: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .CreateKey:
+            self.createPublicPrivateRSAKeyPair()
+        case .Remote:
+            self.source()
+        default:
+            return
+        }
     }
 }

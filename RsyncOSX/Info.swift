@@ -18,6 +18,8 @@ struct Infoexecute {
     let info15: String = NSLocalizedString("Menu app is running...", comment: "Execute")
     let info16: String = NSLocalizedString("Select one or more tasks...", comment: "Execute")
     let info19: String = NSLocalizedString("New version is available - see About", comment: "Execute")
+    let info20: String = NSLocalizedString("Estimating...", comment: "Execute")
+    let info21: String = NSLocalizedString("Executing...", comment: "Execute")
 
     // Execute
     func info(num: Int) -> String {
@@ -36,6 +38,10 @@ struct Infoexecute {
             return self.info16
         case 9:
             return self.info19
+        case 10:
+            return self.info20
+        case 11:
+            return self.info21
         default:
             return ""
         }

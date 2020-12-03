@@ -32,6 +32,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                           ViewControllerReference.shared.syncremote]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBOutlet var addtable: NSTableView!
     @IBOutlet var viewParameter1: NSTextField!
@@ -91,17 +93,14 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
-    @IBAction func cleartable(_: NSButton) {
+    // Sidebar Clear button
+    func cleartable() {
         self.newconfigurations = nil
         self.newconfigurations = NewConfigurations()
         globalMainQueue.async { () -> Void in
             self.addtable.reloadData()
             self.resetinputfields()
         }
-    }
-
-    @IBAction func assist(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerAssist!)
     }
 
     private func changelabels() {
@@ -142,6 +141,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        // For sending messages to the sidebar
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
         self.backuptypeselected = .synchronize
         self.addingtrailingbackslash.state = .off
         self.backuptype.selectItem(at: 0)
@@ -178,7 +180,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         self.haltshelltasksonerror.state = .off
     }
 
-    @IBAction func addConfig(_: NSButton) {
+    // Sidebar Add button
+    func addConfig() {
         let dict: NSMutableDictionary = [
             DictionaryStrings.task.rawValue: ViewControllerReference.shared.synchronize,
             DictionaryStrings.backupID.rawValue: backupID.stringValue,
@@ -343,6 +346,19 @@ extension ViewControllerNewConfigurations: AssistTransfer {
             default:
                 return
             }
+        }
+    }
+}
+
+extension ViewControllerNewConfigurations: Sidebarbuttonactions {
+    func sidebarbuttonactions(action: Sidebaractionsmessages) {
+        switch action {
+        case .Delete:
+            self.cleartable()
+        case .Add:
+            self.addConfig()
+        default:
+            return
         }
     }
 }

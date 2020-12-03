@@ -76,16 +76,16 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var outputprocess: OutputProcess?
     var maxcount: Int = 0
     weak var outputeverythingDelegate: ViewOutputDetails?
-
     var restoreactions: RestoreActions?
+    // Send messages to the sidebar
+    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBOutlet var restoretableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
     @IBOutlet var remotefiles: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var search: NSSearchField!
-    @IBOutlet var fullrestoreradiobutton: NSButton!
-    @IBOutlet var filesrestoreradiobutton: NSButton!
+    @IBOutlet var checkedforfullrestore: NSButton!
     @IBOutlet var tmprestorepath: NSTextField!
     @IBOutlet var selecttmptorestore: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
@@ -135,6 +135,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
+    @IBAction func doareset(_: NSButton) {
+        self.reset()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
@@ -153,6 +157,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        self.sidebaractionsDelegate?.sidebaractions(action: .restoreviewbuttons)
         guard self.diddissappear == false else {
             globalMainQueue.async { () -> Void in
                 self.rsynctableView.reloadData()
@@ -175,8 +181,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restoretabledata = nil
         self.restorefilestask = nil
         self.fullrestoretask = nil
-        self.filesrestoreradiobutton.state = .off
-        self.fullrestoreradiobutton.state = .off
         self.dotherealthing.state = .off
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
@@ -193,16 +197,17 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Restore files
     func executerestorefiles() {
         guard self.restoreactions?.goforrestorefilestotemporarypath() ?? false else { return }
+        guard self.restorefilestask != nil else { return }
         guard (self.restoreactions?.executerealrestore ?? false) == true else {
             self.infolabel.isHidden = false
             self.infolabel.stringValue = NSLocalizedString("Simulated: execute restore of files to temporary restore path", comment: "Restore")
             return
         }
+        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles.stringValue, localCatalog: self.tmprestorepath.stringValue, dryrun: false)
+        self.outputprocess = self.restorefilestask?.outputprocess
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerProgress!)
         }
-        self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles.stringValue, localCatalog: self.tmprestorepath.stringValue, dryrun: false)
-        self.outputprocess = self.restorefilestask?.outputprocess
     }
 
     func prepareforfilesrestoreandandgetremotefilelist() {
@@ -274,8 +279,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
-            self.filesrestoreradiobutton.state = .off
-            self.fullrestoreradiobutton.state = .off
+            self.checkedforfullrestore.state = .off
             if let index = indexes.first {
                 self.index = index
                 self.restoretabledata = nil
@@ -294,12 +298,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func getremotefilelist(_: NSButton) {
+    // Sidebar filelist
+    func getremotefilelist() {
         guard self.restoreactions?.getfilelistrestorefiles() ?? false else { return }
         self.prepareforfilesrestoreandandgetremotefilelist()
     }
 
-    @IBAction func reset(_: NSButton) {
+    // Sidebar reset
+    func resetaction() {
         self.reset()
     }
 
@@ -399,38 +405,41 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func togglewhichtypeofrestore(_: NSButton) {
-        guard self.restoreactions?.reset() == false else {
-            self.reset()
-            return
-        }
-        if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
+    func goforrestorebyfile() {
+        if self.selecttmptorestore.state == .on {
             self.restoreactions?.restorefiles = true
-        } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
-            self.restoretabledata = nil
-            self.restoreactions?.fullrestore = true
+            self.restoreactions?.fullrestore = false
+        } else {
             self.restoreactions?.restorefiles = false
-            self.restoreactions?.tmprestorepathselected = true
-        } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .off {
-            self.restoretabledata = nil
-            self.restoreactions?.fullrestore = true
-            self.restoreactions?.restorefiles = false
-            self.restoreactions?.tmprestorepathselected = false
         }
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
         }
     }
 
-    @IBAction func restore(_: NSButton) {
-        if self.fullrestoreradiobutton.state == .on {
+    func goforfullrestore() {
+        if self.selecttmptorestore.state == .on {
+            self.restoretabledata = nil
+            self.restoreactions?.fullrestore = true
+            self.restoreactions?.restorefiles = false
+            self.restoreactions?.tmprestorepathselected = true
+        }
+        globalMainQueue.async { () -> Void in
+            self.restoretableView.reloadData()
+        }
+    }
+
+    // Sidebar restore
+    func restore() {
+        if self.checkedforfullrestore.state == .on {
             self.executefullrestore()
         } else {
             self.executerestorefiles()
         }
     }
 
-    @IBAction func estimate(_: NSButton) {
+    // Sidebar estimate
+    func estimate() {
         guard self.checkforrsync() == false else { return }
         if self.restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
             guard self.checkforfullrestore() == true else { return }
