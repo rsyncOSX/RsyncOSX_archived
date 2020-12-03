@@ -35,7 +35,7 @@ enum Sidebaractionsmessages {
     case Update
     case Save
     case Filelist
-    case Esitimate
+    case Estimate
     case Restore
     case Reset
     case CreateKey
@@ -115,7 +115,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain 
                 return
             case .restoreviewbuttons:
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
-                deleteDelegate?.sidebarbuttonactions(action: .Esitimate)
+                deleteDelegate?.sidebarbuttonactions(action: .Estimate)
             default:
                 return
             }

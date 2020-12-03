@@ -98,8 +98,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBOutlet var remotefiles: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var search: NSSearchField!
-    @IBOutlet var fullrestoreradiobutton: NSButton!
-    @IBOutlet var filesrestoreradiobutton: NSButton!
+    @IBOutlet var checkedforfullrestore: NSButton!
     @IBOutlet var tmprestorepath: NSTextField!
     @IBOutlet var selecttmptorestore: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
@@ -148,6 +147,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBAction func alloutput(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
+    
+    @IBAction func doareset(_: NSButton) {
+        self.reset()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,8 +194,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restoretabledata = nil
         self.restorefilestask = nil
         self.fullrestoretask = nil
-        self.filesrestoreradiobutton.state = .off
-        self.fullrestoreradiobutton.state = .off
+        self.checkedforfullrestore.state = .off
         self.dotherealthing.state = .off
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
@@ -291,8 +293,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
-            self.filesrestoreradiobutton.state = .off
-            self.fullrestoreradiobutton.state = .off
+            self.checkedforfullrestore.state = .off
             if let index = indexes.first {
                 self.index = index
                 self.restoretabledata = nil
@@ -430,37 +431,18 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func togglewhichtypeofrestore(_: NSButton) {
-        guard self.restoreactions?.reset() == false else {
-            self.reset()
-            return
-        }
-        if self.filesrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
+    func goforrestorebyfile() {
+        if self.selecttmptorestore.state == .on {
             self.restoreactions?.restorefiles = true
-        } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .on {
-            self.restoretabledata = nil
-            self.restoreactions?.fullrestore = true
+            self.restoreactions?.fullrestore = false
+        } else {
             self.restoreactions?.restorefiles = false
-            self.restoreactions?.tmprestorepathselected = true
-        } else if self.fullrestoreradiobutton.state == .on, self.selecttmptorestore.state == .off {
-            self.restoretabledata = nil
-            self.restoreactions?.fullrestore = true
-            self.restoreactions?.restorefiles = false
-            self.restoreactions?.tmprestorepathselected = false
         }
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
         }
     }
-    
-    func goforrestorebyfile() {
-        if self.selecttmptorestore.state == .on {
-            self.restoreactions?.restorefiles = true
-        } else {
-            self.restoreactions?.restorefiles = false
-        }
-    }
-    
+
     func goforfullrestore() {
         if self.selecttmptorestore.state == .on {
             self.restoretabledata = nil
@@ -468,11 +450,14 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             self.restoreactions?.restorefiles = false
             self.restoreactions?.tmprestorepathselected = true
         }
+        globalMainQueue.async { () -> Void in
+            self.restoretableView.reloadData()
+        }
     }
 
     // Sidebar restore
     func restore() {
-        if self.fullrestoreradiobutton.state == .on {
+        if self.checkedforfullrestore.state == .on {
             self.executefullrestore()
         } else {
             self.executerestorefiles()
