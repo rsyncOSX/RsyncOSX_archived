@@ -36,8 +36,35 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
 
+    // Toolbar - all profiles
     @IBAction func allprofiles(_: NSButton) {
         self.presentAsModalWindow(self.allprofiles!)
+    }
+
+    // Toolbar - Abort button
+    @IBAction func abort(_: NSButton) {
+        globalMainQueue.async { () -> Void in
+            self.abortOperations()
+        }
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - Estimate and Quickbackup
+    @IBAction func totinfo(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        if self.configurations?.setestimatedlistnil() == true {
+            self.configurations?.remoteinfoestimation = nil
+            self.configurations?.estimatedlist = nil
+        }
+        self.multipeselection = false
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
     }
 
     @IBAction func infoonetask(_: NSButton) {
@@ -57,26 +84,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
-    @IBAction func totinfo(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        if self.configurations?.setestimatedlistnil() == true {
-            self.configurations?.remoteinfoestimation = nil
-            self.configurations?.estimatedlist = nil
-        }
-        self.multipeselection = false
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
-        }
-    }
-
-    @IBAction func quickbackup(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        self.configurations?.remoteinfoestimation = nil
-        self.configurations?.estimatedlist = nil
-        self.multipeselection = false
-        self.openquickbackup()
-    }
-
     @IBAction func TCP(_: NSButton) {
         self.configurations?.tcpconnections = TCPconnections()
         self.configurations?.tcpconnections?.testAllremoteserverConnections()
@@ -88,19 +95,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerInformation!)
         }
-    }
-
-    // Abort button
-    @IBAction func abort(_: NSButton) {
-        globalMainQueue.async { () -> Void in
-            self.abortOperations()
-        }
-    }
-
-    // Userconfiguration button
-    @IBAction func userconfiguration(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
     }
 
     // Selecting profiles

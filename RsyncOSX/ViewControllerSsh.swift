@@ -33,12 +33,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var verifykeycommand: NSTextField!
 
-    // Userconfiguration
-    var viewControllerSource: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "CopyFilesID")
-            as? NSViewController)
-    }
-
+    // Toolbar - Estimate and Quickbackup
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
         globalMainQueue.async { () -> Void in
@@ -46,13 +41,19 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         }
     }
 
-    @IBAction func quickbackup(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        self.openquickbackup()
-    }
-
+    // Toolbar -  Estimate and execute automatic backup
     @IBAction func automaticbackup(_: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func userconfiguration(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
     // Selecting profiles
@@ -60,18 +61,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         self.presentAsModalWindow(self.viewControllerProfile!)
     }
 
-    // Userconfiguration button
-    @IBAction func userconfiguration(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
-    }
-
     @IBAction func showHelp(_: AnyObject?) {
         self.help()
-    }
-
-    // All ouput
-    @IBAction func alloutput(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
 
     // Sidebar create keys
@@ -85,6 +76,11 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 
     // Sidebar kilde
+    var viewControllerSource: NSViewController? {
+        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "CopyFilesID")
+            as? NSViewController)
+    }
+
     func source() {
         guard self.sshcmd != nil else { return }
         self.presentAsModalWindow(self.viewControllerSource!)

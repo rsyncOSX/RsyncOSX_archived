@@ -36,11 +36,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         }
     }
 
-    @IBAction func quickbackup(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        self.openquickbackup()
-    }
-
     @IBAction func automaticbackup(_: NSButton) {
         self.presentAsSheet(self.viewControllerEstimating!)
     }
