@@ -324,6 +324,17 @@ DQ
                                     <action selector="actionbutton4:" target="Jpl-76-tew" id="1H1-pl-krT"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3H-39-w1p">
+                                <rect key="frame" x="31" y="298" width="46" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="report" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="UGg-cv-elN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="mal-sc-mlY" kind="show" id="Aqn-sk-pa8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2nI-S8-MCI"/>
                         <viewLayoutGuide key="layoutMargins" id="vvh-gv-FED"/>
@@ -763,7 +774,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="687" y="1" width="48" height="17"/>
+                                                            <rect key="frame" x="687" y="1" width="56" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -827,7 +838,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="826" y="1" width="144" height="17"/>
+                                                            <rect key="frame" x="826" y="1" width="152" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -3050,9 +3061,12 @@ DQ
                 </viewController>
                 <customObject id="Q22-JH-0wK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2157" y="-527"/>
+            <point key="canvasLocation" x="-2048" y="139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rJ6-3R-szv"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="abort" width="48" height="48"/>

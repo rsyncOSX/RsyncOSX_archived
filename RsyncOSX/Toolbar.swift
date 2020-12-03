@@ -11,7 +11,6 @@ import Cocoa
 import Foundation
 
 extension NSToolbarItem.Identifier {
-    static let report = NSToolbarItem.Identifier("report")
     static let allprofiles = NSToolbarItem.Identifier("allprofiles")
     static let backupnow = NSToolbarItem.Identifier("backupnow")
     static let estimateandquickbackup = NSToolbarItem.Identifier("estimateandquickbackup")
@@ -21,7 +20,6 @@ extension NSToolbarItem.Identifier {
 }
 
 extension Selector {
-    static let report = #selector(ViewControllerSideBar.alloutput(_:))
     static let allprofiles = #selector(ViewControllerSideBar.allprofiles(_:))
     static let backupnow = #selector(ViewControllerSideBar.automaticbackup(_:))
     static let estimateandquickbackup = #selector(ViewControllerSideBar.totinfo(_:))
@@ -35,9 +33,6 @@ extension MainWindowsController: NSToolbarDelegate {
                  willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem?
     {
         switch itemIdentifier {
-        case .report:
-            let title = NSLocalizedString("Display output from rsync singletasks...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.report, Selector.report)
         case .allprofiles:
             let title = NSLocalizedString("List all profiles and configurations...", comment: "Toolbar")
             return buildToolbarButton(.allprofiles, title, AppAssets.allprofiles, Selector.allprofiles)
@@ -80,7 +75,6 @@ extension MainWindowsController: NSToolbarDelegate {
 
     func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            .report,
             .allprofiles,
             .flexibleSpace,
             .backupnow,
@@ -96,7 +90,6 @@ extension MainWindowsController: NSToolbarDelegate {
 
     func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            .report,
             .allprofiles,
             .flexibleSpace,
             .backupnow,
@@ -116,10 +109,6 @@ extension MainWindowsController: NSToolbarDelegate {
 }
 
 struct AppAssets {
-    static var report: NSImage! = {
-        NSImage(named: "report")
-    }()
-
     static var allprofiles: NSImage! = {
         NSImage(named: "allprofiles")
     }()
