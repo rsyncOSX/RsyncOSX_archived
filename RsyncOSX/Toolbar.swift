@@ -15,61 +15,67 @@ extension NSToolbarItem.Identifier {
     static let allprofiles = NSToolbarItem.Identifier("allprofiles")
     static let backupnow = NSToolbarItem.Identifier("backupnow")
     static let estimateandquickbackup = NSToolbarItem.Identifier("estimateandquickbackup")
-    static let execute = NSToolbarItem.Identifier("execute")
-    static let abort = NSToolbarItem.Identifier("abort")
+    // static let execute = NSToolbarItem.Identifier("execute")
+    // static let abort = NSToolbarItem.Identifier("abort")
     static let config = NSToolbarItem.Identifier("config")
 }
 
 extension Selector {
-    static let profiles = #selector(ViewControllerSideBar.allprofiles(_:))
+    static let report = #selector(ViewControllerSideBar.totinfo(_:))
+    static let allprofiles = #selector(ViewControllerSideBar.allprofiles(_:))
+    static let backupnow = #selector(ViewControllerSideBar.automaticbackup(_:))
+    static let estimateandquickbackup = #selector(ViewControllerSideBar.totinfo(_:))
+    // static let execute = #selector(ViewControllerSideBar.allprofiles(_:))
+    // static let abort = #selector(ViewControllerSideBar.allprofiles(_:))
+    static let config = #selector(ViewControllerSideBar.userconfiguration(_:))
 }
 
 extension MainWindowsController: NSToolbarDelegate {
-    func buildToolbarButton(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _: String) -> NSToolbarItem {
-        let toolbarItem = RSToolbarItem(itemIdentifier: itemIdentifier)
-        toolbarItem.autovalidates = false
-        let button = NSButton()
-        button.bezelStyle = .texturedRounded
-        button.image = image
-        button.imageScaling = .scaleProportionallyDown
-        // button.action = Selector((selector))
-        button.action = #selector(ViewControllerSideBar.allprofiles(_:))
-        button.action = Selector.profiles
-        toolbarItem.view = button
-        toolbarItem.toolTip = title
-        toolbarItem.label = title
-        return toolbarItem
-    }
-
     func toolbar(_: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
                  willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem?
     {
         switch itemIdentifier {
         case .report:
             let title = NSLocalizedString("Display output from rsync singletasks...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.report, "alloutput")
+            return buildToolbarButton(.allprofiles, title, AppAssets.report, Selector.report)
         case .allprofiles:
             let title = NSLocalizedString("List all profiles and configurations...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.allprofiles, "allprofiles")
+            return buildToolbarButton(.allprofiles, title, AppAssets.allprofiles, Selector.allprofiles)
         case .backupnow:
             let title = NSLocalizedString("Execute all tasks now...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.backupnow, "automaticbackup")
+            return buildToolbarButton(.allprofiles, title, AppAssets.backupnow, Selector.backupnow)
         case .estimateandquickbackup:
             let title = NSLocalizedString("Execute estimate and quickbackup for all tasks...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.estimateandquickbackup, "totinfo")
-        case .execute:
-            let title = NSLocalizedString("Execute selected tasks...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.execute, "allprofiles")
-        case .abort:
-            let title = NSLocalizedString("Abort task...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.abort, "abort")
+            return buildToolbarButton(.allprofiles, title, AppAssets.estimateandquickbackup, Selector.estimateandquickbackup)
+        /*
+         case .execute:
+             let title = NSLocalizedString("Execute selected tasks...", comment: "Toolbar")
+             return buildToolbarButton(.allprofiles, title, AppAssets.execute, "allprofiles")
+         case .abort:
+             let title = NSLocalizedString("Abort task...", comment: "Toolbar")
+             return buildToolbarButton(.allprofiles, title, AppAssets.abort, "abort")
+         */
         case .config:
             let title = NSLocalizedString("Show userconfig...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.config, "userconfiguration")
+            return buildToolbarButton(.allprofiles, title, AppAssets.config, Selector.config)
         default:
             break
         }
         return nil
+    }
+
+    func buildToolbarButton(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _ selector: Selector) -> NSToolbarItem {
+        let toolbarItem = RSToolbarItem(itemIdentifier: itemIdentifier)
+        toolbarItem.autovalidates = false
+        let button = NSButton()
+        button.bezelStyle = .texturedRounded
+        button.image = image
+        button.imageScaling = .scaleProportionallyDown
+        button.action = selector
+        toolbarItem.view = button
+        toolbarItem.toolTip = title
+        toolbarItem.label = title
+        return toolbarItem
     }
 
     func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
@@ -80,8 +86,8 @@ extension MainWindowsController: NSToolbarDelegate {
             .backupnow,
             .estimateandquickbackup,
             .flexibleSpace,
-            .execute,
-            .abort,
+            // .execute,
+            // .abort,
             .flexibleSpace,
             .config,
             .flexibleSpace,
@@ -96,8 +102,8 @@ extension MainWindowsController: NSToolbarDelegate {
             .backupnow,
             .estimateandquickbackup,
             .flexibleSpace,
-            .execute,
-            .abort,
+            // .execute,
+            // .abort,
             .flexibleSpace,
             .config,
             .flexibleSpace,
@@ -209,6 +215,8 @@ extension ViewControllerSideBar {
     @IBAction func alloutput(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerAllOutput!)
     }
+
+    // Missing Execute
 }
 
 extension ViewControllerNewConfigurations {

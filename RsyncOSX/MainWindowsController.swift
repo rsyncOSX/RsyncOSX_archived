@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 01/12/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
@@ -28,7 +27,7 @@ class MainWindowsController: NSWindowController, VcMain {
             toolbar.autosavesConfiguration = false
             toolbar.displayMode = .iconOnly
             toolbar.delegate = self
-            // self.window?.toolbar = toolbar
+            self.window?.toolbar = toolbar
         }
         window?.toolbar?.validateVisibleItems()
     }
