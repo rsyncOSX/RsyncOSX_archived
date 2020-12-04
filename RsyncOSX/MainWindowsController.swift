@@ -9,18 +9,18 @@
 import Cocoa
 import Foundation
 
-class MainWindowsController: NSWindowController, VcMain {
-    private var viewcontrollersidebar: ViewControllerSideBar?
-    private var tabviewcontroller: TabViewController?
-    private var splitviewcontroller: NSSplitViewController? {
-        guard let viewController = contentViewController else {
-            return nil
-        }
-        return viewController.children.first as? NSSplitViewController
-    }
-
-    override func windowDidLoad() {
-        super.windowDidLoad()
+class MainWindowsController: NSWindowController {
+    /*
+     private var viewcontrollersidebar: ViewControllerSideBar?
+     private var tabviewcontroller: TabViewController?
+     private var splitviewcontroller: NSSplitViewController? {
+         guard let viewController = contentViewController else {
+             return nil
+         }
+         return viewController.children.first as? NSSplitViewController
+     }
+     */
+    func addtoolbar() {
         globalMainQueue.async { () -> Void in
             let toolbar = NSToolbar(identifier: "Toolbar")
             toolbar.allowsUserCustomization = false
@@ -30,5 +30,10 @@ class MainWindowsController: NSWindowController, VcMain {
             self.window?.toolbar = toolbar
         }
         window?.toolbar?.validateVisibleItems()
+    }
+
+    override func windowDidLoad() {
+        super.windowDidLoad()
+        self.addtoolbar()
     }
 }

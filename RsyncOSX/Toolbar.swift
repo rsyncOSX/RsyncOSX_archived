@@ -35,29 +35,29 @@ extension MainWindowsController: NSToolbarDelegate {
         switch itemIdentifier {
         case .allprofiles:
             let title = NSLocalizedString("List all profiles and configurations...", comment: "Toolbar")
-            return buildToolbarButton(.allprofiles, title, AppAssets.allprofiles, Selector.allprofiles)
+            return toolbarbuttonsandactions(.allprofiles, title, AppAssets.allprofiles, Selector.allprofiles)
         case .backupnow:
             let title = NSLocalizedString("Execute all tasks now...", comment: "Toolbar")
-            return buildToolbarButton(.backupnow, title, AppAssets.backupnow, Selector.backupnow)
+            return toolbarbuttonsandactions(.backupnow, title, AppAssets.backupnow, Selector.backupnow)
         case .estimateandquickbackup:
             let title = NSLocalizedString("Execute estimate and quickbackup for all tasks...", comment: "Toolbar")
-            return buildToolbarButton(.estimateandquickbackup, title, AppAssets.estimateandquickbackup, Selector.estimateandquickbackup)
+            return toolbarbuttonsandactions(.estimateandquickbackup, title, AppAssets.estimateandquickbackup, Selector.estimateandquickbackup)
         case .executetasknow:
             let title = NSLocalizedString("Execute selected tasks...", comment: "Toolbar")
-            return buildToolbarButton(.executetasknow, title, AppAssets.executetasknow, Selector.executetasknow)
+            return toolbarbuttonsandactions(.executetasknow, title, AppAssets.executetasknow, Selector.executetasknow)
         case .abort:
             let title = NSLocalizedString("Abort task...", comment: "Toolbar")
-            return buildToolbarButton(.abort, title, AppAssets.abort, Selector.abort)
+            return toolbarbuttonsandactions(.abort, title, AppAssets.abort, Selector.abort)
         case .userconfig:
             let title = NSLocalizedString("Show userconfig...", comment: "Toolbar")
-            return buildToolbarButton(.userconfig, title, AppAssets.userconfig, Selector.userconfig)
+            return toolbarbuttonsandactions(.userconfig, title, AppAssets.userconfig, Selector.userconfig)
         default:
             break
         }
         return nil
     }
 
-    func buildToolbarButton(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _ selector: Selector) -> NSToolbarItem {
+    func toolbarbuttonsandactions(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _ selector: Selector) -> NSToolbarItem {
         let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
         toolbarItem.autovalidates = false
         let button = NSButton()
@@ -73,26 +73,28 @@ extension MainWindowsController: NSToolbarDelegate {
 
     func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            .allprofiles,
             .flexibleSpace,
+            .allprofiles,
+            // .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
             .executetasknow,
             .abort,
-            .flexibleSpace,
+            // .flexibleSpace,
             .userconfig,
         ]
     }
 
     func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            .allprofiles,
             .flexibleSpace,
+            .allprofiles,
+            // .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
             .executetasknow,
             .abort,
-            .flexibleSpace,
+            // .flexibleSpace,
             .userconfig,
         ]
     }

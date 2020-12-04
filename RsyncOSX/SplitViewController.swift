@@ -9,4 +9,12 @@
 import Cocoa
 import Foundation
 
-class SplitViewController: NSSplitViewController {}
+class SplitViewController: NSSplitViewController {
+    /*
+        override func splitView(_: NSSplitView, canCollapseSubview _: NSView) -> Bool {
+            return false
+        }
+        override func splitViewDidResizeSubviews(_: Notification) {
+        }
+     */
+}
