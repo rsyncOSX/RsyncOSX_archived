@@ -380,11 +380,11 @@ DQ
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="batch" paletteLabel="batch" toolTip="Execute selected tasks..." image="execute" sizingBehavior="auto" id="OrH-Ty-gyv">
+                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="executetasknow" paletteLabel="executetasknow" toolTip="Execute selected tasks..." image="executetasknow" sizingBehavior="auto" id="OrH-Ty-gyv">
                                     <button key="view" verticalHuggingPriority="750" id="WXA-Ge-ie7">
-                                        <rect key="frame" x="4" y="14" width="30" height="23"/>
+                                        <rect key="frame" x="31" y="14" width="30" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="execute" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2uR-Ky-UIF">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="executetasknow" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2uR-Ky-UIF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -406,11 +406,11 @@ DQ
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="config" paletteLabel="config" toolTip="Display userconfiguration" image="config" sizingBehavior="auto" id="VYu-Xf-XJc">
+                                <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="userconfig" paletteLabel="userconfig" toolTip="Display userconfiguration" image="userconfig" sizingBehavior="auto" id="VYu-Xf-XJc">
                                     <button key="view" verticalHuggingPriority="750" id="XFU-nn-1H7">
-                                        <rect key="frame" x="5" y="14" width="30" height="23"/>
+                                        <rect key="frame" x="17" y="14" width="30" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="config" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dSB-ET-I4k">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="userconfig" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dSB-ET-I4k">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -432,11 +432,11 @@ DQ
                                         <segue destination="mal-sc-mlY" kind="show" id="rJ6-3R-szv"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" toolTip="Execute estimate and quickbackup for all tasks..." image="quickbackup" sizingBehavior="auto" id="v12-7x-cig">
+                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" toolTip="Execute estimate and quickbackup for all tasks..." image="estimateandquickbackup" sizingBehavior="auto" id="v12-7x-cig">
                                     <button key="view" verticalHuggingPriority="750" id="dsJ-ms-wHD">
                                         <rect key="frame" x="6" y="14" width="30" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="quickbackup" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="En8-0i-Aoy">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="estimateandquickbackup" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="En8-0i-Aoy">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -1842,7 +1842,7 @@ DQ
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fm0-Sw-gRd">
-                                            <rect key="frame" x="393" y="25.5" width="149" height="14"/>
+                                            <rect key="frame" x="393" y="26" width="149" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Select tmp" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Rfo-bd-8hM">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3073,12 +3073,12 @@ DQ
         <image name="allprofiles" width="48" height="48"/>
         <image name="backupnow" width="64" height="64"/>
         <image name="complete" width="48" height="48"/>
-        <image name="config" width="64" height="64"/>
-        <image name="execute" width="64" height="64"/>
+        <image name="estimateandquickbackup" width="64" height="64"/>
+        <image name="executetasknow" width="64" height="64"/>
         <image name="menuapp" width="16" height="16"/>
-        <image name="quickbackup" width="64" height="64"/>
         <image name="red" width="512" height="512"/>
         <image name="report" width="64" height="64"/>
         <image name="up" width="256" height="256"/>
+        <image name="userconfig" width="64" height="64"/>
     </resources>
 </document>

@@ -1796,7 +1796,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ynF-iW-XXh">
                                 <rect key="frame" x="888" y="18" width="40" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="execute" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4mr-js-7em">
+                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="executetasknow" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4mr-js-7em">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -3258,7 +3258,7 @@ DQ
         <image name="NSRemoveTemplate" width="14" height="4"/>
         <image name="NSTouchBarAddTemplate" width="14" height="13"/>
         <image name="abort" width="48" height="48"/>
-        <image name="execute" width="64" height="64"/>
+        <image name="executetasknow" width="64" height="64"/>
         <image name="red" width="512" height="512"/>
         <image name="up" width="256" height="256"/>
     </resources>
