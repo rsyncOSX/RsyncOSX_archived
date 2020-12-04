@@ -47,6 +47,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
                 openDelegate?.openquickbackup()
             }
         }
+        self.remoteinfotask = nil
         self.closeview()
     }
 
