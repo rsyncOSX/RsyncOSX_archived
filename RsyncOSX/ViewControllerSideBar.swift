@@ -50,7 +50,7 @@ protocol Sidebarbuttonactions: AnyObject {
     func sidebarbuttonactions(action: Sidebaractionsmessages)
 }
 
-class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain {
+class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync {
     @IBOutlet var jsonbutton: NSButton!
     @IBOutlet var jsonlabel: NSTextField!
     @IBOutlet var pathtorsyncosxschedbutton: NSButton!

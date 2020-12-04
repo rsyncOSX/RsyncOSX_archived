@@ -67,7 +67,21 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
+    // Toolbar - Multiple select and execute
+    @IBAction func executetasknow(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
+        guard self.checkforrsync() == false else { return }
+        guard self.index != nil else {
+            self.info.stringValue = Infoexecute().info(num: 1)
+            return
+        }
+        if let index = self.index {
+            self.executetask(index: index)
+        }
+    }
+
     @IBAction func infoonetask(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
         guard self.index != nil else {
             self.info.stringValue = Infoexecute().info(num: 1)
             return
@@ -124,33 +138,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func moveconfig(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
         guard ViewControllerReference.shared.usenewconfigpath == false else { return }
         self.presentAsModalWindow(self.viewControllerMove!)
     }
 
-    // Selecting automatic backup
-    @IBAction func automaticbackup(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        if self.configurations?.setestimatedlistnil() == true {
-            self.configurations?.remoteinfoestimation = nil
-            self.configurations?.estimatedlist = nil
-        }
-        self.multipeselection = false
-        self.presentAsSheet(self.viewControllerEstimating!)
-    }
-
-    @IBAction func executetasknow(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
-            return
-        }
-        if let index = self.index {
-            self.executetask(index: index)
-        }
-    }
-
     @IBAction func delete(_: NSButton) {
+        guard ViewControllerReference.shared.process == nil else { return }
         self.delete()
     }
 

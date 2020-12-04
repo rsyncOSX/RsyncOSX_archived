@@ -135,12 +135,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
     }
 
-    // Abort button
-    @IBAction func abort(_: NSButton) {
-        self.info.stringValue = Infosnapshots().info(num: 2)
-        self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
-    }
-
     // Sidebar delete button
     func deleteaction() {
         guard self.snapshotlogsandcatalogs != nil else { return }
