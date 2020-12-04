@@ -55,6 +55,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         if self.remoteinfotask?.stackoftasktobeestimated?.count ?? 0 > 0 {
             self.remoteinfotask?.abort()
             self.remoteinfotask?.stackoftasktobeestimated = nil
+            self.remoteinfotask = nil
             self.abort()
             self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: nil)
         }
