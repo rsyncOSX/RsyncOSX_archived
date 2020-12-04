@@ -105,7 +105,6 @@ final class RemoteinfoEstimation: SetConfigurations {
     }
 
     deinit {
-        print("deinit estimation")
         self.stackoftasktobeestimated = nil
     }
 
@@ -148,7 +147,6 @@ extension RemoteinfoEstimation {
         self.outputprocess = OutputProcessRsync()
         if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
             self.index = index
-            print("estimation")
             let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
             estimation.startestimation()
         }

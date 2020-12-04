@@ -102,7 +102,6 @@ final class QuickBackup: SetConfigurations {
     }
 
     deinit {
-        print("deinit quickbackup")
         self.stackoftasktobeexecuted = nil
     }
 

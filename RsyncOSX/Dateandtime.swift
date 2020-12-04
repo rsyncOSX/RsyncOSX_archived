@@ -22,7 +22,6 @@ struct Dateandtime {
                 result = String(format: "%.0f", 1.0) + "m"
             }
         } else if hr == 0, min < 60 {
-            // print(secf)
             if secf < 0.9 {
                 result = String(format: "%.0f", min) + "m"
             } else {

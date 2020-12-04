@@ -310,7 +310,6 @@ extension ViewControllerNewConfigurations: AssistTransfer {
             case 2:
                 self.localCatalog.stringValue = values[0]
                 self.offsiteCatalog.stringValue = values[1]
-                print(values)
             case 4:
                 // remote
                 self.localCatalog.stringValue = values[0]
