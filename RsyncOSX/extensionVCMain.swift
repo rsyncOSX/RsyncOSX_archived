@@ -166,13 +166,12 @@ extension ViewControllerMain: Fileerror {
 extension ViewControllerMain: Abort {
     // Abort the task
     func abortOperations() {
-        // Terminates the running process
         _ = InterruptProcess()
-        // self.seterrorinfo(info: "Abort")
         self.configurations?.estimatedlist = nil
         self.configurations?.remoteinfoestimation = nil
         self.working.stopAnimation(nil)
         self.index = nil
+        self.info.stringValue = ""
     }
 }
 
