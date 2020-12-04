@@ -168,7 +168,7 @@ extension ViewControllerMain: Abort {
     func abortOperations() {
         // Terminates the running process
         _ = InterruptProcess()
-        self.seterrorinfo(info: "Abort")
+        // self.seterrorinfo(info: "Abort")
         self.configurations?.estimatedlist = nil
         self.configurations?.remoteinfoestimation = nil
         self.working.stopAnimation(nil)

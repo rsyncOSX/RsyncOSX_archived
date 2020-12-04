@@ -53,13 +53,13 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
 
     // Either abort or close
     @IBAction func abort(_: NSButton) {
-        if self.remoteinfotask?.stackoftasktobeestimated?.count ?? 0 > 0 {
-            self.remoteinfotask?.abort()
-            self.remoteinfotask?.stackoftasktobeestimated = nil
-            self.remoteinfotask = nil
-            self.abort()
-            self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: nil)
-        }
+        // if self.remoteinfotask?.stackoftasktobeestimated?.count ?? 0 > 0 {
+        self.remoteinfotask?.abort()
+        self.remoteinfotask?.stackoftasktobeestimated = nil
+        self.remoteinfotask = nil
+        self.abort()
+        self.remoteinfotaskDelegate?.setremoteinfo(remoteinfotask: nil)
+        // }
         self.closeview()
     }
 
@@ -118,6 +118,9 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.diddissappear = true
+        // Release the estimating object
+        self.remoteinfotask?.abort()
+        self.remoteinfotask = nil
     }
 
     private func number() -> String {

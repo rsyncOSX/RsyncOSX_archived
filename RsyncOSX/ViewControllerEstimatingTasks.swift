@@ -47,6 +47,8 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     override func viewWillDisappear() {
         super.viewWillDisappear()
         self.diddissappear = true
+        // Release the estimating object
+        self.remoteinfotask?.abort()
         self.remoteinfotask = nil
     }
 

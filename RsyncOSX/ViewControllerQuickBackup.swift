@@ -84,6 +84,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.diddissappear = true
+        // release the quickobject
+        self.quickbackup = nil
     }
 
     private func initiateProgressbar(progress: NSProgressIndicator) {
