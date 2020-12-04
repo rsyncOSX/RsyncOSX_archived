@@ -78,6 +78,7 @@
 		E927C0052272FAD30036A2DB /* ConvertConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E927C0042272FAD30036A2DB /* ConvertConfigurations.swift */; };
 		E9284CF621308AE9006648C1 /* extensionsConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */; };
 		E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A623A203D7B1C000B9300 /* Notifications.swift */; };
+		E92B1A7F257A225600F0216C /* exstensionViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */; };
 		E92E09A3256854B1000876B8 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E09A2256854B1000876B8 /* PersistentStorage.swift */; };
 		E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */; };
 		E9374D2E1E329A5800CD3945 /* CompleteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteQuickbackupTask.swift */; };
@@ -267,6 +268,7 @@
 		E927C0042272FAD30036A2DB /* ConvertConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfigurations.swift; sourceTree = "<group>"; };
 		E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsConfigurations.swift; sourceTree = "<group>"; };
 		E92A623A203D7B1C000B9300 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exstensionViewControllers.swift; sourceTree = "<group>"; };
 		E92E09A2256854B1000876B8 /* PersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
 		E92FD72922732134009A6042 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNumbers.swift; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				E8EC68F72576909400A71383 /* MainWindowsController.swift */,
 				E9694D0E2576659E007B3BAA /* SplitViewController.swift */,
 				E959F7DB257964B400A9830F /* Toolbar.swift */,
+				E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1099,6 +1102,7 @@
 				E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */,
 				E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */,
 				E99D187423041C47003F1796 /* Result.swift in Sources */,
+				E92B1A7F257A225600F0216C /* exstensionViewControllers.swift in Sources */,
 				E979628F227AE4F600115513 /* Info.swift in Sources */,
 				E9F068F41F27BA0200DDF1A1 /* ReadWriteDictionary.swift in Sources */,
 				E94649652313112300ADDF22 /* extensionVCMaintableviewDelegate.swift in Sources */,
