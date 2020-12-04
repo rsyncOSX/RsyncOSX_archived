@@ -5,65 +5,13 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length type_body_length file_length
+//  swiftlint:disable line_length type_body_length
 
 import Cocoa
 import Foundation
 
 protocol Updateremotefilelist: AnyObject {
     func updateremotefilelist()
-}
-
-struct RestoreActions {
-    // Restore to tmp restorepath selected and verified
-    var tmprestorepathverified: Bool = false
-    var tmprestorepathselected: Bool = true
-    // Index for restore selected
-    var index: Bool = false
-    // Estimated
-    var estimated: Bool = false
-    // Type of restore
-    var fullrestore: Bool = false
-    var restorefiles: Bool = false
-    // Remote file if restore files
-    var remotefileverified: Bool = false
-    // Do the real thing
-    var executerealrestore: Bool = false
-
-    init(closure: () -> Bool) {
-        self.tmprestorepathverified = closure()
-    }
-
-    func goforfullrestoretotemporarypath() -> Bool {
-        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.fullrestore else { return false }
-        return true
-    }
-
-    func goforrestorefilestotemporarypath() -> Bool {
-        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.restorefiles, self.remotefileverified else { return false }
-        return true
-    }
-
-    func goforfullrestoreestimatetemporarypath() -> Bool {
-        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated == false, self.fullrestore else { return false }
-        return true
-    }
-
-    func getfilelistrestorefiles() -> Bool {
-        guard self.index, self.estimated == false, self.restorefiles else { return false }
-        return true
-    }
-
-    func reset() -> Bool {
-        var reset = false
-        if self.goforfullrestoretotemporarypath() == true {
-            reset = true
-        }
-        if self.goforrestorefilestotemporarypath() == true {
-            reset = true
-        }
-        return reset
-    }
 }
 
 class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor, Help {
@@ -87,10 +35,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBOutlet var search: NSSearchField!
     @IBOutlet var checkedforfullrestore: NSButton!
     @IBOutlet var tmprestorepath: NSTextField!
-    @IBOutlet var selecttmptorestore: NSButton!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
-    @IBOutlet var restoreisverified: NSButton!
-    @IBOutlet var dotherealthing: NSButton!
     @IBOutlet var infolabel: NSTextField!
 
     // Selecting profiles
@@ -155,13 +100,11 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.restoretabledata = nil
         self.restorefilestask = nil
         self.fullrestoretask = nil
-        self.dotherealthing.state = .off
         // Restore state
         self.restoreactions = RestoreActions(closure: self.verifytmprestorepath)
         if self.index != nil {
             self.restoreactions?.index = true
         }
-        self.restoreisverified.image = #imageLiteral(resourceName: "red")
         self.restoretabledata = nil
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
@@ -194,7 +137,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 self.restorefilestask = RestorefilesTask(hiddenID: hiddenID, processtermination: self.processtermination, filehandler: self.filehandler)
                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                 self.working.startAnimation(nil)
-                self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
             } else {
                 let question: String = NSLocalizedString("Filelist for snapshot tasks might be huge?", comment: "Restore")
                 let text: String = NSLocalizedString("Start getting files?", comment: "Restore")
@@ -204,7 +146,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                     self.restorefilestask = RestorefilesTask(hiddenID: hiddenID, processtermination: self.processtermination, filehandler: self.filehandler)
                     self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                     self.working.startAnimation(nil)
-                    self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
                 } else {
                     self.reset()
                 }
@@ -313,16 +254,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     func executefullrestore() {
-        switch self.selecttmptorestore.state {
-        case .on:
-            guard self.restoreactions?.goforfullrestoretotemporarypath() ?? false else { return }
-            guard (self.restoreactions?.executerealrestore ?? false) == true else {
-                self.infolabel.stringValue = NSLocalizedString("Simulated: execute full restore to temporary restore path", comment: "Restore")
-                return
-            }
-        default:
-            return
-        }
         let question: String = NSLocalizedString("Do you REALLY want to start a restore?", comment: "Restore")
         let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
@@ -346,10 +277,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
         self.tmprestorepath.stringValue = ViewControllerReference.shared.temporarypathforrestore ?? setuserconfig
         if (ViewControllerReference.shared.temporarypathforrestore ?? "").isEmpty == true {
-            self.selecttmptorestore.state = .off
             self.restoreactions?.tmprestorepathselected = false
         } else {
-            self.selecttmptorestore.state = .on
             self.restoreactions?.tmprestorepathselected = true
         }
         self.restoreactions?.tmprestorepathverified = self.verifytmprestorepath()
@@ -366,38 +295,19 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    @IBAction func toggletmprestore(_: NSButton) {
-        if self.selecttmptorestore.state == .on {
-            self.restoreactions?.tmprestorepathselected = true
-        } else {
-            self.restoreactions?.tmprestorepathselected = false
-        }
-        self.reset()
-        if self.restoreactions?.tmprestorepathverified == false {
-            self.selecttmptorestore.state = .off
-            Alerts.showInfo(info: NSLocalizedString("No such temporay catalog for restore, set it in user config.", comment: "Restore"))
-        }
-    }
-
     func goforrestorebyfile() {
-        if self.selecttmptorestore.state == .on {
-            self.restoreactions?.restorefiles = true
-            self.restoreactions?.fullrestore = false
-        } else {
-            self.restoreactions?.restorefiles = false
-        }
+        self.restoreactions?.restorefiles = true
+        self.restoreactions?.fullrestore = false
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
         }
     }
 
     func goforfullrestore() {
-        if self.selecttmptorestore.state == .on {
-            self.restoretabledata = nil
-            self.restoreactions?.fullrestore = true
-            self.restoreactions?.restorefiles = false
-            self.restoreactions?.tmprestorepathselected = true
-        }
+        self.restoretabledata = nil
+        self.restoreactions?.fullrestore = true
+        self.restoreactions?.restorefiles = false
+        self.restoreactions?.tmprestorepathselected = true
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
         }
@@ -406,9 +316,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     // Sidebar restore
     func restore() {
         if self.checkedforfullrestore.state == .on {
-            self.executefullrestore()
+            if self.restoreactions?.goforfullrestoretotemporarypath() == true {
+                self.executefullrestore()
+            }
         } else {
-            self.executerestorefiles()
+            if self.restoreactions?.goforrestorefilestotemporarypath() == true {
+                self.executerestorefiles()
+            }
         }
     }
 
@@ -454,13 +368,5 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
         self.reset()
-    }
-
-    @IBAction func toggledotherealthing(_: NSButton) {
-        if self.dotherealthing.state == .on {
-            self.restoreactions?.executerealrestore = true
-        } else {
-            self.restoreactions?.executerealrestore = false
-        }
     }
 }

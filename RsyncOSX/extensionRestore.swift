@@ -88,18 +88,13 @@ extension ViewControllerRestore {
             let transferredNumberSizebytes = number.getTransferredNumbers(numbers: .transferredNumberSizebytes)
             if self.maxcount == 0, transferredNumberSizebytes == 0 {
                 self.infolabel.stringValue = NSLocalizedString("Seems to be nothing to restore", comment: "Restore")
-                self.restoreisverified.image = #imageLiteral(resourceName: "yellow")
                 self.restoreactions?.estimated = false
             } else {
                 self.infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal) + ", size: " + NumberFormatter.localizedString(from: NSNumber(value: transferredNumberSizebytes), number: NumberFormatter.Style.decimal) + " kB"
-                self.restoreisverified.image = #imageLiteral(resourceName: "green")
                 self.restoreactions?.estimated = true
             }
         }
         self.working.stopAnimation(nil)
-        // Release the process objects
-        // self.restorefilestask = nil
-        // self.fullrestoretask = nil
     }
 
     func filehandler() {
@@ -151,9 +146,7 @@ extension ViewControllerRestore: NewProfile {
         }
     }
 
-    func reloadprofilepopupbutton() {
-        //
-    }
+    func reloadprofilepopupbutton() {}
 }
 
 extension ViewControllerRestore: OpenQuickBackup {

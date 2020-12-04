@@ -120,6 +120,7 @@
 		E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */; };
 		E989E51E256197C3007A0F7B /* ConfigurationsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989E51D256197C3007A0F7B /* ConfigurationsData.swift */; };
 		E989E524256197D9007A0F7B /* SchedulesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E989E523256197D9007A0F7B /* SchedulesData.swift */; };
+		E98E1041257A4FD30018055B /* RestoreActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98E1040257A4FD30018055B /* RestoreActions.swift */; };
 		E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF115249E23E100FD4669 /* NetworkMonitor.swift */; };
 		E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994B7C922A39D7A00B435AB /* Environment.swift */; };
 		E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E996431B231AEFA100E05B40 /* ViewControllerSource.swift */; };
@@ -314,6 +315,7 @@
 		E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullrestoreTask.swift; sourceTree = "<group>"; };
 		E989E51D256197C3007A0F7B /* ConfigurationsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsData.swift; sourceTree = "<group>"; };
 		E989E523256197D9007A0F7B /* SchedulesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesData.swift; sourceTree = "<group>"; };
+		E98E1040257A4FD30018055B /* RestoreActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreActions.swift; sourceTree = "<group>"; };
 		E98EF115249E23E100FD4669 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E994B7C922A39D7A00B435AB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		E996431B231AEFA100E05B40 /* ViewControllerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSource.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				E82F9F1123F030B200E3DEBC /* extensionRestore.swift */,
+				E98E1040257A4FD30018055B /* RestoreActions.swift */,
 			);
 			name = extensionRestore;
 			sourceTree = "<group>";
@@ -1143,6 +1146,7 @@
 				E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */,
 				E9FE50BD2527765C00076447 /* ConvertAssist.swift in Sources */,
 				E9234FFB1EB068AE00A4C550 /* Catalogsandfiles.swift in Sources */,
+				E98E1041257A4FD30018055B /* RestoreActions.swift in Sources */,
 				E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */,
 				E9284CF621308AE9006648C1 /* extensionsConfigurations.swift in Sources */,
 				A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */,
