@@ -77,12 +77,10 @@ extension MainWindowsController: NSToolbarDelegate {
             .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
-            .flexibleSpace,
             .executetasknow,
             .abort,
             .flexibleSpace,
             .userconfig,
-            .flexibleSpace,
         ]
     }
 
@@ -92,12 +90,10 @@ extension MainWindowsController: NSToolbarDelegate {
             .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
-            .flexibleSpace,
             .executetasknow,
             .abort,
             .flexibleSpace,
             .userconfig,
-            .flexibleSpace,
         ]
     }
 
