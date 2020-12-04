@@ -364,115 +364,8 @@ DQ
                         <rect key="contentRect" x="1705" y="-206" width="657" height="306"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
                         <toolbar key="toolbar" implicitIdentifier="51D9436B-B5BB-4558-9639-8FADD388211E" explicitIdentifier="MainWindowToolbar" autosavesConfiguration="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="V2V-E5-Ln9">
-                            <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="wiK-ZO-ZDm"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="zs6-ub-LOa"/>
-                                <toolbarItem implicitItemIdentifier="B5E3574F-49FC-4B87-AB6C-E16A6A0B55CC" label="abort" paletteLabel="abort" toolTip="Abort task..." image="abort" sizingBehavior="auto" id="7w4-6r-ai5">
-                                    <button key="view" verticalHuggingPriority="750" id="E8b-f3-qjc">
-                                        <rect key="frame" x="3" y="14" width="30" height="23"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="abort" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cJf-tX-r2H">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="abort:" target="Rv5-yv-lsc" id="96z-70-PlR"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="F434BB7C-3A58-4AC1-A72A-16FBB57E8A71" label="executetasknow" paletteLabel="executetasknow" toolTip="Execute selected tasks..." image="executetasknow" sizingBehavior="auto" id="OrH-Ty-gyv">
-                                    <button key="view" verticalHuggingPriority="750" id="WXA-Ge-ie7">
-                                        <rect key="frame" x="31" y="14" width="30" height="23"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="executetasknow" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2uR-Ky-UIF">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="executemultipleselectedindexes:" target="Rv5-yv-lsc" id="rTL-zJ-pEb"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8293EEA6-BE28-4C69-BA67-799461C73A1B" label="backupnow" paletteLabel="backupnow" toolTip="Execute all tasks now..." image="backupnow" sizingBehavior="auto" id="QmL-ZM-Xc4" userLabel="fastforward">
-                                    <button key="view" verticalHuggingPriority="750" id="RLS-j6-39I">
-                                        <rect key="frame" x="19" y="14" width="30" height="23"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="backupnow" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FO7-1O-swm">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="automaticbackup:" target="Rv5-yv-lsc" id="Wek-xe-vPf"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="AA95E30D-4DE8-4A4E-B394-8CEA8799709F" label="userconfig" paletteLabel="userconfig" toolTip="Display userconfiguration" image="userconfig" sizingBehavior="auto" id="VYu-Xf-XJc">
-                                    <button key="view" verticalHuggingPriority="750" id="XFU-nn-1H7">
-                                        <rect key="frame" x="17" y="14" width="30" height="23"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="userconfig" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dSB-ET-I4k">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="userconfiguration:" target="Rv5-yv-lsc" id="iJC-oh-sFc"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="765F24D4-7178-430E-BB1A-13B11A820F48" label="info" paletteLabel="info" toolTip="Display output from rsync singletasks..." image="report" sizingBehavior="auto" id="g1a-zY-Mpq">
-                                    <button key="view" verticalHuggingPriority="750" id="m61-s7-JMA">
-                                        <rect key="frame" x="0.0" y="14" width="30" height="23"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="report" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e2y-69-ZFN">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <connections>
-                                        <segue destination="mal-sc-mlY" kind="show" id="rJ6-3R-szv"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="9984F48F-97C0-4D13-9BA2-715406048804" label="totinfo" paletteLabel="totinfo" toolTip="Execute estimate and quickbackup for all tasks..." image="estimateandquickbackup" sizingBehavior="auto" id="v12-7x-cig">
-                                    <button key="view" verticalHuggingPriority="750" id="dsJ-ms-wHD">
-                                        <rect key="frame" x="6" y="14" width="30" height="23"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="estimateandquickbackup" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="En8-0i-Aoy">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="totinfo:" target="Rv5-yv-lsc" id="fLv-X2-VHR"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="31C698DB-35FE-46CA-863B-1240AE46611E" label="All" paletteLabel="All" toolTip="List all profiles and configurations..." image="allprofiles" sizingBehavior="auto" id="1Xq-6O-MUE">
-                                    <button key="view" verticalHuggingPriority="750" id="oI3-Sh-5SZ">
-                                        <rect key="frame" x="0.0" y="14" width="30" height="23"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="allprofiles" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mbP-Tc-gJr">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="allprofiles:" target="Rv5-yv-lsc" id="9SW-Oh-jrb"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                            </allowedToolbarItems>
-                            <defaultToolbarItems>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="g1a-zY-Mpq"/>
-                                <toolbarItem reference="1Xq-6O-MUE"/>
-                                <toolbarItem reference="zs6-ub-LOa"/>
-                                <toolbarItem reference="QmL-ZM-Xc4"/>
-                                <toolbarItem reference="v12-7x-cig"/>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="OrH-Ty-gyv"/>
-                                <toolbarItem reference="7w4-6r-ai5"/>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                                <toolbarItem reference="VYu-Xf-XJc"/>
-                                <toolbarItem reference="wiK-ZO-ZDm"/>
-                            </defaultToolbarItems>
+                            <allowedToolbarItems/>
+                            <defaultToolbarItems/>
                         </toolbar>
                         <connections>
                             <outlet property="delegate" destination="abu-zT-Ht4" id="Vof-bQ-lxm"/>
@@ -3064,21 +2957,12 @@ DQ
             <point key="canvasLocation" x="-2048" y="139"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rJ6-3R-szv"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
-        <image name="abort" width="48" height="48"/>
-        <image name="allprofiles" width="48" height="48"/>
-        <image name="backupnow" width="64" height="64"/>
         <image name="complete" width="48" height="48"/>
-        <image name="estimateandquickbackup" width="64" height="64"/>
-        <image name="executetasknow" width="64" height="64"/>
         <image name="menuapp" width="16" height="16"/>
         <image name="red" width="512" height="512"/>
         <image name="report" width="64" height="64"/>
         <image name="up" width="256" height="256"/>
-        <image name="userconfig" width="64" height="64"/>
     </resources>
 </document>
