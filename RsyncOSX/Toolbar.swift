@@ -14,7 +14,7 @@ extension NSToolbarItem.Identifier {
     static let allprofiles = NSToolbarItem.Identifier("allprofiles")
     static let backupnow = NSToolbarItem.Identifier("backupnow")
     static let estimateandquickbackup = NSToolbarItem.Identifier("estimateandquickbackup")
-    static let executetasknow = NSToolbarItem.Identifier("execute")
+    static let executetasknow = NSToolbarItem.Identifier("executetasknow")
     static let abort = NSToolbarItem.Identifier("abort")
     static let userconfig = NSToolbarItem.Identifier("userconfig")
 }

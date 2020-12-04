@@ -41,6 +41,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         self.presentAsModalWindow(self.allprofiles!)
     }
 
+    // Toolbar -  Find tasks and Execute backup
+    @IBAction func automaticbackup(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
+        self.presentAsSheet(self.viewControllerEstimating!)
+    }
+
     // Toolbar - Abort button
     @IBAction func abort(_: NSButton) {
         globalMainQueue.async { () -> Void in
@@ -68,6 +75,22 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     // Toolbar - Multiple select and execute
+    // Execute multipleselected tasks, only from main view
+    @IBAction func executemultipleselectedindexes(_: NSButton) {
+        guard self.checkforrsync() == false else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
+        guard self.indexes != nil else {
+            self.info.stringValue = Infoexecute().info(num: 6)
+            return
+        }
+        self.multipeselection = true
+        self.configurations?.remoteinfoestimation = nil
+        self.configurations?.estimatedlist = nil
+        globalMainQueue.async { () -> Void in
+            self.presentAsSheet(self.viewControllerRemoteInfo!)
+        }
+    }
+
     @IBAction func executetasknow(_: NSButton) {
         guard ViewControllerReference.shared.process == nil else { return }
         guard self.checkforrsync() == false else { return }
@@ -263,21 +286,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
                 self.singletask?.executesingletask()
             }
-        }
-    }
-
-    // Execute multipleselected tasks, only from main view
-    @IBAction func executemultipleselectedindexes(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        guard self.indexes != nil else {
-            self.info.stringValue = Infoexecute().info(num: 6)
-            return
-        }
-        self.multipeselection = true
-        self.configurations?.remoteinfoestimation = nil
-        self.configurations?.estimatedlist = nil
-        globalMainQueue.async { () -> Void in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
 
