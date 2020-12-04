@@ -164,15 +164,13 @@ extension ViewControllerMain: Fileerror {
 
 // Abort task from progressview
 extension ViewControllerMain: Abort {
-    // Abort any task
+    // Abort the task
     func abortOperations() {
         // Terminates the running process
-        if ViewControllerReference.shared.process != nil {
-            _ = InterruptProcess()
-            self.seterrorinfo(info: "Abort")
-            if self.configurations?.remoteinfoestimation != nil, self.configurations?.estimatedlist != nil {
-                self.configurations?.remoteinfoestimation = nil
-            }
+        _ = InterruptProcess()
+        self.seterrorinfo(info: "Abort")
+        if self.configurations?.remoteinfoestimation != nil, self.configurations?.estimatedlist != nil {
+            self.configurations?.remoteinfoestimation = nil
         }
         self.working.stopAnimation(nil)
         self.index = nil
@@ -180,7 +178,6 @@ extension ViewControllerMain: Abort {
 }
 
 // Extensions from here are used in newSingleTask
-
 extension ViewControllerMain: StartStopProgressIndicatorSingleTask {
     func startIndicatorExecuteTaskNow() {
         self.working.startAnimation(nil)
