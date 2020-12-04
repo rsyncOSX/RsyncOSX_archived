@@ -89,7 +89,8 @@ final class RemoteinfoEstimation: SetConfigurations {
             self.index = index
             self.outputprocess = OutputProcess()
             self.startstopProgressIndicatorDelegate?.start()
-            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+            let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+            estimation.startestimation()
         }
     }
 
@@ -101,6 +102,15 @@ final class RemoteinfoEstimation: SetConfigurations {
         self.records = [NSMutableDictionary]()
         self.configurations?.estimatedlist = [NSMutableDictionary]()
         self.startestimation()
+    }
+
+    deinit {
+        print("deinit estimation")
+        self.stackoftasktobeestimated = nil
+    }
+
+    func abort() {
+        self.stackoftasktobeestimated = nil
     }
 }
 
@@ -138,7 +148,9 @@ extension RemoteinfoEstimation {
         self.outputprocess = OutputProcessRsync()
         if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
             self.index = index
-            _ = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+            print("estimation")
+            let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+            estimation.startestimation()
         }
     }
 

@@ -25,7 +25,9 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     @IBOutlet var progress: NSProgressIndicator!
 
     @IBAction func abort(_: NSButton) {
+        self.remoteinfotask?.abort()
         self.abort()
+        self.remoteinfotask = nil
         self.closeview()
     }
 
@@ -45,6 +47,7 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     override func viewWillDisappear() {
         super.viewWillDisappear()
         self.diddissappear = true
+        self.remoteinfotask = nil
     }
 
     // Progress bars

@@ -100,6 +100,15 @@ final class QuickBackup: SetConfigurations {
         self.hiddenID = nil
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
     }
+
+    deinit {
+        print("deinit quickbackup")
+        self.stackoftasktobeexecuted = nil
+    }
+
+    func abort() {
+        self.stackoftasktobeexecuted = nil
+    }
 }
 
 extension QuickBackup {
@@ -107,8 +116,7 @@ extension QuickBackup {
         self.setcompleted()
         ViewControllerReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: self.outputprocess)
         ViewControllerReference.shared.completeoperation = nil
-        guard self.stackoftasktobeexecuted != nil else { return }
-        guard self.stackoftasktobeexecuted!.count > 0 else {
+        guard (self.stackoftasktobeexecuted?.count ?? 0) > 0 else {
             self.stackoftasktobeexecuted = nil
             self.hiddenID = nil
             self.reloadtableDelegate?.reloadtabledata()

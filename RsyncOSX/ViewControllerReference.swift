@@ -117,7 +117,16 @@ final class ViewControllerReference {
     // Check for network changes
     var monitornetworkconnection: Bool = false
     // Reference to the active process
-    var process: Process?
+    var process: Process? {
+        didSet {
+            if process == nil {
+                print("nil")
+            } else {
+                print("not nil")
+            }
+        }
+    }
+
     // Read JSON
     var json: Bool = false
     // Read plist, convert to JSON button enabled

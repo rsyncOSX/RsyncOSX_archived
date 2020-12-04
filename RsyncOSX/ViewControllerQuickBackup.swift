@@ -31,10 +31,9 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
 
     // Either abort or close
     @IBAction func abort(_: NSButton) {
-        if self.executing {
-            self.quickbackup = nil
-            self.abort()
-        }
+        self.quickbackup?.abort()
+        self.quickbackup = nil
+        self.abort()
         if (self.presentingViewController as? ViewControllerMain) != nil {
             self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
         } else if (self.presentingViewController as? ViewControllerSchedule) != nil {

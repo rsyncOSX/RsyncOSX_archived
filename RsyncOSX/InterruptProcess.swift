@@ -22,6 +22,7 @@ struct InterruptProcess {
         _ = Logging(output, true)
         ViewControllerReference.shared.process?.interrupt()
         ViewControllerReference.shared.process = nil
+        print("interrupt")
     }
 
     init(output: OutputProcess?) {
@@ -31,5 +32,6 @@ struct InterruptProcess {
         _ = Logging(output, true)
         ViewControllerReference.shared.process?.interrupt()
         ViewControllerReference.shared.process = nil
+        print("interrupt")
     }
 }
