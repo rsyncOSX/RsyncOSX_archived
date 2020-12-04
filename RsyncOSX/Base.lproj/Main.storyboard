@@ -294,25 +294,6 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-A0-aHr">
-                                <rect key="frame" x="31" y="359" width="35" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="menuapp" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Z6y-9e-b4T">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="rsyncosxsched:" target="Jpl-76-tew" id="Eeq-bN-GTw"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXa-DA-hNS">
-                                <rect key="frame" x="70" y="366" width="13" height="13"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HxN-48-tto">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gtd-43-tO6">
                                 <rect key="frame" x="13" y="180" width="97" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -325,15 +306,34 @@ DQ
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3H-39-w1p">
-                                <rect key="frame" x="31" y="298" width="46" height="40"/>
+                                <rect key="frame" x="20" y="348.5" width="36.5" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="report" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="UGg-cv-elN">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarBookmarksTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="UGg-cv-elN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <segue destination="mal-sc-mlY" kind="show" id="Aqn-sk-pa8"/>
                                 </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-A0-aHr">
+                                <rect key="frame" x="57" y="351" width="29" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="menuapp" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Z6y-9e-b4T">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rsyncosxsched:" target="Jpl-76-tew" id="Eeq-bN-GTw"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXa-DA-hNS">
+                                <rect key="frame" x="90" y="360" width="13" height="13"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HxN-48-tto">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2nI-S8-MCI"/>
@@ -2959,10 +2959,10 @@ DQ
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
+        <image name="NSTouchBarBookmarksTemplate" width="18" height="15"/>
         <image name="complete" width="48" height="48"/>
         <image name="menuapp" width="16" height="16"/>
         <image name="red" width="512" height="512"/>
-        <image name="report" width="64" height="64"/>
         <image name="up" width="256" height="256"/>
     </resources>
 </document>
