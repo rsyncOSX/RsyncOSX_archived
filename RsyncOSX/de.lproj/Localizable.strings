@@ -4,6 +4,9 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A zum Abbrechen oder Warten...";
 
+/* Toolbar */
+"Abort task..." = "Aufgabe abbrechen...";
+
 /* Snapshots */
 "Aborting delete operation..." = "Löschvorgang wird abgebrochen...";
 
@@ -148,7 +151,7 @@
 "Estimate" = "Schätzung";
 
 /* Execute */
-"Estimating..." = "Estimating...";
+"Estimating..." = "Schätzung...";
 
 /* Remote info */
 "Estimation completed" = "Schätzung abgeschlossen";
@@ -159,14 +162,23 @@
 /* Main */
 "Execute" = "Ausführen";
 
+/* Toolbar */
+"Execute all tasks now..." = "Alle Aufgaben jetzt ausführen...";
+
+/* Toolbar */
+"Execute estimate and quickbackup for all tasks..." = "Schätzung und Schnellsicherung für alle Aufgaben ausführen...";
+
+/* Toolbar */
+"Execute selected tasks..." = "Ausgewählte Tasks ausführen...";
+
 /* Restore */
 "Executing restore..." = "Wiederherstellung wird ausgeführt...";
 
 /* Execute */
-"Executing..." = "Executing...";
+"Executing..." = "Wird ausgeführt...";
 
 /* Sidebar */
-"Filelist" = "Filelist";
+"Filelist" = "Dateiliste";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Die Liste für Snapshot-Aufgaben könnte enorm sein?";
@@ -215,6 +227,9 @@
 
 /* plan */
 "last" = "zuletzt";
+
+/* Toolbar */
+"List all profiles and configurations..." = "Alle Profile und Konfigurationen auflisten...";
 
 /* No comment provided by engineer. */
 "Load" = "Laden";
@@ -290,7 +305,7 @@
 "once" = "einmal";
 
 /* Sidebar */
-"Once" = "Once";
+"Once" = "Einmalig";
 
 /* Sidebar */
 "Parameter" = "Parameter";
@@ -360,8 +375,8 @@
 /* Snapshots */
 "Seriously, enter a real number..." = "Ernsthaft, geben Sie eine echte Zahl ein...";
 
-/* Restore */
-"Simulated: execute full restore to temporary restore path" = "Simuliert: Führe vollständige Wiederherstellung auf temporären Wiederherstellungspfad aus";
+/* Toolbar */
+"Show userconfig..." = "Benutzerkonfiguration anzeigen...";
 
 /* Restore */
 "Simulated: execute restore of files to temporary restore path" = "Simuliert: Führe vollständige Wiederherstellung auf temporären Wiederherstellungspfad aus";
@@ -407,7 +422,7 @@
 "Tuesday" = "Dienstag";
 
 /* Sidebar */
-"Update" = "Update";
+"Update" = "Aktualisieren";
 
 /* plan */
 "Wednesday" = "Mittwoch";
@@ -416,7 +431,7 @@
 "weekly" = "wöchentlich";
 
 /* Sidebar */
-"Weekly" = "Weekly";
+"Weekly" = "Wöchentlich";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kannst nicht so viele löschen, maximal";

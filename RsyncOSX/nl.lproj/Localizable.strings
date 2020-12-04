@@ -4,6 +4,9 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A om af te breken of te wacht...";
 
+/* Toolbar */
+"Abort task..." = "Taak afbreken...";
+
 /* Snapshots */
 "Aborting delete operation..." = "Verwijderen operatie afbreken...";
 
@@ -148,7 +151,7 @@
 "Estimate" = "Schatting";
 
 /* Execute */
-"Estimating..." = "Estimating...";
+"Estimating..." = "Schatting...";
 
 /* Remote info */
 "Estimation completed" = "Schatting voltooid";
@@ -159,14 +162,23 @@
 /* Main */
 "Execute" = "Uitvoeren";
 
+/* Toolbar */
+"Execute all tasks now..." = "Alle taken nu uitvoeren...";
+
+/* Toolbar */
+"Execute estimate and quickbackup for all tasks..." = "Schatting en snelle back-up uitvoeren voor alle taken...";
+
+/* Toolbar */
+"Execute selected tasks..." = "Geselecteerde taken uitvoeren...";
+
 /* Restore */
 "Executing restore..." = "Herstellen uitvoeren...";
 
 /* Execute */
-"Executing..." = "Executing...";
+"Executing..." = "Uitvoeren...";
 
 /* Sidebar */
-"Filelist" = "Filelist";
+"Filelist" = "Bestandenlijst";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Bestandslijst voor snapshot taken kan enorm zijn?";
@@ -215,6 +227,9 @@
 
 /* plan */
 "last" = "laatste";
+
+/* Toolbar */
+"List all profiles and configurations..." = "Alle profielen en configuraties weergeven...";
 
 /* No comment provided by engineer. */
 "Load" = "Belasting";
@@ -290,10 +305,10 @@
 "once" = "eenmalig";
 
 /* Sidebar */
-"Once" = "Once";
+"Once" = "Eenmalig";
 
 /* Sidebar */
-"Parameter" = "Parameter";
+"Parameter" = "Masker";
 
 /* Logg */
 "PLIST file exists: " = "PLIST bestand bestaat: ";
@@ -314,13 +329,13 @@
 "Reboot" = "Herstarten";
 
 /* Sidebar */
-"Remote" = "Remote";
+"Remote" = "Extern";
 
 /* Tooltip */
 "Remote catalog:" = "Afzonderlijke catalogus:";
 
 /* Sidebar */
-"Reset" = "Reset";
+"Reset" = "Herstellen";
 
 /* Restore
    Sidebar */
@@ -360,8 +375,8 @@
 /* Snapshots */
 "Seriously, enter a real number..." = "Serieus, voer een reëel nummer in...";
 
-/* Restore */
-"Simulated: execute full restore to temporary restore path" = "Simuleren: volledige herstel uitvoeren naar tijdelijke herstel pad";
+/* Toolbar */
+"Show userconfig..." = "Toon gebruikerconfig...";
 
 /* Restore */
 "Simulated: execute restore of files to temporary restore path" = "Simuleren: volledige herstel uitvoeren naar tijdelijke herstel pad";
@@ -407,7 +422,7 @@
 "Tuesday" = "dinsdag";
 
 /* Sidebar */
-"Update" = "Update";
+"Update" = "Vernieuwen";
 
 /* plan */
 "Wednesday" = "woensdag";
@@ -416,7 +431,7 @@
 "weekly" = "wekelijks";
 
 /* Sidebar */
-"Weekly" = "Weekly";
+"Weekly" = "Wekelijks";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "U kunt niet verwijderen zoveel max.";

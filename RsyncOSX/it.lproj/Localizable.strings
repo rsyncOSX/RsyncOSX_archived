@@ -4,6 +4,9 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A per interrompere oppure attendere...";
 
+/* Toolbar */
+"Abort task..." = "Interrompi attività...";
+
 /* Snapshots */
 "Aborting delete operation..." = "Interruzione operazione cancellata...";
 
@@ -148,7 +151,7 @@
 "Estimate" = "Stima";
 
 /* Execute */
-"Estimating..." = "Estimating...";
+"Estimating..." = "Stima...";
 
 /* Remote info */
 "Estimation completed" = "Stima completata";
@@ -159,14 +162,23 @@
 /* Main */
 "Execute" = "Esegui";
 
+/* Toolbar */
+"Execute all tasks now..." = "Esegui tutte le attività adesso...";
+
+/* Toolbar */
+"Execute estimate and quickbackup for all tasks..." = "Esegui una stima ed un backup rapido per tutti i compiti...";
+
+/* Toolbar */
+"Execute selected tasks..." = "Esegui attività contrassegnate batch...";
+
 /* Restore */
 "Executing restore..." = "Esecuzione del ripristino...";
 
 /* Execute */
-"Executing..." = "Executing...";
+"Executing..." = "Esecuzione...";
 
 /* Sidebar */
-"Filelist" = "Filelist";
+"Filelist" = "Lista File";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "La lista dei file per le attività istantanee potrebbe essere enorme?";
@@ -215,6 +227,9 @@
 
 /* plan */
 "last" = "ultimo";
+
+/* Toolbar */
+"List all profiles and configurations..." = "Elenca tutti i profili e le configurazioni...";
 
 /* No comment provided by engineer. */
 "Load" = "Carica";
@@ -290,10 +305,10 @@
 "once" = "una sola volta";
 
 /* Sidebar */
-"Once" = "Once";
+"Once" = "Mai";
 
 /* Sidebar */
-"Parameter" = "Parameter";
+"Parameter" = "Parametri";
 
 /* Logg */
 "PLIST file exists: " = "File JSON esiste: ";
@@ -314,13 +329,13 @@
 "Reboot" = "Riavvio";
 
 /* Sidebar */
-"Remote" = "Remote";
+"Remote" = "Remoto";
 
 /* Tooltip */
 "Remote catalog:" = "Percorso remoto:";
 
 /* Sidebar */
-"Reset" = "Reset";
+"Reset" = "Ripristina";
 
 /* Restore
    Sidebar */
@@ -360,8 +375,8 @@
 /* Snapshots */
 "Seriously, enter a real number..." = "Scherzi a parte, inserisci un numero reale...";
 
-/* Restore */
-"Simulated: execute full restore to temporary restore path" = "Simulato: esegui il ripristino completo al percorso di ripristino temporaneo";
+/* Toolbar */
+"Show userconfig..." = "Mostra userconfig...";
 
 /* Restore */
 "Simulated: execute restore of files to temporary restore path" = "Simulato: esegui il ripristino dei file per ripristinare temporaneamente il percorso";
@@ -407,7 +422,7 @@
 "Tuesday" = "Martedì";
 
 /* Sidebar */
-"Update" = "Update";
+"Update" = "Aggiorna";
 
 /* plan */
 "Wednesday" = "Mercoledì";
@@ -416,7 +431,7 @@
 "weekly" = "settimanale";
 
 /* Sidebar */
-"Weekly" = "Weekly";
+"Weekly" = "Settimanale";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Non è possibile eliminare così tante istantanee, limite raggiunto";

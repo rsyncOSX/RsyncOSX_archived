@@ -4,6 +4,9 @@
 /* Execute */
 "⌘A to abort or wait..." = "⌘A for å avslutte eller vent...";
 
+/* Toolbar */
+"Abort task..." = "Avslutt oppgave...";
+
 /* Snapshots */
 "Aborting delete operation..." = "Avslutter slette operasjon...";
 
@@ -148,7 +151,7 @@
 "Estimate" = "Estimer";
 
 /* Execute */
-"Estimating..." = "Estimating...";
+"Estimating..." = "Estimer...";
 
 /* Remote info */
 "Estimation completed" = "Estimering ferdig";
@@ -159,14 +162,23 @@
 /* Main */
 "Execute" = "Utfør";
 
+/* Toolbar */
+"Execute all tasks now..." = "Utfør alle oppgaver nå...";
+
+/* Toolbar */
+"Execute estimate and quickbackup for all tasks..." = "Utfør estimat og quickbackup for alle oppgaver...";
+
+/* Toolbar */
+"Execute selected tasks..." = "Utfør valgt oppgaver...";
+
 /* Restore */
 "Executing restore..." = "Utfører gjenopprett...";
 
 /* Execute */
-"Executing..." = "Executing...";
+"Executing..." = "Utfører...";
 
 /* Sidebar */
-"Filelist" = "Filelist";
+"Filelist" = "Filliste";
 
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Liste over filer i snapshot oppgaver kan være stor?";
@@ -215,6 +227,9 @@
 
 /* plan */
 "last" = "siste";
+
+/* Toolbar */
+"List all profiles and configurations..." = "List alle profiler og konfigurasjoner...";
 
 /* No comment provided by engineer. */
 "Load" = "Last";
@@ -290,7 +305,7 @@
 "once" = "engang";
 
 /* Sidebar */
-"Once" = "Once";
+"Once" = "Engang";
 
 /* Sidebar */
 "Parameter" = "Parameter";
@@ -314,7 +329,7 @@
 "Reboot" = "Omstart";
 
 /* Sidebar */
-"Remote" = "Remote";
+"Remote" = "Ekstern";
 
 /* Tooltip */
 "Remote catalog:" = "Ekstern katalog:";
@@ -360,8 +375,8 @@
 /* Snapshots */
 "Seriously, enter a real number..." = "Seriøst, legg inn et nummer...";
 
-/* Restore */
-"Simulated: execute full restore to temporary restore path" = "Simulert: utfør full gjenopprett til midlertidig sti for gjenopprett";
+/* Toolbar */
+"Show userconfig..." = "Vis brukerkonfigurasjon...";
 
 /* Restore */
 "Simulated: execute restore of files to temporary restore path" = "Simulert: utfør gjenopprett av filer til midlertidig sti for gjenopprett";
@@ -407,7 +422,7 @@
 "Tuesday" = "tirsdag";
 
 /* Sidebar */
-"Update" = "Update";
+"Update" = "Oppdater";
 
 /* plan */
 "Wednesday" = "onsdag";
@@ -416,7 +431,7 @@
 "weekly" = "ukentlig";
 
 /* Sidebar */
-"Weekly" = "Weekly";
+"Weekly" = "Ukentlig";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
