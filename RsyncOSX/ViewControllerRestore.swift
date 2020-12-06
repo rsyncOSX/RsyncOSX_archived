@@ -115,11 +115,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func executerestorefiles() {
         guard self.restoreactions?.goforrestorefilestotemporarypath() ?? false else { return }
         guard self.restorefilestask != nil else { return }
-        guard (self.restoreactions?.executerealrestore ?? false) == true else {
-            self.infolabel.isHidden = false
-            self.infolabel.stringValue = NSLocalizedString("Simulated: execute restore of files to temporary restore path", comment: "Restore")
-            return
-        }
         self.restorefilestask?.executecopyfiles(remotefile: self.remotefiles.stringValue, localCatalog: self.tmprestorepath.stringValue, dryrun: false)
         self.outputprocess = self.restorefilestask?.outputprocess
         globalMainQueue.async { () -> Void in

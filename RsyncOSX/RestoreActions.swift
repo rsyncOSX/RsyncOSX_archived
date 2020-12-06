@@ -21,8 +21,6 @@ struct RestoreActions {
     var restorefiles: Bool = false
     // Remote file if restore files
     var remotefileverified: Bool = false
-    // Do the real thing
-    var executerealrestore: Bool = false
 
     init(closure: () -> Bool) {
         self.tmprestorepathverified = closure()
