@@ -65,7 +65,8 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         }
     }
 
-    private func getremotesizes() {
+    @objc
+    func getremotesizes() {
         if let index = self.index {
             guard ViewControllerReference.shared.process == nil else { return }
             if let dict = self.allprofiles?.allconfigurationsasdictionary?[index] {
@@ -90,7 +91,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         self.mainTableView.dataSource = self
         self.search.delegate = self
         self.mainTableView.target = self
-        self.mainTableView.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
+        self.mainTableView.doubleAction = #selector(self.getremotesizes)
         self.working.usesThreadedAnimation = true
     }
 
@@ -116,10 +117,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
-    }
-
-    @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
-        self.getremotesizes()
     }
 
     func initpopupbutton() {

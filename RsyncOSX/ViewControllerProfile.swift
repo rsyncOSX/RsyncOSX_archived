@@ -66,7 +66,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, Delay {
         self.profilesTable.dataSource = self
         self.profilesTable.target = self
         self.newprofile.delegate = self
-        self.profilesTable.doubleAction = #selector(ViewControllerProfile.tableViewDoubleClick(sender:))
+        self.profilesTable.doubleAction = #selector(self.tableViewDoubleClick(sender:))
     }
 
     override func viewDidAppear() {
