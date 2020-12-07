@@ -20,7 +20,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     @IBOutlet var search: NSSearchField!
     @IBOutlet var sortdirection: NSButton!
     @IBOutlet var numberOfprofiles: NSTextField!
-    @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     var allprofiles: AllConfigurations?
@@ -65,34 +64,12 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         }
     }
 
-    @objc
-    func getremotesizes() {
-        if let index = self.index {
-            guard ViewControllerReference.shared.process == nil else { return }
-            if let dict = self.allprofiles?.allconfigurationsasdictionary?[index] {
-                self.outputprocess = OutputProcess()
-                let config = Configuration(dictionary: dict)
-                guard self.connected(config: config) == true else { return }
-                let duargs = DuArgumentsSsh(config: config)
-                guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
-                self.working.startAnimation(nil)
-                self.command = OtherProcessCmdClosure(command: duargs.getCommand(),
-                                                      arguments: duargs.getArguments(),
-                                                      processtermination: self.processtermination,
-                                                      filehandler: self.filehandler)
-                self.command?.executeProcess(outputprocess: self.outputprocess)
-            }
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.search.delegate = self
         self.mainTableView.target = self
-        self.mainTableView.doubleAction = #selector(self.getremotesizes)
-        self.working.usesThreadedAnimation = true
     }
 
     override func viewDidAppear() {
@@ -203,7 +180,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             self.filterby = .offsitecatalog
         case 6:
             self.filterby = .offsiteserver
-        case 10, 11:
+        case 7, 8:
             sortbystring = false
             self.filterby = .executedate
         default:
@@ -248,29 +225,6 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
             self.allprofiles = AllConfigurations()
             self.mainTableView.reloadData()
         }
-    }
-}
-
-extension ViewControllerAllProfiles {
-    func processtermination() {
-        self.working.stopAnimation(nil)
-        guard ViewControllerReference.shared.process != nil else { return }
-        let numbers = RemoteNumbers(outputprocess: self.outputprocess)
-        if let index = self.index {
-            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getused(), forKey: DictionaryStrings.used.rawValue)
-            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getavail(), forKey: DictionaryStrings.avail.rawValue)
-            self.allprofiles?.allconfigurationsasdictionary?[index].setValue(numbers.getpercentavaliable(),
-                                                                             forKey: DictionaryStrings.availpercent.rawValue)
-        }
-        globalMainQueue.async { () -> Void in
-            self.mainTableView.reloadData()
-        }
-        // Release the command object
-        self.command = nil
-    }
-
-    func filehandler() {
-        //
     }
 }
 
