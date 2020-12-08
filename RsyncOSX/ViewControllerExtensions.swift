@@ -362,10 +362,10 @@ extension Sorting {
         dateformatter.formatterBehavior = .behavior10_4
         dateformatter.dateStyle = .medium
         dateformatter.timeStyle = .short
-        let sorted = notsortedlist?.sorted { (dict1, dict2) -> Bool in
-            if let date1localized = dateformatter.date(from: (dict1.value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String) ?? "") {
-                if let date2localized = dateformatter.date(from: (dict2.value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String) ?? "") {
-                    if date1localized.timeIntervalSince(date2localized) > 0 {
+        let sorted = notsortedlist?.sorted { (d1, d2) -> Bool in
+            if let d1 = dateformatter.date(from: (d1.value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String) ?? "") {
+                if let d2 = dateformatter.date(from: (d2.value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String) ?? "") {
+                    if d1.timeIntervalSince(d2) > 0 {
                         return sortdirection
                     } else {
                         return !sortdirection
@@ -380,12 +380,11 @@ extension Sorting {
     }
 
     func sortbystring(notsortedlist: [NSMutableDictionary]?, sortby: Sortandfilter?, sortdirection: Bool) -> [NSMutableDictionary]? {
-        let sortstring = self.filterbystring(filterby: sortby)
-        let sorted = notsortedlist?.sorted { (dict1, dict2) -> Bool in
-            if let dict1 = dict1.value(forKey: sortstring) as? String,
-               let dict2 = dict2.value(forKey: sortstring) as? String
+        let sorted = notsortedlist?.sorted { (d1, d2) -> Bool in
+            if let d1 = d1.value(forKey: self.filterbystring(filterby: sortby)) as? String,
+               let d2 = d2.value(forKey: self.filterbystring(filterby: sortby)) as? String
             {
-                if dict1 > dict2 { return sortdirection } else { return !sortdirection }
+                if d1 > d2 { return sortdirection } else { return !sortdirection }
             }
             return false
         }
