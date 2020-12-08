@@ -399,7 +399,7 @@ extension Sorting {
         case .profile:
             return DictionaryStrings.profile.rawValue
         case .offsitecatalog:
-            return DictionaryStrings.remoteCatalog.rawValue
+            return DictionaryStrings.offsiteCatalog.rawValue
         case .offsiteserver:
             return DictionaryStrings.offsiteServer.rawValue
         case .task:
