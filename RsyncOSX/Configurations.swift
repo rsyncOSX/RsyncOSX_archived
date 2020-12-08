@@ -23,7 +23,7 @@ class Configurations: ReloadTable, SetSchedules {
     // Initialized during startup
     var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // Datasource for NSTableViews
-    var configurationsDataSource: [NSMutableDictionary]?
+    // var configurationsDataSource: [NSMutableDictionary]?
     // backup list from remote info view
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
@@ -80,12 +80,6 @@ class Configurations: ReloadTable, SetSchedules {
     // Function for getting arguments for all Configurations read into memory
     func getargumentAllConfigurations() -> [ArgumentsOneConfiguration]? {
         return self.argumentAllConfigurations
-    }
-
-    // Function for getting Configurations read into memory
-    // as datasource for tableViews
-    func getConfigurationsDataSource() -> [NSDictionary]? {
-        return self.configurationsDataSource
     }
 
     // Function for getting all Configurations
@@ -304,12 +298,10 @@ class Configurations: ReloadTable, SetSchedules {
         self.profile = profile
         self.configurations = nil
         self.argumentAllConfigurations = nil
-        self.configurationsDataSource = nil
         // Read and prepare configurations and rsync parameters
         let configurationsdata = ConfigurationsData(profile: profile)
         self.configurations = configurationsdata.configurations
         self.argumentAllConfigurations = configurationsdata.argumentAllConfigurations
-        self.configurationsDataSource = configurationsdata.configurationsDataSource
         self.validhiddenID = configurationsdata.validhiddenID
         ViewControllerReference.shared.process = nil
     }
