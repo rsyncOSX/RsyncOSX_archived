@@ -46,6 +46,7 @@
 		E84C89262529BB1500381618 /* AssistDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84C89252529BB1500381618 /* AssistDefault.swift */; };
 		E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E091721BD29A3006BD293 /* Tagsnapshots.swift */; };
 		E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */; };
+		E8783FAD2580B25900E0D485 /* ConfigurationsAsDictionarys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8783FAC2580B25900E0D485 /* ConfigurationsAsDictionarys.swift */; };
 		E8C2866923C6362F0032DCE0 /* Validatenewconfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */; };
 		E8C82BC92573D639001420C4 /* SheetViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C82BCB2573D639001420C4 /* SheetViews.storyboard */; };
 		E8EC68F82576909400A71383 /* MainWindowsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC68F72576909400A71383 /* MainWindowsController.swift */; };
@@ -230,6 +231,7 @@
 		E84C89252529BB1500381618 /* AssistDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistDefault.swift; sourceTree = "<group>"; };
 		E84E091721BD29A3006BD293 /* Tagsnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagsnapshots.swift; sourceTree = "<group>"; };
 		E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backupconfigfiles.swift; sourceTree = "<group>"; };
+		E8783FAC2580B25900E0D485 /* ConfigurationsAsDictionarys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsAsDictionarys.swift; sourceTree = "<group>"; };
 		E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatenewconfigs.swift; sourceTree = "<group>"; };
 		E8C82BCA2573D639001420C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SheetViews.storyboard; sourceTree = "<group>"; };
 		E8C82BCD2573D646001420C4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SheetViews.strings"; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 				E97E3BA61F6256DB00411D0E /* Configurations.swift */,
 				E9231AFA1F6E3D260055000C /* NewConfigurations.swift */,
 				E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */,
+				E8783FAC2580B25900E0D485 /* ConfigurationsAsDictionarys.swift */,
 			);
 			name = Configurations;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */,
 				E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */,
 				E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */,
+				E8783FAD2580B25900E0D485 /* ConfigurationsAsDictionarys.swift in Sources */,
 				E9196FDF2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift in Sources */,
 				E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */,
 				E9FE50BD2527765C00076447 /* ConvertAssist.swift in Sources */,
