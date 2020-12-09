@@ -350,6 +350,17 @@ extension ChangeTemporaryRestorePath {
     }
 }
 
+extension Sequence {
+    func sorted<T: Comparable>(
+        by keyPath: KeyPath<Element, T>,
+        using comparator: (T, T) -> Bool = (<)
+    ) -> [Element] {
+        sorted { a, b in
+            comparator(a[keyPath: keyPath], b[keyPath: keyPath])
+        }
+    }
+}
+
 // Protocol for sorting
 protocol Sorting {
     func sortbydate(notsortedlist: [NSMutableDictionary]?, sortdirection: Bool) -> [NSMutableDictionary]?
@@ -411,17 +422,6 @@ extension Sorting {
             return DictionaryStrings.dateExecuted.rawValue
         default:
             return ""
-        }
-    }
-}
-
-extension Sequence {
-    func sorted<T: Comparable>(
-        by keyPath: KeyPath<Element, T>,
-        using comparator: (T, T) -> Bool = (<)
-    ) -> [Element] {
-        sorted { a, b in
-            comparator(a[keyPath: keyPath], b[keyPath: keyPath])
         }
     }
 }

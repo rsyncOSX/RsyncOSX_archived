@@ -69,6 +69,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         self.initpopupbutton()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
         self.allconfigurations = AllConfigurations()
+        self.configurations = self.allconfigurations?.allconfigurations
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
@@ -126,7 +127,6 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
             if let object = self.configurations?[row] {
                 let hiddenID = object.hiddenID
                 let profile = object.profile ?? NSLocalizedString("Default profile", comment: "default profile")
-                print(tableColumn.identifier.rawValue)
                 switch tableColumn.identifier.rawValue {
                 case "intime":
                     let taskintime: String? = self.allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: true)
@@ -153,6 +153,12 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
                     return object.offsiteCatalog
                 case "offsiteServer":
                     return object.offsiteServer
+                case "daysID":
+                    return object.dayssincelastbackup
+                case "task":
+                    return object.task
+                case "dateExecuted":
+                    return object.dateRun
                 default:
                     return nil
                 }
