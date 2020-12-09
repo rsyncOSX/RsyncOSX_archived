@@ -1,3 +1,5 @@
+// swiftlint:disable line_length
+
 import Foundation
 
 final class FullrestoreTask: SetConfigurations {

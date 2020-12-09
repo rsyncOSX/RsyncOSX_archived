@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 04.03.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable trailing_comma
 
 import Foundation
 
@@ -18,7 +17,7 @@ final class AllConfigurations: Sorting {
         for i in 0 ..< (self.allprofiles?.count ?? 0) {
             let profile = self.allprofiles?[i]
             if self.allconfigurations == nil {
-                self.allconfigurations = []
+                self.allconfigurations = [Configuration]()
             }
             if profile == NSLocalizedString("Default profile", comment: "default profile") {
                 configurations = PersistentStorageAllprofilesAPI(profile: nil).getallconfigurations()
@@ -35,20 +34,8 @@ final class AllConfigurations: Sorting {
         }
     }
 
-    func sorttest(data: [Configuration], type: Int) -> [Configuration]? {
-        switch type {
-        case 0:
-            return data.sorted(by: \.backupID, using: >)
-        case 1:
-            return data.sorted(by: \.offsiteCatalog, using: >)
-        default:
-            return data.sorted(by: \.dateRun!, using: >)
-        }
-    }
-
     init() {
         self.allprofiles = AllProfilenames().allprofiles
         self.readallconfigurations()
-        // self.setConfigurationsDataSourcecountBackupSnapshot()
     }
 }
