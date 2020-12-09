@@ -247,7 +247,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     self.selectplan.isEnabled = false
                     self.selectdayofweek.isEnabled = false
                     self.info.stringValue = Infosnapshots().info(num: 0)
-                    let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
+                    let hiddenID = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
                     self.index = self.configurations?.getIndex(hiddenID)
                     self.getsourcebyindex(index: hiddenID)
                 }
@@ -406,7 +406,7 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
             self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0)
             return self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0
         } else {
-            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
     }
 }
@@ -414,8 +414,8 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
 extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableView == self.rsynctableView {
-            guard row < (self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0) else { return nil }
-            if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row] {
+            guard row < (ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? 0) else { return nil }
+            if let object: NSDictionary = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[row] {
                 return object[tableColumn!.identifier] as? String
             } else {
                 return nil

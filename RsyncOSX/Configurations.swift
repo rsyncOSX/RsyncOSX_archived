@@ -22,8 +22,6 @@ class Configurations: ReloadTable, SetSchedules {
     // Array to store argumenst for all tasks.
     // Initialized during startup
     var argumentAllConfigurations: [ArgumentsOneConfiguration]?
-    // Datasource for NSTableViews
-    // var configurationsDataSource: [NSMutableDictionary]?
     // backup list from remote info view
     var quickbackuplist: [Int]?
     // Estimated backup list, all backups
@@ -80,31 +78,6 @@ class Configurations: ReloadTable, SetSchedules {
     // Function for getting arguments for all Configurations read into memory
     func getargumentAllConfigurations() -> [ArgumentsOneConfiguration]? {
         return self.argumentAllConfigurations
-    }
-
-    // Function for getting all Configurations
-    func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
-        guard self.configurations != nil else { return nil }
-        var configurations = self.configurations?.filter {
-            ViewControllerReference.shared.synctasks.contains($0.task)
-        }
-        var data = [NSMutableDictionary]()
-        for i in 0 ..< (configurations?.count ?? 0) {
-            if configurations?[i].offsiteServer.isEmpty == true {
-                configurations?[i].offsiteServer = DictionaryStrings.localhost.rawValue
-            }
-            if let config = self.configurations?[i] {
-                let row: NSMutableDictionary = ConvertOneConfig(config: config).dict
-                if self.quickbackuplist != nil {
-                    let quickbackup = self.quickbackuplist!.filter { $0 == config.hiddenID }
-                    if quickbackup.count > 0 {
-                        row.setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
-                    }
-                }
-                data.append(row)
-            }
-        }
-        return data
     }
 
     func uniqueserversandlogins() -> [NSDictionary]? {
