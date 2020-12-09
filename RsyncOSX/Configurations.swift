@@ -95,7 +95,6 @@ class Configurations: ReloadTable, SetSchedules {
             }
             if let config = self.configurations?[i] {
                 let row: NSMutableDictionary = ConvertOneConfig(config: config).dict
-
                 if self.quickbackuplist != nil {
                     let quickbackup = self.quickbackuplist!.filter { $0 == config.hiddenID }
                     if quickbackup.count > 0 {

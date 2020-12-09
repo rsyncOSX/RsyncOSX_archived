@@ -9,9 +9,6 @@
 import Foundation
 
 struct ConfigurationsAsDictionarys: SetConfigurations {
-    
-    var quickbackuplist: [Int]?
-    
     // Function for getting all Configurations
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
         guard self.configurations != nil else { return nil }
@@ -26,8 +23,8 @@ struct ConfigurationsAsDictionarys: SetConfigurations {
             if let config = self.configurations?.configurations?[i] {
                 let row: NSMutableDictionary = ConvertOneConfig(config: config).dict
 
-                if self.quickbackuplist != nil {
-                    let quickbackup = self.quickbackuplist?.filter { $0 == config.hiddenID }
+                if self.configurations?.quickbackuplist != nil {
+                    let quickbackup = self.configurations?.quickbackuplist?.filter { $0 == config.hiddenID }
                     if (quickbackup?.count ?? 0) > 0 {
                         row.setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
                     }
