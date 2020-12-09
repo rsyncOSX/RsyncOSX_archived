@@ -23,7 +23,7 @@ class Configurations: ReloadTable, SetSchedules {
     // Initialized during startup
     var argumentAllConfigurations: [ArgumentsOneConfiguration]?
     // backup list from remote info view
-    var quickbackuplist: [Int]?
+    // var quickbackuplist: [Int]?
     // Estimated backup list, all backups
     var estimatedlist: [NSMutableDictionary]?
     // remote and local info

@@ -66,21 +66,44 @@ final class RemoteinfoEstimation: SetConfigurations {
         }
     }
 
+    /*
+     func setbackuplist(list: [NSMutableDictionary]) {
+         self.configurations?.quickbackuplist = [Int]()
+         for i in 0 ..< list.count {
+             self.configurations?.quickbackuplist!.append((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
+         }
+     }
+
+     func setbackuplist() {
+         guard self.records != nil else { return }
+         self.configurations?.quickbackuplist = [Int]()
+         for i in 0 ..< (self.records?.count ?? 0) {
+             if self.records![i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
+                 self.configurations?.quickbackuplist?.append((self.records![i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
+             }
+         }
+     }
+     */
+
     func setbackuplist(list: [NSMutableDictionary]) {
-        self.configurations?.quickbackuplist = [Int]()
+        var quickbackuplist = [Int]()
         for i in 0 ..< list.count {
-            self.configurations?.quickbackuplist!.append((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
+            if let hiddenID = list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
+                quickbackuplist.append(hiddenID)
+            }
         }
+        let test = ConfigurationsAsDictionarys(quickbackuplist: quickbackuplist)
     }
 
     func setbackuplist() {
         guard self.records != nil else { return }
-        self.configurations?.quickbackuplist = [Int]()
+        var quickbackuplist = [Int]()
         for i in 0 ..< (self.records?.count ?? 0) {
             if self.records![i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
-                self.configurations?.quickbackuplist?.append((self.records![i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
+                quickbackuplist.append((self.records![i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
             }
         }
+        let test = ConfigurationsAsDictionarys(quickbackuplist: quickbackuplist)
     }
 
     private func startestimation() {
