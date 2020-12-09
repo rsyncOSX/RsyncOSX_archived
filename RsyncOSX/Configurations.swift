@@ -22,14 +22,8 @@ class Configurations: ReloadTable, SetSchedules {
     // Array to store argumenst for all tasks.
     // Initialized during startup
     var argumentAllConfigurations: [ArgumentsOneConfiguration]?
-    // backup list from remote info view
-    // var quickbackuplist: [Int]?
-    // Estimated backup list, all backups
-    // var estimatedlist: [NSMutableDictionary]?
     // remote and local info
     var localremote: [NSDictionary]?
-    // remote info tasks
-    var remoteinfoestimation: RemoteinfoEstimation?
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
     // valid hiddenIDs
@@ -57,15 +51,6 @@ class Configurations: ReloadTable, SetSchedules {
         return 0
     }
 
-    /*
-     func setestimatedlistnil() -> Bool {
-         if (self.estimatedlist?.count ?? 0) == (self.configurations?.count ?? 0) {
-             return false
-         } else {
-             return true
-         }
-     }
-     */
     // Function for getting the profile
     func getProfile() -> String? {
         return self.profile

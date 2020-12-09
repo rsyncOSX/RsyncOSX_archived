@@ -64,7 +64,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Toolbar - Estimate and Quickbackup
     @IBAction func totinfo(_: NSButton) {
         guard self.checkforrsync() == false else { return }
-        self.configurations?.remoteinfoestimation = nil
         self.multipeselection = false
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
@@ -81,7 +80,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         self.multipeselection = true
-        self.configurations?.remoteinfoestimation = nil
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
@@ -236,7 +234,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.multipeselection = false
-        self.configurations?.remoteinfoestimation = nil
     }
 
     func reset() {

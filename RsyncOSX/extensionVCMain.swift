@@ -167,7 +167,6 @@ extension ViewControllerMain: Abort {
     // Abort the task
     func abortOperations() {
         _ = InterruptProcess()
-        self.configurations?.remoteinfoestimation = nil
         self.working.stopAnimation(nil)
         self.index = nil
         self.info.stringValue = ""
@@ -234,16 +233,6 @@ extension ViewControllerMain: ErrorOutput {
 extension ViewControllerMain: SendOutputProcessreference {
     func sendoutputprocessreference(outputprocess: OutputProcess?) {
         self.outputprocess = outputprocess
-    }
-}
-
-extension ViewControllerMain: SetRemoteInfo {
-    func getremoteinfo() -> RemoteinfoEstimation? {
-        return self.configurations?.remoteinfoestimation
-    }
-
-    func setremoteinfo(remoteinfotask: RemoteinfoEstimation?) {
-        self.configurations?.remoteinfoestimation = remoteinfotask
     }
 }
 

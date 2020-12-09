@@ -84,7 +84,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcremoteinfo, nsviewcontroller: self)
-        self.remoteinfotaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if let remoteinfotask = self.remoteinfotaskDelegate?.getremoteinfo() {
             self.remoteestimatedlist = remoteinfotask
             self.loaded = true
