@@ -146,7 +146,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
                         return ""
                     }
                 case "profile":
-                    return object.profile
+                    return object.profile ?? ""
                 case "localCatalog":
                     return object.localCatalog
                 case "offsiteCatalog":
@@ -158,7 +158,7 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
                 case "task":
                     return object.task
                 case "dateExecuted":
-                    return object.dateRun
+                    return object.dateRun ?? ""
                 default:
                     return nil
                 }
@@ -188,29 +188,18 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         case 0:
             self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.profile!, using: comp)
         case 3:
-            self.filterby = .task
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.task, using: comp)
         case 4:
-            self.filterby = .localcatalog
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.localCatalog, using: comp)
         case 5:
-            self.filterby = .offsitecatalog
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
         case 6:
-            self.filterby = .offsiteserver
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
         case 7, 8:
-            self.filterby = .executedate
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.dateRun!, using: comp)
         default:
             return
         }
-        /*
-                if sortbystring {
-                    self.allprofiles?.allconfigurationsasdictionary =
-                        self.allprofiles?.sortbystring(notsortedlist: self.allprofiles?.allconfigurationsasdictionary,
-                                                       sortby: self.filterby!, sortdirection: self.sortascending)
-                } else {
-                    self.allprofiles?.allconfigurationsasdictionary =
-                        self.allprofiles?.sortbydate(notsortedlist: self.allprofiles?.allconfigurationsasdictionary,
-                                                     sortdirection: self.sortascending)
-                }
-         */
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
