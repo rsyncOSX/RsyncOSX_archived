@@ -21,12 +21,13 @@ final class RemoteinfoEstimation: SetConfigurations {
     var stackoftasktobeestimated: [Row]?
     var outputprocess: OutputProcess?
     var records: [NSMutableDictionary]?
-    // weak var updateprogressDelegate: UpdateProgress?
     var updateviewprocesstermination: () -> Void
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
     weak var getmultipleselectedindexesDelegate: GetMultipleSelectedIndexes?
     var index: Int?
     private var maxnumber: Int?
+    // estimated list and other
+    var estimatedlistandconfigs: ConfigurationsAsDictionarys?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = [Row]()
@@ -66,44 +67,22 @@ final class RemoteinfoEstimation: SetConfigurations {
         }
     }
 
-    /*
-     func setbackuplist(list: [NSMutableDictionary]) {
-         self.configurations?.quickbackuplist = [Int]()
-         for i in 0 ..< list.count {
-             self.configurations?.quickbackuplist!.append((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
-         }
-     }
-
-     func setbackuplist() {
-         guard self.records != nil else { return }
-         self.configurations?.quickbackuplist = [Int]()
-         for i in 0 ..< (self.records?.count ?? 0) {
-             if self.records![i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
-                 self.configurations?.quickbackuplist?.append((self.records![i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
-             }
-         }
-     }
-     */
-
-    func setbackuplist(list: [NSMutableDictionary]) {
-        var quickbackuplist = [Int]()
-        for i in 0 ..< list.count {
-            if let hiddenID = list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
-                quickbackuplist.append(hiddenID)
-            }
-        }
-        let test = ConfigurationsAsDictionarys(quickbackuplist: quickbackuplist)
-    }
-
-    func setbackuplist() {
+    private func setbackuplist() {
         guard self.records != nil else { return }
         var quickbackuplist = [Int]()
+        var records = [NSMutableDictionary]()
         for i in 0 ..< (self.records?.count ?? 0) {
-            if self.records![i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
-                quickbackuplist.append((self.records![i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!)
+            if self.records?[i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
+                if let hiddenID = self.records?[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int,
+                   let record = self.records?[i]
+                {
+                    quickbackuplist.append(hiddenID)
+                    records.append(record)
+                }
             }
         }
-        let test = ConfigurationsAsDictionarys(quickbackuplist: quickbackuplist)
+        self.estimatedlistandconfigs = ConfigurationsAsDictionarys(quickbackuplist: quickbackuplist,
+                                                                   estimatedlist: records)
     }
 
     private func startestimation() {
@@ -123,16 +102,19 @@ final class RemoteinfoEstimation: SetConfigurations {
         self.getmultipleselectedindexesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
-        self.configurations?.estimatedlist = [NSMutableDictionary]()
+        self.estimatedlistandconfigs = ConfigurationsAsDictionarys()
         self.startestimation()
     }
 
     deinit {
         self.stackoftasktobeestimated = nil
+        self.estimatedlistandconfigs = nil
+        print("deinit RemoteinfoEstimation")
     }
 
     func abort() {
         self.stackoftasktobeestimated = nil
+        self.estimatedlistandconfigs = nil
     }
 }
 
@@ -158,10 +140,9 @@ extension RemoteinfoEstimation {
             record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteServer, forKey: DictionaryStrings.offsiteServer.rawValue)
         }
         self.records?.append(record)
-        self.configurations?.estimatedlist?.append(record)
+        self.estimatedlistandconfigs?.estimatedlist?.append(record)
         guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
             self.selectalltaskswithnumbers(deselect: false)
-            self.setbackuplist()
             self.startstopProgressIndicatorDelegate?.stop()
             return
         }

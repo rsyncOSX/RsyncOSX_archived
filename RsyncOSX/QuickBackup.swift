@@ -89,7 +89,7 @@ final class QuickBackup: SetConfigurations {
     }
 
     init() {
-        self.estimatedlist = self.configurations?.estimatedlist
+        // self.estimatedlist = self.configurations?.estimatedlist
         if self.estimatedlist != nil {
             self.sortedlist = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.filter { ($0.value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) == 1 }
             guard self.sortedlist!.count > 0 else { return }

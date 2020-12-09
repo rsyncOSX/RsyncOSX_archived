@@ -167,7 +167,6 @@ extension ViewControllerMain: Abort {
     // Abort the task
     func abortOperations() {
         _ = InterruptProcess()
-        self.configurations?.estimatedlist = nil
         self.configurations?.remoteinfoestimation = nil
         self.working.stopAnimation(nil)
         self.index = nil

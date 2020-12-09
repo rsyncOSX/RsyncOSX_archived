@@ -10,6 +10,7 @@ import Foundation
 
 struct ConfigurationsAsDictionarys: SetConfigurations {
     var quickbackuplist: [Int]?
+    var estimatedlist: [NSMutableDictionary]?
 
     // Function for getting all Configurations
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
@@ -37,9 +38,12 @@ struct ConfigurationsAsDictionarys: SetConfigurations {
         return data
     }
 
-    init() {}
+    init() {
+        self.estimatedlist = [NSMutableDictionary]()
+    }
 
-    init(quickbackuplist: [Int]?) {
+    init(quickbackuplist: [Int]?, estimatedlist: [NSMutableDictionary]?) {
+        self.estimatedlist = estimatedlist
         self.quickbackuplist = quickbackuplist
     }
 }
