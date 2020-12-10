@@ -11,7 +11,7 @@ import Foundation
 
 final class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
-    var estimatedlist: [NSMutableDictionary]?
+    // var estimatedlist: [NSMutableDictionary]?
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
@@ -62,23 +62,19 @@ final class QuickBackup: SetConfigurations {
                 if list[i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) ?? -1, i))
                 }
-                let hiddenID = list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
-                if self.estimatedlist != nil {
-                    let estimated = self.estimatedlist?.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID ?? -1 }
-                    if (estimated?.count ?? 0) > 0 {
-                        let transferredNumber = estimated?[0].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? ""
-                        self.sortedlist?[i].setObject(transferredNumber, forKey: DictionaryStrings.transferredNumber.rawValue as NSCopying)
-                    }
-                }
             }
             guard self.stackoftasktobeexecuted!.count > 0 else { return }
             // Kick off first task
-            self.hiddenID = self.stackoftasktobeexecuted![0].0
-            self.index = self.stackoftasktobeexecuted![0].1
-            self.sortedlist![self.index!].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
-            self.maxcount = Int(self.sortedlist![self.index!].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
-            self.stackoftasktobeexecuted?.remove(at: 0)
-            self.executequickbackuptask(hiddenID: self.hiddenID!)
+            if let hiddenID = self.stackoftasktobeexecuted?[0].0,
+               let index = self.stackoftasktobeexecuted?[0].1
+            {
+                self.stackoftasktobeexecuted?.remove(at: 0)
+                self.hiddenID = hiddenID
+                self.index = index
+                self.sortedlist?[index].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
+                self.maxcount = Int(self.sortedlist?[index].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
+                self.executequickbackuptask(hiddenID: hiddenID)
+            }
         }
     }
 
@@ -91,13 +87,8 @@ final class QuickBackup: SetConfigurations {
     }
 
     init() {
-        self.estimatedlist = ViewControllerReference.shared.configurationsasdictionarys?.estimatedlist
-        if self.estimatedlist != nil {
-            self.sortedlist = self.estimatedlist?.filter { ($0.value(forKey: DictionaryStrings.select.rawValue) as? Int) == 1 }
-            guard self.sortedlist!.count > 0 else { return }
-        } else {
-            self.sortedlist = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()
-        }
+        self.sortedlist = ViewControllerReference.shared.configurationsasdictionarys?.estimatedlist
+        guard self.sortedlist?.count ?? 0 > 0 else { return }
         self.sortbydays()
         self.hiddenID = nil
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
@@ -130,14 +121,18 @@ extension QuickBackup {
             quickbackupcompletedDelegate?.quickbackupcompleted()
             return
         }
-        self.hiddenID = self.stackoftasktobeexecuted![0].0
-        self.index = self.stackoftasktobeexecuted![0].1
-        self.stackoftasktobeexecuted?.remove(at: 0)
-        self.sortedlist![self.index!].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
-        self.maxcount = Int(self.sortedlist![self.index!].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
-        self.executequickbackuptask(hiddenID: self.hiddenID!)
-        self.reloadtableDelegate?.reloadtabledata()
-        self.command = nil
+        if let hiddenID = self.stackoftasktobeexecuted?[0].0,
+           let index = self.stackoftasktobeexecuted?[0].1
+        {
+            self.stackoftasktobeexecuted?.remove(at: 0)
+            self.hiddenID = hiddenID
+            self.index = index
+            self.sortedlist?[index].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
+            self.maxcount = Int(self.sortedlist?[index].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
+            self.executequickbackuptask(hiddenID: hiddenID)
+            self.reloadtableDelegate?.reloadtabledata()
+            self.command = nil
+        }
     }
 
     func filehandler() {
