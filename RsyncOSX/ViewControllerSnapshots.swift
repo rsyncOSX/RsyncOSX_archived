@@ -34,6 +34,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var diddissappear: Bool = false
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
+    var configurations: ConfigurationsAsDictionarys?
 
     @IBOutlet var snapshotstableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
@@ -157,6 +158,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configurations = ConfigurationsAsDictionarys()
         self.snapshotstableView.delegate = self
         self.snapshotstableView.dataSource = self
         self.rsynctableView.delegate = self
@@ -247,7 +249,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                     self.selectplan.isEnabled = false
                     self.selectdayofweek.isEnabled = false
                     self.info.stringValue = Infosnapshots().info(num: 0)
-                    let hiddenID = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
+                    let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
                     self.index = self.configurations?.getIndex(hiddenID)
                     self.getsourcebyindex(index: hiddenID)
                 }
@@ -406,7 +408,7 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
             self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0)
             return self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0
         } else {
-            return ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
     }
 }
@@ -414,8 +416,8 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
 extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if tableView == self.rsynctableView {
-            guard row < (ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? 0) else { return nil }
-            if let object: NSDictionary = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[row] {
+            guard row < (self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0) else { return nil }
+            if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row] {
                 return object[tableColumn!.identifier] as? String
             } else {
                 return nil

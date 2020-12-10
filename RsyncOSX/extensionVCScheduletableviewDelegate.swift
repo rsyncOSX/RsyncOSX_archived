@@ -13,7 +13,7 @@ import Foundation
 extension ViewControllerSchedule: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.scheduletable {
-            return ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         } else {
             return self.scheduledetails?.count ?? 0
         }
@@ -24,8 +24,8 @@ extension ViewControllerSchedule: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if let tableColumn = tableColumn {
             if tableView == self.scheduletable {
-                if row < ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? 0 {
-                    if let object: NSDictionary = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[row],
+                if row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
+                    if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row],
                        let hiddenID: Int = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                     {
                         switch tableColumn.identifier.rawValue {

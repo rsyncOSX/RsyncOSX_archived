@@ -55,19 +55,19 @@ final class RemoteinfoEstimation: SetConfigurations {
     func selectalltaskswithnumbers(deselect: Bool) {
         guard self.records != nil else { return }
         for i in 0 ..< (self.records?.count ?? 0) {
-            let number = (self.records![i].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String) ?? "0"
-            let delete = (self.records![i].value(forKey: DictionaryStrings.deletefiles.rawValue) as? String) ?? "0"
+            let number = (self.records?[i].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String) ?? "0"
+            let delete = (self.records?[i].value(forKey: DictionaryStrings.deletefiles.rawValue) as? String) ?? "0"
             if Int(number) ?? 0 > 0 || Int(delete) ?? 0 > 0 {
                 if deselect {
-                    self.records![i].setValue(0, forKey: DictionaryStrings.select.rawValue)
+                    self.records?[i].setValue(0, forKey: DictionaryStrings.select.rawValue)
                 } else {
-                    self.records![i].setValue(1, forKey: DictionaryStrings.select.rawValue)
+                    self.records?[i].setValue(1, forKey: DictionaryStrings.select.rawValue)
                 }
             }
         }
     }
 
-    private func setbackuplist() {
+    private func finalizeandpreparesynchronizelist() {
         guard self.records != nil else { return }
         var quickbackuplist = [Int]()
         var records = [NSMutableDictionary]()
@@ -147,7 +147,7 @@ extension RemoteinfoEstimation {
             guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
                 self.selectalltaskswithnumbers(deselect: false)
                 self.startstopProgressIndicatorDelegate?.stop()
-                self.setbackuplist()
+                self.finalizeandpreparesynchronizelist()
                 return
             }
             // Update View

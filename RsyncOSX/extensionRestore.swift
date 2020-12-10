@@ -17,7 +17,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async { () -> Void in
                         if let index = self.index {
-                            if let hiddenID = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
+                            if let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
                             }
                         }
@@ -34,7 +34,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_: NSSearchField) {
         if let index = self.index {
-            if ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int != nil {
+            if self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int != nil {
                 self.working.startAnimation(nil)
             }
         }
@@ -50,7 +50,7 @@ extension ViewControllerRestore: NSTableViewDataSource {
             self.infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.restoretabledata?.count ?? 0), number: NumberFormatter.Style.decimal)
             return self.restoretabledata!.count
         } else {
-            return ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
     }
 }
@@ -64,8 +64,8 @@ extension ViewControllerRestore: NSTableViewDelegate {
                 return cell
             }
         } else {
-            guard row < ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.count ?? -1 else { return nil }
-            if let object: NSDictionary = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?[row] {
+            guard row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? -1 else { return nil }
+            if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row] {
                 let cellIdentifier: String = tableColumn!.identifier.rawValue
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""

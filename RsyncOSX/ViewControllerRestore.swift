@@ -27,6 +27,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     var restoreactions: RestoreActions?
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
+    var configurations: ConfigurationsAsDictionarys?
 
     @IBOutlet var restoretableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
@@ -60,6 +61,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configurations = ConfigurationsAsDictionarys()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcrestore, nsviewcontroller: self)
         self.outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.restoretableView.delegate = self
