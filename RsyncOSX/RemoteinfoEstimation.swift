@@ -136,6 +136,7 @@ extension RemoteinfoEstimation {
             record.setValue(self.configurations?.getConfigurations()?[index].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
             record.setValue(self.configurations?.getConfigurations()?[index].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
             record.setValue(self.configurations?.getConfigurations()?[index].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
+            record.setValue(self.configurations?.getConfigurations()?[index].dayssincelastbackup, forKey: DictionaryStrings.daysID.rawValue)
             if self.configurations?.getConfigurations()?[self.index!].offsiteServer.isEmpty == true {
                 record.setValue(DictionaryStrings.localhost.rawValue, forKey: DictionaryStrings.offsiteServer.rawValue)
             } else {

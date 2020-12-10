@@ -11,7 +11,7 @@ import Foundation
 
 final class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
-    var estimatedlist: [NSDictionary]?
+    var estimatedlist: [NSMutableDictionary]?
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
@@ -57,7 +57,7 @@ final class QuickBackup: SetConfigurations {
             for i in 0 ..< list.count {
                 self.sortedlist![i].setObject(false, forKey: DictionaryStrings.completeCellID.rawValue as NSCopying)
                 self.sortedlist![i].setObject(false, forKey: DictionaryStrings.inprogressCellID.rawValue as NSCopying)
-                if list[i].value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int == 1 {
+                if list[i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
                     self.stackoftasktobeexecuted?.append(((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!, i))
                 }
                 let hiddenID = list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
@@ -91,7 +91,7 @@ final class QuickBackup: SetConfigurations {
     init() {
         self.estimatedlist = ViewControllerReference.shared.configurationsasdictionarys?.estimatedlist
         if self.estimatedlist != nil {
-            self.sortedlist = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.filter { ($0.value(forKey: DictionaryStrings.select.rawValue) as? Int) == 1 }
+            self.sortedlist = self.estimatedlist?.filter { ($0.value(forKey: DictionaryStrings.select.rawValue) as? Int) == 1 }
             guard self.sortedlist!.count > 0 else { return }
         } else {
             self.sortedlist = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()
