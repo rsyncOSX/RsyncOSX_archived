@@ -40,7 +40,6 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
     private var index: Int?
     private var outputprocess: OutputProcess?
     private var complete: Bool = false
-    // weak var localremoteinfoDelegate: SetLocalRemoteInfo?
     private var localremoteinfo: LocaleRemoteInfo?
 
     @IBOutlet var transferredNumber: NSTextField!
@@ -61,7 +60,6 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
     override func viewDidLoad() {
         super.viewDidLoad()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcinfolocalremote, nsviewcontroller: self)
-        // self.localremoteinfoDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     override func viewDidAppear() {
