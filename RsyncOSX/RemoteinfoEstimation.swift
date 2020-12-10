@@ -130,29 +130,32 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
 
 extension RemoteinfoEstimation {
     func processtermination() {
-        let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
-        record.setValue(self.configurations?.getConfigurations()?[self.index!].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
-        record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
-        record.setValue(self.configurations?.getConfigurations()?[self.index!].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
-        if self.configurations?.getConfigurations()?[self.index!].offsiteServer.isEmpty == true {
-            record.setValue(DictionaryStrings.localhost.rawValue, forKey: DictionaryStrings.offsiteServer.rawValue)
-        } else {
-            record.setValue(self.configurations?.getConfigurations()?[self.index!].offsiteServer, forKey: DictionaryStrings.offsiteServer.rawValue)
-        }
-        self.records?.append(record)
-        self.estimatedlistandconfigs?.estimatedlist?.append(record)
-        guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
-            self.selectalltaskswithnumbers(deselect: false)
-            self.startstopProgressIndicatorDelegate?.stop()
-            return
-        }
-        // Update View
-        self.updateviewprocesstermination()
-        self.outputprocess = OutputProcessRsync()
-        if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
-            self.index = index
-            let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
-            estimation.startestimation()
+        if let index = self.index {
+            let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
+            record.setValue(self.configurations?.getConfigurations()?[index].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
+            record.setValue(self.configurations?.getConfigurations()?[index].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
+            record.setValue(self.configurations?.getConfigurations()?[index].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
+            if self.configurations?.getConfigurations()?[self.index!].offsiteServer.isEmpty == true {
+                record.setValue(DictionaryStrings.localhost.rawValue, forKey: DictionaryStrings.offsiteServer.rawValue)
+            } else {
+                record.setValue(self.configurations?.getConfigurations()?[index].offsiteServer, forKey: DictionaryStrings.offsiteServer.rawValue)
+            }
+            self.records?.append(record)
+            self.estimatedlistandconfigs?.estimatedlist?.append(record)
+            guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
+                self.selectalltaskswithnumbers(deselect: false)
+                self.startstopProgressIndicatorDelegate?.stop()
+                self.setbackuplist()
+                return
+            }
+            // Update View
+            self.updateviewprocesstermination()
+            self.outputprocess = OutputProcessRsync()
+            if let nextindex = self.stackoftasktobeestimated?.remove(at: 0).1 {
+                self.index = nextindex
+                let estimation = EstimateremoteInformationOnetask(index: nextindex, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+                estimation.startestimation()
+            }
         }
     }
 
