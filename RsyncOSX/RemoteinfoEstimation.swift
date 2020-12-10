@@ -137,11 +137,12 @@ extension RemoteinfoEstimation {
             record.setValue(self.configurations?.getConfigurations()?[index].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
             record.setValue(self.configurations?.getConfigurations()?[index].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
             record.setValue(self.configurations?.getConfigurations()?[index].dayssincelastbackup, forKey: DictionaryStrings.daysID.rawValue)
-            if self.configurations?.getConfigurations()?[self.index!].offsiteServer.isEmpty == true {
+            if self.configurations?.getConfigurations()?[index].offsiteServer.isEmpty == true {
                 record.setValue(DictionaryStrings.localhost.rawValue, forKey: DictionaryStrings.offsiteServer.rawValue)
             } else {
                 record.setValue(self.configurations?.getConfigurations()?[index].offsiteServer, forKey: DictionaryStrings.offsiteServer.rawValue)
             }
+            record.setValue(self.configurations?.getConfigurations()?[index].task, forKey: DictionaryStrings.task.rawValue)
             self.records?.append(record)
             self.estimatedlistandconfigs?.estimatedlist?.append(record)
             guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
