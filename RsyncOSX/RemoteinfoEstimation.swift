@@ -147,6 +147,7 @@ extension RemoteinfoEstimation {
             guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
                 self.selectalltaskswithnumbers(deselect: false)
                 self.startstopProgressIndicatorDelegate?.stop()
+                // Prepare tasks with changes for synchronization
                 self.finalizeandpreparesynchronizelist()
                 return
             }
