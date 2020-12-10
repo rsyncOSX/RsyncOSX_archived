@@ -54,7 +54,11 @@ final class QuickBackup: SetConfigurations {
     }
 
     private func prepareandstartexecutetasks() {
-        if let list = self.sortedlist {
+        if let list = self.sortedlist?.filter({ ($0.value(forKey: DictionaryStrings.select.rawValue) as? Int == 1) }) {
+            // adjust selected tasks if any adjustmenst
+            if list.count != self.sortedlist?.count {
+                self.sortedlist = list
+            }
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
                 self.sortedlist?[i].setObject(false, forKey: DictionaryStrings.completeCellID.rawValue as NSCopying)
@@ -79,11 +83,16 @@ final class QuickBackup: SetConfigurations {
     }
 
     func setcompleted() {
-        let dict = self.sortedlist!.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == self.hiddenID! }
-        guard dict.count == 1 else { return }
-        self.index = self.sortedlist!.firstIndex(of: dict[0])
-        self.sortedlist![self.index!].setValue(true, forKey: DictionaryStrings.completeCellID.rawValue)
-        self.sortedlist![self.index!].setValue(false, forKey: DictionaryStrings.inprogressCellID.rawValue)
+        if let hiddenID = self.hiddenID {
+            if let dict = self.sortedlist?.filter({ ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID }) {
+                guard dict.count == 1 else { return }
+                if let index = self.sortedlist?.firstIndex(of: dict[0]) {
+                    self.index = index
+                    self.sortedlist?[index].setValue(true, forKey: DictionaryStrings.completeCellID.rawValue)
+                    self.sortedlist?[index].setValue(false, forKey: DictionaryStrings.inprogressCellID.rawValue)
+                }
+            }
+        }
     }
 
     init() {
