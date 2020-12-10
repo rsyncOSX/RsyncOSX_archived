@@ -10,7 +10,7 @@
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length cyclomatic_complexity
+//  swiftlint:disable cyclomatic_complexity
 
 import Cocoa
 import Foundation
@@ -62,30 +62,6 @@ class Configurations: ReloadTable, SetSchedules {
     // Function for getting arguments for all Configurations read into memory
     func getargumentAllConfigurations() -> [ArgumentsOneConfiguration]? {
         return self.argumentAllConfigurations
-    }
-
-    func uniqueserversandlogins() -> [NSDictionary]? {
-        guard self.configurations != nil else { return nil }
-        var configurations = self.configurations?.filter {
-            ViewControllerReference.shared.synctasks.contains($0.task)
-        }
-        var data = [NSDictionary]()
-        for i in 0 ..< (configurations?.count ?? 0) {
-            if configurations?[i].offsiteServer.isEmpty == true {
-                configurations?[i].offsiteServer = DictionaryStrings.localhost.rawValue
-            }
-            if let config = self.configurations?[i] {
-                let row: NSDictionary = ConvertOneConfig(config: config).dict
-                let server = config.offsiteServer
-                let user = config.offsiteUsername
-                if server != DictionaryStrings.localhost.rawValue {
-                    if data.filter({ $0.value(forKey: DictionaryStrings.offsiteServerCellID.rawValue) as? String ?? "" == server && $0.value(forKey: DictionaryStrings.offsiteUsernameID.rawValue) as? String ?? "" == user }).count == 0 {
-                        data.append(row)
-                    }
-                }
-            }
-        }
-        return data
     }
 
     // Function return arguments for rsync, either arguments for
@@ -198,7 +174,7 @@ class Configurations: ReloadTable, SetSchedules {
                 return result[0].offsiteUsername
             case .sshport:
                 if result[0].sshport != nil {
-                    return String(result[0].sshport!)
+                    return String(result[0].sshport ?? 22)
                 } else {
                     return nil
                 }

@@ -57,7 +57,7 @@ class ViewControllerSource: NSViewController, SetConfigurations {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            if let object = self.configurations?.uniqueserversandlogins()?[index] {
+            if let object = ConfigurationsAsDictionarys().uniqueserversandlogins()?[index] {
                 if let hiddenID = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                     self.index = hiddenID
                 }
@@ -68,13 +68,17 @@ class ViewControllerSource: NSViewController, SetConfigurations {
 
 extension ViewControllerSource: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return self.configurations?.uniqueserversandlogins()?.count ?? 0
+        return ConfigurationsAsDictionarys().uniqueserversandlogins()?.count ?? 0
     }
 }
 
 extension ViewControllerSource: NSTableViewDelegate {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        let object: NSDictionary = self.configurations!.uniqueserversandlogins()![row]
-        return object[tableColumn!.identifier] as? String
+        if let object: NSDictionary = ConfigurationsAsDictionarys().uniqueserversandlogins()?[row],
+           let tableColumn = tableColumn
+        {
+            return object[tableColumn.identifier] as? String
+        }
+        return nil
     }
 }
