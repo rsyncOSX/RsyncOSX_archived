@@ -23,16 +23,18 @@ final class QuickBackup: SetConfigurations {
 
     func sortbydays() {
         guard self.sortedlist != nil else { return }
-        let sorted = self.sortedlist!.sorted { (di1, di2) -> Bool in
-            let di1 = (di1.value(forKey: DictionaryStrings.daysID.rawValue) as? NSString)!.doubleValue
-            let di2 = (di2.value(forKey: DictionaryStrings.daysID.rawValue) as? NSString)!.doubleValue
-            if di1 > di2 {
-                return false
-            } else {
-                return true
+        self.sortedlist = self.sortedlist?.sorted { (di1, di2) -> Bool in
+            if let di1 = (di1.value(forKey: DictionaryStrings.daysID.rawValue) as? NSString)?.doubleValue,
+               let di2 = (di2.value(forKey: DictionaryStrings.daysID.rawValue) as? NSString)?.doubleValue
+            {
+                if di1 > di2 {
+                    return false
+                } else {
+                    return true
+                }
             }
+            return false
         }
-        self.sortedlist = sorted
         self.reloadtableDelegate?.reloadtabledata()
     }
 
