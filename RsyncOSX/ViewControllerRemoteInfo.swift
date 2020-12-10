@@ -42,7 +42,7 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
                 openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
             }
-            // openDelegate?.openquickbackup()
+            openDelegate?.openquickbackup()
         }
         self.remoteestimatedlist?.abort()
         self.remoteestimatedlist?.stackoftasktobeestimated = nil

@@ -57,7 +57,6 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.completed.isHidden = true
-        self.quickbackup = QuickBackup()
     }
 
     override func viewDidAppear() {
@@ -68,14 +67,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             }
             return
         }
-        guard self.quickbackup?.sortedlist?.count ?? 0 > 0 else {
-            self.completed.isHidden = false
-            self.completed.textColor = setcolor(nsviewcontroller: self, color: .green)
-            self.completed.stringValue = NSLocalizedString("There seems to be nothing to do...", comment: "Quickbackup")
-            self.executing = false
-            return
-        }
-        self.quickbackup?.prepareandstartexecutetasks()
+        self.quickbackup = QuickBackup()
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }

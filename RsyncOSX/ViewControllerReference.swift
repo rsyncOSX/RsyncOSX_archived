@@ -125,6 +125,8 @@ final class ViewControllerReference {
     // JSON names
     var fileschedulesjson = "schedules.json"
     var fileconfigurationsjson = "configurations.json"
+    // for automatic backup
+    var configurationsasdictionarys: ConfigurationsAsDictionarys?
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

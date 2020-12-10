@@ -5,10 +5,11 @@
 //  Created by Thomas Evensen on 09/12/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
-struct ConfigurationsAsDictionarys: SetConfigurations {
+final class ConfigurationsAsDictionarys: SetConfigurations {
     var quickbackuplist: [Int]?
     var estimatedlist: [NSMutableDictionary]?
 
@@ -71,5 +72,9 @@ struct ConfigurationsAsDictionarys: SetConfigurations {
     init(quickbackuplist: [Int]?, estimatedlist: [NSMutableDictionary]?) {
         self.estimatedlist = estimatedlist
         self.quickbackuplist = quickbackuplist
+    }
+
+    deinit {
+        print("deinit ConfigurationsAsDictionarys")
     }
 }

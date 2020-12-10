@@ -51,7 +51,7 @@ final class QuickBackup: SetConfigurations {
                                            outputprocess: self.outputprocess)
     }
 
-    func prepareandstartexecutetasks() {
+    private func prepareandstartexecutetasks() {
         if let list = self.sortedlist {
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
@@ -89,9 +89,9 @@ final class QuickBackup: SetConfigurations {
     }
 
     init() {
-        // self.estimatedlist = self.configurations?.estimatedlist
+        self.estimatedlist = ViewControllerReference.shared.configurationsasdictionarys?.estimatedlist
         if self.estimatedlist != nil {
-            self.sortedlist = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.filter { ($0.value(forKey: DictionaryStrings.selectCellID.rawValue) as? Int) == 1 }
+            self.sortedlist = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()?.filter { ($0.value(forKey: DictionaryStrings.select.rawValue) as? Int) == 1 }
             guard self.sortedlist!.count > 0 else { return }
         } else {
             self.sortedlist = ConfigurationsAsDictionarys().getConfigurationsDataSourceSynchronize()
@@ -99,15 +99,18 @@ final class QuickBackup: SetConfigurations {
         self.sortbydays()
         self.hiddenID = nil
         self.reloadtableDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+        self.prepareandstartexecutetasks()
     }
 
     deinit {
         self.stackoftasktobeexecuted = nil
+        ViewControllerReference.shared.configurationsasdictionarys = nil
         print("deinit QuickBackup")
     }
 
     func abort() {
         self.stackoftasktobeexecuted = nil
+        ViewControllerReference.shared.configurationsasdictionarys = nil
     }
 }
 
