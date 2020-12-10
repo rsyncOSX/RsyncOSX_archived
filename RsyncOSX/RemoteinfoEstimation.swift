@@ -26,7 +26,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     weak var getmultipleselectedindexesDelegate: GetMultipleSelectedIndexes?
     var index: Int?
     private var maxnumber: Int?
-    // estimated list and other
+    // estimated list, configs as NSDictionary
     var estimatedlistandconfigs: ConfigurationsAsDictionarys?
 
     private func prepareandstartexecutetasks() {

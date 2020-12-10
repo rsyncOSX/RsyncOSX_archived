@@ -257,7 +257,7 @@ extension ViewControllerMain: Count {
 extension ViewControllerMain: SetLocalRemoteInfo {
     func getlocalremoteinfo(index: Int) -> [NSDictionary]? {
         guard self.configurations?.localremote != nil else { return nil }
-        if let info = self.configurations?.localremote?.filter({ ($0.value(forKey: DictionaryStrings.index.rawValue) as? Int)! == index }) {
+        if let info = self.configurations?.localremote?.filter({ ($0.value(forKey: DictionaryStrings.index.rawValue) as? Int) ?? -1 == index }) {
             return info
         } else {
             return nil
@@ -265,12 +265,13 @@ extension ViewControllerMain: SetLocalRemoteInfo {
     }
 
     func setlocalremoteinfo(info: NSMutableDictionary?) {
-        guard info != nil else { return }
-        if self.configurations?.localremote == nil {
-            self.configurations?.localremote = [NSMutableDictionary]()
-            self.configurations?.localremote!.append(info!)
-        } else {
-            self.configurations?.localremote!.append(info!)
+        if let info = info {
+            if self.configurations?.localremote == nil {
+                self.configurations?.localremote = [NSMutableDictionary]()
+                self.configurations?.localremote?.append(info)
+            } else {
+                self.configurations?.localremote?.append(info)
+            }
         }
     }
 }
