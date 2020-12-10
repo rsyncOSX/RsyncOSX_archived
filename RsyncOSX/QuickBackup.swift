@@ -57,17 +57,17 @@ final class QuickBackup: SetConfigurations {
         if let list = self.sortedlist {
             self.stackoftasktobeexecuted = [Row]()
             for i in 0 ..< list.count {
-                self.sortedlist![i].setObject(false, forKey: DictionaryStrings.completeCellID.rawValue as NSCopying)
-                self.sortedlist![i].setObject(false, forKey: DictionaryStrings.inprogressCellID.rawValue as NSCopying)
+                self.sortedlist?[i].setObject(false, forKey: DictionaryStrings.completeCellID.rawValue as NSCopying)
+                self.sortedlist?[i].setObject(false, forKey: DictionaryStrings.inprogressCellID.rawValue as NSCopying)
                 if list[i].value(forKey: DictionaryStrings.select.rawValue) as? Int == 1 {
-                    self.stackoftasktobeexecuted?.append(((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int)!, i))
+                    self.stackoftasktobeexecuted?.append(((list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) ?? -1, i))
                 }
                 let hiddenID = list[i].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                 if self.estimatedlist != nil {
-                    let estimated = self.estimatedlist!.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID! }
-                    if estimated.count > 0 {
-                        let transferredNumber = estimated[0].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? ""
-                        self.sortedlist![i].setObject(transferredNumber, forKey: DictionaryStrings.transferredNumber.rawValue as NSCopying)
+                    let estimated = self.estimatedlist?.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID ?? -1 }
+                    if (estimated?.count ?? 0) > 0 {
+                        let transferredNumber = estimated?[0].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? ""
+                        self.sortedlist?[i].setObject(transferredNumber, forKey: DictionaryStrings.transferredNumber.rawValue as NSCopying)
                     }
                 }
             }
