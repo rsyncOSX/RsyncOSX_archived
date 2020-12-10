@@ -22,8 +22,6 @@ class Configurations: ReloadTable, SetSchedules {
     // Array to store argumenst for all tasks.
     // Initialized during startup
     var argumentAllConfigurations: [ArgumentsOneConfiguration]?
-    // remote and local info
-    var localremote: [NSDictionary]?
     // Reference to check TCP-connections
     var tcpconnections: TCPconnections?
     // valid hiddenIDs
