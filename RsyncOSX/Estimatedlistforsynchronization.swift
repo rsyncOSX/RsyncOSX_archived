@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class ConfigurationsAsDictionarys: SetConfigurations {
+final class Estimatedlistforsynchronization: SetConfigurations {
     var quickbackuplist: [Int]?
     var estimatedlist: [NSMutableDictionary]?
 

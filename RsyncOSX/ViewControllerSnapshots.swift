@@ -34,7 +34,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var diddissappear: Bool = false
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
-    var configurations: ConfigurationsAsDictionarys?
+    var configurations: Estimatedlistforsynchronization?
 
     @IBOutlet var snapshotstableView: NSTableView!
     @IBOutlet var rsynctableView: NSTableView!
@@ -158,7 +158,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configurations = ConfigurationsAsDictionarys()
+        self.configurations = Estimatedlistforsynchronization()
         self.snapshotstableView.delegate = self
         self.snapshotstableView.dataSource = self
         self.rsynctableView.delegate = self

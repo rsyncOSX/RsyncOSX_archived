@@ -23,7 +23,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
     var addschduleisallowed = false
-    var configurations: ConfigurationsAsDictionarys?
+    var configurations: Estimatedlistforsynchronization?
 
     // Main tableview
     @IBOutlet var scheduletable: NSTableView!
@@ -120,7 +120,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configurations = ConfigurationsAsDictionarys()
+        self.configurations = Estimatedlistforsynchronization()
         self.scheduletable.delegate = self
         self.scheduletable.dataSource = self
         self.scheduletabledetails.delegate = self

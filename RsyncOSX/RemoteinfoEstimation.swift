@@ -27,7 +27,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     var index: Int?
     private var maxnumber: Int?
     // estimated list, configs as NSDictionary
-    var estimatedlistandconfigs: ConfigurationsAsDictionarys?
+    var estimatedlistandconfigs: Estimatedlistforsynchronization?
 
     private func prepareandstartexecutetasks() {
         self.stackoftasktobeestimated = [Row]()
@@ -81,7 +81,7 @@ final class RemoteinfoEstimation: SetConfigurations {
                 }
             }
         }
-        self.estimatedlistandconfigs = ConfigurationsAsDictionarys(quickbackuplist: quickbackuplist,
+        self.estimatedlistandconfigs = Estimatedlistforsynchronization(quickbackuplist: quickbackuplist,
                                                                    estimatedlist: records)
         ViewControllerReference.shared.configurationsasdictionarys = self.estimatedlistandconfigs
     }
@@ -103,7 +103,7 @@ final class RemoteinfoEstimation: SetConfigurations {
         self.getmultipleselectedindexesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.prepareandstartexecutetasks()
         self.records = [NSMutableDictionary]()
-        self.estimatedlistandconfigs = ConfigurationsAsDictionarys()
+        self.estimatedlistandconfigs = Estimatedlistforsynchronization()
         self.startestimation()
     }
 
