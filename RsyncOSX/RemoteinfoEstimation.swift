@@ -81,8 +81,7 @@ final class RemoteinfoEstimation: SetConfigurations {
                 }
             }
         }
-        self.estimatedlistandconfigs = Estimatedlistforsynchronization(quickbackuplist: quickbackuplist,
-                                                                       estimatedlist: records)
+        self.estimatedlistandconfigs = Estimatedlistforsynchronization(quickbackuplist: quickbackuplist, estimatedlist: records)
         ViewControllerReference.shared.estimatedlistforsynchronization = self.estimatedlistandconfigs
     }
 
