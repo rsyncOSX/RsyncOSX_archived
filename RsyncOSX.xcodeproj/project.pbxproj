@@ -42,6 +42,7 @@
 		E801A06A2573FFA90014212A /* ViewControllerSideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801A0692573FFA90014212A /* ViewControllerSideBar.swift */; };
 		E802F00024681EA6007B2556 /* OutputProcessRsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = E802EFFF24681EA6007B2556 /* OutputProcessRsync.swift */; };
 		E80A6FFA257E2B120093AB29 /* RemoteCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80A6FF9257E2B120093AB29 /* RemoteCapacity.swift */; };
+		E826416E2583A13B00036579 /* ConfigurationsAsDictionarys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E826416D2583A13B00036579 /* ConfigurationsAsDictionarys.swift */; };
 		E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F9F1123F030B200E3DEBC /* extensionRestore.swift */; };
 		E84C89262529BB1500381618 /* AssistDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84C89252529BB1500381618 /* AssistDefault.swift */; };
 		E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E091721BD29A3006BD293 /* Tagsnapshots.swift */; };
@@ -227,6 +228,7 @@
 		E801A0692573FFA90014212A /* ViewControllerSideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSideBar.swift; sourceTree = "<group>"; };
 		E802EFFF24681EA6007B2556 /* OutputProcessRsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputProcessRsync.swift; sourceTree = "<group>"; };
 		E80A6FF9257E2B120093AB29 /* RemoteCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCapacity.swift; sourceTree = "<group>"; };
+		E826416D2583A13B00036579 /* ConfigurationsAsDictionarys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsAsDictionarys.swift; sourceTree = "<group>"; };
 		E82F9F1123F030B200E3DEBC /* extensionRestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionRestore.swift; sourceTree = "<group>"; };
 		E84C89252529BB1500381618 /* AssistDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistDefault.swift; sourceTree = "<group>"; };
 		E84E091721BD29A3006BD293 /* Tagsnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagsnapshots.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				E9E3C81624FAAA3E00FFDE00 /* Neworoldprofilepath.swift */,
 				E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */,
 				E8783FAC2580B25900E0D485 /* Estimatedlistforsynchronization.swift */,
+				E826416D2583A13B00036579 /* ConfigurationsAsDictionarys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1111,6 +1114,7 @@
 				E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */,
 				E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */,
 				E99D187423041C47003F1796 /* Result.swift in Sources */,
+				E826416E2583A13B00036579 /* ConfigurationsAsDictionarys.swift in Sources */,
 				E92B1A7F257A225600F0216C /* exstensionViewControllers.swift in Sources */,
 				E979628F227AE4F600115513 /* Info.swift in Sources */,
 				E9F068F41F27BA0200DDF1A1 /* ReadWriteDictionary.swift in Sources */,

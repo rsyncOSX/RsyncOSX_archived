@@ -82,8 +82,8 @@ final class RemoteinfoEstimation: SetConfigurations {
             }
         }
         self.estimatedlistandconfigs = Estimatedlistforsynchronization(quickbackuplist: quickbackuplist,
-                                                                   estimatedlist: records)
-        ViewControllerReference.shared.configurationsasdictionarys = self.estimatedlistandconfigs
+                                                                       estimatedlist: records)
+        ViewControllerReference.shared.estimatedlistforsynchronization = self.estimatedlistandconfigs
     }
 
     private func startestimation() {

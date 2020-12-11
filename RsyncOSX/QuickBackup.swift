@@ -96,7 +96,7 @@ final class QuickBackup: SetConfigurations {
     }
 
     init() {
-        self.sortedlist = ViewControllerReference.shared.configurationsasdictionarys?.estimatedlist
+        self.sortedlist = ViewControllerReference.shared.estimatedlistforsynchronization?.estimatedlist
         guard self.sortedlist?.count ?? 0 > 0 else { return }
         self.sortbydays()
         self.hiddenID = nil
@@ -106,13 +106,13 @@ final class QuickBackup: SetConfigurations {
 
     deinit {
         self.stackoftasktobeexecuted = nil
-        ViewControllerReference.shared.configurationsasdictionarys = nil
+        ViewControllerReference.shared.estimatedlistforsynchronization = nil
         print("deinit QuickBackup")
     }
 
     func abort() {
         self.stackoftasktobeexecuted = nil
-        ViewControllerReference.shared.configurationsasdictionarys = nil
+        ViewControllerReference.shared.estimatedlistforsynchronization = nil
     }
 }
 
