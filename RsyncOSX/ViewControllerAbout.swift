@@ -48,13 +48,6 @@ class ViewControllerAbout: NSViewController {
         self.view.window?.close()
     }
 
-    @IBAction func introduction(_: NSButton) {
-        if let resource = self.resource {
-            NSWorkspace.shared.open(URL(string: resource.getResource(resource: .introduction))!)
-        }
-        self.view.window?.close()
-    }
-
     @IBAction func download(_: NSButton) {
         guard ViewControllerReference.shared.URLnewVersion != nil else {
             self.view.window?.close()
