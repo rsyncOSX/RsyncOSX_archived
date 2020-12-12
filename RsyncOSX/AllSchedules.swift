@@ -43,4 +43,8 @@ class Allschedules {
         self.allprofiles = AllProfilenames().allprofiles
         self.readallschedules(includelog: includelog)
     }
+
+    deinit {
+        print("deinit Allschedules")
+    }
 }

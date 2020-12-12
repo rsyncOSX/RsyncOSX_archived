@@ -38,4 +38,8 @@ final class AllConfigurations: Sorting {
         self.allprofiles = AllProfilenames().allprofiles
         self.readallconfigurations()
     }
+
+    deinit {
+        print("deinit AllConfigurations")
+    }
 }

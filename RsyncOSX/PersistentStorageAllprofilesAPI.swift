@@ -38,7 +38,7 @@ class PersistentStorageAllprofilesAPI: SetConfigurations, SetSchedules {
     func getScheduleandhistory(includelog: Bool) -> [ConfigurationSchedule]? {
         var schedule = [ConfigurationSchedule]()
         if ViewControllerReference.shared.json {
-            let read = PersistentStorageSchedulingJSON(profile: self.profile)
+            let read = PersistentStorageSchedulingJSON(profile: self.profile, readonly: true)
             let transform = TransformSchedulefromJSON()
             for i in 0 ..< (read.decodedjson?.count ?? 0) {
                 if let scheduleitem = (read.decodedjson?[i] as? DecodeSchedule) {

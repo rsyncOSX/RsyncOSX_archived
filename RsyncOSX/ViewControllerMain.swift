@@ -332,9 +332,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
-        if let reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcallprofiles) as? ViewControllerAllProfiles {
-            reloadDelegate.reloadtable()
-        }
     }
 
     func initpopupbutton() {

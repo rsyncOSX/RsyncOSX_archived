@@ -34,10 +34,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     var command: OtherProcessCmdClosure?
 
-    @IBAction func abort(_: NSButton) {
-        _ = InterruptProcess()
-    }
-
     @IBAction func closeview(_: NSButton) {
         self.view.window?.close()
     }
@@ -65,11 +61,14 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.reloadallprofiles()
+        self.sortdirection.image = #imageLiteral(resourceName: "up")
+        self.sortascending = true
         self.initpopupbutton()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
         self.allconfigurations = AllConfigurations()
         self.configurations = self.allconfigurations?.allconfigurations
+        self.allschedules = Allschedules(includelog: false)
+        self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
@@ -78,17 +77,8 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     override func viewDidDisappear() {
         super.viewDidDisappear()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: nil)
-    }
-
-    func reloadallprofiles() {
-        self.configurations = allconfigurations?.allconfigurations
-        self.allschedules = Allschedules(includelog: false)
-        self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
-        self.sortdirection.image = #imageLiteral(resourceName: "up")
-        self.sortascending = true
-        globalMainQueue.async { () -> Void in
-            self.mainTableView.reloadData()
-        }
+        self.allschedules = nil
+        self.allconfigurations = nil
     }
 
     func initpopupbutton() {
@@ -108,6 +98,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         }
         self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
+        self.view.window?.close()
     }
 }
 
@@ -232,11 +223,5 @@ extension ViewControllerAllProfiles: NSSearchFieldDelegate {
             self.configurations = AllConfigurations().allconfigurations
             self.mainTableView.reloadData()
         }
-    }
-}
-
-extension ViewControllerAllProfiles: ReloadTableAllProfiles {
-    func reloadtable() {
-        self.reloadallprofiles()
     }
 }
