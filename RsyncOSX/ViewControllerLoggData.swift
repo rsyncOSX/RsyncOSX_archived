@@ -211,8 +211,22 @@ extension ViewControllerLoggData: NSTableViewDelegate {
                     return object.delete
                 case DictionaryStrings.snapCellID.rawValue:
                     return object.snapCellID
+                case DictionaryStrings.task.rawValue:
+                    return object.task
+                case DictionaryStrings.backupID.rawValue:
+                    return object.backupID
+                case DictionaryStrings.localCatalog.rawValue:
+                    return object.localCatalog
+                case DictionaryStrings.remoteCatalog.rawValue:
+                    return object.remoteCatalog
+                case DictionaryStrings.dateExecuted.rawValue:
+                    return object.dateExecuted
+                case DictionaryStrings.resultExecuted.rawValue:
+                    return object.resultExecuted
+                case DictionaryStrings.offsiteServer.rawValue:
+                    return object.offsiteServer
                 default:
-                    print(tableColumn.identifier.rawValue)
+                    return nil
                 }
             }
             return nil

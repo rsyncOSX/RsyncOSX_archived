@@ -49,7 +49,7 @@ class TCPconnections: SetConfigurations, Delay {
             self.newprofileDelegate?.reloadprofilepopupbutton()
             return
         }
-        globalDefaultQueue.async { () -> Void in
+        globalBackgroundQueue.async { () -> Void in
             var port: Int = 22
             for i in 0 ..< (self.configurations?.configurations?.count ?? 0) {
                 if let config = self.configurations?.getConfigurations()?[i] {
