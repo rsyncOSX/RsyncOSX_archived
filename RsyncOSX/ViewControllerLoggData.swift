@@ -47,16 +47,16 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
         /*
-        switch self.filterby ?? .localcatalog {
-        case .executedate:
-            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata2, sortdirection: self.sortedascending)
-        default:
-            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata2, sortby: self.filterby ?? .localcatalog, sortdirection: self.sortedascending)
-        }
-        globalMainQueue.async { () -> Void in
-            self.scheduletable.reloadData()
-        }
-        */
+         switch self.filterby ?? .localcatalog {
+         case .executedate:
+             self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata2, sortdirection: self.sortedascending)
+         default:
+             self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata2, sortby: self.filterby ?? .localcatalog, sortdirection: self.sortedascending)
+         }
+         globalMainQueue.async { () -> Void in
+             self.scheduletable.reloadData()
+         }
+         */
     }
 
     @IBAction func selectlogs(_: NSButton) {
@@ -206,12 +206,13 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         if let tableColumn = tableColumn {
             guard row < (self.scheduleloggdata?.loggdata2?.count ?? 0) else { return nil }
             if let object = self.scheduleloggdata?.loggdata2?[row] {
-                if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue ||
-                    tableColumn.identifier.rawValue == DictionaryStrings.snapCellID.rawValue
-                {
-                    return object[tableColumn.identifier] as? Int
-                } else {
-                    return object[tableColumn.identifier] as? String
+                switch tableColumn.identifier.rawValue {
+                case DictionaryStrings.deleteCellID.rawValue:
+                    return object.delete
+                case DictionaryStrings.snapCellID.rawValue:
+                    return object.snapCellID
+                default:
+                    print(tableColumn.identifier.rawValue)
                 }
             }
             return nil
@@ -220,42 +221,42 @@ extension ViewControllerLoggData: NSTableViewDelegate {
     }
 
     /*
-    // setting which table row is selected
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        let myTableViewFromNotification = (notification.object as? NSTableView)!
-        let indexes = myTableViewFromNotification.selectedRowIndexes
-        if let index = indexes.first {
-            self.index = index
-        }
-        let column = myTableViewFromNotification.selectedColumn
-        var sortbystring = true
-        switch column {
-        case 0:
-            self.filterby = .task
-        case 2:
-            self.filterby = .backupid
-        case 3:
-            self.filterby = .localcatalog
-        case 4:
-            self.filterby = .offsitecatalog
-        case 5:
-            self.filterby = .offsiteserver
-        case 6:
-            sortbystring = false
-            self.filterby = .executedate
-        default:
-            return
-        }
-        if sortbystring {
-            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata2, sortby: self.filterby, sortdirection: self.sortedascending)
-        } else {
-            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata2, sortdirection: self.sortedascending)
-        }
-        globalMainQueue.async { () -> Void in
-            self.scheduletable.reloadData()
-        }
-    }
-*/
+     // setting which table row is selected
+     func tableViewSelectionDidChange(_ notification: Notification) {
+         let myTableViewFromNotification = (notification.object as? NSTableView)!
+         let indexes = myTableViewFromNotification.selectedRowIndexes
+         if let index = indexes.first {
+             self.index = index
+         }
+         let column = myTableViewFromNotification.selectedColumn
+         var sortbystring = true
+         switch column {
+         case 0:
+             self.filterby = .task
+         case 2:
+             self.filterby = .backupid
+         case 3:
+             self.filterby = .localcatalog
+         case 4:
+             self.filterby = .offsitecatalog
+         case 5:
+             self.filterby = .offsiteserver
+         case 6:
+             sortbystring = false
+             self.filterby = .executedate
+         default:
+             return
+         }
+         if sortbystring {
+             self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata2, sortby: self.filterby, sortdirection: self.sortedascending)
+         } else {
+             self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata2, sortdirection: self.sortedascending)
+         }
+         globalMainQueue.async { () -> Void in
+             self.scheduletable.reloadData()
+         }
+     }
+     */
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if let tableColumn = tableColumn {
             if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {

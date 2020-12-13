@@ -16,18 +16,18 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
 
     typealias Row = (Int, Int)
     func deleteselectedrows(scheduleloggdata: ScheduleLoggData?) {
-        guard scheduleloggdata?.loggdata != nil else { return }
+        guard scheduleloggdata?.loggdata2 != nil else { return }
         var deletes = [Row]()
-        let selectdeletes = scheduleloggdata?.loggdata?.filter { ($0.value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int) == 1 }.sorted { (dict1, dict2) -> Bool in
-            if (dict1.value(forKey: DictionaryStrings.parent.rawValue) as? Int) ?? 0 > (dict2.value(forKey: DictionaryStrings.parent.rawValue) as? Int) ?? 0 {
+        let selectdeletes = scheduleloggdata?.loggdata2?.filter { $0.delete == 1 }.sorted { (dict1, dict2) -> Bool in
+            if dict1.parent > dict2.parent {
                 return true
             } else {
                 return false
             }
         }
         for i in 0 ..< (selectdeletes?.count ?? 0) {
-            let parent = selectdeletes?[i].value(forKey: DictionaryStrings.parent.rawValue) as? Int ?? 0
-            let sibling = selectdeletes?[i].value(forKey: DictionaryStrings.sibling.rawValue) as? Int ?? 0
+            let parent = selectdeletes?[i].parent ?? 0
+            let sibling = selectdeletes?[i].sibling ?? 0
             deletes.append((parent, sibling))
         }
         deletes.sort(by: { (obj1, obj2) -> Bool in
