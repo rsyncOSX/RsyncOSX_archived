@@ -98,7 +98,7 @@ class RsyncOSXTests: XCTestCase, SetConfigurations, SetSchedules {
 
     func testnologg() {
         let schedules = ScheduleLoggData(hiddenID: 1, sortascending: true)
-        XCTAssertEqual(0, schedules.loggdata?.count, "Should be zero")
+        XCTAssertEqual(0, schedules.loggdata2?.count, "Should be zero")
     }
 
     func testaddschedule() {

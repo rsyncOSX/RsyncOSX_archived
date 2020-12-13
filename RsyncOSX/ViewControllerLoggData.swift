@@ -46,24 +46,26 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.sortedascending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
+        /*
         switch self.filterby ?? .localcatalog {
         case .executedate:
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascending)
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata2, sortdirection: self.sortedascending)
         default:
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata, sortby: self.filterby ?? .localcatalog, sortdirection: self.sortedascending)
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata2, sortby: self.filterby ?? .localcatalog, sortdirection: self.sortedascending)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
         }
+        */
     }
 
     @IBAction func selectlogs(_: NSButton) {
-        guard self.scheduleloggdata?.loggdata != nil else { return }
-        for i in 0 ..< (self.scheduleloggdata?.loggdata?.count ?? 0) {
-            if self.scheduleloggdata?.loggdata?[i].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int == 1 {
-                self.scheduleloggdata?.loggdata?[i].setValue(0, forKey: DictionaryStrings.deleteCellID.rawValue)
+        guard self.scheduleloggdata?.loggdata2 != nil else { return }
+        for i in 0 ..< (self.scheduleloggdata?.loggdata2?.count ?? 0) {
+            if (self.scheduleloggdata?.loggdata2?[i].delete ?? 0) == 1 {
+                self.scheduleloggdata?.loggdata2?[i].delete = 0
             } else {
-                self.scheduleloggdata?.loggdata?[i].setValue(1, forKey: DictionaryStrings.deleteCellID.rawValue)
+                self.scheduleloggdata?.loggdata2?[i].delete = 1
             }
         }
         globalMainQueue.async { () -> Void in
@@ -86,7 +88,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     private func selectednumber() -> String {
-        if let number = self.scheduleloggdata?.loggdata?.filter({ ($0.value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int) == 1 }).count {
+        if let number = self.scheduleloggdata?.loggdata2?.filter({ $0.delete == 1 }).count {
             return String(number)
         } else {
             return "0"
@@ -168,6 +170,14 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
         }
     }
 
+    /*
+     func test () {
+         let filteredData = self.search.stringValue.isEmpty ? self.scheduleloggdata?.loggdata : self.scheduleloggdata?.loggdata?.filter { (item: String) -> Bool in
+             // If dataItem matches the searchText, return true to include it
+             return item.range(of: self.search.stringValue, options: .caseInsensitive, range: nil, locale: nil) != nil
+         }
+     }
+     */
     func searchFieldDidEndSearching(_: NSSearchField) {
         self.index = nil
         self.reloadtabledata()
@@ -183,10 +193,10 @@ extension ViewControllerLoggData: NSTableViewDataSource {
             return 0
         } else {
             self.numberOflogfiles.stringValue = NSLocalizedString("Number of logs:", comment: "Logg")
-                + " " + String(self.scheduleloggdata?.loggdata?.count ?? 0)
+                + " " + String(self.scheduleloggdata?.loggdata2?.count ?? 0)
             self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg")
                 + " " + self.selectednumber()
-            return self.scheduleloggdata?.loggdata?.count ?? 0
+            return self.scheduleloggdata?.loggdata2?.count ?? 0
         }
     }
 }
@@ -194,8 +204,8 @@ extension ViewControllerLoggData: NSTableViewDataSource {
 extension ViewControllerLoggData: NSTableViewDelegate {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if let tableColumn = tableColumn {
-            guard row < self.scheduleloggdata?.loggdata?.count ?? -1 else { return nil }
-            if let object: NSDictionary = self.scheduleloggdata?.loggdata?[row] {
+            guard row < (self.scheduleloggdata?.loggdata2?.count ?? 0) else { return nil }
+            if let object = self.scheduleloggdata?.loggdata2?[row] {
                 if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue ||
                     tableColumn.identifier.rawValue == DictionaryStrings.snapCellID.rawValue
                 {
@@ -209,6 +219,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         return nil
     }
 
+    /*
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
@@ -236,23 +247,23 @@ extension ViewControllerLoggData: NSTableViewDelegate {
             return
         }
         if sortbystring {
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata, sortby: self.filterby, sortdirection: self.sortedascending)
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata2, sortby: self.filterby, sortdirection: self.sortedascending)
         } else {
-            self.scheduleloggdata?.loggdata = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata, sortdirection: self.sortedascending)
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata2, sortdirection: self.sortedascending)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
         }
     }
-
+*/
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if let tableColumn = tableColumn {
             if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {
-                var delete: Int = (self.scheduleloggdata?.loggdata![row].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int)!
+                var delete: Int = self.scheduleloggdata?.loggdata2![row].delete ?? 0
                 if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
                 switch tableColumn.identifier.rawValue {
                 case DictionaryStrings.deleteCellID.rawValue:
-                    self.scheduleloggdata?.loggdata?[row].setValue(delete, forKey: DictionaryStrings.deleteCellID.rawValue)
+                    self.scheduleloggdata?.loggdata2?[row].delete = delete
                 default:
                     break
                 }
