@@ -6,7 +6,7 @@
 //  Created by Thomas Evensen on 23/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
+// swiftlint:disable line_length cyclomatic_complexity
 
 import Cocoa
 import Foundation
@@ -16,7 +16,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     private var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
     private var filterby: Sortandfilter?
     private var index: Int?
-    private var sortedascending: Bool = true
+    private var sortascending: Bool = true
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
 
@@ -39,11 +39,11 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     @IBAction func sortdirection(_: NSButton) {
-        if self.sortedascending == true {
-            self.sortedascending = false
+        if self.sortascending == true {
+            self.sortascending = false
             self.sortdirection.image = #imageLiteral(resourceName: "down")
         } else {
-            self.sortedascending = true
+            self.sortascending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
         /*
@@ -102,7 +102,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         self.search.delegate = self
         ViewControllerReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
         self.sortdirection.image = #imageLiteral(resourceName: "up")
-        self.sortedascending = true
         self.working.usesThreadedAnimation = true
     }
 
@@ -116,7 +115,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()?[index] {
-                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortascending)
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
                     self.working.startAnimation(nil)
                     self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
@@ -132,7 +131,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             }
         } else {
             self.info.stringValue = Infologgdata().info(num: 0)
-            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
+            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortascending)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
@@ -234,43 +233,41 @@ extension ViewControllerLoggData: NSTableViewDelegate {
         return nil
     }
 
-    /*
-     // setting which table row is selected
-     func tableViewSelectionDidChange(_ notification: Notification) {
-         let myTableViewFromNotification = (notification.object as? NSTableView)!
-         let indexes = myTableViewFromNotification.selectedRowIndexes
-         if let index = indexes.first {
-             self.index = index
-         }
-         let column = myTableViewFromNotification.selectedColumn
-         var sortbystring = true
-         switch column {
-         case 0:
-             self.filterby = .task
-         case 2:
-             self.filterby = .backupid
-         case 3:
-             self.filterby = .localcatalog
-         case 4:
-             self.filterby = .offsitecatalog
-         case 5:
-             self.filterby = .offsiteserver
-         case 6:
-             sortbystring = false
-             self.filterby = .executedate
-         default:
-             return
-         }
-         if sortbystring {
-             self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbystring(notsortedlist: self.scheduleloggdata?.loggdata2, sortby: self.filterby, sortdirection: self.sortedascending)
-         } else {
-             self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.sortbydate(notsortedlist: self.scheduleloggdata?.loggdata2, sortdirection: self.sortedascending)
-         }
-         globalMainQueue.async { () -> Void in
-             self.scheduletable.reloadData()
-         }
-     }
-     */
+    // setting which table row is selected
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        var comp: (String, String) -> Bool
+        let myTableViewFromNotification = (notification.object as? NSTableView)!
+        let indexes = myTableViewFromNotification.selectedRowIndexes
+        if let index = indexes.first {
+            self.index = index
+        }
+        if self.sortascending == true {
+            comp = (<)
+        } else {
+            comp = (>)
+        }
+        let column = myTableViewFromNotification.selectedColumn
+        switch column {
+        case 0:
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.loggdata2?.sorted(by: \.task, using: comp)
+        case 2:
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.loggdata2?.sorted(by: \.backupID, using: comp)
+        case 3:
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.loggdata2?.sorted(by: \.localCatalog, using: comp)
+        case 4:
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.loggdata2?.sorted(by: \.remoteCatalog, using: comp)
+        case 5:
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.loggdata2?.sorted(by: \.offsiteServer, using: comp)
+        case 6:
+            self.scheduleloggdata?.loggdata2 = self.scheduleloggdata?.loggdata2?.sorted(by: \.dateExecuted, using: comp)
+        default:
+            return
+        }
+        globalMainQueue.async { () -> Void in
+            self.scheduletable.reloadData()
+        }
+    }
+
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if let tableColumn = tableColumn {
             if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {
@@ -296,7 +293,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()?[index] {
-                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortedascending)
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortascending)
                 if self.connected(config: config) {
                     if config.task == ViewControllerReference.shared.snapshot { self.working.startAnimation(nil) }
                     self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
@@ -306,7 +303,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
                 }
             }
         } else {
-            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortedascending)
+            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortascending)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()

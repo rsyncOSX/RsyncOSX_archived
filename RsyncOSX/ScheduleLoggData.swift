@@ -8,7 +8,7 @@
 //  Object for sorting and holding logg data about all tasks.
 //  Detailed logging must be set on if logging data.
 //
-// swiftlint:disable trailing_comma line_length
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -81,7 +81,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         if hiddenID != nil {
             data = data.filter { $0.hiddenID == hiddenID }
         }
-        self.loggdata2 = data
+        self.loggdata2 = data.sorted(by: \.dateExecuted, using: >)
     }
 
     let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in
