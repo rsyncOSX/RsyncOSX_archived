@@ -109,10 +109,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortascending)
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
                     self.working.startAnimation(nil)
-                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
-                                                                           getsnapshots: false,
-                                                                           processtermination: self.processtermination,
-                                                                           filehandler: self.filehandler)
+                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
                 }
                 if self.indexfromwhere() == .vcsnapshot {
                     self.info.stringValue = Infologgdata().info(num: 2)
@@ -191,14 +188,6 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
         }
     }
 
-    /*
-     func test () {
-         let filteredData = self.search.stringValue.isEmpty ? self.scheduleloggdata?.loggdata : self.scheduleloggdata?.loggdata?.filter { (item: String) -> Bool in
-             // If dataItem matches the searchText, return true to include it
-             return item.range(of: self.search.stringValue, options: .caseInsensitive, range: nil, locale: nil) != nil
-         }
-     }
-     */
     func searchFieldDidEndSearching(_: NSSearchField) {
         self.index = nil
         self.reloadtabledata()
@@ -290,6 +279,8 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 
 extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
+        self.working.stopAnimation(nil)
+
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
@@ -297,10 +288,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortascending)
                 if self.connected(config: config) {
                     if config.task == ViewControllerReference.shared.snapshot { self.working.startAnimation(nil) }
-                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
-                                                                           getsnapshots: false,
-                                                                           processtermination: self.processtermination,
-                                                                           filehandler: self.filehandler)
+                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
                 }
             }
         } else {
@@ -309,22 +297,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
         }
-    }
-}
-
-extension ViewControllerLoggData {
-    func processtermination() {
-        self.snapshotlogsandcatalogs?.loggdata()
-        guard self.snapshotlogsandcatalogs?.outputprocess?.error == false else { return }
-        self.scheduleloggdata?.align(snapshotlogsandcatalogs: self.snapshotlogsandcatalogs)
-        self.working.stopAnimation(nil)
-        globalMainQueue.async { () -> Void in
-            self.scheduletable.reloadData()
-        }
-    }
-
-    func filehandler() {
-        //
     }
 }
 

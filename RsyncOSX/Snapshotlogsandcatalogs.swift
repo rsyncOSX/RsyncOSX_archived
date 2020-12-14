@@ -9,19 +9,12 @@
 import Foundation
 
 final class Snapshotlogsandcatalogs {
-    // var snapshotslogs: [NSMutableDictionary]?
-
     var snapshotslogs2: [Logrecordsschedules]?
     var scheduleloggdata: ScheduleLoggData?
     var config: Configuration?
     var outputprocess: OutputProcess?
     var snapshotcatalogs: [String]?
     var snapshotcatalogstodelete: [String]?
-    var getsnapshots: Bool = true
-    // var updateprogress: UpdateProgress?
-    // Process termination and filehandler closures
-    var processtermination: () -> Void
-    var filehandler: () -> Void
 
     private func getremotecataloginfo() {
         self.outputprocess = OutputProcess()
@@ -51,24 +44,24 @@ final class Snapshotlogsandcatalogs {
         for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
             if self.snapshotcatalogs?[i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + (self.snapshotcatalogs?[i] ?? "").dropFirst(2) + ")"
-                let filter = self.snapshotslogs2?.filter { $0.resultExecuted.contains(snapshotnum) }
+                var filter = self.snapshotslogs2?.filter { $0.resultExecuted.contains(snapshotnum) }
                 if filter?.count == 1 {
-                    if let index = filter?[0].num {
-                        self.snapshotslogs2?[index].snapshotCatalog = self.snapshotcatalogs?[i]
-                    }
+                    filter?[0].snapshotCatalog = self.snapshotcatalogs?[i]
                 } else {
                     self.snapshotslogs2?[i].snapshotCatalog = "no log"
                 }
             }
         }
-        let sorted = self.snapshotslogs2?.sorted { (d1, d2) -> Bool in
-            if Double(d1.days ?? "0")! <= Double(d2.days ?? "0")! {
-                return self.getsnapshots
-            } else {
-                return !self.getsnapshots
-            }
-        }
-        self.snapshotslogs2 = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
+        /*
+         self.snapshotslogs2 = self.snapshotslogs2?.sorted { (d1, d2) -> Bool in
+             if Double(d1.days ?? "0")! <= Double(d2.days ?? "0")! {
+                 return true
+             } else {
+                 return false
+             }
+         }
+         self.snapshotslogs2 = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
+         */
     }
 
     func calculatedays(datestringlocalized: String) -> Double? {
@@ -99,7 +92,17 @@ final class Snapshotlogsandcatalogs {
         return j - 1
     }
 
-    func loggdata() {
+    init(config: Configuration) {
+        guard config.task == ViewControllerReference.shared.snapshot else { return }
+        self.config = config
+        self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
+        self.snapshotslogs2 = scheduleloggdata?.loggrecords
+        self.getremotecataloginfo()
+    }
+}
+
+extension Snapshotlogsandcatalogs {
+    func processtermination() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
         self.snapshotcatalogs = self.outputprocess?.trimoutput(trim: .one)
@@ -110,20 +113,13 @@ final class Snapshotlogsandcatalogs {
         }
         self.reducetosnapshotlogs()
         self.mergeremotecatalogsandlogs()
+
+        weak var test: Reloadandrefresh?
+        test = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        test?.reloadtabledata()
     }
 
-    init(config: Configuration,
-         getsnapshots: Bool,
-         processtermination: @escaping () -> Void,
-         filehandler: @escaping () -> Void)
-    {
-        self.processtermination = processtermination
-        self.filehandler = filehandler
-        guard config.task == ViewControllerReference.shared.snapshot else { return }
-        self.getsnapshots = getsnapshots
-        self.config = config
-        self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
-        self.snapshotslogs2 = scheduleloggdata?.loggrecords
-        self.getremotecataloginfo()
+    func filehandler() {
+        //
     }
 }

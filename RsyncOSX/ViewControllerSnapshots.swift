@@ -14,7 +14,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var hiddenID: Int?
     var config: Configuration?
     var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
-    var delete: Bool = false
     var numbersinsequencetodelete: Int?
     var snapshotstodelete: Double = 0
     var index: Int?
@@ -152,7 +151,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.presentAsSheet(self.viewControllerProgress!)
             self.deletesnapshots.isEnabled = false
             self.deletesnapshotcatalogs()
-            self.delete = true
         }
     }
 
@@ -275,10 +273,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if let config = self.config {
             self.info.stringValue = Infosnapshots().info(num: 0)
             self.gettinglogs.startAnimation(nil)
-            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
-                                                                   getsnapshots: true,
-                                                                   processtermination: self.processtermination,
-                                                                   filehandler: self.filehandler)
+            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
         }
     }
 
@@ -337,40 +332,13 @@ extension ViewControllerSnapshots: DismissViewController {
 
 extension ViewControllerSnapshots {
     func processtermination() {
-        self.selectplan.isEnabled = true
-        self.selectdayofweek.isEnabled = true
-        if delete {
-            // self.processterminationdelete()
-        } else {
-            self.snapshotlogsandcatalogs?.loggdata()
-            self.initslidersdeletesnapshots()
-            self.gettinglogs.stopAnimation(nil)
-            self.numbersinsequencetodelete = nil
-            self.preselectcomboboxes()
-            _ = Tagsnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
-            globalMainQueue.async { () -> Void in
-                self.snapshotstableView.reloadData()
-            }
-        }
-    }
-
-    func filehandler() {
-        //
-    }
-
-    // Deleting snapshots
-    func processterminationdelete() {
         if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess,
            let config = self.config
         {
             if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
-                self.delete = false
                 self.deletesnapshots.isEnabled = true
                 self.info.stringValue = Infosnapshots().info(num: 3)
-                self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config,
-                                                                       getsnapshots: true,
-                                                                       processtermination: self.processtermination,
-                                                                       filehandler: self.filehandler)
+                self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
                 if self.abort == true {
                     self.abort = false
                 } else {
@@ -382,6 +350,8 @@ extension ViewControllerSnapshots {
             self.deletesnapshotcatalogs()
         }
     }
+
+    func filehandler() {}
 }
 
 extension ViewControllerSnapshots: Count {
@@ -463,6 +433,16 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         self.setlabeldayofweekandlast()
+
+        self.selectplan.isEnabled = true
+        self.selectdayofweek.isEnabled = true
+        self.initslidersdeletesnapshots()
+        self.gettinglogs.stopAnimation(nil)
+        self.numbersinsequencetodelete = nil
+        self.preselectcomboboxes()
+        /*
+         _ = Tagsnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
+         */
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
             self.rsynctableView.reloadData()
