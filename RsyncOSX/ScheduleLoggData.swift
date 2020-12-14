@@ -24,7 +24,7 @@ enum Sortandfilter {
     case none
 }
 
-struct Logrecordstest {
+struct Logrecordsschedules {
     var hiddenID: Int
     var localCatalog: String
     var remoteCatalog: String
@@ -40,16 +40,16 @@ struct Logrecordstest {
 }
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
-    var loggdata2: [Logrecordstest]?
+    var loggrecords: [Logrecordsschedules]?
 
     func filter(search: String?, filterby _: Sortandfilter?) {
         globalDefaultQueue.async { () -> Void in
-            self.loggdata2 = self.loggdata2?.filter { ($0.dateExecuted.contains(search ?? "")) }
+            self.loggrecords = self.loggrecords?.filter { ($0.dateExecuted.contains(search ?? "")) }
         }
     }
 
     private func readandsortallloggdata2(hiddenID: Int?, sortascending _: Bool) {
-        var data = [Logrecordstest]()
+        var data = [Logrecordsschedules]()
         if let input: [ConfigurationSchedule] = self.schedules?.getSchedule() {
             for i in 0 ..< input.count {
                 for j in 0 ..< (input[i].logrecords?.count ?? 0) {
@@ -61,18 +61,18 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                             }
                         }
                         let record =
-                            Logrecordstest(hiddenID: hiddenID,
-                                           localCatalog: self.configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? "",
-                                           remoteCatalog: self.configurations?.getResourceConfiguration(hiddenID, resource: .remoteCatalog) ?? "",
-                                           offsiteServer: self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
-                                           task: self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
-                                           backupID: self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
-                                           dateExecuted: date ?? "",
-                                           resultExecuted: input[i].logrecords?[j].resultExecuted ?? "",
-                                           snapCellID: 0,
-                                           parent: i,
-                                           sibling: j,
-                                           delete: 0)
+                            Logrecordsschedules(hiddenID: hiddenID,
+                                                localCatalog: self.configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? "",
+                                                remoteCatalog: self.configurations?.getResourceConfiguration(hiddenID, resource: .remoteCatalog) ?? "",
+                                                offsiteServer: self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
+                                                task: self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
+                                                backupID: self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
+                                                dateExecuted: date ?? "",
+                                                resultExecuted: input[i].logrecords?[j].resultExecuted ?? "",
+                                                snapCellID: 0,
+                                                parent: i,
+                                                sibling: j,
+                                                delete: 0)
                         data.append(record)
                     }
                 }
@@ -81,7 +81,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         if hiddenID != nil {
             data = data.filter { $0.hiddenID == hiddenID }
         }
-        self.loggdata2 = data.sorted(by: \.dateExecuted, using: >)
+        self.loggrecords = data.sorted(by: \.dateExecuted, using: >)
     }
 
     let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in
@@ -96,8 +96,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
 
     func align(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
         guard snapshotlogsandcatalogs?.snapshotslogs != nil else { return }
-        guard self.loggdata2 != nil else { return }
-        for i in 0 ..< (self.loggdata2?.count ?? 0) {
+        guard self.loggrecords != nil else { return }
+        for i in 0 ..< (self.loggrecords?.count ?? 0) {
             /*
              for j in 0 ..< (snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) where
                  self.compare(snapshotlogsandcatalogs?.snapshotslogs?[j], self.loggdata?[i])
@@ -114,13 +114,13 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     }
 
     init(sortascending: Bool) {
-        if self.loggdata2 == nil {
+        if self.loggrecords == nil {
             self.readandsortallloggdata2(hiddenID: nil, sortascending: sortascending)
         }
     }
 
     init(hiddenID: Int, sortascending: Bool) {
-        if self.loggdata2 == nil {
+        if self.loggrecords == nil {
             self.readandsortallloggdata2(hiddenID: hiddenID, sortascending: sortascending)
         }
     }

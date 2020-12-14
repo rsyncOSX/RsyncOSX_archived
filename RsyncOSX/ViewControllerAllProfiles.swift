@@ -46,9 +46,7 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
             self.sortascending = true
             self.sortdirection.image = #imageLiteral(resourceName: "up")
         }
-        globalMainQueue.async { () -> Void in
-            self.mainTableView.reloadData()
-        }
+        self.sortbycolumn()
     }
 
     override func viewDidLoad() {
@@ -99,6 +97,34 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
         self.view.window?.close()
+    }
+
+    func sortbycolumn() {
+        var comp: (String, String) -> Bool
+        if self.sortascending == true {
+            comp = (<)
+        } else {
+            comp = (>)
+        }
+        switch self.column {
+        case 0:
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.profile!, using: comp)
+        case 3:
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.task, using: comp)
+        case 4:
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.localCatalog, using: comp)
+        case 5:
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
+        case 6:
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
+        case 7, 8:
+            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.dateRun!, using: comp)
+        default:
+            return
+        }
+        globalMainQueue.async { () -> Void in
+            self.mainTableView.reloadData()
+        }
     }
 }
 
@@ -160,7 +186,6 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
-        var comp: (String, String) -> Bool
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let column = myTableViewFromNotification.selectedColumn
         let indexes = myTableViewFromNotification.selectedRowIndexes
@@ -169,31 +194,8 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         } else {
             self.index = nil
         }
-        if self.sortascending == true {
-            comp = (<)
-        } else {
-            comp = (>)
-        }
         self.column = column
-        switch column {
-        case 0:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.profile!, using: comp)
-        case 3:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.task, using: comp)
-        case 4:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.localCatalog, using: comp)
-        case 5:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
-        case 6:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
-        case 7, 8:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.dateRun!, using: comp)
-        default:
-            return
-        }
-        globalMainQueue.async { () -> Void in
-            self.mainTableView.reloadData()
-        }
+        self.sortbycolumn()
     }
 }
 
