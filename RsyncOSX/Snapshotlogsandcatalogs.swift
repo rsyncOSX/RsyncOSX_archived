@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -53,32 +52,21 @@ final class Snapshotlogsandcatalogs {
             if self.snapshotcatalogs?[i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + (self.snapshotcatalogs?[i] ?? "").dropFirst(2) + ")"
                 let filter = self.snapshotslogs2?.filter { $0.resultExecuted.contains(snapshotnum) }
-                /*
-                         if filter?.count == 1 {
-                             filter?[0].setObject(self.snapshotcatalogs![i], forKey: DictionaryStrings.snapshotCatalog.rawValue as NSCopying)
-                         } else {
-                             let dict: NSMutableDictionary = [DictionaryStrings.snapshotCatalog.rawValue: self.snapshotcatalogs![i],
-                                                              DictionaryStrings.dateExecuted.rawValue: "no log"]
-                             self.snapshotslogs?.append(dict)
-                         }
-
-                     }
-                 }
-                 let sorted = self.snapshotslogs2?.sorted { (di1, di2) -> Bool in
-                     let str1 = di1.value(forKey: DictionaryStrings.snapshotCatalog.rawValue) as? String
-                     let str2 = di2.value(forKey: DictionaryStrings.snapshotCatalog.rawValue) as? String
-                     let num1 = Int(str1?.dropFirst(2) ?? "") ?? 0
-                     let num2 = Int(str2?.dropFirst(2) ?? "") ?? 0
-                     if num1 <= num2 {
-                         return self.getsnapshots
-                     } else {
-                         return !self.getsnapshots
-                     }
-                 }
-                 self.snapshotslogs = sorted?.filter { ($0.value(forKey: DictionaryStrings.snapshotCatalog.rawValue) as? String)?.isEmpty == false }
-                          */
+                if filter?.count == 1 {
+                    self.snapshotslogs2?[i].snapshotCatalog = self.snapshotcatalogs?[i]
+                } else {
+                    self.snapshotslogs2?[i].snapshotCatalog = "no log"
+                }
             }
         }
+        let sorted = self.snapshotslogs2?.sorted { (d1, d2) -> Bool in
+            if Double(d1.days ?? "0")! <= Double(d2.days ?? "0")! {
+                return self.getsnapshots
+            } else {
+                return !self.getsnapshots
+            }
+        }
+        self.snapshotslogs2 = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
     }
 
     func calculatedays(datestringlocalized: String) -> Double? {
