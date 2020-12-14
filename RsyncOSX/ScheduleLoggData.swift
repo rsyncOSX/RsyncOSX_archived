@@ -34,10 +34,14 @@ struct Logrecordsschedules {
     var dateExecuted: String
     var date: Date
     var resultExecuted: String
-    var snapCellID: Int
     var parent: Int
     var sibling: Int
     var delete: Int
+    // Snapshots
+    var selectCellID: Int?
+    var period: String?
+    var days: String?
+    var snapshotCatalog: String?
 }
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
@@ -73,7 +77,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                                                 dateExecuted: datestring ?? "",
                                                 date: date ?? Date(),
                                                 resultExecuted: input[i].logrecords?[j].resultExecuted ?? "",
-                                                snapCellID: 0,
                                                 parent: i,
                                                 sibling: j,
                                                 delete: 0)
@@ -82,39 +85,38 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                 }
             }
         }
-        if hiddenID != nil {
-            data = data.filter { $0.hiddenID == hiddenID }
-        }
+        if hiddenID != nil { data = data.filter { $0.hiddenID == hiddenID } }
         self.loggrecords = data.sorted(by: \.date, using: >)
     }
 
-    let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in
-        if number1?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int,
-           number1?.value(forKey: DictionaryStrings.parent.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.parent.rawValue) as? Int
-        {
-            return true
-        } else {
-            return false
-        }
-    }
-
+    /*
+     let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in
+         if number1?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int,
+            number1?.value(forKey: DictionaryStrings.parent.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.parent.rawValue) as? Int
+         {
+             return true
+         } else {
+             return false
+         }
+     }
+     */
     func align(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
-        guard snapshotlogsandcatalogs?.snapshotslogs != nil else { return }
+        guard snapshotlogsandcatalogs?.snapshotslogs2 != nil else { return }
         guard self.loggrecords != nil else { return }
-        for i in 0 ..< (self.loggrecords?.count ?? 0) {
-            /*
-             for j in 0 ..< (snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) where
-                 self.compare(snapshotlogsandcatalogs?.snapshotslogs?[j], self.loggdata?[i])
-             {
-                 self.loggdata?[i].setValue(1, forKey: DictionaryStrings.snapCellID.rawValue)
-             }
-             if self.loggdata?[i].value(forKey: DictionaryStrings.snapCellID.rawValue) as? Int == 1 {
-                 self.loggdata?[i].setValue(0, forKey: DictionaryStrings.deleteCellID.rawValue)
-             } else {
-                 self.loggdata?[i].setValue(1, forKey: DictionaryStrings.deleteCellID.rawValue)
-             }
-             */
-        }
+        /*
+         for i in 0 ..< (self.loggrecords?.count ?? 0) {
+              for j in 0 ..< (snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) where
+                  self.compare(snapshotlogsandcatalogs?.snapshotslogs?[j], self.loggrecords?[i])
+              {
+                  self.loggrecords?[i].setValue(1, forKey: DictionaryStrings.snapCellID.rawValue)
+              }
+              if self.loggrecords?[i].snapCellID == 1 {
+                  self.loggrecords?[i].delete = 0
+              } else {
+                 self.loggrecords?[i].delete = 1
+              }
+         }
+         */
     }
 
     init(sortascending: Bool) {

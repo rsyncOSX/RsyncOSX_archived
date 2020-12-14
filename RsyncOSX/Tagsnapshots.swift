@@ -75,16 +75,15 @@ class Tagsnapshots {
     }
 
     private func markfordelete() {
-        guard self.snapshotlogsandcatalogs?.snapshotslogs != nil else { return }
-        for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) {
-            let index = (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) - 1 - i
+        for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0) {
+            let index = (self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0) - 1 - i
             if self.currentweek(index: index) {
-                self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(0, forKey: DictionaryStrings.selectCellID.rawValue)
+                self.snapshotlogsandcatalogs?.snapshotslogs2?[index].selectCellID = 0
             } else if self.currentdaymonth(index: index) {
-                self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
+                self.snapshotlogsandcatalogs?.snapshotslogs2?[index].selectCellID = 1
             } else {
                 if self.keepallorlastdayinperiod(index: index) {
-                    self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
+                    self.snapshotlogsandcatalogs?.snapshotslogs2?[index].selectCellID = 1
                 }
             }
         }
@@ -93,14 +92,14 @@ class Tagsnapshots {
 
     // Keep all snapshots current week.
     private func currentweek(index: Int) -> Bool {
-        let datesnapshotstring = (self.snapshotlogsandcatalogs?.snapshotslogs![index].value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String)!
+        let datesnapshotstring = self.snapshotlogsandcatalogs?.snapshotslogs2?[index].dateExecuted
         if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).weekOfYear ==
             self.datecomponentsfromstring(datestringlocalized: self.now).weekOfYear,
             self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year ==
             self.datecomponentsfromstring(datestringlocalized: self.now).year
         {
             let tag = NSLocalizedString("Keep", comment: "plan") + " " + NSLocalizedString("this week", comment: "plan")
-            self.snapshotlogsandcatalogs?.snapshotslogs?[index].setValue(tag, forKey: "period")
+            self.snapshotlogsandcatalogs?.snapshotslogs2?[index].period = tag
             return true
         }
         return false
@@ -108,22 +107,24 @@ class Tagsnapshots {
 
     // Keep snapshots every choosen day this month ex current week
     private func currentdaymonth(index: Int) -> Bool {
-        let datesnapshotstring = (self.snapshotlogsandcatalogs?.snapshotslogs![index].value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String)!
-        let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
-        let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
-        if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month ==
-            self.datecomponentsfromstring(datestringlocalized: self.now).month,
-            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentsfromstring(datestringlocalized: self.now).year
-        {
-            if self.datefromstring(datestringlocalized: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
-                let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("this month", comment: "plan")
-                self.snapshotlogsandcatalogs?.snapshotslogs?[index].setValue(tag, forKey: "period")
-                return true
-            } else {
-                let tag = NSLocalizedString("Keep", comment: "plan") + " " + month + " " + self.daylocalized[self.day!.rawValue - 1] + " " + NSLocalizedString("this month", comment: "plan")
-                self.snapshotlogsandcatalogs?.snapshotslogs?[index].setValue(tag, forKey: "period")
-                return false
+        if let datesnapshotstring = self.snapshotlogsandcatalogs?.snapshotslogs2?[index].dateExecuted {
+            let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
+            let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
+            if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month ==
+                self.datecomponentsfromstring(datestringlocalized: self.now).month,
+                self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == self.datecomponentsfromstring(datestringlocalized: self.now).year
+            {
+                if self.datefromstring(datestringlocalized: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
+                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("this month", comment: "plan")
+                    self.snapshotlogsandcatalogs?.snapshotslogs2?[index].period = tag
+                    return true
+                } else {
+                    let tag = NSLocalizedString("Keep", comment: "plan") + " " + month + " " + self.daylocalized[self.day!.rawValue - 1] + " " + NSLocalizedString("this month", comment: "plan")
+                    self.snapshotlogsandcatalogs?.snapshotslogs2?[index].period = tag
+                    return false
+                }
             }
+            return false
         }
         return false
     }
@@ -137,34 +138,36 @@ class Tagsnapshots {
         } else {
             check = self.islastSelectedDayinMonth
         }
-        let datesnapshotstring = (self.snapshotlogsandcatalogs!.snapshotslogs![index].value(forKey: DictionaryStrings.dateExecuted.rawValue) as? String)!
-        let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
-        let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
-        if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
-            self.datecomponentsfromstring(datestringlocalized: self.now).month ||
-            self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
-            self.datecomponentsfromstring(datestringlocalized: self.now).year!
-        {
-            if check!(self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
-                if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month == self.datecomponentsfromstring(datestringlocalized: self.now).month! - 1 {
-                    let tag = NSLocalizedString("Keep", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
-                    self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(tag, forKey: "period")
+        if let datesnapshotstring = self.snapshotlogsandcatalogs?.snapshotslogs2?[index].dateExecuted {
+            let month = self.datefromstring(datestringlocalized: datesnapshotstring).monthNameShort()
+            let day = self.datefromstring(datestringlocalized: datesnapshotstring).dayNameShort()
+            if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month !=
+                self.datecomponentsfromstring(datestringlocalized: self.now).month ||
+                self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).year! <
+                self.datecomponentsfromstring(datestringlocalized: self.now).year!
+            {
+                if check!(self.datefromstring(datestringlocalized: datesnapshotstring)) == true {
+                    if self.datecomponentsfromstring(datestringlocalized: datesnapshotstring).month == self.datecomponentsfromstring(datestringlocalized: self.now).month! - 1 {
+                        let tag = NSLocalizedString("Keep", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
+                        self.snapshotlogsandcatalogs?.snapshotslogs2?[index].period = tag
+                    } else {
+                        let tag = NSLocalizedString("Keep", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
+                        self.snapshotlogsandcatalogs?.snapshotslogs2?[index].period = tag
+                    }
+                    return false
                 } else {
-                    let tag = NSLocalizedString("Keep", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
-                    self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(tag, forKey: "period")
+                    let date = self.datefromstring(datestringlocalized: datesnapshotstring)
+                    if date.ispreviousmont {
+                        let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
+                        self.snapshotlogsandcatalogs?.snapshotslogs2?[index].period = tag
+                    } else {
+                        let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
+                        self.snapshotlogsandcatalogs?.snapshotslogs2?[index].period = tag
+                    }
+                    return true
                 }
-                return false
-            } else {
-                let date = self.datefromstring(datestringlocalized: datesnapshotstring)
-                if date.ispreviousmont {
-                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("previous month", comment: "plan")
-                    self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(tag, forKey: "period")
-                } else {
-                    let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("earlier months", comment: "plan")
-                    self.snapshotlogsandcatalogs?.snapshotslogs![index].setValue(tag, forKey: "period")
-                }
-                return true
             }
+            return false
         }
         return false
     }
@@ -182,8 +185,8 @@ class Tagsnapshots {
     }
 
     private func reset() {
-        for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) {
-            self.snapshotlogsandcatalogs?.snapshotslogs?[i].setValue(0, forKey: DictionaryStrings.selectCellID.rawValue)
+        for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0) {
+            self.snapshotlogsandcatalogs?.snapshotslogs2?[i].selectCellID = 0
         }
     }
 
@@ -226,8 +229,8 @@ class Tagsnapshots {
         self.setweekdaytokeep(snapdayoffweek: snapdayoffweek)
         self.reloadDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         self.snapshotlogsandcatalogs = snapshotsloggdata
-        guard snapshotsloggdata?.snapshotslogs != nil else { return }
-        self.numberoflogs = snapshotsloggdata?.snapshotslogs?.count ?? 0
+        guard snapshotsloggdata?.snapshotslogs2 != nil else { return }
+        self.numberoflogs = snapshotsloggdata?.snapshotslogs2?.count ?? 0
         self.now = Date().localized_string_from_date()
         self.reset()
         self.markfordelete()

@@ -230,8 +230,8 @@ extension ViewControllerLoggData: NSTableViewDelegate {
                 switch tableColumn.identifier.rawValue {
                 case DictionaryStrings.deleteCellID.rawValue:
                     return object.delete
-                case DictionaryStrings.snapCellID.rawValue:
-                    return object.snapCellID
+                case DictionaryStrings.selectCellID.rawValue:
+                    return object.selectCellID
                 case DictionaryStrings.task.rawValue:
                     return object.task
                 case DictionaryStrings.backupID.rawValue:
