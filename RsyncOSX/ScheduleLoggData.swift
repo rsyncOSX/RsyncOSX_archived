@@ -32,6 +32,7 @@ struct Logrecordsschedules {
     var task: String
     var backupID: String
     var dateExecuted: String
+    var date: Date
     var resultExecuted: String
     var snapCellID: Int
     var parent: Int
@@ -54,10 +55,12 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
             for i in 0 ..< input.count {
                 for j in 0 ..< (input[i].logrecords?.count ?? 0) {
                     if let hiddenID = self.schedules?.getSchedule()?[i].hiddenID {
-                        var date: String?
+                        var datestring: String?
+                        var date: Date?
                         if let stringdate = input[i].logrecords?[j].dateExecuted {
                             if stringdate.isEmpty == false {
-                                date = stringdate.en_us_date_from_string().localized_string_from_date()
+                                datestring = stringdate.en_us_date_from_string().localized_string_from_date()
+                                date = stringdate.en_us_date_from_string()
                             }
                         }
                         let record =
@@ -67,7 +70,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                                                 offsiteServer: self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
                                                 task: self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
                                                 backupID: self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
-                                                dateExecuted: date ?? "",
+                                                dateExecuted: datestring ?? "",
+                                                date: date ?? Date(),
                                                 resultExecuted: input[i].logrecords?[j].resultExecuted ?? "",
                                                 snapCellID: 0,
                                                 parent: i,
@@ -81,7 +85,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         if hiddenID != nil {
             data = data.filter { $0.hiddenID == hiddenID }
         }
-        self.loggrecords = data.sorted(by: \.dateExecuted, using: >)
+        self.loggrecords = data.sorted(by: \.date, using: >)
     }
 
     let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in

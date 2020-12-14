@@ -145,10 +145,13 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     func sortbycolumn() {
         var comp: (String, String) -> Bool
+        var comp2: (Date, Date) -> Bool
         if self.sortascending == true {
             comp = (<)
+            comp2 = (<)
         } else {
             comp = (>)
+            comp2 = (>)
         }
         switch self.column {
         case 0:
@@ -162,7 +165,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         case 5:
             self.scheduleloggdata?.loggrecords = self.scheduleloggdata?.loggrecords?.sorted(by: \.offsiteServer, using: comp)
         case 6:
-            self.scheduleloggdata?.loggrecords = self.scheduleloggdata?.loggrecords?.sorted(by: \.dateExecuted, using: comp)
+            self.scheduleloggdata?.loggrecords = self.scheduleloggdata?.loggrecords?.sorted(by: \.date, using: comp2)
         default:
             return
         }
