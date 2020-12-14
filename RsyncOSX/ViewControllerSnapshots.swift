@@ -428,16 +428,25 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
                let tableColumn = tableColumn
             {
                 switch tableColumn.identifier.rawValue {
+                case DictionaryStrings.snapshotCatalog.rawValue:
+                    return object.snapshotCatalog
+                case DictionaryStrings.dateExecuted.rawValue:
+                    return object.dateExecuted
+                case DictionaryStrings.period.rawValue:
+                    return object.period
+                case DictionaryStrings.days.rawValue:
+                    return object.days
                 case DictionaryStrings.selectCellID.rawValue:
-                    return nil
+                    return object.selectCellID
+                case DictionaryStrings.resultExecuted.rawValue:
+                    return object.resultExecuted
                 default:
-                    print(tableColumn.identifier.rawValue)
+                    return nil
                 }
             } else {
                 return nil
             }
         }
-        return nil
     }
 
     func tableView(_ tableView: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {

@@ -135,7 +135,7 @@ final class Snapshotlogsandcatalogs {
         self.getsnapshots = getsnapshots
         self.config = config
         self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
-        // self.snapshotslogs = scheduleloggdata?.loggdata2
+        self.snapshotslogs2 = scheduleloggdata?.loggrecords
         self.getremotecataloginfo()
     }
 }
