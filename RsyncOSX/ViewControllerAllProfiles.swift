@@ -117,8 +117,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
             self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
         case 6:
             self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
-        case 7, 8:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.dateRun!, using: comp)
         default:
             return
         }
