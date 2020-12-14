@@ -102,7 +102,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
      */
 
     func align(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
-        guard snapshotlogsandcatalogs?.snapshotslogs2 != nil else { return }
+        guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else { return }
         guard self.loggrecords != nil else { return }
         /*
          for i in 0 ..< (self.loggrecords?.count ?? 0) {

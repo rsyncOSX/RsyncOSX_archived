@@ -73,12 +73,12 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     private func initslidersdeletesnapshots() {
         self.deletesnapshots.altIncrementValue = 1.0
-        self.deletesnapshots.maxValue = Double(self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0) - 1.0
+        self.deletesnapshots.maxValue = Double(self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1.0
         self.deletesnapshots.minValue = 0.0
         self.deletesnapshots.intValue = 0
         self.stringdeletesnapshotsnum.stringValue = "0"
         self.deletesnapshotsdays.altIncrementValue = 1.0
-        if let maxdaysold = self.snapshotlogsandcatalogs?.snapshotslogs2?[0] {
+        if let maxdaysold = self.snapshotlogsandcatalogs?.logrecordssnapshot?[0] {
             if let days = maxdaysold.days {
                 self.deletesnapshotsdays.maxValue = (Double(days) ?? 0.0) + 1
                 self.deletesnapshotsdays.intValue = Int32(self.deletesnapshotsdays.maxValue)
@@ -126,11 +126,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func markfordelete(numberstomark: Int) {
-        for i in 0 ..< (self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0) - 1 {
+        for i in 0 ..< (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 {
             if i <= numberstomark {
-                self.snapshotlogsandcatalogs?.snapshotslogs2?[i].selectCellID = 1
+                self.snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 1
             } else {
-                self.snapshotlogsandcatalogs?.snapshotslogs2?[i].selectCellID = 0
+                self.snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 0
             }
         }
     }
@@ -139,7 +139,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     func deleteaction() {
         guard self.snapshotlogsandcatalogs != nil else { return }
         guard ViewControllerReference.shared.process == nil else { return }
-        let num = self.snapshotlogsandcatalogs?.snapshotslogs2?.filter { $0.selectCellID == 1 }.count
+        let num = self.snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
         let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
         let dialog: String = NSLocalizedString("Delete", comment: "Snapshots")
@@ -225,9 +225,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         if myTableViewFromNotification == self.snapshotstableView {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                if let dict = self.snapshotlogsandcatalogs?.snapshotslogs2?[index] {
+                if let dict = self.snapshotlogsandcatalogs?.logrecordssnapshot?[index] {
                     self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-                    let num = self.snapshotlogsandcatalogs?.snapshotslogs2?.filter { $0.selectCellID == 1 }.count
+                    let num = self.snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
                     self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(num ?? 0)
                     self.hiddenID = dict.hiddenID
                     guard self.hiddenID != nil else { return }
@@ -371,12 +371,12 @@ extension ViewControllerSnapshots: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         if tableView == self.snapshotstableView {
             let numberofsnaps: String = NSLocalizedString("Number snapshots:", comment: "Snapshots")
-            guard self.snapshotlogsandcatalogs?.snapshotslogs2 != nil else {
+            guard self.snapshotlogsandcatalogs?.logrecordssnapshot != nil else {
                 self.numberOflogfiles.stringValue = numberofsnaps + " "
                 return 0
             }
-            self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0)
-            return self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0
+            self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0)
+            return self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0
         } else {
             return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
@@ -393,8 +393,8 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
                 return nil
             }
         } else {
-            guard row < (self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0) else { return nil }
-            if let object = self.snapshotlogsandcatalogs?.snapshotslogs2?[row],
+            guard row < (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) else { return nil }
+            if let object = self.snapshotlogsandcatalogs?.logrecordssnapshot?[row],
                let tableColumn = tableColumn
             {
                 switch tableColumn.identifier.rawValue {
@@ -422,10 +422,10 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard tableView == self.snapshotstableView else { return }
         if tableColumn!.identifier.rawValue == DictionaryStrings.selectCellID.rawValue {
-            var select: Int = self.snapshotlogsandcatalogs?.snapshotslogs2![row].selectCellID ?? 0
+            var select: Int = self.snapshotlogsandcatalogs?.logrecordssnapshot![row].selectCellID ?? 0
             if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            guard row < (self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0) - 1 else { return }
-            self.snapshotlogsandcatalogs?.snapshotslogs2?[row].selectCellID = select
+            guard row < (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 else { return }
+            self.snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID = select
         }
     }
 }
@@ -458,8 +458,8 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
                     if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
                         self.info.stringValue = Infosnapshots().info(num: 0)
-                        if num > self.snapshotlogsandcatalogs?.snapshotslogs2?.count ?? 0 {
-                            self.deletesnapshots.intValue = Int32((self.snapshotlogsandcatalogs?.snapshotslogs2?.count)! - 1)
+                        if num > self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 {
+                            self.deletesnapshots.intValue = Int32((self.snapshotlogsandcatalogs?.logrecordssnapshot?.count)! - 1)
                             self.info.stringValue = Infosnapshots().info(num: 5)
                         } else {
                             self.deletesnapshots.intValue = Int32(num)

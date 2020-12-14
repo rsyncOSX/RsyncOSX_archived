@@ -9,7 +9,7 @@
 import Foundation
 
 final class Snapshotlogsandcatalogs {
-    var snapshotslogs2: [Logrecordsschedules]?
+    var logrecordssnapshot: [Logrecordsschedules]?
     var config: Configuration?
     var outputprocess: OutputProcess?
     var snapshotcatalogs: [String]?
@@ -30,10 +30,10 @@ final class Snapshotlogsandcatalogs {
     }
 
     private func reducetosnapshotlogs() {
-        for i in 0 ..< (self.snapshotslogs2?.count ?? 0) {
-            if let dateRun = self.snapshotslogs2?[i].dateExecuted {
+        for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
+            if let dateRun = self.logrecordssnapshot?[i].dateExecuted {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun) {
-                    self.snapshotslogs2?[i].days = String(format: "%.2f", secondssince / (60 * 60 * 24))
+                    self.logrecordssnapshot?[i].days = String(format: "%.2f", secondssince / (60 * 60 * 24))
                 }
             }
         }
@@ -43,23 +43,23 @@ final class Snapshotlogsandcatalogs {
         for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
             if self.snapshotcatalogs?[i].contains(".DS_Store") == false {
                 let snapshotnum = "(" + (self.snapshotcatalogs?[i] ?? "").dropFirst(2) + ")"
-                var filter = self.snapshotslogs2?.filter { $0.resultExecuted.contains(snapshotnum) }
+                var filter = self.logrecordssnapshot?.filter { $0.resultExecuted.contains(snapshotnum) }
                 if filter?.count == 1 {
                     filter?[0].snapshotCatalog = self.snapshotcatalogs?[i]
                 } else {
-                    self.snapshotslogs2?[i].snapshotCatalog = "no log"
+                    self.logrecordssnapshot?[i].snapshotCatalog = "no log"
                 }
             }
         }
         /*
-         self.snapshotslogs2 = self.snapshotslogs2?.sorted { (d1, d2) -> Bool in
+         self.logrecordssnapshot = self.logrecordssnapshot?.sorted { (d1, d2) -> Bool in
              if Double(d1.days ?? "0")! <= Double(d2.days ?? "0")! {
                  return true
              } else {
                  return false
              }
          }
-         self.snapshotslogs2 = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
+         self.logrecordssnapshot = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
          */
     }
 
@@ -71,18 +71,18 @@ final class Snapshotlogsandcatalogs {
     }
 
     func preparecatalogstodelete() {
-        for i in 0 ..< ((self.snapshotslogs2?.count ?? 0) - 1) where self.snapshotslogs2?[i].selectCellID == 1 {
+        for i in 0 ..< ((self.logrecordssnapshot?.count ?? 0) - 1) where self.logrecordssnapshot?[i].selectCellID == 1 {
             if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
             let snaproot = self.config?.offsiteCatalog
-            let snapcatalog = self.snapshotslogs2?[i].snapshotCatalog
+            let snapcatalog = self.logrecordssnapshot?[i].snapshotCatalog
             self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
         }
     }
 
     func countbydays(num: Double) -> Int {
         var j: Int = 0
-        for i in 0 ..< (self.snapshotslogs2?.count ?? 0) - 1 {
-            if let days: String = self.snapshotslogs2?[i].days {
+        for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) - 1 {
+            if let days: String = self.logrecordssnapshot?[i].days {
                 if Double(days)! >= num {
                     j += 1
                 }
@@ -94,7 +94,7 @@ final class Snapshotlogsandcatalogs {
     init(config: Configuration) {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.config = config
-        self.snapshotslogs2 = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true).loggrecords
+        self.logrecordssnapshot = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true).loggrecords
         self.getremotecataloginfo()
     }
 }
