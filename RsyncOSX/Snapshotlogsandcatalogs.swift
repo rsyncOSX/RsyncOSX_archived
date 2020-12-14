@@ -89,13 +89,11 @@ final class Snapshotlogsandcatalogs {
     }
 
     func preparecatalogstodelete() {
-        for i in 0 ..< (self.snapshotslogs2?.count ?? 0) - 1 {
-            if self.snapshotslogs2?[i].selectCellID == 1 {
-                if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
-                let snaproot = self.config?.offsiteCatalog
-                let snapcatalog = self.snapshotslogs2?[i].snapshotCatalog
-                self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
-            }
+        for i in 0 ..< ((self.snapshotslogs2?.count ?? 0) - 1) where self.snapshotslogs2?[i].selectCellID == 1 {
+            if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
+            let snaproot = self.config?.offsiteCatalog
+            let snapcatalog = self.snapshotslogs2?[i].snapshotCatalog
+            self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
         }
     }
 
