@@ -42,6 +42,7 @@ struct Logrecordsschedules {
     var period: String?
     var days: String?
     var snapshotCatalog: String?
+    var num: Int?
 }
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
@@ -79,7 +80,8 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
                                                 resultExecuted: input[i].logrecords?[j].resultExecuted ?? "",
                                                 parent: i,
                                                 sibling: j,
-                                                delete: 0)
+                                                delete: 0,
+                                                num: data.count)
                         data.append(record)
                     }
                 }

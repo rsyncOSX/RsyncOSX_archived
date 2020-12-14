@@ -53,7 +53,9 @@ final class Snapshotlogsandcatalogs {
                 let snapshotnum = "(" + (self.snapshotcatalogs?[i] ?? "").dropFirst(2) + ")"
                 let filter = self.snapshotslogs2?.filter { $0.resultExecuted.contains(snapshotnum) }
                 if filter?.count == 1 {
-                    self.snapshotslogs2?[i].snapshotCatalog = self.snapshotcatalogs?[i]
+                    if let index = filter?[0].num {
+                        self.snapshotslogs2?[index].snapshotCatalog = self.snapshotcatalogs?[i]
+                    }
                 } else {
                     self.snapshotslogs2?[i].snapshotCatalog = "no log"
                 }
