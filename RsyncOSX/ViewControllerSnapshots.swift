@@ -214,7 +214,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
                                                      arguments: arguments.getArguments(),
                                                      processtermination: self.processtermination,
                                                      filehandler: self.filehandler)
-                command.executeProcess(outputprocess: nil)
+                print(arguments)
+                print(command)
+                // command.executeProcess(outputprocess: nil)
             }
         }
     }
