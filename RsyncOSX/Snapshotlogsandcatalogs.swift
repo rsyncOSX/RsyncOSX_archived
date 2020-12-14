@@ -10,7 +10,6 @@ import Foundation
 
 final class Snapshotlogsandcatalogs {
     var snapshotslogs2: [Logrecordsschedules]?
-    var scheduleloggdata: ScheduleLoggData?
     var config: Configuration?
     var outputprocess: OutputProcess?
     var snapshotcatalogs: [String]?
@@ -95,8 +94,7 @@ final class Snapshotlogsandcatalogs {
     init(config: Configuration) {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.config = config
-        self.scheduleloggdata = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true)
-        self.snapshotslogs2 = scheduleloggdata?.loggrecords
+        self.snapshotslogs2 = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true).loggrecords
         self.getremotecataloginfo()
     }
 }
