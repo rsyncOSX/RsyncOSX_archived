@@ -34,6 +34,7 @@ final class Snapshotlogsandcatalogs {
             if let dateRun = self.logrecordssnapshot?[i].dateExecuted {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun) {
                     self.logrecordssnapshot?[i].days = String(format: "%.2f", secondssince / (60 * 60 * 24))
+                    self.logrecordssnapshot?[i].seconds = Int(secondssince)
                 }
             }
         }
@@ -51,16 +52,14 @@ final class Snapshotlogsandcatalogs {
                 }
             }
         }
-        /*
-         self.logrecordssnapshot = self.logrecordssnapshot?.sorted { (d1, d2) -> Bool in
-             if Double(d1.days ?? "0")! <= Double(d2.days ?? "0")! {
-                 return true
-             } else {
-                 return false
-             }
-         }
-         self.logrecordssnapshot = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
-         */
+        self.logrecordssnapshot = self.logrecordssnapshot?.sorted { (d1, d2) -> Bool in
+            if d1.seconds < d2.seconds {
+                return false
+            } else {
+                return true
+            }
+        }
+        // self.logrecordssnapshot = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
     }
 
     func calculatedays(datestringlocalized: String) -> Double? {

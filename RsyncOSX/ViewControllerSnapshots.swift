@@ -240,6 +240,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 if let config = self.configurations?.getConfigurations()?[index] {
+                    guard config.task == ViewControllerReference.shared.snapshot else { return }
                     guard self.connected(config: config) == true else {
                         self.info.stringValue = Infosnapshots().info(num: 6)
                         return

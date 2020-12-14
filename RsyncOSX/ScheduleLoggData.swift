@@ -42,6 +42,7 @@ struct Logrecordsschedules {
     var period: String?
     var days: String?
     var snapshotCatalog: String?
+    var seconds: Int = 0
 }
 
 final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
