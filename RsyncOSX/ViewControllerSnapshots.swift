@@ -111,6 +111,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
         self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(self.deletesnapshots.intValue)
         self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+        self.dayofweek.isHidden = true
+        self.lastorevery.isHidden = true
     }
 
     @IBAction func updatedeletesnapshotsdays(_: NSSlider) {
@@ -123,6 +125,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
         self.info.stringValue = NSLocalizedString("Delete snapshots older than:", comment: "plan") + " " + String(self.deletesnapshotsdays.intValue)
         self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+        self.dayofweek.isHidden = true
+        self.lastorevery.isHidden = true
     }
 
     private func markfordelete(numberstomark: Int) {
@@ -539,6 +543,8 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         default:
             return
         }
+        self.dayofweek.isHidden = true
+        self.lastorevery.isHidden = true
     }
 }
 

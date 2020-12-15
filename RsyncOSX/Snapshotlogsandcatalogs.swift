@@ -53,6 +53,7 @@ final class Snapshotlogsandcatalogs {
 
     private func mergeremotecatalogsandlogs() {
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
+            self.logrecordssnapshot?[i].period = "... not yet tagged..."
             if (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ").count > 0 {
                 let catalogelement = (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ")[0]
                 let snapshotcatalog = "./" + catalogelement.dropFirst().dropLast()
