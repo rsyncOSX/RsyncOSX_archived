@@ -195,12 +195,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func deletesnapshotcatalogs() {
-        guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else {
-            self.deletesnapshots.isEnabled = true
-            self.info.stringValue = Infosnapshots().info(num: 0)
-            return
-        }
-        guard (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? -1) > 0 else {
+        guard (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0) > 0 else {
             self.deletesnapshots.isEnabled = true
             self.info.stringValue = Infosnapshots().info(num: 0)
             return

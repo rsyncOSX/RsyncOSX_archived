@@ -87,6 +87,17 @@ final class Snapshotlogsandcatalogs {
             let snapcatalog = self.logrecordssnapshot?[i].snapshotCatalog
             self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
         }
+        if self.validatedelete() == false {
+            self.snapshotcatalogstodelete = nil
+        }
+    }
+
+    func validatedelete() -> Bool {
+        guard (self.snapshotcatalogstodelete?.count ?? 0) > 0 else { return false }
+        for i in 0 ..< (self.snapshotcatalogstodelete?.count ?? 0) {
+            print(self.snapshotcatalogstodelete?[i])
+        }
+        return false
     }
 
     func countbydays(num: Double) -> Int {
