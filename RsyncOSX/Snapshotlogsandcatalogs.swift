@@ -79,7 +79,7 @@ final class Snapshotlogsandcatalogs {
         return seconds * (-1)
     }
 
-    func preparecatalogstodelete() {
+    func preparesnapshotcatalogsfordelete() {
         for i in 0 ..< ((self.logrecordssnapshot?.count ?? 0) - 1) where self.logrecordssnapshot?[i].selectCellID == 1 {
             if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
             let snaproot = self.config?.offsiteCatalog
@@ -118,7 +118,5 @@ extension Snapshotlogsandcatalogs {
         reload?.reloadtabledata()
     }
 
-    func filehandler() {
-        //
-    }
+    func filehandler() {}
 }

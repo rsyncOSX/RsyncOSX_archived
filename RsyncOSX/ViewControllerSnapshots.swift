@@ -146,7 +146,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
             self.info.stringValue = Infosnapshots().info(num: 0)
-            self.snapshotlogsandcatalogs?.preparecatalogstodelete()
+            self.snapshotlogsandcatalogs?.preparesnapshotcatalogsfordelete()
             guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
             self.presentAsSheet(self.viewControllerProgress!)
             self.deletesnapshots.isEnabled = false
