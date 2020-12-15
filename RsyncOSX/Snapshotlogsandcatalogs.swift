@@ -29,7 +29,18 @@ final class Snapshotlogsandcatalogs {
         command.executeProcess(outputprocess: self.outputprocess)
     }
 
-    private func reducetosnapshotlogs() {
+    private func prepareremotesnapshotcatalogs() {
+        _ = self.outputprocess?.trimoutput(trim: .two)
+        guard outputprocess?.error == false else { return }
+        self.snapshotcatalogs = self.outputprocess?.trimoutput(trim: .one)
+        if self.snapshotcatalogs?.count ?? 0 > 0 {
+            if self.snapshotcatalogs?[0] == "./." {
+                self.snapshotcatalogs?.remove(at: 0)
+            }
+        }
+    }
+
+    private func calculateddayssincesynchronize() {
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
             if let dateRun = self.logrecordssnapshot?[i].dateExecuted {
                 if let secondssince = self.calculatedays(datestringlocalized: dateRun) {
@@ -99,20 +110,12 @@ final class Snapshotlogsandcatalogs {
 
 extension Snapshotlogsandcatalogs {
     func processtermination() {
-        _ = self.outputprocess?.trimoutput(trim: .two)
-        guard outputprocess?.error == false else { return }
-        self.snapshotcatalogs = self.outputprocess?.trimoutput(trim: .one)
-        if self.snapshotcatalogs?.count ?? 0 > 1 {
-            if self.snapshotcatalogs![0] == "./." {
-                self.snapshotcatalogs?.remove(at: 0)
-            }
-        }
-        self.reducetosnapshotlogs()
+        self.prepareremotesnapshotcatalogs()
+        self.calculateddayssincesynchronize()
         self.mergeremotecatalogsandlogs()
-
-        weak var test: Reloadandrefresh?
-        test = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        test?.reloadtabledata()
+        weak var reload: Reloadandrefresh?
+        reload = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        reload?.reloadtabledata()
     }
 
     func filehandler() {
