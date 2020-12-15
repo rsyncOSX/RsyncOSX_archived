@@ -436,16 +436,12 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
         self.setlabeldayofweekandlast()
-
         self.selectplan.isEnabled = true
         self.selectdayofweek.isEnabled = true
         self.initslidersdeletesnapshots()
         self.gettinglogs.stopAnimation(nil)
         self.numbersinsequencetodelete = nil
         self.preselectcomboboxes()
-        /*
-         _ = Tagsnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
-         */
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
             self.rsynctableView.reloadData()
@@ -507,39 +503,36 @@ extension ViewControllerSnapshots: NewProfile {
         }
     }
 
-    func reloadprofilepopupbutton() {
-        //
-    }
+    func reloadprofilepopupbutton() {}
 }
 
 extension ViewControllerSnapshots: NSComboBoxDelegate {
     func comboBoxSelectionDidChange(_: Notification) {
-        guard self.config != nil else { return }
         switch self.selectdayofweek.indexOfSelectedItem {
         case 0:
-            self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Sunday.rawValue
         case 1:
-            self.config!.snapdayoffweek = StringDayofweek.Monday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Monday.rawValue
         case 2:
-            self.config!.snapdayoffweek = StringDayofweek.Tuesday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Tuesday.rawValue
         case 3:
-            self.config!.snapdayoffweek = StringDayofweek.Wednesday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Wednesday.rawValue
         case 4:
-            self.config!.snapdayoffweek = StringDayofweek.Thursday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Thursday.rawValue
         case 5:
-            self.config!.snapdayoffweek = StringDayofweek.Friday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Friday.rawValue
         case 6:
-            self.config!.snapdayoffweek = StringDayofweek.Saturday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Saturday.rawValue
         default:
-            self.config!.snapdayoffweek = StringDayofweek.Sunday.rawValue
+            self.config?.snapdayoffweek = StringDayofweek.Sunday.rawValue
         }
         self.info.stringValue = ""
         switch self.selectplan.indexOfSelectedItem {
         case 1:
-            self.config!.snaplast = 1
+            self.config?.snaplast = 1
             _ = Tagsnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         case 2:
-            self.config!.snaplast = 2
+            self.config?.snaplast = 2
             _ = Tagsnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         default:
             return
