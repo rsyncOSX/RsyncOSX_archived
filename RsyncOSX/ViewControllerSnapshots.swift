@@ -181,8 +181,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         self.selectplan.isEnabled = false
         self.selectdayofweek.isEnabled = false
         self.snapshotlogsandcatalogs = nil
-        self.dayofweek.isHidden = true
-        self.lastorevery.isHidden = true
         self.reloadtabledata()
         self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
     }
@@ -292,8 +290,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     private func setlabeldayofweekandlast() {
         self.dayofweek.textColor = self.setcolor(nsviewcontroller: self, color: .green)
         self.lastorevery.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-        self.dayofweek.isHidden = false
-        self.lastorevery.isHidden = false
         self.dayofweek.stringValue = NSLocalizedString(self.config?.snapdayoffweek ?? "Sunday", comment: "dayofweek")
         if self.config?.snaplast ?? 1 == 1 {
             self.lastorevery.stringValue = NSLocalizedString("every", comment: "plan")
@@ -319,6 +315,14 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         }
         self.profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
+    }
+
+    func tag() {
+        guard self.config?.task == ViewControllerReference.shared.snapshot else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
+        _ = Tagsnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
+        self.dayofweek.isHidden = false
+        self.lastorevery.isHidden = false
     }
 }
 
@@ -530,10 +534,8 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
         switch self.selectplan.indexOfSelectedItem {
         case 1:
             self.config?.snaplast = 1
-            _ = Tagsnapshots(plan: 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         case 2:
             self.config?.snaplast = 2
-            _ = Tagsnapshots(plan: 2, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
         default:
             return
         }
@@ -557,6 +559,8 @@ extension ViewControllerSnapshots: GetSelecetedIndex {
 extension ViewControllerSnapshots: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
+        case .Tag:
+            self.tag()
         case .Delete:
             self.deleteaction()
         case .Save:

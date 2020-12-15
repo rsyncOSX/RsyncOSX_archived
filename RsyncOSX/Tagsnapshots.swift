@@ -29,7 +29,7 @@ enum StringDayofweek: String {
     case Sunday
 }
 
-class Tagsnapshots {
+final class Tagsnapshots {
     var day: NumDayofweek?
     var nameofday: StringDayofweek?
     var daylocalized = [NSLocalizedString("Sunday", comment: "plan"),
@@ -234,5 +234,9 @@ class Tagsnapshots {
         self.now = Date().localized_string_from_date()
         self.reset()
         self.markfordelete()
+    }
+
+    deinit {
+        print("deinit Tag")
     }
 }

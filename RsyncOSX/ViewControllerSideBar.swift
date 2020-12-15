@@ -40,6 +40,7 @@ enum Sidebaractionsmessages {
     case Reset
     case CreateKey
     case Remote
+    case Tag
 }
 
 protocol Sidebaractions: AnyObject {
@@ -108,7 +109,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
                 deleteDelegate?.sidebarbuttonactions(action: .Daily)
             case .snapshotviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                deleteDelegate?.sidebarbuttonactions(action: .Tag)
             case .logsviewbuttons:
                 return
             case .sshviewbuttons:
@@ -281,9 +283,10 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button4.title = NSLocalizedString("Update", comment: "Sidebar")
         case .snapshotviewbuttons:
             self.button1.isHidden = true
-            self.button2.isHidden = true
+            self.button2.isHidden = false
             self.button3.isHidden = false
             self.button4.isHidden = false
+            self.button2.title = NSLocalizedString("Tag", comment: "Sidebar")
             self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
             self.button4.title = NSLocalizedString("Save", comment: "Sidebar")
         case .logsviewbuttons:
