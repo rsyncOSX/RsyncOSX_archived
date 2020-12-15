@@ -41,15 +41,15 @@ final class Snapshotlogsandcatalogs {
     }
 
     private func mergeremotecatalogsandlogs() {
-        for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
-            if self.snapshotcatalogs?[i].contains(".DS_Store") == false {
-                let snapshotnum = "(" + (self.snapshotcatalogs?[i] ?? "").dropFirst(2) + ")"
-                var filter = self.logrecordssnapshot?.filter { $0.resultExecuted.contains(snapshotnum) }
-                if filter?.count == 1 {
-                    filter?[0].snapshotCatalog = self.snapshotcatalogs?[i]
-                } else {
-                    self.logrecordssnapshot?[i].snapshotCatalog = "no log"
+        for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
+            if (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ").count > 0 {
+                let catalogelement = (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ")[0]
+                let snapshotcatalog = "./" + catalogelement.dropFirst().dropLast()
+                if (self.snapshotcatalogs?.filter { $0.contains(snapshotcatalog) }) != nil {
+                    self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalog
                 }
+            } else {
+                self.logrecordssnapshot?[i].snapshotCatalog = "no log"
             }
         }
         self.logrecordssnapshot = self.logrecordssnapshot?.sorted { (d1, d2) -> Bool in
@@ -59,7 +59,6 @@ final class Snapshotlogsandcatalogs {
                 return true
             }
         }
-        // self.logrecordssnapshot = sorted?.filter { $0.snapshotCatalog!.isEmpty == false }
     }
 
     func calculatedays(datestringlocalized: String) -> Double? {
