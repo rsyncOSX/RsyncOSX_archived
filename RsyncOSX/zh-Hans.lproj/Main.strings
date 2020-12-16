@@ -1,5 +1,5 @@
 /* Class = "NSTextFieldCell"; title = "keypath + identityfile :"; ObjectID = "0HP-Xc-FiP"; */
-"0HP-Xc-FiP.title" = "密钥路径：";
+"0HP-Xc-FiP.title" = "密钥完整路径：";
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "0KI-B9-ezl"; */
 "0KI-B9-ezl.headerCell.title" = "任务";
@@ -17,7 +17,7 @@
 "1Xt-HY-uBw.title" = "RsyncOSX";
 
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "1Yh-6C-SGM"; */
-"1Yh-6C-SGM.title" = "项目3";
+"1Yh-6C-SGM.title" = "Item 3";
 
 /* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "2Kr-a7-U09"; */
 "2Kr-a7-U09.title" = "ID：";
@@ -65,7 +65,7 @@
 "5PJ-QW-PyL.title" = "Text Cell";
 
 /* Class = "NSTableColumn"; headerCell.title = "Stop"; ObjectID = "5TL-a2-yBQ"; */
-"5TL-a2-yBQ.headerCell.title" = "止损单";
+"5TL-a2-yBQ.headerCell.title" = "停止";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "5zk-w0-I3D"; */
 "5zk-w0-I3D.title" = "Text Cell";
@@ -128,7 +128,7 @@
 "aHy-27-4y5.title" = "表格视图单元格";
 
 /* Class = "NSTableColumn"; headerCell.title = "Stop date"; ObjectID = "AIr-rt-OLN"; */
-"AIr-rt-OLN.headerCell.title" = "停止日期";
+"AIr-rt-OLN.headerCell.title" = "停止时间";
 
 /* Class = "NSViewController"; title = "Logs"; ObjectID = "AlG-Cw-Xi9"; */
 "AlG-Cw-Xi9.title" = "日志";
@@ -269,7 +269,7 @@
 "eSz-E4-xy1.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "rsyncversionshort"; ObjectID = "EU9-bF-96n"; */
-"EU9-bF-96n.title" = "rsync短版本";
+"EU9-bF-96n.title" = "rsync 短版本";
 
 /* Class = "NSWindow"; title = "RsyncOSX"; ObjectID = "EVd-zs-u1i"; */
 "EVd-zs-u1i.title" = "RsyncOSX";
@@ -293,7 +293,7 @@
 "fiO-Ux-xlw.title" = "快照";
 
 /* Class = "NSMenuItem"; title = "RsyncOSX Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "RsyncOSX帮助";
+"FKE-Sm-Kum.title" = "RsyncOSX 帮助";
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "fnk-Kq-6LU"; */
 "fnk-Kq-6LU.headerCell.title" = "远程目录";
@@ -385,9 +385,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "L1n-6w-rIj"; */
 "L1n-6w-rIj.headerCell.title" = "本地目录";
 
-/* Class = "NSTextFieldCell"; title = ":"; ObjectID = "L51-Pl-bRg"; */
-"L51-Pl-bRg.title" = ":";
-
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "前置所有窗口";
 
@@ -407,7 +404,7 @@
 "MWF-sp-vNQ.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "days older"; ObjectID = "NC7-Ka-Wgs"; */
-"NC7-Ka-Wgs.title" = "天前";
+"NC7-Ka-Wgs.title" = "更早";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "NhR-OP-Eqo"; */
 "NhR-OP-Eqo.title" = "Text Cell";
@@ -470,7 +467,7 @@
 "p56-o9-HcO.title" = "全部信息";
 
 /* Class = "NSMenuItem"; title = "Transform"; ObjectID = "PI0-Hw-1SW"; */
-"PI0-Hw-1SW.title" = "变形";
+"PI0-Hw-1SW.title" = "转换";
 
 /* Class = "NSBox"; title = "File or catalog to restore"; ObjectID = "PIK-cY-cmQ"; */
 "PIK-cY-cmQ.title" = "要还原的文件或目录";

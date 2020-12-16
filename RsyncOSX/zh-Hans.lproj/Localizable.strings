@@ -234,8 +234,7 @@
 /* No comment provided by engineer. */
 "Load" = "负载";
 
-/* Remote info
-   Remote Info */
+/* Remote info */
 "Loaded cached data..." = "加载缓存数据...";
 
 /* Tooltip */
@@ -378,9 +377,6 @@
 /* Toolbar */
 "Show userconfig..." = "显示用户配置...";
 
-/* Restore */
-"Simulated: execute restore of files to temporary restore path" = "模拟：执行恢复文件以临时恢复路径";
-
 /* Tooltip */
 "Source catalog:" = "源目录：";
 
@@ -402,9 +398,6 @@
 
 /* Execute */
 "The menu app" = "菜单应用";
-
-/* Quickbackup */
-"There seems to be nothing to do..." = "似乎没有什么事要做...";
 
 /* New */
 "This is added before?" = "这是以前添加的吗？";
