@@ -90,15 +90,6 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggrecords = data.sorted(by: \.date, using: >)
     }
 
-    /*
-     func marksnapshotlogrecordsfordelete(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
-         guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else { return }
-         guard self.loggrecords != nil else { return }
-         for i in 0 ..< (self.loggrecords?.count ?? 0) {
-         }
-     }
-     */
-
     init(hiddenID: Int?) {
         if self.loggrecords == nil {
             self.readandsortallloggdata(hiddenID: hiddenID)

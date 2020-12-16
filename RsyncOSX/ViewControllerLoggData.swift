@@ -173,6 +173,15 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.scheduletable.reloadData()
         }
     }
+
+    func marksnaps() {
+        print("marksnap")
+        /*
+         guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else { return }
+         guard self.loggrecords != nil else { return }
+         for i in 0 ..< (self.loggrecords?.count ?? 0) {
+         */
+    }
 }
 
 extension ViewControllerLoggData: NSSearchFieldDelegate {
@@ -281,11 +290,6 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
         self.working.stopAnimation(nil)
-        /*
-         if self.snapshotscheduleloggdata != nil {
-             self.scheduleloggdata?.marksnapshotlogrecordsfordelete(snapshotlogsandcatalogs: self.snapshotscheduleloggdata)
-         }
-         */
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
@@ -332,6 +336,8 @@ extension ViewControllerLoggData: NewProfile {
 extension ViewControllerLoggData: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
+        case .Snap:
+            self.marksnaps()
         case .Delete:
             self.deletealllogs()
         default:

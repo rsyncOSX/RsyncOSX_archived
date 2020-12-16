@@ -41,6 +41,7 @@ enum Sidebaractionsmessages {
     case CreateKey
     case Remote
     case Tag
+    case Snap
 }
 
 protocol Sidebaractions: AnyObject {
@@ -170,7 +171,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 deleteDelegate?.sidebarbuttonactions(action: .Save)
             case .logsviewbuttons:
-                return
+                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+                deleteDelegate?.sidebarbuttonactions(action: .Snap)
             case .sshviewbuttons:
                 weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 deleteDelegate?.sidebarbuttonactions(action: .Remote)
@@ -293,15 +295,15 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button1.isHidden = true
             self.button2.isHidden = true
             self.button3.isHidden = false
-            self.button4.isHidden = true
+            self.button4.isHidden = false
             self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+            self.button4.title = NSLocalizedString("Snap", comment: "Sidebar")
         case .sshviewbuttons:
             self.button1.isHidden = true
             self.button2.isHidden = true
             self.button3.isHidden = false
             self.button4.isHidden = false
             self.button3.title = NSLocalizedString("Create key", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Remote", comment: "Sidebar")
         case .restoreviewbuttons:
             self.button1.isHidden = false
             self.button2.isHidden = false
