@@ -95,7 +95,7 @@ final class Snapshotlogsandcatalogs {
     func validatedelete() -> Bool {
         guard (self.snapshotcatalogstodelete?.count ?? 0) > 0 else { return false }
         for i in 0 ..< (self.snapshotcatalogstodelete?.count ?? 0) {
-            print(self.snapshotcatalogstodelete?[i])
+            // print(self.snapshotcatalogstodelete?[i])
         }
         return false
     }
@@ -115,7 +115,7 @@ final class Snapshotlogsandcatalogs {
     init(config: Configuration) {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.config = config
-        self.logrecordssnapshot = ScheduleLoggData(hiddenID: config.hiddenID, sortascending: true).loggrecords
+        self.logrecordssnapshot = ScheduleLoggData(hiddenID: config.hiddenID).loggrecords
         self.getremotecataloginfo()
     }
 }

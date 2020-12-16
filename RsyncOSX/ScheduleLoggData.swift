@@ -54,7 +54,7 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         }
     }
 
-    private func readandsortallloggdata2(hiddenID: Int?, sortascending _: Bool) {
+    private func readandsortallloggdata(hiddenID: Int?) {
         var data = [Logrecordsschedules]()
         if let input: [ConfigurationSchedule] = self.schedules?.getSchedule() {
             for i in 0 ..< input.count {
@@ -121,15 +121,9 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
          */
     }
 
-    init(sortascending: Bool) {
+    init(hiddenID: Int?) {
         if self.loggrecords == nil {
-            self.readandsortallloggdata2(hiddenID: nil, sortascending: sortascending)
-        }
-    }
-
-    init(hiddenID: Int, sortascending: Bool) {
-        if self.loggrecords == nil {
-            self.readandsortallloggdata2(hiddenID: hiddenID, sortascending: sortascending)
+            self.readandsortallloggdata(hiddenID: hiddenID)
         }
     }
 }

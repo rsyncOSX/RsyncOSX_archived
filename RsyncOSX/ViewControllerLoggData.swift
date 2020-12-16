@@ -106,7 +106,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()?[index] {
-                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortascending)
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
                 if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
                     self.working.startAnimation(nil)
                     self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
@@ -119,7 +119,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             }
         } else {
             self.info.stringValue = Infologgdata().info(num: 0)
-            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortascending)
+            self.scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
@@ -285,14 +285,14 @@ extension ViewControllerLoggData: Reloadandrefresh {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()?[index] {
-                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, sortascending: self.sortascending)
+                self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
                 if self.connected(config: config) {
                     if config.task == ViewControllerReference.shared.snapshot { self.working.startAnimation(nil) }
                     self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
                 }
             }
         } else {
-            self.scheduleloggdata = ScheduleLoggData(sortascending: self.sortascending)
+            self.scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
