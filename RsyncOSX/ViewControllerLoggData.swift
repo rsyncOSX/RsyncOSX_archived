@@ -76,6 +76,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             self.schedules?.deleteselectedrows(scheduleloggdata: self.scheduleloggdata)
             self.scheduleloggdata = nil
             self.snapshotscheduleloggdata = nil
+            self.reloadtabledata()
         }
     }
 
