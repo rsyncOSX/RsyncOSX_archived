@@ -262,7 +262,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if let tableColumn = tableColumn {
             if tableColumn.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {
-                var delete: Int = self.scheduleloggdata?.loggrecords![row].delete ?? 0
+                var delete: Int = self.scheduleloggdata?.loggrecords?[row].delete ?? 0
                 if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
                 switch tableColumn.identifier.rawValue {
                 case DictionaryStrings.deleteCellID.rawValue:
@@ -281,6 +281,11 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
         self.working.stopAnimation(nil)
+        /*
+         if self.snapshotscheduleloggdata != nil {
+             self.scheduleloggdata?.marksnapshotlogrecordsfordelete(snapshotlogsandcatalogs: self.snapshotscheduleloggdata)
+         }
+         */
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
@@ -296,7 +301,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
         } else {
             self.scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
-        // align data - if self.snapshotscheduleloggdata != nil
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
         }
@@ -322,9 +326,7 @@ extension ViewControllerLoggData: NewProfile {
         self.reloadtabledata()
     }
 
-    func reloadprofilepopupbutton() {
-        //
-    }
+    func reloadprofilepopupbutton() {}
 }
 
 extension ViewControllerLoggData: Sidebarbuttonactions {

@@ -90,32 +90,14 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggrecords = data.sorted(by: \.date, using: >)
     }
 
-    let compare: (Logrecordsschedules?, Logrecordsschedules?) -> Bool = { num1, num2 in
-        if num1?.sibling == num2?.sibling,
-           num1?.parent == num2?.parent
-        {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    func align(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
-        guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else { return }
-        guard self.loggrecords != nil else { return }
-        for i in 0 ..< (self.loggrecords?.count ?? 0) {
-            for j in 0 ..< (snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) where
-                self.compare(snapshotlogsandcatalogs?.logrecordssnapshot?[j], self.loggrecords?[i])
-            {
-                self.loggrecords?[i].selectCellID = 1
-            }
-            if self.loggrecords?[i].selectCellID == 1 {
-                self.loggrecords?[i].delete = 0
-            } else {
-                self.loggrecords?[i].delete = 1
-            }
-        }
-    }
+    /*
+     func marksnapshotlogrecordsfordelete(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
+         guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else { return }
+         guard self.loggrecords != nil else { return }
+         for i in 0 ..< (self.loggrecords?.count ?? 0) {
+         }
+     }
+     */
 
     init(hiddenID: Int?) {
         if self.loggrecords == nil {

@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 22.01.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Foundation
 
@@ -94,9 +95,7 @@ final class Snapshotlogsandcatalogs {
 
     func validatedelete() -> Bool {
         guard (self.snapshotcatalogstodelete?.count ?? 0) > 0 else { return false }
-        for i in 0 ..< (self.snapshotcatalogstodelete?.count ?? 0) {
-            // print(self.snapshotcatalogstodelete?[i])
-        }
+        // for i in 0 ..< (self.snapshotcatalogstodelete?.count ?? 0) {}
         return false
     }
 
