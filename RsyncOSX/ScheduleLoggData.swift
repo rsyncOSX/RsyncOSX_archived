@@ -90,17 +90,15 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
         self.loggrecords = data.sorted(by: \.date, using: >)
     }
 
-    /*
-     let compare: (NSMutableDictionary?, NSMutableDictionary?) -> Bool = { number1, number2 in
-         if number1?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.sibling.rawValue) as? Int,
-            number1?.value(forKey: DictionaryStrings.parent.rawValue) as? Int == number2?.value(forKey: DictionaryStrings.parent.rawValue) as? Int
-         {
-             return true
-         } else {
-             return false
-         }
-     }
-     */
+    let compare: (Logrecordsschedules?, Logrecordsschedules?) -> Bool = { num1, num2 in
+        if num1?.sibling == num2?.sibling,
+           num1?.parent == num2?.parent
+        {
+            return true
+        } else {
+            return false
+        }
+    }
 
     func align(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
         guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else { return }

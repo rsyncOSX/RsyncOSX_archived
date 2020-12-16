@@ -223,8 +223,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             _ = Checkfornewversion()
         }
         if (self.configurations?.configurations?.count ?? 0) > 0 {
-            globalMainQueue.async { () -> Void in
-                self.mainTableView.reloadData()
+            if self.index == nil {
+                globalMainQueue.async { () -> Void in
+                    self.mainTableView.reloadData()
+                }
             }
         }
         self.rsyncischanged()

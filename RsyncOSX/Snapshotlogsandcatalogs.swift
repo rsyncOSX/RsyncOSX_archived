@@ -125,9 +125,12 @@ extension Snapshotlogsandcatalogs {
         self.prepareremotesnapshotcatalogs()
         self.calculateddayssincesynchronize()
         self.mergeremotecatalogsandlogs()
-        weak var reload: Reloadandrefresh?
-        reload = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        reload?.reloadtabledata()
+        weak var reloadsnapshots: Reloadandrefresh?
+        reloadsnapshots = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        reloadsnapshots?.reloadtabledata()
+        weak var reloadlogg: Reloadandrefresh?
+        reloadlogg = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        reloadlogg?.reloadtabledata()
     }
 
     func filehandler() {}

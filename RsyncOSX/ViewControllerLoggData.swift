@@ -13,7 +13,7 @@ import Foundation
 
 class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor, Help {
     private var scheduleloggdata: ScheduleLoggData?
-    private var snapshotlogsandcatalogs: Snapshotlogsandcatalogs?
+    private var snapshotscheduleloggdata: Snapshotlogsandcatalogs?
     private var filterby: Sortandfilter?
     private var index: Int?
     private var column: Int = 0
@@ -28,7 +28,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var selectedrows: NSTextField!
     @IBOutlet var info: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
-    @IBOutlet var selectbutton: NSButton!
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
@@ -75,6 +74,8 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         if answer {
             self.deselectrow()
             self.schedules?.deleteselectedrows(scheduleloggdata: self.scheduleloggdata)
+            self.scheduleloggdata = nil
+            self.snapshotscheduleloggdata = nil
         }
     }
 
@@ -107,9 +108,11 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()?[index] {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
-                if self.connected(config: config), config.task == ViewControllerReference.shared.snapshot {
+                if self.connected(config: config),
+                   config.task == ViewControllerReference.shared.snapshot
+                {
                     self.working.startAnimation(nil)
-                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
+                    self.snapshotscheduleloggdata = Snapshotlogsandcatalogs(config: config)
                 }
                 if self.indexfromwhere() == .vcsnapshot {
                     self.info.stringValue = Infologgdata().info(num: 2)
@@ -129,9 +132,8 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     override func viewDidDisappear() {
         super.viewDidDisappear()
         self.scheduleloggdata = nil
-        self.snapshotlogsandcatalogs = nil
+        self.snapshotscheduleloggdata = nil
         self.working.stopAnimation(nil)
-        self.selectbutton.state = .off
     }
 
     private func deselectrow() {
@@ -176,7 +178,6 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     func controlTextDidChange(_: Notification) {
         self.delayWithSeconds(0.25) {
             let filterstring = self.search.stringValue
-            self.selectbutton.state = .off
             if filterstring.isEmpty {
                 self.reloadtabledata()
             } else {
@@ -191,7 +192,6 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
     func searchFieldDidEndSearching(_: NSSearchField) {
         self.index = nil
         self.reloadtabledata()
-        self.selectbutton.state = .off
     }
 }
 
@@ -280,20 +280,22 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
         self.working.stopAnimation(nil)
-
         if let index = self.index {
             let hiddenID = self.configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()?[index] {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
-                if self.connected(config: config) {
+                if self.connected(config: config),
+                   self.snapshotscheduleloggdata == nil
+                {
                     if config.task == ViewControllerReference.shared.snapshot { self.working.startAnimation(nil) }
-                    self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
+                    self.snapshotscheduleloggdata = Snapshotlogsandcatalogs(config: config)
                 }
             }
         } else {
             self.scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
+        // align data - if self.snapshotscheduleloggdata != nil
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
         }
