@@ -103,20 +103,18 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
     func align(snapshotlogsandcatalogs: Snapshotlogsandcatalogs?) {
         guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else { return }
         guard self.loggrecords != nil else { return }
-        /*
-         for i in 0 ..< (self.loggrecords?.count ?? 0) {
-              for j in 0 ..< (snapshotlogsandcatalogs?.snapshotslogs?.count ?? 0) where
-                  self.compare(snapshotlogsandcatalogs?.snapshotslogs?[j], self.loggrecords?[i])
-              {
-                  self.loggrecords?[i].setValue(1, forKey: DictionaryStrings.snapCellID.rawValue)
-              }
-              if self.loggrecords?[i].snapCellID == 1 {
-                  self.loggrecords?[i].delete = 0
-              } else {
-                 self.loggrecords?[i].delete = 1
-              }
-         }
-         */
+        for i in 0 ..< (self.loggrecords?.count ?? 0) {
+            for j in 0 ..< (snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) where
+                self.compare(snapshotlogsandcatalogs?.logrecordssnapshot?[j], self.loggrecords?[i])
+            {
+                self.loggrecords?[i].selectCellID = 1
+            }
+            if self.loggrecords?[i].selectCellID == 1 {
+                self.loggrecords?[i].delete = 0
+            } else {
+                self.loggrecords?[i].delete = 1
+            }
+        }
     }
 
     init(hiddenID: Int?) {
