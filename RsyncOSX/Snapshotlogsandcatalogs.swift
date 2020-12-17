@@ -54,7 +54,7 @@ final class Snapshotlogsandcatalogs {
 
     private func mergeremotecatalogsandlogs() {
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
-            self.logrecordssnapshot?[i].period = "... not yet tagged..."
+            self.logrecordssnapshot?[i].period = "... not yet tagged ..."
             if (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ").count > 0 {
                 let catalogelement = (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ")[0]
                 let snapshotcatalog = "./" + catalogelement.dropFirst().dropLast()
@@ -62,7 +62,7 @@ final class Snapshotlogsandcatalogs {
                     self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalog
                 }
             } else {
-                self.logrecordssnapshot?[i].snapshotCatalog = "no log"
+                self.logrecordssnapshot?[i].snapshotCatalog = "... no log ..."
             }
         }
         self.logrecordssnapshot = self.logrecordssnapshot?.sorted { (d1, d2) -> Bool in
@@ -95,6 +95,8 @@ final class Snapshotlogsandcatalogs {
 
     func validatedelete() -> Bool {
         guard (self.snapshotcatalogstodelete?.count ?? 0) > 0 else { return false }
+        let selectedrecords = self.logrecordssnapshot?.filter { ($0.selectCellID == 1) }
+        guard selectedrecords?.count == self.snapshotcatalogstodelete?.count else { return false }
         // for i in 0 ..< (self.snapshotcatalogstodelete?.count ?? 0) {}
         return false
     }
@@ -109,6 +111,12 @@ final class Snapshotlogsandcatalogs {
             }
         }
         return j - 1
+    }
+
+    func marklogsfordelete() {
+        guard self.logrecordssnapshot?.count ?? 0 > 0 else { return }
+        let logrecords = ScheduleLoggData(hiddenID: config?.hiddenID).loggrecords
+        for i in 0 ..< (logrecords?.count ?? 0) {}
     }
 
     init(config: Configuration) {
