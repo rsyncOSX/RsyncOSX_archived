@@ -11,7 +11,6 @@ import Foundation
 
 final class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
-    // var estimatedlist: [NSMutableDictionary]?
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var index: Int?
