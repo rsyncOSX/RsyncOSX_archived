@@ -137,7 +137,6 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
                     }
                 }
             default:
-                print(cellIdentifier)
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
                     return cell
