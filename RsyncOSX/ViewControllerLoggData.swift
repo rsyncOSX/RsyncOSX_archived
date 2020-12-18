@@ -186,7 +186,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
             if filterstring.isEmpty {
                 self.reloadtabledata()
             } else {
-                self.scheduleloggdata?.filter(search: filterstring, filterby: self.filterby)
+                self.scheduleloggdata?.filter(search: filterstring)
                 globalMainQueue.async { () -> Void in
                     self.scheduletable.reloadData()
                 }

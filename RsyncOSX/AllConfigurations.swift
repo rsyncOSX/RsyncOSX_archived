@@ -10,9 +10,15 @@ import Foundation
 
 final class AllConfigurations: Sorting {
     var allconfigurations: [Configuration]?
-    private var allprofiles: [String]?
+    var allprofiles: [String]?
 
-    private func readallconfigurations() {
+    func filter(search: String?) {
+        globalDefaultQueue.async { () -> Void in
+            self.allconfigurations = self.allconfigurations?.filter { ($0.dateRun!.contains(search ?? "")) }
+        }
+    }
+
+    func readallconfigurations() {
         var configurations: [Configuration]?
         for i in 0 ..< (self.allprofiles?.count ?? 0) {
             let profile = self.allprofiles?[i]
