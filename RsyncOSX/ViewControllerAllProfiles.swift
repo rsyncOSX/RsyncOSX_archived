@@ -23,7 +23,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     var allconfigurations: AllConfigurations?
-    var configurations: [Configuration]?
     var allschedules: Allschedules?
     var allschedulessortedandexpanded: ScheduleSortedAndExpand?
     var column: Int?
@@ -64,7 +63,6 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         self.initpopupbutton()
         ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
         self.allconfigurations = AllConfigurations()
-        self.configurations = self.allconfigurations?.allconfigurations
         self.allschedules = Allschedules(includelog: false)
         self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
         globalMainQueue.async { () -> Void in
@@ -108,15 +106,15 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
         }
         switch self.column {
         case 0:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.profile!, using: comp)
+            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.profile!, using: comp)
         case 3:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.task, using: comp)
+            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.task, using: comp)
         case 4:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.localCatalog, using: comp)
+            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.localCatalog, using: comp)
         case 5:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
+            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
         case 6:
-            self.configurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
+            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
         default:
             return
         }
@@ -129,8 +127,8 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 extension ViewControllerAllProfiles: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
         self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles") + " " +
-            String(self.configurations?.count ?? 0)
-        return self.configurations?.count ?? 0
+            String(self.allconfigurations?.allconfigurations?.count ?? 0)
+        return self.allconfigurations?.allconfigurations?.count ?? 0
     }
 }
 
@@ -138,8 +136,8 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if let tableColumn = tableColumn {
-            if row > (self.configurations?.count ?? 0) - 1 { return nil }
-            if let object = self.configurations?[row] {
+            if row > (self.allconfigurations?.allconfigurations?.count ?? 0) - 1 { return nil }
+            if let object = self.allconfigurations?.allconfigurations?[row] {
                 let hiddenID = object.hiddenID
                 let profile = object.profile ?? NSLocalizedString("Default profile", comment: "default profile")
                 switch tableColumn.identifier.rawValue {
@@ -200,27 +198,23 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
 extension ViewControllerAllProfiles: NSSearchFieldDelegate {
     func controlTextDidChange(_: Notification) {
         self.delayWithSeconds(0.25) {
-            guard self.column != nil else { return }
-            let filterstring = self.search.stringValue
-            if filterstring.isEmpty {
+            if self.search.stringValue.isEmpty {
                 globalMainQueue.async { () -> Void in
-                    self.configurations = AllConfigurations().allconfigurations
+                    self.allconfigurations?.allconfigurations = AllConfigurations().allconfigurations
                     self.mainTableView.reloadData()
                 }
             } else {
-                /*
-                 globalMainQueue.async { () -> Void in
-                     self.allprofiles?.filter(search: filterstring, filterby: self.filterby)
-                     self.mainTableView.reloadData()
-                 }
-                 */
+                globalMainQueue.async { () -> Void in
+                    self.allconfigurations?.filter(search: self.search.stringValue)
+                    self.mainTableView.reloadData()
+                }
             }
         }
     }
 
     func searchFieldDidEndSearching(_: NSSearchField) {
         globalMainQueue.async { () -> Void in
-            self.configurations = AllConfigurations().allconfigurations
+            self.allconfigurations?.allconfigurations = AllConfigurations().allconfigurations
             self.mainTableView.reloadData()
         }
     }
