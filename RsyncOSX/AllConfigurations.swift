@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class AllConfigurations: Sorting {
+final class AllConfigurations {
     var allconfigurations: [Configuration]?
     var allprofiles: [String]?
 

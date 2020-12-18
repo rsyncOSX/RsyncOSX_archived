@@ -45,7 +45,7 @@ struct Logrecordsschedules {
     var seconds: Int = 0
 }
 
-final class ScheduleLoggData: SetConfigurations, SetSchedules, Sorting {
+final class ScheduleLoggData: SetConfigurations, SetSchedules {
     var loggrecords: [Logrecordsschedules]?
 
     func filter(search: String?) {
