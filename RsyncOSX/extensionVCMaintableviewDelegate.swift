@@ -195,7 +195,6 @@ extension ViewControllerMain: NSTableViewDelegate {
                     return cell
                 }
             default:
-                print(cellIdentifier)
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = ""
                     return cell

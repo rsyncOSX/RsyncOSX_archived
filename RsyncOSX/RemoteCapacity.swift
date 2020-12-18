@@ -31,7 +31,6 @@ extension RemoteCapacity {
     func processtermination() {
         guard ViewControllerReference.shared.process != nil else { return }
         let numbers = RemoteNumbers(outputprocess: self.outputprocess)
-        print(numbers)
         self.command = nil
     }
 
