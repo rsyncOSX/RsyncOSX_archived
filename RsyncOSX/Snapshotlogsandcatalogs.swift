@@ -30,6 +30,7 @@ final class Snapshotlogsandcatalogs {
         command.executeProcess(outputprocess: self.outputprocess)
     }
 
+    // Getting, from process, remote snapshotcatalogs
     private func prepareremotesnapshotcatalogs() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
@@ -41,6 +42,7 @@ final class Snapshotlogsandcatalogs {
         }
     }
 
+    // Calculating days since snaphot was executed
     private func calculateddayssincesynchronize() {
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
             if let dateRun = self.logrecordssnapshot?[i].dateExecuted {
@@ -52,6 +54,7 @@ final class Snapshotlogsandcatalogs {
         }
     }
 
+    // Merging remote snaphotcatalogs and existing logs
     private func mergeremotecatalogsandlogs() {
         var adjustedlogrecords = [Logrecordsschedules]()
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
@@ -60,6 +63,9 @@ final class Snapshotlogsandcatalogs {
             // All real snapshotcatalogs
             var insert = false
             for j in 0 ..< (self.snapshotcatalogs?.count ?? 0) where self.snapshotcatalogs?[j] == snapshotcatalog {
+                if self.logrecordssnapshot?[i].resultExecuted.isEmpty ?? true {
+                    self.logrecordssnapshot?[i].resultExecuted = "... no log ..."
+                }
                 insert = true
             }
             if insert {
