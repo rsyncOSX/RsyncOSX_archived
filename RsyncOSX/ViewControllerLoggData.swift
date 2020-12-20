@@ -176,6 +176,9 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     func marksnaps() {
         self.snapshotscheduleloggdata?.marklogsfordelete()
+        globalMainQueue.async { () -> Void in
+            self.scheduletable.reloadData()
+        }
     }
 }
 
