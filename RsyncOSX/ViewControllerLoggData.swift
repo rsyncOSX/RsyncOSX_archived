@@ -175,7 +175,20 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     func marksnaps() {
-        self.snapshotscheduleloggdata?.marklogsfordelete()
+        // Merged log records for snapshots based on real snapshot catalogs
+        guard self.snapshotscheduleloggdata?.logrecordssnapshot?.count ?? 0 > 0 else { return }
+        // All log records
+        guard self.scheduleloggdata?.loggrecords?.count ?? 0 > 0 else { return }
+        for i in 0 ..< (self.scheduleloggdata?.loggrecords?.count ?? 0) {
+            self.scheduleloggdata?.loggrecords?[i].delete = 1
+            for j in 0 ..< (self.snapshotscheduleloggdata?.logrecordssnapshot?.count ?? 0) {
+                if (self.scheduleloggdata?.loggrecords?[i].resultExecuted.contains(
+                    self.snapshotscheduleloggdata?.logrecordssnapshot?[j].resultExecuted ?? "")) != nil
+                {
+                    self.scheduleloggdata?.loggrecords?[i].delete = 0
+                }
+            }
+        }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
         }

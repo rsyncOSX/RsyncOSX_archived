@@ -113,24 +113,6 @@ final class Snapshotlogsandcatalogs {
         return j - 1
     }
 
-    func marklogsfordelete() {
-        /*
-             // Merged log records for snapshots based on real snapshot catalogs
-             if let snapshotlogrecords = self.logrecordssnapshot {
-                 // All log records, including possible logs for deleted snapshots
-                 let logrecords = ScheduleLoggData(hiddenID: config?.hiddenID).loggrecords
-                 for i in 0 ..< snapshotlogrecords.count {
-                     self.logrecordssnapshot?[i].delete = 1
-                     for j in 0 ..< (logrecords?.count ?? 0) {
-                         if snapshotlogrecords[i].resultExecuted.contains(logrecords?[j].resultExecuted ?? "") {
-                             self.logrecordssnapshot?[i].delete = 1
-                         }
-                     }
-                 }
-             }
-         */
-    }
-
     init(config: Configuration) {
         guard config.task == ViewControllerReference.shared.snapshot else { return }
         self.config = config
