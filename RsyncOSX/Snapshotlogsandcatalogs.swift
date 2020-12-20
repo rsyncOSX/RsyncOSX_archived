@@ -68,21 +68,23 @@ final class Snapshotlogsandcatalogs {
     private func mergeremotecatalogsandlogs() {
         var adjustedlogrecords = [Logrecordsschedules]()
         for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
-            if self.logrecordssnapshot!.contains(where: { record in
-                let catalogelement = record.resultExecuted.split(separator: " ")[0]
-                let snapshotcatalogfromschedulelog = "./" + catalogelement.dropFirst().dropLast()
-                if snapshotcatalogfromschedulelog == self.snapshotcatalogs?[i] {
-                    self.logrecordssnapshot?[i].period = "... not yet tagged ..."
-                    self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalogfromschedulelog
-                    if let record = self.logrecordssnapshot?[i] {
-                        adjustedlogrecords.append(record)
+            if let logrecordssnapshot = self.logrecordssnapshot {
+                if logrecordssnapshot.contains(where: { record in
+                    let catalogelement = record.resultExecuted.split(separator: " ")[0]
+                    let snapshotcatalogfromschedulelog = "./" + catalogelement.dropFirst().dropLast()
+                    if snapshotcatalogfromschedulelog == self.snapshotcatalogs?[i] {
+                        self.logrecordssnapshot?[i].period = "... not yet tagged ..."
+                        self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalogfromschedulelog
+                        if let record = self.logrecordssnapshot?[i] {
+                            adjustedlogrecords.append(record)
+                        }
+                        // print("return true + \(i)")
+                        return true
                     }
-                    // print("return true + \(i)")
-                    return true
-                }
-                // print("return false + \(i)")
-                return false
-            }) {}
+                    // print("return false + \(i)")
+                    return false
+                }) {}
+            }
         }
         self.logrecordssnapshot = adjustedlogrecords.sorted { (d1, d2) -> Bool in
             if d1.seconds < d2.seconds {
