@@ -59,12 +59,15 @@ final class Snapshotlogsandcatalogs {
             let snapshotcatalog = "./" + catalogelement.dropFirst().dropLast()
             // All real snapshotcatalogs
             var insert = false
-            for j in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
-                if self.snapshotcatalogs?[j].filter(snapshotcatalog) { insert = true }
+            for j in 0 ..< (self.snapshotcatalogs?.count ?? 0) where self.snapshotcatalogs?[j] == snapshotcatalog {
+                insert = true
             }
             if insert {
                 self.logrecordssnapshot?[i].period = "... not yet tagged ..."
-                adjustedlogrecords.append((self.logrecordssnapshot?[i])!)
+                self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalog
+                if let record = self.logrecordssnapshot?[i] {
+                    adjustedlogrecords.append(record)
+                }
             }
         }
         self.logrecordssnapshot = adjustedlogrecords.sorted { (d1, d2) -> Bool in
