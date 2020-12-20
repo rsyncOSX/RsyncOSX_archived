@@ -72,6 +72,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func initslidersdeletesnapshots() {
+        guard self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 > 0 else { return }
         self.deletesnapshots.altIncrementValue = 1.0
         self.deletesnapshots.maxValue = Double(self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1.0
         self.deletesnapshots.minValue = 0.0
@@ -130,6 +131,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     private func markfordelete(numberstomark: Int) {
+        guard self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 > 0 else { return }
         for i in 0 ..< (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 {
             if i <= numberstomark {
                 self.snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 1

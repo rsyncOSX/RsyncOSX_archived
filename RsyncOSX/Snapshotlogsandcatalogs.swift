@@ -53,19 +53,21 @@ final class Snapshotlogsandcatalogs {
     }
 
     private func mergeremotecatalogsandlogs() {
+        var adjustedlogrecords = [Logrecordsschedules]()
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
-            self.logrecordssnapshot?[i].period = "... not yet tagged ..."
-            if (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ").count > 0 {
-                let catalogelement = (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ")[0]
-                let snapshotcatalog = "./" + catalogelement.dropFirst().dropLast()
-                if (self.snapshotcatalogs?.filter { $0.contains(snapshotcatalog) }) != nil {
-                    self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalog
-                }
-            } else {
-                self.logrecordssnapshot?[i].snapshotCatalog = "... no log ..."
+            let catalogelement = (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ")[0]
+            let snapshotcatalog = "./" + catalogelement.dropFirst().dropLast()
+            // All real snapshotcatalogs
+            var insert = false
+            for j in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
+                if self.snapshotcatalogs?[j].filter(snapshotcatalog) { insert = true }
+            }
+            if insert {
+                self.logrecordssnapshot?[i].period = "... not yet tagged ..."
+                adjustedlogrecords.append((self.logrecordssnapshot?[i])!)
             }
         }
-        self.logrecordssnapshot = self.logrecordssnapshot?.sorted { (d1, d2) -> Bool in
+        self.logrecordssnapshot = adjustedlogrecords.sorted { (d1, d2) -> Bool in
             if d1.seconds < d2.seconds {
                 return false
             } else {
@@ -102,6 +104,7 @@ final class Snapshotlogsandcatalogs {
     }
 
     func countbydays(num: Double) -> Int {
+        guard self.logrecordssnapshot?.count ?? 0 > 0 else { return 0 }
         var j: Int = 0
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) - 1 {
             if let days: String = self.logrecordssnapshot?[i].days {
