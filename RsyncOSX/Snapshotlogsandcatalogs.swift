@@ -77,8 +77,10 @@ final class Snapshotlogsandcatalogs {
                     if let record = self.logrecordssnapshot?[i] {
                         adjustedlogrecords.append(record)
                     }
+                    // print("return true + \(i)")
                     return true
                 }
+                // print("return false + \(i)")
                 return false
             }) {}
         }
