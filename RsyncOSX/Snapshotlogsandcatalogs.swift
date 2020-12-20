@@ -31,6 +31,7 @@ final class Snapshotlogsandcatalogs {
     }
 
     // Getting, from process, remote snapshotcatalogs
+    // sort snapshotcatalogs
     private func prepareremotesnapshotcatalogs() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
@@ -38,6 +39,15 @@ final class Snapshotlogsandcatalogs {
         if self.snapshotcatalogs?.count ?? 0 > 0 {
             if self.snapshotcatalogs?[0] == "./." {
                 self.snapshotcatalogs?.remove(at: 0)
+            }
+        }
+        self.snapshotcatalogs = self.snapshotcatalogs?.sorted { cat1, cat2 -> Bool in
+            let nr1 = Int(cat1.dropFirst(2)) ?? 0
+            let nr2 = Int(cat2.dropFirst(2)) ?? 0
+            if nr1 > nr2 {
+                return true
+            } else {
+                return false
             }
         }
     }
@@ -57,24 +67,20 @@ final class Snapshotlogsandcatalogs {
     // Merging remote snaphotcatalogs and existing logs
     private func mergeremotecatalogsandlogs() {
         var adjustedlogrecords = [Logrecordsschedules]()
-        for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
-            let catalogelement = (self.logrecordssnapshot?[i].resultExecuted ?? "").split(separator: " ")[0]
-            let snapshotcatalog = "./" + catalogelement.dropFirst().dropLast()
-            // All real snapshotcatalogs
-            var insert = false
-            for j in 0 ..< (self.snapshotcatalogs?.count ?? 0) where self.snapshotcatalogs?[j] == snapshotcatalog {
-                if self.logrecordssnapshot?[i].resultExecuted.isEmpty ?? true {
-                    self.logrecordssnapshot?[i].resultExecuted = "... no log ..."
+        for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
+            if self.logrecordssnapshot!.contains(where: { record in
+                let catalogelement = record.resultExecuted.split(separator: " ")[0]
+                let snapshotcatalogfromschedulelog = "./" + catalogelement.dropFirst().dropLast()
+                if snapshotcatalogfromschedulelog == self.snapshotcatalogs?[i] {
+                    self.logrecordssnapshot?[i].period = "... not yet tagged ..."
+                    self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalogfromschedulelog
+                    if let record = self.logrecordssnapshot?[i] {
+                        adjustedlogrecords.append(record)
+                    }
+                    return true
                 }
-                insert = true
-            }
-            if insert {
-                self.logrecordssnapshot?[i].period = "... not yet tagged ..."
-                self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalog
-                if let record = self.logrecordssnapshot?[i] {
-                    adjustedlogrecords.append(record)
-                }
-            }
+                return false
+            }) {}
         }
         self.logrecordssnapshot = adjustedlogrecords.sorted { (d1, d2) -> Bool in
             if d1.seconds < d2.seconds {
