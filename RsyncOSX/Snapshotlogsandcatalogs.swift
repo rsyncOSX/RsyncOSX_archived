@@ -136,7 +136,7 @@ final class Snapshotlogsandcatalogs {
         var j: Int = 0
         for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) - 1 {
             if let days: String = self.logrecordssnapshot?[i].days {
-                if Double(days)! >= num {
+                if Double(days) ?? 0 >= num {
                     j += 1
                 }
             }

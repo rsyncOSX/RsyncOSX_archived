@@ -427,11 +427,13 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 
     func tableView(_ tableView: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         guard tableView == self.snapshotstableView else { return }
-        if tableColumn!.identifier.rawValue == DictionaryStrings.selectCellID.rawValue {
-            var select: Int = self.snapshotlogsandcatalogs?.logrecordssnapshot![row].selectCellID ?? 0
-            if select == 0 { select = 1 } else if select == 1 { select = 0 }
-            guard row < (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 else { return }
-            self.snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID = select
+        if let tableColumn = tableColumn {
+            if tableColumn.identifier.rawValue == DictionaryStrings.selectCellID.rawValue {
+                var select: Int = self.snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID ?? 0
+                if select == 0 { select = 1 } else if select == 1 { select = 0 }
+                guard row < (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 else { return }
+                self.snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID = select
+            }
         }
     }
 }
@@ -461,13 +463,13 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                     if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
                         self.info.stringValue = Infosnapshots().info(num: 0)
                         if num > self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 {
-                            self.deletesnapshots.intValue = Int32((self.snapshotlogsandcatalogs?.logrecordssnapshot?.count)! - 1)
+                            self.deletesnapshots.intValue = Int32((self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1)
                             self.info.stringValue = Infosnapshots().info(num: 5)
                         } else {
                             self.deletesnapshots.intValue = Int32(num)
                         }
                         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue) - 1
-                        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
+                        self.markfordelete(numberstomark: self.numbersinsequencetodelete ?? 0)
                         globalMainQueue.async { () -> Void in
                             self.snapshotstableView.reloadData()
                         }
@@ -479,8 +481,8 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                 if self.stringdeletesnapshotsdaysnum.stringValue.isEmpty == false {
                     if let num = Int(self.stringdeletesnapshotsdaysnum.stringValue) {
                         self.deletesnapshotsdays.intValue = Int32(num)
-                        self.numbersinsequencetodelete = self.snapshotlogsandcatalogs!.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
-                        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
+                        self.numbersinsequencetodelete = self.snapshotlogsandcatalogs?.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
+                        self.markfordelete(numberstomark: self.numbersinsequencetodelete ?? 0)
                         globalMainQueue.async { () -> Void in
                             self.snapshotstableView.reloadData()
                         }
