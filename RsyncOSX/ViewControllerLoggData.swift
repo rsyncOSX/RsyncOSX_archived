@@ -109,6 +109,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
             guard hiddenID > -1 else { return }
             if let config = self.configurations?.getConfigurations()?[index] {
                 self.scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
+                // If task is snapshot get snapshotlogs
                 if self.connected(config: config),
                    config.task == ViewControllerReference.shared.snapshot
                 {
@@ -174,7 +175,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         }
     }
 
-    func marksnaps() {
+    func marklogsfromsnapshots() {
         // Merged log records for snapshots based on real snapshot catalogs
         guard self.snapshotscheduleloggdata?.logrecordssnapshot?.count ?? 0 > 0 else { return }
         // All log records
@@ -350,7 +351,7 @@ extension ViewControllerLoggData: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
         case .Snap:
-            self.marksnaps()
+            self.marklogsfromsnapshots()
         case .Delete:
             self.deletealllogs()
         default:

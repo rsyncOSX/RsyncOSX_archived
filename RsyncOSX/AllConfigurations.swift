@@ -46,6 +46,6 @@ final class AllConfigurations {
     }
 
     deinit {
-        print("deinit AllConfigurations")
+        // print("deinit AllConfigurations")
     }
 }

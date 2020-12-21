@@ -48,6 +48,6 @@ final class Estimatedlistforsynchronization: SetConfigurations {
     }
 
     deinit {
-        print("deinit Estimatedlistforsynchronization")
+        // print("deinit Estimatedlistforsynchronization")
     }
 }

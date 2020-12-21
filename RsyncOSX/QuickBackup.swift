@@ -106,7 +106,7 @@ final class QuickBackup: SetConfigurations {
     deinit {
         self.stackoftasktobeexecuted = nil
         ViewControllerReference.shared.estimatedlistforsynchronization = nil
-        print("deinit QuickBackup")
+        // print("deinit QuickBackup")
     }
 
     func abort() {

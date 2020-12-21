@@ -45,6 +45,6 @@ class Allschedules {
     }
 
     deinit {
-        print("deinit Allschedules")
+        // print("deinit Allschedules")
     }
 }

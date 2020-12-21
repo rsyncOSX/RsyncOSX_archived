@@ -237,6 +237,6 @@ final class Tagsnapshots {
     }
 
     deinit {
-        print("deinit Tag")
+        // print("deinit Tag")
     }
 }
