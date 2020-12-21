@@ -181,11 +181,14 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         guard self.scheduleloggdata?.loggrecords?.count ?? 0 > 0 else { return }
         for i in 0 ..< (self.scheduleloggdata?.loggrecords?.count ?? 0) {
             self.scheduleloggdata?.loggrecords?[i].delete = 1
-            for j in 0 ..< (self.snapshotscheduleloggdata?.logrecordssnapshot?.count ?? 0) where
-                self.scheduleloggdata?.loggrecords?[i].resultExecuted ==
-                self.snapshotscheduleloggdata?.logrecordssnapshot?[j].resultExecuted ?? ""
-            {
-                self.scheduleloggdata?.loggrecords?[i].delete = 0
+            if let logrecordssnapshot = self.snapshotscheduleloggdata?.logrecordssnapshot {
+                if logrecordssnapshot.contains(where: { record in
+                    if record.resultExecuted == self.scheduleloggdata?.loggrecords?[i].resultExecuted {
+                        self.scheduleloggdata?.loggrecords?[i].delete = 0
+                        return true
+                    }
+                    return false
+                }) {}
             }
         }
         globalMainQueue.async { () -> Void in

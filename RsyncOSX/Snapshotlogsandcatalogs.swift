@@ -81,8 +81,7 @@ final class Snapshotlogsandcatalogs {
                         return true
                     }
                     return false
-                }) {
-                } else {
+                }) {} else {
                     var record = self.logrecordssnapshot?[0]
                     record?.snapshotCatalog = self.snapshotcatalogs?[i]
                     record?.period = "... not yet tagged ..."
