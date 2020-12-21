@@ -78,12 +78,22 @@ final class Snapshotlogsandcatalogs {
                         if let record = self.logrecordssnapshot?[i] {
                             adjustedlogrecords.append(record)
                         }
-                        // print("return true + \(i)")
                         return true
                     }
-                    // print("return false + \(i)")
                     return false
-                }) {}
+                }) {
+                } else {
+                    var record = self.logrecordssnapshot?[0]
+                    record?.snapshotCatalog = self.snapshotcatalogs?[i]
+                    record?.period = "... not yet tagged ..."
+                    record?.resultExecuted = "... no log ..."
+                    record?.days = ""
+                    record?.seconds = 0
+                    record?.dateExecuted = Date().long_localized_string_from_date()
+                    if let record = record {
+                        adjustedlogrecords.append(record)
+                    }
+                }
             }
         }
         self.logrecordssnapshot = adjustedlogrecords.sorted { (d1, d2) -> Bool in
