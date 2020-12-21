@@ -176,6 +176,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     }
 
     func marklogsfromsnapshots() {
+        guard ViewControllerReference.shared.process == nil else { return }
         // Merged log records for snapshots based on real snapshot catalogs
         guard self.snapshotscheduleloggdata?.logrecordssnapshot?.count ?? 0 > 0 else { return }
         // All log records

@@ -456,7 +456,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
         self.delayWithSeconds(0.5) {
             guard self.snapshotlogsandcatalogs != nil else { return }
-            if (notification.object as? NSTextField)! == self.stringdeletesnapshotsnum {
+            if notification.object as? NSTextField == self.stringdeletesnapshotsnum {
                 if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
                     if let num = Int(self.stringdeletesnapshotsnum.stringValue) {
                         self.info.stringValue = Infosnapshots().info(num: 0)
