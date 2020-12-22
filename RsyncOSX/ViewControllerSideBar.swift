@@ -304,6 +304,7 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button3.isHidden = false
             self.button4.isHidden = false
             self.button3.title = NSLocalizedString("Create key", comment: "Sidebar")
+            self.button4.title = NSLocalizedString("Remote", comment: "Sidebar")
         case .restoreviewbuttons:
             self.button1.isHidden = false
             self.button2.isHidden = false
