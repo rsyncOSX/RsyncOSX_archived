@@ -385,9 +385,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "L1n-6w-rIj"; */
 "L1n-6w-rIj.headerCell.title" = "Lokale catalogus";
 
-/* Class = "NSTextFieldCell"; title = ":"; ObjectID = "L51-Pl-bRg"; */
-"L51-Pl-bRg.title" = ":";
-
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Haal alles naar voorgrond";
 

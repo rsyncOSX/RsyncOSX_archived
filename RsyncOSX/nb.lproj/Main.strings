@@ -41,7 +41,7 @@
 "4fh-oN-1Ue.title" = "lastorevery";
 
 /* Class = "NSBox"; title = "Check for full restore"; ObjectID = "4re-4N-9rT"; */
-"4re-4N-9rT.title" = "Sjekk for fullstendig gjenoppretting";
+"4re-4N-9rT.title" = "Velg for full gjenopprett";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "4rw-XH-Spd"; */
 "4rw-XH-Spd.title" = "Text Cell";
@@ -384,9 +384,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Local catalog"; ObjectID = "L1n-6w-rIj"; */
 "L1n-6w-rIj.headerCell.title" = "Lokal katalog";
-
-/* Class = "NSTextFieldCell"; title = ":"; ObjectID = "L51-Pl-bRg"; */
-"L51-Pl-bRg.title" = ":";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Bring frem til front";

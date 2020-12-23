@@ -377,6 +377,9 @@
 /* Toolbar */
 "Show userconfig..." = "显示用户配置...";
 
+/* Sidebar */
+"Snap" = "快照";
+
 /* Tooltip */
 "Source catalog:" = "源目录：";
 
@@ -395,6 +398,9 @@
 /* dayofweek
    plan */
 "Sunday" = "周日";
+
+/* Sidebar */
+"Tag" = "Tag";
 
 /* Execute */
 "The menu app" = "菜单应用";

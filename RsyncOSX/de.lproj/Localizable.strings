@@ -234,8 +234,7 @@
 /* No comment provided by engineer. */
 "Load" = "Laden";
 
-/* Remote info
-   Remote Info */
+/* Remote info */
 "Loaded cached data..." = "Lade zwischengespeicherte Daten...";
 
 /* Tooltip */
@@ -378,8 +377,8 @@
 /* Toolbar */
 "Show userconfig..." = "Benutzerkonfiguration anzeigen...";
 
-/* Restore */
-"Simulated: execute restore of files to temporary restore path" = "Simuliert: Führe vollständige Wiederherstellung auf temporären Wiederherstellungspfad aus";
+/* Sidebar */
+"Snap" = "Snap";
 
 /* Tooltip */
 "Source catalog:" = "Quellkatalog:";
@@ -400,11 +399,11 @@
    plan */
 "Sunday" = "Sonntag";
 
+/* Sidebar */
+"Tag" = "Tag";
+
 /* Execute */
 "The menu app" = "Die Menü-App";
-
-/* Quickbackup */
-"There seems to be nothing to do..." = "Es scheint nichts zu tun zu geben...";
 
 /* New */
 "This is added before?" = "Dies wird vorher hinzugefügt?";

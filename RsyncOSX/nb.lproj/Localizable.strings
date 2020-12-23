@@ -234,8 +234,7 @@
 /* No comment provided by engineer. */
 "Load" = "Last";
 
-/* Remote info
-   Remote Info */
+/* Remote info */
 "Loaded cached data..." = "Lastet cached info...";
 
 /* Tooltip */
@@ -378,8 +377,8 @@
 /* Toolbar */
 "Show userconfig..." = "Vis brukerkonfigurasjon...";
 
-/* Restore */
-"Simulated: execute restore of files to temporary restore path" = "Simulert: utfør gjenopprett av filer til midlertidig sti for gjenopprett";
+/* Sidebar */
+"Snap" = "Snap";
 
 /* Tooltip */
 "Source catalog:" = "Ekstern katalog:";
@@ -400,11 +399,11 @@
    plan */
 "Sunday" = "søndag";
 
+/* Sidebar */
+"Tag" = "Tag";
+
 /* Execute */
 "The menu app" = "Meny app";
-
-/* Quickbackup */
-"There seems to be nothing to do..." = "Her er det ikke noe å gjøre...";
 
 /* New */
 "This is added before?" = "Denne er lagt til tidligere?";

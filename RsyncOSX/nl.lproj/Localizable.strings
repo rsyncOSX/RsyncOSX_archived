@@ -234,8 +234,7 @@
 /* No comment provided by engineer. */
 "Load" = "Belasting";
 
-/* Remote info
-   Remote Info */
+/* Remote info */
 "Loaded cached data..." = "Geladen gegevens in cache...";
 
 /* Tooltip */
@@ -378,8 +377,8 @@
 /* Toolbar */
 "Show userconfig..." = "Toon gebruikerconfig...";
 
-/* Restore */
-"Simulated: execute restore of files to temporary restore path" = "Simuleren: volledige herstel uitvoeren naar tijdelijke herstel pad";
+/* Sidebar */
+"Snap" = "Snap";
 
 /* Tooltip */
 "Source catalog:" = "Bron catalogus:";
@@ -400,11 +399,11 @@
    plan */
 "Sunday" = "zondag";
 
+/* Sidebar */
+"Tag" = "Tag";
+
 /* Execute */
 "The menu app" = "De menu app";
-
-/* Quickbackup */
-"There seems to be nothing to do..." = "Er lijkt niets te doen...";
 
 /* New */
 "This is added before?" = "Dit is al eerder toegevoegd?";

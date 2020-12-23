@@ -55,9 +55,6 @@
 /* Class = "NSButtonCell"; title = "Local"; ObjectID = "6qA-DN-K3H"; */
 "6qA-DN-K3H.title" = "Lokaal";
 
-/* Class = "NSTableColumn"; headerCell.title = "Avail (GB)"; ObjectID = "6zh-fg-pga"; */
-"6zh-fg-pga.headerCell.title" = "Beschikbaar (GB)";
-
 /* Class = "NSTextFieldCell"; title = "RsyncOSX path:"; ObjectID = "7dF-AN-PZd"; */
 "7dF-AN-PZd.title" = "RsyncOSX pad:";
 
@@ -106,9 +103,6 @@
 /* Class = "NSBox"; title = "Check data when loading"; ObjectID = "An2-lr-KmW"; */
 "An2-lr-KmW.title" = "Gegevens controleren tijdens het laden";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Anj-CJ-UB0"; */
-"Anj-CJ-UB0.title" = "Text Cell";
-
 /* Class = "NSViewController"; title = "Progress"; ObjectID = "aoT-Wn-QIM"; */
 "aoT-Wn-QIM.title" = "Vooruitgang";
 
@@ -132,9 +126,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "bmr-Kn-OAO"; */
 "bmr-Kn-OAO.title" = "Text Cell";
-
-/* Class = "NSTableColumn"; headerCell.title = "Days"; ObjectID = "bQI-Qt-4Du"; */
-"bQI-Qt-4Du.headerCell.title" = "Dagen";
 
 /* Class = "NSTextFieldCell"; title = "Error : no rsync in path"; ObjectID = "C02-2P-sZY"; */
 "C02-2P-sZY.title" = "Fout : geen rsync in pad";
@@ -195,9 +186,6 @@
 
 /* Class = "NSBox"; title = "Paths for RsyncOSX and RsyncOSXsched"; ObjectID = "f92-Tg-lIP"; */
 "f92-Tg-lIP.title" = "Paden voor RsyncOSX en RsyncOSXsched";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "fCM-pE-Be1"; */
-"fCM-pE-Be1.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Fi6-PK-i8h"; */
 "Fi6-PK-i8h.title" = "Text Cell";
@@ -370,9 +358,6 @@
 /* Class = "NSTextFieldCell"; title = "keypath + identityfile :"; ObjectID = "MSy-Ak-3Lf"; */
 "MSy-Ak-3Lf.title" = "keypath + identityfile :";
 
-/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "NaO-y5-Wk2"; */
-"NaO-y5-Wk2.title" = "Table View Cell";
-
 /* Class = "NSTableColumn"; headerCell.title = "Delete"; ObjectID = "Nbo-rX-k8k"; */
 "Nbo-rX-k8k.headerCell.title" = "Wissen";
 
@@ -408,9 +393,6 @@
 
 /* Class = "NSTextFieldCell"; title = "port :"; ObjectID = "p6q-Pw-xDu"; */
 "p6q-Pw-xDu.title" = "poort :";
-
-/* Class = "NSButtonCell"; title = "Intro"; ObjectID = "Pbw-Vj-b4D"; */
-"Pbw-Vj-b4D.title" = "Introductie";
 
 /* Class = "NSButtonCell"; title = "Halt on error"; ObjectID = "piB-iQ-mNN"; */
 "piB-iQ-mNN.title" = "Stop bij fout";
@@ -453,9 +435,6 @@
 
 /* Class = "NSButtonCell"; title = "pretask"; ObjectID = "roF-Ec-44Z"; */
 "roF-Ec-44Z.title" = "pretask";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rpr-Wx-Ayz"; */
-"rpr-Wx-Ayz.title" = "Text Cell";
 
 /* Class = "NSButtonCell"; title = "Halt on error"; ObjectID = "RxF-Vw-NLr"; */
 "RxF-Vw-NLr.title" = "Stop bij fout";
@@ -544,9 +523,6 @@
 /* Class = "NSTextFieldCell"; title = "Norwegian"; ObjectID = "Vhj-ip-46U"; */
 "Vhj-ip-46U.title" = "Noors";
 
-/* Class = "NSTableColumn"; headerCell.title = "Used (GB)"; ObjectID = "VNq-HS-mt1"; */
-"VNq-HS-mt1.headerCell.title" = "Gebruikt (GB)";
-
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "vXx-ni-ar6"; */
 "vXx-ni-ar6.title" = "Table View Cell";
 
@@ -555,9 +531,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "wak-BA-Awx"; */
 "wak-BA-Awx.title" = "Externe gebruikersnaam:";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wff-hY-615"; */
-"wff-hY-615.title" = "Text Cell";
 
 /* Class = "NSBox"; title = "JSON, PLIST"; ObjectID = "wfU-4G-ml3"; */
 "wfU-4G-ml3.title" = "JSON, PLIST";
@@ -592,17 +565,11 @@
 /* Class = "NSButtonCell"; title = "Backup"; ObjectID = "YlH-yT-vY5"; */
 "YlH-yT-vY5.title" = "Reservekopie";
 
-/* Class = "NSTextFieldCell"; title = "Doubleclick on row to get remote capacity..."; ObjectID = "You-QF-KDZ"; */
-"You-QF-KDZ.title" = "Dubbelklik op de rij om de afstandscapaciteit te krijgen...";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yPJ-qu-8B2"; */
 "yPJ-qu-8B2.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Remote home:"; ObjectID = "yS2-bv-Hou"; */
 "yS2-bv-Hou.title" = "Externe thuis:";
-
-/* Class = "NSTableColumn"; headerCell.title = "Avail(%)"; ObjectID = "z91-ZK-xlL"; */
-"z91-ZK-xlL.headerCell.title" = "Beschikbaar (%)";
 
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "zaW-od-Wgz"; */
 "zaW-od-Wgz.title" = "Item 3";
