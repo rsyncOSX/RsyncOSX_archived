@@ -3,12 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>6.4.5</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.2/RsyncOSX.6.5.2.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.3/RsyncOSX.6.5.3.dmg</string>
 	<key>6.4.6</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.2/RsyncOSX.6.5.2.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.3/RsyncOSX.6.5.3.dmg</string>
 	<key>6.4.7</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.2/RsyncOSX.6.5.2.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.3/RsyncOSX.6.5.3.dmg</string>
 	<key>6.5.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.2/RsyncOSX.6.5.2.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.3/RsyncOSX.6.5.3.dmg</string>
+	<key>6.5.2</key>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.5.3/RsyncOSX.6.5.3.dmg</string>
 </dict>
 </plist>
