@@ -129,9 +129,11 @@ class Configurations: ReloadTable, SetSchedules {
 
     // Function is updating Configurations in memory (by record) and
     // then saves updated Configurations from memory to persistent store
-    func updateConfigurations(_ config: Configuration, index: Int) {
-        self.configurations?[index] = config
-        PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
+    func updateConfigurations(_ config: Configuration?, index: Int) {
+        if let config = config {
+            self.configurations?[index] = config
+            PersistentStorage(profile: self.profile, whattoreadorwrite: .configuration).saveMemoryToPersistentStore()
+        }
     }
 
     // Function deletes Configuration in memory at hiddenID and

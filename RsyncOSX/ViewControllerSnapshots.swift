@@ -62,12 +62,13 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // Sidebar save day of week
     func savesnapdayofweek() {
         var configurations = self.configurations?.getConfigurations()
-        guard configurations?.count ?? -1 > 0 else { return }
+        guard configurations?.count ?? 0 > 0 else { return }
         if let index = self.index {
-            configurations![index].snapdayoffweek = self.config?.snapdayoffweek
-            configurations![index].snaplast = self.config?.snaplast
+            guard configurations?[index].task == ViewControllerReference.shared.snapshot else { return }
+            configurations?[index].snapdayoffweek = self.config?.snapdayoffweek
+            configurations?[index].snaplast = self.config?.snaplast
             // Update configuration in memory before saving
-            self.configurations?.updateConfigurations(configurations![index], index: index)
+            self.configurations?.updateConfigurations(configurations?[index], index: index)
         }
     }
 
