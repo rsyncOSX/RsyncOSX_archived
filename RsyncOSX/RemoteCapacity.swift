@@ -30,7 +30,7 @@ final class RemoteCapacity: Connected {
 extension RemoteCapacity {
     func processtermination() {
         guard ViewControllerReference.shared.process != nil else { return }
-        let numbers = RemoteNumbers(outputprocess: self.outputprocess)
+        // let numbers = RemoteNumbers(outputprocess: self.outputprocess)
         self.command = nil
     }
 

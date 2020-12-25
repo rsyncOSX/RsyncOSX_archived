@@ -36,11 +36,14 @@ final class Snapshotlogsandcatalogs {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
         self.snapshotcatalogs = self.outputprocess?.trimoutput(trim: .one)
-        if self.snapshotcatalogs?.count ?? 0 > 0 {
-            if self.snapshotcatalogs?[0] == "./." {
-                self.snapshotcatalogs?.remove(at: 0)
-            }
-        }
+        let datessnapshotcatalogs = self.outputprocess?.trimoutput(trim: .four)
+        /*
+             if self.snapshotcatalogs?.count ?? 0 > 0 {
+                 if self.snapshotcatalogs?[0] == "./." {
+                     self.snapshotcatalogs?.remove(at: 0)
+                 }
+             }
+         */
         self.snapshotcatalogs = self.snapshotcatalogs?.sorted { cat1, cat2 -> Bool in
             let nr1 = Int(cat1.dropFirst(2)) ?? 0
             let nr2 = Int(cat2.dropFirst(2)) ?? 0
@@ -95,12 +98,19 @@ final class Snapshotlogsandcatalogs {
                 }
             }
         }
-        self.logrecordssnapshot = adjustedlogrecords.sorted { (d1, d2) -> Bool in
-            if d1.seconds < d2.seconds {
-                return false
-            } else {
-                return true
+        self.logrecordssnapshot = adjustedlogrecords.sorted { (cat1, cat2) -> Bool in
+            if let cat1 = cat1.snapshotCatalog,
+               let cat2 = cat2.snapshotCatalog
+            {
+                let nr1 = Int(cat1.dropFirst(2)) ?? 0
+                let nr2 = Int(cat2.dropFirst(2)) ?? 0
+                if nr1 > nr2 {
+                    return true
+                } else {
+                    return false
+                }
             }
+            return false
         }
     }
 

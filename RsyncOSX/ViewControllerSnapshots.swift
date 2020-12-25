@@ -17,7 +17,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     var numbersinsequencetodelete: Int?
     var snapshotstodelete: Double = 0
     var index: Int?
-    var abort: Bool = false
     // Reference to which plan in combox
     var combovalueslast = [NSLocalizedString("none", comment: "plan"),
                            NSLocalizedString("every", comment: "plan"),
@@ -69,6 +68,25 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             configurations?[index].snaplast = self.config?.snaplast
             // Update configuration in memory before saving
             self.configurations?.updateConfigurations(configurations?[index], index: index)
+        }
+    }
+
+    // Sidebar delete button
+    func deleteaction() {
+        guard self.snapshotlogsandcatalogs != nil else { return }
+        guard ViewControllerReference.shared.process == nil else { return }
+        let num = self.snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
+        let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
+        let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
+        let dialog: String = NSLocalizedString("Delete", comment: "Snapshots")
+        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+        if answer {
+            self.info.stringValue = Infosnapshots().info(num: 0)
+            self.snapshotlogsandcatalogs?.preparesnapshotcatalogsfordelete()
+            guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
+            self.presentAsSheet(self.viewControllerProgress!)
+            self.deletesnapshots.isEnabled = false
+            self.deletesnapshotcatalogs()
         }
     }
 
@@ -139,25 +157,6 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             } else {
                 self.snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 0
             }
-        }
-    }
-
-    // Sidebar delete button
-    func deleteaction() {
-        guard self.snapshotlogsandcatalogs != nil else { return }
-        guard ViewControllerReference.shared.process == nil else { return }
-        let num = self.snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
-        let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
-        let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
-        let dialog: String = NSLocalizedString("Delete", comment: "Snapshots")
-        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-        if answer {
-            self.info.stringValue = Infosnapshots().info(num: 0)
-            self.snapshotlogsandcatalogs?.preparesnapshotcatalogsfordelete()
-            guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
-            self.presentAsSheet(self.viewControllerProgress!)
-            self.deletesnapshots.isEnabled = false
-            self.deletesnapshotcatalogs()
         }
     }
 
@@ -332,7 +331,6 @@ extension ViewControllerSnapshots: DismissViewController {
         if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil {
             self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
             self.info.stringValue = Infosnapshots().info(num: 2)
-            self.abort = true
         }
     }
 }
@@ -346,11 +344,7 @@ extension ViewControllerSnapshots {
                 self.deletesnapshots.isEnabled = true
                 self.info.stringValue = Infosnapshots().info(num: 3)
                 self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
-                if self.abort == true {
-                    self.abort = false
-                } else {
-                    vc.processTermination()
-                }
+                vc.processTermination()
             } else {
                 vc.fileHandler()
             }

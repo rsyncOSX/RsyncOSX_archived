@@ -16,6 +16,7 @@ enum Trim {
     case one
     case two
     case three
+    case four
 }
 
 class OutputProcess {
@@ -66,16 +67,17 @@ class OutputProcess {
         switch trim {
         case .one:
             for i in 0 ..< (self.output?.count ?? 0) {
-                let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
-                let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
-                if str.isEmpty == false, str.contains(".DS_Store") == false {
-                    out.append("./" + str)
+                if let substr = self.output?[i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines) {
+                    let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
+                    if str.isEmpty == false, str.contains(".DS_Store") == false {
+                        out.append("./" + str)
+                    }
                 }
             }
         case .two:
-            for i in 0 ..< (self.output?.count ?? 0) where self.output![i].last != "/" {
-                out.append(self.output![i])
-                self.error = self.output![i].contains("rsync error:")
+            for i in 0 ..< (self.output?.count ?? 0) where self.output?[i].last != "/" {
+                out.append(self.output?[i] ?? "")
+                self.error = (self.output?[i] ?? "").contains("rsync error:")
                 if self.error {
                     self.errorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                     self.errorDelegate?.rsyncerror()
@@ -85,10 +87,20 @@ class OutputProcess {
             self.maxnumber = out.count
         case .three:
             for i in 0 ..< (self.output?.count ?? 0) {
-                let substr = self.output![i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)
-                let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
-                if str.isEmpty == false {
-                    if str.contains(".DS_Store") == false {
+                if let substr = self.output?[i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines) {
+                    let str = substr.components(separatedBy: " ").dropFirst(3).joined(separator: " ")
+                    if str.isEmpty == false {
+                        if str.contains(".DS_Store") == false {
+                            out.append(str)
+                        }
+                    }
+                }
+            }
+        case .four:
+            for i in 0 ..< (self.output?.count ?? 0) {
+                if let substr = self.output?[i].dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines) {
+                    let str = substr.components(separatedBy: " ").dropFirst(1).dropLast(2).joined(separator: " ")
+                    if str.count > 4, str.contains(".DS_Store") == false {
                         out.append(str)
                     }
                 }
