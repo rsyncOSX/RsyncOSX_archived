@@ -108,7 +108,7 @@ final class Snapshotlogsandcatalogs {
                     record?.days = ""
                     record?.seconds = 0
                     // record?.dateExecuted = Date().long_localized_string_from_date()
-                    record?.dateExecuted = self.datessnapshotcatalogstodelete?[i].shortlocalized_string_from_date() ?? Date().shortlocalized_string_from_date()
+                    record?.dateExecuted = self.datessnapshotcatalogstodelete?[i].long_localized_string_from_date() ?? Date().long_localized_string_from_date()
                     if let record = record {
                         adjustedlogrecords.append(record)
                     }
