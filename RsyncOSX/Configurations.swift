@@ -12,7 +12,6 @@
 //
 //  swiftlint:disable cyclomatic_complexity
 
-import Cocoa
 import Foundation
 
 class Configurations: ReloadTable, SetSchedules {
