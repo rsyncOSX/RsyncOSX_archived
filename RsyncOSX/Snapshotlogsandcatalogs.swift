@@ -40,14 +40,18 @@ final class Snapshotlogsandcatalogs {
         if let catalogs = self.outputprocess?.trimoutput(trim: .one),
            let datescatalogs = self.outputprocess?.trimoutput(trim: .four)
         {
-            guard catalogs.count == datescatalogs.count else { return }
             self.catalogsanddates = [Catalogsanddates]()
+            let j = datescatalogs.count
             let dateformatter = DateFormatter()
             dateformatter.dateFormat = "YYYY/mm/dd"
             for i in 0 ..< catalogs.count {
-                if let date = dateformatter.date(from: datescatalogs[i]) {
-                    if catalogs[i].contains("./.") == false {
-                        self.catalogsanddates?.append((catalogs[i], date))
+                if i < j {
+                    if let date = dateformatter.date(from: datescatalogs[i]) {
+                        if catalogs[i].contains("./.") == false {
+                            self.catalogsanddates?.append((catalogs[i], date))
+                        }
+                    } else {
+                        self.catalogsanddates?.append((catalogs[i], Date()))
                     }
                 }
             }
