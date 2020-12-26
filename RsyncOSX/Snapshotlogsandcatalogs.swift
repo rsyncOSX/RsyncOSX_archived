@@ -13,9 +13,10 @@ final class Snapshotlogsandcatalogs {
     var logrecordssnapshot: [Logrecordsschedules]?
     var config: Configuration?
     var outputprocess: OutputProcess?
-    var snapshotcatalogs: [String]?
     var snapshotcatalogstodelete: [String]?
-    var datessnapshotcatalogstodelete: [Date]?
+
+    typealias Catalogsanddates = (String, Date)
+    var catalogsanddates: [Catalogsanddates]?
 
     private func getremotecataloginfo() {
         self.outputprocess = OutputProcess()
@@ -36,33 +37,24 @@ final class Snapshotlogsandcatalogs {
     private func prepareremotesnapshotcatalogs() {
         _ = self.outputprocess?.trimoutput(trim: .two)
         guard outputprocess?.error == false else { return }
-        self.snapshotcatalogs = self.outputprocess?.trimoutput(trim: .one)
-        if let dates = self.outputprocess?.trimoutput(trim: .four) {
+        if let catalogs = self.outputprocess?.trimoutput(trim: .one),
+           let datescatalogs = self.outputprocess?.trimoutput(trim: .four)
+        {
+            guard catalogs.count == datescatalogs.count else { return }
+            self.catalogsanddates = [Catalogsanddates]()
             let dateformatter = DateFormatter()
-            if dates.count > 0 {
-                dateformatter.dateFormat = "YYYY/mm/dd"
-                self.datessnapshotcatalogstodelete = [Date]()
-                for i in 0 ..< dates.count {
-                    if let dates = dateformatter.date(from: dates[i]) {
-                        self.datessnapshotcatalogstodelete?.append(dates)
+            dateformatter.dateFormat = "YYYY/mm/dd"
+            for i in 0 ..< catalogs.count {
+                if let date = dateformatter.date(from: datescatalogs[i]) {
+                    if catalogs[i].contains("./.") == false {
+                        self.catalogsanddates?.append((catalogs[i], date))
                     }
                 }
             }
         }
-        // sort dates catalogs
-        if self.snapshotcatalogs?.count == self.datessnapshotcatalogstodelete?.count {
-            self.datessnapshotcatalogstodelete = self.datessnapshotcatalogstodelete?.sorted { date1, date2 in
-                if date1 > date2 {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        }
-        // Sort catalags
-        self.snapshotcatalogs = self.snapshotcatalogs?.sorted { cat1, cat2 -> Bool in
-            let nr1 = Int(cat1.dropFirst(2)) ?? 0
-            let nr2 = Int(cat2.dropFirst(2)) ?? 0
+        self.catalogsanddates = self.catalogsanddates?.sorted { cat1, cat2 in
+            let nr1 = Int(cat1.0.dropFirst(2)) ?? 0
+            let nr2 = Int(cat2.0.dropFirst(2)) ?? 0
             if nr1 > nr2 {
                 return true
             } else {
@@ -86,12 +78,12 @@ final class Snapshotlogsandcatalogs {
     // Merging remote snaphotcatalogs and existing logs
     private func mergeremotecatalogsandlogs() {
         var adjustedlogrecords = [Logrecordsschedules]()
-        for i in 0 ..< (self.snapshotcatalogs?.count ?? 0) {
+        for i in 0 ..< (self.catalogsanddates?.count ?? 0) {
             if let logrecordssnapshot = self.logrecordssnapshot {
                 if logrecordssnapshot.contains(where: { record in
                     let catalogelement = record.resultExecuted.split(separator: " ")[0]
                     let snapshotcatalogfromschedulelog = "./" + catalogelement.dropFirst().dropLast()
-                    if snapshotcatalogfromschedulelog == self.snapshotcatalogs?[i] {
+                    if snapshotcatalogfromschedulelog == self.catalogsanddates?[i].0 {
                         self.logrecordssnapshot?[i].period = "... not yet tagged ..."
                         self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalogfromschedulelog
                         if let record = self.logrecordssnapshot?[i] {
@@ -102,13 +94,12 @@ final class Snapshotlogsandcatalogs {
                     return false
                 }) {} else {
                     var record = self.logrecordssnapshot?[0]
-                    record?.snapshotCatalog = self.snapshotcatalogs?[i]
+                    record?.snapshotCatalog = self.catalogsanddates?[i].0
                     record?.period = "... not yet tagged ..."
                     record?.resultExecuted = "... no log ..."
                     record?.days = ""
                     record?.seconds = 0
-                    // record?.dateExecuted = Date().long_localized_string_from_date()
-                    record?.dateExecuted = self.datessnapshotcatalogstodelete?[i].long_localized_string_from_date() ?? Date().long_localized_string_from_date()
+                    record?.dateExecuted = self.catalogsanddates?[i].1.long_localized_string_from_date() ?? Date().long_localized_string_from_date()
                     if let record = record {
                         adjustedlogrecords.append(record)
                     }
