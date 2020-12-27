@@ -373,6 +373,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func delete() {
+        guard ViewControllerReference.shared.process == nil else { return }
         guard self.index != nil else {
             self.info.stringValue = Infoexecute().info(num: 1)
             return

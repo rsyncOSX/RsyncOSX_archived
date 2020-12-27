@@ -161,6 +161,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         if let view = self.whichviewispresented {
             switch view {
             case .mainviewbuttons:
+                guard ViewControllerReference.shared.process == nil else { return }
                 self.presentAsModalWindow(self.rsynccommand!)
             case .addviewbuttons:
                 return

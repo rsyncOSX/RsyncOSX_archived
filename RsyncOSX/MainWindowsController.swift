@@ -10,16 +10,6 @@ import Cocoa
 import Foundation
 
 class MainWindowsController: NSWindowController {
-    /*
-     private var viewcontrollersidebar: ViewControllerSideBar?
-     private var tabviewcontroller: TabViewController?
-     private var splitviewcontroller: NSSplitViewController? {
-         guard let viewController = contentViewController else {
-             return nil
-         }
-         return viewController.children.first as? NSSplitViewController
-     }
-     */
     func addtoolbar() {
         globalMainQueue.async { () -> Void in
             let toolbar = NSToolbar(identifier: "Toolbar")
