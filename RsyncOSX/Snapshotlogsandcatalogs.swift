@@ -79,19 +79,25 @@ final class Snapshotlogsandcatalogs {
     // Merging remote snaphotcatalogs and existing logs
     private func mergeremotecatalogsandlogs() {
         var adjustedlogrecords = [Logrecordsschedules]()
+        let logcount = self.logrecordssnapshot?.count ?? 0
         for i in 0 ..< (self.catalogsanddates?.count ?? 0) {
+            var j = 0
             if let logrecordssnapshot = self.logrecordssnapshot {
                 if logrecordssnapshot.contains(where: { record in
                     let catalogelement = record.resultExecuted.split(separator: " ")[0]
                     let snapshotcatalogfromschedulelog = "./" + catalogelement.dropFirst().dropLast()
                     if snapshotcatalogfromschedulelog == self.catalogsanddates?[i].0 {
-                        self.logrecordssnapshot?[i].period = "... not yet tagged ..."
-                        self.logrecordssnapshot?[i].snapshotCatalog = snapshotcatalogfromschedulelog
-                        if let record = self.logrecordssnapshot?[i] {
-                            adjustedlogrecords.append(record)
+                        if j < logcount {
+                            self.logrecordssnapshot?[j].period = "... not yet tagged ..."
+                            self.logrecordssnapshot?[j].snapshotCatalog = snapshotcatalogfromschedulelog
+                            if let record = self.logrecordssnapshot?[j] {
+                                adjustedlogrecords.append(record)
+                            }
                         }
+                        j += 1
                         return true
                     }
+                    j += 1
                     return false
                 }) {} else {
                     var record = self.logrecordssnapshot?[0]
