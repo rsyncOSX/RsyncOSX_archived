@@ -84,8 +84,8 @@ final class Snapshotlogsandcatalogs {
             var j = 0
             if let logrecordssnapshot = self.logrecordssnapshot {
                 if logrecordssnapshot.contains(where: { record in
-                    let catalogelement = record.resultExecuted.split(separator: " ")[0]
-                    let snapshotcatalogfromschedulelog = "./" + catalogelement.dropFirst().dropLast()
+                    let catalogelementlog = record.resultExecuted.split(separator: " ")[0]
+                    let snapshotcatalogfromschedulelog = "./" + catalogelementlog.dropFirst().dropLast()
                     if snapshotcatalogfromschedulelog == self.catalogsanddates?[i].0 {
                         if j < logcount {
                             self.logrecordssnapshot?[j].period = "... not yet tagged ..."
@@ -126,6 +126,32 @@ final class Snapshotlogsandcatalogs {
                 }
             }
             return false
+        }
+        self.validatelogrecordsnapshots()
+    }
+
+    func validatelogrecordsnapshots() {
+        var output: OutputProcess?
+        var error = false
+        for i in 0 ..< (self.logrecordssnapshot?.count ?? 0) {
+            if self.logrecordssnapshot?[i].resultExecuted.contains("... no log ...") == false {
+                if let catalogelementlog = self.logrecordssnapshot?[i].resultExecuted.split(separator: " ")[0] {
+                    let snapshotcatalogfromschedulelog = catalogelementlog.dropFirst().dropLast()
+                    if catalogelementlog.contains(snapshotcatalogfromschedulelog) == false {
+                        error = true
+                        if output == nil {
+                            output = OutputProcess()
+                            let string = "Error in validating snapshots: " + Date().long_localized_string_from_date()
+                            output?.addlinefromoutput(str: string)
+                        }
+                        let string = snapshotcatalogfromschedulelog + ": " + (self.logrecordssnapshot?[i].resultExecuted ?? "")
+                        output?.addlinefromoutput(str: string)
+                    }
+                }
+            }
+        }
+        if error {
+            _ = Logging(output, true)
         }
     }
 
