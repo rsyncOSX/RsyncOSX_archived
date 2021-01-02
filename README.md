@@ -24,7 +24,7 @@ RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
 ### Install by Homebrew
 
-RsyncOSX can also be installed by Homebrew: `brew cask install rsyncosx`
+RsyncOSX can also be installed by Homebrew: `brew install --cask rsyncosx`
 
 ### Documents, issues and changelog
 
