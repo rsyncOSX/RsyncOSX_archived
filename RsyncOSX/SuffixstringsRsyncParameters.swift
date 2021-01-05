@@ -31,5 +31,7 @@ struct SuffixstringsRsyncParameters {
         ("--suffix", 1),
         ("--max-delete", 1),
         ("--delete-excluded", 0),
+        ("--include", 1),
+        ("--filter", 1),
     ]
 }
