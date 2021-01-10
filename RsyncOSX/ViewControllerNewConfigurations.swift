@@ -56,8 +56,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var posttask: NSTextField!
     @IBOutlet var executeposttask: NSButton!
     @IBOutlet var haltshelltasksonerror: NSButton!
-    @IBOutlet var addbutton: NSButton!
-
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
         self.presentAsModalWindow(self.viewControllerProfile!)
