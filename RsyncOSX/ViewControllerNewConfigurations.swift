@@ -244,7 +244,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     func snapshotcreateremotecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
         let config = Configuration(dictionary: dict)
         guard config.offsiteServer.isEmpty == false else { return }
-        self.addbutton.isEnabled = false
         let args = SnapshotCreateCatalogArguments(config: config)
         let updatecurrent = OtherProcessCmdClosure(command: args.getCommand(),
                                                    arguments: args.getArguments(),
@@ -286,13 +285,9 @@ extension ViewControllerNewConfigurations: SetProfileinfo {
 }
 
 extension ViewControllerNewConfigurations {
-    func processtermination() {
-        self.addbutton.isEnabled = true
-    }
+    func processtermination() {}
 
-    func filehandler() {
-        //
-    }
+    func filehandler() {}
 }
 
 extension ViewControllerNewConfigurations: OpenQuickBackup {
