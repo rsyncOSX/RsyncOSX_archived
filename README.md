@@ -1,10 +1,13 @@
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.5.4/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
+RsyncOSX require macOS Catalina 10.15 or later versions of macOS.
 
 ![](images/main1.png)
 ![](images/main2.png)
+
+- [Install by Homebrew](#install-by-homebrew)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
+- [SwiftUI, Swift and Storyboard](#swiftui,-swift-and-storyboard)
 - [Dependencies](#dependencies)
 - [Tools used](#tools-used)
 - [Scheduling](#scheduling)
@@ -34,6 +37,10 @@ RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-ba
 - [the changelog](https://rsyncosx.netlify.app/post/changelog/)
 
 The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on [Netlify](https://rsyncosx.netlify.app/). If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+
+### SwiftUI, Swift and Storyboard
+
+The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the Storyboards. The development of a SwiftUI based version of RSyncOSX is commenced. All code for viewcontrollers and the Storyboard will be replaced, either by SwiftUI or Swift code. 
 
 ### Dependencies
 
