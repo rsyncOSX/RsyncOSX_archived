@@ -44,7 +44,7 @@ The current version of RsyncOSX is a Swift and Storyboard developed macOS applic
 
 For the moment (mid January 2021) executing singletasks is developed in test. There is a lot to learn about SwiftUI, but most of the modell classes for RsyncOSX will be reused. But the UI will be redesigned and there is a lot of work and learning to do.
 
-Probably sometime in March 2021, there will be published a repository for the SwiftUI based version of RSyncOSX. A SwiftUI based version will be released sometime in the second halft of 2021.
+Probably sometime in March 2021, there will be published a repository for the SwiftUI based version of RSyncOSX. A SwiftUI based version will be released sometime in the second half of 2021.
 
 ### Dependencies
 
