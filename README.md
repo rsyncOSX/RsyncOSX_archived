@@ -7,7 +7,7 @@ RsyncOSX require macOS Catalina 10.15 or later versions of macOS.
 
 - [Install by Homebrew](#install-by-homebrew)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
-- [SwiftUI, Swift and Storyboard](#swiftui,-swift-and-storyboard)
+- [SwiftUI, Swift and Storyboard](#swiftui-swift-and-storyboard)
 - [Dependencies](#dependencies)
 - [Tools used](#tools-used)
 - [Scheduling](#scheduling)
@@ -40,7 +40,11 @@ The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](ht
 
 ### SwiftUI, Swift and Storyboard
 
-The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the Storyboards. The development of a SwiftUI based version of RSyncOSX is commenced. All code for viewcontrollers and the Storyboard will be replaced, either by SwiftUI or Swift code. 
+The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the Storyboards. The development of a SwiftUI based version of RSyncOSX commenced in December 2020. All code for Viewcontrollers and the Storyboard will be replaced, either by SwiftUI or Swift code.
+
+For the moment (mid January 2021) executing singletasks is developed in test. There is a lot to learn about SwiftUI, but most of the modell classes for RsyncOSX will be reused. But the UI will be redesign and there is a lot of work to do.
+
+Probably sometime in March 2021 there will be published a repository for the SwiftUI based version of RSyncOSX. A SwiftUI based version will be released sometime in the second halft of 2021. 
 
 ### Dependencies
 
