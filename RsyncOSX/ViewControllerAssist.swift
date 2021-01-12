@@ -94,13 +94,12 @@ class ViewControllerAssist: NSViewController {
 
     private func initialize(reset: Bool) {
         self.assist = Assist(reset: reset)
-        if let assist = self.assist?.assist {
-            guard assist.count == 5 else { return }
-            self.initcomboxes(combobox: self.comboremotecomputers, values: assist[0])
-            self.initcomboxes(combobox: self.comboremoteusers, values: assist[1])
-            self.initcomboxes(combobox: self.comboremotehome, values: assist[2])
-            self.initcomboxes(combobox: self.combocatalogs, values: assist[3])
-            self.initcomboxes(combobox: self.combolocalhome, values: assist[4])
+        if let assist = self.assist {
+            self.initcomboxes(combobox: self.comboremotecomputers, values: assist.remoteservers)
+            self.initcomboxes(combobox: self.comboremoteusers, values: assist.remoteusers)
+            self.initcomboxes(combobox: self.comboremotehome, values: assist.remotehome)
+            self.initcomboxes(combobox: self.combocatalogs, values: assist.catalogs)
+            self.initcomboxes(combobox: self.combolocalhome, values: assist.localhome)
         }
     }
 }

@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 04/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Files
 import Foundation
@@ -40,8 +41,8 @@ final class AssistDefault {
     func setremotes() {
         if let remote = ConfigurationsAsDictionarys().uniqueserversandlogins() {
             for i in 0 ..< remote.count {
-                if let remoteuser = (remote[i].value(forKey: DictionaryStrings.offsiteServerCellID.rawValue) as? String),
-                   let remoteserver = (remote[i].value(forKey: DictionaryStrings.offsiteUsernameID.rawValue) as? String)
+                if let remoteserver = (remote[i].value(forKey: DictionaryStrings.offsiteServerCellID.rawValue) as? String),
+                   let remoteuser = (remote[i].value(forKey: DictionaryStrings.offsiteUsernameID.rawValue) as? String)
                 {
                     if remoteusers.contains(remoteuser) == false {
                         self.remoteusers.insert(remoteuser)

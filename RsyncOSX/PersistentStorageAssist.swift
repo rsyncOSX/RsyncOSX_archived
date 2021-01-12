@@ -53,7 +53,7 @@ final class PersistentStorageAssist: ReadWriteDictionary {
         super.init(profile: nil, whattoreadwrite: .assist)
         if let assist = assist {
             self.assistsets = [Set]()
-            self.assistsets?.append(assist.remotecomputers)
+            self.assistsets?.append(assist.remoteservers)
             self.assistsets?.append(assist.remoteusers)
             self.assistsets?.append(assist.remotehome)
             self.assistsets?.append(assist.catalogs)
