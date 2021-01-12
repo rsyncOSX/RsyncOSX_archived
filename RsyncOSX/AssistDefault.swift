@@ -9,10 +9,11 @@
 import Files
 import Foundation
 
-final class AssistDefault: SetConfigurations {
-
+final class AssistDefault {
     var catalogs = Set<String>()
     var localhome = Set<String>()
+    var remoteservers = Set<String>()
+    var remoteusers = Set<String>()
     var nameandpaths: NamesandPaths?
 
     func setcatalogs() -> Set<String>? {
@@ -36,11 +37,29 @@ final class AssistDefault: SetConfigurations {
         return home
     }
 
+    func setremotes() {
+        if let remote = ConfigurationsAsDictionarys().uniqueserversandlogins() {
+            for i in 0 ..< remote.count {
+                if let remoteuser = (remote[i].value(forKey: DictionaryStrings.offsiteServerCellID.rawValue) as? String),
+                   let remoteserver = (remote[i].value(forKey: DictionaryStrings.offsiteUsernameID.rawValue) as? String)
+                {
+                    if remoteusers.contains(remoteuser) == false {
+                        self.remoteusers.insert(remoteuser)
+                    }
+                    if remoteservers.contains(remoteserver) == false {
+                        self.remoteservers.insert(remoteserver)
+                    }
+                }
+            }
+        }
+    }
+
     init() {
         self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
         self.localhome = setlocalhome()
         if let catalogs = self.setcatalogs() {
             self.catalogs = catalogs
         }
+        self.setremotes()
     }
 }

@@ -66,6 +66,23 @@ final class Assist {
             let defaultvalues = AssistDefault()
             self.localhome = defaultvalues.localhome
             self.catalogs = defaultvalues.catalogs
+            self.remoteusers = defaultvalues.remoteusers
+            self.remotecomputers = defaultvalues.remoteservers
+        }
+        self.dirty = false
+    }
+
+    init(reset: Bool) {
+        if reset {
+            let defaultvalues = AssistDefault()
+            self.localhome = defaultvalues.localhome
+            self.catalogs = defaultvalues.catalogs
+            self.remoteusers = defaultvalues.remoteusers
+            self.remotecomputers = defaultvalues.remoteservers
+            self.dirty = true
+        } else {
+            self.assistvalues()
+            self.dirty = false
         }
         self.assist = [Set<String>]()
         for i in 0 ..< self.numberofsets {
@@ -83,18 +100,6 @@ final class Assist {
             default:
                 return
             }
-        }
-        self.dirty = false
-    }
-
-    init(reset: Bool) {
-        if reset {
-            let defaultvalues = AssistDefault()
-            self.localhome = defaultvalues.localhome
-            self.catalogs = defaultvalues.catalogs
-            self.dirty = true
-        } else {
-            self.assistvalues()
         }
     }
 }

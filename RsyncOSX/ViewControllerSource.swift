@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerSource: NSViewController, SetConfigurations {
+class ViewControllerSource: NSViewController {
     @IBOutlet var mainTableView: NSTableView!
 
     weak var getSourceDelegateSsh: ViewControllerSsh?
