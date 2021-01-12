@@ -87,7 +87,14 @@ final class Assist {
         self.dirty = false
     }
 
-    init() {
-        self.assistvalues()
+    init(reset: Bool) {
+        if reset {
+            let defaultvalues = AssistDefault()
+            self.localhome = defaultvalues.localhome
+            self.catalogs = defaultvalues.catalogs
+            self.dirty = true
+        } else {
+            self.assistvalues()
+        }
     }
 }
