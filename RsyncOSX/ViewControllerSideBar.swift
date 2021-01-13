@@ -301,7 +301,7 @@ extension ViewControllerSideBar: Sidebaractions {
             self.button3.isHidden = false
             self.button4.isHidden = false
             self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Snap", comment: "Sidebar")
+            self.button4.title = NSLocalizedString("Scan", comment: "Sidebar")
         case .sshviewbuttons:
             self.button1.isHidden = true
             self.button2.isHidden = true
