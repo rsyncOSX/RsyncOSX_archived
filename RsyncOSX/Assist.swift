@@ -6,8 +6,6 @@
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
 
-import Foundation
-
 import Files
 import Foundation
 
