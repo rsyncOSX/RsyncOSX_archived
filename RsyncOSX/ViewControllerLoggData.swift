@@ -116,11 +116,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
                     self.working.startAnimation(nil)
                     self.snapshotscheduleloggdata = Snapshotlogsandcatalogs(config: config)
                 }
-                if self.indexfromwhere() == .vcsnapshot {
-                    self.info.stringValue = Infologgdata().info(num: 2)
-                } else {
-                    self.info.stringValue = Infologgdata().info(num: 1)
-                }
+                self.info.stringValue = Infologgdata().info(num: 1)
             }
         } else {
             self.info.stringValue = Infologgdata().info(num: 0)

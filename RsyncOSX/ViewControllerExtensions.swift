@@ -208,30 +208,13 @@ extension Deselect {
 
 protocol Index {
     func index() -> Int?
-    func indexfromwhere() -> ViewController
 }
 
 extension Index {
     func index() -> Int? {
         weak var getindexDelegate: GetSelecetedIndex?
-        getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        if getindexDelegate?.getindex() != nil {
-            return getindexDelegate?.getindex()
-        } else {
-            getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-            return getindexDelegate?.getindex()
-        }
-    }
-
-    func indexfromwhere() -> ViewController {
-        weak var getindexDelegate: GetSelecetedIndex?
-        getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        if getindexDelegate?.getindex() != nil {
-            return .vcsnapshot
-        } else {
-            getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-            return .vctabmain
-        }
+        getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        return getindexDelegate?.getindex()
     }
 }
 
