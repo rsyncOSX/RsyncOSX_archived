@@ -13,7 +13,6 @@ enum WhatToReadWrite {
     case schedule
     case configuration
     case userconfig
-    case assist
     case none
 }
 
@@ -146,9 +145,6 @@ class NamesandPaths {
         case .userconfig:
             self.plistname = ViewControllerReference.shared.userconfigplist
             self.key = ViewControllerReference.shared.userconfigkey
-        case .assist:
-            self.plistname = ViewControllerReference.shared.assistplist
-            self.key = ViewControllerReference.shared.assistkey
         case .none:
             self.plistname = nil
             self.key = nil

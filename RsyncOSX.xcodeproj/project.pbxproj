@@ -44,7 +44,6 @@
 		E80A6FFA257E2B120093AB29 /* RemoteCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80A6FF9257E2B120093AB29 /* RemoteCapacity.swift */; };
 		E826416E2583A13B00036579 /* ConfigurationsAsDictionarys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E826416D2583A13B00036579 /* ConfigurationsAsDictionarys.swift */; };
 		E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F9F1123F030B200E3DEBC /* extensionRestore.swift */; };
-		E84C89262529BB1500381618 /* AssistDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84C89252529BB1500381618 /* AssistDefault.swift */; };
 		E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E091721BD29A3006BD293 /* Tagsnapshots.swift */; };
 		E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */; };
 		E8783FAD2580B25900E0D485 /* Estimatedlistforsynchronization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8783FAC2580B25900E0D485 /* Estimatedlistforsynchronization.swift */; };
@@ -175,7 +174,6 @@
 		E9FD8684253B799900482DA1 /* CodableConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD8683253B799900482DA1 /* CodableConfiguration.swift */; };
 		E9FDDED2253CB45800D41FD1 /* DecodeSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FDDED1253CB45800D41FD1 /* DecodeSchedule.swift */; };
 		E9FE50BD2527765C00076447 /* ConvertAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE50BC2527765C00076447 /* ConvertAssist.swift */; };
-		E9FE50C125277A7600076447 /* PersistentStorageAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE50C025277A7600076447 /* PersistentStorageAssist.swift */; };
 		E9FE959B25134BD800B9AF5D /* OtherProcessCmdClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE959A25134BD800B9AF5D /* OtherProcessCmdClosure.swift */; };
 		E9FFA02D1E7287E100B7AB2B /* ProcessCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */; };
 /* End PBXBuildFile section */
@@ -230,7 +228,6 @@
 		E80A6FF9257E2B120093AB29 /* RemoteCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCapacity.swift; sourceTree = "<group>"; };
 		E826416D2583A13B00036579 /* ConfigurationsAsDictionarys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsAsDictionarys.swift; sourceTree = "<group>"; };
 		E82F9F1123F030B200E3DEBC /* extensionRestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionRestore.swift; sourceTree = "<group>"; };
-		E84C89252529BB1500381618 /* AssistDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistDefault.swift; sourceTree = "<group>"; };
 		E84E091721BD29A3006BD293 /* Tagsnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagsnapshots.swift; sourceTree = "<group>"; };
 		E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backupconfigfiles.swift; sourceTree = "<group>"; };
 		E8783FAC2580B25900E0D485 /* Estimatedlistforsynchronization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estimatedlistforsynchronization.swift; sourceTree = "<group>"; };
@@ -380,7 +377,6 @@
 		E9FD8683253B799900482DA1 /* CodableConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableConfiguration.swift; sourceTree = "<group>"; };
 		E9FDDED1253CB45800D41FD1 /* DecodeSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeSchedule.swift; sourceTree = "<group>"; };
 		E9FE50BC2527765C00076447 /* ConvertAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertAssist.swift; sourceTree = "<group>"; };
-		E9FE50C025277A7600076447 /* PersistentStorageAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorageAssist.swift; sourceTree = "<group>"; };
 		E9FE959A25134BD800B9AF5D /* OtherProcessCmdClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProcessCmdClosure.swift; sourceTree = "<group>"; };
 		E9FFA02C1E7287E100B7AB2B /* ProcessCmd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessCmd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -680,7 +676,6 @@
 			isa = PBXGroup;
 			children = (
 				E915568525284F2A007573E1 /* Assist.swift */,
-				E84C89252529BB1500381618 /* AssistDefault.swift */,
 			);
 			name = Assist;
 			sourceTree = "<group>";
@@ -707,7 +702,6 @@
 		E92E09A12568543E000876B8 /* PersistantStorage */ = {
 			isa = PBXGroup;
 			children = (
-				E9FE50C025277A7600076447 /* PersistentStorageAssist.swift */,
 				E903FF38221FD99F004673D9 /* PersistentStorageAllprofilesAPI.swift */,
 				A0EFB44F1DC080A9008C21A6 /* PersistentStorageUserconfiguration.swift */,
 				E91E44D8253F0DA300E74150 /* PersistentStorageSchedulingJSON.swift */,
@@ -1144,7 +1138,6 @@
 				E9EC81C8255C5BD600CE106E /* Checksynchronizedfiles.swift in Sources */,
 				E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */,
 				A0F2E20C1D6D91AA0091E8BF /* Userconfiguration.swift in Sources */,
-				E9FE50C125277A7600076447 /* PersistentStorageAssist.swift in Sources */,
 				E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */,
 				E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */,
@@ -1221,7 +1214,6 @@
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
 				E97446DF254DB8EF00F1C3E8 /* TransformConfigfromJSON.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */,
-				E84C89262529BB1500381618 /* AssistDefault.swift in Sources */,
 				E9EC78711EACE082001EED9B /* Ssh.swift in Sources */,
 				E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */,
 				E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */,

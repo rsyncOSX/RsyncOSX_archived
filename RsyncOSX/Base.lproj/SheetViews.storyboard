@@ -788,11 +788,11 @@ DQ
             <objects>
                 <viewController title="Assist" storyboardIdentifier="AssistID" id="Ugx-BX-wzc" customClass="ViewControllerAssist" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m1B-di-vlY">
-                        <rect key="frame" x="0.0" y="0.0" width="344" height="221"/>
+                        <rect key="frame" x="0.0" y="0.0" width="344" height="210"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rxw-DI-YlA">
-                                <rect key="frame" x="200" y="154" width="119" height="25"/>
+                                <rect key="frame" x="200" y="143" width="119" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="YT3-1s-uhk">
                                     <font key="font" metaFont="system"/>
@@ -801,7 +801,7 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUn-kI-LOl">
-                                <rect key="frame" x="30" y="154" width="165" height="25"/>
+                                <rect key="frame" x="30" y="143" width="165" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="hX5-YV-Xgn">
                                     <font key="font" metaFont="system"/>
@@ -828,10 +828,10 @@ DQ
                                 </comboBoxCell>
                             </comboBox>
                             <box fixedFrame="YES" title="Local home, catalogs, remote home" translatesAutoresizingMaskIntoConstraints="NO" id="W2X-Gn-Pny">
-                                <rect key="frame" x="17" y="123" width="311" height="78"/>
+                                <rect key="frame" x="17" y="130" width="311" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="1Gd-dq-EFE">
-                                    <rect key="frame" x="3" y="3" width="305" height="60"/>
+                                    <rect key="frame" x="3" y="3" width="305" height="42"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -843,15 +843,6 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
-                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4RN-iV-4hd">
-                                <rect key="frame" x="30" y="132" width="289" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="WcG-Zm-DBc">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </comboBoxCell>
-                            </comboBox>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12d-8y-vTj">
                                 <rect key="frame" x="251" y="13" width="80" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -874,30 +865,18 @@ DQ
                                     <action selector="addlocal:" target="Ugx-BX-wzc" id="BBn-MR-zJf"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Fr-Ok-XJE">
-                                <rect key="frame" x="11" y="13" width="79" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Rescan" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QTr-Af-SP0">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="rescan:" target="Ugx-BX-wzc" id="Vpf-rI-Iq8"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="combocatalogs" destination="Rxw-DI-YlA" id="zue-dN-WeJ"/>
                         <outlet property="combolocalhome" destination="OUn-kI-LOl" id="jAY-Y3-GI4"/>
                         <outlet property="comboremotecomputers" destination="Vt1-uH-4Ec" id="eyL-dH-k2t"/>
-                        <outlet property="comboremotehome" destination="4RN-iV-4hd" id="7we-Qz-tmI"/>
                         <outlet property="comboremoteusers" destination="Fgw-Br-K4x" id="Jw7-HQ-6W5"/>
                     </connections>
                 </viewController>
                 <customObject id="TVm-Hq-Q75" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-539" y="-513"/>
+            <point key="canvasLocation" x="-539" y="-519"/>
         </scene>
         <!--About-->
         <scene sceneID="ehW-II-E5w">
@@ -1274,7 +1253,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="oTG-dZ-vLI">
-                                                            <rect key="frame" x="454" y="1" width="232" height="40"/>
+                                                            <rect key="frame" x="453.5" y="1" width="232" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2y-Ka-0se">
@@ -1306,7 +1285,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="dsQ-7K-RHQ">
-                                                            <rect key="frame" x="689" y="1" width="55" height="40"/>
+                                                            <rect key="frame" x="688.5" y="1" width="55" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-Oh-T0L">

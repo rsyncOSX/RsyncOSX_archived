@@ -67,8 +67,6 @@ final class ViewControllerReference {
     var configurationskey: String = "Catalogs"
     var userconfigplist: String = "/config.plist"
     var userconfigkey: String = "config"
-    var assistplist: String = "/assist.plist"
-    var assistkey: String = "assist"
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
