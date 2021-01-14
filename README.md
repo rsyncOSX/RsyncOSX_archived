@@ -105,15 +105,13 @@ If you are only looking for utilizing stock version of rsync (version 2.6.9) and
 
 ### Some words about RsyncOSX
 
-RsyncOSX is not developed to be an easy to use synchronize and backup tool. The main purpose is to assist and ease the use of `rsync` to synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from remote servers.
+RsyncOSX is not developed to be an easy to use synchronize and backup tool. The main purpose is to assist and ease the use of `rsync` to synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from those remote servers.
 
-The UI can for users who dont know `rsync`, be difficult or complex to understand. It is not required to know `rsync` but it will ease the use and understanding of RsyncOSX. But it is though, possible to use RsyncOSX by just adding a source and remote backup catalog using default parameters.
+The UI of RsyncOSX can for users who dont know rsync, be difficult or complex to understand. Using RsyncOSX requires some knowledge of `rsync`. The main objective for RsyncOSX is to ease the use of `rsync`, not teach macOS users how to use `rsync`. That is beyond the scope of RsyncOSX. Setting the wrong parameters to rsync can result in deleted data. And RsyncOSX will not stop you for doing so. That is why it is very important to execute a simulated run (`--dry-run`) and inspect what happens before a real run.
 
-RsyncOSX supports synchronize and snapshots of files.
+RsyncOSX supports **synchronize** and **snapshots** of files.
 
 If your plan is to use RsyncOSX as your main tool for backup of files, please investigate and understand the limits of it. RsyncOSX is quite powerful, but it is might not the primary backup tool for the average user of macOS.
-
-There is a [short intro to RsyncOSX](https://rsyncosx.netlify.app/post/intro/) and [some more documentation of RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/).
 
 ### The --delete parameter
 ```
