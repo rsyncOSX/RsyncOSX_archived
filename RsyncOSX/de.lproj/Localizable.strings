@@ -79,7 +79,7 @@
 "Copy single files or directory?" = "Einzelne Dateien oder Ordner kopieren?";
 
 /* copyright */
-"Copyright ©2021 Thomas Evensen" = "Copyright ©2021 Thomas Evensen";
+"Copyright ©2020 Thomas Evensen" = "Copyright ©2020 Thomas Evensen";
 
 /* Sidebar */
 "Create key" = "Schlüssel erstellen";
@@ -351,6 +351,9 @@
    Userconfig */
 "Save" = "Speichern";
 
+/* Sidebar */
+"Scan" = "Scannen";
+
 /* Schedules */
 "Scheduled tasks in menu app..." = "Geplante Aufgaben in der Menü-App...";
 
@@ -376,9 +379,6 @@
 
 /* Toolbar */
 "Show userconfig..." = "Benutzerkonfiguration anzeigen...";
-
-/* Sidebar */
-"Snap" = "Snap";
 
 /* Tooltip */
 "Source catalog:" = "Quellkatalog:";

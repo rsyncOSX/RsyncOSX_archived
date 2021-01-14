@@ -79,7 +79,7 @@
 "Copy single files or directory?" = "Enkelbestanden of map kopiëren?";
 
 /* copyright */
-"Copyright ©2021 Thomas Evensen" = "Copyright © 2021 Thomas Evensen";
+"Copyright ©2020 Thomas Evensen" = "Copyright © 2020 Thomas Evensen";
 
 /* Sidebar */
 "Create key" = "Sleutel aanmaken";
@@ -351,6 +351,9 @@
    Userconfig */
 "Save" = "Opslaan";
 
+/* Sidebar */
+"Scan" = "Scan";
+
 /* Schedules */
 "Scheduled tasks in menu app..." = "Geplande taken in menu-app...";
 
@@ -376,9 +379,6 @@
 
 /* Toolbar */
 "Show userconfig..." = "Toon gebruikerconfig...";
-
-/* Sidebar */
-"Snap" = "Snap";
 
 /* Tooltip */
 "Source catalog:" = "Bron catalogus:";

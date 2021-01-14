@@ -85,14 +85,8 @@
 /* Class = "NSBox"; title = "Monitor network connection"; ObjectID = "42J-7j-3md"; */
 "42J-7j-3md.title" = "Netzwerkverbindung überwachen";
 
-/* Class = "NSBox"; title = "Add and delete values"; ObjectID = "a01-TH-BQL"; */
-"a01-TH-BQL.title" = "Hinzufügen und Entfernen von Werten";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aGI-eL-V5x"; */
 "aGI-eL-V5x.title" = "Text Cell";
-
-/* Class = "NSTextFieldCell"; title = "Remote computers:"; ObjectID = "agW-Xy-vBp"; */
-"agW-Xy-vBp.title" = "Remote-Computer:";
 
 /* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.x rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "aGX-D5-vw1"; */
 "aGX-D5-vw1.title" = "v 3.1.2, 3.1.3, 3.2.x rsync - optionaler Pfad setzen, wenn NICHT in /usr/local/bin";
@@ -204,9 +198,6 @@
 
 /* Class = "NSBox"; title = "Local info"; ObjectID = "fwv-bt-TTn"; */
 "fwv-bt-TTn.title" = "Lokale Info";
-
-/* Class = "NSTextFieldCell"; title = "Catalogs:"; ObjectID = "Fxq-AV-tHH"; */
-"Fxq-AV-tHH.title" = "Kataloge:";
 
 /* Class = "NSTextFieldCell"; title = "RsyncOSXsched path:"; ObjectID = "g84-iD-tHH"; */
 "g84-iD-tHH.title" = "RsyncOSXsched pfad:";
@@ -415,9 +406,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "%"; ObjectID = "QEf-gd-TIH"; */
 "QEf-gd-TIH.headerCell.title" = "%";
 
-/* Class = "NSTextFieldCell"; title = "Local home:"; ObjectID = "Qts-QP-MAr"; */
-"Qts-QP-MAr.title" = "Lokales Home:";
-
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "QTX-Tk-wR7"; */
 "QTX-Tk-wR7.title" = "Table View Cell";
 
@@ -475,9 +463,6 @@
 /* Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "Tlv-oS-Xch"; */
 "Tlv-oS-Xch.title" = "Anzahl der Dateien:";
 
-/* Class = "NSTextFieldCell"; title = "Remote users:"; ObjectID = "tt1-pl-XtM"; */
-"tt1-pl-XtM.title" = "Remote Benutzer:";
-
 /* Class = "NSTextFieldCell"; title = "Date last backup:"; ObjectID = "Twm-dP-DT6"; */
 "Twm-dP-DT6.title" = "Letztes Backup Datum:";
 
@@ -526,8 +511,8 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "vXx-ni-ar6"; */
 "vXx-ni-ar6.title" = "Table View Cell";
 
-/* Class = "NSBox"; title = "Local home, catalogs, remote home"; ObjectID = "W2X-Gn-Pny"; */
-"W2X-Gn-Pny.title" = "Lokales Home, Kataloge, Remote Home";
+/* Class = "NSBox"; title = "Local home and catalogs"; ObjectID = "W2X-Gn-Pny"; */
+"W2X-Gn-Pny.title" = "Lokale Home- und Kataloge";
 
 /* Class = "NSTextFieldCell"; title = "Remote username:"; ObjectID = "wak-BA-Awx"; */
 "wak-BA-Awx.title" = "Remote-Benutzername:";
@@ -567,9 +552,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "yPJ-qu-8B2"; */
 "yPJ-qu-8B2.title" = "Text Cell";
-
-/* Class = "NSTextFieldCell"; title = "Remote home:"; ObjectID = "yS2-bv-Hou"; */
-"yS2-bv-Hou.title" = "Remote Home:";
 
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "zaW-od-Wgz"; */
 "zaW-od-Wgz.title" = "Item 3";
