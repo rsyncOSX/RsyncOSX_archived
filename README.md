@@ -42,9 +42,7 @@ The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](ht
 
 The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the Storyboards. The development of a SwiftUI based version of RSyncOSX commenced in December 2020. All code for Viewcontrollers and the Storyboard will be replaced, either by SwiftUI or Swift code.
 
-For the moment (mid January 2021) executing singletasks is developed in test. There is a lot to learn about SwiftUI, but most of the modell classes for RsyncOSX will be reused. But the UI will be redesigned and there is a lot of work and learning to do.
-
-Probably sometime in March 2021, there will be published a repository for the SwiftUI based version of RSyncOSX. A SwiftUI based version will be released sometime in the second half of 2021.
+[There is some more info about the SwiftUI version](https://rsyncosx.netlify.app/post/swiftui/) of RsyncOSX and the progress.
 
 ### Dependencies
 
