@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.5.6/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-RsyncOSX require macOS Catalina 10.15 or later versions of macOS. The work on a SwiftUI based version of RsyncOSX has commenced. See [SwiftUI, Swift and Storyboard](#swiftui-swift-and-storyboard) for more info.
+RsyncOSX require macOS Catalina 10.15 and later versions of macOS. The work on a SwiftUI based version of RsyncOSX has commenced. See [SwiftUI, Swift and Storyboard](#swiftui-swift-and-storyboard) for more info.
 
 ![](images/main1.png)
 ![](images/main2.png)
@@ -40,13 +40,13 @@ The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](ht
 
 ### SwiftUI, Swift and Storyboard
 
-The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the Storyboards. The development of the SwiftUI based version of RsyncOSX commenced in December 2020.
+The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the code for viewcontrollers and the Storyboards. The development of the SwiftUI based version of RsyncOSX commenced in December 2020.
 
 [There is some more info about the SwiftUI version](https://rsyncosx.netlify.app/post/swiftui/) and the progress. And [the source is here](https://github.com/rsyncOSX/RsyncSwiftUI).
 
 ### Dependencies
 
-The application is implemented in pure Swift 5, Cocoa and Foundation. From the latest release there are three source code dependencies:
+The application is implemented in pure Swift, ViewControllers and Storyboard(Cocoa and Foundation classes). From the latest release there are three source code dependencies:
 
 - check for TCP connectivity by utilizing [SwiftSocket](https://github.com/swiftsocket/SwiftSocket), some functions require connections to remote servers
 - execute pre and post shellscripts by utilizing John Sundell´s [ShellOut](https://github.com/JohnSundell/ShellOut)
