@@ -2,7 +2,7 @@
 
 RsyncOSX require macOS Catalina 10.15 and later versions of macOS. 
 
-The work on a SwiftUI based version of RsyncOSX has commenced. See [SwiftUI, Swift and Storyboard](#swiftui-swift-and-storyboard) for more info. There will be released a alpha test version before end of February. I am using the alpha version on daily basis now, and it seems to be stable and i does what it is expected to do. The UI in the SwiftUI based version is changed, to the better, in my opinion.
+The work on a SwiftUI based version of RsyncOSX has commenced. See [SwiftUI, Swift and Storyboard](#swiftui-swift-and-storyboard) for more info. There will be released an alpha test version before end of February. I am using the alpha version on daily basis now, and it stable and it does what it is expected to do. The UI in the SwiftUI based version is changed, to the better, in my opinion. But it is an alpha version and there might be a bug or two.
 
 ![](images/main1.png)
 ![](images/main2.png)
