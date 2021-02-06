@@ -1,8 +1,8 @@
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.5.6/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-RsyncOSX require macOS Catalina 10.15 and later versions of macOS. 
+RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
-The work on a SwiftUI based version of RsyncOSX has commenced. See [SwiftUI, Swift and Storyboard](#swiftui-swift-and-storyboard) for more info. There will be released an alpha test version before end of February. I am using the alpha version on daily basis now, and it stable and it does what it is expected to do. The UI in the SwiftUI based version is changed, to the better, in my opinion. But it is an alpha version and there might be a bug or two.
+The work on a SwiftUI based version of RsyncOSX has commenced. There is some more info about [the SwiftUI based version of RsyncOSX](https://rsyncosx.netlify.app/post/swiftui/).
 
 ![](images/main1.png)
 ![](images/main2.png)
