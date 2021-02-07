@@ -2,7 +2,7 @@
 
 RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
-The work on a SwiftUI based version of RsyncOSX has commenced. There is some more info about [the SwiftUI based version of RsyncOSX](https://rsyncosx.netlify.app/post/swiftui/).
+The work on a SwiftUI based version of RsyncOSX did commence in December 2020. And the development progresses every day. There is some more info about [the SwiftUI based version of RsyncOSX here](https://github.com/rsyncOSX/RsyncSwiftUI).
 
 ![](images/main1.png)
 ![](images/main2.png)
@@ -42,9 +42,7 @@ The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](ht
 
 ### SwiftUI, Swift and Storyboard
 
-The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the code for viewcontrollers and the Storyboards. The development of the SwiftUI based version of RsyncOSX commenced in December 2020.
-
-[There is some more info about the SwiftUI version](https://rsyncosx.netlify.app/post/swiftui/) and the progress. And [the source is here](https://github.com/rsyncOSX/RsyncSwiftUI).
+The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the code for viewcontrollers and the Storyboards. The development of the SwiftUI based version of RsyncOSX commenced in December 2020. There is some more info about [the SwiftUI based version of RsyncOSX here](https://github.com/rsyncOSX/RsyncSwiftUI).
 
 ### Dependencies
 
