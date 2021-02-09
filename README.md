@@ -4,6 +4,8 @@ RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
 The work on a SwiftUI based version of RsyncOSX did commence in December 2020. And the development progresses every day. There is some more info about [the SwiftUI based version of RsyncOSX here](https://github.com/rsyncOSX/RsyncSwiftUI).
 
+[There is 9 February 2021 released an alpha version of the SwiftUI based version](https://github.com/rsyncOSX/RsyncSwiftUI/releases). It can be used alongside RsyncOSX and it is primarily for a sneek peek of what is coming.
+
 ![](images/main1.png)
 ![](images/main2.png)
 
