@@ -9,7 +9,6 @@ The work on a SwiftUI based version of RsyncOSX did commence in December 2020. A
 
 - [Install by Homebrew](#install-by-homebrew)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
-- [SwiftUI, Swift and Storyboard](#swiftui-swift-and-storyboard)
 - [Dependencies](#dependencies)
 - [Tools used](#tools-used)
 - [Scheduling](#scheduling)
@@ -39,10 +38,6 @@ RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-ba
 - [the changelog](https://rsyncosx.netlify.app/post/changelog/)
 
 The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on [Netlify](https://rsyncosx.netlify.app/). If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
-
-### SwiftUI, Swift and Storyboard
-
-The current version of RsyncOSX is a Swift and Storyboard developed macOS application. SwiftUI is a framework for UI and in many or most cases it replaces the code for viewcontrollers and the Storyboards. The development of the SwiftUI based version of RsyncOSX commenced in December 2020. There is some more info about [the SwiftUI based version of RsyncOSX here](https://github.com/rsyncOSX/RsyncSwiftUI).
 
 ### Dependencies
 
