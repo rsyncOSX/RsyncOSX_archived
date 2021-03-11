@@ -2,9 +2,7 @@
 
 RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
-The work on the **SwiftUI based version of RsyncOSX** commenced in December 2020. The development of the new version is going forward. If you want to build it yourself, copy or fork the source from [the GitHub repository](https://github.com/rsyncOSX/RsyncUI). How to compile is [documented here](https://rsyncosx.netlify.app/post/compile/).
-
-I am using the prerelase on a daily basis. And I do like the new UI better than the current version. There are some [screenshots of the prerelease](https://rsyncosx.netlify.app/post/swiftuiviews/).
+[The work on a SwiftUI based version of RsyncOSX](https://rsyncui.netlify.app/) has commenced. The new app is called RsyncUI and will be released as a **new application** and not as an upgrade.
 
 ![](images/main1.png)
 ![](images/main2.png)
