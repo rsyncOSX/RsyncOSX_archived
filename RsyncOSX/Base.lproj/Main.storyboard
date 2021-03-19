@@ -666,7 +666,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="687" y="1" width="50" height="17"/>
+                                                            <rect key="frame" x="687" y="1" width="49" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -730,7 +730,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="826" y="1" width="146" height="17"/>
+                                                            <rect key="frame" x="826" y="1" width="145" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -778,7 +778,7 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Hs-8vg">
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Hs-8vg">
                                 <rect key="frame" x="336" y="6" width="333" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="1IX-LA-PS2">
                                     <font key="font" metaFont="message" size="11"/>
@@ -821,8 +821,10 @@ DQ
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="20" symbolic="YES" id="ZYY-Oj-mFf"/>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="leading" secondItem="akQ-LR-eTv" secondAttribute="leading" constant="20" symbolic="YES" id="bH1-a5-S7v"/>
                             <constraint firstItem="ZhK-mF-Dgw" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="9" id="j6b-l0-1aR"/>
+                            <constraint firstItem="RQt-Hs-8vg" firstAttribute="leading" secondItem="n3L-Il-K5w" secondAttribute="trailing" constant="221" id="k4s-fQ-oGE"/>
                             <constraint firstItem="PpM-WV-OB6" firstAttribute="top" secondItem="akQ-LR-eTv" secondAttribute="top" constant="10" id="mxv-u9-0GC"/>
                             <constraint firstItem="ihR-vZ-M7c" firstAttribute="top" secondItem="ZhK-mF-Dgw" secondAttribute="bottom" constant="1" id="nWv-mQ-eBt"/>
+                            <constraint firstAttribute="trailing" secondItem="RQt-Hs-8vg" secondAttribute="trailing" constant="336" id="rP9-Hy-6rJ"/>
                             <constraint firstAttribute="trailing" secondItem="PpM-WV-OB6" secondAttribute="trailing" constant="20" symbolic="YES" id="tAB-vA-0qz"/>
                             <constraint firstItem="n3L-Il-K5w" firstAttribute="top" secondItem="ihR-vZ-M7c" secondAttribute="bottom" constant="8" symbolic="YES" id="zyy-8h-PLB"/>
                         </constraints>
