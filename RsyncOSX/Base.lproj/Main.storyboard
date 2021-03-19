@@ -2381,6 +2381,7 @@ DQ
                             <constraint firstItem="fA7-Ye-Zzs" firstAttribute="trailing" secondItem="H3T-x2-1A7" secondAttribute="trailing" id="f0V-1Q-3iE"/>
                             <constraint firstItem="uIq-wW-zUf" firstAttribute="leading" secondItem="fA7-Ye-Zzs" secondAttribute="leading" id="g93-0b-iPw"/>
                             <constraint firstItem="fA7-Ye-Zzs" firstAttribute="top" secondItem="Cv6-G7-dc2" secondAttribute="bottom" constant="1" id="gHh-SX-kFi"/>
+                            <constraint firstAttribute="trailing" secondItem="H3T-x2-1A7" secondAttribute="trailing" constant="20" symbolic="YES" id="gNU-so-1kK"/>
                             <constraint firstItem="H3T-x2-1A7" firstAttribute="top" secondItem="fA7-Ye-Zzs" secondAttribute="bottom" constant="8" symbolic="YES" id="hIf-iZ-UhA"/>
                             <constraint firstItem="6Ke-eK-ziR" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="20" symbolic="YES" id="hJ3-J5-ZNi"/>
                             <constraint firstItem="6Ke-eK-ziR" firstAttribute="leading" secondItem="X8A-2M-FtC" secondAttribute="leading" constant="20" symbolic="YES" id="lNs-5g-cYZ"/>
