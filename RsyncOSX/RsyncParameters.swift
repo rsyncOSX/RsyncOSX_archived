@@ -29,6 +29,7 @@ class RsyncParameters {
         let parameter3: String = config.parameter3
         let parameter4: String = config.parameter4
         let parameter5: String = config.parameter5
+        let parameter6: String = config.parameter6
         let offsiteServer: String = config.offsiteServer
         self.arguments?.append(parameter1 ?? "")
         if verify {
@@ -59,6 +60,11 @@ class RsyncParameters {
                     ViewControllerReference.shared.sshport != nil
                 {
                     self.sshparametersglobal(config: config, forDisplay: forDisplay)
+                } else {
+                    arguments?.append(parameter5)
+                    if forDisplay { arguments?.append(" ") }
+                    arguments?.append(parameter6)
+                    if forDisplay { arguments?.append(" ") }
                 }
             }
         }
