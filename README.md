@@ -12,11 +12,13 @@ RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 ![](images/rsyncosx.png)
 
 ![My github stats](https://github-readme-stats.vercel.app/api?username=rsyncOSX&show_icons=true&hide_border=true&theme=dark)
-![Metrics](https://metrics.lecoq.io/rsyncOSX?template=classic&config.timezone=Europe%2FOslo)
-[![trophy](https://github-profile-trophy.vercel.app/?username=rsyncOSX)](https://github.com/rsyncOSX/github-profile-trophy)
+
+![trophy](https://github-profile-trophy.vercel.app/?username=rsyncOSX)](https://github.com/rsyncOSX/github-profile-trophy)
 
 [RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/RsyncOSX.md).
+
 [RsyncUI](https://github.com/rsyncOSX/RsyncUI/RsyncUI.md).
 
 [The work on a SwiftUI based version of RsyncOSX](https://rsyncui.netlify.app/)
+
 [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/)
