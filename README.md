@@ -11,7 +11,9 @@ I am the developer of some GUI´s for `rsync` on the Apple macOS plattform.
 
 ![](images/rsyncosx.png)
 
-**RsyncUI** which are released for macOS Big Sur and later versions of macOS. This project is still in development and is the next version of RsyncOSX based on SwiftUI.
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.0.0/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v0.99/total) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys)
+
+**RsyncUI** which are released for macOS Big Sur and later versions of macOS.
 
   - [the documentation of RsyncUI](https://rsyncui.netlify.app/)
   - [the readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/blob/main/README.md)
