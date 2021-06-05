@@ -23,8 +23,7 @@ RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 - [About bugs](#about-bugs)
 - [About restoring files to a temporary restore catalog](#about-restoring-files-to-a-temporary-restore-catalog)
 - [Application icon](#application-icon)
-- [How to use RsyncOSX - YouTube videos](#how-to-use-rsyncosx---youtube-videos)
-- [XCTest](#xctest)
+- [Combine](#combine)
 
 ### Install by Homebrew
 
@@ -142,13 +141,23 @@ The application icon is created by [Zsolt Sándor](https://github.com/graphis). 
 
 ![](icon/rsyncosx.png)
 
-### How to use RsyncOSX - YouTube videos
+### Combine
 
-There are two short YouTube videos of RsyncOSX:
+This is a project of introducing Combine into RsyncOSX. It will be released sometime in either June or July 2021, a release candidate will be annouced within a few weeks. The app is working, only some QA before a release candidate.
 
-- [how to get and install RsyncOSX](https://youtu.be/d-srHjL2F-0)
-- [adding and executing the first backup](https://youtu.be/vS5_rXdTtZ8)
+What is the purpose of this project? In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is also a great framework and makes the code easy to write and easy to read. It is most likely that RsyncOSX will avaliable for some years and why not upgrade RsyncOSX to utilize Combine.
 
-### XCTest
+There are though some restrictions. In the Combine code for encode and write data to JSON file, the publiser requiere macOS BigSur or later. This release will only be avaliable for macOS BigSur and later.
 
-There are two [XCTest configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/XCTestconfiguration/XCTest.md) for testing.
+Much of the code where Combine is used is shared with RsyncUI. There is still some minor parts of code which needs to be added or changed before a release. The work to delete old code and replace with Combine was done in a couple of hours an evening.
+
+I will also refactor and clean up other parts of the code as well as part of this project.
+
+Combine is used in the following code:
+
+- [read](https://github.com/rsyncOSX/RsyncOSX/blob/main/RsyncOSX/ReadUserConfigurationPLIST.swift) user configurations to permanent store
+- [read](https://github.com/rsyncOSX/RsyncOSX/blob/main/RsyncOSX/ReadConfigurationJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSXCombine/blob/main/RsyncOSX/WriteConfigurationJSON.swift) configurations
+- [read](https://github.com/rsyncOSX/RsyncOSX/blob/main/RsyncOSX/ReadScheduleJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSXCombine/blob/main/RsyncOSX/WriteScheduleJSON.swift) schedules and logs
+- read and convert [configurations](https://github.com/rsyncOSX/RsyncOSX/blob/main/RsyncOSX/ReadConfigurationsPLIST.swift) and [schedules](https://github.com/rsyncOSX/RsyncOSX/blob/main/RsyncOSX/ReadSchedulesPLIST.swift) from PLIST format to JSON format
+- [the process object](https://github.com/rsyncOSX/RsyncOSX/blob/main/RsyncOSX/ProcessCmd.swift), executing tasks
+- preparing [the output](https://github.com/rsyncOSX/RsyncOSX/blob/main/RsyncOSX/TrimTwo.swift) from rsync process
