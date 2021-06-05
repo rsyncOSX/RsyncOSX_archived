@@ -29,42 +29,42 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
     var filterby: Sortandfilter?
     var sortascending: Bool = true
     var index: Int?
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
 
-    var command: OtherProcessCmdClosure?
+    var command: OtherProcess?
 
     @IBAction func closeview(_: NSButton) {
-        self.view.window?.close()
+        view.window?.close()
     }
 
     @IBAction func sortdirection(_: NSButton) {
-        if self.sortascending == true {
-            self.sortascending = false
-            self.sortdirection.image = #imageLiteral(resourceName: "down")
+        if sortascending == true {
+            sortascending = false
+            sortdirection.image = #imageLiteral(resourceName: "down")
         } else {
-            self.sortascending = true
-            self.sortdirection.image = #imageLiteral(resourceName: "up")
+            sortascending = true
+            sortdirection.image = #imageLiteral(resourceName: "up")
         }
-        self.sortbycolumn()
+        sortbycolumn()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
-        self.search.delegate = self
-        self.mainTableView.target = self
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        search.delegate = self
+        mainTableView.target = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.sortdirection.image = #imageLiteral(resourceName: "up")
-        self.sortascending = true
-        self.initpopupbutton()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
-        self.allconfigurations = AllConfigurations()
-        self.allschedules = Allschedules(includelog: false)
-        self.allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: self.allschedules)
+        sortdirection.image = #imageLiteral(resourceName: "up")
+        sortascending = true
+        initpopupbutton()
+        SharedReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: self)
+        allconfigurations = AllConfigurations()
+        allschedules = Allschedules()
+        allschedulessortedandexpanded = ScheduleSortedAndExpand(allschedules: allschedules)
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
@@ -72,49 +72,49 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: nil)
-        self.allschedules = nil
-        self.allconfigurations = nil
+        SharedReference.shared.setvcref(viewcontroller: .vcallprofiles, nsviewcontroller: nil)
+        allschedules = nil
+        allconfigurations = nil
     }
 
     func initpopupbutton() {
         var profilestrings: [String]?
         profilestrings = CatalogProfile().getcatalogsasstringnames()
         profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
-        self.profilepopupbutton.removeAllItems()
-        self.profilepopupbutton.addItems(withTitles: profilestrings ?? [])
-        self.profilepopupbutton.selectItem(at: 0)
+        profilepopupbutton.removeAllItems()
+        profilepopupbutton.addItems(withTitles: profilestrings ?? [])
+        profilepopupbutton.selectItem(at: 0)
     }
 
     @IBAction func selectprofile(_: NSButton) {
-        var profile = self.profilepopupbutton.titleOfSelectedItem
-        let selectedindex = self.profilepopupbutton.indexOfSelectedItem
+        var profile = profilepopupbutton.titleOfSelectedItem
+        let selectedindex = profilepopupbutton.indexOfSelectedItem
         if profile == NSLocalizedString("Default profile", comment: "default profile") {
             profile = nil
         }
-        self.profilepopupbutton.selectItem(at: selectedindex)
+        profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
-        self.view.window?.close()
+        view.window?.close()
     }
 
     func sortbycolumn() {
         var comp: (String, String) -> Bool
-        if self.sortascending == true {
+        if sortascending == true {
             comp = (<)
         } else {
             comp = (>)
         }
-        switch self.column {
+        switch column {
         case 0:
-            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.profile!, using: comp)
+            allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.profile!, using: comp)
         case 3:
-            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.task, using: comp)
+            allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.task, using: comp)
         case 4:
-            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.localCatalog, using: comp)
+            allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.localCatalog, using: comp)
         case 5:
-            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
+            allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteCatalog, using: comp)
         case 6:
-            self.allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
+            allconfigurations?.allconfigurations = allconfigurations?.allconfigurations?.sorted(by: \.offsiteServer, using: comp)
         default:
             return
         }
@@ -126,9 +126,9 @@ class ViewControllerAllProfiles: NSViewController, Delay, Abort, Connected {
 
 extension ViewControllerAllProfiles: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        self.numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles") + " " +
-            String(self.allconfigurations?.allconfigurations?.count ?? 0)
-        return self.allconfigurations?.allconfigurations?.count ?? 0
+        numberOfprofiles.stringValue = NSLocalizedString("Number of configurations:", comment: "AllProfiles") + " " +
+            String(allconfigurations?.allconfigurations?.count ?? 0)
+        return allconfigurations?.allconfigurations?.count ?? 0
     }
 }
 
@@ -136,16 +136,16 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
     // TableView delegates
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if let tableColumn = tableColumn {
-            if row > (self.allconfigurations?.allconfigurations?.count ?? 0) - 1 { return nil }
-            if let object = self.allconfigurations?.allconfigurations?[row] {
+            if row > (allconfigurations?.allconfigurations?.count ?? 0) - 1 { return nil }
+            if let object = allconfigurations?.allconfigurations?[row] {
                 let hiddenID = object.hiddenID
                 let profile = object.profile ?? NSLocalizedString("Default profile", comment: "default profile")
                 switch tableColumn.identifier.rawValue {
                 case "intime":
-                    let taskintime: String? = self.allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: true)
+                    let taskintime: String? = allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: true)
                     return taskintime ?? ""
                 case "schedule":
-                    let schedule = self.allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: false)
+                    let schedule = allschedulessortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: profile, number: false)
                     switch schedule {
                     case Scheduletype.once.rawValue:
                         return NSLocalizedString("once", comment: "main")
@@ -188,16 +188,16 @@ extension ViewControllerAllProfiles: NSTableViewDelegate, Attributedestring {
         if let index = indexes.first {
             self.index = index
         } else {
-            self.index = nil
+            index = nil
         }
         self.column = column
-        self.sortbycolumn()
+        sortbycolumn()
     }
 }
 
 extension ViewControllerAllProfiles: NSSearchFieldDelegate {
     func controlTextDidChange(_: Notification) {
-        self.delayWithSeconds(0.25) {
+        delayWithSeconds(0.25) {
             if self.search.stringValue.isEmpty {
                 globalMainQueue.async { () -> Void in
                     self.allconfigurations?.allconfigurations = AllConfigurations().allconfigurations

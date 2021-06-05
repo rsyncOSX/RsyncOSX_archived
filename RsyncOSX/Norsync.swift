@@ -10,7 +10,7 @@ import Foundation
 
 struct Norsync {
     init() {
-        if let path = ViewControllerReference.shared.localrsyncpath {
+        if let path = SharedReference.shared.localrsyncpath {
             let error: String = NSLocalizedString("ERROR: no rsync in", comment: "Error rsync") + " " + path
             Alerts.showInfo(info: error)
         } else {

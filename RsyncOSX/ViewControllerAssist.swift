@@ -24,13 +24,13 @@ class ViewControllerAssist: NSViewController {
     @IBOutlet var combolocalhome: NSComboBox!
 
     @IBAction func closeview(_: NSButton) {
-        self.view.window?.close()
+        view.window?.close()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialize()
-        self.transferdataDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+        initialize()
+        transferdataDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
     }
 
     private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {
@@ -44,40 +44,40 @@ class ViewControllerAssist: NSViewController {
     }
 
     @IBAction func addremote(_: NSButton) {
-        if let home = self.combolocalhome.objectValue as? String,
-           let catalog = self.combocatalogs.objectValue as? String,
-           let user = self.comboremoteusers.objectValue as? String,
-           let remotecomputer = self.comboremotecomputers.objectValue as? String
+        if let home = combolocalhome.objectValue as? String,
+           let catalog = combocatalogs.objectValue as? String,
+           let user = comboremoteusers.objectValue as? String,
+           let remotecomputer = comboremotecomputers.objectValue as? String
         {
             var transfer = [String]()
             transfer.append(home + "/" + catalog)
             transfer.append("~/" + catalog)
             transfer.append(user)
             transfer.append(remotecomputer)
-            self.transferdataDelegate?.assisttransfer(values: transfer)
-            self.view.window?.close()
+            transferdataDelegate?.assisttransfer(values: transfer)
+            view.window?.close()
         }
     }
 
     @IBAction func addlocal(_: NSButton) {
-        if let home = self.combolocalhome.objectValue as? String,
-           let catalog = self.combocatalogs.objectValue as? String
+        if let home = combolocalhome.objectValue as? String,
+           let catalog = combocatalogs.objectValue as? String
         {
             var transfer = [String]()
             transfer.append(home + "/" + catalog)
             transfer.append("/mounted_Volume/" + catalog)
-            self.transferdataDelegate?.assisttransfer(values: transfer)
-            self.view.window?.close()
+            transferdataDelegate?.assisttransfer(values: transfer)
+            view.window?.close()
         }
     }
 
     private func initialize() {
-        self.assist = Assist()
+        assist = Assist()
         if let assist = self.assist {
-            self.initcomboxes(combobox: self.comboremotecomputers, values: assist.remoteservers)
-            self.initcomboxes(combobox: self.comboremoteusers, values: assist.remoteusers)
-            self.initcomboxes(combobox: self.combocatalogs, values: assist.catalogs)
-            self.initcomboxes(combobox: self.combolocalhome, values: assist.localhome)
+            initcomboxes(combobox: comboremotecomputers, values: assist.remoteservers)
+            initcomboxes(combobox: comboremoteusers, values: assist.remoteusers)
+            initcomboxes(combobox: combocatalogs, values: assist.catalogs)
+            initcomboxes(combobox: combolocalhome, values: assist.localhome)
         }
     }
 }

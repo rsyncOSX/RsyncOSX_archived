@@ -18,25 +18,25 @@ final class Selectprofile {
 
     init(profile: String?, selectedindex: Int?) {
         self.profile = profile
-        self.newProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.snapshotnewProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-        self.loggdataProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-        self.restoreProfileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+        newProfileDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        snapshotnewProfileDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        loggdataProfileDelegate = SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        restoreProfileDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         if self.profile == NSLocalizedString("Default profile", comment: "default profile") {
             newProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
         } else {
             newProfileDelegate?.newprofile(profile: self.profile, selectedindex: selectedindex)
         }
-        self.snapshotnewProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
-        self.loggdataProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
-        self.restoreProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
+        snapshotnewProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
+        loggdataProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
+        restoreProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
         // Close edit and parameters view if open
-        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
+        if let view = SharedReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?
             closeview = view
             closeview?.closeview()
         }
-        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
+        if let view = SharedReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
             weak var closeview: ViewControllerEdit?
             closeview = view
             closeview?.closeview()

@@ -20,65 +20,65 @@ class Ssh: Catalogsandfiles {
     var argumentsssh: ArgumentsSsh?
     var command: String?
     var arguments: [String]?
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
 
     // Create rsa keypair
     func creatersakeypair() {
-        guard self.islocalpublicrsakeypresent() == false else { return }
-        self.argumentsssh = ArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (self.fullroot ?? "") +
-            "/" + (self.identityfile ?? ""))
-        self.arguments = argumentsssh?.getArguments(operation: .createKey)
-        self.command = self.argumentsssh?.getCommand()
-        self.executeSshCommand()
+        guard islocalpublicrsakeypresent() == false else { return }
+        argumentsssh = ArgumentsSsh(hiddenID: nil, sshkeypathandidentityfile: (fullpathsshkeys ?? "") +
+            "/" + (identityfile ?? ""))
+        arguments = argumentsssh?.getArguments(operation: .createKey)
+        command = argumentsssh?.getCommand()
+        executeSshCommand()
     }
 
     // Check if rsa pub key exists
     func islocalpublicrsakeypresent() -> Bool {
-        guard self.keyFileStrings != nil else { return false }
-        guard self.keyFileStrings?.filter({ $0.contains(self.identityfile ?? "") }).count ?? 0 > 0 else { return false }
-        guard self.keyFileStrings?.filter({ $0.contains((self.identityfile ?? "") + ".pub") }).count ?? 0 > 0 else {
+        guard keyFileStrings != nil else { return false }
+        guard keyFileStrings?.filter({ $0.contains(self.identityfile ?? "") }).count ?? 0 > 0 else { return false }
+        guard keyFileStrings?.filter({ $0.contains((self.identityfile ?? "") + ".pub") }).count ?? 0 > 0 else {
             return true
         }
-        self.rsaStringPath = self.keyFileStrings?.filter { $0.contains((self.identityfile ?? "") + ".pub") }[0]
-        guard self.rsaStringPath?.count ?? 0 > 0 else { return false }
+        rsaStringPath = keyFileStrings?.filter { $0.contains((self.identityfile ?? "") + ".pub") }[0]
+        guard rsaStringPath?.count ?? 0 > 0 else { return false }
         return true
     }
 
     // Secure copy of public key from local to remote catalog
     func copykeyfile(hiddenID: Int) {
-        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.fullroot ?? "") +
-            "/" + (self.identityfile ?? ""))
-        self.arguments = argumentsssh?.getArguments(operation: .sshcopyid)
-        self.commandCopyPasteTerminal = self.argumentsssh?.commandCopyPasteTerminal
+        argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (fullpathsshkeys ?? "") +
+            "/" + (identityfile ?? ""))
+        arguments = argumentsssh?.getArguments(operation: .sshcopyid)
+        commandCopyPasteTerminal = argumentsssh?.commandCopyPasteTerminal
     }
 
     // Check for remote pub keys
     func verifyremotekey(hiddenID: Int) {
-        self.argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (self.fullroot ?? "") +
-            "/" + (self.identityfile ?? ""))
-        self.arguments = argumentsssh?.getArguments(operation: .verifyremotekey)
-        self.commandCopyPasteTerminal = self.argumentsssh?.commandCopyPasteTerminal
+        argumentsssh = ArgumentsSsh(hiddenID: hiddenID, sshkeypathandidentityfile: (fullpathsshkeys ?? "") +
+            "/" + (identityfile ?? ""))
+        arguments = argumentsssh?.getArguments(operation: .verifyremotekey)
+        commandCopyPasteTerminal = argumentsssh?.commandCopyPasteTerminal
     }
 
     // Execute command
     func executeSshCommand() {
-        guard self.arguments != nil else { return }
-        let process = OtherProcessCmdClosure(command: self.command,
-                                             arguments: self.arguments,
-                                             processtermination: self.processtermination,
-                                             filehandler: self.filehandler)
-        process.executeProcess(outputprocess: self.outputprocess)
+        guard arguments != nil else { return }
+        let process = OtherProcess(command: command,
+                                   arguments: arguments,
+                                   processtermination: processtermination,
+                                   filehandler: filehandler)
+        process.executeProcess(outputprocess: outputprocess)
     }
 
-    init(outputprocess: OutputProcess?,
+    init(outputprocess: OutputfromProcess?,
          processtermination: @escaping () -> Void,
          filehandler: @escaping () -> Void)
     {
         self.processtermination = processtermination
         self.filehandler = filehandler
-        super.init(profileorsshrootpath: .sshroot)
+        super.init(.ssh)
         self.outputprocess = outputprocess
-        self.keyFileStrings = self.getfilesasstringnames()
-        self.createsshkeyrootpath()
+        keyFileStrings = getfilesasstringnames()
+        createsshkeyrootpath()
     }
 }

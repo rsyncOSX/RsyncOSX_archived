@@ -13,56 +13,55 @@ import Foundation
 
 class Schedules: ScheduleWriteLoggData {
     // Return reference to Schedule data
-    // self.Schedule is privat data
     func getSchedule() -> [ConfigurationSchedule]? {
-        return self.schedules
+        return schedules
     }
 
     // Function adds new Shcedules (plans). Functions writes
     // schedule plans to permanent store.
-    func addschedule(hiddenID: Int, schedule: Scheduletype, start: Date) {
+    func addschedule(_ hiddenID: Int, _ schedule: Scheduletype, _ startdate: Date) {
         var stop: Date?
+        var scheduletype: Scheduletype = .once
         if schedule == .once {
-            stop = start
+            stop = startdate
         } else {
             stop = "01 Jan 2100 00:00".en_us_date_from_string()
         }
-        let dict = NSMutableDictionary()
-        let offsiteserver = self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer)
-        dict.setObject(hiddenID, forKey: DictionaryStrings.hiddenID.rawValue as NSCopying)
-        dict.setObject(start.en_us_string_from_date(), forKey: DictionaryStrings.dateStart.rawValue as NSCopying)
-        dict.setObject(stop!.en_us_string_from_date(), forKey: DictionaryStrings.dateStop.rawValue as NSCopying)
-        dict.setObject(offsiteserver as Any, forKey: DictionaryStrings.offsiteserver.rawValue as NSCopying)
         switch schedule {
         case .once:
-            dict.setObject(Scheduletype.once.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
+            scheduletype = .once
         case .daily:
-            dict.setObject(Scheduletype.daily.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
+            scheduletype = .daily
         case .weekly:
-            dict.setObject(Scheduletype.weekly.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
+            scheduletype = .weekly
         default:
-            return
+            scheduletype = .once
         }
-        let newSchedule = ConfigurationSchedule(dictionary: dict, log: nil, includelog: false)
-        self.schedules?.append(newSchedule)
-        PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
-        self.reloadtable(vcontroller: .vctabschedule)
+        var newrecord = ConfigurationSchedule()
+        newrecord.hiddenID = hiddenID
+        newrecord.dateStart = startdate.en_us_string_from_date()
+        newrecord.dateStop = stop!.en_us_string_from_date()
+        newrecord.schedule = scheduletype.rawValue
+
+        schedules?.append(newrecord)
+        WriteScheduleJSON(profile, schedules)
+        reloadtable(vcontroller: .vctabschedule)
     }
 
     // Function deletes all Schedules by hiddenID. Invoked when Configurations are
     // deleted. When a Configuration are deleted all tasks connected to
     func deletescheduleonetask(hiddenID: Int) {
         var delete: Bool = false
-        for i in 0 ..< (self.schedules?.count ?? 0) where self.schedules?[i].hiddenID == hiddenID {
+        for i in 0 ..< (schedules?.count ?? 0) where schedules?[i].hiddenID == hiddenID {
             // Mark Schedules for delete
             // Cannot delete in memory, index out of bound is result
             self.schedules?[i].delete = true
             delete = true
         }
         if delete {
-            PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
+            WriteScheduleJSON(profile, schedules)
             // Send message about refresh tableView
-            self.reloadtable(vcontroller: .vctabmain)
+            reloadtable(vcontroller: .vctabmain)
         }
     }
 
@@ -70,7 +69,7 @@ class Schedules: ScheduleWriteLoggData {
     func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
         if let hiddenID = hiddenID {
             var data = [NSMutableDictionary]()
-            let allschedulesonetask = self.schedules?.filter { $0.hiddenID == hiddenID }
+            let allschedulesonetask = schedules?.filter { $0.hiddenID == hiddenID }
             for i in 0 ..< (allschedulesonetask?.count ?? 0) {
                 let row: NSMutableDictionary = [
                     DictionaryStrings.dateStart.rawValue: allschedulesonetask?[i].dateStart ?? "",
@@ -93,7 +92,7 @@ class Schedules: ScheduleWriteLoggData {
                 data.append(row)
             }
             // Sorting schedule after dateStart, last startdate on top
-            data.sort { (sched1, sched2) -> Bool in
+            data.sort { sched1, sched2 -> Bool in
                 if let date1 = (sched1.value(forKey: DictionaryStrings.dateStart.rawValue) as? String)?.en_us_date_from_string(),
                    let date2 = (sched2.value(forKey: DictionaryStrings.dateStart.rawValue) as? String)?.en_us_date_from_string()
                 {
@@ -110,7 +109,7 @@ class Schedules: ScheduleWriteLoggData {
     func deleteandstopschedules(data: [NSMutableDictionary]?) {
         var update: Bool = false
         if (data?.count ?? 0) > 0 {
-            if let stop = data?.filter({ (($0.value(forKey: DictionaryStrings.stopCellID.rawValue) as? Int) == 1) }) {
+            if let stop = data?.filter({ ($0.value(forKey: DictionaryStrings.stopCellID.rawValue) as? Int) == 1 }) {
                 // Stop Schedules
                 if stop.count > 0 {
                     update = true
@@ -119,7 +118,7 @@ class Schedules: ScheduleWriteLoggData {
                     }
                 }
             }
-            if let delete = data?.filter({ (($0.value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int) == 1) }) {
+            if let delete = data?.filter({ ($0.value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int) == 1 }) {
                 if delete.count > 0 {
                     update = true
                     for i in 0 ..< delete.count {
@@ -128,10 +127,10 @@ class Schedules: ScheduleWriteLoggData {
                 }
             }
             if update {
-                PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
+                WriteScheduleJSON(profile, schedules)
                 // Send message about refresh tableView
-                self.reloadtable(vcontroller: .vctabmain)
-                self.reloadtable(vcontroller: .vctabschedule)
+                reloadtable(vcontroller: .vctabmain)
+                reloadtable(vcontroller: .vctabschedule)
             }
         }
     }
@@ -141,11 +140,11 @@ class Schedules: ScheduleWriteLoggData {
         if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
             if let schedule = dict.value(forKey: DictionaryStrings.schedule.rawValue) as? String {
                 if let datestart = dict.value(forKey: DictionaryStrings.dateStart.rawValue) as? String {
-                    if let i = self.schedules?.firstIndex(where: { $0.hiddenID == hiddenID
+                    if let i = schedules?.firstIndex(where: { $0.hiddenID == hiddenID
                             && $0.schedule == schedule
                             && $0.dateStart == datestart
                     }) {
-                        self.schedules?[i].delete = true
+                        schedules?[i].delete = true
                     }
                 }
             }
@@ -157,12 +156,12 @@ class Schedules: ScheduleWriteLoggData {
         if let hiddenID = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
             if let schedule = dict.value(forKey: DictionaryStrings.schedule.rawValue) as? String {
                 if let datestart = dict.value(forKey: DictionaryStrings.dateStart.rawValue) as? String {
-                    if let i = self.schedules?.firstIndex(where: { $0.hiddenID == hiddenID
+                    if let i = schedules?.firstIndex(where: { $0.hiddenID == hiddenID
                             && $0.schedule == schedule
                             && $0.dateStart == datestart
                     }) {
-                        self.schedules?[i].schedule = Scheduletype.stopped.rawValue
-                        self.schedules?[i].dateStop = Date().en_us_string_from_date()
+                        schedules?[i].schedule = Scheduletype.stopped.rawValue
+                        schedules?[i].dateStop = Date().en_us_string_from_date()
                     }
                 }
             }
@@ -172,8 +171,9 @@ class Schedules: ScheduleWriteLoggData {
     override init(profile: String?) {
         super.init(profile: profile)
         self.profile = profile
-        let schedulesdata = SchedulesData(profile: profile,
-                                          validhiddenID: self.configurations?.validhiddenID)
-        self.schedules = schedulesdata.schedules
+        if let validhiddenIDs = configurations?.validhiddenID {
+            let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
+            schedules = readschedules.schedules
+        }
     }
 }

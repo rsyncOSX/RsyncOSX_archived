@@ -16,7 +16,7 @@ final class Estimatedlistforsynchronization: SetConfigurations {
     func getConfigurationsDataSourceSynchronize() -> [NSMutableDictionary]? {
         guard self.configurations != nil else { return nil }
         var configurations = self.configurations?.configurations?.filter {
-            ViewControllerReference.shared.synctasks.contains($0.task)
+            SharedReference.shared.synctasks.contains($0.task)
         }
         var data = [NSMutableDictionary]()
         for i in 0 ..< (configurations?.count ?? 0) {
@@ -26,8 +26,8 @@ final class Estimatedlistforsynchronization: SetConfigurations {
             if let config = self.configurations?.configurations?[i] {
                 let row: NSMutableDictionary = ConvertOneConfig(config: config).dict
 
-                if self.quickbackuplist != nil {
-                    let quickbackup = self.quickbackuplist?.filter { $0 == config.hiddenID }
+                if quickbackuplist != nil {
+                    let quickbackup = quickbackuplist?.filter { $0 == config.hiddenID }
                     if (quickbackup?.count ?? 0) > 0 {
                         row.setValue(1, forKey: DictionaryStrings.selectCellID.rawValue)
                     }
@@ -39,7 +39,7 @@ final class Estimatedlistforsynchronization: SetConfigurations {
     }
 
     init() {
-        self.estimatedlist = [NSMutableDictionary]()
+        estimatedlist = [NSMutableDictionary]()
     }
 
     init(quickbackuplist: [Int]?, estimatedlist: [NSMutableDictionary]?) {

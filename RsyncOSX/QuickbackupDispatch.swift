@@ -14,22 +14,22 @@ class QuickbackupDispatch: SetSchedules {
     var processtermination: () -> Void
     var filehandler: () -> Void
 
-    private func dispatchtask(seconds: Int, outputprocess: OutputProcess?) {
+    private func dispatchtask(seconds: Int, outputprocess: OutputfromProcess?) {
         let work = DispatchWorkItem { () -> Void in
             _ = ExecuteQuickbackupTask(processtermination: self.processtermination,
                                        filehandler: self.filehandler,
                                        outputprocess: outputprocess)
         }
-        self.workitem = work
+        workitem = work
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: work)
     }
 
     init(processtermination: @escaping () -> Void,
          filehandler: @escaping () -> Void,
-         outputprocess: OutputProcess?)
+         outputprocess: OutputfromProcess?)
     {
         self.processtermination = processtermination
         self.filehandler = filehandler
-        self.dispatchtask(seconds: 0, outputprocess: outputprocess)
+        dispatchtask(seconds: 0, outputprocess: outputprocess)
     }
 }

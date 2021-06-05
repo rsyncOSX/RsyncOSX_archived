@@ -5,6 +5,7 @@
 //  Created by Thomas Evensen on 03/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
+// swiftlint:disable line_length
 
 import Files
 import Foundation
@@ -17,7 +18,7 @@ final class Assist {
     var nameandpaths: NamesandPaths?
 
     func setcatalogs() -> Set<String>? {
-        if let atpath = self.nameandpaths?.userHomeDirectoryPath {
+        if let atpath = nameandpaths?.userHomeDirectoryPath {
             var catalogs = Set<String>()
             do {
                 for folders in try Folder(path: atpath).subfolders {
@@ -33,7 +34,7 @@ final class Assist {
 
     func setlocalhome() -> Set<String> {
         var home = Set<String>()
-        home.insert(self.nameandpaths?.userHomeDirectoryPath ?? "")
+        home.insert(nameandpaths?.userHomeDirectoryPath ?? "")
         return home
     }
 
@@ -44,10 +45,10 @@ final class Assist {
                    let remoteuser = (remote[i].value(forKey: DictionaryStrings.offsiteUsernameID.rawValue) as? String)
                 {
                     if remoteusers.contains(remoteuser) == false {
-                        self.remoteusers.insert(remoteuser)
+                        remoteusers.insert(remoteuser)
                     }
                     if remoteservers.contains(remoteserver) == false {
-                        self.remoteservers.insert(remoteserver)
+                        remoteservers.insert(remoteserver)
                     }
                 }
             }
@@ -55,11 +56,11 @@ final class Assist {
     }
 
     init() {
-        self.nameandpaths = NamesandPaths(profileorsshrootpath: .profileroot)
-        self.localhome = setlocalhome()
-        if let catalogs = self.setcatalogs() {
+        nameandpaths = NamesandPaths(.configurations)
+        localhome = setlocalhome()
+        if let catalogs = setcatalogs() {
             self.catalogs = catalogs
         }
-        self.setremotes()
+        setremotes()
     }
 }

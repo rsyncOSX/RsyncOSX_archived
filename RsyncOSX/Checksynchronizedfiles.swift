@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 11/11/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -13,48 +12,50 @@ final class Checksynchronizedfiles: SetConfigurations {
     var index: Int?
     weak var setprocessDelegate: SendOutputProcessreference?
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
-    var outputprocess: OutputProcess?
-    var command: RsyncProcessCmdClosure?
+    var outputprocess: OutputfromProcess?
+    var command: RsyncProcess?
 
     func checksynchronizedfiles() {
-        guard ViewControllerReference.shared.process == nil else { return }
-        if let index = self.index {
-            if let arguments = self.configurations?.arguments4verify(index: index) {
-                self.outputprocess = OutputProcess()
-                self.outputprocess?.addlinefromoutput(str: "*** Checking synchronized data ***")
-                self.outputprocess?.addlinefromoutput(str: "*** using --checksum parameter ***")
-                self.outputprocess?.addlinefromoutput(str: "")
-                self.verifyandchanged(arguments: arguments)
+        guard SharedReference.shared.process == nil else { return }
+        if let index = self.index,
+           let hiddenID = configurations?.gethiddenID(index: index)
+        {
+            if let arguments = configurations?.arguments4verify(hiddenID: hiddenID) {
+                outputprocess = OutputfromProcess()
+                outputprocess?.addlinefromoutput(str: "*** Checking synchronized data ***")
+                outputprocess?.addlinefromoutput(str: "*** using --checksum parameter ***")
+                outputprocess?.addlinefromoutput(str: "")
+                verifyandchanged(arguments: arguments)
             }
         }
     }
 
     private func verifyandchanged(arguments: [String]) {
-        self.indicatorDelegate?.startIndicator()
-        self.command = RsyncProcessCmdClosure(arguments: arguments,
-                                              config: nil,
-                                              processtermination: self.processtermination,
-                                              filehandler: self.filehandler)
-        self.command?.executeProcess(outputprocess: self.outputprocess)
-        self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
+        indicatorDelegate?.startIndicator()
+        command = RsyncProcess(arguments: arguments,
+                               config: nil,
+                               processtermination: processtermination,
+                               filehandler: filehandler)
+        command?.executeProcess(outputprocess: outputprocess)
+        setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
     }
 
     init(index: Int?) {
         self.index = index
-        self.setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        setprocessDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        indicatorDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 }
 
 extension Checksynchronizedfiles {
     func processtermination() {
-        self.command = nil
-        self.indicatorDelegate?.stopIndicator()
+        command = nil
+        indicatorDelegate?.stopIndicator()
     }
 
     func filehandler() {
         weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }

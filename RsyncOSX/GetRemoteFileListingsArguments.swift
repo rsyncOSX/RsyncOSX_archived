@@ -17,46 +17,46 @@ final class GetRemoteFileListingsArguments {
             if config.sshport != nil {
                 let eparam: String = "-e"
                 let sshp: String = "ssh -p"
-                self.args?.append(eparam)
-                self.args?.append(sshp + String(config.sshport!))
+                args?.append(eparam)
+                args?.append(sshp + String(config.sshport!))
             } else {
                 let eparam: String = "-e"
                 let ssh: String = "ssh"
-                self.args?.append(eparam)
-                self.args?.append(ssh)
+                args?.append(eparam)
+                args?.append(ssh)
             }
             if recursive {
-                self.args?.append("-r")
+                args?.append("-r")
             }
-            self.args?.append("--list-only")
+            args?.append("--list-only")
             if config.offsiteServer.isEmpty == false {
-                self.args?.append(config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog)
+                args?.append(config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog)
             } else {
-                self.args?.append(":" + config.offsiteCatalog)
+                args?.append(":" + config.offsiteCatalog)
             }
         }
     }
 
     private func localarguments(recursive: Bool) {
         if recursive {
-            self.args?.append("-r")
+            args?.append("-r")
         }
-        self.args?.append("--list-only")
-        self.args?.append(config?.offsiteCatalog ?? "")
+        args?.append("--list-only")
+        args?.append(config?.offsiteCatalog ?? "")
     }
 
     func getArguments() -> [String]? {
-        return self.args
+        return args
     }
 
     init(config: Configuration?, recursive: Bool) {
         guard config != nil else { return }
         self.config = config
-        self.args = [String]()
+        args = [String]()
         if config?.offsiteServer.isEmpty == false {
-            self.remotearguments(recursive: recursive)
+            remotearguments(recursive: recursive)
         } else {
-            self.localarguments(recursive: recursive)
+            localarguments(recursive: recursive)
         }
     }
 }

@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 24.08.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length
 
 import Foundation
 
@@ -35,18 +34,18 @@ class TCPconnections: SetConfigurations, Delay {
 
     // Getting the structure for test connection
     func gettestAllremoteserverConnections() -> [Bool]? {
-        return self.indexBoolremoteserverOff
+        return indexBoolremoteserverOff
     }
 
     // Testing all remote servers.
     // Adding connection true or false in array[bool]
     // Do the check in background que, reload table in global main queue
     func testAllremoteserverConnections() {
-        self.indexBoolremoteserverOff = nil
-        self.indexBoolremoteserverOff = [Bool]()
-        guard (self.configurations?.configurations?.count ?? -1) > 0 else {
+        indexBoolremoteserverOff = nil
+        indexBoolremoteserverOff = [Bool]()
+        guard (configurations?.configurations?.count ?? -1) > 0 else {
             // Tell main view profile menu might presented
-            self.newprofileDelegate?.reloadprofilepopupbutton()
+            newprofileDelegate?.reloadprofilepopupbutton()
             return
         }
         globalBackgroundQueue.async { () -> Void in
@@ -78,7 +77,7 @@ class TCPconnections: SetConfigurations, Delay {
     }
 
     init() {
-        self.testconnectionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.newprofileDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        testconnectionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        newprofileDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 }

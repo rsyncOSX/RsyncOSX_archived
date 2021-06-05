@@ -12,8 +12,8 @@ import Foundation
 
 extension ViewControllerRestore: NSSearchFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
-        if (notification.object as? NSTextField) == self.search {
-            self.delayWithSeconds(0.25) {
+        if (notification.object as? NSTextField) == search {
+            delayWithSeconds(0.25) {
                 if self.search.stringValue.isEmpty {
                     globalMainQueue.async { () -> Void in
                         if let index = self.index {
@@ -34,8 +34,8 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
 
     func searchFieldDidEndSearching(_: NSSearchField) {
         if let index = self.index {
-            if self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int != nil {
-                self.working.startAnimation(nil)
+            if configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int != nil {
+                working.startAnimation(nil)
             }
         }
     }
@@ -43,29 +43,29 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
 
 extension ViewControllerRestore: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if tableView == self.restoretableView {
-            guard self.restoretabledata != nil else {
+        if tableView == restoretableView {
+            guard restoretabledata != nil else {
                 return 0
             }
-            self.infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.restoretabledata?.count ?? 0), number: NumberFormatter.Style.decimal)
-            return self.restoretabledata!.count
+            infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: restoretabledata?.count ?? 0), number: NumberFormatter.Style.decimal)
+            return restoretabledata!.count
         } else {
-            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
     }
 }
 
 extension ViewControllerRestore: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        if tableView == self.restoretableView {
-            guard self.restoretabledata != nil else { return nil }
+        if tableView == restoretableView {
+            guard restoretabledata != nil else { return nil }
             if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "files"), owner: self) as? NSTableCellView {
-                cell.textField?.stringValue = self.restoretabledata?[row] ?? ""
+                cell.textField?.stringValue = restoretabledata?[row] ?? ""
                 return cell
             }
         } else {
-            guard row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? -1 else { return nil }
-            if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row] {
+            guard row < configurations?.getConfigurationsDataSourceSynchronize()?.count ?? -1 else { return nil }
+            if let object: NSDictionary = configurations?.getConfigurationsDataSourceSynchronize()?[row] {
                 let cellIdentifier: String = tableColumn!.identifier.rawValue
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.value(forKey: cellIdentifier) as? String ?? ""
@@ -79,30 +79,30 @@ extension ViewControllerRestore: NSTableViewDelegate {
 
 extension ViewControllerRestore {
     func processtermination() {
-        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
+        if let vc = SharedReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.processTermination()
-            self.reset()
-            self.infolabel.stringValue = NSLocalizedString("Restore completed...", comment: "Restore")
+            reset()
+            infolabel.stringValue = NSLocalizedString("Restore completed...", comment: "Restore")
         } else {
-            let number = Numbers(outputprocess: self.outputprocess)
-            self.maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
+            let number = Numbers(outputprocess: outputprocess)
+            maxcount = number.getTransferredNumbers(numbers: .transferredNumber)
             let transferredNumberSizebytes = number.getTransferredNumbers(numbers: .transferredNumberSizebytes)
-            if self.maxcount == 0, transferredNumberSizebytes == 0 {
-                self.infolabel.stringValue = NSLocalizedString("Seems to be nothing to restore", comment: "Restore")
-                self.restoreactions?.estimated = false
+            if maxcount == 0, transferredNumberSizebytes == 0 {
+                infolabel.stringValue = NSLocalizedString("Seems to be nothing to restore", comment: "Restore")
+                restoreactions?.estimated = false
             } else {
-                self.infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: self.maxcount), number: NumberFormatter.Style.decimal) + ", size: " + NumberFormatter.localizedString(from: NSNumber(value: transferredNumberSizebytes), number: NumberFormatter.Style.decimal) + " kB"
-                self.restoreactions?.estimated = true
+                infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: maxcount), number: NumberFormatter.Style.decimal) + ", size: " + NumberFormatter.localizedString(from: NSNumber(value: transferredNumberSizebytes), number: NumberFormatter.Style.decimal) + " kB"
+                restoreactions?.estimated = true
             }
         }
-        self.working.stopAnimation(nil)
+        working.stopAnimation(nil)
     }
 
     func filehandler() {
-        if self.outputeverythingDelegate?.appendnow() ?? false {
+        if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }
-        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
+        if let vc = SharedReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess {
             vc.fileHandler()
         }
     }
@@ -110,37 +110,37 @@ extension ViewControllerRestore {
 
 extension ViewControllerRestore: Count {
     func maxCount() -> Int {
-        return self.maxcount
+        return maxcount
     }
 
     func inprogressCount() -> Int {
-        return self.outputprocess?.count() ?? 0
+        return outputprocess?.getOutput()?.count ?? 0
     }
 }
 
 extension ViewControllerRestore: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismiss(viewcontroller)
+        dismiss(viewcontroller)
         _ = InterruptProcess()
-        self.reset()
+        reset()
     }
 }
 
 extension ViewControllerRestore: TemporaryRestorePath {
     func temporaryrestorepath() {
-        self.settmprestorepathfromuserconfig()
+        settmprestorepathfromuserconfig()
     }
 }
 
 extension ViewControllerRestore: NewProfile {
     func newprofile(profile _: String?, selectedindex: Int?) {
         if let index = selectedindex {
-            self.profilepopupbutton.selectItem(at: index)
+            profilepopupbutton.selectItem(at: index)
         } else {
-            self.initpopupbutton()
+            initpopupbutton()
         }
-        self.restoretabledata = nil
-        self.reset()
+        restoretabledata = nil
+        reset()
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
             self.rsynctableView.reloadData()
@@ -160,12 +160,12 @@ extension ViewControllerRestore: OpenQuickBackup {
 
 extension ViewControllerRestore: Updateremotefilelist {
     func updateremotefilelist() {
-        self.restoretabledata = self.remotefilelist?.remotefilelist
+        restoretabledata = remotefilelist?.remotefilelist
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
         }
-        self.working.stopAnimation(nil)
-        self.remotefilelist = nil
+        working.stopAnimation(nil)
+        remotefilelist = nil
     }
 }
 
@@ -173,17 +173,17 @@ extension ViewControllerRestore: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
         case .Filelist:
-            self.goforrestorebyfile()
-            self.getremotefilelist()
+            goforrestorebyfile()
+            getremotefilelist()
         case .Estimate:
-            if self.checkedforfullrestore.state == .on {
-                self.goforfullrestore()
+            if checkedforfullrestore.state == .on {
+                goforfullrestore()
             }
-            self.estimate()
+            estimate()
         case .Restore:
-            self.restore()
+            restore()
         case .Reset:
-            self.resetaction()
+            resetaction()
         default:
             return
         }

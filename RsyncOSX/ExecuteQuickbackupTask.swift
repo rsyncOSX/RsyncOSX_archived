@@ -7,7 +7,7 @@
 import Foundation
 
 final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
     var arguments: [String]?
     var config: Configuration?
 
@@ -16,23 +16,23 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
     var filehandler: () -> Void
 
     private func executetask() {
-        if let dict: NSDictionary = ViewControllerReference.shared.quickbackuptask {
+        if let dict: NSDictionary = SharedReference.shared.quickbackuptask {
             if let hiddenID: Int = dict.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                 let getconfigurations: [Configuration]? = configurations?.getConfigurations()
                 guard getconfigurations != nil else { return }
-                let configArray = getconfigurations!.filter { ($0.hiddenID == hiddenID) }
+                let configArray = getconfigurations!.filter { $0.hiddenID == hiddenID }
                 guard configArray.count > 0 else { return }
-                self.config = configArray[0]
-                if hiddenID >= 0, self.config != nil {
-                    self.arguments = ArgumentsSynchronize(config: self.config).argumentssynchronize(dryRun: false, forDisplay: false)
+                config = configArray[0]
+                if hiddenID >= 0, config != nil {
+                    arguments = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: false, forDisplay: false)
                     // Setting reference to finalize the job, finalize job is done when rsynctask ends (in process termination)
-                    ViewControllerReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
+                    SharedReference.shared.completeoperation = CompleteQuickbackupTask(dict: dict)
                     globalMainQueue.async {
                         if let arguments = self.arguments {
-                            let process = RsyncProcessCmdClosure(arguments: arguments,
-                                                                 config: self.config,
-                                                                 processtermination: self.processtermination,
-                                                                 filehandler: self.filehandler)
+                            let process = RsyncProcess(arguments: arguments,
+                                                       config: self.config,
+                                                       processtermination: self.processtermination,
+                                                       filehandler: self.filehandler)
                             process.executeProcess(outputprocess: self.outputprocess)
                         }
                     }
@@ -43,11 +43,11 @@ final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
 
     init(processtermination: @escaping () -> Void,
          filehandler: @escaping () -> Void,
-         outputprocess: OutputProcess?)
+         outputprocess: OutputfromProcess?)
     {
         self.processtermination = processtermination
         self.filehandler = filehandler
         self.outputprocess = outputprocess
-        self.executetask()
+        executetask()
     }
 }

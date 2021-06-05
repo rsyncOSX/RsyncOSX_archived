@@ -30,9 +30,9 @@ final class Checkfornewversion {
                     if let url = contents?.object(forKey: self.runningVersion ?? "") {
                         self.urlNewVersion = url as? String
                         // Setting reference to new version if any
-                        ViewControllerReference.shared.URLnewVersion = self.urlNewVersion
-                        self.newversionDelegateMain = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                        self.newversionDelegateAbout = ViewControllerReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
+                        SharedReference.shared.URLnewVersion = self.urlNewVersion
+                        self.newversionDelegateMain = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                        self.newversionDelegateAbout = SharedReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
                         self.newversionDelegateMain?.notifyNewVersion()
                         self.newversionDelegateAbout?.notifyNewVersion()
                     }
@@ -43,13 +43,14 @@ final class Checkfornewversion {
 
     // Return version of RsyncOSX
     func rsyncOSXversion() -> String? {
-        return self.runningVersion
+        return runningVersion
     }
 
+    @discardableResult
     init() {
-        self.runningVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        runningVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let resource = Resources()
-        self.urlPlist = resource.getResource(resource: .urlPlist)
-        self.urlnewVersion()
+        urlPlist = resource.getResource(resource: .urlPLIST)
+        urlnewVersion()
     }
 }

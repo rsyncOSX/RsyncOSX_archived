@@ -1,17 +1,17 @@
 //
-//  DecodeScheduleJSON.swift
+//  CodableSchedule.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 18/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
+//    Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
 import Foundation
 
-struct Logrecord: Codable {
-    let dateExecuted: String?
-    let resultExecuted: String?
+struct Logrecord: Codable, Hashable {
+    var dateExecuted: String?
+    var resultExecuted: String?
 
     enum CodingKeys: String, CodingKey {
         case dateExecuted
@@ -23,13 +23,19 @@ struct Logrecord: Codable {
         dateExecuted = try values.decodeIfPresent(String.self, forKey: .dateExecuted)
         resultExecuted = try values.decodeIfPresent(String.self, forKey: .resultExecuted)
     }
+
+    // This init is used in WriteConfigurationJSON
+    init() {
+        dateExecuted = nil
+        resultExecuted = nil
+    }
 }
 
 struct DecodeSchedule: Codable {
     let dateStart: String?
     let dateStop: String?
     let hiddenID: Int?
-    let logrecords: [Logrecord]?
+    var logrecords: [Logrecord]?
     let offsiteserver: String?
     let schedule: String?
     let profilename: String?
@@ -53,5 +59,22 @@ struct DecodeSchedule: Codable {
         offsiteserver = try values.decodeIfPresent(String.self, forKey: .offsiteserver)
         schedule = try values.decodeIfPresent(String.self, forKey: .schedule)
         profilename = try values.decodeIfPresent(String.self, forKey: .profilename)
+    }
+
+    // This init is used in WriteScheduleJSON
+    init(_ data: ConfigurationSchedule) {
+        dateStart = data.dateStart
+        dateStop = data.dateStop
+        hiddenID = data.hiddenID
+        offsiteserver = data.offsiteserver
+        schedule = data.schedule
+        profilename = data.profilename
+        for i in 0 ..< (data.logrecords?.count ?? 0) {
+            if i == 0 { logrecords = [Logrecord]() }
+            var log = Logrecord()
+            log.dateExecuted = data.logrecords?[i].dateExecuted
+            log.resultExecuted = data.logrecords?[i].resultExecuted
+            logrecords?.append(log)
+        }
     }
 }

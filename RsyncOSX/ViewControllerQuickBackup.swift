@@ -31,43 +31,43 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
 
     // Either abort or close
     @IBAction func abort(_: NSButton) {
-        self.quickbackup?.abort()
-        self.quickbackup = nil
-        self.abort()
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        quickbackup?.abort()
+        quickbackup = nil
+        abort()
+        if (presentingViewController as? ViewControllerMain) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (presentingViewController as? ViewControllerSchedule) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vctabschedule)
+        } else if (presentingViewController as? ViewControllerNewConfigurations) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
+        } else if (presentingViewController as? ViewControllerRestore) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcrestore)
+        } else if (presentingViewController as? ViewControllerSnapshots) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        } else if (presentingViewController as? ViewControllerSsh) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (presentingViewController as? ViewControllerLoggData) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcloggdata)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcquickbackup, nsviewcontroller: self)
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
-        self.completed.isHidden = true
+        SharedReference.shared.setvcref(viewcontroller: .vcquickbackup, nsviewcontroller: self)
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        completed.isHidden = true
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard self.diddissappear == false else {
+        guard diddissappear == false else {
             globalMainQueue.async { () -> Void in
                 self.mainTableView.reloadData()
             }
             return
         }
-        self.quickbackup = QuickBackup()
+        quickbackup = QuickBackup()
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
@@ -75,17 +75,17 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.diddissappear = true
+        diddissappear = true
         // release the quickobject
-        self.quickbackup = nil
+        quickbackup = nil
     }
 
     private func initiateProgressbar(progress: NSProgressIndicator) {
         progress.isHidden = false
-        if let calculatedNumberOfFiles = self.quickbackup?.maxcount {
+        if let calculatedNumberOfFiles = quickbackup?.maxcount {
             progress.maxValue = Double(calculatedNumberOfFiles)
-            self.max = Double(calculatedNumberOfFiles)
-            self.maxInt = calculatedNumberOfFiles
+            max = Double(calculatedNumberOfFiles)
+            maxInt = calculatedNumberOfFiles
         }
         progress.minValue = 0
         progress.doubleValue = 0
@@ -93,41 +93,41 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     }
 
     private func updateProgressbar(progress: NSProgressIndicator) {
-        let value = Double((self.quickbackup?.outputprocess?.getOutput()?.count) ?? 0)
+        let value = Double((quickbackup?.outputprocess?.getOutput()?.count) ?? 0)
         progress.doubleValue = value
     }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return self.quickbackup?.sortedlist?.count ?? 0
+        return quickbackup?.sortedlist?.count ?? 0
     }
 }
 
 extension ViewControllerQuickBackup: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard self.quickbackup?.sortedlist != nil else { return nil }
-        guard row < (self.quickbackup?.sortedlist?.count ?? 0) else { return nil }
-        if let object: NSDictionary = self.quickbackup?.sortedlist?[row],
+        guard quickbackup?.sortedlist != nil else { return nil }
+        guard row < (quickbackup?.sortedlist?.count ?? 0) else { return nil }
+        if let object: NSDictionary = quickbackup?.sortedlist?[row],
            let cellIdentifier: String = tableColumn?.identifier.rawValue
         {
             let hiddenID = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
             switch cellIdentifier {
             case "percentCellID":
-                guard hiddenID == self.quickbackup?.hiddenID else { return nil }
+                guard hiddenID == quickbackup?.hiddenID else { return nil }
                 if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
-                    if row > self.indexinitiated {
-                        self.indexinitiated = row
-                        self.initiateProgressbar(progress: cell)
+                    if row > indexinitiated {
+                        indexinitiated = row
+                        initiateProgressbar(progress: cell)
                     } else {
-                        self.updateProgressbar(progress: cell)
+                        updateProgressbar(progress: cell)
                     }
                     return cell
                 }
             case "countCellID":
-                guard hiddenID == self.quickbackup?.hiddenID else { return nil }
+                guard hiddenID == quickbackup?.hiddenID else { return nil }
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                    let filestodo = (self.maxInt ?? 0) - (self.quickbackup?.outputprocess?.getOutput()?.count ?? 0)
+                    let filestodo = (maxInt ?? 0) - (quickbackup?.outputprocess?.getOutput()?.count ?? 0)
                     if filestodo > 0 {
                         cell.textField?.stringValue = String(filestodo)
                         return cell
@@ -157,8 +157,8 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
 
 extension ViewControllerQuickBackup: QuickBackupCompleted {
     func quickbackupcompleted() {
-        self.completed.isHidden = false
-        self.completed.textColor = setcolor(nsviewcontroller: self, color: .green)
-        self.executing = false
+        completed.isHidden = false
+        completed.textColor = setcolor(nsviewcontroller: self, color: .green)
+        executing = false
     }
 }

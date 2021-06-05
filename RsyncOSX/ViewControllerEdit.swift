@@ -32,110 +32,109 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
     var index: Int?
 
     @IBAction func enabledisableresetsnapshotnum(_: NSButton) {
-        if let config: Configuration = self.configurations?.getConfigurations()?[self.index!] {
-            guard config.task == ViewControllerReference.shared.snapshot else { return }
+        if let config: Configuration = configurations?.getConfigurations()?[index!] {
+            guard config.task == SharedReference.shared.snapshot else { return }
             let info: String = NSLocalizedString("Dont change the snapshot num if you don´t know what you are doing...", comment: "Snapshots")
             Alerts.showInfo(info: info)
-            if self.snapshotnum.isEnabled {
-                self.snapshotnum.isEnabled = false
+            if snapshotnum.isEnabled {
+                snapshotnum.isEnabled = false
             } else {
-                self.snapshotnum.isEnabled = true
+                snapshotnum.isEnabled = true
             }
         }
     }
 
     // Close and dismiss view
     @IBAction func close(_: NSButton) {
-        self.view.window?.close()
+        view.window?.close()
     }
 
     // Update configuration, save and dismiss view
     @IBAction func update(_: NSButton) {
-        if var config: [Configuration] = self.configurations?.getConfigurations() {
+        if var config: [Configuration] = configurations?.getConfigurations() {
             if let index = self.index() {
-                config[index].localCatalog = self.localCatalog.stringValue
-                config[index].offsiteCatalog = self.offsiteCatalog.stringValue
-                config[index].offsiteServer = self.offsiteServer.stringValue
-                config[index].offsiteUsername = self.offsiteUsername.stringValue
-                config[index].backupID = self.backupID.stringValue
-                if self.snapshotnum.stringValue.count > 0 {
-                    config[index].snapshotnum = Int(self.snapshotnum.stringValue)
+                config[index].localCatalog = localCatalog.stringValue
+                config[index].offsiteCatalog = offsiteCatalog.stringValue
+                config[index].offsiteServer = offsiteServer.stringValue
+                config[index].offsiteUsername = offsiteUsername.stringValue
+                config[index].backupID = backupID.stringValue
+                if snapshotnum.stringValue.count > 0 {
+                    config[index].snapshotnum = Int(snapshotnum.stringValue)
                 }
                 // Pre task
-                if self.pretask.stringValue.isEmpty == false {
-                    if self.executepretask.state == .on {
+                if pretask.stringValue.isEmpty == false {
+                    if executepretask.state == .on {
                         config[index].executepretask = 1
                     } else {
                         config[index].executepretask = 0
                     }
-                    config[index].pretask = self.pretask.stringValue
+                    config[index].pretask = pretask.stringValue
                 } else {
                     config[index].executepretask = nil
                     config[index].pretask = nil
                 }
                 // Post task
-                if self.posttask.stringValue.isEmpty == false {
-                    if self.executeposttask.state == .on {
+                if posttask.stringValue.isEmpty == false {
+                    if executeposttask.state == .on {
                         config[index].executeposttask = 1
                     } else {
                         config[index].executeposttask = 0
                     }
-                    config[index].posttask = self.posttask.stringValue
+                    config[index].posttask = posttask.stringValue
                 } else {
                     config[index].executeposttask = nil
                     config[index].posttask = nil
                 }
                 // Halt on error
-                if self.haltshelltasksonerror.state == .on {
+                if haltshelltasksonerror.state == .on {
                     config[index].haltshelltasksonerror = 1
                 } else {
                     config[index].haltshelltasksonerror = 0
                 }
-                let dict = ConvertOneConfig(config: config[index]).dict
-                guard Validatenewconfigs(dict: dict, Edit: true).validated == true else { return }
-                self.configurations?.updateConfigurations(config[index], index: index)
-                self.view.window?.close()
+                guard Validatenewconfigs(config[index], false).validated == true else { return }
+                configurations?.updateConfigurations(config[index], index: index)
+                view.window?.close()
             }
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.snapshotnum.delegate = self
+        snapshotnum.delegate = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         // Check if there is another view open, if yes close it..
-        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
+        if let view = SharedReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
             weak var closeview: ViewControllerEdit?
             closeview = view
             closeview?.closeview()
         }
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcedit, nsviewcontroller: self)
-        self.localCatalog.stringValue = ""
-        self.offsiteCatalog.stringValue = ""
-        self.offsiteUsername.stringValue = ""
-        self.offsiteServer.stringValue = ""
-        self.backupID.stringValue = ""
-        self.pretask.stringValue = ""
-        self.executepretask.state = .off
-        self.posttask.stringValue = ""
-        self.executeposttask.state = .off
-        self.haltshelltasksonerror.state = .off
+        SharedReference.shared.setvcref(viewcontroller: .vcedit, nsviewcontroller: self)
+        localCatalog.stringValue = ""
+        offsiteCatalog.stringValue = ""
+        offsiteUsername.stringValue = ""
+        offsiteServer.stringValue = ""
+        backupID.stringValue = ""
+        pretask.stringValue = ""
+        executepretask.state = .off
+        posttask.stringValue = ""
+        executeposttask.state = .off
+        haltshelltasksonerror.state = .off
         if let index = self.index() {
             self.index = index
-            if let config: Configuration = self.configurations?.getConfigurations()?[index] {
-                self.localCatalog.stringValue = config.localCatalog
-                self.offsiteCatalog.stringValue = config.offsiteCatalog
-                self.offsiteUsername.stringValue = config.offsiteUsername
-                self.offsiteServer.stringValue = config.offsiteServer
-                self.backupID.stringValue = config.backupID
+            if let config: Configuration = configurations?.getConfigurations()?[index] {
+                localCatalog.stringValue = config.localCatalog
+                offsiteCatalog.stringValue = config.offsiteCatalog
+                offsiteUsername.stringValue = config.offsiteUsername
+                offsiteServer.stringValue = config.offsiteServer
+                backupID.stringValue = config.backupID
                 if let snapshotnum = config.snapshotnum {
                     self.snapshotnum.stringValue = String(snapshotnum)
                 }
-                self.pretask.stringValue = config.pretask ?? ""
-                self.posttask.stringValue = config.posttask ?? ""
+                pretask.stringValue = config.pretask ?? ""
+                posttask.stringValue = config.posttask ?? ""
                 if let executepretask = config.executepretask {
                     if executepretask == 1 {
                         self.executepretask.state = .on
@@ -143,7 +142,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
                         self.executepretask.state = .off
                     }
                 } else {
-                    self.executepretask.state = .off
+                    executepretask.state = .off
                 }
                 if let executeposttask = config.executeposttask {
                     if executeposttask == 1 {
@@ -152,7 +151,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
                         self.executeposttask.state = .off
                     }
                 } else {
-                    self.executeposttask.state = .off
+                    executeposttask.state = .off
                 }
                 if let haltshelltasksonerror = config.haltshelltasksonerror {
                     if haltshelltasksonerror == 1 {
@@ -161,26 +160,26 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
                         self.haltshelltasksonerror.state = .off
                     }
                 }
-                self.changelabels()
+                changelabels()
             }
         }
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcedit, nsviewcontroller: nil)
+        SharedReference.shared.setvcref(viewcontroller: .vcedit, nsviewcontroller: nil)
     }
 
     private func changelabels() {
         if let index = self.index {
-            if let config = self.configurations?.getConfigurations()?[index] {
+            if let config = configurations?.getConfigurations()?[index] {
                 switch config.task {
-                case ViewControllerReference.shared.syncremote:
-                    self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
-                    self.stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
+                case SharedReference.shared.syncremote:
+                    stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
+                    stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
                 default:
-                    self.stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
-                    self.stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
+                    stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
+                    stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
                 }
             }
         }
@@ -209,6 +208,6 @@ extension ViewControllerEdit: NSTextFieldDelegate {
 // Needed for automatically close view if another config is selected
 extension ViewControllerEdit: CloseEdit {
     func closeview() {
-        self.view.window?.close()
+        view.window?.close()
     }
 }

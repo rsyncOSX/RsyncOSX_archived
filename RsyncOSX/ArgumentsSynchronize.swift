@@ -21,26 +21,26 @@ final class ArgumentsSynchronize: RsyncParameters {
     /// - returns: Array of Strings
     func argumentssynchronize(dryRun: Bool, forDisplay: Bool) -> [String]? {
         if let config = self.config {
-            self.localCatalog = config.localCatalog
-            if self.config?.task == ViewControllerReference.shared.syncremote {
-                self.remoteargssyncremote(config: config)
+            localCatalog = config.localCatalog
+            if self.config?.task == SharedReference.shared.syncremote {
+                remoteargssyncremote(config: config)
             } else {
-                self.remoteargs(config: config)
+                remoteargs(config: config)
             }
-            self.setParameters1To6(config: config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
-            self.setParameters8To14(config: config, dryRun: dryRun, forDisplay: forDisplay)
+            setParameters1To6(config: config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
+            setParameters8To14(config: config, dryRun: dryRun, forDisplay: forDisplay)
             switch config.task {
-            case ViewControllerReference.shared.synchronize:
-                self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
-            case ViewControllerReference.shared.snapshot:
-                self.linkdestparameter(config: config, verify: false)
-                self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
-            case ViewControllerReference.shared.syncremote:
-                self.argumentsforsynchronizeremote(dryRun: dryRun, forDisplay: forDisplay)
+            case SharedReference.shared.synchronize:
+                argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
+            case SharedReference.shared.snapshot:
+                linkdestparameter(config: config, verify: false)
+                argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
+            case SharedReference.shared.syncremote:
+                argumentsforsynchronizeremote(dryRun: dryRun, forDisplay: forDisplay)
             default:
                 break
             }
-            return self.arguments
+            return arguments
         }
         return nil
     }

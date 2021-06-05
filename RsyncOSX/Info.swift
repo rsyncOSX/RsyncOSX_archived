@@ -25,23 +25,23 @@ struct Infoexecute {
     func info(num: Int) -> String {
         switch num {
         case 1:
-            return self.info11
+            return info11
         case 2:
-            return self.info12
+            return info12
         case 3:
-            return self.info13
+            return info13
         case 4:
-            return self.info14
+            return info14
         case 5:
-            return self.info15
+            return info15
         case 6:
-            return self.info16
+            return info16
         case 9:
-            return self.info19
+            return info19
         case 10:
-            return self.info20
+            return info20
         case 11:
-            return self.info21
+            return info21
         default:
             return ""
         }
@@ -56,9 +56,9 @@ struct Infologgdata {
     func info(num: Int) -> String {
         switch num {
         case 1:
-            return self.info21
+            return info21
         case 2:
-            return self.info22
+            return info22
         default:
             return ""
         }
@@ -76,15 +76,15 @@ struct Inforestore {
     func info(num: Int) -> String {
         switch num {
         case 1:
-            return self.info31
+            return info31
         case 2:
-            return self.info32
+            return info32
         case 3:
-            return self.info33
+            return info33
         case 4:
-            return self.info34
+            return info34
         case 5:
-            return self.info35
+            return info35
         default:
             return ""
         }
@@ -100,11 +100,11 @@ struct Infoschedule {
     func info(num: Int) -> String {
         switch num {
         case 1:
-            return self.info11
+            return info11
         case 2:
-            return self.info42
+            return info42
         case 3:
-            return self.info43
+            return info43
         default:
             return ""
         }
@@ -125,19 +125,19 @@ struct Infosnapshots {
     func info(num: Int) -> String {
         switch num {
         case 1:
-            return self.info51
+            return info51
         case 2:
-            return self.info52
+            return info52
         case 3:
-            return self.info53
+            return info53
         case 4:
-            return self.info54
+            return info54
         case 5:
-            return self.info55
+            return info55
         case 6:
-            return self.info34
+            return info34
         case 7:
-            return self.info56
+            return info56
         default:
             return ""
         }

@@ -25,75 +25,75 @@ final class ArgumentsSsh: SetConfigurations {
     // ssh-address = "backup@server.com"
     // ssh-copy-id -i $ssh-keypath -p port $ssh-address
     private func argumentssshcopyid() {
-        guard self.config != nil else { return }
-        guard (self.config?.offsiteServer.isEmpty ?? true) == false else { return }
-        self.args = [String]()
-        self.command = "/usr/bin/ssh-copy-id"
-        self.args?.append(self.command ?? "")
-        self.args?.append("-i")
-        self.args?.append(self.globalsshkeypathandidentityfile ?? "")
-        if ViewControllerReference.shared.sshport != nil { self.sshport() }
-        let usernameandservername = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
-        self.args?.append(usernameandservername)
-        self.commandCopyPasteTerminal = self.args?.joined(separator: " ")
+        guard config != nil else { return }
+        guard (config?.offsiteServer.isEmpty ?? true) == false else { return }
+        args = [String]()
+        command = "/usr/bin/ssh-copy-id"
+        args?.append(command ?? "")
+        args?.append("-i")
+        args?.append(globalsshkeypathandidentityfile ?? "")
+        if SharedReference.shared.sshport != nil { sshport() }
+        let usernameandservername = (config?.offsiteUsername ?? "") + "@" + (config?.offsiteServer ?? "")
+        args?.append(usernameandservername)
+        commandCopyPasteTerminal = args?.joined(separator: " ")
     }
 
     // Create local key with ssh-keygen
     // Generate a passwordless RSA keyfile -N sets password, "" makes it blank
     // ssh-keygen -t rsa -N "" -f $ssh-keypath
     private func argumentscreatekey() {
-        self.args = [String]()
-        self.args?.append("-t")
-        self.args?.append("rsa")
-        self.args?.append("-N")
-        self.args?.append("")
-        self.args?.append("-f")
-        self.args?.append(self.globalsshkeypathandidentityfile ?? "")
-        self.command = "/usr/bin/ssh-keygen"
+        args = [String]()
+        args?.append("-t")
+        args?.append("rsa")
+        args?.append("-N")
+        args?.append("")
+        args?.append("-f")
+        args?.append(globalsshkeypathandidentityfile ?? "")
+        command = "/usr/bin/ssh-keygen"
     }
 
     // Check if pub key exists on remote server
     // ssh -p port -i $ssh-keypath $ssh-address
     private func argumentscheckremotepubkey() {
-        guard self.config != nil else { return }
-        guard (self.config?.offsiteServer.isEmpty ?? true) == false else { return }
-        self.args = [String]()
-        self.command = "/usr/bin/ssh"
-        self.args?.append(self.command ?? "")
-        if ViewControllerReference.shared.sshport != nil { self.sshport() }
-        self.args?.append("-i")
-        self.args?.append(self.globalsshkeypathandidentityfile ?? "")
-        let usernameandservername = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
-        self.args?.append(usernameandservername)
-        self.commandCopyPasteTerminal = self.args?.joined(separator: " ")
+        guard config != nil else { return }
+        guard (config?.offsiteServer.isEmpty ?? true) == false else { return }
+        args = [String]()
+        command = "/usr/bin/ssh"
+        args?.append(command ?? "")
+        if SharedReference.shared.sshport != nil { sshport() }
+        args?.append("-i")
+        args?.append(globalsshkeypathandidentityfile ?? "")
+        let usernameandservername = (config?.offsiteUsername ?? "") + "@" + (config?.offsiteServer ?? "")
+        args?.append(usernameandservername)
+        commandCopyPasteTerminal = args?.joined(separator: " ")
     }
 
     private func sshport() {
-        self.args?.append("-p")
-        self.args?.append(String(ViewControllerReference.shared.sshport ?? 22))
+        args?.append("-p")
+        args?.append(String(SharedReference.shared.sshport ?? 22))
     }
 
     // Set the correct arguments
     func getArguments(operation: SshOperations) -> [String]? {
         switch operation {
         case .verifyremotekey:
-            self.argumentscheckremotepubkey()
+            argumentscheckremotepubkey()
         case .createKey:
-            self.argumentscreatekey()
+            argumentscreatekey()
         case .sshcopyid:
-            self.argumentssshcopyid()
+            argumentssshcopyid()
         }
-        return self.args
+        return args
     }
 
     func getCommand() -> String? {
-        return self.command
+        return command
     }
 
     init(hiddenID: Int?, sshkeypathandidentityfile: String?) {
         if let hiddenID = hiddenID {
-            self.config = self.configurations?.getConfigurations()?[self.configurations?.getIndex(hiddenID) ?? -1]
+            config = configurations?.getConfigurations()?[configurations?.getIndex(hiddenID) ?? -1]
         }
-        self.globalsshkeypathandidentityfile = sshkeypathandidentityfile ?? ""
+        globalsshkeypathandidentityfile = sshkeypathandidentityfile ?? ""
     }
 }

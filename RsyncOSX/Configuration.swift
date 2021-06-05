@@ -1,12 +1,49 @@
 //
+//  ConfigurationsJSON.swift
+//  RsyncOSX
+//
+//  Created by Thomas Evensen on 26/05/2021.
+//  Copyright © 2021 Thomas Evensen. All rights reserved.
+//
+
+//
 //  Created by Thomas Evensen on 08/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable cyclomatic_complexity function_body_length line_length
 
 import Foundation
 
-struct Configuration {
+enum NumDayofweek: Int {
+    case Monday = 2
+    case Tuesday = 3
+    case Wednesday = 4
+    case Thursday = 5
+    case Friday = 6
+    case Saturday = 7
+    case Sunday = 1
+}
+
+enum StringDayofweek: String, CaseIterable, Identifiable, CustomStringConvertible {
+    case Monday
+    case Tuesday
+    case Wednesday
+    case Thursday
+    case Friday
+    case Saturday
+    case Sunday
+
+    var id: String { rawValue }
+    var description: String { rawValue.localizedLowercase }
+}
+
+enum PlanSnapshots: String, CaseIterable, CustomStringConvertible {
+    case Every // keepallselcteddayofweek
+    case Last // islastSelectedDayinMonth
+
+    var description: String { rawValue.localizedLowercase }
+}
+
+struct Configuration: Codable {
     var hiddenID: Int
     var task: String
     var localCatalog: String
@@ -49,7 +86,7 @@ struct Configuration {
     var haltshelltasksonerror: Int?
 
     var lastruninseconds: Double? {
-        if let date = self.dateRun {
+        if let date = dateRun {
             let lastbackup = date.en_us_date_from_string()
             let seconds: TimeInterval = lastbackup.timeIntervalSinceNow
             return seconds * (-1)
@@ -58,102 +95,71 @@ struct Configuration {
         }
     }
 
-    init(dictionary: NSDictionary) {
-        // Parameters 1 - 6 is mandatory, set by RsyncOSX.
-        self.hiddenID = (dictionary.object(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) ?? 0
-        self.task = dictionary.object(forKey: DictionaryStrings.task.rawValue) as? String ?? ""
-        self.localCatalog = dictionary.object(forKey: DictionaryStrings.localCatalog.rawValue) as? String ?? ""
-        self.offsiteCatalog = dictionary.object(forKey: DictionaryStrings.offsiteCatalog.rawValue) as? String ?? ""
-        self.offsiteUsername = dictionary.object(forKey: DictionaryStrings.offsiteUsername.rawValue) as? String ?? ""
-        self.parameter1 = dictionary.object(forKey: DictionaryStrings.parameter1.rawValue) as? String ?? ""
-        self.parameter2 = dictionary.object(forKey: DictionaryStrings.parameter2.rawValue) as? String ?? ""
-        self.parameter3 = dictionary.object(forKey: DictionaryStrings.parameter3.rawValue) as? String ?? ""
-        self.parameter4 = dictionary.object(forKey: DictionaryStrings.parameter4.rawValue) as? String ?? ""
-        self.parameter5 = dictionary.object(forKey: DictionaryStrings.parameter5.rawValue) as? String ?? ""
-        self.parameter6 = dictionary.object(forKey: DictionaryStrings.parameter6.rawValue) as? String ?? ""
-        self.offsiteServer = dictionary.object(forKey: DictionaryStrings.offsiteServer.rawValue) as? String ?? ""
-        self.backupID = dictionary.object(forKey: DictionaryStrings.backupID.rawValue) as? String ?? ""
-        if let snapshotnum = dictionary.object(forKey: DictionaryStrings.snapshotnum.rawValue) as? Int {
+    // Used when reading JSON data from store
+    // see in ReadConfigurationJSON
+    init(_ data: DecodeConfiguration) {
+        backupID = data.backupID ?? ""
+        hiddenID = data.hiddenID ?? -1
+        localCatalog = data.localCatalog ?? ""
+        offsiteCatalog = data.offsiteCatalog ?? ""
+        offsiteServer = data.offsiteServer ?? ""
+        offsiteUsername = data.offsiteUsername ?? ""
+        parameter1 = data.parameter1 ?? ""
+        parameter10 = data.parameter10
+        parameter11 = data.parameter11
+        parameter12 = data.parameter12
+        parameter13 = data.parameter13
+        parameter14 = data.parameter14
+        parameter2 = data.parameter2 ?? ""
+        parameter3 = data.parameter3 ?? ""
+        parameter4 = data.parameter4 ?? ""
+        parameter5 = data.parameter5 ?? ""
+        parameter6 = data.parameter6 ?? ""
+        parameter8 = data.parameter8
+        parameter9 = data.parameter9
+        rsyncdaemon = data.rsyncdaemon
+        sshkeypathandidentityfile = data.sshkeypathandidentityfile
+        sshport = data.sshport
+        task = data.task ?? ""
+        executepretask = data.executepretask
+        pretask = data.pretask
+        executeposttask = data.executeposttask
+        posttask = data.posttask
+        snapshotnum = data.snapshotnum
+        haltshelltasksonerror = data.haltshelltasksonerror
+        // For snapshots
+        if let snapshotnum = data.snapshotnum {
             self.snapshotnum = snapshotnum
-            self.snapdayoffweek = dictionary.object(forKey: DictionaryStrings.snapdayoffweek.rawValue) as? String ?? StringDayofweek.Sunday.rawValue
-            self.snaplast = dictionary.object(forKey: DictionaryStrings.snaplast.rawValue) as? Int ?? 1
+            snapdayoffweek = data.snapdayoffweek ?? StringDayofweek.Sunday.rawValue
+            snaplast = data.snaplast ?? 1
         }
         // Last run of task
-        if let dateRun = dictionary.object(forKey: DictionaryStrings.dateRun.rawValue) {
-            self.dateRun = dateRun as? String
-            if let secondssince = self.lastruninseconds {
-                self.dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
-                if secondssince / (60 * 60 * 24) > ViewControllerReference.shared.marknumberofdayssince {
-                    self.markdays = true
+        if let dateRun = data.dateRun {
+            self.dateRun = dateRun
+            if let secondssince = lastruninseconds {
+                dayssincelastbackup = String(format: "%.2f", secondssince / (60 * 60 * 24))
+                if secondssince / (60 * 60 * 24) > SharedReference.shared.marknumberofdayssince {
+                    markdays = true
                 }
             }
         }
-        // Parameters 8 - 14 is user selected, as well as ssh parameters.
-        if let parameter8 = dictionary.object(forKey: DictionaryStrings.parameter8.rawValue) {
-            self.parameter8 = parameter8 as? String
-        }
-        if let parameter9 = dictionary.object(forKey: DictionaryStrings.parameter9.rawValue) {
-            self.parameter9 = parameter9 as? String
-        }
-        if let parameter10 = dictionary.object(forKey: DictionaryStrings.parameter10.rawValue) {
-            self.parameter10 = parameter10 as? String
-        }
-        if let parameter11 = dictionary.object(forKey: DictionaryStrings.parameter11.rawValue) {
-            self.parameter11 = parameter11 as? String
-        }
-        if let parameter12 = dictionary.object(forKey: DictionaryStrings.parameter12.rawValue) {
-            self.parameter12 = parameter12 as? String
-        }
-        if let parameter13 = dictionary.object(forKey: DictionaryStrings.parameter13.rawValue) {
-            self.parameter13 = parameter13 as? String
-        }
-        if let parameter14 = dictionary.object(forKey: DictionaryStrings.parameter14.rawValue) {
-            self.parameter14 = parameter14 as? String
-        }
-        if let rsyncdaemon = dictionary.object(forKey: DictionaryStrings.rsyncdaemon.rawValue) {
-            self.rsyncdaemon = rsyncdaemon as? Int
-        }
-        if let sshport = dictionary.object(forKey: DictionaryStrings.sshport.rawValue) {
-            self.sshport = sshport as? Int
-        }
-        if let sshidentityfile = dictionary.object(forKey: DictionaryStrings.sshkeypathandidentityfile.rawValue) {
-            self.sshkeypathandidentityfile = sshidentityfile as? String
-        }
-        // Pre and post tasks
-        if let pretask = dictionary.object(forKey: DictionaryStrings.pretask.rawValue) {
-            self.pretask = pretask as? String
-        }
-        if let executepretask = dictionary.object(forKey: DictionaryStrings.executepretask.rawValue) {
-            self.executepretask = executepretask as? Int
-        }
-        if let posttask = dictionary.object(forKey: DictionaryStrings.posttask.rawValue) {
-            self.posttask = posttask as? String
-        }
-        if let executeposttask = dictionary.object(forKey: DictionaryStrings.executeposttask.rawValue) {
-            self.executeposttask = executeposttask as? Int
-        }
-        if let haltshelltasksonerror = dictionary.object(forKey: DictionaryStrings.haltshelltasksonerror.rawValue) {
-            self.haltshelltasksonerror = haltshelltasksonerror as? Int
-        }
     }
 
-    init(dictionary: NSMutableDictionary) {
-        self.hiddenID = dictionary.object(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? 0
-        self.task = dictionary.object(forKey: DictionaryStrings.task.rawValue) as? String ?? ""
-        self.localCatalog = dictionary.object(forKey: DictionaryStrings.localCatalog.rawValue) as? String ?? ""
-        self.offsiteCatalog = dictionary.object(forKey: DictionaryStrings.offsiteCatalog.rawValue) as? String ?? ""
-        self.offsiteUsername = dictionary.object(forKey: DictionaryStrings.offsiteUsername.rawValue) as? String ?? ""
-        self.parameter1 = dictionary.object(forKey: DictionaryStrings.parameter1.rawValue) as? String ?? ""
-        self.parameter2 = dictionary.object(forKey: DictionaryStrings.parameter2.rawValue) as? String ?? ""
-        self.parameter3 = dictionary.object(forKey: DictionaryStrings.parameter3.rawValue) as? String ?? ""
-        self.parameter4 = dictionary.object(forKey: DictionaryStrings.parameter4.rawValue) as? String ?? ""
-        self.parameter5 = dictionary.object(forKey: DictionaryStrings.parameter5.rawValue) as? String ?? ""
-        self.parameter6 = dictionary.object(forKey: DictionaryStrings.parameter6.rawValue) as? String ?? ""
-        self.offsiteServer = dictionary.object(forKey: DictionaryStrings.offsiteServer.rawValue) as? String ?? ""
-        self.backupID = dictionary.object(forKey: DictionaryStrings.backupID.rawValue) as? String ?? ""
-        if self.task == ViewControllerReference.shared.snapshot {
-            self.snapshotnum = dictionary.object(forKey: DictionaryStrings.snapshotnum.rawValue) as? Int
-        }
+    // Create an empty record with no values
+    init() {
+        hiddenID = -1
+        task = ""
+        localCatalog = ""
+        offsiteCatalog = ""
+        offsiteUsername = ""
+        parameter1 = ""
+        parameter2 = ""
+        parameter3 = ""
+        parameter4 = ""
+        parameter5 = ""
+        parameter6 = ""
+        offsiteServer = ""
+        backupID = ""
     }
 }
 
@@ -182,24 +188,24 @@ extension Configuration: Hashable, Equatable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.localCatalog)
-        hasher.combine(self.offsiteUsername)
-        hasher.combine(self.offsiteServer)
-        hasher.combine(String(self.hiddenID))
-        hasher.combine(self.task)
-        hasher.combine(self.parameter1)
-        hasher.combine(self.parameter2)
-        hasher.combine(self.parameter3)
-        hasher.combine(self.parameter4)
-        hasher.combine(self.parameter5)
-        hasher.combine(self.parameter6)
-        hasher.combine(self.parameter8)
-        hasher.combine(self.parameter9)
-        hasher.combine(self.parameter10)
-        hasher.combine(self.parameter11)
-        hasher.combine(self.parameter12)
-        hasher.combine(self.parameter13)
-        hasher.combine(self.parameter14)
-        hasher.combine(self.dateRun)
+        hasher.combine(localCatalog)
+        hasher.combine(offsiteUsername)
+        hasher.combine(offsiteServer)
+        hasher.combine(String(hiddenID))
+        hasher.combine(task)
+        hasher.combine(parameter1)
+        hasher.combine(parameter2)
+        hasher.combine(parameter3)
+        hasher.combine(parameter4)
+        hasher.combine(parameter5)
+        hasher.combine(parameter6)
+        hasher.combine(parameter8)
+        hasher.combine(parameter9)
+        hasher.combine(parameter10)
+        hasher.combine(parameter11)
+        hasher.combine(parameter12)
+        hasher.combine(parameter13)
+        hasher.combine(parameter14)
+        hasher.combine(dateRun)
     }
 }

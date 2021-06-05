@@ -16,44 +16,44 @@ final class SnapshotDeleteCatalogsArguments {
 
     private func remotearguments() {
         var remotearg: String?
-        guard self.config != nil else { return }
-        if self.config?.sshport != nil {
-            self.args?.append("-p")
-            self.args?.append(String(self.config!.sshport!))
+        guard config != nil else { return }
+        if config?.sshport != nil {
+            args?.append("-p")
+            args?.append(String(config!.sshport!))
         }
-        if self.config?.offsiteServer.isEmpty == false {
-            remotearg = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
-            self.args?.append(remotearg ?? "")
+        if config?.offsiteServer.isEmpty == false {
+            remotearg = (config?.offsiteUsername ?? "") + "@" + (config?.offsiteServer ?? "")
+            args?.append(remotearg ?? "")
         }
-        let remotecommand = "rm -rf " + (self.remotecatalog ?? "")
-        self.args?.append(remotecommand)
+        let remotecommand = "rm -rf " + (remotecatalog ?? "")
+        args?.append(remotecommand)
     }
 
     private func localarguments() {
-        guard self.config != nil else { return }
+        guard config != nil else { return }
         let remotecatalog = self.remotecatalog!
-        self.args?.append("-rf")
-        self.args?.append(remotecatalog)
+        args?.append("-rf")
+        args?.append(remotecatalog)
     }
 
     func getArguments() -> [String]? {
-        return self.args
+        return args
     }
 
     func getCommand() -> String? {
-        return self.command
+        return command
     }
 
     init(config: Configuration, remotecatalog: String) {
-        self.args = [String]()
+        args = [String]()
         self.config = config
         self.remotecatalog = remotecatalog
         if config.offsiteServer.isEmpty == false {
-            self.remotearguments()
-            self.command = "/usr/bin/ssh"
+            remotearguments()
+            command = "/usr/bin/ssh"
         } else {
-            self.localarguments()
-            self.command = "/bin/rm"
+            localarguments()
+            command = "/bin/rm"
         }
     }
 }

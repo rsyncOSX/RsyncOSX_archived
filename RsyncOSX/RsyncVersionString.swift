@@ -9,30 +9,30 @@
 import Foundation
 
 struct RsyncVersionString {
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
     init() {
-        if ViewControllerReference.shared.norsync == false {
-            self.outputprocess = OutputProcess()
-            let command = RsyncProcessCmdClosure(arguments: ["--version"],
-                                                 config: nil,
-                                                 processtermination: self.processtermination,
-                                                 filehandler: self.filehandler)
-            command.executeProcess(outputprocess: self.outputprocess)
+        if SharedReference.shared.norsync == false {
+            outputprocess = OutputfromProcess()
+            let command = RsyncProcess(arguments: ["--version"],
+                                       config: nil,
+                                       processtermination: processtermination,
+                                       filehandler: filehandler)
+            command.executeProcess(outputprocess: outputprocess)
         }
     }
 }
 
 extension RsyncVersionString {
     func processtermination() {
-        guard self.outputprocess?.getOutput()?.count ?? 0 > 0 else { return }
-        if let rsyncversionshort = self.outputprocess?.getOutput()?[0],
-           let rsyncversionstring = self.outputprocess?.getOutput()?.joined(separator: "\n")
+        guard outputprocess?.getOutput()?.count ?? 0 > 0 else { return }
+        if let rsyncversionshort = outputprocess?.getOutput()?[0],
+           let rsyncversionstring = outputprocess?.getOutput()?.joined(separator: "\n")
         {
-            ViewControllerReference.shared.rsyncversionshort = rsyncversionshort
-            ViewControllerReference.shared.rsyncversionstring = rsyncversionstring
+            SharedReference.shared.rsyncversionshort = rsyncversionshort
+            SharedReference.shared.rsyncversionstring = rsyncversionstring
         }
         weak var shortstringDelegate: RsyncIsChanged?
-        shortstringDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        shortstringDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         shortstringDelegate?.rsyncischanged()
     }
 

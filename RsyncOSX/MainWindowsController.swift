@@ -24,6 +24,6 @@ class MainWindowsController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-        self.addtoolbar()
+        addtoolbar()
     }
 }

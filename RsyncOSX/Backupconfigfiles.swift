@@ -9,12 +9,12 @@
 import Files
 import Foundation
 
-struct Backupconfigfiles: FileErrors {
+struct Backupconfigfiles: Errors {
     var usedpath: String?
     var backuppath: String?
 
     func backup() {
-        if let documentscatalog = self.backuppath,
+        if let documentscatalog = backuppath,
            let usedpath = self.usedpath
         {
             var originFolder: Folder?
@@ -25,15 +25,15 @@ struct Backupconfigfiles: FileErrors {
                 try originFolder?.copy(to: targetFolder)
             } catch let e {
                 let error = e as NSError
-                self.error(error: error.description, errortype: .profilecreatedirectory)
+                self.error(errordescription: error.description, errortype: .profilecreatedirectory)
             }
         }
     }
 
     init() {
-        let path = NamesandPaths(profileorsshrootpath: .profileroot)
-        self.usedpath = path.fullrootnomacserial
-        self.backuppath = path.documentscatalog
-        self.backup()
+        let path = NamesandPaths(.configurations)
+        usedpath = path.fullpathnomacserial
+        backuppath = path.documentscatalog
+        backup()
     }
 }

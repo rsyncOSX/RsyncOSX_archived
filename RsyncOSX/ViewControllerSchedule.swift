@@ -33,76 +33,78 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     @IBAction func showHelp(_: AnyObject?) {
-        self.help()
+        help()
     }
 
     // Sidebar Once
     func once() {
-        guard self.addschduleisallowed else { return }
-        self.schedule = .once
-        self.addschedule()
+        guard addschduleisallowed else { return }
+        schedule = .once
+        addschedule()
     }
 
     // Sidebar Daily
     func daily() {
-        guard self.addschduleisallowed else { return }
-        self.schedule = .daily
-        self.addschedule()
+        guard addschduleisallowed else { return }
+        schedule = .daily
+        addschedule()
     }
 
     // Sidebar Weekly
     func weekly() {
-        guard self.addschduleisallowed else { return }
-        self.schedule = .weekly
-        self.addschedule()
+        guard addschduleisallowed else { return }
+        schedule = .weekly
+        addschedule()
     }
 
     // Sidebar update
     func update() {
-        self.schedules?.deleteandstopschedules(data: scheduledetails)
+        schedules?.deleteandstopschedules(data: scheduledetails)
     }
 
     @IBAction func selectdate(_: NSDatePicker) {
-        self.schedulebuttonsonoff()
+        schedulebuttonsonoff()
     }
 
     @IBAction func selecttime(_: NSDatePicker) {
-        self.schedulebuttonsonoff()
+        schedulebuttonsonoff()
     }
 
     private func addschedule() {
-        guard self.index != nil else { return }
+        guard index != nil else { return }
         let question: String = NSLocalizedString("Add Schedule?", comment: "Add schedule")
         let text: String = NSLocalizedString("Cancel or Add", comment: "Add schedule")
         let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            self.info.stringValue = Infoschedule().info(num: 2)
-            let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
+            info.stringValue = Infoschedule().info(num: 2)
+            let seconds: TimeInterval = starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
             if let index = self.index {
-                if let hiddenID = self.configurations?.gethiddenID(index: index) {
+                if let hiddenID = configurations?.gethiddenID(index: index),
+                   let schedule = self.schedule
+                {
                     guard hiddenID != -1 else { return }
-                    self.schedules?.addschedule(hiddenID: hiddenID, schedule: self.schedule ?? .once, start: startdate)
+                    schedules?.addschedule(hiddenID, schedule, startdate)
                 }
             }
         }
     }
 
     private func schedulebuttonsonoff() {
-        let seconds: TimeInterval = self.starttime.dateValue.timeIntervalSinceNow
+        let seconds: TimeInterval = starttime.dateValue.timeIntervalSinceNow
         // Date and time for stop
-        let startime: Date = self.startdate.dateValue.addingTimeInterval(seconds)
+        let startime: Date = startdate.dateValue.addingTimeInterval(seconds)
         let secondstostart = startime.timeIntervalSinceNow
         if secondstostart < 60 {
-            self.selectedstart.isHidden = true
-            self.addschduleisallowed = false
+            selectedstart.isHidden = true
+            addschduleisallowed = false
         }
         if secondstostart > 60 {
-            self.addschduleisallowed = true
-            self.selectedstart.isHidden = false
-            self.selectedstart.stringValue = startime.localized_string_from_date() + " (" + Dateandtime().timestring(seconds: secondstostart) + ")"
-            self.selectedstart.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+            addschduleisallowed = true
+            selectedstart.isHidden = false
+            selectedstart.stringValue = startime.localized_string_from_date() + " (" + Dateandtime().timestring(seconds: secondstostart) + ")"
+            selectedstart.textColor = setcolor(nsviewcontroller: self, color: .green)
         }
     }
 
@@ -120,39 +122,39 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configurations = Estimatedlistforsynchronization()
-        self.scheduletable.delegate = self
-        self.scheduletable.dataSource = self
-        self.scheduletabledetails.delegate = self
-        self.scheduletabledetails.dataSource = self
-        ViewControllerReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        self.initpopupbutton()
+        configurations = Estimatedlistforsynchronization()
+        scheduletable.delegate = self
+        scheduletable.dataSource = self
+        scheduletabledetails.delegate = self
+        scheduletabledetails.dataSource = self
+        SharedReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
+        initpopupbutton()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        self.sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
-        self.info.stringValue = Infoschedule().info(num: 0)
-        self.selectedstart.isHidden = true
-        self.startdate.dateValue = Date()
-        self.starttime.dateValue = Date()
-        self.reloadtabledata()
+        sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
+        info.stringValue = Infoschedule().info(num: 0)
+        selectedstart.isHidden = true
+        startdate.dateValue = Date()
+        starttime.dateValue = Date()
+        reloadtabledata()
     }
 
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
-        if myTableViewFromNotification == self.scheduletable {
-            self.info.stringValue = Infoschedule().info(num: 0)
+        if myTableViewFromNotification == scheduletable {
+            info.stringValue = Infoschedule().info(num: 0)
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 self.index = index
-                let hiddendID = self.configurations?.gethiddenID(index: self.index ?? -1)
-                self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
+                let hiddendID = configurations?.gethiddenID(index: self.index ?? -1)
+                scheduledetails = schedules?.readscheduleonetask(hiddenID: hiddendID)
             } else {
-                self.index = nil
-                self.scheduledetails = nil
+                index = nil
+                scheduledetails = nil
             }
             globalMainQueue.async { () -> Void in
                 self.scheduletabledetails.reloadData()
@@ -165,34 +167,34 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
         var profilestrings: [String]?
         profilestrings = CatalogProfile().getcatalogsasstringnames()
         profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
-        self.profilepopupbutton.removeAllItems()
-        self.profilepopupbutton.addItems(withTitles: profilestrings ?? [])
-        self.profilepopupbutton.selectItem(at: 0)
+        profilepopupbutton.removeAllItems()
+        profilepopupbutton.addItems(withTitles: profilestrings ?? [])
+        profilepopupbutton.selectItem(at: 0)
     }
 
     @IBAction func selectprofile(_: NSButton) {
-        var profile = self.profilepopupbutton.titleOfSelectedItem
-        let selectedindex = self.profilepopupbutton.indexOfSelectedItem
+        var profile = profilepopupbutton.titleOfSelectedItem
+        let selectedindex = profilepopupbutton.indexOfSelectedItem
         if profile == NSLocalizedString("Default profile", comment: "default profile") {
             profile = nil
         }
-        self.profilepopupbutton.selectItem(at: selectedindex)
+        profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 }
 
 extension ViewControllerSchedule: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismiss(viewcontroller)
-        self.reloadtabledata()
+        dismiss(viewcontroller)
+        reloadtabledata()
     }
 }
 
 extension ViewControllerSchedule: Reloadandrefresh {
     func reloadtabledata() {
         if let index = self.index {
-            if let hiddendID = self.configurations?.gethiddenID(index: index) {
-                self.scheduledetails = self.schedules?.readscheduleonetask(hiddenID: hiddendID)
+            if let hiddendID = configurations?.gethiddenID(index: index) {
+                scheduledetails = schedules?.readscheduleonetask(hiddenID: hiddendID)
             }
         }
         globalMainQueue.async { () -> Void in
@@ -206,8 +208,8 @@ extension ViewControllerSchedule: Reloadandrefresh {
 extension ViewControllerSchedule: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
-        guard self.index != nil else { return }
-        self.scheduletable.deselectRow(self.index!)
+        guard index != nil else { return }
+        scheduletable.deselectRow(index!)
     }
 }
 
@@ -232,13 +234,13 @@ extension ViewControllerSchedule: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
         case .Once:
-            self.once()
+            once()
         case .Daily:
-            self.daily()
+            daily()
         case .Weekly:
-            self.weekly()
+            weekly()
         case .Update:
-            self.update()
+            update()
         default:
             return
         }

@@ -7,10 +7,19 @@
 //
 
 import Cocoa
+import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_: Notification) {}
+    func applicationDidFinishLaunching(_: Notification) {
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        center.requestAuthorization(options: options) { granted, _ in
+            if granted {
+                // application.registerForRemoteNotifications()
+            }
+        }
+    }
 
     func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
         return true

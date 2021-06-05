@@ -1,12 +1,12 @@
 //  Created by Thomas Evensen on 19/08/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable type_body_length line_length file_length
+//  swiftlint:disable type_body_length line_length
 
 import Cocoa
 import Foundation
 
-class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, ErrorMessage, Setcolor, Checkforrsync, Help, Connected {
+class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, Setcolor, Checkforrsync, Help, Connected {
     // Main tableview
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work
@@ -30,7 +30,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var indexes: IndexSet?
     var multipeselection: Bool = false
     // Getting output from rsync
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
     // Reference to Schedules object
     var schedulesortedandexpanded: ScheduleSortedAndExpand?
     // Send messages to the sidebar
@@ -38,14 +38,14 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Toolbar - all profiles
     @IBAction func allprofiles(_: NSButton) {
-        self.presentAsModalWindow(self.allprofiles!)
+        presentAsModalWindow(allprofiles!)
     }
 
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        guard ViewControllerReference.shared.process == nil else { return }
-        self.presentAsSheet(self.viewControllerEstimating!)
+        guard checkforrsync() == false else { return }
+        guard SharedReference.shared.process == nil else { return }
+        presentAsSheet(viewControllerEstimating!)
     }
 
     // Toolbar - Abort button
@@ -57,14 +57,14 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Toolbar - Userconfiguration button
     @IBAction func userconfiguration(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        self.presentAsModalWindow(self.viewControllerUserconfiguration!)
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(viewControllerUserconfiguration!)
     }
 
     // Toolbar - Estimate and Quickbackup
     @IBAction func totinfo(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        self.multipeselection = false
+        guard checkforrsync() == false else { return }
+        multipeselection = false
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
@@ -73,52 +73,52 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Toolbar - Multiple select and execute
     // Execute multipleselected tasks, only from main view
     @IBAction func executemultipleselectedindexes(_: NSButton) {
-        guard self.checkforrsync() == false else { return }
-        guard ViewControllerReference.shared.process == nil else { return }
-        guard self.indexes != nil else {
-            self.info.stringValue = Infoexecute().info(num: 6)
+        guard checkforrsync() == false else { return }
+        guard SharedReference.shared.process == nil else { return }
+        guard indexes != nil else {
+            info.stringValue = Infoexecute().info(num: 6)
             return
         }
-        self.multipeselection = true
+        multipeselection = true
         globalMainQueue.async { () -> Void in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
 
     @IBAction func executetasknow(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        guard self.checkforrsync() == false else { return }
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
+        guard SharedReference.shared.process == nil else { return }
+        guard checkforrsync() == false else { return }
+        guard index != nil else {
+            info.stringValue = Infoexecute().info(num: 1)
             return
         }
         if let index = self.index {
-            self.executetask(index: index)
+            executetask(index: index)
         }
     }
 
     @IBAction func infoonetask(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
+        guard SharedReference.shared.process == nil else { return }
+        guard index != nil else {
+            info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        guard self.checkforrsync() == false else { return }
+        guard checkforrsync() == false else { return }
         if let index = self.index {
-            if let task = self.configurations?.getConfigurations()?[index].task {
-                guard ViewControllerReference.shared.synctasks.contains(task) else {
-                    self.info.stringValue = Infoexecute().info(num: 7)
+            if let task = configurations?.getConfigurations()?[index].task {
+                guard SharedReference.shared.synctasks.contains(task) else {
+                    info.stringValue = Infoexecute().info(num: 7)
                     return
                 }
-                self.presentAsSheet(self.viewControllerInformationLocalRemote!)
+                presentAsSheet(viewControllerInformationLocalRemote!)
             }
         }
     }
 
     @IBAction func TCP(_: NSButton) {
-        self.configurations?.tcpconnections = TCPconnections()
-        self.configurations?.tcpconnections?.testAllremoteserverConnections()
-        self.displayProfile()
+        configurations?.tcpconnections = TCPconnections()
+        configurations?.tcpconnections?.testAllremoteserverConnections()
+        displayProfile()
     }
 
     // Presenting Information from Rsync
@@ -130,52 +130,46 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        if self.configurations?.tcpconnections?.connectionscheckcompleted ?? true {
-            self.presentAsModalWindow(self.viewControllerProfile!)
+        guard SharedReference.shared.process == nil else { return }
+        if configurations?.tcpconnections?.connectionscheckcompleted ?? true {
+            presentAsModalWindow(viewControllerProfile!)
         } else {
-            self.displayProfile()
+            displayProfile()
         }
     }
 
     // Selecting About
     @IBAction func about(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        self.presentAsModalWindow(self.viewControllerAbout!)
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(viewControllerAbout!)
     }
 
     // All ouput
     @IBAction func alloutput(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        self.presentAsModalWindow(self.viewControllerAllOutput!)
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(viewControllerAllOutput!)
     }
 
     @IBAction func showHelp(_: AnyObject?) {
-        self.help()
-    }
-
-    @IBAction func moveconfig(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        guard ViewControllerReference.shared.usenewconfigpath == false else { return }
-        self.presentAsModalWindow(self.viewControllerMove!)
+        help()
     }
 
     @IBAction func delete(_: NSButton) {
-        guard ViewControllerReference.shared.process == nil else { return }
-        self.delete()
+        guard SharedReference.shared.process == nil else { return }
+        delete()
     }
 
     func executetask(index: Int?) {
         if let index = index {
-            if let task = self.configurations?.getConfigurations()?[index].task {
-                guard ViewControllerReference.shared.synctasks.contains(task) else { return }
-                if let config = self.configurations?.getConfigurations()?[index] {
-                    self.info.stringValue = Infoexecute().info(num: 11)
-                    self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
+            if let task = configurations?.getConfigurations()?[index].task {
+                guard SharedReference.shared.synctasks.contains(task) else { return }
+                if let config = configurations?.getConfigurations()?[index] {
+                    info.stringValue = Infoexecute().info(num: 11)
+                    info.textColor = setcolor(nsviewcontroller: self, color: .green)
                     if PreandPostTasks(config: config).executepretask || PreandPostTasks(config: config).executeposttask {
-                        self.executetasknow = ExecuteTaskNowShellOut(index: index)
+                        executetasknow = ExecuteTaskNowShellOut(index: index)
                     } else {
-                        self.executetasknow = ExecuteTaskNow(index: index)
+                        executetasknow = ExecuteTaskNow(index: index)
                     }
                 }
             }
@@ -184,69 +178,59 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Decide if:
-        // 1: First time start, use new profilepath
-        // 2: Old profilepath is copied to new, use new profilepath
-        // 3: Use old profilepath
-        // ViewControllerReference.shared.usenewconfigpath = true or false (default true)
-        _ = Neworoldprofilepath()
         // Create base profile catalog
         CatalogProfile().createrootprofilecatalog()
         // Must read userconfig when loading main view, view only load once
-        if let userconfiguration = PersistentStorageUserconfiguration().readuserconfiguration() {
-            _ = Userconfiguration(userconfigRsyncOSX: userconfiguration)
-        } else {
-            _ = RsyncVersionString()
-        }
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
-        self.mainTableView.allowsMultipleSelection = true
-        self.working.usesThreadedAnimation = true
-        ViewControllerReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
-        self.mainTableView.target = self
-        self.mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
+        ReadUserConfigurationPLIST()
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        mainTableView.allowsMultipleSelection = true
+        working.usesThreadedAnimation = true
+        SharedReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
+        mainTableView.target = self
+        mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         // configurations and schedules
-        self.createandreloadconfigurations()
-        self.createandreloadschedules()
-        self.initpopupbutton()
+        createandreloadconfigurations()
+        createandreloadschedules()
+        initpopupbutton()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         // For sending messages to the sidebar
-        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        self.sidebaractionsDelegate?.sidebaractions(action: .JSONlabel)
-        self.sidebaractionsDelegate?.sidebaractions(action: .mainviewbuttons)
-        if ViewControllerReference.shared.initialstart == 0 {
-            self.view.window?.center()
-            ViewControllerReference.shared.initialstart = 1
-            _ = Checkfornewversion()
+        sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        sidebaractionsDelegate?.sidebaractions(action: .JSONlabel)
+        sidebaractionsDelegate?.sidebaractions(action: .mainviewbuttons)
+        if SharedReference.shared.initialstart == 0 {
+            view.window?.center()
+            SharedReference.shared.initialstart = 1
+            Checkfornewversion()
         }
-        if (self.configurations?.configurations?.count ?? 0) > 0 {
-            if self.index == nil {
+        if (configurations?.configurations?.count ?? 0) > 0 {
+            if index == nil {
                 globalMainQueue.async { () -> Void in
                     self.mainTableView.reloadData()
                 }
             }
         }
-        self.rsyncischanged()
-        self.displayProfile()
+        rsyncischanged()
+        displayProfile()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.multipeselection = false
+        multipeselection = false
     }
 
     func reset() {
-        self.seterrorinfo(info: "")
+        info.stringValue = ""
         // Close edit and parameters view if open
-        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
+        if let view = SharedReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?
             closeview = view
             closeview?.closeview()
         }
-        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
+        if let view = SharedReference.shared.getvcref(viewcontroller: .vcedit) as? ViewControllerEdit {
             weak var closeview: ViewControllerEdit?
             closeview = view
             closeview?.closeview()
@@ -255,30 +239,30 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Execute tasks by double click in table
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
-        self.executeSingleTask()
+        executeSingleTask()
     }
 
     // Single task can be activated by double click from table
     func executeSingleTask() {
-        guard self.checkforrsync() == false else { return }
+        guard checkforrsync() == false else { return }
         if let index = self.index {
-            if let task = self.configurations?.getConfigurations()?[index].task {
-                guard ViewControllerReference.shared.synctasks.contains(task) else {
-                    self.info.stringValue = Infoexecute().info(num: 6)
+            if let task = configurations?.getConfigurations()?[index].task {
+                guard SharedReference.shared.synctasks.contains(task) else {
+                    info.stringValue = Infoexecute().info(num: 6)
                     return
                 }
-                guard self.singletask != nil else {
+                guard singletask != nil else {
                     // Dry run
-                    self.info.stringValue = Infoexecute().info(num: 10)
-                    self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-                    self.singletask = SingleTask(index: index)
-                    self.singletask?.executesingletask()
+                    info.stringValue = Infoexecute().info(num: 10)
+                    info.textColor = setcolor(nsviewcontroller: self, color: .green)
+                    singletask = SingleTask(index: index)
+                    singletask?.executesingletask()
                     return
                 }
                 // Real run
-                self.info.stringValue = Infoexecute().info(num: 11)
-                self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-                self.singletask?.executesingletask()
+                info.stringValue = Infoexecute().info(num: 11)
+                info.textColor = setcolor(nsviewcontroller: self, color: .green)
+                singletask?.executesingletask()
             }
         }
     }
@@ -287,49 +271,49 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     func displayProfile() {
         weak var localprofileinfo: SetProfileinfo?
         weak var localprofileinfo2: SetProfileinfo?
-        guard self.configurations?.tcpconnections?.connectionscheckcompleted ?? true else {
-            self.profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
+        guard configurations?.tcpconnections?.connectionscheckcompleted ?? true else {
+            profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
             return
         }
-        if let profile = self.configurations?.getProfile() {
-            self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
-            self.profilInfo.textColor = setcolor(nsviewcontroller: self, color: .white)
+        if let profile = configurations?.getProfile() {
+            profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
+            profilInfo.textColor = setcolor(nsviewcontroller: self, color: .white)
         } else {
-            self.profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
-            self.profilInfo.textColor = setcolor(nsviewcontroller: self, color: .green)
+            profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
+            profilInfo.textColor = setcolor(nsviewcontroller: self, color: .green)
         }
-        localprofileinfo = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
-        localprofileinfo2 = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-        localprofileinfo?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
-        localprofileinfo2?.setprofile(profile: self.profilInfo.stringValue, color: self.profilInfo.textColor!)
+        localprofileinfo = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+        localprofileinfo2 = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+        localprofileinfo?.setprofile(profile: profilInfo.stringValue, color: profilInfo.textColor!)
+        localprofileinfo2?.setprofile(profile: profilInfo.stringValue, color: profilInfo.textColor!)
     }
 
     func createandreloadschedules() {
-        guard self.configurations != nil else {
-            self.schedules = Schedules(profile: nil)
+        guard configurations != nil else {
+            schedules = Schedules(profile: nil)
             return
         }
-        if let profile = self.configurations?.getProfile() {
-            self.schedules = nil
-            self.schedules = Schedules(profile: profile)
+        if let profile = configurations?.getProfile() {
+            schedules = nil
+            schedules = Schedules(profile: profile)
         } else {
-            self.schedules = nil
-            self.schedules = Schedules(profile: nil)
+            schedules = nil
+            schedules = Schedules(profile: nil)
         }
-        self.schedulesortedandexpanded = ScheduleSortedAndExpand()
+        schedulesortedandexpanded = ScheduleSortedAndExpand()
     }
 
     func createandreloadconfigurations() {
-        guard self.configurations != nil else {
-            self.configurations = Configurations(profile: nil)
+        guard configurations != nil else {
+            configurations = Configurations(profile: nil)
             return
         }
-        if let profile = self.configurations?.getProfile() {
-            self.configurations = nil
-            self.configurations = Configurations(profile: profile)
+        if let profile = configurations?.getProfile() {
+            configurations = nil
+            configurations = Configurations(profile: profile)
         } else {
-            self.configurations = nil
-            self.configurations = Configurations(profile: nil)
+            configurations = nil
+            configurations = Configurations(profile: nil)
         }
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
@@ -340,30 +324,30 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         var profilestrings: [String]?
         profilestrings = CatalogProfile().getcatalogsasstringnames()
         profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
-        self.profilepopupbutton.removeAllItems()
-        self.profilepopupbutton.addItems(withTitles: profilestrings ?? [])
-        self.profilepopupbutton.selectItem(at: 0)
+        profilepopupbutton.removeAllItems()
+        profilepopupbutton.addItems(withTitles: profilestrings ?? [])
+        profilepopupbutton.selectItem(at: 0)
     }
 
     @IBAction func selectprofile(_: NSButton) {
-        var profile = self.profilepopupbutton.titleOfSelectedItem
-        let selectedindex = self.profilepopupbutton.indexOfSelectedItem
+        var profile = profilepopupbutton.titleOfSelectedItem
+        let selectedindex = profilepopupbutton.indexOfSelectedItem
         if profile == NSLocalizedString("Default profile", comment: "default profile") {
             profile = nil
         }
-        self.profilepopupbutton.selectItem(at: selectedindex)
+        profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 
     @IBAction func checksynchronizedfiles(_: NSButton) {
         if let index = self.index {
-            if let config = self.configurations?.getConfigurations()?[index] {
-                guard config.task != ViewControllerReference.shared.syncremote else {
-                    self.info.stringValue = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
+            if let config = configurations?.getConfigurations()?[index] {
+                guard config.task != SharedReference.shared.syncremote else {
+                    info.stringValue = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
                     return
                 }
-                guard self.connected(config: config) == true else {
-                    self.info.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Verify")
+                guard connected(config: config) == true else {
+                    info.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Verify")
                     return
                 }
                 let check = Checksynchronizedfiles(index: index)
@@ -373,44 +357,40 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func delete() {
-        guard ViewControllerReference.shared.process == nil else { return }
-        guard self.index != nil else {
-            self.info.stringValue = Infoexecute().info(num: 1)
+        guard SharedReference.shared.process == nil else { return }
+        guard index != nil else {
+            info.stringValue = Infoexecute().info(num: 1)
             return
         }
         if let index = self.index {
-            self.deleterow(index: index)
+            deleterow(index: index)
         }
     }
 
     func deleterow(index: Int?) {
         if let index = index {
-            if let hiddenID = self.configurations?.gethiddenID(index: index) {
+            if let hiddenID = configurations?.gethiddenID(index: index) {
                 let question: String = NSLocalizedString("Delete selected task?", comment: "Execute")
                 let text: String = NSLocalizedString("Cancel or Delete", comment: "Execute")
                 let dialog: String = NSLocalizedString("Delete", comment: "Execute")
                 let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
                 if answer {
                     // Delete Configurations and Schedules by hiddenID
-                    self.configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
-                    self.schedules?.deletescheduleonetask(hiddenID: hiddenID)
-                    self.deselect()
-                    self.reloadtabledata()
+                    configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
+                    schedules?.deletescheduleonetask(hiddenID: hiddenID)
+                    deselect()
+                    reloadtabledata()
                     // Reset in tabSchedule
-                    self.reloadtable(vcontroller: .vctabschedule)
-                    self.reloadtable(vcontroller: .vcsnapshot)
+                    reloadtable(vcontroller: .vctabschedule)
+                    reloadtable(vcontroller: .vcsnapshot)
                 }
             }
-            self.reset()
-            self.singletask = nil
+            reset()
+            singletask = nil
         }
     }
 
     @IBAction func enableconvertjsonbutton(_: NSButton) {
-        self.sidebaractionsDelegate?.sidebaractions(action: .enableconvertjsonbutton)
-    }
-
-    @IBAction func verifyjson(_: NSButton) {
-        self.sidebaractionsDelegate?.sidebaractions(action: .verifyjson)
+        sidebaractionsDelegate?.sidebaractions(action: .enableconvertjsonbutton)
     }
 }

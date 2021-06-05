@@ -19,7 +19,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
     var records: [NSMutableDictionary]?
     var updateviewprocesstermination: () -> Void
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
@@ -30,38 +30,38 @@ final class RemoteinfoEstimation: SetConfigurations {
     var estimatedlistandconfigs: Estimatedlistforsynchronization?
 
     private func prepareandstartexecutetasks() {
-        self.stackoftasktobeestimated = [Row]()
-        if self.getmultipleselectedindexesDelegate?.multipleselection() == false {
-            for i in 0 ..< (self.configurations?.getConfigurations()?.count ?? 0) {
-                let task = self.configurations?.getConfigurations()?[i].task
-                if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                    self.stackoftasktobeestimated?.append((self.configurations?.getConfigurations()?[i].hiddenID ?? 0, i))
+        stackoftasktobeestimated = [Row]()
+        if getmultipleselectedindexesDelegate?.multipleselection() == false {
+            for i in 0 ..< (configurations?.getConfigurations()?.count ?? 0) {
+                let task = configurations?.getConfigurations()?[i].task
+                if SharedReference.shared.synctasks.contains(task ?? "") {
+                    stackoftasktobeestimated?.append((configurations?.getConfigurations()?[i].hiddenID ?? 0, i))
                 }
             }
         } else {
-            let indexes = self.getmultipleselectedindexesDelegate?.getindexes()
+            let indexes = getmultipleselectedindexesDelegate?.getindexes()
             for i in 0 ..< (indexes?.count ?? 0) {
                 if let index = indexes?[i] {
-                    let task = self.configurations?.getConfigurations()?[index].task
-                    if ViewControllerReference.shared.synctasks.contains(task ?? "") {
-                        self.stackoftasktobeestimated?.append((self.configurations?.getConfigurations()?[index].hiddenID ?? 0, index))
+                    let task = configurations?.getConfigurations()?[index].task
+                    if SharedReference.shared.synctasks.contains(task ?? "") {
+                        stackoftasktobeestimated?.append((configurations?.getConfigurations()?[index].hiddenID ?? 0, index))
                     }
                 }
             }
         }
-        self.maxnumber = self.stackoftasktobeestimated?.count
+        maxnumber = stackoftasktobeestimated?.count
     }
 
     func selectalltaskswithnumbers(deselect: Bool) {
-        guard self.records != nil else { return }
-        for i in 0 ..< (self.records?.count ?? 0) {
-            let number = (self.records?[i].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String) ?? "0"
-            let delete = (self.records?[i].value(forKey: DictionaryStrings.deletefiles.rawValue) as? String) ?? "0"
+        guard records != nil else { return }
+        for i in 0 ..< (records?.count ?? 0) {
+            let number = (records?[i].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String) ?? "0"
+            let delete = (records?[i].value(forKey: DictionaryStrings.deletefiles.rawValue) as? String) ?? "0"
             if Int(number) ?? 0 > 0 || Int(delete) ?? 0 > 0 {
                 if deselect {
-                    self.records?[i].setValue(0, forKey: DictionaryStrings.select.rawValue)
+                    records?[i].setValue(0, forKey: DictionaryStrings.select.rawValue)
                 } else {
-                    self.records?[i].setValue(1, forKey: DictionaryStrings.select.rawValue)
+                    records?[i].setValue(1, forKey: DictionaryStrings.select.rawValue)
                 }
             }
         }
@@ -81,29 +81,29 @@ final class RemoteinfoEstimation: SetConfigurations {
                 }
             }
         }
-        self.estimatedlistandconfigs = Estimatedlistforsynchronization(quickbackuplist: quickbackuplist, estimatedlist: records)
-        ViewControllerReference.shared.estimatedlistforsynchronization = self.estimatedlistandconfigs
+        estimatedlistandconfigs = Estimatedlistforsynchronization(quickbackuplist: quickbackuplist, estimatedlist: records)
+        SharedReference.shared.estimatedlistforsynchronization = estimatedlistandconfigs
     }
 
     private func startestimation() {
-        guard (self.stackoftasktobeestimated?.count ?? 0) > 0 else { return }
-        if let index = self.stackoftasktobeestimated?.remove(at: 0).1 {
+        guard (stackoftasktobeestimated?.count ?? 0) > 0 else { return }
+        if let index = stackoftasktobeestimated?.remove(at: 0).1 {
             self.index = index
-            self.outputprocess = OutputProcess()
-            self.startstopProgressIndicatorDelegate?.start()
-            let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+            outputprocess = OutputfromProcess()
+            startstopProgressIndicatorDelegate?.start()
+            let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
             estimation.startestimation()
         }
     }
 
     init(viewcontroller: NSViewController, processtermination: @escaping () -> Void) {
-        self.updateviewprocesstermination = processtermination
-        self.startstopProgressIndicatorDelegate = viewcontroller as? StartStopProgressIndicator
-        self.getmultipleselectedindexesDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.prepareandstartexecutetasks()
-        self.records = [NSMutableDictionary]()
-        self.estimatedlistandconfigs = Estimatedlistforsynchronization()
-        self.startestimation()
+        updateviewprocesstermination = processtermination
+        startstopProgressIndicatorDelegate = viewcontroller as? StartStopProgressIndicator
+        getmultipleselectedindexesDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        prepareandstartexecutetasks()
+        records = [NSMutableDictionary]()
+        estimatedlistandconfigs = Estimatedlistforsynchronization()
+        startestimation()
     }
 
     deinit {
@@ -113,50 +113,50 @@ final class RemoteinfoEstimation: SetConfigurations {
     }
 
     func abort() {
-        self.stackoftasktobeestimated = nil
-        self.estimatedlistandconfigs = nil
+        stackoftasktobeestimated = nil
+        estimatedlistandconfigs = nil
     }
 }
 
 extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
     func maxCount() -> Int {
-        return self.maxnumber ?? 0
+        return maxnumber ?? 0
     }
 
     func inprogressCount() -> Int {
-        return self.stackoftasktobeestimated?.count ?? 0
+        return stackoftasktobeestimated?.count ?? 0
     }
 }
 
 extension RemoteinfoEstimation {
     func processtermination() {
         if let index = self.index {
-            let record = RemoteinfonumbersOnetask(outputprocess: self.outputprocess).record()
-            record.setValue(self.configurations?.getConfigurations()?[index].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
-            record.setValue(self.configurations?.getConfigurations()?[index].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
-            record.setValue(self.configurations?.getConfigurations()?[index].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
-            record.setValue(self.configurations?.getConfigurations()?[index].dayssincelastbackup, forKey: DictionaryStrings.daysID.rawValue)
-            if self.configurations?.getConfigurations()?[index].offsiteServer.isEmpty == true {
+            let record = RemoteinfonumbersOnetask(outputprocess: outputprocess).record()
+            record.setValue(configurations?.getConfigurations()?[index].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
+            record.setValue(configurations?.getConfigurations()?[index].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
+            record.setValue(configurations?.getConfigurations()?[index].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
+            record.setValue(configurations?.getConfigurations()?[index].dayssincelastbackup, forKey: DictionaryStrings.daysID.rawValue)
+            if configurations?.getConfigurations()?[index].offsiteServer.isEmpty == true {
                 record.setValue(DictionaryStrings.localhost.rawValue, forKey: DictionaryStrings.offsiteServer.rawValue)
             } else {
-                record.setValue(self.configurations?.getConfigurations()?[index].offsiteServer, forKey: DictionaryStrings.offsiteServer.rawValue)
+                record.setValue(configurations?.getConfigurations()?[index].offsiteServer, forKey: DictionaryStrings.offsiteServer.rawValue)
             }
-            record.setValue(self.configurations?.getConfigurations()?[index].task, forKey: DictionaryStrings.task.rawValue)
-            self.records?.append(record)
-            self.estimatedlistandconfigs?.estimatedlist?.append(record)
-            guard self.stackoftasktobeestimated?.count ?? 0 > 0 else {
-                self.selectalltaskswithnumbers(deselect: false)
-                self.startstopProgressIndicatorDelegate?.stop()
+            record.setValue(configurations?.getConfigurations()?[index].task, forKey: DictionaryStrings.task.rawValue)
+            records?.append(record)
+            estimatedlistandconfigs?.estimatedlist?.append(record)
+            guard stackoftasktobeestimated?.count ?? 0 > 0 else {
+                selectalltaskswithnumbers(deselect: false)
+                startstopProgressIndicatorDelegate?.stop()
                 // Prepare tasks with changes for synchronization
-                self.finalizeandpreparesynchronizelist()
+                finalizeandpreparesynchronizelist()
                 return
             }
             // Update View
-            self.updateviewprocesstermination()
-            self.outputprocess = OutputProcessRsync()
-            if let nextindex = self.stackoftasktobeestimated?.remove(at: 0).1 {
+            updateviewprocesstermination()
+            outputprocess = OutputfromProcessRsync()
+            if let nextindex = stackoftasktobeestimated?.remove(at: 0).1 {
                 self.index = nextindex
-                let estimation = EstimateremoteInformationOnetask(index: nextindex, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+                let estimation = EstimateremoteInformationOnetask(index: nextindex, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
                 estimation.startestimation()
             }
         }
@@ -164,7 +164,7 @@ extension RemoteinfoEstimation {
 
     func filehandler() {
         weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }

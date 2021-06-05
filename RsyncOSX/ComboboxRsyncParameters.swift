@@ -17,7 +17,7 @@ struct ComboboxRsyncParameters {
     // - parameter none: none
     // - return : array of String
     func getComboBoxValues() -> [String] {
-        return self.comboBoxValues ?? [""]
+        return comboBoxValues ?? [""]
     }
 
     // Returns Int value of argument
@@ -48,17 +48,17 @@ struct ComboboxRsyncParameters {
     // value in combobox when rsync parameters are presented and stored in configuration
     func indexandvaluersyncparameter(_ parameter: String?) -> (Int, String) {
         guard parameter != nil else { return (0, "") }
-        let splitstr: [String] = self.split(parameter ?? "")
+        let splitstr: [String] = split(parameter ?? "")
         guard splitstr.count > 1 else { return (0, "") }
         let argument = splitstr[0]
         let value = splitstr[1]
         var returnvalue: String?
         var returnindex: Int?
-        if argument != value, self.indexofrsyncparameter(argument) >= 0 {
+        if argument != value, indexofrsyncparameter(argument) >= 0 {
             returnvalue = value
-            returnindex = self.indexofrsyncparameter(argument)
+            returnindex = indexofrsyncparameter(argument)
         } else {
-            if self.indexofrsyncparameter(splitstr[0]) >= 0 {
+            if indexofrsyncparameter(splitstr[0]) >= 0 {
                 returnvalue = "\"" + argument + "\" " + "no arguments"
             } else {
                 if argument == value {
@@ -67,11 +67,11 @@ struct ComboboxRsyncParameters {
                     returnvalue = argument + "=" + value
                 }
             }
-            if argument != value, self.indexofrsyncparameter(argument) >= 0 {
-                returnindex = self.indexofrsyncparameter(argument)
+            if argument != value, indexofrsyncparameter(argument) >= 0 {
+                returnindex = indexofrsyncparameter(argument)
             } else {
-                if self.indexofrsyncparameter(splitstr[0]) >= 0 {
-                    returnindex = self.indexofrsyncparameter(argument)
+                if indexofrsyncparameter(splitstr[0]) >= 0 {
+                    returnindex = indexofrsyncparameter(argument)
                 } else {
                     returnindex = 0
                 }
@@ -88,19 +88,19 @@ struct ComboboxRsyncParameters {
         if let config = self.config {
             switch rsyncparameternumber {
             case 8:
-                return self.indexandvaluersyncparameter(config.parameter8)
+                return indexandvaluersyncparameter(config.parameter8)
             case 9:
-                return self.indexandvaluersyncparameter(config.parameter9)
+                return indexandvaluersyncparameter(config.parameter9)
             case 10:
-                return self.indexandvaluersyncparameter(config.parameter10)
+                return indexandvaluersyncparameter(config.parameter10)
             case 11:
-                return self.indexandvaluersyncparameter(config.parameter11)
+                return indexandvaluersyncparameter(config.parameter11)
             case 12:
-                return self.indexandvaluersyncparameter(config.parameter12)
+                return indexandvaluersyncparameter(config.parameter12)
             case 13:
-                return self.indexandvaluersyncparameter(config.parameter13)
+                return indexandvaluersyncparameter(config.parameter13)
             case 14:
-                return self.indexandvaluersyncparameter(config.parameter14)
+                return indexandvaluersyncparameter(config.parameter14)
             default:
                 return (0, "")
             }
@@ -110,9 +110,9 @@ struct ComboboxRsyncParameters {
 
     init(config: Configuration?) {
         self.config = config
-        self.comboBoxValues = [String]()
+        comboBoxValues = [String]()
         for i in 0 ..< SuffixstringsRsyncParameters().rsyncArguments.count {
-            self.comboBoxValues?.append(SuffixstringsRsyncParameters().rsyncArguments[i].0)
+            comboBoxValues?.append(SuffixstringsRsyncParameters().rsyncArguments[i].0)
         }
     }
 }

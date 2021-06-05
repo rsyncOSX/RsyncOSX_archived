@@ -24,26 +24,26 @@ final class SingleTaskWorkQueu {
     // Returns the top most element.
     // Top element is read only
     func peek() -> SingleTaskWork {
-        return self.work?[0] ?? .empty
+        return work?[0] ?? .empty
     }
 
     // Returns the top most element.
     // Top element is removed
     func pop() -> SingleTaskWork {
-        return self.work?.removeFirst() ?? .empty
+        return work?.removeFirst() ?? .empty
     }
 
     // rsync error
     // Pushing error token ontop of stack
     func error() {
-        self.work?.insert(.error, at: 0)
+        work?.insert(.error, at: 0)
     }
 
     // Single run
     init() {
-        self.work = [SingleTaskWork]()
-        self.work?.append(.estimatesinglerun)
-        self.work?.append(.executesinglerun)
-        self.work?.append(.done)
+        work = [SingleTaskWork]()
+        work?.append(.estimatesinglerun)
+        work?.append(.executesinglerun)
+        work?.append(.done)
     }
 }

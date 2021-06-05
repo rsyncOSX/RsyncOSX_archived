@@ -17,9 +17,9 @@ extension ViewControllerMain: SingleTaskProcess {
         }
     }
 
-    func presentViewInformation(outputprocess: OutputProcess?) {
+    func presentViewInformation(outputprocess: OutputfromProcess?) {
         self.outputprocess = outputprocess
-        if self.appendnow() {
+        if appendnow() {
             globalMainQueue.async { () -> Void in
                 self.mainTableView.reloadData()
             }
@@ -32,13 +32,7 @@ extension ViewControllerMain: SingleTaskProcess {
 
     func terminateProgressProcess() {
         weak var localprocessupdateDelegate: UpdateProgress?
-        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
+        localprocessupdateDelegate = SharedReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
         localprocessupdateDelegate?.processTermination()
-    }
-
-    func seterrorinfo(info: String) {
-        self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
-        self.info.isHidden = false
-        self.info.stringValue = info
     }
 }

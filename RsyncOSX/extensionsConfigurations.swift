@@ -22,15 +22,15 @@ protocol SetConfigurations {
 
 extension SetConfigurations {
     var configurationsDelegate: GetConfigurationsObject? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        return SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     var configurations: Configurations? {
-        return self.configurationsDelegate?.getconfigurationsobject()
+        return configurationsDelegate?.getconfigurationsobject()
     }
 
     var sortedandexpanded: ScheduleSortedAndExpand? {
-        return self.configurationsDelegate?.getschedulesortedandexpanded()
+        return configurationsDelegate?.getschedulesortedandexpanded()
     }
 }
 
@@ -48,30 +48,30 @@ protocol ReloadTable {
 
 extension ReloadTable {
     var reloadDelegateMain: Reloadandrefresh? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        return SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     var reloadDelegateSchedule: Reloadandrefresh? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+        return SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
 
     var reloadDelegateLoggData: Reloadandrefresh? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        return SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
 
     var reloadDelegateSnapshot: Reloadandrefresh? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        return SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
 
     func reloadtable(vcontroller: ViewController) {
         if vcontroller == .vctabmain {
-            self.reloadDelegateMain?.reloadtabledata()
+            reloadDelegateMain?.reloadtabledata()
         } else if vcontroller == .vctabschedule {
-            self.reloadDelegateSchedule?.reloadtabledata()
+            reloadDelegateSchedule?.reloadtabledata()
         } else if vcontroller == .vcloggdata {
-            self.reloadDelegateLoggData?.reloadtabledata()
+            reloadDelegateLoggData?.reloadtabledata()
         } else if vcontroller == .vcsnapshot {
-            self.reloadDelegateSnapshot?.reloadtabledata()
+            reloadDelegateSnapshot?.reloadtabledata()
         }
     }
 }

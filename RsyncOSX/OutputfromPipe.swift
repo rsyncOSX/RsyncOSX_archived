@@ -10,12 +10,12 @@ import Foundation
 struct LoggOutputfromPipe {
     var messages: [String]?
     init(pipe: Pipe?) {
-        self.messages = [String]()
+        messages = [String]()
         if let outHandle = pipe?.fileHandleForReading {
             let data = outHandle.availableData
             if data.count > 0 {
                 if let str = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
-                    self.messages?.append(str as String)
+                    messages?.append(str as String)
                 }
             }
         }

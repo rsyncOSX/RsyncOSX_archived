@@ -14,7 +14,7 @@ struct LocaleRemoteInfo {
     var localremote: [NSDictionary]?
 
     func getlocalremoteinfo(index: Int) -> [NSDictionary]? {
-        if let info = self.localremote?.filter({ ($0.value(forKey: DictionaryStrings.index.rawValue) as? Int) ?? -1 == index }) {
+        if let info = localremote?.filter({ ($0.value(forKey: DictionaryStrings.index.rawValue) as? Int) ?? -1 == index }) {
             return info
         } else {
             return nil
@@ -23,22 +23,22 @@ struct LocaleRemoteInfo {
 
     mutating func setlocalremoteinfo(info: NSMutableDictionary?) {
         if let info = info {
-            if self.localremote == nil {
-                self.localremote?.append(info)
+            if localremote == nil {
+                localremote?.append(info)
             } else {
-                self.localremote?.append(info)
+                localremote?.append(info)
             }
         }
     }
 
     init() {
-        self.localremote = [NSDictionary]()
+        localremote = [NSDictionary]()
     }
 }
 
 class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor, Connected {
     private var index: Int?
-    private var outputprocess: OutputProcess?
+    private var outputprocess: OutputfromProcess?
     private var complete: Bool = false
     private var localremoteinfo: LocaleRemoteInfo?
 
@@ -59,15 +59,15 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcinfolocalremote, nsviewcontroller: self)
+        SharedReference.shared.setvcref(viewcontroller: .vcinfolocalremote, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.complete = false
-        self.index = self.index()
+        complete = false
+        index = index()
         if let index = self.index {
-            let datelastbackup = self.configurations?.getConfigurations()?[index].dateRun ?? ""
+            let datelastbackup = configurations?.getConfigurations()?[index].dateRun ?? ""
             if datelastbackup.isEmpty == false {
                 let date = datelastbackup.en_us_date_from_string()
                 self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
@@ -75,29 +75,29 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             } else {
                 self.datelastbackup.stringValue = NSLocalizedString("Date last synchronize:", comment: "Remote Info")
             }
-            let numberlastbackup = self.configurations?.getConfigurations()?[index].dayssincelastbackup ?? ""
-            self.dayslastbackup.stringValue = NSLocalizedString("Days since last synchronize:", comment: "Remote Info")
+            let numberlastbackup = configurations?.getConfigurations()?[index].dayssincelastbackup ?? ""
+            dayslastbackup.stringValue = NSLocalizedString("Days since last synchronize:", comment: "Remote Info")
                 + " " + numberlastbackup
-            if self.connected(config: self.configurations?.getConfigurations()?[index]) == true {
-                self.localremoteinfo = LocaleRemoteInfo()
-                self.working.startAnimation(nil)
-                self.outputprocess = OutputProcess()
-                let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: true, processtermination: self.processtermination, filehandler: self.filehandler)
+            if connected(config: configurations?.getConfigurations()?[index]) == true {
+                localremoteinfo = LocaleRemoteInfo()
+                working.startAnimation(nil)
+                outputprocess = OutputfromProcess()
+                let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: true, processtermination: processtermination, filehandler: filehandler)
                 estimation.startestimation()
             } else {
-                self.gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
-                self.gotit.textColor = self.setcolor(nsviewcontroller: self, color: .green)
+                gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
+                gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
             }
         }
     }
 
     @IBAction func close(_: NSButton) {
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    private func setnumbers(outputprocess: OutputProcess?, local: Bool) {
+    private func setnumbers(outputprocess: OutputfromProcess?, local: Bool) {
         globalMainQueue.async { () -> Void in
             let infotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
             if local {
@@ -124,16 +124,16 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
 
 extension ViewControllerInformationLocalRemote {
     func processtermination() {
-        if self.complete == false {
-            self.setnumbers(outputprocess: self.outputprocess, local: true)
+        if complete == false {
+            setnumbers(outputprocess: outputprocess, local: true)
         } else {
-            self.setnumbers(outputprocess: self.outputprocess, local: false)
+            setnumbers(outputprocess: outputprocess, local: false)
         }
         if let index = self.index {
-            if self.complete == false {
-                self.complete = true
-                self.outputprocess = OutputProcess()
-                let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: self.outputprocess, local: false, processtermination: self.processtermination, filehandler: self.filehandler)
+            if complete == false {
+                complete = true
+                outputprocess = OutputfromProcess()
+                let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
                 estimation.startestimation()
             }
         }

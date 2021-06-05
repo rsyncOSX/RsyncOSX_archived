@@ -24,35 +24,35 @@ struct RestoreActions {
     var remotefileverified: Bool = false
 
     init(closure: () -> Bool) {
-        self.tmprestorepathverified = closure()
+        tmprestorepathverified = closure()
     }
 
     func goforfullrestoretotemporarypath() -> Bool {
-        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.fullrestore else { return false }
+        guard tmprestorepathverified, tmprestorepathselected, index, estimated, fullrestore else { return false }
         return true
     }
 
     func goforrestorefilestotemporarypath() -> Bool {
-        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated, self.restorefiles, self.remotefileverified else { return false }
+        guard tmprestorepathverified, tmprestorepathselected, index, estimated, restorefiles, remotefileverified else { return false }
         return true
     }
 
     func goforfullrestoreestimatetemporarypath() -> Bool {
-        guard self.tmprestorepathverified, self.tmprestorepathselected, self.index, self.estimated == false, self.fullrestore else { return false }
+        guard tmprestorepathverified, tmprestorepathselected, index, estimated == false, fullrestore else { return false }
         return true
     }
 
     func getfilelistrestorefiles() -> Bool {
-        guard self.index, self.estimated == false, self.restorefiles else { return false }
+        guard index, estimated == false, restorefiles else { return false }
         return true
     }
 
     func reset() -> Bool {
         var reset = false
-        if self.goforfullrestoretotemporarypath() == true {
+        if goforfullrestoretotemporarypath() == true {
             reset = true
         }
-        if self.goforrestorefilestotemporarypath() == true {
+        if goforrestorefilestotemporarypath() == true {
             reset = true
         }
         return reset

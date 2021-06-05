@@ -12,10 +12,10 @@ import Foundation
 
 extension ViewControllerSchedule: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if tableView == self.scheduletable {
-            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+        if tableView == scheduletable {
+            return configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         } else {
-            return self.scheduledetails?.count ?? 0
+            return scheduledetails?.count ?? 0
         }
     }
 }
@@ -23,15 +23,15 @@ extension ViewControllerSchedule: NSTableViewDataSource {
 extension ViewControllerSchedule: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         if let tableColumn = tableColumn {
-            if tableView == self.scheduletable {
-                if row < self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
-                    if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row],
+            if tableView == scheduletable {
+                if row < configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0 {
+                    if let object: NSDictionary = configurations?.getConfigurationsDataSourceSynchronize()?[row],
                        let hiddenID: Int = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                     {
                         switch tableColumn.identifier.rawValue {
                         case "scheduleID":
-                            if self.sortedandexpanded != nil {
-                                let schedule: String? = self.sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
+                            if sortedandexpanded != nil {
+                                let schedule: String? = sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: false)
                                 if schedule?.isEmpty == false {
                                     switch schedule {
                                     case Scheduletype.once.rawValue:
@@ -50,12 +50,12 @@ extension ViewControllerSchedule: NSTableViewDelegate {
                                 }
                             }
                         case "inCellID":
-                            if self.sortedandexpanded != nil {
-                                let taskintime: String? = self.sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
+                            if sortedandexpanded != nil {
+                                let taskintime: String? = sortedandexpanded?.sortandcountscheduledonetask(hiddenID, profilename: nil, number: true)
                                 return taskintime ?? ""
                             }
                         case DictionaryStrings.delta.rawValue:
-                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
+                            let delta = sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0 {
                                 if (delta?.count ?? 0) > 1 {
                                     return (delta?[0].value(forKey: DictionaryStrings.delta.rawValue) as? String ?? "") + "*"
@@ -72,8 +72,8 @@ extension ViewControllerSchedule: NSTableViewDelegate {
                     return nil
                 }
             } else {
-                if row < self.scheduledetails?.count ?? 0 {
-                    if let object: NSMutableDictionary = self.scheduledetails?[row],
+                if row < scheduledetails?.count ?? 0 {
+                    if let object: NSMutableDictionary = scheduledetails?[row],
                        let hiddenID: Int = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
                     {
                         switch tableColumn.identifier.rawValue {
@@ -129,7 +129,7 @@ extension ViewControllerSchedule: NSTableViewDelegate {
                         case "numberoflogs", "dayinweek":
                             return object[tableColumn.identifier] as? String
                         case "inCellID":
-                            let delta = self.sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
+                            let delta = sortedandexpanded?.sortedschedules?.filter { $0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int == hiddenID }
                             if (delta?.count ?? 0) > 0, row < (delta?.count ?? 0) {
                                 return delta?[row].value(forKey: DictionaryStrings.startsin.rawValue)
                             } else {
@@ -149,15 +149,15 @@ extension ViewControllerSchedule: NSTableViewDelegate {
 
     func tableView(_: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
         if tableColumn!.identifier.rawValue == DictionaryStrings.stopCellID.rawValue || tableColumn!.identifier.rawValue == DictionaryStrings.deleteCellID.rawValue {
-            var stop: Int = (self.scheduledetails![row].value(forKey: DictionaryStrings.stopCellID.rawValue) as? Int)!
-            var delete: Int = (self.scheduledetails![row].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int)!
+            var stop: Int = (scheduledetails![row].value(forKey: DictionaryStrings.stopCellID.rawValue) as? Int)!
+            var delete: Int = (scheduledetails![row].value(forKey: DictionaryStrings.deleteCellID.rawValue) as? Int)!
             if stop == 0 { stop = 1 } else if stop == 1 { stop = 0 }
             if delete == 0 { delete = 1 } else if delete == 1 { delete = 0 }
             switch tableColumn!.identifier.rawValue {
             case DictionaryStrings.stopCellID.rawValue:
-                self.scheduledetails![row].setValue(stop, forKey: DictionaryStrings.stopCellID.rawValue)
+                scheduledetails![row].setValue(stop, forKey: DictionaryStrings.stopCellID.rawValue)
             case DictionaryStrings.deleteCellID.rawValue:
-                self.scheduledetails![row].setValue(delete, forKey: DictionaryStrings.deleteCellID.rawValue)
+                scheduledetails![row].setValue(delete, forKey: DictionaryStrings.deleteCellID.rawValue)
             default:
                 break
             }

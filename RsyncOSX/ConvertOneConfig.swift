@@ -14,20 +14,20 @@ struct ConvertOneConfig {
 
     var dict: NSMutableDictionary {
         let row: NSMutableDictionary = [
-            DictionaryStrings.taskCellID.rawValue: self.config?.task ?? "",
-            DictionaryStrings.hiddenID.rawValue: self.config?.hiddenID ?? "",
-            DictionaryStrings.localCatalogCellID.rawValue: self.config?.localCatalog ?? "",
-            DictionaryStrings.offsiteCatalogCellID.rawValue: self.config?.offsiteCatalog ?? "",
-            DictionaryStrings.offsiteUsernameID.rawValue: self.config?.offsiteUsername ?? "",
-            DictionaryStrings.offsiteServerCellID.rawValue: self.config?.offsiteServer ?? "",
-            DictionaryStrings.backupIDCellID.rawValue: self.config?.backupID ?? "",
-            DictionaryStrings.runDateCellID.rawValue: self.config?.dateRun ?? "",
-            DictionaryStrings.daysID.rawValue: self.config?.dayssincelastbackup ?? "",
-            DictionaryStrings.markdays.rawValue: self.config?.markdays ?? "",
-            DictionaryStrings.snapCellID.rawValue: self.config?.snapshotnum ?? "",
+            DictionaryStrings.taskCellID.rawValue: config?.task ?? "",
+            DictionaryStrings.hiddenID.rawValue: config?.hiddenID ?? "",
+            DictionaryStrings.localCatalogCellID.rawValue: config?.localCatalog ?? "",
+            DictionaryStrings.offsiteCatalogCellID.rawValue: config?.offsiteCatalog ?? "",
+            DictionaryStrings.offsiteUsernameID.rawValue: config?.offsiteUsername ?? "",
+            DictionaryStrings.offsiteServerCellID.rawValue: config?.offsiteServer ?? "",
+            DictionaryStrings.backupIDCellID.rawValue: config?.backupID ?? "",
+            DictionaryStrings.runDateCellID.rawValue: config?.dateRun ?? "",
+            DictionaryStrings.daysID.rawValue: config?.dayssincelastbackup ?? "",
+            DictionaryStrings.markdays.rawValue: config?.markdays ?? "",
+            DictionaryStrings.snapCellID.rawValue: config?.snapshotnum ?? "",
             DictionaryStrings.selectCellID.rawValue: 0,
-            DictionaryStrings.executepretask.rawValue: self.config?.executepretask ?? 0,
-            DictionaryStrings.executeposttask.rawValue: self.config?.executeposttask ?? 0,
+            DictionaryStrings.executepretask.rawValue: config?.executepretask ?? 0,
+            DictionaryStrings.executeposttask.rawValue: config?.executeposttask ?? 0,
         ]
         return row
     }

@@ -1,24 +1,24 @@
 import Foundation
 
 final class RemoteCapacity: Connected {
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
     var config: Configuration?
-    var command: OtherProcessCmdClosure?
+    var command: OtherProcess?
 
     func getremotecapacity() {
         if let config = self.config {
-            guard ViewControllerReference.shared.process == nil else { return }
-            self.outputprocess = OutputProcess()
+            guard SharedReference.shared.process == nil else { return }
+            outputprocess = OutputfromProcess()
             // let config = Configuration(dictionary: dict)
-            guard self.connected(config: config) == true else { return }
+            guard connected(config: config) == true else { return }
             let duargs = DuArgumentsSsh(config: self.config!)
             guard duargs.getArguments() != nil || duargs.getCommand() != nil else { return }
 
-            self.command = OtherProcessCmdClosure(command: duargs.getCommand(),
-                                                  arguments: duargs.getArguments(),
-                                                  processtermination: self.processtermination,
-                                                  filehandler: self.filehandler)
-            self.command?.executeProcess(outputprocess: self.outputprocess)
+            command = OtherProcess(command: duargs.getCommand(),
+                                   arguments: duargs.getArguments(),
+                                   processtermination: processtermination,
+                                   filehandler: filehandler)
+            command?.executeProcess(outputprocess: outputprocess)
         }
     }
 
@@ -29,9 +29,9 @@ final class RemoteCapacity: Connected {
 
 extension RemoteCapacity {
     func processtermination() {
-        guard ViewControllerReference.shared.process != nil else { return }
+        guard SharedReference.shared.process != nil else { return }
         // let numbers = RemoteNumbers(outputprocess: self.outputprocess)
-        self.command = nil
+        command = nil
     }
 
     func filehandler() {

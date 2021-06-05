@@ -10,7 +10,7 @@
 import Foundation
 
 protocol SendOutputProcessreference: AnyObject {
-    func sendoutputprocessreference(outputprocess: OutputProcess?)
+    func sendoutputprocessreference(outputprocess: OutputfromProcess?)
 }
 
 // Protocols for instruction start/stop progressviewindicator
@@ -23,9 +23,8 @@ protocol StartStopProgressIndicatorSingleTask: AnyObject {
 // Protocol functions implemented in main view
 protocol SingleTaskProcess: AnyObject {
     func presentViewProgress()
-    func presentViewInformation(outputprocess: OutputProcess?)
+    func presentViewInformation(outputprocess: OutputfromProcess?)
     func terminateProgressProcess()
-    func seterrorinfo(info: String)
 }
 
 final class SingleTask: SetSchedules, SetConfigurations {
@@ -34,61 +33,68 @@ final class SingleTask: SetSchedules, SetConfigurations {
     weak var setprocessDelegate: SendOutputProcessreference?
 
     var index: Int?
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
     var maxcount: Int = 0
     var workload: SingleTaskWorkQueu?
-    var command: RsyncProcessCmdClosure?
+    var command: RsyncProcess?
 
     func executesingletask() {
-        if self.workload == nil {
-            self.workload = SingleTaskWorkQueu()
+        if workload == nil {
+            workload = SingleTaskWorkQueu()
         }
-        switch self.workload?.peek() {
+        switch workload?.peek() {
         case .estimatesinglerun:
-            if let index = self.index {
-                self.indicatorDelegate?.startIndicator()
-                self.outputprocess = OutputProcessRsync()
-                if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .argdryRun) {
-                    self.command = RsyncProcessCmdClosure(arguments: arguments,
-                                                          config: self.configurations?.getConfigurations()?[index],
-                                                          processtermination: self.processtermination,
-                                                          filehandler: self.filehandler)
-                    self.command?.executeProcess(outputprocess: self.outputprocess)
-                    self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            if let index = self.index,
+               let hiddenID = configurations?.gethiddenID(index: index)
+            {
+                indicatorDelegate?.startIndicator()
+                outputprocess = OutputfromProcessRsync()
+                if let arguments = configurations?.arguments4rsync(hiddenID: hiddenID,
+                                                                   argtype: .argdryRun)
+                {
+                    command = RsyncProcess(arguments: arguments,
+                                           config: configurations?.getConfigurations()?[index],
+                                           processtermination: processtermination,
+                                           filehandler: filehandler)
+                    command?.executeProcess(outputprocess: outputprocess)
+                    setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
                 }
             }
         case .executesinglerun:
-            if let index = self.index {
-                self.singletaskDelegate?.presentViewProgress()
-                self.outputprocess = OutputProcessRsync()
-                if let arguments = self.configurations?.arguments4rsync(index: index, argtype: .arg) {
-                    self.command = RsyncProcessCmdClosure(arguments: arguments,
-                                                          config: self.configurations?.getConfigurations()?[index],
-                                                          processtermination: self.processtermination,
-                                                          filehandler: self.filehandler)
-                    self.command?.executeProcess(outputprocess: self.outputprocess)
-                    self.setprocessDelegate?.sendoutputprocessreference(outputprocess: self.outputprocess)
+            if let index = self.index,
+               let hiddenID = configurations?.gethiddenID(index: index)
+            {
+                singletaskDelegate?.presentViewProgress()
+                outputprocess = OutputfromProcessRsync()
+                if let arguments = configurations?.arguments4rsync(hiddenID: hiddenID,
+                                                                   argtype: .arg)
+                {
+                    command = RsyncProcess(arguments: arguments,
+                                           config: configurations?.getConfigurations()?[index],
+                                           processtermination: processtermination,
+                                           filehandler: filehandler)
+                    command?.executeProcess(outputprocess: outputprocess)
+                    setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
                 }
             }
         case .abort:
-            self.workload = nil
-            self.singletaskDelegate?.seterrorinfo(info: "Abort")
+            workload = nil
         case .empty:
-            self.workload = nil
+            workload = nil
         default:
-            self.workload = nil
+            workload = nil
         }
     }
 
     func error() {
-        self.workload?.error()
+        workload?.error()
     }
 
     init(index: Int) {
         self.index = index
-        self.indicatorDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.singletaskDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.setprocessDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        indicatorDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        singletaskDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        setprocessDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 }
 
@@ -99,18 +105,18 @@ extension SingleTask {
         {
             switch workload.pop() {
             case .estimatesinglerun:
-                self.indicatorDelegate?.stopIndicator()
-                self.maxcount = self.outputprocess?.getMaxcount() ?? 0
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
+                indicatorDelegate?.stopIndicator()
+                maxcount = TrimTwo(outputprocess?.getOutput() ?? []).maxnumber
+                singletaskDelegate?.presentViewInformation(outputprocess: outputprocess)
             case .error:
-                self.indicatorDelegate?.stopIndicator()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
+                indicatorDelegate?.stopIndicator()
+                singletaskDelegate?.presentViewInformation(outputprocess: outputprocess)
+                configurations?.setCurrentDateonConfiguration(index: index, outputprocess: outputprocess)
                 self.workload = nil
             case .executesinglerun:
-                self.singletaskDelegate?.terminateProgressProcess()
-                self.singletaskDelegate?.presentViewInformation(outputprocess: self.outputprocess)
-                self.configurations?.setCurrentDateonConfiguration(index: index, outputprocess: self.outputprocess)
+                singletaskDelegate?.terminateProgressProcess()
+                singletaskDelegate?.presentViewInformation(outputprocess: outputprocess)
+                configurations?.setCurrentDateonConfiguration(index: index, outputprocess: outputprocess)
             case .empty:
                 self.workload = nil
             default:
@@ -118,15 +124,15 @@ extension SingleTask {
             }
         }
         // Reset process referance
-        self.command = nil
+        command = nil
     }
 
     func filehandler() {
         weak var outputeverythingDelegate: ViewOutputDetails?
         weak var localprocessupdateDelegate: UpdateProgress?
-        localprocessupdateDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
+        localprocessupdateDelegate = SharedReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess
         localprocessupdateDelegate?.fileHandler()
-        outputeverythingDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
             outputeverythingDelegate?.reloadtable()
         }
@@ -135,10 +141,10 @@ extension SingleTask {
 
 extension SingleTask: Count {
     func maxCount() -> Int {
-        return self.maxcount
+        return maxcount
     }
 
     func inprogressCount() -> Int {
-        return self.outputprocess?.count() ?? 0
+        return outputprocess?.getOutput()?.count ?? 0
     }
 }

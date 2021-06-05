@@ -9,63 +9,83 @@
 import Files
 import Foundation
 
-enum Fileerrortype {
-    case writelogfile
-    case profilecreatedirectory
-    case profiledeletedirectory
-    case filesize
-    case createsshdirectory
-    case json
-    case readlogfile
+enum Result<Value, Error: Swift.Error> {
+    case success(Value)
+    case failure(Error)
 }
 
-// Protocol for reporting file errors
-protocol Fileerror: AnyObject {
-    func errormessage(errorstr: String, errortype: Fileerrortype)
-}
+// typealias HandlerRsyncOSX = (Result<Data, RsyncOSXTypeErrors>) -> Void
+// typealias Handler = (Result<Data, Error>) -> Void
+typealias HandlerNSNumber = (Result<NSNumber, Error>) -> Void
 
-protocol FileErrors {
-    var errorDelegate: Fileerror? { get }
-}
-
-extension FileErrors {
-    var errorDelegate: Fileerror? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-    }
-
-    func error(error: String, errortype: Fileerrortype) {
-        self.errorDelegate?.errormessage(errorstr: error, errortype: errortype)
-    }
-}
-
-protocol ErrorMessage {
-    func errordescription(errortype: Fileerrortype) -> String
-}
-
-extension ErrorMessage {
-    func errordescription(errortype: Fileerrortype) -> String {
-        switch errortype {
-        case .writelogfile:
-            return "Could not write to logfile"
-        case .profilecreatedirectory:
-            return "Could not create profile directory"
-        case .profiledeletedirectory:
-            return "Could not delete profile directory"
-        case .filesize:
-            return "Filesize of logfile is getting bigger"
-        case .createsshdirectory:
-            return "Error creating ssh directory"
-        case .json:
-            return "JSON error"
-        case .readlogfile:
-            return "Empty logfile"
+extension Result {
+    func get() throws -> Value {
+        switch self {
+        case let .success(value):
+            return value
+        case let .failure(error):
+            throw error
         }
     }
 }
 
-class Catalogsandfiles: NamesandPaths, FileErrors {
+enum RsyncOSXTypeErrors: LocalizedError {
+    case writelogfile
+    case profilecreatedirectory
+    case profiledeletedirectory
+    case logfilesize
+    case createsshdirectory
+    case combine
+    case emptylogfile
+    case someerror
+    case rsyncerror
+
+    var errorDescription: String? {
+        switch self {
+        case .writelogfile:
+            return "Error writing to logfile"
+        case .profilecreatedirectory:
+            return "Error in creating profile directory"
+        case .profiledeletedirectory:
+            return "Error in delete profile directory"
+        case .logfilesize:
+            return "Error filesize logfile, is getting bigger"
+        case .createsshdirectory:
+            return "Error in creating ssh directory"
+        case .combine:
+            return "Error in Combine"
+        case .emptylogfile:
+            return "Error empty logfile"
+        case .someerror:
+            return "Error unown error"
+        case .rsyncerror:
+            return NSLocalizedString("There are errors in output", comment: "rsync error")
+        }
+    }
+}
+
+// Protocol for reporting file errors
+protocol ErrorMessage: AnyObject {
+    func errormessage(errorstr: String, error: RsyncOSXTypeErrors)
+}
+
+protocol Errors {
+    var errorDelegate: ErrorMessage? { get }
+}
+
+extension Errors {
+    var errorDelegate: ErrorMessage? {
+        return SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+    }
+
+    func error(errordescription: String, errortype: RsyncOSXTypeErrors) {
+        errorDelegate?.errormessage(errorstr: errordescription, error: errortype)
+    }
+}
+
+class Catalogsandfiles: NamesandPaths {
     func getfilesasstringnames() -> [String]? {
-        if let atpath = self.fullroot {
+        if let atpath = fullpathmacserial {
             do {
                 var array = [String]()
                 for file in try Folder(path: atpath).files {
@@ -80,8 +100,10 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     }
 
     func getcatalogsasstringnames() -> [String]? {
-        if let atpath = self.fullroot {
+        if let atpath = fullpathmacserial {
             var array = [String]()
+            // Append default profile
+            array.append(NSLocalizedString("Default profile", comment: "default profile"))
             do {
                 for folders in try Folder(path: atpath).subfolders {
                     array.append(folders.name)
@@ -101,7 +123,7 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
         var catalog: String?
         // First check if profilecatalog exists, if yes bail out
         if let macserialnumber = self.macserialnumber,
-           let fullrootnomacserial = self.fullrootnomacserial
+           let fullrootnomacserial = fullpathnomacserial
         {
             do {
                 let pathexists = try Folder(path: fullrootnomacserial).containsSubfolder(named: macserialnumber)
@@ -111,37 +133,24 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
                 // Creating profile catalalog is a two step task
                 // 1: create profilecatalog
                 // 2: create profilecatalog/macserialnumber
-                // New config path (/.rsyncosx)
-                if ViewControllerReference.shared.usenewconfigpath {
-                    catalog = ViewControllerReference.shared.newconfigpath
-                    root = Folder.home
-                    do {
-                        try root?.createSubfolder(at: catalog ?? "")
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .profilecreatedirectory)
-                        return
-                    }
-                } else {
-                    // Old configpath (Rsync)
-                    catalog = ViewControllerReference.shared.configpath
-                    root = Folder.documents
-                    do {
-                        try root?.createSubfolder(at: catalog ?? "")
-                    } catch let e {
-                        let error = e as NSError
-                        self.error(error: error.description, errortype: .profilecreatedirectory)
-                        return
-                    }
+                // Config path (/.rsyncosx)
+                catalog = SharedReference.shared.configpath
+                root = Folder.documents
+                do {
+                    try root?.createSubfolder(at: catalog ?? "")
+                } catch let e {
+                    let error = e as NSError
+                    self.error(errordescription: error.description, errortype: .profilecreatedirectory)
+                    return
                 }
                 if let macserialnumber = self.macserialnumber,
-                   let fullrootnomacserial = self.fullrootnomacserial
+                   let fullrootnomacserial = fullpathnomacserial
                 {
                     do {
                         try Folder(path: fullrootnomacserial).createSubfolder(at: macserialnumber)
                     } catch let e {
                         let error = e as NSError
-                        self.error(error: error.description, errortype: .profilecreatedirectory)
+                        self.error(errordescription: error.description, errortype: .profilecreatedirectory)
                         return
                     }
                 }
@@ -153,20 +162,20 @@ class Catalogsandfiles: NamesandPaths, FileErrors {
     // If ssh catalog exists - bail out, no need
     // to create
     func createsshkeyrootpath() {
-        if let path = self.onlysshkeypath {
+        if let path = onlysshkeypath {
             let root = Folder.home
             guard root.containsSubfolder(named: path) == false else { return }
             do {
                 try root.createSubfolder(at: path)
             } catch let e {
                 let error = e as NSError
-                self.error(error: error.description, errortype: .createsshdirectory)
+                self.error(errordescription: error.description, errortype: .createsshdirectory)
                 return
             }
         }
     }
 
-    override init(profileorsshrootpath whichroot: Profileorsshrootpath) {
-        super.init(profileorsshrootpath: whichroot)
+    override init(_ whichroot: Rootpath) {
+        super.init(whichroot)
     }
 }

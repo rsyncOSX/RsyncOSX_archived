@@ -15,32 +15,32 @@ final class SnapshotCreateCatalogArguments {
 
     private func remotearguments() {
         var remotearg: String?
-        if self.config?.sshport != nil {
-            self.args?.append("-p")
-            self.args?.append(String(self.config!.sshport!))
+        if config?.sshport != nil {
+            args?.append("-p")
+            args?.append(String(config!.sshport!))
         }
-        if (self.config?.offsiteServer.isEmpty ?? true) == false {
-            remotearg = (self.config?.offsiteUsername ?? "") + "@" + (self.config?.offsiteServer ?? "")
-            self.args?.append(remotearg!)
+        if (config?.offsiteServer.isEmpty ?? true) == false {
+            remotearg = (config?.offsiteUsername ?? "") + "@" + (config?.offsiteServer ?? "")
+            args?.append(remotearg!)
         }
         let remotecatalog = config?.offsiteCatalog
         let remotecommand = "mkdir -p " + (remotecatalog ?? "")
-        self.args?.append(remotecommand)
+        args?.append(remotecommand)
     }
 
     func getArguments() -> [String]? {
-        return self.args
+        return args
     }
 
     func getCommand() -> String? {
-        return self.command
+        return command
     }
 
     init(config: Configuration?) {
         guard config != nil else { return }
-        self.args = [String]()
+        args = [String]()
         self.config = config
-        self.remotearguments()
-        self.command = "/usr/bin/ssh"
+        remotearguments()
+        command = "/usr/bin/ssh"
     }
 }

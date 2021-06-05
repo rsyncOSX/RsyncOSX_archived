@@ -39,7 +39,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         DictionaryStrings.timetostart.rawValue: time,
                         DictionaryStrings.profilename.rawValue: profilename,
                     ]
-                    self.expandedData?.append(dictschedule)
+                    expandedData?.append(dictschedule)
                 }
             }
         }
@@ -68,7 +68,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                         DictionaryStrings.timetostart.rawValue: time,
                         DictionaryStrings.profilename.rawValue: profilename,
                     ]
-                    self.expandedData?.append(dictschedule)
+                    expandedData?.append(dictschedule)
                 }
             }
         }
@@ -76,8 +76,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Expanding and sorting Scheduledata
     private func sortAndExpandScheduleTasks() {
-        for i in 0 ..< (self.schedulesNSDictionary?.count ?? 0) {
-            let dict = self.schedulesNSDictionary![i]
+        for i in 0 ..< (schedulesNSDictionary?.count ?? 0) {
+            let dict = schedulesNSDictionary![i]
             let dateStop: Date = (dict.value(forKey: DictionaryStrings.dateStop.rawValue) as? String)?.en_us_date_from_string() ?? Date()
             let dateStart: Date = (dict.value(forKey: DictionaryStrings.dateStart.rawValue) as? String)?.en_us_date_from_string() ?? Date()
             let schedule: String = (dict.value(forKey: DictionaryStrings.schedule.rawValue) as? String) ?? Scheduletype.once.rawValue
@@ -97,17 +97,17 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                             DictionaryStrings.timetostart.rawValue: time,
                             DictionaryStrings.profilename.rawValue: profilename,
                         ]
-                        self.expandedData?.append(dictschedule)
+                        expandedData?.append(dictschedule)
                     }
                 case Scheduletype.daily.rawValue:
-                    self.daily(dateStart: dateStart, schedule: schedule, dict: dict)
+                    daily(dateStart: dateStart, schedule: schedule, dict: dict)
                 case Scheduletype.weekly.rawValue:
-                    self.weekly(dateStart: dateStart, schedule: schedule, dict: dict)
+                    weekly(dateStart: dateStart, schedule: schedule, dict: dict)
                 default:
                     break
                 }
             }
-            self.sortedschedules = self.expandedData?.sorted { (date1, date2) -> Bool in
+            sortedschedules = expandedData?.sorted { date1, date2 -> Bool in
                 if let date1 = date1.value(forKey: DictionaryStrings.start.rawValue) as? Date {
                     if let date2 = date2.value(forKey: DictionaryStrings.start.rawValue) as? Date {
                         if date1.timeIntervalSince(date2) > 0 {
@@ -120,24 +120,24 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
                 return false
             }
         }
-        self.adddelta()
+        adddelta()
     }
 
     private func adddelta() {
         // calculate delta time
-        guard (self.sortedschedules?.count ?? 0) > 1 else { return }
+        guard (sortedschedules?.count ?? 0) > 1 else { return }
         let timestring = Dateandtime()
-        self.sortedschedules?[0].setValue(timestring.timestring(seconds: 0), forKey: DictionaryStrings.delta.rawValue)
-        if let timetostart = self.sortedschedules?[0].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
-            self.sortedschedules?[0].setValue(timestring.timestring(seconds: timetostart), forKey: DictionaryStrings.startsin.rawValue)
+        sortedschedules?[0].setValue(timestring.timestring(seconds: 0), forKey: DictionaryStrings.delta.rawValue)
+        if let timetostart = sortedschedules?[0].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
+            sortedschedules?[0].setValue(timestring.timestring(seconds: timetostart), forKey: DictionaryStrings.startsin.rawValue)
         }
-        self.sortedschedules?[0].setValue(0, forKey: "queuenumber")
-        for i in 1 ..< (self.sortedschedules?.count ?? 0) {
-            if let t1 = self.sortedschedules?[i - 1].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
-                if let t2 = self.sortedschedules?[i].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
-                    self.sortedschedules?[i].setValue(timestring.timestring(seconds: t2 - t1), forKey: DictionaryStrings.delta.rawValue)
-                    self.sortedschedules?[i].setValue(i, forKey: "queuenumber")
-                    self.sortedschedules?[i].setValue(timestring.timestring(seconds: t2), forKey: DictionaryStrings.startsin.rawValue)
+        sortedschedules?[0].setValue(0, forKey: "queuenumber")
+        for i in 1 ..< (sortedschedules?.count ?? 0) {
+            if let t1 = sortedschedules?[i - 1].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
+                if let t2 = sortedschedules?[i].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double {
+                    sortedschedules?[i].setValue(timestring.timestring(seconds: t2 - t1), forKey: DictionaryStrings.delta.rawValue)
+                    sortedschedules?[i].setValue(i, forKey: "queuenumber")
+                    sortedschedules?[i].setValue(timestring.timestring(seconds: t2), forKey: DictionaryStrings.startsin.rawValue)
                 }
             }
         }
@@ -147,7 +147,7 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
 
     // Calculates number of future Schedules ID by hiddenID
     func numberoftasks(_ hiddenID: Int) -> Futureschedules {
-        if let result = self.sortedschedules?.filter({ (($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID) }) {
+        if let result = sortedschedules?.filter({ ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID }) {
             guard result.count > 0 else { return (0, 0) }
             let timetostart = result[0].value(forKey: DictionaryStrings.timetostart.rawValue) as? Double ?? 0
             return (result.count, timetostart)
@@ -158,16 +158,17 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     func sortandcountscheduledonetask(_ hiddenID: Int, profilename: String?, number: Bool) -> String {
         var result: [NSDictionary]?
         if profilename != nil {
-            result = self.sortedschedules?.filter { (($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID
+            result = sortedschedules?.filter { (($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID
                     && ($0.value(forKey: DictionaryStrings.start.rawValue) as? Date)?.timeIntervalSinceNow ?? -1 > 0)
                 && ($0.value(forKey: DictionaryStrings.profilename.rawValue) as? String) == profilename ?? ""
             }
         } else {
-            result = self.sortedschedules?.filter { (($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID
-                    && ($0.value(forKey: DictionaryStrings.start.rawValue) as? Date)?.timeIntervalSinceNow ?? -1 > 0) }
+            result = sortedschedules?.filter { ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID
+                && ($0.value(forKey: DictionaryStrings.start.rawValue) as? Date)?.timeIntervalSinceNow ?? -1 > 0
+            }
         }
         guard result != nil else { return "" }
-        let sorted = result?.sorted { (di1, di2) -> Bool in
+        let sorted = result?.sorted { di1, di2 -> Bool in
             if let d1 = di1.value(forKey: DictionaryStrings.start.rawValue) as? Date, let d2 = di2.value(forKey: DictionaryStrings.start.rawValue) as? Date {
                 if d1.timeIntervalSince(d2) > 0 {
                     return false
@@ -196,8 +197,8 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
     private func setallscheduledtasksNSDictionary() {
         var data = [NSMutableDictionary]()
         let scheduletypes: Set<String> = [Scheduletype.daily.rawValue, Scheduletype.weekly.rawValue, Scheduletype.once.rawValue]
-        for i in 0 ..< (self.scheduleConfiguration?.count ?? 0) where
-            self.scheduleConfiguration?[i].dateStop != nil && scheduletypes.contains(self.scheduleConfiguration?[i].schedule ?? "")
+        for i in 0 ..< (scheduleConfiguration?.count ?? 0) where
+            scheduleConfiguration?[i].dateStop != nil && scheduletypes.contains(scheduleConfiguration?[i].schedule ?? "")
         {
             let dict: NSMutableDictionary = [
                 DictionaryStrings.dateStart.rawValue: self.scheduleConfiguration?[i].dateStart ?? "",
@@ -208,31 +209,31 @@ class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
             ]
             data.append(dict as NSMutableDictionary)
         }
-        self.schedulesNSDictionary = data
+        schedulesNSDictionary = data
     }
 
     init() {
         // Getting the Schedule and expanding all the jobs
-        guard self.schedules != nil else { return }
-        self.expandedData = [NSMutableDictionary]()
-        self.scheduleConfiguration = self.schedules?.getSchedule()
-        self.setallscheduledtasksNSDictionary()
-        self.sortAndExpandScheduleTasks()
+        guard schedules != nil else { return }
+        expandedData = [NSMutableDictionary]()
+        scheduleConfiguration = schedules?.getSchedule()
+        setallscheduledtasksNSDictionary()
+        sortAndExpandScheduleTasks()
     }
 
     init(allschedules: Allschedules?) {
         guard allschedules != nil else { return }
-        self.expandedData = [NSMutableDictionary]()
-        self.scheduleConfiguration = allschedules?.getallschedules()
-        self.setallscheduledtasksNSDictionary()
-        self.sortAndExpandScheduleTasks()
+        expandedData = [NSMutableDictionary]()
+        scheduleConfiguration = allschedules?.getallschedules()
+        setallscheduledtasksNSDictionary()
+        sortAndExpandScheduleTasks()
     }
 
     // For XCtest
     init(schedules: Schedules?) {
-        self.expandedData = [NSMutableDictionary]()
-        self.scheduleConfiguration = schedules?.getSchedule()
-        self.setallscheduledtasksNSDictionary()
-        self.sortAndExpandScheduleTasks()
+        expandedData = [NSMutableDictionary]()
+        scheduleConfiguration = schedules?.getSchedule()
+        setallscheduledtasksNSDictionary()
+        sortAndExpandScheduleTasks()
     }
 }

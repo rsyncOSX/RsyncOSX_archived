@@ -13,20 +13,20 @@ final class ArgumentsLocalcatalogInfo: RsyncParameters {
 
     func argumentslocalcataloginfo(dryRun: Bool, forDisplay: Bool) -> [String]? {
         if let config = self.config {
-            self.localCatalog = config.localCatalog
-            self.setParameters1To6(config: config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
-            self.setParameters8To14(config: config, dryRun: dryRun, forDisplay: forDisplay)
+            localCatalog = config.localCatalog
+            setParameters1To6(config: config, dryRun: dryRun, forDisplay: forDisplay, verify: false)
+            setParameters8To14(config: config, dryRun: dryRun, forDisplay: forDisplay)
             switch config.task {
-            case ViewControllerReference.shared.synchronize:
-                self.argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
-            case ViewControllerReference.shared.snapshot:
-                self.argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
-            case ViewControllerReference.shared.syncremote:
+            case SharedReference.shared.synchronize:
+                argumentsforsynchronize(dryRun: dryRun, forDisplay: forDisplay)
+            case SharedReference.shared.snapshot:
+                argumentsforsynchronizesnapshot(dryRun: dryRun, forDisplay: forDisplay)
+            case SharedReference.shared.syncremote:
                 return []
             default:
                 break
             }
-            return self.arguments
+            return arguments
         }
         return nil
     }

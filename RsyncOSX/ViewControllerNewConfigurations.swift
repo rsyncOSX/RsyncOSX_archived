@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length cyclomatic_complexity trailing_comma line_length
+//  swiftlint:disable function_body_length cyclomatic_complexity line_length
 
 import Cocoa
 import Foundation
@@ -25,17 +25,16 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     let delete: String = "--delete"
     let eparam: String = "-e"
     let ssh: String = "ssh"
-    var outputprocess: OutputProcess?
+    var outputprocess: OutputfromProcess?
     // Reference to rsync parameters to use in combox
-    var comboBoxValues = [ViewControllerReference.shared.synchronize,
-                          ViewControllerReference.shared.snapshot,
-                          ViewControllerReference.shared.syncremote]
+    var comboBoxValues = [SharedReference.shared.synchronize,
+                          SharedReference.shared.snapshot,
+                          SharedReference.shared.syncremote]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
 
-    @IBOutlet var addtable: NSTableView!
     @IBOutlet var viewParameter1: NSTextField!
     @IBOutlet var viewParameter2: NSTextField!
     @IBOutlet var viewParameter3: NSTextField!
@@ -58,208 +57,185 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var haltshelltasksonerror: NSButton!
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerProfile!)
+        presentAsModalWindow(viewControllerProfile!)
     }
 
     @IBAction func showHelp(_: AnyObject?) {
-        self.help()
+        help()
     }
 
     // Sidebar Clear button
     func cleartable() {
-        self.newconfigurations = nil
-        self.newconfigurations = NewConfigurations()
+        newconfigurations = nil
+        newconfigurations = NewConfigurations()
         globalMainQueue.async { () -> Void in
-            self.addtable.reloadData()
             self.resetinputfields()
         }
     }
 
     private func changelabels() {
-        switch self.backuptype.indexOfSelectedItem {
+        switch backuptype.indexOfSelectedItem {
         case 2:
-            self.stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
-            self.stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
+            stringlocalcatalog.stringValue = NSLocalizedString("Source catalog:", comment: "Tooltip")
+            stringremotecatalog.stringValue = NSLocalizedString("Destination catalog:", comment: "Tooltip")
         default:
-            self.stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
-            self.stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
+            stringlocalcatalog.stringValue = NSLocalizedString("Local catalog:", comment: "Tooltip")
+            stringremotecatalog.stringValue = NSLocalizedString("Remote catalog:", comment: "Tooltip")
         }
     }
 
     @IBAction func setbackuptype(_: NSComboBox) {
-        switch self.backuptype.indexOfSelectedItem {
+        switch backuptype.indexOfSelectedItem {
         case 0:
-            self.backuptypeselected = .synchronize
+            backuptypeselected = .synchronize
         case 1:
-            self.backuptypeselected = .snapshots
+            backuptypeselected = .snapshots
         case 2:
-            self.backuptypeselected = .syncremote
+            backuptypeselected = .syncremote
         default:
-            self.backuptypeselected = .synchronize
+            backuptypeselected = .synchronize
         }
-        self.changelabels()
+        changelabels()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.newconfigurations = NewConfigurations()
-        self.addtable.delegate = self
-        self.addtable.dataSource = self
-        self.localCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
-        self.offsiteCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
-        self.initcombox(combobox: self.backuptype, index: 0)
+        newconfigurations = NewConfigurations()
+        localCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
+        offsiteCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
+        SharedReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
+        initcombox(combobox: backuptype, index: 0)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         // For sending messages to the sidebar
-        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        self.sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
-        self.backuptypeselected = .synchronize
-        self.addingtrailingbackslash.state = .off
-        self.backuptype.selectItem(at: 0)
-        guard self.diddissappear == false else { return }
-        self.viewParameter1.stringValue = self.archive
-        self.viewParameter2.stringValue = self.verbose
-        self.viewParameter3.stringValue = self.compress
-        self.viewParameter4.stringValue = self.delete
-        self.viewParameter5.stringValue = self.eparam + " " + self.ssh
-        self.changelabels()
+        sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
+        backuptypeselected = .synchronize
+        addingtrailingbackslash.state = .off
+        backuptype.selectItem(at: 0)
+        guard diddissappear == false else { return }
+        viewParameter1.stringValue = archive
+        viewParameter2.stringValue = verbose
+        viewParameter3.stringValue = compress
+        viewParameter4.stringValue = delete
+        viewParameter5.stringValue = eparam + " " + ssh
+        changelabels()
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.diddissappear = true
+        diddissappear = true
     }
 
     private func initcombox(combobox: NSComboBox, index: Int) {
         combobox.removeAllItems()
-        combobox.addItems(withObjectValues: self.comboBoxValues)
+        combobox.addItems(withObjectValues: comboBoxValues)
         combobox.selectItem(at: index)
     }
 
     private func resetinputfields() {
-        self.localCatalog.stringValue = ""
-        self.offsiteCatalog.stringValue = ""
-        self.offsiteUsername.stringValue = ""
-        self.offsiteServer.stringValue = ""
-        self.backupID.stringValue = ""
-        self.pretask.stringValue = ""
-        self.executepretask.state = .off
-        self.posttask.stringValue = ""
-        self.executeposttask.state = .off
-        self.haltshelltasksonerror.state = .off
+        localCatalog.stringValue = ""
+        offsiteCatalog.stringValue = ""
+        offsiteUsername.stringValue = ""
+        offsiteServer.stringValue = ""
+        backupID.stringValue = ""
+        pretask.stringValue = ""
+        executepretask.state = .off
+        posttask.stringValue = ""
+        executeposttask.state = .off
+        haltshelltasksonerror.state = .off
     }
 
     // Sidebar Add button
     func addConfig() {
-        let dict: NSMutableDictionary = [
-            DictionaryStrings.task.rawValue: ViewControllerReference.shared.synchronize,
-            DictionaryStrings.backupID.rawValue: backupID.stringValue,
-            DictionaryStrings.localCatalog.rawValue: localCatalog.stringValue,
-            DictionaryStrings.offsiteCatalog.rawValue: offsiteCatalog.stringValue,
-            DictionaryStrings.offsiteServer.rawValue: offsiteServer.stringValue,
-            DictionaryStrings.offsiteUsername.rawValue: offsiteUsername.stringValue,
-            DictionaryStrings.parameter1.rawValue: self.archive,
-            DictionaryStrings.parameter2.rawValue: self.verbose,
-            DictionaryStrings.parameter3.rawValue: self.compress,
-            DictionaryStrings.parameter4.rawValue: self.delete,
-            DictionaryStrings.parameter5.rawValue: self.eparam,
-            DictionaryStrings.parameter6.rawValue: self.ssh,
-            DictionaryStrings.dateRun.rawValue: "",
-        ]
-        if self.localCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
-            self.localCatalog.stringValue += "/"
-            dict.setValue(self.localCatalog.stringValue, forKey: DictionaryStrings.localCatalog.rawValue)
+        var newconfig = Configuration()
+        newconfig.task = SharedReference.shared.synchronize
+        newconfig.backupID = backupID.stringValue
+        newconfig.localCatalog = localCatalog.stringValue
+        newconfig.offsiteCatalog = offsiteCatalog.stringValue
+        newconfig.offsiteServer = offsiteServer.stringValue
+        newconfig.offsiteUsername = offsiteUsername.stringValue
+        newconfig.parameter1 = archive
+        newconfig.parameter2 = verbose
+        newconfig.parameter3 = compress
+        newconfig.parameter4 = delete
+        newconfig.parameter5 = eparam
+        newconfig.parameter6 = ssh
+        newconfig.dateRun = ""
+
+        if localCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
+            localCatalog.stringValue += "/"
         }
-        if self.offsiteCatalog.stringValue.hasSuffix("/") == false, self.addingtrailingbackslash.state == .off {
-            self.offsiteCatalog.stringValue += "/"
-            dict.setValue(self.offsiteCatalog.stringValue, forKey: DictionaryStrings.offsiteCatalog.rawValue)
+        if offsiteCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
+            offsiteCatalog.stringValue += "/"
         }
-        if self.backuptypeselected == .snapshots {
-            dict.setValue(ViewControllerReference.shared.snapshot, forKey: DictionaryStrings.task.rawValue)
-            dict.setValue(1, forKey: DictionaryStrings.snapshotnum.rawValue)
+        if backuptypeselected == .snapshots {
+            newconfig.snapshotnum = 1
+            newconfig.task = SharedReference.shared.snapshot
             // Must be connected to create base remote snapshot catalog
-            guard Validatenewconfigs(dict: dict).validated == true else { return }
-            self.outputprocess = OutputProcess()
+            guard Validatenewconfigs(newconfig, true).validated == true else { return }
+            outputprocess = OutputfromProcess()
             // If connected create base remote snapshotcatalog
-            self.snapshotcreateremotecatalog(dict: dict, outputprocess: self.outputprocess)
-        } else if self.backuptypeselected == .syncremote {
-            guard self.offsiteServer.stringValue.isEmpty == false else { return }
-            dict.setValue(ViewControllerReference.shared.syncremote, forKey: DictionaryStrings.task.rawValue)
+            snapshotcreateremotecatalog(newconfig, outputprocess)
+        } else if backuptypeselected == .syncremote {
+            guard offsiteServer.stringValue.isEmpty == false else { return }
+            newconfig.task = SharedReference.shared.syncremote
         }
         // Pre task
-        if self.pretask.stringValue.isEmpty == false {
-            if self.executepretask.state == .on {
-                dict.setObject(1, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
+        if pretask.stringValue.isEmpty == false {
+            if executepretask.state == .on {
+                newconfig.executepretask = 1
             } else {
-                dict.setObject(0, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
+                newconfig.executepretask = 0
             }
-            dict.setObject(self.pretask.stringValue, forKey: DictionaryStrings.pretask.rawValue as NSCopying)
+            newconfig.pretask = pretask.stringValue
         } else {
-            dict.setObject(0, forKey: DictionaryStrings.executepretask.rawValue as NSCopying)
+            newconfig.executepretask = 0
         }
         // Post task
-        if self.posttask.stringValue.isEmpty == false {
-            if self.executeposttask.state == .on {
-                dict.setObject(1, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
+        if posttask.stringValue.isEmpty == false {
+            if executeposttask.state == .on {
+                newconfig.executeposttask = 1
             } else {
-                dict.setObject(0, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
+                newconfig.executeposttask = 0
             }
-            dict.setObject(self.pretask.stringValue, forKey: DictionaryStrings.posttask.rawValue as NSCopying)
+            newconfig.pretask = pretask.stringValue
         } else {
-            dict.setObject(0, forKey: DictionaryStrings.executeposttask.rawValue as NSCopying)
+            newconfig.executeposttask = 0
         }
         // Haltpretast on error
-        if self.haltshelltasksonerror.state == .on {
-            dict.setObject(1, forKey: DictionaryStrings.haltshelltasksonerror.rawValue as NSCopying)
+        if haltshelltasksonerror.state == .on {
+            newconfig.haltshelltasksonerror = 1
         } else {
-            dict.setObject(0, forKey: DictionaryStrings.haltshelltasksonerror.rawValue as NSCopying)
+            newconfig.haltshelltasksonerror = 0
         }
-
-        if ViewControllerReference.shared.checkinput {
-            let config = Configuration(dictionary: dict)
-            let equal = Equal().isequalelement(data: self.configurations?.getConfigurations(), element: config)
-            if equal {
-                let question: String = NSLocalizedString("This is added before?", comment: "New")
-                let text: String = NSLocalizedString("Add config?", comment: "New")
-                let dialog: String = NSLocalizedString("Add", comment: "New")
-                let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-                guard answer == true else { return }
-            }
-        }
-        guard Validatenewconfigs(dict: dict).validated == true else { return }
-        self.configurations?.addNewConfigurations(dict: dict)
-        self.newconfigurations?.appendnewConfigurations(dict: dict)
-        self.tabledata = self.newconfigurations?.getnewConfigurations()
-        globalMainQueue.async { () -> Void in
-            self.addtable.reloadData()
-        }
-        self.resetinputfields()
+        guard Validatenewconfigs(newconfig, true).validated == true else { return }
+        configurations?.addNewConfigurations(newconfig)
+        resetinputfields()
     }
 
-    func snapshotcreateremotecatalog(dict: NSDictionary, outputprocess: OutputProcess?) {
-        let config = Configuration(dictionary: dict)
+    func snapshotcreateremotecatalog(_ config: Configuration, _ outputprocess: OutputfromProcess?) {
         guard config.offsiteServer.isEmpty == false else { return }
         let args = SnapshotCreateCatalogArguments(config: config)
-        let updatecurrent = OtherProcessCmdClosure(command: args.getCommand(),
-                                                   arguments: args.getArguments(),
-                                                   processtermination: self.processtermination,
-                                                   filehandler: self.filehandler)
+        let updatecurrent = OtherProcess(command: args.getCommand(),
+                                         arguments: args.getArguments(),
+                                         processtermination: processtermination,
+                                         filehandler: filehandler)
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return self.newconfigurations?.newConfigurationsCount() ?? 0
+        return newconfigurations?.newConfigurationsCount() ?? 0
     }
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDelegate {
     func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if let object: NSMutableDictionary = self.newconfigurations?.getnewConfigurations()?[row], let tableColumn = tableColumn {
+        if let object: NSMutableDictionary = newconfigurations?.getnewConfigurations()?[row], let tableColumn = tableColumn {
             return object[tableColumn.identifier] as? String
         } else {
             return nil
@@ -269,7 +245,7 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
 
 extension ViewControllerNewConfigurations: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismiss(viewcontroller)
+        dismiss(viewcontroller)
     }
 }
 
@@ -301,14 +277,14 @@ extension ViewControllerNewConfigurations: AssistTransfer {
         if let values = values {
             switch values.count {
             case 2:
-                self.localCatalog.stringValue = values[0]
-                self.offsiteCatalog.stringValue = values[1]
+                localCatalog.stringValue = values[0]
+                offsiteCatalog.stringValue = values[1]
             case 4:
                 // remote
-                self.localCatalog.stringValue = values[0]
-                self.offsiteCatalog.stringValue = values[1]
-                self.offsiteUsername.stringValue = values[2]
-                self.offsiteServer.stringValue = values[3]
+                localCatalog.stringValue = values[0]
+                offsiteCatalog.stringValue = values[1]
+                offsiteUsername.stringValue = values[2]
+                offsiteServer.stringValue = values[3]
             default:
                 return
             }
@@ -320,9 +296,9 @@ extension ViewControllerNewConfigurations: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
         case .Delete:
-            self.cleartable()
+            cleartable()
         case .Add:
-            self.addConfig()
+            addConfig()
         default:
             return
         }

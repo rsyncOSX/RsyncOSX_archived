@@ -18,8 +18,8 @@ final class Running {
 
     func verifyrsyncosxsched() -> Bool {
         let fileManager = FileManager.default
-        guard fileManager.fileExists(atPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") +
-            ViewControllerReference.shared.namersyncosssched) else { return false }
+        guard fileManager.fileExists(atPath: (SharedReference.shared.pathrsyncosxsched ?? "/Applications/") +
+            SharedReference.shared.namersyncosssched) else { return false }
         return true
     }
 
@@ -27,19 +27,19 @@ final class Running {
         // Get all running applications
         let workspace = NSWorkspace.shared
         let applications = workspace.runningApplications
-        let rsyncosx = applications.filter { ($0.bundleIdentifier == self.rsyncOSX) }
-        let rsyncosxschde = applications.filter { ($0.bundleIdentifier == self.rsyncOSXsched) }
+        let rsyncosx = applications.filter { $0.bundleIdentifier == self.rsyncOSX }
+        let rsyncosxschde = applications.filter { $0.bundleIdentifier == self.rsyncOSXsched }
         if rsyncosx.count > 0 {
-            self.rsyncOSXisrunning = true
+            rsyncOSXisrunning = true
         } else {
-            self.rsyncOSXisrunning = false
+            rsyncOSXisrunning = false
         }
         if rsyncosxschde.count > 0 {
-            self.rsyncOSXschedisrunning = true
-            ViewControllerReference.shared.menuappisrunning = true
+            rsyncOSXschedisrunning = true
+            SharedReference.shared.menuappisrunning = true
         } else {
-            self.rsyncOSXschedisrunning = false
-            ViewControllerReference.shared.menuappisrunning = false
+            rsyncOSXschedisrunning = false
+            SharedReference.shared.menuappisrunning = false
         }
     }
 }

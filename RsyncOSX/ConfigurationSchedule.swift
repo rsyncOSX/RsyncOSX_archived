@@ -8,39 +8,46 @@
 
 import Foundation
 
-struct Log {
+struct Log: Codable {
     var dateExecuted: String?
     var resultExecuted: String?
-    var delete: Bool?
+    var date: Date {
+        return dateExecuted?.en_us_date_from_string() ?? Date()
+    }
 }
 
-struct ConfigurationSchedule {
+struct ConfigurationSchedule: Codable {
     var hiddenID: Int
     var offsiteserver: String?
     var dateStart: String
     var dateStop: String?
     var schedule: String
     var logrecords: [Log]?
-    var delete: Bool?
     var profilename: String?
+    var delete: Bool?
 
-    init(dictionary: NSDictionary, log: NSArray?, includelog: Bool) {
-        self.hiddenID = dictionary.object(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
-        self.dateStart = dictionary.object(forKey: DictionaryStrings.dateStart.rawValue) as? String ?? ""
-        self.schedule = dictionary.object(forKey: DictionaryStrings.schedule.rawValue) as? String ?? ""
-        self.offsiteserver = dictionary.object(forKey: DictionaryStrings.offsiteserver.rawValue) as? String ?? ""
-        if let date = dictionary.object(forKey: DictionaryStrings.dateStop.rawValue) as? String { self.dateStop = date }
-        if log != nil, includelog == true {
-            for i in 0 ..< (log?.count ?? 0) {
-                if i == 0 { self.logrecords = [Log]() }
-                var logrecord = Log()
-                if let dict = log?[i] as? NSDictionary {
-                    logrecord.dateExecuted = dict.object(forKey: DictionaryStrings.dateExecuted.rawValue) as? String
-                    logrecord.resultExecuted = dict.object(forKey: DictionaryStrings.resultExecuted.rawValue) as? String
-                }
-                self.logrecords?.append(logrecord)
-            }
+    // Used when reading JSON data from store
+    // see in ReadScheduleJSON
+    init(_ data: DecodeSchedule) {
+        dateStart = data.dateStart ?? ""
+        dateStop = data.dateStop
+        hiddenID = data.hiddenID ?? -1
+        offsiteserver = data.offsiteserver
+        schedule = data.schedule ?? ""
+        for i in 0 ..< (data.logrecords?.count ?? 0) {
+            if i == 0 { logrecords = [Log]() }
+            var log = Log()
+            log.dateExecuted = data.logrecords?[i].dateExecuted
+            log.resultExecuted = data.logrecords?[i].resultExecuted
+            logrecords?.append(log)
         }
+    }
+
+    // Create an empty record with no values
+    init() {
+        hiddenID = -1
+        dateStart = ""
+        schedule = ""
     }
 }
 
@@ -54,11 +61,11 @@ extension ConfigurationSchedule: Hashable, Equatable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(String(self.hiddenID))
-        hasher.combine(self.dateStart)
-        hasher.combine(self.schedule)
-        hasher.combine(self.dateStop)
-        hasher.combine(self.offsiteserver)
+        hasher.combine(String(hiddenID))
+        hasher.combine(dateStart)
+        hasher.combine(schedule)
+        hasher.combine(dateStop)
+        hasher.combine(offsiteserver)
     }
 }
 
@@ -69,7 +76,7 @@ extension Log: Hashable, Equatable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.dateExecuted)
-        hasher.combine(self.resultExecuted)
+        hasher.combine(dateExecuted)
+        hasher.combine(resultExecuted)
     }
 }

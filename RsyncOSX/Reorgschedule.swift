@@ -20,7 +20,7 @@ class Reorgschedule {
     func mergerecords<T: Hashable>(data: [T]?) -> [T]? {
         if let data = data {
             var mergedelements = [T]()
-            let uniqueelements = self.uniquelements(data: data)
+            let uniqueelements = uniquelements(data: data)
             for i in 0 ..< uniqueelements.count {
                 let element = uniqueelements[i]
                 let filter = data.filter { $0 == element }
@@ -54,6 +54,6 @@ class Reorgschedule {
 extension Sequence where Iterator.Element: Hashable {
     func unique() -> [Iterator.Element] {
         var alreadyAdded = Set<Iterator.Element>()
-        return self.filter { alreadyAdded.insert($0).inserted }
+        return filter { alreadyAdded.insert($0).inserted }
     }
 }

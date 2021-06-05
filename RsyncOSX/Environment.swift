@@ -12,8 +12,8 @@ struct Environment {
     var environment: [String: String]?
 
     init?() {
-        if let environment = ViewControllerReference.shared.environment {
-            if let environmentvalue = ViewControllerReference.shared.environmentvalue {
+        if let environment = SharedReference.shared.environment {
+            if let environmentvalue = SharedReference.shared.environmentvalue {
                 self.environment = [environment: environmentvalue]
             }
         }

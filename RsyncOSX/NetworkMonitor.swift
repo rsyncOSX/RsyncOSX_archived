@@ -9,7 +9,18 @@
 import Foundation
 import Network
 
-class NetworkMonitor {
+enum Networkerror: LocalizedError {
+    case networkdropped
+
+    var errorDescription: String? {
+        switch self {
+        case .networkdropped:
+            return NSLocalizedString("Network connection is dropped", comment: "network error") + "..."
+        }
+    }
+}
+
+final class NetworkMonitor {
     var monitor: NWPathMonitor?
     var netStatusChangeHandler: (() -> Void)?
 
@@ -35,7 +46,7 @@ class NetworkMonitor {
     }
 
     init() {
-        self.startMonitoring()
+        startMonitoring()
     }
 
     deinit {
@@ -43,10 +54,10 @@ class NetworkMonitor {
     }
 
     func startMonitoring() {
-        self.monitor = NWPathMonitor()
+        monitor = NWPathMonitor()
         let queue = DispatchQueue(label: "NetStatus_Monitor")
-        self.monitor?.start(queue: queue)
-        self.monitor?.pathUpdateHandler = { _ in
+        monitor?.start(queue: queue)
+        monitor?.pathUpdateHandler = { _ in
             self.netStatusChangeHandler?()
         }
     }

@@ -50,16 +50,16 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
 
     func filter(search: String?) {
         globalDefaultQueue.async { () -> Void in
-            self.loggrecords = self.loggrecords?.filter { ($0.dateExecuted.contains(search ?? "")) }
+            self.loggrecords = self.loggrecords?.filter { $0.dateExecuted.contains(search ?? "") }
         }
     }
 
     private func readandsortallloggdata(hiddenID: Int?) {
         var data = [Logrecordsschedules]()
-        if let input: [ConfigurationSchedule] = self.schedules?.getSchedule() {
+        if let input: [ConfigurationSchedule] = schedules?.getSchedule() {
             for i in 0 ..< input.count {
                 for j in 0 ..< (input[i].logrecords?.count ?? 0) {
-                    if let hiddenID = self.schedules?.getSchedule()?[i].hiddenID {
+                    if let hiddenID = schedules?.getSchedule()?[i].hiddenID {
                         var datestring: String?
                         var date: Date?
                         if let stringdate = input[i].logrecords?[j].dateExecuted {
@@ -70,11 +70,11 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
                         }
                         let record =
                             Logrecordsschedules(hiddenID: hiddenID,
-                                                localCatalog: self.configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? "",
-                                                remoteCatalog: self.configurations?.getResourceConfiguration(hiddenID, resource: .remoteCatalog) ?? "",
-                                                offsiteServer: self.configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
-                                                task: self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
-                                                backupID: self.configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
+                                                localCatalog: configurations?.getResourceConfiguration(hiddenID, resource: .localCatalog) ?? "",
+                                                remoteCatalog: configurations?.getResourceConfiguration(hiddenID, resource: .remoteCatalog) ?? "",
+                                                offsiteServer: configurations?.getResourceConfiguration(hiddenID, resource: .offsiteServer) ?? "",
+                                                task: configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "",
+                                                backupID: configurations?.getResourceConfiguration(hiddenID, resource: .backupid) ?? "",
                                                 dateExecuted: datestring ?? "",
                                                 date: date ?? Date(),
                                                 resultExecuted: input[i].logrecords?[j].resultExecuted ?? "",
@@ -87,12 +87,12 @@ final class ScheduleLoggData: SetConfigurations, SetSchedules {
             }
         }
         if hiddenID != nil { data = data.filter { $0.hiddenID == hiddenID } }
-        self.loggrecords = data.sorted(by: \.date, using: >)
+        loggrecords = data.sorted(by: \.date, using: >)
     }
 
     init(hiddenID: Int?) {
-        if self.loggrecords == nil {
-            self.readandsortallloggdata(hiddenID: hiddenID)
+        if loggrecords == nil {
+            readandsortallloggdata(hiddenID: hiddenID)
         }
     }
 }

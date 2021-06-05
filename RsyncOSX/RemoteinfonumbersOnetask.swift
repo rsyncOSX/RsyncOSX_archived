@@ -20,40 +20,40 @@ class RemoteinfonumbersOnetask {
 
     func record() -> NSMutableDictionary {
         let dict: NSMutableDictionary = [
-            DictionaryStrings.transferredNumber.rawValue: self.transferredNumber ?? "",
-            DictionaryStrings.transferredNumberSizebytes.rawValue: self.transferredNumberSizebytes ?? "",
-            DictionaryStrings.totalNumber.rawValue: self.totalNumber ?? "",
-            DictionaryStrings.totalNumberSizebytes.rawValue: self.totalNumberSizebytes ?? "",
-            DictionaryStrings.totalDirs.rawValue: self.totalDirs ?? "",
-            DictionaryStrings.newfiles.rawValue: self.newfiles ?? "",
+            DictionaryStrings.transferredNumber.rawValue: transferredNumber ?? "",
+            DictionaryStrings.transferredNumberSizebytes.rawValue: transferredNumberSizebytes ?? "",
+            DictionaryStrings.totalNumber.rawValue: totalNumber ?? "",
+            DictionaryStrings.totalNumberSizebytes.rawValue: totalNumberSizebytes ?? "",
+            DictionaryStrings.totalDirs.rawValue: totalDirs ?? "",
+            DictionaryStrings.newfiles.rawValue: newfiles ?? "",
         ]
-        dict.setValue(self.deletefiles ?? "", forKey: DictionaryStrings.deletefiles.rawValue)
+        dict.setValue(deletefiles ?? "", forKey: DictionaryStrings.deletefiles.rawValue)
         dict.setValue(0, forKey: DictionaryStrings.select.rawValue)
         return dict
     }
 
     func recordremotenumbers(index: Int) -> NSMutableDictionary {
         let dict: NSMutableDictionary = [
-            DictionaryStrings.transferredNumber.rawValue: self.transferredNumber ?? "",
-            DictionaryStrings.transferredNumberSizebytes.rawValue: self.transferredNumberSizebytes ?? "",
-            DictionaryStrings.totalNumber.rawValue: self.totalNumber ?? "",
-            DictionaryStrings.totalNumberSizebytes.rawValue: self.totalNumberSizebytes ?? "",
-            DictionaryStrings.totalDirs.rawValue: self.totalDirs ?? "",
-            DictionaryStrings.newfiles.rawValue: self.newfiles ?? "",
-            DictionaryStrings.deletefiles.rawValue: self.deletefiles ?? "",
+            DictionaryStrings.transferredNumber.rawValue: transferredNumber ?? "",
+            DictionaryStrings.transferredNumberSizebytes.rawValue: transferredNumberSizebytes ?? "",
+            DictionaryStrings.totalNumber.rawValue: totalNumber ?? "",
+            DictionaryStrings.totalNumberSizebytes.rawValue: totalNumberSizebytes ?? "",
+            DictionaryStrings.totalDirs.rawValue: totalDirs ?? "",
+            DictionaryStrings.newfiles.rawValue: newfiles ?? "",
+            DictionaryStrings.deletefiles.rawValue: deletefiles ?? "",
             DictionaryStrings.index.rawValue: index,
         ]
         return dict
     }
 
-    init(outputprocess: OutputProcess?) {
+    init(outputprocess: OutputfromProcess?) {
         let number = Numbers(outputprocess: outputprocess)
-        self.transferredNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.none)
-        self.transferredNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
-        self.totalNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
-        self.totalNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
-        self.totalDirs = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
-        self.newfiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.none)
-        self.deletefiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.none)
+        transferredNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumber)), number: NumberFormatter.Style.none)
+        transferredNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .transferredNumberSizebytes)), number: NumberFormatter.Style.decimal)
+        totalNumber = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumber)), number: NumberFormatter.Style.decimal)
+        totalNumberSizebytes = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalNumberSizebytes)), number: NumberFormatter.Style.decimal)
+        totalDirs = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .totalDirs)), number: NumberFormatter.Style.decimal)
+        newfiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .new)), number: NumberFormatter.Style.none)
+        deletefiles = NumberFormatter.localizedString(from: NSNumber(value: number.getTransferredNumbers(numbers: .delete)), number: NumberFormatter.Style.none)
     }
 }

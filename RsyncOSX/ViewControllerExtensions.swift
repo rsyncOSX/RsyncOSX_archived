@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 28.10.2017.
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Cocoa
 import Foundation
@@ -25,98 +24,92 @@ extension VcMain {
 
     // StoryboardOutputID
     var viewControllerAllOutput: NSViewController? {
-        return (self.storyboard?.instantiateController(withIdentifier: "StoryboardOutputID")
+        return (storyboard?.instantiateController(withIdentifier: "StoryboardOutputID")
             as? NSViewController)
     }
 
     // Sheetviews
     // Userconfiguration
     var viewControllerUserconfiguration: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardUserconfigID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardUserconfigID")
             as? NSViewController)
     }
 
     // Information about rsync output
     var viewControllerInformation: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardInformationID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardInformationID")
             as? NSViewController)
     }
 
     // AssistID
     var viewControllerAssist: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "AssistID")
-            as? NSViewController)
-    }
-
-    // Move config files
-    var viewControllerMove: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "MoveID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "AssistID")
             as? NSViewController)
     }
 
     // Profile
     var viewControllerProfile: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "ProfileID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "ProfileID")
             as? NSViewController)
     }
 
     // About
     var viewControllerAbout: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "AboutID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "AboutID")
             as? NSViewController)
     }
 
     // Remote Info
     var viewControllerRemoteInfo: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardRemoteInfoID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardRemoteInfoID")
             as? NSViewController)
     }
 
     // Quick backup process
     var viewControllerQuickBackup: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardQuickBackupID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardQuickBackupID")
             as? NSViewController)
     }
 
     // local and remote info
     var viewControllerInformationLocalRemote: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardLocalRemoteID")
             as? NSViewController)
     }
 
     // Estimating
     var viewControllerEstimating: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEstimatingID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEstimatingID")
             as? NSViewController)
     }
 
     // Progressbar process
     var viewControllerProgress: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardProgressID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardProgressID")
             as? NSViewController)
     }
 
     // Rsync userparams
     var viewControllerRsyncParams: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardRsyncParamsID")
             as? NSViewController)
     }
 
     // Edit
     var editViewController: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEditID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardEditID")
             as? NSViewController)
     }
 
     // RsyncCommand
     var rsynccommand: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "RsyncCommand")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "RsyncCommand")
             as? NSViewController)
     }
 
     // All profiles
     var allprofiles: NSViewController? {
-        return (self.sheetviewstoryboard?.instantiateController(withIdentifier: "ViewControllerAllProfilesID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "ViewControllerAllProfilesID")
             as? NSViewController)
     }
 }
@@ -132,48 +125,48 @@ protocol SetDismisser {
 
 extension SetDismisser {
     var dismissDelegateMain: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        return SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     var dismissDelegateSchedule: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+        return SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
 
     var dismissDelegateCopyFiles: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+        return SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
     }
 
     var dismissDelegateNewConfigurations: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+        return SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
     }
 
     var dimissDelegateSnapshot: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        return SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
 
     var dismissDelegateLoggData: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        return SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }
 
     var dismissDelegateSsh: DismissViewController? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+        return SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
     }
 
     func dismissview(viewcontroller _: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
-            self.dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vctabschedule {
-            self.dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcrestore {
-            self.dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcnewconfigurations {
-            self.dismissDelegateNewConfigurations?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            dismissDelegateNewConfigurations?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcsnapshot {
-            self.dimissDelegateSnapshot?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            dimissDelegateSnapshot?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcloggdata {
-            self.dismissDelegateLoggData?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            dismissDelegateLoggData?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcssh {
-            self.dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
+            dismissDelegateSsh?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         }
     }
 }
@@ -190,18 +183,18 @@ protocol Deselect {
 
 extension Deselect {
     var deselectDelegateMain: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        return SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     var deselectDelegateSchedule: DeselectRowTable? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+        return SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
     }
 
     func deselectrowtable(vcontroller: ViewController) {
         if vcontroller == .vctabmain {
-            self.deselectDelegateMain?.deselect()
+            deselectDelegateMain?.deselect()
         } else {
-            self.deselectDelegateSchedule?.deselect()
+            deselectDelegateSchedule?.deselect()
         }
     }
 }
@@ -213,7 +206,7 @@ protocol Index {
 extension Index {
     func index() -> Int? {
         weak var getindexDelegate: GetSelecetedIndex?
-        getindexDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        getindexDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         return getindexDelegate?.getindex()
     }
 }
@@ -264,18 +257,18 @@ extension Connected {
     }
 }
 
-protocol Abort: AnyObject {
+protocol Abort {
     func abort()
 }
 
 extension Abort {
     func abort() {
-        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        let view = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         view?.abortOperations()
     }
 }
 
-protocol Help: AnyObject {
+protocol Help {
     func help()
 }
 
@@ -295,11 +288,11 @@ protocol OutPut {
 
 extension OutPut {
     var informationDelegateMain: GetOutput? {
-        return ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        return SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     func getinfo() -> [String] {
-        return (self.informationDelegateMain?.getoutput()) ?? [""]
+        return (informationDelegateMain?.getoutput()) ?? [""]
     }
 }
 
@@ -313,7 +306,7 @@ protocol NewRsync {
 
 extension NewRsync {
     func newrsync() {
-        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        let view = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         view?.rsyncischanged()
     }
 }
@@ -328,7 +321,7 @@ protocol ChangeTemporaryRestorePath {
 
 extension ChangeTemporaryRestorePath {
     func changetemporaryrestorepath() {
-        let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+        let view = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         view?.temporaryrestorepath()
     }
 }

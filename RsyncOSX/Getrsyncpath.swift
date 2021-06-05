@@ -12,14 +12,14 @@ struct Getrsyncpath {
     var rsyncpath: String?
 
     init() {
-        if ViewControllerReference.shared.rsyncversion3 {
-            if ViewControllerReference.shared.localrsyncpath == nil {
-                self.rsyncpath = ViewControllerReference.shared.usrlocalbinrsync
+        if SharedReference.shared.rsyncversion3 {
+            if SharedReference.shared.localrsyncpath == nil {
+                rsyncpath = SharedReference.shared.usrlocalbinrsync
             } else {
-                self.rsyncpath = ViewControllerReference.shared.localrsyncpath! + ViewControllerReference.shared.rsync
+                rsyncpath = SharedReference.shared.localrsyncpath! + SharedReference.shared.rsync
             }
         } else {
-            self.rsyncpath = ViewControllerReference.shared.usrbinrsync
+            rsyncpath = SharedReference.shared.usrbinrsync
         }
     }
 }

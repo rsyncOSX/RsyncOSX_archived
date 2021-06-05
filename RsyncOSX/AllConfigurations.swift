@@ -14,35 +14,35 @@ final class AllConfigurations {
 
     func filter(search: String?) {
         globalDefaultQueue.async { () -> Void in
-            self.allconfigurations = self.allconfigurations?.filter { ($0.dateRun!.contains(search ?? "")) }
+            self.allconfigurations = self.allconfigurations?.filter { $0.dateRun!.contains(search ?? "") }
         }
     }
 
     func readallconfigurations() {
         var configurations: [Configuration]?
-        for i in 0 ..< (self.allprofiles?.count ?? 0) {
-            let profile = self.allprofiles?[i]
-            if self.allconfigurations == nil {
-                self.allconfigurations = [Configuration]()
+        for i in 0 ..< (allprofiles?.count ?? 0) {
+            let profile = allprofiles?[i]
+            if allconfigurations == nil {
+                allconfigurations = [Configuration]()
             }
             if profile == NSLocalizedString("Default profile", comment: "default profile") {
-                configurations = PersistentStorageAllprofilesAPI(profile: nil).getallconfigurations()
+                configurations = ReadConfigurationJSON(nil).configurations
             } else {
-                configurations = PersistentStorageAllprofilesAPI(profile: profile).getallconfigurations()
+                configurations = ReadConfigurationJSON(profile).configurations
             }
             guard configurations != nil else { return }
             for j in 0 ..< (configurations?.count ?? 0) {
                 configurations?[j].profile = profile
                 if let config = configurations?[j] {
-                    self.allconfigurations?.append(config)
+                    allconfigurations?.append(config)
                 }
             }
         }
     }
 
     init() {
-        self.allprofiles = AllProfilenames().allprofiles
-        self.readallconfigurations()
+        allprofiles = Catalogsandfiles(.configurations).getcatalogsasstringnames()
+        readallconfigurations()
     }
 
     deinit {

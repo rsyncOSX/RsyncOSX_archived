@@ -17,41 +17,41 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.detailsTable.delegate = self
-        self.detailsTable.dataSource = self
+        detailsTable.delegate = self
+        detailsTable.dataSource = self
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.output = self.getinfo()
+        output = getinfo()
         globalMainQueue.async { () -> Void in
             self.detailsTable.reloadData()
         }
     }
 
     @IBAction func close(_: NSButton) {
-        self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        dismissview(viewcontroller: self, vcontroller: .vctabmain)
     }
 
     @IBAction func pastetabeltomacospasteboard(_: NSButton) {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
-        for i in 0 ..< (self.output?.count ?? 0) {
-            pasteboard.writeObjects([(self.output?[i])! as NSPasteboardWriting])
+        for i in 0 ..< (output?.count ?? 0) {
+            pasteboard.writeObjects([(output?[i])! as NSPasteboardWriting])
         }
     }
 }
 
 extension ViewControllerInformation: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return self.output?.count ?? 0
+        return output?.count ?? 0
     }
 }
 
 extension ViewControllerInformation: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor _: NSTableColumn?, row: Int) -> NSView? {
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "outputID"), owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = self.output?[row] ?? ""
+            cell.textField?.stringValue = output?[row] ?? ""
             return cell
         } else {
             return nil

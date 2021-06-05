@@ -55,24 +55,24 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     @IBOutlet var combo14: NSComboBox!
 
     @IBAction func close(_: NSButton) {
-        self.view.window?.close()
+        view.window?.close()
     }
 
     @IBAction func closeview(_: NSButton) {
-        self.view.window?.close()
+        view.window?.close()
     }
 
     @IBAction func togglersyncdaemon(_: NSButton) {
         if let index = self.index() {
-            switch self.rsyncdaemon.state {
+            switch rsyncdaemon.state {
             case .on:
-                self.configurations?.removeesshparameter(index: index, delete: true)
-                self.param5.stringValue = self.configurations?.getConfigurations()?[index].parameter5 ?? ""
-                self.esshparameter.state = .on
+                configurations?.removeesshparameter(index: index, delete: true)
+                param5.stringValue = configurations?.getConfigurations()?[index].parameter5 ?? ""
+                esshparameter.state = .on
             case .off:
-                self.configurations?.removeesshparameter(index: index, delete: false)
-                self.param5.stringValue = (self.configurations?.getConfigurations()?[index].parameter5 ?? "") + " ssh"
-                self.esshparameter.state = .off
+                configurations?.removeesshparameter(index: index, delete: false)
+                param5.stringValue = (configurations?.getConfigurations()?[index].parameter5 ?? "") + " ssh"
+                esshparameter.state = .off
             default:
                 return
             }
@@ -81,27 +81,27 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
 
     @IBAction func removecompressparameter(_: NSButton) {
         if let index = self.index() {
-            switch self.compressparameter.state {
+            switch compressparameter.state {
             case .on:
-                self.configurations?.removecompressparameter(index: index, delete: true)
+                configurations?.removecompressparameter(index: index, delete: true)
             case .off:
-                self.configurations?.removecompressparameter(index: index, delete: false)
+                configurations?.removecompressparameter(index: index, delete: false)
             default:
                 break
             }
-            self.param3.stringValue = self.configurations?.getConfigurations()?[index].parameter3 ?? ""
+            param3.stringValue = configurations?.getConfigurations()?[index].parameter3 ?? ""
         }
     }
 
     @IBAction func removeesshparameter(_: NSButton) {
         if let index = self.index() {
-            switch self.esshparameter.state {
+            switch esshparameter.state {
             case .on:
-                self.configurations?.removeesshparameter(index: index, delete: true)
-                self.param5.stringValue = self.configurations?.getConfigurations()?[index].parameter5 ?? ""
+                configurations?.removeesshparameter(index: index, delete: true)
+                param5.stringValue = configurations?.getConfigurations()?[index].parameter5 ?? ""
             case .off:
-                self.configurations?.removeesshparameter(index: index, delete: false)
-                self.param5.stringValue = (self.configurations?.getConfigurations()?[index].parameter5 ?? "") + " ssh"
+                configurations?.removeesshparameter(index: index, delete: false)
+                param5.stringValue = (configurations?.getConfigurations()?[index].parameter5 ?? "") + " ssh"
             default:
                 break
             }
@@ -110,15 +110,15 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
 
     @IBAction func removedeleteparameter(_: NSButton) {
         if let index = self.index() {
-            switch self.deleteparamater.state {
+            switch deleteparamater.state {
             case .on:
-                self.configurations?.removeedeleteparameter(index: index, delete: true)
+                configurations?.removeedeleteparameter(index: index, delete: true)
             case .off:
-                self.configurations?.removeedeleteparameter(index: index, delete: false)
+                configurations?.removeedeleteparameter(index: index, delete: false)
             default:
                 break
             }
-            self.param4.stringValue = self.configurations?.getConfigurations()?[index].parameter4 ?? ""
+            param4.stringValue = configurations?.getConfigurations()?[index].parameter4 ?? ""
         }
     }
 
@@ -128,23 +128,23 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
         if let index = self.index() {
             if let configurations: [Configuration] = self.configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
-                switch self.backupbutton.state {
+                switch backupbutton.state {
                 case .on:
-                    self.initcombox(combobox: self.combo12, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).0)
-                    self.param12.stringValue = param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).1
+                    initcombox(combobox: combo12, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).0)
+                    param12.stringValue = param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[0]).1
                     let hiddenID = self.configurations?.gethiddenID(index: (self.index())!)
                     guard (hiddenID ?? -1) > -1 else { return }
                     let localcatalog = self.configurations?.getResourceConfiguration(hiddenID ?? -1, resource: .localCatalog)
                     let localcatalogParts = (localcatalog as AnyObject).components(separatedBy: "/")
-                    self.initcombox(combobox: self.combo13, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[1]).0)
-                    self.param13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
+                    initcombox(combobox: combo13, index: param.indexandvaluersyncparameter(SuffixstringsRsyncParameters().backupstrings[1]).0)
+                    param13.stringValue = "../backup" + "_" + localcatalogParts[localcatalogParts.count - 2]
                 case .off:
-                    self.initcombox(combobox: self.combo12, index: 0)
-                    self.param12.stringValue = ""
-                    self.initcombox(combobox: self.combo13, index: 0)
-                    self.param13.stringValue = ""
-                    self.initcombox(combobox: self.combo14, index: 0)
-                    self.param14.stringValue = ""
+                    initcombox(combobox: combo12, index: 0)
+                    param12.stringValue = ""
+                    initcombox(combobox: combo13, index: 0)
+                    param13.stringValue = ""
+                    initcombox(combobox: combo14, index: 0)
+                    param14.stringValue = ""
                 default: break
                 }
             }
@@ -156,17 +156,17 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     @IBOutlet var suffixButton: NSButton!
     @IBAction func suffix(_: NSButton) {
         if let index = self.index() {
-            self.suffixButton2.state = .off
+            suffixButton2.state = .off
             if let configurations: [Configuration] = self.configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
-                switch self.suffixButton.state {
+                switch suffixButton.state {
                 case .on:
                     let suffix = SuffixstringsRsyncParameters().suffixstringfreebsd
-                    self.initcombox(combobox: self.combo14, index: param.indexandvaluersyncparameter(suffix).0)
-                    self.param14.stringValue = param.indexandvaluersyncparameter(suffix).1
+                    initcombox(combobox: combo14, index: param.indexandvaluersyncparameter(suffix).0)
+                    param14.stringValue = param.indexandvaluersyncparameter(suffix).1
                 case .off:
-                    self.initcombox(combobox: self.combo14, index: 0)
-                    self.param14.stringValue = ""
+                    initcombox(combobox: combo14, index: 0)
+                    param14.stringValue = ""
                 default:
                     break
                 }
@@ -179,15 +179,15 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
         if let index = self.index() {
             if let configurations: [Configuration] = self.configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
-                self.suffixButton.state = .off
-                switch self.suffixButton2.state {
+                suffixButton.state = .off
+                switch suffixButton2.state {
                 case .on:
                     let suffix = SuffixstringsRsyncParameters().suffixstringlinux
-                    self.initcombox(combobox: self.combo14, index: param.indexandvaluersyncparameter(suffix).0)
-                    self.param14.stringValue = param.indexandvaluersyncparameter(suffix).1
+                    initcombox(combobox: combo14, index: param.indexandvaluersyncparameter(suffix).0)
+                    param14.stringValue = param.indexandvaluersyncparameter(suffix).1
                 case .off:
-                    self.initcombox(combobox: self.combo14, index: 0)
-                    self.param14.stringValue = ""
+                    initcombox(combobox: combo14, index: 0)
+                    param14.stringValue = ""
                 default:
                     break
                 }
@@ -204,73 +204,73 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     override func viewDidAppear() {
         super.viewDidAppear()
         // Check if there is another view open, if yes close it..
-        if let view = ViewControllerReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
+        if let view = SharedReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?
             closeview = view
             closeview?.closeview()
         }
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcrsyncparameters, nsviewcontroller: self)
-        guard self.diddissappear == false else { return }
+        SharedReference.shared.setvcref(viewcontroller: .vcrsyncparameters, nsviewcontroller: self)
+        guard diddissappear == false else { return }
         if let index = self.index() {
             if let configurations: [Configuration] = self.configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
-                self.comboBoxValues = param.getComboBoxValues()
-                self.backupbutton.state = .off
-                self.suffixButton.state = .off
-                self.suffixButton2.state = .off
-                self.param1.stringValue = configurations[index].parameter1
-                self.param2.stringValue = configurations[index].parameter2
-                self.param3.stringValue = configurations[index].parameter3
-                self.param4.stringValue = configurations[index].parameter4
+                comboBoxValues = param.getComboBoxValues()
+                backupbutton.state = .off
+                suffixButton.state = .off
+                suffixButton2.state = .off
+                param1.stringValue = configurations[index].parameter1
+                param2.stringValue = configurations[index].parameter2
+                param3.stringValue = configurations[index].parameter3
+                param4.stringValue = configurations[index].parameter4
                 if configurations[index].parameter5.isEmpty == false {
-                    self.param5.stringValue = configurations[index].parameter5 + " " + configurations[index].parameter6
+                    param5.stringValue = configurations[index].parameter5 + " " + configurations[index].parameter6
                 }
                 if configurations[index].parameter3.isEmpty == true {
-                    self.compressparameter.state = .on
+                    compressparameter.state = .on
                 } else {
-                    self.compressparameter.state = .off
+                    compressparameter.state = .off
                 }
                 if configurations[index].parameter4.isEmpty == true {
-                    self.self.deleteparamater.state = .on
+                    deleteparamater.state = .on
                 } else {
-                    self.deleteparamater.state = .off
+                    deleteparamater.state = .off
                 }
                 if configurations[index].parameter5.isEmpty == true {
-                    self.esshparameter.state = .on
+                    esshparameter.state = .on
                 } else {
-                    self.esshparameter.state = .off
+                    esshparameter.state = .off
                 }
                 let value8 = param.getParameter(rsyncparameternumber: 8).0
-                self.initcombox(combobox: self.combo8, index: value8)
-                self.param8.stringValue = param.getParameter(rsyncparameternumber: 8).1
+                initcombox(combobox: combo8, index: value8)
+                param8.stringValue = param.getParameter(rsyncparameternumber: 8).1
                 let value9 = param.getParameter(rsyncparameternumber: 9).0
-                self.initcombox(combobox: self.combo9, index: value9)
-                self.param9.stringValue = param.getParameter(rsyncparameternumber: 9).1
+                initcombox(combobox: combo9, index: value9)
+                param9.stringValue = param.getParameter(rsyncparameternumber: 9).1
                 let value10 = param.getParameter(rsyncparameternumber: 10).0
-                self.initcombox(combobox: self.combo10, index: value10)
-                self.param10.stringValue = param.getParameter(rsyncparameternumber: 10).1
+                initcombox(combobox: combo10, index: value10)
+                param10.stringValue = param.getParameter(rsyncparameternumber: 10).1
                 let value11 = param.getParameter(rsyncparameternumber: 11).0
-                self.initcombox(combobox: self.combo11, index: value11)
-                self.param11.stringValue = param.getParameter(rsyncparameternumber: 11).1
+                initcombox(combobox: combo11, index: value11)
+                param11.stringValue = param.getParameter(rsyncparameternumber: 11).1
                 let value12 = param.getParameter(rsyncparameternumber: 12).0
-                self.initcombox(combobox: self.combo12, index: value12)
-                self.param12.stringValue = param.getParameter(rsyncparameternumber: 12).1
+                initcombox(combobox: combo12, index: value12)
+                param12.stringValue = param.getParameter(rsyncparameternumber: 12).1
                 let value13 = param.getParameter(rsyncparameternumber: 13).0
-                self.initcombox(combobox: self.combo13, index: value13)
-                self.param13.stringValue = param.getParameter(rsyncparameternumber: 13).1
+                initcombox(combobox: combo13, index: value13)
+                param13.stringValue = param.getParameter(rsyncparameternumber: 13).1
                 let value14 = param.getParameter(rsyncparameternumber: 14).0
-                self.initcombox(combobox: self.combo14, index: value14)
-                self.param14.stringValue = param.getParameter(rsyncparameternumber: 14).1
+                initcombox(combobox: combo14, index: value14)
+                param14.stringValue = param.getParameter(rsyncparameternumber: 14).1
                 if configurations[index].rsyncdaemon != nil {
-                    self.rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index].rsyncdaemon!)
+                    rsyncdaemon.state = NSControl.StateValue(rawValue: configurations[index].rsyncdaemon!)
                 } else {
-                    self.rsyncdaemon.state = .off
+                    rsyncdaemon.state = .off
                 }
                 if configurations[index].sshport != nil {
-                    self.sshport.stringValue = String(configurations[index].sshport!)
+                    sshport.stringValue = String(configurations[index].sshport!)
                 }
                 if (configurations[index].sshkeypathandidentityfile ?? "").isEmpty == false {
-                    self.sshkeypathandidentityfile.stringValue = configurations[index].sshkeypathandidentityfile!
+                    sshkeypathandidentityfile.stringValue = configurations[index].sshkeypathandidentityfile!
                 }
             }
         }
@@ -278,8 +278,8 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.diddissappear = true
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcrsyncparameters, nsviewcontroller: nil)
+        diddissappear = true
+        SharedReference.shared.setvcref(viewcontroller: .vcrsyncparameters, nsviewcontroller: nil)
     }
 
     // Function for saving changed or new parameters for one configuration.
@@ -290,21 +290,21 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
             if let index = self.index() {
                 let param = SetrsyncParameter()
                 configurations[index].parameter8 = param.setrsyncparameter(indexComboBox:
-                    self.combo8.indexOfSelectedItem, value: getValue(value: self.param8.stringValue))
+                    combo8.indexOfSelectedItem, value: getValue(value: param8.stringValue))
                 configurations[index].parameter9 = param.setrsyncparameter(indexComboBox:
-                    self.combo9.indexOfSelectedItem, value: getValue(value: self.param9.stringValue))
+                    combo9.indexOfSelectedItem, value: getValue(value: param9.stringValue))
                 configurations[index].parameter10 = param.setrsyncparameter(indexComboBox:
-                    self.combo10.indexOfSelectedItem, value: getValue(value: self.param10.stringValue))
+                    combo10.indexOfSelectedItem, value: getValue(value: param10.stringValue))
                 configurations[index].parameter11 = param.setrsyncparameter(indexComboBox:
-                    self.combo11.indexOfSelectedItem, value: getValue(value: self.param11.stringValue))
+                    combo11.indexOfSelectedItem, value: getValue(value: param11.stringValue))
                 configurations[index].parameter12 = param.setrsyncparameter(indexComboBox:
-                    self.combo12.indexOfSelectedItem, value: getValue(value: self.param12.stringValue))
+                    combo12.indexOfSelectedItem, value: getValue(value: param12.stringValue))
                 configurations[index].parameter13 = param.setrsyncparameter(indexComboBox:
-                    self.combo13.indexOfSelectedItem, value: getValue(value: self.param13.stringValue))
+                    combo13.indexOfSelectedItem, value: getValue(value: param13.stringValue))
                 configurations[index].parameter14 = param.setrsyncparameter(indexComboBox:
-                    self.combo14.indexOfSelectedItem, value: getValue(value: self.param14.stringValue))
-                configurations[index].rsyncdaemon = self.rsyncdaemon.state.rawValue
-                if let port = self.sshport {
+                    combo14.indexOfSelectedItem, value: getValue(value: param14.stringValue))
+                configurations[index].rsyncdaemon = rsyncdaemon.state.rawValue
+                if let port = sshport {
                     configurations[index].sshport = Int(port.stringValue)
                 }
                 if let sshkeypathandidentityfile = self.sshkeypathandidentityfile {
@@ -318,14 +318,14 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
                 self.configurations?.updateConfigurations(configurations[index], index: index)
             }
         }
-        self.view.window?.close()
+        view.window?.close()
     }
 
     // There are eight comboboxes, all eight are initalized during ViewDidLoad and the correct index is set.
     private func initcombox(combobox: NSComboBox, index: Int) {
         guard index > -1 else { return }
         combobox.removeAllItems()
-        combobox.addItems(withObjectValues: self.comboBoxValues)
+        combobox.addItems(withObjectValues: comboBoxValues)
         combobox.selectItem(at: index)
     }
 
@@ -338,6 +338,6 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
 
 extension ViewControllerRsyncParameters: CloseEdit {
     func closeview() {
-        self.view.window?.close()
+        view.window?.close()
     }
 }

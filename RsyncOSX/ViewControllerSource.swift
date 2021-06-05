@@ -16,29 +16,29 @@ class ViewControllerSource: NSViewController {
     private var index: Int?
 
     @IBAction func closeview(_: NSButton) {
-        self.view.window?.close()
+        view.window?.close()
     }
 
     private func select() {
-        if let pvc = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh {
-            self.getSourceDelegateSsh = pvc
+        if let pvc = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh {
+            getSourceDelegateSsh = pvc
             if let index = self.index {
-                self.getSourceDelegateSsh?.getSourceindex(index: index)
+                getSourceDelegateSsh?.getSourceindex(index: index)
             }
         }
     }
 
     @IBAction func select(_: NSButton) {
-        self.select()
-        self.view.window?.close()
+        select()
+        view.window?.close()
     }
 
     // Initial functions viewDidLoad and viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
-        self.mainTableView.doubleAction = #selector(ViewControllerSource.tableViewDoubleClick(sender:))
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        mainTableView.doubleAction = #selector(ViewControllerSource.tableViewDoubleClick(sender:))
     }
 
     override func viewDidAppear() {
@@ -48,8 +48,8 @@ class ViewControllerSource: NSViewController {
     }
 
     @objc(tableViewDoubleClick:) func tableViewDoubleClick(sender _: AnyObject) {
-        self.select()
-        self.view.window?.close()
+        select()
+        view.window?.close()
     }
 
     // when row is selected, setting which table row is selected

@@ -51,11 +51,11 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
-        self.presentAsModalWindow(self.viewControllerProfile!)
+        presentAsModalWindow(viewControllerProfile!)
     }
 
     @IBAction func showHelp(_: AnyObject?) {
-        self.help()
+        help()
     }
 
     // Sidebar save day of week
@@ -63,9 +63,9 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         var configurations = self.configurations?.getConfigurations()
         guard configurations?.count ?? 0 > 0 else { return }
         if let index = self.index {
-            guard configurations?[index].task == ViewControllerReference.shared.snapshot else { return }
-            configurations?[index].snapdayoffweek = self.config?.snapdayoffweek
-            configurations?[index].snaplast = self.config?.snaplast
+            guard configurations?[index].task == SharedReference.shared.snapshot else { return }
+            configurations?[index].snapdayoffweek = config?.snapdayoffweek
+            configurations?[index].snaplast = config?.snaplast
             // Update configuration in memory before saving
             self.configurations?.updateConfigurations(configurations?[index], index: index)
         }
@@ -73,46 +73,46 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
 
     // Sidebar delete button
     func deleteaction() {
-        guard self.snapshotlogsandcatalogs != nil else { return }
-        guard ViewControllerReference.shared.process == nil else { return }
-        let num = self.snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
+        guard snapshotlogsandcatalogs != nil else { return }
+        guard SharedReference.shared.process == nil else { return }
+        let num = snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
         let question: String = NSLocalizedString("Do you REALLY want to delete selected snapshots", comment: "Snapshots") + " (" + String(num ?? 0) + ")?"
         let text: String = NSLocalizedString("Cancel or Delete", comment: "Snapshots")
         let dialog: String = NSLocalizedString("Delete", comment: "Snapshots")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            self.info.stringValue = Infosnapshots().info(num: 0)
-            self.snapshotlogsandcatalogs?.preparesnapshotcatalogsfordelete()
-            guard self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
-            self.presentAsSheet(self.viewControllerProgress!)
-            self.deletesnapshots.isEnabled = false
-            self.deletesnapshotcatalogs()
+            info.stringValue = Infosnapshots().info(num: 0)
+            snapshotlogsandcatalogs?.preparesnapshotcatalogsfordelete()
+            guard snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil else { return }
+            presentAsSheet(viewControllerProgress!)
+            deletesnapshots.isEnabled = false
+            deletesnapshotcatalogs()
         }
     }
 
     private func initslidersdeletesnapshots() {
-        guard self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 > 0 else { return }
-        self.deletesnapshots.altIncrementValue = 1.0
-        self.deletesnapshots.maxValue = Double(self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1.0
-        self.deletesnapshots.minValue = 0.0
-        self.deletesnapshots.intValue = 0
-        self.stringdeletesnapshotsnum.stringValue = "0"
-        self.deletesnapshotsdays.altIncrementValue = 1.0
-        if let maxdaysold = self.snapshotlogsandcatalogs?.logrecordssnapshot?[0] {
+        guard snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 > 0 else { return }
+        deletesnapshots.altIncrementValue = 1.0
+        deletesnapshots.maxValue = Double(snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1.0
+        deletesnapshots.minValue = 0.0
+        deletesnapshots.intValue = 0
+        stringdeletesnapshotsnum.stringValue = "0"
+        deletesnapshotsdays.altIncrementValue = 1.0
+        if let maxdaysold = snapshotlogsandcatalogs?.logrecordssnapshot?[0] {
             if let days = maxdaysold.days {
-                self.deletesnapshotsdays.maxValue = (Double(days) ?? 0.0) + 1
-                self.deletesnapshotsdays.intValue = Int32(self.deletesnapshotsdays.maxValue)
+                deletesnapshotsdays.maxValue = (Double(days) ?? 0.0) + 1
+                deletesnapshotsdays.intValue = Int32(deletesnapshotsdays.maxValue)
                 if let maxdaysoldstring = Double(maxdaysold.days ?? "100") {
-                    self.stringdeletesnapshotsdaysnum.stringValue = String(format: "%.0f", maxdaysoldstring)
+                    stringdeletesnapshotsdaysnum.stringValue = String(format: "%.0f", maxdaysoldstring)
                 }
             }
         } else {
-            self.deletesnapshotsdays.maxValue = 0.0
-            self.deletesnapshotsdays.intValue = 0
-            self.stringdeletesnapshotsdaysnum.stringValue = "0"
+            deletesnapshotsdays.maxValue = 0.0
+            deletesnapshotsdays.intValue = 0
+            stringdeletesnapshotsdaysnum.stringValue = "0"
         }
-        self.deletesnapshotsdays.minValue = 0.0
-        self.numbersinsequencetodelete = 0
+        deletesnapshotsdays.minValue = 0.0
+        numbersinsequencetodelete = 0
     }
 
     private func initcombox(combobox: NSComboBox, values: [String], index: Int) {
@@ -122,97 +122,97 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     }
 
     @IBAction func updatedeletesnapshotsnum(_: NSSlider) {
-        guard self.index != nil else { return }
-        self.stringdeletesnapshotsnum.stringValue = String(self.deletesnapshots.intValue)
-        self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue - 1)
-        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
+        guard index != nil else { return }
+        stringdeletesnapshotsnum.stringValue = String(deletesnapshots.intValue)
+        numbersinsequencetodelete = Int(deletesnapshots.intValue - 1)
+        markfordelete(numberstomark: numbersinsequencetodelete!)
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
-        self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(self.deletesnapshots.intValue)
-        self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-        self.dayofweek.isHidden = true
-        self.lastorevery.isHidden = true
+        info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(deletesnapshots.intValue)
+        info.textColor = setcolor(nsviewcontroller: self, color: .green)
+        dayofweek.isHidden = true
+        lastorevery.isHidden = true
     }
 
     @IBAction func updatedeletesnapshotsdays(_: NSSlider) {
-        guard self.index != nil else { return }
-        self.stringdeletesnapshotsdaysnum.stringValue = String(self.deletesnapshotsdays.intValue)
-        self.numbersinsequencetodelete = self.snapshotlogsandcatalogs?.countbydays(num: Double(self.deletesnapshotsdays.intValue))
-        self.markfordelete(numberstomark: self.numbersinsequencetodelete!)
+        guard index != nil else { return }
+        stringdeletesnapshotsdaysnum.stringValue = String(deletesnapshotsdays.intValue)
+        numbersinsequencetodelete = snapshotlogsandcatalogs?.countbydays(num: Double(deletesnapshotsdays.intValue))
+        markfordelete(numberstomark: numbersinsequencetodelete!)
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
-        self.info.stringValue = NSLocalizedString("Delete snapshots older than:", comment: "plan") + " " + String(self.deletesnapshotsdays.intValue)
-        self.info.textColor = setcolor(nsviewcontroller: self, color: .green)
-        self.dayofweek.isHidden = true
-        self.lastorevery.isHidden = true
+        info.stringValue = NSLocalizedString("Delete snapshots older than:", comment: "plan") + " " + String(deletesnapshotsdays.intValue)
+        info.textColor = setcolor(nsviewcontroller: self, color: .green)
+        dayofweek.isHidden = true
+        lastorevery.isHidden = true
     }
 
     private func markfordelete(numberstomark: Int) {
-        guard self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 > 0 else { return }
-        for i in 0 ..< (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 {
+        guard snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0 > 0 else { return }
+        for i in 0 ..< (snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 {
             if i <= numberstomark {
-                self.snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 1
+                snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 1
             } else {
-                self.snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 0
+                snapshotlogsandcatalogs?.logrecordssnapshot?[i].selectCellID = 0
             }
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configurations = Estimatedlistforsynchronization()
-        self.snapshotstableView.delegate = self
-        self.snapshotstableView.dataSource = self
-        self.rsynctableView.delegate = self
-        self.rsynctableView.dataSource = self
-        self.gettinglogs.usesThreadedAnimation = true
-        self.stringdeletesnapshotsnum.delegate = self
-        self.stringdeletesnapshotsdaysnum.delegate = self
-        self.selectplan.delegate = self
-        self.selectdayofweek.delegate = self
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
-        self.initpopupbutton()
+        configurations = Estimatedlistforsynchronization()
+        snapshotstableView.delegate = self
+        snapshotstableView.dataSource = self
+        rsynctableView.delegate = self
+        rsynctableView.dataSource = self
+        gettinglogs.usesThreadedAnimation = true
+        stringdeletesnapshotsnum.delegate = self
+        stringdeletesnapshotsdaysnum.delegate = self
+        selectplan.delegate = self
+        selectdayofweek.delegate = self
+        SharedReference.shared.setvcref(viewcontroller: .vcsnapshot, nsviewcontroller: self)
+        initpopupbutton()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
         // For sending messages to the sidebar
-        self.sidebaractionsDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        self.sidebaractionsDelegate?.sidebaractions(action: .snapshotviewbuttons)
-        guard self.diddissappear == false else { return }
-        self.initcombox(combobox: self.selectplan, values: self.combovalueslast, index: 0)
-        self.initcombox(combobox: self.selectdayofweek, values: self.combovaluesdayofweek, index: 0)
-        self.selectplan.isEnabled = false
-        self.selectdayofweek.isEnabled = false
-        self.snapshotlogsandcatalogs = nil
-        self.reloadtabledata()
-        self.info.textColor = setcolor(nsviewcontroller: self, color: .red)
+        sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
+        sidebaractionsDelegate?.sidebaractions(action: .snapshotviewbuttons)
+        guard diddissappear == false else { return }
+        initcombox(combobox: selectplan, values: combovalueslast, index: 0)
+        initcombox(combobox: selectdayofweek, values: combovaluesdayofweek, index: 0)
+        selectplan.isEnabled = false
+        selectdayofweek.isEnabled = false
+        snapshotlogsandcatalogs = nil
+        reloadtabledata()
+        info.textColor = setcolor(nsviewcontroller: self, color: .red)
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.diddissappear = true
+        diddissappear = true
     }
 
     private func deletesnapshotcatalogs() {
-        guard (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0) > 0 else {
-            self.deletesnapshots.isEnabled = true
-            self.info.stringValue = Infosnapshots().info(num: 0)
+        guard (snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0) > 0 else {
+            deletesnapshots.isEnabled = true
+            info.stringValue = Infosnapshots().info(num: 0)
             return
         }
-        if let remotecatalog = self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?[0] {
-            self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.remove(at: 0)
-            if (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0) == 0 {
-                self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
+        if let remotecatalog = snapshotlogsandcatalogs?.snapshotcatalogstodelete?[0] {
+            snapshotlogsandcatalogs?.snapshotcatalogstodelete?.remove(at: 0)
+            if (snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0) == 0 {
+                snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
             }
             if let config = self.config {
                 let arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
-                let command = OtherProcessCmdClosure(command: arguments.getCommand(),
-                                                     arguments: arguments.getArguments(),
-                                                     processtermination: self.processtermination,
-                                                     filehandler: self.filehandler)
+                let command = OtherProcess(command: arguments.getCommand(),
+                                           arguments: arguments.getArguments(),
+                                           processtermination: processtermination,
+                                           filehandler: filehandler)
                 command.executeProcess(outputprocess: nil)
             }
         }
@@ -221,79 +221,79 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     // setting which table row is selected
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
-        if myTableViewFromNotification == self.snapshotstableView {
+        if myTableViewFromNotification == snapshotstableView {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                if let dict = self.snapshotlogsandcatalogs?.logrecordssnapshot?[index] {
-                    self.info.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-                    let num = self.snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
-                    self.info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(num ?? 0)
-                    self.hiddenID = dict.hiddenID
-                    guard self.hiddenID != nil else { return }
-                    self.index = self.configurations?.getIndex(hiddenID!)
+                if let dict = snapshotlogsandcatalogs?.logrecordssnapshot?[index] {
+                    info.textColor = setcolor(nsviewcontroller: self, color: .green)
+                    let num = snapshotlogsandcatalogs?.logrecordssnapshot?.filter { $0.selectCellID == 1 }.count
+                    info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(num ?? 0)
+                    hiddenID = dict.hiddenID
+                    guard hiddenID != nil else { return }
+                    self.index = configurations?.getIndex(hiddenID!)
                 }
             } else {
-                self.index = nil
+                index = nil
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
-                if let config = self.configurations?.getConfigurations()?[index] {
-                    guard config.task == ViewControllerReference.shared.snapshot else { return }
-                    guard self.connected(config: config) == true else {
-                        self.info.stringValue = Infosnapshots().info(num: 6)
+                if let config = configurations?.getConfigurations()?[index] {
+                    guard config.task == SharedReference.shared.snapshot else { return }
+                    guard connected(config: config) == true else {
+                        info.stringValue = Infosnapshots().info(num: 6)
                         return
                     }
-                    self.selectplan.isEnabled = false
-                    self.selectdayofweek.isEnabled = false
-                    self.info.stringValue = Infosnapshots().info(num: 0)
-                    let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
-                    self.index = self.configurations?.getIndex(hiddenID)
-                    self.getsourcebyindex(index: hiddenID)
+                    selectplan.isEnabled = false
+                    selectdayofweek.isEnabled = false
+                    info.stringValue = Infosnapshots().info(num: 0)
+                    let hiddenID = configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
+                    self.index = configurations?.getIndex(hiddenID)
+                    getsourcebyindex(index: hiddenID)
                 }
             } else {
-                self.selectplan.isEnabled = false
-                self.selectdayofweek.isEnabled = false
-                self.snapshotlogsandcatalogs = nil
-                self.index = nil
-                self.info.stringValue = ""
-                self.reloadtabledata()
+                selectplan.isEnabled = false
+                selectdayofweek.isEnabled = false
+                snapshotlogsandcatalogs = nil
+                index = nil
+                info.stringValue = ""
+                reloadtabledata()
             }
         }
     }
 
     func getsourcebyindex(index: Int) {
-        self.hiddenID = index
-        self.config = self.configurations?.getConfigurations()?[self.configurations?.getIndex(index) ?? -1]
-        guard self.config?.task == ViewControllerReference.shared.snapshot else {
-            self.info.stringValue = Infosnapshots().info(num: 1)
+        hiddenID = index
+        config = configurations?.getConfigurations()?[configurations?.getIndex(index) ?? -1]
+        guard config?.task == SharedReference.shared.snapshot else {
+            info.stringValue = Infosnapshots().info(num: 1)
             self.index = nil
             return
         }
         if let config = self.config {
-            self.info.stringValue = Infosnapshots().info(num: 0)
-            self.gettinglogs.startAnimation(nil)
-            self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
+            info.stringValue = Infosnapshots().info(num: 0)
+            gettinglogs.startAnimation(nil)
+            snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
         }
     }
 
     private func preselectcomboboxes() {
-        self.selectdayofweek.selectItem(withObjectValue: NSLocalizedString(self.config?.snapdayoffweek ?? "Sunday", comment: "dayofweek"))
-        if self.config?.snaplast ?? 1 == 1 {
-            self.selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
+        selectdayofweek.selectItem(withObjectValue: NSLocalizedString(config?.snapdayoffweek ?? "Sunday", comment: "dayofweek"))
+        if config?.snaplast ?? 1 == 1 {
+            selectplan.selectItem(withObjectValue: NSLocalizedString("every", comment: "plan"))
         } else {
-            self.selectplan.selectItem(withObjectValue: NSLocalizedString("last", comment: "plan"))
+            selectplan.selectItem(withObjectValue: NSLocalizedString("last", comment: "plan"))
         }
     }
 
     private func setlabeldayofweekandlast() {
-        self.dayofweek.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-        self.lastorevery.textColor = self.setcolor(nsviewcontroller: self, color: .green)
-        self.dayofweek.stringValue = NSLocalizedString(self.config?.snapdayoffweek ?? "Sunday", comment: "dayofweek")
-        if self.config?.snaplast ?? 1 == 1 {
-            self.lastorevery.stringValue = NSLocalizedString("every", comment: "plan")
+        dayofweek.textColor = setcolor(nsviewcontroller: self, color: .green)
+        lastorevery.textColor = setcolor(nsviewcontroller: self, color: .green)
+        dayofweek.stringValue = NSLocalizedString(config?.snapdayoffweek ?? "Sunday", comment: "dayofweek")
+        if config?.snaplast ?? 1 == 1 {
+            lastorevery.stringValue = NSLocalizedString("every", comment: "plan")
         } else {
-            self.lastorevery.stringValue = NSLocalizedString("last", comment: "plan")
+            lastorevery.stringValue = NSLocalizedString("last", comment: "plan")
         }
     }
 
@@ -301,54 +301,54 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         var profilestrings: [String]?
         profilestrings = CatalogProfile().getcatalogsasstringnames()
         profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
-        self.profilepopupbutton.removeAllItems()
-        self.profilepopupbutton.addItems(withTitles: profilestrings ?? [])
-        self.profilepopupbutton.selectItem(at: 0)
+        profilepopupbutton.removeAllItems()
+        profilepopupbutton.addItems(withTitles: profilestrings ?? [])
+        profilepopupbutton.selectItem(at: 0)
     }
 
     @IBAction func selectprofile(_: NSButton) {
-        var profile = self.profilepopupbutton.titleOfSelectedItem
-        let selectedindex = self.profilepopupbutton.indexOfSelectedItem
+        var profile = profilepopupbutton.titleOfSelectedItem
+        let selectedindex = profilepopupbutton.indexOfSelectedItem
         if profile == NSLocalizedString("Default profile", comment: "default profile") {
             profile = nil
         }
-        self.profilepopupbutton.selectItem(at: selectedindex)
+        profilepopupbutton.selectItem(at: selectedindex)
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 
     func tag() {
-        guard self.config?.task == ViewControllerReference.shared.snapshot else { return }
-        guard ViewControllerReference.shared.process == nil else { return }
-        _ = Tagsnapshots(plan: self.config?.snaplast ?? 1, snapdayoffweek: self.config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: self.snapshotlogsandcatalogs)
-        self.dayofweek.isHidden = false
-        self.lastorevery.isHidden = false
+        guard config?.task == SharedReference.shared.snapshot else { return }
+        guard SharedReference.shared.process == nil else { return }
+        _ = Tagsnapshots(plan: config?.snaplast ?? 1, snapdayoffweek: config?.snapdayoffweek ?? StringDayofweek.Sunday.rawValue, snapshotsloggdata: snapshotlogsandcatalogs)
+        dayofweek.isHidden = false
+        lastorevery.isHidden = false
     }
 }
 
 extension ViewControllerSnapshots: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
-        self.dismiss(viewcontroller)
-        if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil {
-            self.snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
-            self.info.stringValue = Infosnapshots().info(num: 2)
+        dismiss(viewcontroller)
+        if snapshotlogsandcatalogs?.snapshotcatalogstodelete != nil {
+            snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
+            info.stringValue = Infosnapshots().info(num: 2)
         }
     }
 }
 
 extension ViewControllerSnapshots {
     func processtermination() {
-        if let vc = ViewControllerReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess,
+        if let vc = SharedReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess,
            let config = self.config
         {
-            if self.snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
-                self.deletesnapshots.isEnabled = true
-                self.info.stringValue = Infosnapshots().info(num: 3)
-                self.snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
+            if snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
+                deletesnapshots.isEnabled = true
+                info.stringValue = Infosnapshots().info(num: 3)
+                snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
                 vc.processTermination()
             } else {
                 vc.fileHandler()
             }
-            self.deletesnapshotcatalogs()
+            deletesnapshotcatalogs()
         }
     }
 
@@ -357,45 +357,45 @@ extension ViewControllerSnapshots {
 
 extension ViewControllerSnapshots: Count {
     func maxCount() -> Int {
-        let max = self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0
-        self.snapshotstodelete = Double(max)
+        let max = snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0
+        snapshotstodelete = Double(max)
         return max
     }
 
     func inprogressCount() -> Int {
-        let progress = Int(self.snapshotstodelete) - (self.snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0)
+        let progress = Int(snapshotstodelete) - (snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0)
         return progress
     }
 }
 
 extension ViewControllerSnapshots: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if tableView == self.snapshotstableView {
+        if tableView == snapshotstableView {
             let numberofsnaps: String = NSLocalizedString("Number snapshots:", comment: "Snapshots")
-            guard self.snapshotlogsandcatalogs?.logrecordssnapshot != nil else {
-                self.numberOflogfiles.stringValue = numberofsnaps + " "
+            guard snapshotlogsandcatalogs?.logrecordssnapshot != nil else {
+                numberOflogfiles.stringValue = numberofsnaps + " "
                 return 0
             }
-            self.numberOflogfiles.stringValue = numberofsnaps + " " + String(self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0)
-            return self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0
+            numberOflogfiles.stringValue = numberofsnaps + " " + String(snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0)
+            return snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0
         } else {
-            return self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
+            return configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0
         }
     }
 }
 
 extension ViewControllerSnapshots: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if tableView == self.rsynctableView {
-            guard row < (self.configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0) else { return nil }
-            if let object: NSDictionary = self.configurations?.getConfigurationsDataSourceSynchronize()?[row] {
+        if tableView == rsynctableView {
+            guard row < (configurations?.getConfigurationsDataSourceSynchronize()?.count ?? 0) else { return nil }
+            if let object: NSDictionary = configurations?.getConfigurationsDataSourceSynchronize()?[row] {
                 return object[tableColumn!.identifier] as? String
             } else {
                 return nil
             }
         } else {
-            guard row < (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) else { return nil }
-            if let object = self.snapshotlogsandcatalogs?.logrecordssnapshot?[row],
+            guard row < (snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) else { return nil }
+            if let object = snapshotlogsandcatalogs?.logrecordssnapshot?[row],
                let tableColumn = tableColumn
             {
                 switch tableColumn.identifier.rawValue {
@@ -421,13 +421,13 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
     }
 
     func tableView(_ tableView: NSTableView, setObjectValue _: Any?, for tableColumn: NSTableColumn?, row: Int) {
-        guard tableView == self.snapshotstableView else { return }
+        guard tableView == snapshotstableView else { return }
         if let tableColumn = tableColumn {
             if tableColumn.identifier.rawValue == DictionaryStrings.selectCellID.rawValue {
-                var select: Int = self.snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID ?? 0
+                var select: Int = snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID ?? 0
                 if select == 0 { select = 1 } else if select == 1 { select = 0 }
-                guard row < (self.snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 else { return }
-                self.snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID = select
+                guard row < (snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 else { return }
+                snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID = select
             }
         }
     }
@@ -435,13 +435,13 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
 
 extension ViewControllerSnapshots: Reloadandrefresh {
     func reloadtabledata() {
-        self.setlabeldayofweekandlast()
-        self.selectplan.isEnabled = true
-        self.selectdayofweek.isEnabled = true
-        self.initslidersdeletesnapshots()
-        self.gettinglogs.stopAnimation(nil)
-        self.numbersinsequencetodelete = nil
-        self.preselectcomboboxes()
+        setlabeldayofweekandlast()
+        selectplan.isEnabled = true
+        selectdayofweek.isEnabled = true
+        initslidersdeletesnapshots()
+        gettinglogs.stopAnimation(nil)
+        numbersinsequencetodelete = nil
+        preselectcomboboxes()
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
             self.rsynctableView.reloadData()
@@ -451,7 +451,7 @@ extension ViewControllerSnapshots: Reloadandrefresh {
 
 extension ViewControllerSnapshots: NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
-        self.delayWithSeconds(0.5) {
+        delayWithSeconds(0.5) {
             guard self.snapshotlogsandcatalogs != nil else { return }
             if notification.object as? NSTextField == self.stringdeletesnapshotsnum {
                 if self.stringdeletesnapshotsnum.stringValue.isEmpty == false {
@@ -493,11 +493,11 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
 extension ViewControllerSnapshots: NewProfile {
     func newprofile(profile _: String?, selectedindex: Int?) {
         if let index = selectedindex {
-            self.profilepopupbutton.selectItem(at: index)
+            profilepopupbutton.selectItem(at: index)
         } else {
-            self.initpopupbutton()
+            initpopupbutton()
         }
-        self.snapshotlogsandcatalogs = nil
+        snapshotlogsandcatalogs = nil
         globalMainQueue.async { () -> Void in
             self.snapshotstableView.reloadData()
         }
@@ -508,35 +508,35 @@ extension ViewControllerSnapshots: NewProfile {
 
 extension ViewControllerSnapshots: NSComboBoxDelegate {
     func comboBoxSelectionDidChange(_: Notification) {
-        switch self.selectdayofweek.indexOfSelectedItem {
+        switch selectdayofweek.indexOfSelectedItem {
         case 0:
-            self.config?.snapdayoffweek = StringDayofweek.Sunday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Sunday.rawValue
         case 1:
-            self.config?.snapdayoffweek = StringDayofweek.Monday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Monday.rawValue
         case 2:
-            self.config?.snapdayoffweek = StringDayofweek.Tuesday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Tuesday.rawValue
         case 3:
-            self.config?.snapdayoffweek = StringDayofweek.Wednesday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Wednesday.rawValue
         case 4:
-            self.config?.snapdayoffweek = StringDayofweek.Thursday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Thursday.rawValue
         case 5:
-            self.config?.snapdayoffweek = StringDayofweek.Friday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Friday.rawValue
         case 6:
-            self.config?.snapdayoffweek = StringDayofweek.Saturday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Saturday.rawValue
         default:
-            self.config?.snapdayoffweek = StringDayofweek.Sunday.rawValue
+            config?.snapdayoffweek = StringDayofweek.Sunday.rawValue
         }
-        self.info.stringValue = ""
-        switch self.selectplan.indexOfSelectedItem {
+        info.stringValue = ""
+        switch selectplan.indexOfSelectedItem {
         case 1:
-            self.config?.snaplast = 1
+            config?.snaplast = 1
         case 2:
-            self.config?.snaplast = 2
+            config?.snaplast = 2
         default:
             return
         }
-        self.dayofweek.isHidden = true
-        self.lastorevery.isHidden = true
+        dayofweek.isHidden = true
+        lastorevery.isHidden = true
     }
 }
 
@@ -550,7 +550,7 @@ extension ViewControllerSnapshots: OpenQuickBackup {
 
 extension ViewControllerSnapshots: GetSelecetedIndex {
     func getindex() -> Int? {
-        return self.index
+        return index
     }
 }
 
@@ -558,11 +558,11 @@ extension ViewControllerSnapshots: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
         case .Tag:
-            self.tag()
+            tag()
         case .Delete:
-            self.deleteaction()
+            deleteaction()
         case .Save:
-            self.savesnapdayofweek()
+            savesnapdayofweek()
         default:
             return
         }

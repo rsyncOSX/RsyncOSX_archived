@@ -27,37 +27,37 @@ extension Attributedestring {
 extension ViewControllerMain: NSTableViewDataSource {
     // Delegate for size of table
     func numberOfRows(in _: NSTableView) -> Int {
-        return self.configurations?.configurations?.count ?? 0
+        return configurations?.configurations?.count ?? 0
     }
 }
 
 extension ViewControllerMain: NSTableViewDelegate {
     // setting which table row is selected, force new estimation
     func tableViewSelectionDidChange(_ notification: Notification) {
-        self.seterrorinfo(info: "")
+        info.stringValue = ""
         // If change row during estimation
-        if ViewControllerReference.shared.process != nil, self.index != nil { self.abortOperations() }
-        self.info.stringValue = Infoexecute().info(num: 0)
+        if SharedReference.shared.process != nil, index != nil { abortOperations() }
+        info.stringValue = Infoexecute().info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
             self.index = index
-            self.indexes = self.mainTableView.selectedRowIndexes
-            if self.lastindex != index {
-                self.singletask = nil
+            self.indexes = mainTableView.selectedRowIndexes
+            if lastindex != index {
+                singletask = nil
             }
-            self.lastindex = index
+            lastindex = index
         } else {
-            self.index = nil
+            index = nil
             self.indexes = nil
-            self.singletask = nil
-            self.reloadtabledata()
+            singletask = nil
+            reloadtabledata()
         }
-        self.reset()
+        reset()
     }
 
     func tableView(_: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        guard ViewControllerReference.shared.process == nil else { return [] }
+        guard SharedReference.shared.process == nil else { return [] }
         if edge == .leading {
             let delete = NSTableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Main")) { _, _ in
                 self.deleterow(index: row)
@@ -77,11 +77,11 @@ extension ViewControllerMain: NSTableViewDelegate {
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard self.configurations != nil else { return nil }
-        if row > (self.configurations?.configurations?.count ?? 0) - 1 { return nil }
-        if let object = self.configurations?.configurations?[row],
-           let hiddenID: Int = self.configurations?.getConfigurations()?[row].hiddenID,
-           let markdays: Bool = self.configurations?.getConfigurations()?[row].markdays,
+        guard configurations != nil else { return nil }
+        if row > (configurations?.configurations?.count ?? 0) - 1 { return nil }
+        if let object = configurations?.configurations?[row],
+           let hiddenID: Int = configurations?.getConfigurations()?[row].hiddenID,
+           let markdays: Bool = configurations?.getConfigurations()?[row].markdays,
            let tableColumn = tableColumn
         {
             let cellIdentifier: String = tableColumn.identifier.rawValue
@@ -91,8 +91,8 @@ extension ViewControllerMain: NSTableViewDelegate {
                     cell.textField?.stringValue = object.task
                     cell.imageView?.image = nil
                     cell.imageView?.alignment = .right
-                    if row == self.index {
-                        if self.singletask != nil {
+                    if row == index {
+                        if singletask != nil {
                             cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
                         }
                     }
@@ -104,8 +104,8 @@ extension ViewControllerMain: NSTableViewDelegate {
                     if cell.textField?.stringValue.isEmpty ?? true {
                         cell.textField?.stringValue = DictionaryStrings.localhost.rawValue
                     }
-                    if self.configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
-                        if (self.configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
+                    if configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
+                        if (configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
                            tableColumn.identifier.rawValue == DictionaryStrings.offsiteServerCellID.rawValue
                         {
                             cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .red)
@@ -129,7 +129,7 @@ extension ViewControllerMain: NSTableViewDelegate {
                 }
             case DictionaryStrings.schedCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                    if let obj = self.schedulesortedandexpanded {
+                    if let obj = schedulesortedandexpanded {
                         cell.textField?.stringValue = ""
                         cell.imageView?.image = nil
                         if obj.numberoftasks(hiddenID).0 > 0 {

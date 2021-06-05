@@ -11,8 +11,8 @@ import Foundation
 
 final class RestorefilesTask: SetConfigurations {
     private var config: Configuration?
-    var process: RsyncProcessCmdClosure?
-    var outputprocess: OutputProcess?
+    var process: RsyncProcess?
+    var outputprocess: OutputfromProcess?
     weak var sendprocess: SendOutputProcessreference?
 
     // Process termination and filehandler closures
@@ -23,19 +23,19 @@ final class RestorefilesTask: SetConfigurations {
         if let config = self.config {
             let arguments = RestorefilesArguments(task: .rsync, config: config, remoteFile: remotefile,
                                                   localCatalog: localCatalog, drynrun: dryrun).getArguments()
-            self.outputprocess = OutputProcessRsync()
-            self.sendprocess?.sendoutputprocessreference(outputprocess: self.outputprocess)
-            self.process = RsyncProcessCmdClosure(arguments: arguments, config: nil, processtermination: self.processtermination, filehandler: self.filehandler)
-            self.process?.executeProcess(outputprocess: self.outputprocess)
+            outputprocess = OutputfromProcessRsync()
+            sendprocess?.sendoutputprocessreference(outputprocess: outputprocess)
+            process = RsyncProcess(arguments: arguments, config: nil, processtermination: processtermination, filehandler: filehandler)
+            process?.executeProcess(outputprocess: outputprocess)
         }
     }
 
     init(hiddenID: Int, processtermination: @escaping () -> Void, filehandler: @escaping () -> Void) {
-        self.sendprocess = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        sendprocess = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         self.processtermination = processtermination
         self.filehandler = filehandler
-        if let index = self.configurations?.getIndex(hiddenID) {
-            self.config = self.configurations?.getConfigurations()?[index]
+        if let index = configurations?.getIndex(hiddenID) {
+            config = configurations?.getConfigurations()?[index]
         }
     }
 }

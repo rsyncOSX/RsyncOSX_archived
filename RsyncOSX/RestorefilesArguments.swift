@@ -19,12 +19,12 @@ final class RestorefilesArguments {
     private var arguments: [String]?
 
     func getArguments() -> [String]? {
-        return self.arguments
+        return arguments
     }
 
     init(task: Enumrestorefiles, config: Configuration?, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
         if let config = config {
-            self.arguments = [String]()
+            arguments = [String]()
             switch task {
             case .rsync:
                 let arguments = RsyncParametersSingleFilesArguments(config: config, remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)

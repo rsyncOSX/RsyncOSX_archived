@@ -13,7 +13,7 @@ final class ConfigurationsAsDictionarys: SetConfigurations {
     func uniqueserversandlogins() -> [NSDictionary]? {
         guard self.configurations != nil else { return nil }
         var configurations = self.configurations?.configurations?.filter {
-            ViewControllerReference.shared.synctasks.contains($0.task)
+            SharedReference.shared.synctasks.contains($0.task)
         }
         var data = [NSDictionary]()
         for i in 0 ..< (configurations?.count ?? 0) {

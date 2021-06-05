@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 06/06/2019.
 //  Copyright © 2019 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -13,27 +12,27 @@ struct Setrsyncpath {
     weak var setinfoaboutrsyncDelegate: Setinfoaboutrsync?
 
     init() {
-        self.setinfoaboutrsyncDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        setinfoaboutrsyncDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         var rsyncpath: String?
         // If not in /usr/bin or /usr/local/bin, rsyncPath is set if none of the above
-        if let pathforrsync = ViewControllerReference.shared.localrsyncpath {
-            rsyncpath = pathforrsync + ViewControllerReference.shared.rsync
-        } else if ViewControllerReference.shared.rsyncversion3 {
-            rsyncpath = "/usr/local/bin/" + ViewControllerReference.shared.rsync
+        if let pathforrsync = SharedReference.shared.localrsyncpath {
+            rsyncpath = pathforrsync + SharedReference.shared.rsync
+        } else if SharedReference.shared.rsyncversion3 {
+            rsyncpath = "/usr/local/bin/" + SharedReference.shared.rsync
         } else {
-            rsyncpath = "/usr/bin/" + ViewControllerReference.shared.rsync
+            rsyncpath = "/usr/bin/" + SharedReference.shared.rsync
         }
-        guard ViewControllerReference.shared.rsyncversion3 == true else {
-            ViewControllerReference.shared.norsync = false
-            self.setinfoaboutrsyncDelegate?.setinfoaboutrsync()
+        guard SharedReference.shared.rsyncversion3 == true else {
+            SharedReference.shared.norsync = false
+            setinfoaboutrsyncDelegate?.setinfoaboutrsync()
             return
         }
         if FileManager.default.isExecutableFile(atPath: rsyncpath ?? "") == false {
-            ViewControllerReference.shared.norsync = true
+            SharedReference.shared.norsync = true
         } else {
-            ViewControllerReference.shared.norsync = false
+            SharedReference.shared.norsync = false
         }
-        self.setinfoaboutrsyncDelegate?.setinfoaboutrsync()
+        setinfoaboutrsyncDelegate?.setinfoaboutrsync()
     }
 
     init(path: String) {
@@ -41,12 +40,12 @@ struct Setrsyncpath {
         if path.isEmpty == false {
             if path.hasSuffix("/") == false {
                 path += "/"
-                ViewControllerReference.shared.localrsyncpath = path
+                SharedReference.shared.localrsyncpath = path
             } else {
-                ViewControllerReference.shared.localrsyncpath = path
+                SharedReference.shared.localrsyncpath = path
             }
         } else {
-            ViewControllerReference.shared.localrsyncpath = nil
+            SharedReference.shared.localrsyncpath = nil
         }
     }
 }

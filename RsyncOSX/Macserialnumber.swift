@@ -31,11 +31,11 @@ final class Macserialnumber {
 
     // Function for returning the MacSerialNumber
     func getMacSerialNumber() -> String? {
-        guard self.macSerialNumber != nil else {
+        guard macSerialNumber != nil else {
             // Compute it, set it and return
-            self.macSerialNumber = self.computemacSerialNumber()
-            return self.macSerialNumber!
+            macSerialNumber = computemacSerialNumber()
+            return macSerialNumber!
         }
-        return self.macSerialNumber
+        return macSerialNumber
     }
 }

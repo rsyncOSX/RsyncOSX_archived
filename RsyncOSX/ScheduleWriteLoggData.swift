@@ -18,7 +18,7 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     func deleteselectedrows(scheduleloggdata: ScheduleLoggData?) {
         guard scheduleloggdata?.loggrecords != nil else { return }
         var deletes = [Row]()
-        let selectdeletes = scheduleloggdata?.loggrecords?.filter { $0.delete == 1 }.sorted { (dict1, dict2) -> Bool in
+        let selectdeletes = scheduleloggdata?.loggrecords?.filter { $0.delete == 1 }.sorted { dict1, dict2 -> Bool in
             if dict1.parent > dict2.parent {
                 return true
             } else {
@@ -30,55 +30,55 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             let sibling = selectdeletes?[i].sibling ?? 0
             deletes.append((parent, sibling))
         }
-        deletes.sort(by: { (obj1, obj2) -> Bool in
+        deletes.sort(by: { obj1, obj2 -> Bool in
             if obj1.0 == obj2.0, obj1.1 > obj2.1 {
                 return obj1 > obj2
             }
             return obj1 > obj2
         })
         for i in 0 ..< deletes.count {
-            self.schedules?[deletes[i].0].logrecords?.remove(at: deletes[i].1)
+            schedules?[deletes[i].0].logrecords?.remove(at: deletes[i].1)
         }
-        PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
-        self.reloadtable(vcontroller: .vcloggdata)
+        WriteScheduleJSON(profile, schedules)
+        reloadtable(vcontroller: .vcloggdata)
     }
 
     func addlogpermanentstore(hiddenID: Int, result: String) {
-        if ViewControllerReference.shared.detailedlogging {
+        if SharedReference.shared.detailedlogging {
             // Set the current date
             let currendate = Date()
             let date = currendate.en_us_string_from_date()
-            if let config = self.getconfig(hiddenID: hiddenID) {
+            if let config = getconfig(hiddenID: hiddenID) {
                 var resultannotaded: String?
-                if config.task == ViewControllerReference.shared.snapshot {
+                if config.task == SharedReference.shared.snapshot {
                     let snapshotnum = String(config.snapshotnum ?? 1)
                     resultannotaded = "(" + snapshotnum + ") " + result
                 } else {
                     resultannotaded = result
                 }
-                var inserted: Bool = self.addlogexisting(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
+                var inserted: Bool = addlogexisting(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
                 // Record does not exist, create new Schedule (not inserted)
                 if inserted == false {
-                    inserted = self.addlognew(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
+                    inserted = addlognew(hiddenID: hiddenID, result: resultannotaded ?? "", date: date)
                 }
                 if inserted {
-                    PersistentStorage(profile: self.profile, whattoreadorwrite: .schedule).saveMemoryToPersistentStore()
-                    self.deselectrowtable(vcontroller: .vctabmain)
+                    WriteScheduleJSON(profile, schedules)
+                    deselectrowtable(vcontroller: .vctabmain)
                 }
             }
         }
     }
 
     func addlogexisting(hiddenID: Int, result: String, date: String) -> Bool {
-        if ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
-            if let index = self.schedules?.firstIndex(where: { $0.hiddenID == hiddenID
+        if SharedReference.shared.synctasks.contains(configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
+            if let index = schedules?.firstIndex(where: { $0.hiddenID == hiddenID
                     && $0.schedule == Scheduletype.manuel.rawValue
                     && $0.dateStart == "01 Jan 1900 00:00"
             }) {
                 var log = Log()
                 log.dateExecuted = date
                 log.resultExecuted = result
-                self.schedules?[index].logrecords?.append(log)
+                schedules?[index].logrecords?.append(log)
                 return true
             }
         }
@@ -86,30 +86,29 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     }
 
     func addlognew(hiddenID: Int, result: String, date: String) -> Bool {
-        if ViewControllerReference.shared.synctasks.contains(self.configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
-            let main = NSMutableDictionary()
-            main.setObject(hiddenID, forKey: DictionaryStrings.hiddenID.rawValue as NSCopying)
-            main.setObject("01 Jan 1900 00:00", forKey: DictionaryStrings.dateStart.rawValue as NSCopying)
-            main.setObject(Scheduletype.manuel.rawValue, forKey: DictionaryStrings.schedule.rawValue as NSCopying)
-            let dict = NSMutableDictionary()
-            dict.setObject(date, forKey: DictionaryStrings.dateExecuted.rawValue as NSCopying)
-            dict.setObject(result, forKey: DictionaryStrings.resultExecuted.rawValue as NSCopying)
-            let executed = NSMutableArray()
-            executed.add(dict)
-            let newSchedule = ConfigurationSchedule(dictionary: main, log: executed, includelog: true)
-            self.schedules?.append(newSchedule)
+        if SharedReference.shared.synctasks.contains(configurations?.getResourceConfiguration(hiddenID, resource: .task) ?? "") {
+            var newrecord = ConfigurationSchedule()
+            newrecord.hiddenID = hiddenID
+            newrecord.dateStart = "01 Jan 1900 00:00"
+            newrecord.schedule = Scheduletype.manuel.rawValue
+            var log = Log()
+            log.dateExecuted = date
+            log.resultExecuted = result
+            newrecord.logrecords = [Log]()
+            newrecord.logrecords?.append(log)
+            schedules?.append(newrecord)
             return true
         }
         return false
     }
 
     func getconfig(hiddenID: Int) -> Configuration? {
-        let index = self.configurations?.getIndex(hiddenID) ?? 0
-        return self.configurations?.getConfigurations()?[index]
+        let index = configurations?.getIndex(hiddenID) ?? 0
+        return configurations?.getConfigurations()?[index]
     }
 
     init(profile: String?) {
         self.profile = profile
-        self.schedules = nil
+        schedules = nil
     }
 }

@@ -15,24 +15,24 @@ class NewConfigurations {
     /// Function is getting all added (new) configurations
     /// - returns : Array of Dictionary storing all new configurations
     func getnewConfigurations() -> [NSMutableDictionary]? {
-        return self.newConfigurations
+        return newConfigurations
     }
 
     // Appending
     func appendnewConfigurations(dict: NSMutableDictionary) {
-        guard self.newConfigurations != nil else {
-            self.newConfigurations = [NSMutableDictionary]()
-            self.newConfigurations?.append(dict)
+        guard newConfigurations != nil else {
+            newConfigurations = [NSMutableDictionary]()
+            newConfigurations?.append(dict)
             return
         }
-        self.newConfigurations?.append(dict)
+        newConfigurations?.append(dict)
     }
 
     func newConfigurationsCount() -> Int {
-        return self.newConfigurations?.count ?? 0
+        return newConfigurations?.count ?? 0
     }
 
     init() {
-        self.newConfigurations = [NSMutableDictionary]()
+        newConfigurations = [NSMutableDictionary]()
     }
 }

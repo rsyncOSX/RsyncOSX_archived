@@ -12,7 +12,7 @@ import Foundation
 final class CatalogProfile: Catalogsandfiles {
     func createprofilecatalog(profile: String) -> Bool {
         var rootpath: Folder?
-        if let path = self.fullroot {
+        if let path = fullpathmacserial {
             do {
                 rootpath = try Folder(path: path)
                 do {
@@ -20,7 +20,7 @@ final class CatalogProfile: Catalogsandfiles {
                     return true
                 } catch let e {
                     let error = e as NSError
-                    self.error(error: error.description, errortype: .profilecreatedirectory)
+                    self.error(errordescription: error.description, errortype: .profilecreatedirectory)
                     return false
                 }
             } catch {
@@ -33,7 +33,7 @@ final class CatalogProfile: Catalogsandfiles {
     // Function for deleting profile directory
     func deleteProfileDirectory(profileName: String) {
         let fileManager = FileManager.default
-        if let path = self.fullroot {
+        if let path = fullpathmacserial {
             let profileDirectory = path + "/" + profileName
             if fileManager.fileExists(atPath: profileDirectory) == true {
                 let question: String = NSLocalizedString("Delete profile:", comment: "Profiles")
@@ -46,7 +46,7 @@ final class CatalogProfile: Catalogsandfiles {
                         try fileManager.removeItem(atPath: profileDirectory)
                     } catch let e {
                         let error = e as NSError
-                        self.error(error: error.description, errortype: .profiledeletedirectory)
+                        self.error(errordescription: error.description, errortype: .profiledeletedirectory)
                     }
                 }
             }
@@ -54,6 +54,6 @@ final class CatalogProfile: Catalogsandfiles {
     }
 
     init() {
-        super.init(profileorsshrootpath: .profileroot)
+        super.init(.configurations)
     }
 }

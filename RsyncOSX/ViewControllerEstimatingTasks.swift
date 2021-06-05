@@ -25,68 +25,68 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     @IBOutlet var progress: NSProgressIndicator!
 
     @IBAction func abort(_: NSButton) {
-        self.remoteinfotask?.abort()
-        self.abort()
-        self.remoteinfotask = nil
-        self.closeview()
+        remoteinfotask?.abort()
+        abort()
+        remoteinfotask = nil
+        closeview()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
+        SharedReference.shared.setvcref(viewcontroller: .vcestimatingtasks, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard self.diddissappear == false else { return }
-        self.abort.isEnabled = true
-        self.remoteinfotask = RemoteinfoEstimation(viewcontroller: self, processtermination: self.processtermination)
-        self.initiateProgressbar()
+        guard diddissappear == false else { return }
+        abort.isEnabled = true
+        remoteinfotask = RemoteinfoEstimation(viewcontroller: self, processtermination: processtermination)
+        initiateProgressbar()
     }
 
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        self.diddissappear = true
+        diddissappear = true
         // Release the estimating object
-        self.remoteinfotask?.abort()
-        self.remoteinfotask = nil
+        remoteinfotask?.abort()
+        remoteinfotask = nil
     }
 
     // Progress bars
     private func initiateProgressbar() {
-        self.progress.maxValue = Double(self.remoteinfotask?.maxCount() ?? 0)
-        self.progress.minValue = 0
-        self.progress.doubleValue = 0
-        self.progress.startAnimation(self)
+        progress.maxValue = Double(remoteinfotask?.maxCount() ?? 0)
+        progress.minValue = 0
+        progress.doubleValue = 0
+        progress.startAnimation(self)
     }
 
     private func updateProgressbar(_ value: Double) {
-        self.progress.doubleValue = value
+        progress.doubleValue = value
     }
 
     private func closeview() {
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vctabschedule)
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcrestore)
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
-        } else if (self.presentingViewController as? ViewControllerSsh) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcssh)
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            self.dismissview(viewcontroller: self, vcontroller: .vcloggdata)
+        if (presentingViewController as? ViewControllerMain) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vctabmain)
+        } else if (presentingViewController as? ViewControllerSchedule) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vctabschedule)
+        } else if (presentingViewController as? ViewControllerNewConfigurations) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
+        } else if (presentingViewController as? ViewControllerRestore) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcrestore)
+        } else if (presentingViewController as? ViewControllerSnapshots) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcsnapshot)
+        } else if (presentingViewController as? ViewControllerSsh) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcssh)
+        } else if (presentingViewController as? ViewControllerLoggData) != nil {
+            dismissview(viewcontroller: self, vcontroller: .vcloggdata)
         }
     }
 }
 
 extension ViewControllerEstimatingTasks {
     func processtermination() {
-        let progress = Double(self.remoteinfotask?.maxCount() ?? 0) - Double(self.remoteinfotask?.inprogressCount() ?? 0)
-        self.updateProgressbar(progress)
+        let progress = Double(remoteinfotask?.maxCount() ?? 0) - Double(remoteinfotask?.inprogressCount() ?? 0)
+        updateProgressbar(progress)
     }
 }
 
@@ -97,20 +97,20 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
 
     func stop() {
         weak var openDelegate: OpenQuickBackup?
-        if (self.presentingViewController as? ViewControllerMain) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        } else if (self.presentingViewController as? ViewControllerSchedule) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
-        } else if (self.presentingViewController as? ViewControllerNewConfigurations) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-        } else if (self.presentingViewController as? ViewControllerRestore) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
-        } else if (self.presentingViewController as? ViewControllerLoggData) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-        } else if (self.presentingViewController as? ViewControllerSnapshots) != nil {
-            openDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+        if (presentingViewController as? ViewControllerMain) != nil {
+            openDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        } else if (presentingViewController as? ViewControllerSchedule) != nil {
+            openDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+        } else if (presentingViewController as? ViewControllerNewConfigurations) != nil {
+            openDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+        } else if (presentingViewController as? ViewControllerRestore) != nil {
+            openDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+        } else if (presentingViewController as? ViewControllerLoggData) != nil {
+            openDelegate = SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+        } else if (presentingViewController as? ViewControllerSnapshots) != nil {
+            openDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         }
-        self.closeview()
+        closeview()
         openDelegate?.openquickbackup()
     }
 }

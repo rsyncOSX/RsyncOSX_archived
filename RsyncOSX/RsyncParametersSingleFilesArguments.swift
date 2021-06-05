@@ -30,43 +30,43 @@ final class RsyncParametersSingleFilesArguments {
             let remote = remote_with_whitespace.replacingOccurrences(of: " ", with: whitespace)
             let local: String = localCatalog!
             if config.sshport != nil {
-                self.args?.append(self.eparam)
-                self.args?.append(self.sshp + " " + String(config.sshport!))
+                args?.append(eparam)
+                args?.append(sshp + " " + String(config.sshport!))
             } else {
-                self.args?.append(self.eparam)
-                self.args?.append(self.ssh)
+                args?.append(eparam)
+                args?.append(ssh)
             }
-            self.args?.append(self.archive)
-            self.args?.append(self.verbose)
+            args?.append(archive)
+            args?.append(verbose)
             // If copy over network compress files
             if config.offsiteServer.isEmpty {
-                self.args?.append(self.compress)
+                args?.append(compress)
             }
             // Set dryrun or not
             if drynrun != nil {
                 if drynrun == true {
-                    self.args?.append(self.dryrun)
+                    args?.append(dryrun)
                 }
             }
             if config.offsiteServer.isEmpty {
-                self.args?.append(config.offsiteCatalog + remote)
+                args?.append(config.offsiteCatalog + remote)
             } else {
                 let rarg = config.offsiteUsername + "@" + config.offsiteServer + ":" + config.offsiteCatalog + remote
-                self.args?.append(rarg)
+                args?.append(rarg)
             }
-            self.args?.append(local)
+            args?.append(local)
         }
     }
 
     func getArguments() -> [String]? {
-        return self.args
+        return args
     }
 
     init(config: Configuration?, remoteFile: String?, localCatalog: String?, drynrun: Bool?) {
         if let config = config {
             self.config = config
-            self.args = [String]()
-            self.arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
+            args = [String]()
+            arguments(remoteFile: remoteFile, localCatalog: localCatalog, drynrun: drynrun)
         }
     }
 }

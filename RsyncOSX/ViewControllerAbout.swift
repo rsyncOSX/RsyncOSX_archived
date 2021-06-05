@@ -38,56 +38,56 @@ class ViewControllerAbout: NSViewController {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
-        self.view.window?.close()
+        view.window?.close()
     }
 
     @IBAction func documentation(_: NSButton) {
         if let resource = self.resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .documents))!)
         }
-        self.view.window?.close()
+        view.window?.close()
     }
 
     @IBAction func download(_: NSButton) {
-        guard ViewControllerReference.shared.URLnewVersion != nil else {
-            self.view.window?.close()
+        guard SharedReference.shared.URLnewVersion != nil else {
+            view.window?.close()
             return
         }
-        NSWorkspace.shared.open(URL(string: ViewControllerReference.shared.URLnewVersion!)!)
-        self.view.window?.close()
+        NSWorkspace.shared.open(URL(string: SharedReference.shared.URLnewVersion!)!)
+        view.window?.close()
     }
 
     @IBAction func closeview(_: NSButton) {
-        self.view.window?.close()
+        view.window?.close()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
-        self.copyright.stringValue = self.copyrigthstring
-        self.iconby.stringValue = self.iconbystring
-        self.chinese.stringValue = self.chinesestring
-        self.norwegian.stringValue = self.norwegianstring
-        self.german.stringValue = self.germanstring
-        self.italian.stringValue = self.italianstring
-        self.dutch.stringValue = self.dutchstring
-        self.resource = Resources()
+        SharedReference.shared.setvcref(viewcontroller: .vcabout, nsviewcontroller: self)
+        copyright.stringValue = copyrigthstring
+        iconby.stringValue = iconbystring
+        chinese.stringValue = chinesestring
+        norwegian.stringValue = norwegianstring
+        german.stringValue = germanstring
+        italian.stringValue = italianstring
+        dutch.stringValue = dutchstring
+        resource = Resources()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.downloadbutton.isEnabled = false
+        downloadbutton.isEnabled = false
         if let version = Checkfornewversion().rsyncOSXversion() {
             self.version.stringValue = "RsyncOSX ver: " + version
         }
-        self.thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
-        self.rsyncversionstring.stringValue = ViewControllerReference.shared.rsyncversionstring ?? ""
-        self.configpath.stringValue = NamesandPaths(profileorsshrootpath: .profileroot).fullroot ?? ""
+        thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
+        rsyncversionstring.stringValue = SharedReference.shared.rsyncversionstring ?? ""
+        configpath.stringValue = NamesandPaths(.configurations).fullpathmacserial ?? ""
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        self.downloadbutton.isEnabled = false
+        downloadbutton.isEnabled = false
     }
 }
 

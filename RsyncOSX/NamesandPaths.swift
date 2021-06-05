@@ -9,41 +9,21 @@
 
 import Foundation
 
-enum WhatToReadWrite {
-    case schedule
-    case configuration
-    case userconfig
-    case none
+enum Rootpath {
+    case configurations
+    case ssh
 }
 
-enum Profileorsshrootpath {
-    case profileroot
-    case sshroot
-}
-
-class NamesandPaths {
-    // which root to compute? either RsyncOSX profileroot or sshroot
-    var profileorsshroot: Profileorsshrootpath?
+class NamesandPaths: Errors {
     // rootpath without macserialnumber
-    var fullrootnomacserial: String?
+    var fullpathnomacserial: String?
     // rootpath with macserialnumber
-    var fullroot: String?
+    var fullpathmacserial: String?
     // If global keypath and identityfile is set must split keypath and identifile
-    // create a new key require full path
+    var fullpathsshkeys: String?
     var identityfile: String?
-    // config path either
-    // ViewControllerReference.shared.configpath or RcloneReference.shared.configpath
-    var configpath: String?
-    // Name set for schedule, configuration or config
-    var plistname: String?
-    // key in objectForKey, e.g key for reading what
-    var key: String?
-    // Which profile to read
     var profile: String?
-    // task to do
-    var task: WhatToReadWrite?
-    // Set which file to read
-    var filename: String?
+
     // Documentscatalog
     var documentscatalog: String? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
@@ -51,16 +31,17 @@ class NamesandPaths {
     }
 
     // Path to ssh keypath
-    var fullsshkeypath: String? {
-        if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
+    var sshkeypath: String? {
+        if let sshkeypathandidentityfile = SharedReference.shared.sshkeypathandidentityfile {
             return Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).fullsshkeypath
         } else {
             return NSHomeDirectory() + "/.ssh"
         }
     }
 
+    // Used when creating ssh keypath
     var onlysshkeypath: String? {
-        if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
+        if let sshkeypathandidentityfile = SharedReference.shared.sshkeypathandidentityfile {
             return Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).onlysshkeypath
         } else {
             return NSHomeDirectory()
@@ -68,8 +49,8 @@ class NamesandPaths {
     }
 
     // path to ssh identityfile
-    var sshidentityfile: String? {
-        if let sshkeypathandidentityfile = ViewControllerReference.shared.sshkeypathandidentityfile {
+    var sshkeypathandidentityfile: String? {
+        if let sshkeypathandidentityfile = SharedReference.shared.sshkeypathandidentityfile {
             return Keypathidentityfile(sshkeypathandidentityfile: sshkeypathandidentityfile).identityfile
         } else {
             return "id_rsa"
@@ -78,10 +59,10 @@ class NamesandPaths {
 
     // Mac serialnumber
     var macserialnumber: String? {
-        if ViewControllerReference.shared.macserialnumber == nil {
-            ViewControllerReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
+        if SharedReference.shared.macserialnumber == nil {
+            SharedReference.shared.macserialnumber = Macserialnumber().getMacSerialNumber() ?? ""
         }
-        return ViewControllerReference.shared.macserialnumber
+        return SharedReference.shared.macserialnumber
     }
 
     var userHomeDirectoryPath: String? {
@@ -94,73 +75,22 @@ class NamesandPaths {
         }
     }
 
-    func setrootpath() {
-        switch self.profileorsshroot {
-        case .profileroot:
-            if ViewControllerReference.shared.usenewconfigpath == true {
-                self.fullroot = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
-                self.fullrootnomacserial = (self.userHomeDirectoryPath ?? "") + (self.configpath ?? "")
-            } else {
-                self.fullroot = (self.documentscatalog ?? "") + (self.configpath ?? "") + (self.macserialnumber ?? "")
-                self.fullrootnomacserial = (self.documentscatalog ?? "") + (self.configpath ?? "")
-            }
-        case .sshroot:
-            self.fullroot = self.fullsshkeypath
-            self.identityfile = self.sshidentityfile
-        default:
-            return
+    func setrootpath(_ path: Rootpath) {
+        switch path {
+        case .configurations:
+            fullpathmacserial = (userHomeDirectoryPath ?? "") + SharedReference.shared.configpath + (macserialnumber ?? "")
+            fullpathnomacserial = (userHomeDirectoryPath ?? "") + SharedReference.shared.configpath
+        case .ssh:
+            fullpathsshkeys = sshkeypath
+            identityfile = sshkeypathandidentityfile
         }
     }
 
-    // Set path and name for reading plist.files
-    func setnameandpath() {
-        let config = (self.configpath ?? "") + (self.macserialnumber ?? "")
-        let plist = (self.plistname ?? "")
-        if let profile = self.profile {
-            // Use profile
-            if ViewControllerReference.shared.usenewconfigpath == true {
-                self.filename = (self.userHomeDirectoryPath ?? "") + config + "/" + profile + plist
-            } else {
-                self.filename = (self.documentscatalog ?? "") + config + "/" + profile + plist
-            }
-        } else {
-            if ViewControllerReference.shared.usenewconfigpath == true {
-                self.filename = (self.userHomeDirectoryPath ?? "") + config + plist
-            } else {
-                self.filename = (self.documentscatalog ?? "") + config + plist
-            }
-        }
+    init(_ path: Rootpath) {
+        setrootpath(path)
     }
 
-    // Set preferences for which data to read or write
-    func setpreferencesforreadingplist(whattoreadwrite: WhatToReadWrite) {
-        self.task = whattoreadwrite
-        switch self.task ?? .none {
-        case .schedule:
-            self.plistname = ViewControllerReference.shared.scheduleplist
-            self.key = ViewControllerReference.shared.schedulekey
-        case .configuration:
-            self.plistname = ViewControllerReference.shared.configurationsplist
-            self.key = ViewControllerReference.shared.configurationskey
-        case .userconfig:
-            self.plistname = ViewControllerReference.shared.userconfigplist
-            self.key = ViewControllerReference.shared.userconfigkey
-        case .none:
-            self.plistname = nil
-            self.key = nil
-        }
-    }
-
-    init(profileorsshrootpath: Profileorsshrootpath) {
-        self.configpath = Configpath().configpath
-        self.profileorsshroot = profileorsshrootpath
-        self.setrootpath()
-    }
-
-    init(profile: String?, whattoreadwrite: WhatToReadWrite) {
-        self.configpath = Configpath().configpath
+    init(_ profile: String?) {
         self.profile = profile
-        self.setpreferencesforreadingplist(whattoreadwrite: whattoreadwrite)
-        self.setnameandpath()
     }
 }

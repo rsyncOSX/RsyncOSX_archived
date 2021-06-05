@@ -5,14 +5,13 @@
 //  Created by Thomas Evensen on 29/11/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length function_body_length cyclomatic_complexity
+// swiftlint:disable line_length function_body_length
 
 import Cocoa
 import Foundation
 
 enum Sidebarmessages {
     case enableconvertjsonbutton
-    case verifyjson
     case mainviewbuttons
     case addviewbuttons
     case scheduleviewbuttons
@@ -69,21 +68,21 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else { return }
         guard running.verifyrsyncosxsched() == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: (ViewControllerReference.shared.pathrsyncosxsched ?? "/Applications/") + ViewControllerReference.shared.namersyncosssched))
+        NSWorkspace.shared.open(URL(fileURLWithPath: (SharedReference.shared.pathrsyncosxsched ?? "/Applications/") + SharedReference.shared.namersyncosssched))
         NSApp.terminate(self)
     }
 
     @IBAction func actionbutton1(_: NSButton) {
-        if let view = self.whichviewispresented {
+        if let view = whichviewispresented {
             switch view {
             case .mainviewbuttons:
-                guard ViewControllerReference.shared.process == nil else { return }
-                self.presentAsModalWindow(self.editViewController!)
+                guard SharedReference.shared.process == nil else { return }
+                presentAsModalWindow(editViewController!)
             case .addviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
                 deleteDelegate?.sidebarbuttonactions(action: .Add)
             case .scheduleviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
                 deleteDelegate?.sidebarbuttonactions(action: .Once)
             case .snapshotviewbuttons:
                 return
@@ -92,7 +91,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             case .sshviewbuttons:
                 return
             case .restoreviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
                 deleteDelegate?.sidebarbuttonactions(action: .Filelist)
             default:
                 return
@@ -101,25 +100,25 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     }
 
     @IBAction func actionbutton2(_: NSButton) {
-        if let view = self.whichviewispresented {
+        if let view = whichviewispresented {
             switch view {
             case .mainviewbuttons:
-                guard ViewControllerReference.shared.process == nil else { return }
-                self.presentAsModalWindow(self.viewControllerRsyncParams!)
+                guard SharedReference.shared.process == nil else { return }
+                presentAsModalWindow(viewControllerRsyncParams!)
             case .addviewbuttons:
-                self.presentAsModalWindow(self.viewControllerAssist!)
+                presentAsModalWindow(viewControllerAssist!)
             case .scheduleviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
                 deleteDelegate?.sidebarbuttonactions(action: .Daily)
             case .snapshotviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 deleteDelegate?.sidebarbuttonactions(action: .Tag)
             case .logsviewbuttons:
                 return
             case .sshviewbuttons:
                 return
             case .restoreviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
                 deleteDelegate?.sidebarbuttonactions(action: .Estimate)
             default:
                 return
@@ -128,31 +127,31 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     }
 
     @IBAction func actionbutton3(_: NSButton) {
-        if let view = self.whichviewispresented {
+        if let view = whichviewispresented {
             switch view {
             case .mainviewbuttons:
                 // Delete
-                guard ViewControllerReference.shared.process == nil else { return }
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                guard SharedReference.shared.process == nil else { return }
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .addviewbuttons:
                 // Delete
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .scheduleviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
                 deleteDelegate?.sidebarbuttonactions(action: .Weekly)
             case .snapshotviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .logsviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .sshviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 deleteDelegate?.sidebarbuttonactions(action: .CreateKey)
             case .restoreviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
                 deleteDelegate?.sidebarbuttonactions(action: .Restore)
             default:
                 return
@@ -161,27 +160,27 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     }
 
     @IBAction func actionbutton4(_: NSButton) {
-        if let view = self.whichviewispresented {
+        if let view = whichviewispresented {
             switch view {
             case .mainviewbuttons:
-                guard ViewControllerReference.shared.process == nil else { return }
-                self.presentAsModalWindow(self.rsynccommand!)
+                guard SharedReference.shared.process == nil else { return }
+                presentAsModalWindow(rsynccommand!)
             case .addviewbuttons:
                 return
             case .scheduleviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
                 deleteDelegate?.sidebarbuttonactions(action: .Update)
             case .snapshotviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 deleteDelegate?.sidebarbuttonactions(action: .Save)
             case .logsviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
                 deleteDelegate?.sidebarbuttonactions(action: .Snap)
             case .sshviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 deleteDelegate?.sidebarbuttonactions(action: .Remote)
             case .restoreviewbuttons:
-                weak var deleteDelegate = ViewControllerReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
+                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
                 deleteDelegate?.sidebarbuttonactions(action: .Reset)
             default:
                 return
@@ -189,41 +188,30 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         }
     }
 
-    func verifyjson() {
-        self.verify()
-    }
-
-    func verify() {
-        if let profile = self.configurations?.getProfile() {
-            _ = VerifyJSON(profile: profile)
-        } else {
-            _ = VerifyJSON(profile: nil)
-        }
-    }
-
     @IBAction func Json(_: NSButton) {
-        if let profile = self.configurations?.getProfile() {
-            PersistentStorage().convert(profile: profile)
-        } else {
-            PersistentStorage().convert(profile: nil)
+        let text: String = NSLocalizedString("Convert files?", comment: "main")
+        let dialog: String = NSLocalizedString("Convert", comment: "main")
+        let question: String = NSLocalizedString("Convert PLIST files?", comment: "main")
+        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+        if answer {
+            let configs = ReadConfigurationsPLIST(configurations?.getProfile())
+            let schedules = ReadSchedulesPLIST(configurations?.getProfile())
+            configs.writedatatojson()
+            schedules.writedatatojson()
+            NSApp.terminate(self)
         }
-        self.jsonbutton.isHidden = true
-        ViewControllerReference.shared.convertjsonbutton = false
-        self.verify()
+        jsonbutton.isHidden = true
+        SharedReference.shared.convertjsonbutton = false
     }
 
     func enableconvertjsonbutton() {
-        if ViewControllerReference.shared.convertjsonbutton {
-            ViewControllerReference.shared.convertjsonbutton = false
+        if SharedReference.shared.convertjsonbutton {
+            SharedReference.shared.convertjsonbutton = false
         } else {
-            ViewControllerReference.shared.convertjsonbutton = true
+            SharedReference.shared.convertjsonbutton = true
         }
-        if ViewControllerReference.shared.json == true {
-            self.jsonbutton.title = "PLIST"
-        } else {
-            self.jsonbutton.title = "JSON"
-        }
-        self.jsonbutton.isHidden = !ViewControllerReference.shared.convertjsonbutton
+        jsonbutton.title = "Convert"
+        jsonbutton.isHidden = !SharedReference.shared.convertjsonbutton
     }
 
     func menuappicons() {
@@ -239,9 +227,9 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ViewControllerReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
-        self.pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
-        self.delayWithSeconds(0.5) {
+        SharedReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
+        pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
+        delayWithSeconds(0.5) {
             self.menuappicons()
         }
     }
@@ -249,82 +237,80 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
 
 extension ViewControllerSideBar: MenuappChanged {
     func menuappchanged() {
-        self.menuappicons()
+        menuappicons()
     }
 }
 
 extension ViewControllerSideBar: Sidebaractions {
     func sidebaractions(action: Sidebarmessages) {
-        self.whichviewispresented = action
+        whichviewispresented = action
         switch action {
         case .enableconvertjsonbutton:
-            self.enableconvertjsonbutton()
-        case .verifyjson:
-            self.verify()
+            enableconvertjsonbutton()
         case .mainviewbuttons:
-            self.button1.isHidden = false
-            self.button2.isHidden = false
-            self.button3.isHidden = false
-            self.button4.isHidden = false
-            self.button1.title = NSLocalizedString("Change", comment: "Sidebar")
-            self.button2.title = NSLocalizedString("Parameter", comment: "Sidebar")
-            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Command", comment: "Sidebar")
+            button1.isHidden = false
+            button2.isHidden = false
+            button3.isHidden = false
+            button4.isHidden = false
+            button1.title = NSLocalizedString("Change", comment: "Sidebar")
+            button2.title = NSLocalizedString("Parameter", comment: "Sidebar")
+            button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+            button4.title = NSLocalizedString("Command", comment: "Sidebar")
         case .addviewbuttons:
-            self.button1.isHidden = false
-            self.button2.isHidden = false
-            self.button3.isHidden = false
-            self.button4.isHidden = true
-            self.button1.title = NSLocalizedString("Add", comment: "Sidebar")
-            self.button2.title = NSLocalizedString("Assist", comment: "Sidebar")
-            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+            button1.isHidden = false
+            button2.isHidden = false
+            button3.isHidden = false
+            button4.isHidden = true
+            button1.title = NSLocalizedString("Add", comment: "Sidebar")
+            button2.title = NSLocalizedString("Assist", comment: "Sidebar")
+            button3.title = NSLocalizedString("Delete", comment: "Sidebar")
         case .scheduleviewbuttons:
-            self.button1.isHidden = false
-            self.button2.isHidden = false
-            self.button3.isHidden = false
-            self.button4.isHidden = false
-            self.button1.title = NSLocalizedString("Once", comment: "Sidebar")
-            self.button2.title = NSLocalizedString("Daily", comment: "Sidebar")
-            self.button3.title = NSLocalizedString("Weekly", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Update", comment: "Sidebar")
+            button1.isHidden = false
+            button2.isHidden = false
+            button3.isHidden = false
+            button4.isHidden = false
+            button1.title = NSLocalizedString("Once", comment: "Sidebar")
+            button2.title = NSLocalizedString("Daily", comment: "Sidebar")
+            button3.title = NSLocalizedString("Weekly", comment: "Sidebar")
+            button4.title = NSLocalizedString("Update", comment: "Sidebar")
         case .snapshotviewbuttons:
-            self.button1.isHidden = true
-            self.button2.isHidden = false
-            self.button3.isHidden = false
-            self.button4.isHidden = false
-            self.button2.title = NSLocalizedString("Tag", comment: "Sidebar")
-            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Save", comment: "Sidebar")
+            button1.isHidden = true
+            button2.isHidden = false
+            button3.isHidden = false
+            button4.isHidden = false
+            button2.title = NSLocalizedString("Tag", comment: "Sidebar")
+            button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+            button4.title = NSLocalizedString("Save", comment: "Sidebar")
         case .logsviewbuttons:
-            self.button1.isHidden = true
-            self.button2.isHidden = true
-            self.button3.isHidden = false
-            self.button4.isHidden = false
-            self.button3.title = NSLocalizedString("Delete", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Scan", comment: "Sidebar")
+            button1.isHidden = true
+            button2.isHidden = true
+            button3.isHidden = false
+            button4.isHidden = false
+            button3.title = NSLocalizedString("Delete", comment: "Sidebar")
+            button4.title = NSLocalizedString("Scan", comment: "Sidebar")
         case .sshviewbuttons:
-            self.button1.isHidden = true
-            self.button2.isHidden = true
-            self.button3.isHidden = false
-            self.button4.isHidden = false
-            self.button3.title = NSLocalizedString("Create key", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Remote", comment: "Sidebar")
+            button1.isHidden = true
+            button2.isHidden = true
+            button3.isHidden = false
+            button4.isHidden = false
+            button3.title = NSLocalizedString("Create key", comment: "Sidebar")
+            button4.title = NSLocalizedString("Remote", comment: "Sidebar")
         case .restoreviewbuttons:
-            self.button1.isHidden = false
-            self.button2.isHidden = false
-            self.button3.isHidden = false
-            self.button4.isHidden = false
-            self.button1.title = NSLocalizedString("Filelist", comment: "Sidebar")
-            self.button2.title = NSLocalizedString("Estimate", comment: "Sidebar")
-            self.button3.title = NSLocalizedString("Restore", comment: "Sidebar")
-            self.button4.title = NSLocalizedString("Reset", comment: "Sidebar")
+            button1.isHidden = false
+            button2.isHidden = false
+            button3.isHidden = false
+            button4.isHidden = false
+            button1.title = NSLocalizedString("Filelist", comment: "Sidebar")
+            button2.title = NSLocalizedString("Estimate", comment: "Sidebar")
+            button3.title = NSLocalizedString("Restore", comment: "Sidebar")
+            button4.title = NSLocalizedString("Reset", comment: "Sidebar")
         case .reset:
-            self.button1.isHidden = true
-            self.button2.isHidden = true
-            self.button3.isHidden = true
-            self.button4.isHidden = true
+            button1.isHidden = true
+            button2.isHidden = true
+            button3.isHidden = true
+            button4.isHidden = true
         case .JSONlabel:
-            self.jsonlabel.isHidden = !ViewControllerReference.shared.json
+            jsonlabel.isHidden = !SharedReference.shared.json
         }
     }
 }
