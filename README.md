@@ -9,7 +9,9 @@ I am the developer of some GUI´s for `rsync` on the Apple macOS plattform.
   - [the documentation of RsyncOSX](https://rsyncosx.netlify.app/)
   - [the readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
 
-There is also work on a [version 6.6.0 of RsyncOSX](https://github.com/rsyncOSX/RsyncOSXCombine/tree/main). The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.0 will be build for macOS Big Sur only. Version 6.5.8 will still be available.
+There is also work on a version 6.6.0 of RsyncOSX. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.0 will be build for macOS Big Sur only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#combine) in the readme for RsyncOSX.
+
+Version 6.5.8 will still be available.
 
 ![](images/rsyncosx.png)
 
