@@ -4,8 +4,12 @@ RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
 [The work on a SwiftUI based version of RsyncOSX](https://rsyncui.netlify.app/) has commenced. The new app is called RsyncUI and will be released as a **new application** and not as an upgrade.
 
-![](images/main1.png)
-![](images/main2.png)
+The RsyncOSX repository contains two branches, the branch `version 6.6.0-combine-json` is also updated to the main branch.
+
+- branch [version 6.6.0-combine-json](https://github.com/rsyncOSX/RsyncOSX/tree/version-6.6.0-combine-json)
+- branch [version 6.5.8](https://github.com/rsyncOSX/RsyncOSX/tree/version-6.5.8)
+
+The version 6.6.0 branch will only execute on macOS Big Sur. See the [Combine](#combine) part for more info. Branch version 6.5.8 require macOS Catalina 10.15 and later versions of macOS.
 
 - [Install by Homebrew](#install-by-homebrew)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
@@ -57,7 +61,6 @@ The following tools are used in development:
 - Xcode (the main tool)
 - make to compile new versions in terminal
 - [create-dmg](https://github.com/sindresorhus/create-dmg) to create new releases
-- [periphery](https://github.com/peripheryapp/periphery) to identify unused code
 - [SwiftLint](https://github.com/realm/SwiftLint) to enforce Swift style and conventions
 - [SwiftFormat](https://github.com/nicklockwood/SwiftFormat) for reformatting Swift code
 
