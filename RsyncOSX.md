@@ -6,8 +6,8 @@ RsyncOSX require macOS Catalina 10.15 and later versions of macOS.
 
 The RsyncOSX repository contains two branches, the branch `version 6.6.0-combine-json` is also updated to the main branch.
 
-- branch [version 6.6.0-combine-json](https://github.com/rsyncOSX/RsyncOSX/tree/version-6.6.0-combine-json)
-- branch [version 6.5.8](https://github.com/rsyncOSX/RsyncOSX/tree/version-6.5.8)
+- branch `version 6.6.0-combine-json`
+- branch `version 6.5.8`
 
 The version 6.6.0 branch will only execute on macOS Big Sur. See the [Combine](#combine) part for more info. Branch version 6.5.8 require macOS Catalina 10.15 and later versions of macOS.
 
