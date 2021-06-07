@@ -22,7 +22,7 @@ final class TrimThree: Errors {
                     return
                 case let .failure(error):
                     let error = error as NSError
-                    self.error(errordescription: error.description, errortype: .someerror)
+                    self.error(errordescription: error.description, errortype: .readerror)
                 }
             }, receiveValue: { [unowned self] line in
                 let substr = line.dropFirst(10).trimmingCharacters(in: .whitespacesAndNewlines)

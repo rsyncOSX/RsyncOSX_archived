@@ -23,6 +23,7 @@ final class Running {
         return true
     }
 
+    @discardableResult
     init() {
         // Get all running applications
         let workspace = NSWorkspace.shared

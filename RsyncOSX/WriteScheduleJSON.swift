@@ -33,7 +33,7 @@ class WriteScheduleJSON: NamesandPaths {
                 }
             } catch let e {
                 let error = e as NSError
-                self.error(errordescription: error.description, errortype: .someerror)
+                self.error(errordescription: error.description, errortype: .readerror)
             }
         }
     }
@@ -61,7 +61,7 @@ class WriteScheduleJSON: NamesandPaths {
                     return
                 case let .failure(error):
                     let error = error as NSError
-                    self.error(errordescription: error.description, errortype: .someerror)
+                    self.error(errordescription: error.description, errortype: .readerror)
                 }
             }, receiveValue: { [unowned self] result in
                 let jsonfile = String(data: result, encoding: .utf8)

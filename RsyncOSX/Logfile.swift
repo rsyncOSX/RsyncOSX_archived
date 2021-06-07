@@ -31,7 +31,7 @@ class Logfile: NamesandPaths {
                                 return
                             }
                         case let .failure(error):
-                            self?.error(errordescription: error.localizedDescription, errortype: .someerror)
+                            self?.error(errordescription: error.localizedDescription, errortype: .readerror)
                         }
                     }
                 }

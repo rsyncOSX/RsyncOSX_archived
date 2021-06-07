@@ -37,7 +37,7 @@ enum RsyncOSXTypeErrors: LocalizedError {
     case createsshdirectory
     case combine
     case emptylogfile
-    case someerror
+    case readerror
     case rsyncerror
 
     var errorDescription: String? {
@@ -56,8 +56,8 @@ enum RsyncOSXTypeErrors: LocalizedError {
             return "Error in Combine"
         case .emptylogfile:
             return "Error empty logfile"
-        case .someerror:
-            return "Error unown error"
+        case .readerror:
+            return "Some error trying to read a file"
         case .rsyncerror:
             return NSLocalizedString("There are errors in output", comment: "rsync error")
         }
@@ -133,24 +133,30 @@ class Catalogsandfiles: NamesandPaths {
                 // Creating profile catalalog is a two step task
                 // 1: create profilecatalog
                 // 2: create profilecatalog/macserialnumber
-                // Config path (/.rsyncosx)
+                // config path (/.rsyncosx)
                 catalog = SharedReference.shared.configpath
-                root = Folder.documents
+                root = Folder.home
+                // Sandboxed
+                // root = Folder.documents
+                // which is inside the Sanbox when the Sanboxed entitlment is set
+                // Sandboxed - remove comment
+                // /*
                 do {
                     try root?.createSubfolder(at: catalog ?? "")
                 } catch let e {
-                    let error = e as NSError
-                    self.error(errordescription: error.description, errortype: .profilecreatedirectory)
+                    let error = e
+                    self.error(errordescription: error.localizedDescription, errortype: .profilecreatedirectory)
                     return
                 }
+                // */
                 if let macserialnumber = self.macserialnumber,
                    let fullrootnomacserial = fullpathnomacserial
                 {
                     do {
                         try Folder(path: fullrootnomacserial).createSubfolder(at: macserialnumber)
                     } catch let e {
-                        let error = e as NSError
-                        self.error(errordescription: error.description, errortype: .profilecreatedirectory)
+                        let error = e
+                        self.error(errordescription: error.localizedDescription, errortype: .profilecreatedirectory)
                         return
                     }
                 }

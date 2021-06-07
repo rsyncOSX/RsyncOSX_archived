@@ -36,7 +36,7 @@ final class TrimTwo: Errors {
                     return
                 case let .failure(error):
                     let error = error as NSError
-                    self.error(errordescription: error.description, errortype: .someerror)
+                    self.error(errordescription: error.description, errortype: .readerror)
                 }
             }, receiveValue: { [unowned self] line in
                 if line.last != "/" {
@@ -51,7 +51,7 @@ final class TrimTwo: Errors {
                             self.errorDelegate?.rsyncerror()
                             errordiscovered = true
                             let error = e as NSError
-                            self.error(errordescription: error.description, errortype: .someerror)
+                            self.error(errordescription: error.description, errortype: .readerror)
                         }
                     }
                 }
