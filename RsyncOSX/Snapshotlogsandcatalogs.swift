@@ -139,7 +139,7 @@ final class Snapshotlogsandcatalogs {
                             output?.addlinefromoutput(str: string)
                         }
                         let string = snapshotcatalogfromschedulelog + ": " + (logrecordssnapshot?[i].resultExecuted ?? "")
-                        output?.addlinefromoutput(str: string)
+                        output?.addlinefromoutput(str: String(string))
                     }
                 }
             }
