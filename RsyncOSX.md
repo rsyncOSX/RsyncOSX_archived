@@ -153,12 +153,12 @@ There is also some refactor and clean up other parts of the code in this release
 
 Combine is used in the following code:
 
-- [read](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/ReadUserConfigurationPLIST.swift) user configurations from permanent store
-- [read](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/ReadConfigurationJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/WriteConfigurationJSON.swift) configurations
-- [read](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/ReadScheduleJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/WriteScheduleJSON.swift) schedules and logs
-- read and convert [configurations](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/ReadConfigurationsPLIST.swift) and [schedules](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/ReadSchedulesPLIST.swift) from PLIST format to JSON format
-- [the process object](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/ProcessCmd.swift), executing tasks
-- preparing [the output](https://github.com/rsyncOSX/RsyncOSXC/blob/master/RsyncOSX/TrimTwo.swift) from rsync process
+- [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadUserConfigurationPLIST.swift) user configurations from permanent store
+- [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadConfigurationJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/WriteConfigurationJSON.swift) configurations
+- [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadScheduleJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/WriteScheduleJSON.swift) schedules and logs
+- read and convert [configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadConfigurationsPLIST.swift) and [schedules](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadSchedulesPLIST.swift) from PLIST format to JSON format
+- [the process object](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ProcessCmd.swift), executing tasks
+- preparing [the output](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/TrimTwo.swift) from rsync process
 
 ### Application icon
 
