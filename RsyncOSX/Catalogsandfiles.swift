@@ -136,11 +136,6 @@ class Catalogsandfiles: NamesandPaths {
                 // config path (/.rsyncosx)
                 catalog = SharedReference.shared.configpath
                 root = Folder.home
-                // Sandboxed
-                // root = Folder.documents
-                // which is inside the Sanbox when the Sanboxed entitlment is set
-                // Sandboxed - remove comment
-                // /*
                 do {
                     try root?.createSubfolder(at: catalog ?? "")
                 } catch let e {
@@ -148,7 +143,6 @@ class Catalogsandfiles: NamesandPaths {
                     self.error(errordescription: error.localizedDescription, errortype: .profilecreatedirectory)
                     return
                 }
-                // */
                 if let macserialnumber = self.macserialnumber,
                    let fullrootnomacserial = fullpathnomacserial
                 {
@@ -165,8 +159,7 @@ class Catalogsandfiles: NamesandPaths {
     }
 
     // Create SSH catalog
-    // If ssh catalog exists - bail out, no need
-    // to create
+    // If ssh catalog exists - bail out, no need to create
     func createsshkeyrootpath() {
         if let path = onlysshkeypath {
             let root = Folder.home

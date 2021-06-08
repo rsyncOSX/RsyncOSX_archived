@@ -37,7 +37,7 @@ class Logfile: NamesandPaths {
                 }
             } catch let e {
                 let error = e as NSError
-                self.error(errordescription: error.description, errortype: .writelogfile)
+                self.error(errordescription: error.localizedDescription, errortype: .writelogfile)
             }
         }
     }
