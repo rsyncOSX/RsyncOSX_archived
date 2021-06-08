@@ -27,8 +27,8 @@ The version 6.6.0 branch will only execute on macOS Big Sur. See the [Combine](#
 - [A Sandboxed version](#a-sandboxed-version)
 - [About bugs](#about-bugs)
 - [About restoring files to a temporary restore catalog](#about-restoring-files-to-a-temporary-restore-catalog)
-- [Application icon](#application-icon)
 - [Combine](#combine)
+- [Application icon](#application-icon)
 
 ### Install by Homebrew
 
@@ -139,17 +139,11 @@ There are [some details about source and how to compile](https://rsyncosx.netlif
 
 If you do a restore from the `remote` to the `source`, some files in the source might be deleted. This is due to how rsync works in `synchronize` mode. As a precaution **never** do a restore directly from the `remote` to the `source`, always do a restore to a temporary restore catalog.
 
-### Application icon
-
-The application icon is created by [Zsolt Sándor](https://github.com/graphis). All rights reserved to Zsolt Sándor.
-
-![](icon/rsyncosx.png)
-
 ### Combine
 
 RsyncOSX **version 6.6.0** is released as an update for users on **macOS Big Sur**.
 
-The major work in this release are utilizing Combine and only supporting JSON files. In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is also a great framework and makes the code easy to write and easy to read. It is most likely that RsyncOSX will avaliable for some years and why not upgrade RsyncOSX to utilize Combine.
+The major work in this release are **utilizing Combine** and only supporting **JSON files**. In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is also a great framework and makes the code easy to write and easy to read. It is most likely that RsyncOSX will avaliable for some years and why not upgrade RsyncOSX to utilize Combine.
 
 There are though some restrictions. In the Combine code for encode and write data to JSON file, the publiser requiere macOS BigSur or later. This release will only be avaliable for **macOS BigSur** and later.
 
@@ -165,3 +159,9 @@ Combine is used in the following code:
 - read and convert [configurations](https://github.com/rsyncOSX/RsyncOSXCombine/blob/main/RsyncOSX/ReadConfigurationsPLIST.swift) and [schedules](https://github.com/rsyncOSX/RsyncOSXCombine/blob/main/RsyncOSX/ReadSchedulesPLIST.swift) from PLIST format to JSON format
 - [the process object](https://github.com/rsyncOSX/RsyncOSXCombine/blob/main/RsyncOSX/ProcessCmd.swift), executing tasks
 - preparing [the output](https://github.com/rsyncOSX/RsyncOSXCombine/blob/main/RsyncOSX/TrimTwo.swift) from rsync process
+
+### Application icon
+
+The application icon is created by [Zsolt Sándor](https://github.com/graphis). All rights reserved to Zsolt Sándor.
+
+![](icon/rsyncosx.png)
