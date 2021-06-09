@@ -16,7 +16,7 @@ enum Result<Value, Error: Swift.Error> {
 
 // typealias HandlerRsyncOSX = (Result<Data, RsyncOSXTypeErrors>) -> Void
 // typealias Handler = (Result<Data, Error>) -> Void
-typealias HandlerNSNumber = (Result<NSNumber, Error>) -> Void
+typealias HandlerNSNumber = (Result<NSNumber, Error>) throws -> Void
 
 extension Result {
     func get() throws -> Value {

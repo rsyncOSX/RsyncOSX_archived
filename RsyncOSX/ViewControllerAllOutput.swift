@@ -23,7 +23,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
             getoutputDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         } else {
             outputrsyncorlofile.stringValue = "Logfile..."
-            logging = Logfile()
+            logging = Logfile(false)
             getoutputDelegate = logging
         }
         globalMainQueue.async { () -> Void in
@@ -62,7 +62,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
     @IBAction func newcleanlogfile(_: NSButton) {
         outputrsyncorlofile.stringValue = "Logfile..."
         rsyncorlog.state = .off
-        logging = Logfile(nil, false)
+        logging = Logfile(true)
         getoutputDelegate = logging
         globalMainQueue.async { () -> Void in
             self.outputtable.reloadData()
@@ -100,7 +100,7 @@ extension ViewControllerAllOutput: Reloadandrefresh {
                 self.outputtable.reloadData()
             }
         } else {
-            logging = Logfile()
+            logging = Logfile(false)
             getoutputDelegate = logging
             globalMainQueue.async { () -> Void in
                 self.outputtable.reloadData()

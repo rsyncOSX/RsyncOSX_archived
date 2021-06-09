@@ -18,16 +18,7 @@ struct InterruptProcess {
         let output = OutputfromProcess()
         let string = "Interrupted: " + Date().long_localized_string_from_date()
         output.addlinefromoutput(str: string)
-        _ = Logfile(TrimTwo(output.getOutput() ?? []).trimmeddata, true)
-        SharedReference.shared.process?.interrupt()
-        SharedReference.shared.process = nil
-    }
-
-    init(output: OutputfromProcess?) {
-        profilepopupDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        profilepopupDelegate?.enableselectpopupprofile()
-        guard SharedReference.shared.process != nil, output != nil else { return }
-        _ = Logfile(TrimTwo(output?.getOutput() ?? []).trimmeddata, true)
+        _ = Logfile(TrimTwo(output.getOutput() ?? []).trimmeddata, error: true)
         SharedReference.shared.process?.interrupt()
         SharedReference.shared.process = nil
     }

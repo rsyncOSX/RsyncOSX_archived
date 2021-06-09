@@ -20,7 +20,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                 if task.contains("error"), (configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
                     let outputprocess = OutputfromProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: pretask containes error, aborting")
-                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
+                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
                     error = true
                 }
             }
@@ -34,7 +34,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                 if task.contains("error"), (configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
                     let outputprocess = OutputfromProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: posstak containes error")
-                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
+                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
                 }
             }
         }
@@ -51,7 +51,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                     let outputprocess = OutputfromProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: pretask fault, aborting")
                     outputprocess.addlinefromoutput(str: error?.message ?? "")
-                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
+                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
                     self.error = true
                 }
             }
@@ -84,7 +84,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                     let outputprocess = OutputfromProcess()
                     outputprocess.addlinefromoutput(str: "ShellOut: posttask fault")
                     outputprocess.addlinefromoutput(str: error?.message ?? "")
-                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
+                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
                 }
             }
         }

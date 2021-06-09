@@ -160,7 +160,7 @@ extension ViewControllerMain: ErrorMessage {
                 self.info.isHidden = false
             }
             guard errortype != .logfilesize else { return }
-            _ = Logfile(TrimTwo(self.outputprocess?.getOutput() ?? []).trimmeddata, true)
+            _ = Logfile(TrimTwo(self.outputprocess?.getOutput() ?? []).trimmeddata, error: true)
         }
     }
 }
