@@ -147,9 +147,7 @@ The major work in this release are **utilizing Combine** and only supporting **J
 
 There are though some restrictions. In the Combine code for encode and write data to JSON file, the publiser requiere macOS BigSur or later. This release will only be avaliable for **macOS BigSur** and later.
 
-Much of the code where Combine is used is shared with RsyncUI. There is still some minor parts of code which needs to be added or changed before a release. The work to delete old code and replace with Combine was done in a couple of hours an evening.
-
-There is also some refactor and clean up other parts of the code in this release.
+Much of the code where Combine is used is shared with RsyncUI. There is also some refactor and clean up other parts of the code in this release.
 
 Combine is used in the following code:
 
@@ -157,7 +155,7 @@ Combine is used in the following code:
 - [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadConfigurationJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/WriteConfigurationJSON.swift) configurations
 - [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadScheduleJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/WriteScheduleJSON.swift) schedules and logs
 - read and convert [configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadConfigurationsPLIST.swift) and [schedules](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadSchedulesPLIST.swift) from PLIST format to JSON format
-- [the process object](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ProcessCmd.swift), executing tasks
+- [the process object](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/RsyncProcess.swift), executing tasks
 - preparing [the output](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/TrimTwo.swift) from rsync process
 
 ### Application icon
