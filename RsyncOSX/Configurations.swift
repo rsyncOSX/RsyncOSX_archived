@@ -134,7 +134,7 @@ class Configurations: ReloadTable, SetSchedules {
             WriteConfigurationJSON(profile, configurations)
             // Call the view and do a refresh of tableView
             reloadtable(vcontroller: .vctabmain)
-            _ = Logfile(TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata)
+            _ = Logfile(TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata, error: false)
         }
     }
 

@@ -43,7 +43,7 @@ final class RsyncProcess {
                 let error = e as NSError
                 let outputprocess = OutputfromProcess()
                 outputprocess.addlinefromoutput(str: error.description)
-                _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
+                _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: false)
             }
         }
     }
@@ -55,7 +55,7 @@ final class RsyncProcess {
             let string = NSLocalizedString("Network connection is dropped", comment: "network") + ":"
                 + Date().long_localized_string_from_date()
             output.addlinefromoutput(str: string)
-            _ = InterruptProcess(output: output)
+            _ = InterruptProcess()
             throw Networkerror.networkdropped
         }
     }
@@ -99,7 +99,7 @@ final class RsyncProcess {
             .sink { [self] _ in
                 self.processtermination()
                 // Logg to file
-                _ = Logfile(TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata)
+                _ = Logfile(TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata, error: false)
                 // Release Combine subscribers
                 subscriptons.removeAll()
             }.store(in: &subscriptons)
@@ -111,7 +111,7 @@ final class RsyncProcess {
             let error = e as NSError
             let outputprocess = OutputfromProcess()
             outputprocess.addlinefromoutput(str: error.description)
-            _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
+            _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
         }
     }
 

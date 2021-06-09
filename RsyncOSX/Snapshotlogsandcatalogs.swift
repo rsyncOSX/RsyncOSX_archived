@@ -145,7 +145,7 @@ final class Snapshotlogsandcatalogs {
             }
         }
         if error {
-            _ = Logfile(TrimTwo(output?.getOutput() ?? []).trimmeddata, true)
+            _ = Logfile(TrimTwo(output?.getOutput() ?? []).trimmeddata, error: true)
         }
     }
 
