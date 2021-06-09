@@ -72,7 +72,7 @@ final class OtherProcess {
             let error = e as NSError
             let outputprocess = OutputfromProcess()
             outputprocess.addlinefromoutput(str: error.description)
-            _ = Logfile(outputprocess, true)
+            _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
         }
     }
 

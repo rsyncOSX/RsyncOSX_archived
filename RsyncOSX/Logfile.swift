@@ -11,7 +11,6 @@ import Files
 import Foundation
 
 class Logfile: NamesandPaths {
-    var outputprocess: OutputfromProcess?
     var log: String?
     var contentoflogfile: [String]?
 
@@ -76,20 +75,20 @@ class Logfile: NamesandPaths {
                 log = try file.readAsString()
             } catch let e {
                 let error = e as NSError
-                self.error(errordescription: error.description, errortype: .emptylogfile)
+                self.error(errordescription: error.localizedDescription, errortype: .emptylogfile)
             }
         }
     }
 
-    private func minimumlogging() {
+    private func minimumlogging(_ data: [String]?) {
         let date = Date().localized_string_from_date()
         readloggfile()
         var tmplogg = [String]()
-        var startindex = (outputprocess?.getOutput()?.count ?? 0) - 8
+        var startindex = (data?.count ?? 0) - 8
         if startindex < 0 { startindex = 0 }
         tmplogg.append("\n" + date + " -------------------------------------------" + "\n")
-        for i in startindex ..< (outputprocess?.getOutput()?.count ?? 0) {
-            tmplogg.append(outputprocess?.getOutput()?[i] ?? "")
+        for i in startindex ..< (data?.count ?? 0) {
+            tmplogg.append(data?[i] ?? "")
         }
         if log == nil {
             log = tmplogg.joined(separator: "\n")
@@ -99,42 +98,40 @@ class Logfile: NamesandPaths {
         writeloggfile()
     }
 
-    private func fulllogging() {
+    private func fulllogging(_ data: [String]?) {
         let date = Date().localized_string_from_date()
         readloggfile()
         let tmplogg: String = "\n" + date + " -------------------------------------------" + "\n"
         if log == nil {
-            log = tmplogg + (outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
+            log = tmplogg + (data ?? [""]).joined(separator: "\n")
         } else {
-            log! += tmplogg + (outputprocess?.getOutput() ?? [""]).joined(separator: "\n")
+            log! += tmplogg + (data ?? [""]).joined(separator: "\n")
         }
         writeloggfile()
     }
 
-    init(outputprocess: OutputfromProcess?) {
+    init(_ data: [String]?) {
         super.init(.configurations)
         guard SharedReference.shared.fulllogging == true ||
             SharedReference.shared.minimumlogging == true
         else {
             return
         }
-        self.outputprocess = outputprocess
         if SharedReference.shared.fulllogging {
-            fulllogging()
+            fulllogging(data)
         } else {
-            minimumlogging()
+            minimumlogging(data)
         }
     }
 
-    init(_ outputprocess: OutputfromProcess?, _ logging: Bool) {
+    init(_ data: [String]?, _ logging: Bool) {
         super.init(.configurations)
-        if logging == false, outputprocess == nil {
+        if logging == false, data == nil {
             let date = Date().localized_string_from_date()
             log = date + ": " + "new logfile is created...\n"
             writeloggfile()
         } else {
-            self.outputprocess = outputprocess
-            fulllogging()
+            fulllogging(data)
         }
     }
 
