@@ -43,7 +43,7 @@ final class RsyncProcess {
                 let error = e as NSError
                 let outputprocess = OutputfromProcess()
                 outputprocess.addlinefromoutput(str: error.description)
-                _ = Logfile(outputprocess, true)
+                _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
             }
         }
     }
@@ -99,7 +99,7 @@ final class RsyncProcess {
             .sink { [self] _ in
                 self.processtermination()
                 // Logg to file
-                _ = Logfile(outputprocess: outputprocess)
+                _ = Logfile(TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata)
                 // Release Combine subscribers
                 subscriptons.removeAll()
             }.store(in: &subscriptons)
@@ -111,7 +111,7 @@ final class RsyncProcess {
             let error = e as NSError
             let outputprocess = OutputfromProcess()
             outputprocess.addlinefromoutput(str: error.description)
-            _ = Logfile(outputprocess, true)
+            _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, true)
         }
     }
 
