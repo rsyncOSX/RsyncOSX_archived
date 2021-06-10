@@ -146,9 +146,6 @@ extension ViewControllerMain: RsyncError {
 extension ViewControllerMain: ErrorMessage {
     func errormessage(errorstr: String, error errortype: RsyncOSXTypeErrors) {
         globalMainQueue.async { () -> Void in
-            if self.outputprocess == nil {
-                self.outputprocess = OutputfromProcess()
-            }
             if errortype == .logfilesize {
                 self.info.stringValue = "Reduce size logfile, filesize is: " + errorstr
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
@@ -159,8 +156,9 @@ extension ViewControllerMain: ErrorMessage {
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
             }
-            guard errortype != .logfilesize else { return }
-            _ = Logfile(TrimTwo(self.outputprocess?.getOutput() ?? []).trimmeddata, error: true)
+            var message = [String]()
+            message.append(errorstr)
+            _ = Logfile(message, error: true)
         }
     }
 }

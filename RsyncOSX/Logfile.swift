@@ -36,14 +36,14 @@ final class Logfile: NamesandPaths {
                             }
                             return
                         case let .failure(error):
-                            // self?.propogateerror(error: error)
+                            self?.error(errordescription: error.localizedDescription, errortype: .readerror)
                             return
                         }
                     }
                 }
             } catch let e {
                 let error = e
-                // propogateerror(error: error)
+                self.error(errordescription: error.localizedDescription, errortype: .readerror)
             }
         }
     }
