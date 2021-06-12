@@ -82,7 +82,7 @@ final class Logfile: NamesandPaths {
                 logfile = try file.readAsString()
             } catch let e {
                 let error = e
-                // propogateerror(error: error)
+                self.error(errordescription: error.localizedDescription, errortype: .readerror)
             }
         }
     }
