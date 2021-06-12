@@ -131,7 +131,7 @@ extension ViewControllerMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
         globalMainQueue.async { () -> Void in
-            self.info.stringValue = "Rsync error, see loggfile..."
+            self.info.stringValue = "Rsync error, see logfile..."
             self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
             self.info.isHidden = false
             guard SharedReference.shared.haltonerror == true else { return }
@@ -152,7 +152,7 @@ extension ViewControllerMain: ErrorMessage {
                 self.info.isHidden = false
             } else {
                 self.outputprocess?.addlinefromoutput(str: errorstr + "\n" + errorstr)
-                self.info.stringValue = "Some error: see loggfile."
+                self.info.stringValue = "Some error: see logfile."
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
                 self.info.isHidden = false
             }
