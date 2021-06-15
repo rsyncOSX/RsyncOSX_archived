@@ -25,7 +25,7 @@ So, if you download RsyncUI and start using it please have this in mind. And as 
 
   - [the documentation of RsyncUI](https://rsyncui.netlify.app/)
   - [the readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/blob/main/README.md)
-  - [changes in RsyncUI on macOS 12](https://rsyncui.netlify.app/post/macos12/#the-focusedbinding-property-and-focusedscenevalue-modifier)
+  - [changes in RsyncUI on macOS 12](https://rsyncui.netlify.app/post/macos12/)
 
 ![](images/rsyncui.png)
 
