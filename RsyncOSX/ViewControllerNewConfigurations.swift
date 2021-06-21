@@ -150,6 +150,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     // Sidebar Add button
     func addConfig() {
+        if localCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
+            localCatalog.stringValue += "/"
+        }
+        if offsiteCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
+            offsiteCatalog.stringValue += "/"
+        }
         var newconfig = Configuration()
         newconfig.task = SharedReference.shared.synchronize
         newconfig.backupID = backupID.stringValue
@@ -164,13 +170,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         newconfig.parameter5 = eparam
         newconfig.parameter6 = ssh
         newconfig.dateRun = ""
-
-        if localCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
-            localCatalog.stringValue += "/"
-        }
-        if offsiteCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
-            offsiteCatalog.stringValue += "/"
-        }
         if backuptypeselected == .snapshots {
             newconfig.snapshotnum = 1
             newconfig.task = SharedReference.shared.snapshot
