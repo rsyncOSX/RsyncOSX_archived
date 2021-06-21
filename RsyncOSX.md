@@ -141,7 +141,7 @@ If you do a restore from the `remote` to the `source`, some files in the source 
 
 ### Combine
 
-RsyncOSX **version 6.6.0** is released as an update for users on **macOS Big Sur**.
+RsyncOSX **version 6.6.1** is released as an update for users on **macOS Big Sur**.
 
 The major work in this release are **utilizing Combine** and only supporting **JSON files**. In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is also a great framework and makes the code easy to write and easy to read. It is most likely that RsyncOSX will avaliable for some years and why not upgrade RsyncOSX to utilize Combine.
 
