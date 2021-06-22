@@ -78,7 +78,7 @@ class Ssh: Catalogsandfiles {
         self.filehandler = filehandler
         super.init(.ssh)
         self.outputprocess = outputprocess
-        keyFileStrings = getfilesasstringnames()
+        keyFileStrings = getfullpathsshkeys()
         createsshkeyrootpath()
     }
 }

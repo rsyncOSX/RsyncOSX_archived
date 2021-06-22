@@ -84,6 +84,21 @@ extension Errors {
 }
 
 class Catalogsandfiles: NamesandPaths {
+    func getfullpathsshkeys() -> [String]? {
+        if let atpath = fullpathsshkeys {
+            do {
+                var array = [String]()
+                for file in try Folder(path: atpath).files {
+                    array.append(file.name)
+                }
+                return array
+            } catch {
+                return nil
+            }
+        }
+        return nil
+    }
+
     func getfilesasstringnames() -> [String]? {
         if let atpath = fullpathmacserial {
             do {

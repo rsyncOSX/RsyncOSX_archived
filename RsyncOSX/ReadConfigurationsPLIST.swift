@@ -77,7 +77,7 @@ final class ReadConfigurationsPLIST: NamesandPaths {
         if configurations.count > 0 { thereisplistdata = true }
     }
 
-    override init(_ profile: String?) {
+    init(_ profile: String?) {
         super.init(.configurations)
         self.profile = profile
         filenamedatastore.publisher

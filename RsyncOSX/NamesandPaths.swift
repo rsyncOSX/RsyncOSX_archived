@@ -89,8 +89,4 @@ class NamesandPaths: Errors {
     init(_ path: Rootpath) {
         setrootpath(path)
     }
-
-    init(_ profile: String?) {
-        self.profile = profile
-    }
 }
