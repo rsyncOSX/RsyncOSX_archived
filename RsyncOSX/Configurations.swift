@@ -161,6 +161,9 @@ class Configurations: ReloadTable, SetSchedules {
     func addNewConfigurations(_ newconfig: Configuration) {
         var config = newconfig
         config.hiddenID = maxhiddenID + 1
+        if configurations == nil {
+            configurations = [Configuration]()
+        }
         configurations?.append(config)
         WriteConfigurationJSON(profile, configurations)
     }

@@ -1373,7 +1373,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 6.6.1;
+				MARKETING_VERSION = 6.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1399,7 +1399,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 6.6.1;
+				MARKETING_VERSION = 6.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
