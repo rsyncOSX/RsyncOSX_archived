@@ -2,9 +2,9 @@
 
 **RsyncOSX version 6.5.8** is released for macOS Catalina 10.15 and later versions of macOS.
 
-**RsyncOSX version 6.6.1** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.1 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX. The RsyncOSX repository contains two branches, the branch `version 6.6.1` is also updated to the main branch.
+**RsyncOSX version 6.6.2** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.2 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX. The RsyncOSX repository contains two branches, the branch `version 6.6.2` is also updated to the main branch.
 
-- branch `version 6.6.1`
+- branch `version 6.6.2`
 - branch `version 6.5.8`
 
 The version 6.6.0 branch will only execute on macOS Big Sur. See the [Combine](#combine) part for more info. Branch version 6.5.8 require macOS Catalina 10.15 and later versions of macOS.
@@ -138,7 +138,7 @@ If you do a restore from the `remote` to the `source`, some files in the source 
 
 ### Combine
 
-RsyncOSX **version 6.6.1** is released as an update for users on **macOS Big Sur**.
+RsyncOSX **version 6.6.2** is released as an update for users on **macOS Big Sur**.
 
 The major work in this release are **utilizing Combine** and only supporting **JSON files**. In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is also a great framework and makes the code easy to write and easy to read. It is most likely that RsyncOSX will avaliable for some years and why not upgrade RsyncOSX to utilize Combine.
 

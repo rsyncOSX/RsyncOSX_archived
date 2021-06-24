@@ -6,7 +6,7 @@ I am the developer of some GUI´s for `rsync` on the Apple macOS plattform.
 
 **RsyncOSX version 6.5.8** is released for macOS Catalina 10.15 and later versions of macOS.
 
-**RsyncOSX version 6.6.1** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.1 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
+**RsyncOSX version 6.6.2** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.2 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
   - [the documentation of RsyncOSX](https://rsyncosx.netlify.app/)
   - [the readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
