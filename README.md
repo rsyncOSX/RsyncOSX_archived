@@ -6,7 +6,7 @@ I am the developer of some GUI´s for `rsync` on the Apple macOS plattform.
 
 **RsyncOSX version 6.5.8** is released for macOS Catalina 10.15 and later versions of macOS.
 
-**RsyncOSX version 6.6.1** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.1 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
+**RsyncOSX version 6.6.0** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.0 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
   - [the documentation of RsyncOSX](https://rsyncosx.netlify.app/)
   - [the readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
@@ -15,9 +15,9 @@ I am the developer of some GUI´s for `rsync` on the Apple macOS plattform.
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys)
 
-**RsyncUI** which are released for macOS Big Sur and later versions of macOS.
+**RsyncUI** which will be released for macOS Monterey.
 
-**Update 17 June 2021**. The builds are removed for the moment, the UI need some more polish and there is also discovered an issue with RsyncUI on macOS Big Sur. The issue does not exists on macOS Monterey with Xcode 13. I am not sure why and further QA of code is required. The updated Xcode 13 and SwiftUI 3 also introduces updates which enhances the UI a lot. Please use the latest version of RsyncOSX. There might be another build on macOS Big Sur if I manage to solve the issue. If not there will not be any new releases of RsyncUI until macOS Monterey is public.
+The target for RsyncUI is macOS Monterey. But there will also be a couple of prerelease builds on macOS Big Sur. The UI need some more polish and the updated Xcode 13 and SwiftUI 3 also introduces updates which enhances the UI a lot.
 
   - [the documentation of RsyncUI](https://rsyncui.netlify.app/)
   - [the readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/blob/main/README.md)

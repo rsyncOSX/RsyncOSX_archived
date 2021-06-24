@@ -2,10 +2,7 @@
 
 **RsyncOSX version 6.5.8** is released for macOS Catalina 10.15 and later versions of macOS.
 
-**RsyncOSX version 6.6.1** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.1 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
-[The work on a SwiftUI based version of RsyncOSX](https://rsyncui.netlify.app/) has commenced. The new app is called RsyncUI and will be released as a **new application** and not as an upgrade.
-
-The RsyncOSX repository contains two branches, the branch `version 6.6.1` is also updated to the main branch.
+**RsyncOSX version 6.6.1** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.1 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX. The RsyncOSX repository contains two branches, the branch `version 6.6.1` is also updated to the main branch.
 
 - branch `version 6.6.1`
 - branch `version 6.5.8`
