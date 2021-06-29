@@ -4,10 +4,10 @@
 
 **RsyncOSX version 6.6.2** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, version 6.6.2 is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX. The RsyncOSX repository contains two branches, the branch `version 6.6.2` is also updated to the main branch.
 
-- branch `version 6.6.2`
-- branch `version 6.5.8`
+- branch `version 6.6.2` - for macOS Big Sur and later
+- branch `version 6.5.8` - for macOS Catalina
 
-The version 6.6.0 branch will only execute on macOS Big Sur. See the [Combine](#combine) part for more info. Branch version 6.5.8 require macOS Catalina 10.15 and later versions of macOS.
+The version 6.6.2 branch will only execute on macOS Big Sur. See the [Combine](#combine) part for more info. Branch version 6.5.8 require macOS Catalina 10.15 and later versions of macOS.
 
 - [Install by Homebrew](#install-by-homebrew)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
