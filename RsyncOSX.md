@@ -7,6 +7,8 @@
 - branch `version 6.6.2` - for macOS Big Sur and later
 - branch `version 6.5.8` - for macOS Catalina
 
+Content:
+
 - [Install by Homebrew](#install-by-homebrew)
 - [Documents, issues and changelog](#documents-issues-and-changelog)
 - [Dependencies](#dependencies)
