@@ -17,7 +17,7 @@ I am the developer of some GUI´s for `rsync` on the Apple macOS plattform.
 
 **RsyncUI** which will be released for macOS Monterey.
 
-Latest builds for macOS Big Sur and macOS Monterey [released 10 July 2021](https://github.com/rsyncOSX/RsyncUI/releases). And checkout [the changelog](https://rsyncui.netlify.app/post/changelog/).
+Latest builds for macOS Big Sur and macOS Monterey [released 14 July 2021](https://github.com/rsyncOSX/RsyncUI/releases). And checkout [the changelog](https://rsyncui.netlify.app/post/changelog/).
 
 The target for RsyncUI is macOS Monterey. But there will also be a couple of prerelease builds on macOS Big Sur. The UI need some more polish and the updated Xcode 13 and SwiftUI 3 also have updates which enhances the UI a lot.
 
