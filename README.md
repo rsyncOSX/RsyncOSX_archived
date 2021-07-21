@@ -17,13 +17,11 @@ I am the developer of some GUI´s for `rsync` on the Apple macOS plattform.
 
 **RsyncUI** which will be released for macOS Monterey.
 
-Latest builds for macOS Monterey [updated 20 July 2021](https://github.com/rsyncOSX/RsyncUI/releases). And checkout [the changelog](https://rsyncui.netlify.app/post/changelog/).
-
-The target for RsyncUI is macOS Monterey.
+Latest build, for macOS Monterey, is [updated 20 July 2021](https://github.com/rsyncOSX/RsyncUI/releases). And check [the changelog](https://rsyncui.netlify.app/post/changelog/). The target for RsyncUI is macOS Monterey.
 
   - [the documentation of RsyncUI](https://rsyncui.netlify.app/)
   - [the readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/blob/main/README.md)
-  - [changes in RsyncUI on macOS 12](https://rsyncui.netlify.app/post/macos12/)
+  - [changes in RsyncUI on macOS Monterey](https://rsyncui.netlify.app/post/macos12/)
 
 ![](images/rsyncui.png)
 
