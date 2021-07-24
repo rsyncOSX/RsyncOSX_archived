@@ -663,7 +663,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="687" y="1" width="56" height="17"/>
+                                                            <rect key="frame" x="687" y="1" width="52" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -727,7 +727,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="826" y="1" width="152" height="17"/>
+                                                            <rect key="frame" x="826" y="1" width="148" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -766,15 +766,6 @@ DQ
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="751" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ZhK-mF-Dgw">
                                 <rect key="frame" x="20" y="382" width="16" height="16"/>
                             </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gg2-se-FkF">
-                                <rect key="frame" x="42" y="383" width="257" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="60W-M7-Vqr">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RQt-Hs-8vg">
                                 <rect key="frame" x="336" y="6" width="333" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="1IX-LA-PS2">
@@ -829,7 +820,6 @@ DQ
                     <connections>
                         <outlet property="info" destination="RQt-Hs-8vg" id="ALk-ui-Bwg"/>
                         <outlet property="mainTableView" destination="gd0-mk-eEg" id="V0X-hS-6qu"/>
-                        <outlet property="profilInfo" destination="Gg2-se-FkF" id="XIe-l3-YkS"/>
                         <outlet property="profilepopupbutton" destination="PpM-WV-OB6" id="bqc-10-qbR"/>
                         <outlet property="rsyncversionshort" destination="n3L-Il-K5w" id="5oc-tn-kTn"/>
                         <outlet property="working" destination="ZhK-mF-Dgw" id="7N0-Wz-LAk"/>
@@ -2384,20 +2374,8 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIq-wW-zUf">
-                                <rect key="frame" x="167" y="374" width="205" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="dJh-di-sUP"/>
-                                    <constraint firstAttribute="width" constant="201" id="gz3-ej-amQ"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="TqG-6l-QwU">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ke-eK-ziR">
-                                <rect key="frame" x="20" y="364" width="69" height="27"/>
+                                <rect key="frame" x="20" y="364" width="61" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="KS5-mc-sV4"/>
                                 </constraints>
@@ -2607,17 +2585,14 @@ DQ
                         </subviews>
                         <constraints>
                             <constraint firstItem="fA7-Ye-Zzs" firstAttribute="leading" secondItem="wEG-hh-qwG" secondAttribute="trailing" constant="8" symbolic="YES" id="0g1-WS-SgT"/>
-                            <constraint firstItem="uIq-wW-zUf" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="16" id="4E4-cg-zsf"/>
                             <constraint firstItem="Cv6-G7-dc2" firstAttribute="top" secondItem="X8A-2M-FtC" secondAttribute="top" constant="15" id="7hA-CU-rXo"/>
                             <constraint firstItem="wEG-hh-qwG" firstAttribute="leading" secondItem="nZi-B5-r5E" secondAttribute="leading" id="8Ti-ns-cnE"/>
                             <constraint firstItem="fA7-Ye-Zzs" firstAttribute="leading" secondItem="H3T-x2-1A7" secondAttribute="leading" id="8eG-gw-HFh"/>
                             <constraint firstAttribute="bottom" secondItem="oKa-6S-QCX" secondAttribute="bottom" constant="7" id="B02-cE-26v"/>
                             <constraint firstItem="fA7-Ye-Zzs" firstAttribute="top" secondItem="Cv6-G7-dc2" secondAttribute="bottom" constant="1" id="CR0-7b-Twr"/>
                             <constraint firstItem="6Ke-eK-ziR" firstAttribute="leading" secondItem="X8A-2M-FtC" secondAttribute="leading" constant="20" symbolic="YES" id="Gcj-Do-ywq"/>
-                            <constraint firstItem="uIq-wW-zUf" firstAttribute="leading" secondItem="6Ke-eK-ziR" secondAttribute="trailing" constant="83" id="HUk-wd-9jI"/>
                             <constraint firstItem="oKa-6S-QCX" firstAttribute="centerX" secondItem="X8A-2M-FtC" secondAttribute="centerX" id="Tu2-ox-9GU"/>
                             <constraint firstItem="H3T-x2-1A7" firstAttribute="top" secondItem="fA7-Ye-Zzs" secondAttribute="bottom" constant="8" symbolic="YES" id="Xda-rd-3oF"/>
-                            <constraint firstItem="uIq-wW-zUf" firstAttribute="leading" secondItem="fA7-Ye-Zzs" secondAttribute="leading" id="dw6-91-OYT"/>
                             <constraint firstItem="wEG-hh-qwG" firstAttribute="top" secondItem="6Ke-eK-ziR" secondAttribute="bottom" constant="3" id="gQz-i8-2CM"/>
                             <constraint firstItem="Cv6-G7-dc2" firstAttribute="trailing" secondItem="fA7-Ye-Zzs" secondAttribute="trailing" id="j2d-HB-4qd"/>
                             <constraint firstItem="H3T-x2-1A7" firstAttribute="top" secondItem="nZi-B5-r5E" secondAttribute="bottom" constant="11" id="n3b-Vu-fZQ"/>
@@ -2631,7 +2606,6 @@ DQ
                     </view>
                     <connections>
                         <outlet property="info" destination="oKa-6S-QCX" id="PjV-du-t6F"/>
-                        <outlet property="profilInfo" destination="uIq-wW-zUf" id="Voj-sH-KS7"/>
                         <outlet property="profilepopupbutton" destination="Cv6-G7-dc2" id="F8T-hk-n54"/>
                         <outlet property="scheduletable" destination="x4E-eq-B7o" id="aCY-ch-Nd2"/>
                         <outlet property="scheduletabledetails" destination="JNd-eu-YV7" id="vfW-qU-gre"/>
@@ -2937,15 +2911,6 @@ DQ
                                     </subviews>
                                 </view>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDH-vD-wXh">
-                                <rect key="frame" x="18" y="370" width="184" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Profile :" id="dTX-H7-8VC">
-                                    <font key="font" metaFont="message" size="11"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -2961,7 +2926,6 @@ DQ
                         <outlet property="offsiteUsername" destination="SU3-FM-dip" id="iHh-g7-hch"/>
                         <outlet property="posttask" destination="v2E-t5-m4b" id="hzy-6T-VGo"/>
                         <outlet property="pretask" destination="ibv-Fg-9nv" id="4Rp-8Z-YHK"/>
-                        <outlet property="profilInfo" destination="NDH-vD-wXh" id="x1r-3x-xGE"/>
                         <outlet property="stringlocalcatalog" destination="DWI-RG-Kja" id="ZO1-m8-sJF"/>
                         <outlet property="stringremotecatalog" destination="BRp-yR-JM0" id="NOK-G3-crW"/>
                         <outlet property="viewParameter1" destination="UAM-7e-uQ9" id="GBv-Cl-bn7"/>
