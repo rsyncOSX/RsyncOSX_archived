@@ -45,7 +45,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var offsiteUsername: NSTextField!
     @IBOutlet var offsiteServer: NSTextField!
     @IBOutlet var backupID: NSTextField!
-    @IBOutlet var profilInfo: NSTextField!
     @IBOutlet var backuptype: NSComboBox!
     @IBOutlet var addingtrailingbackslash: NSButton!
     @IBOutlet var stringlocalcatalog: NSTextField!
@@ -245,15 +244,6 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
 extension ViewControllerNewConfigurations: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         dismiss(viewcontroller)
-    }
-}
-
-extension ViewControllerNewConfigurations: SetProfileinfo {
-    func setprofile(profile: String, color: NSColor) {
-        globalMainQueue.async { () -> Void in
-            self.profilInfo.stringValue = profile
-            self.profilInfo.textColor = color
-        }
     }
 }
 

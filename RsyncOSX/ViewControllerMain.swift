@@ -6,13 +6,15 @@
 import Cocoa
 import Foundation
 
+protocol SetProfileinfo: AnyObject {
+    func setprofile(profile: String?)
+}
+
 class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay, Setcolor, Checkforrsync, Help, Connected {
     // Main tableview
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work
     @IBOutlet var working: NSProgressIndicator!
-    // Showing info about profile
-    @IBOutlet var profilInfo: NSTextField!
     @IBOutlet var rsyncversionshort: NSTextField!
     @IBOutlet var info: NSTextField!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
@@ -270,22 +272,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Function for setting profile
     func displayProfile() {
         weak var localprofileinfo: SetProfileinfo?
-        weak var localprofileinfo2: SetProfileinfo?
-        guard configurations?.tcpconnections?.connectionscheckcompleted ?? true else {
-            profilInfo.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
-            return
-        }
+        localprofileinfo = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         if let profile = configurations?.getProfile() {
-            profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
-            profilInfo.textColor = setcolor(nsviewcontroller: self, color: .white)
+            localprofileinfo?.setprofile(profile: profile)
         } else {
-            profilInfo.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
-            profilInfo.textColor = setcolor(nsviewcontroller: self, color: .green)
+            localprofileinfo?.setprofile(profile: nil)
         }
-        localprofileinfo = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
-        localprofileinfo2 = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-        localprofileinfo?.setprofile(profile: profilInfo.stringValue, color: profilInfo.textColor!)
-        localprofileinfo2?.setprofile(profile: profilInfo.stringValue, color: profilInfo.textColor!)
     }
 
     func createandreloadschedules() {

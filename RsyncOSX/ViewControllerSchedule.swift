@@ -10,10 +10,6 @@
 import Cocoa
 import Foundation
 
-protocol SetProfileinfo: AnyObject {
-    func setprofile(profile: String, color: NSColor)
-}
-
 class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, VcMain, Checkforrsync, Setcolor, Help {
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
@@ -27,7 +23,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
 
     // Main tableview
     @IBOutlet var scheduletable: NSTableView!
-    @IBOutlet var profilInfo: NSTextField!
     @IBOutlet var info: NSTextField!
     @IBOutlet var scheduletabledetails: NSTableView!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
@@ -210,15 +205,6 @@ extension ViewControllerSchedule: DeselectRowTable {
     func deselect() {
         guard index != nil else { return }
         scheduletable.deselectRow(index!)
-    }
-}
-
-extension ViewControllerSchedule: SetProfileinfo {
-    func setprofile(profile: String, color: NSColor) {
-        globalMainQueue.async { () -> Void in
-            self.profilInfo.stringValue = profile
-            self.profilInfo.textColor = color
-        }
     }
 }
 
