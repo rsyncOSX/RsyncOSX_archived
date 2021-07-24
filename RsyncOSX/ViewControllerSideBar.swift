@@ -51,7 +51,7 @@ protocol Sidebarbuttonactions: AnyObject {
     func sidebarbuttonactions(action: Sidebaractionsmessages)
 }
 
-class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync {
+class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync, Setcolor {
     @IBOutlet var jsonbutton: NSButton!
     @IBOutlet var jsonlabel: NSTextField!
     @IBOutlet var pathtorsyncosxschedbutton: NSButton!
@@ -61,6 +61,8 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     @IBOutlet var button2: NSButton!
     @IBOutlet var button3: NSButton!
     @IBOutlet var button4: NSButton!
+
+    @IBOutlet var profilelabel: NSTextField!
 
     var whichviewispresented: Sidebarmessages?
 
@@ -204,6 +206,21 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         SharedReference.shared.convertjsonbutton = false
     }
 
+    // Function for setting profile
+    func displayProfile() {
+        guard configurations?.tcpconnections?.connectionscheckcompleted ?? true else {
+            profilelabel.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
+            return
+        }
+        if let profile = configurations?.getProfile() {
+            profilelabel.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
+            profilelabel.textColor = setcolor(nsviewcontroller: self, color: .white)
+        } else {
+            profilelabel.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
+            profilelabel.textColor = setcolor(nsviewcontroller: self, color: .green)
+        }
+    }
+
     func enableconvertjsonbutton() {
         if SharedReference.shared.convertjsonbutton {
             SharedReference.shared.convertjsonbutton = false
@@ -231,6 +248,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
         delayWithSeconds(0.5) {
             self.menuappicons()
+            self.displayProfile()
         }
     }
 }
