@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>6.6.0</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.6.2/RsyncOSX.6.6.2.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.6.3/RsyncOSX.6.6.3.dmg</string>
 	<key>6.6.1</key>
-	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.6.2/RsyncOSX.6.6.2.dmg</string>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.6.3/RsyncOSX.6.6.3.dmg</string>
+	<key>6.6.2</key>
+	<string>https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.6.3/RsyncOSX.6.6.3.dmg</string>
 </dict>
 </plist>
