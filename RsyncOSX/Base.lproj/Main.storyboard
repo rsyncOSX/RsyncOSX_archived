@@ -273,9 +273,9 @@ DQ
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9AI-DS-EC9">
-                                <rect key="frame" x="62" y="2" width="34" height="14"/>
+                                <rect key="frame" x="-2" y="2" width="127" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="JSON" id="O9B-eL-iDX">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="JSON" id="O9B-eL-iDX">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -323,9 +323,9 @@ DQ
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4c5-WB-fbQ">
-                                <rect key="frame" x="6" y="280" width="110" height="16"/>
+                                <rect key="frame" x="-2" y="280" width="127" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Profile" id="uKL-cP-zdK">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Profile" id="uKL-cP-zdK">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -663,7 +663,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="687" y="1" width="50" height="17"/>
+                                                            <rect key="frame" x="687" y="1" width="57" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -727,7 +727,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="826" y="1" width="146" height="17"/>
+                                                            <rect key="frame" x="826" y="1" width="153" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">

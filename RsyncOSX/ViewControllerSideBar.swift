@@ -239,15 +239,11 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
 
 extension ViewControllerSideBar: SetProfileinfo {
     func setprofile(profile: String?) {
-        guard configurations?.tcpconnections?.connectionscheckcompleted ?? true else {
-            profilelabel.stringValue = NSLocalizedString("Profile: please wait...", comment: "Execute")
-            return
-        }
         if let profile = configurations?.getProfile() {
-            profilelabel.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " " + profile
+            profilelabel.stringValue = profile
             profilelabel.textColor = setcolor(nsviewcontroller: self, color: .white)
         } else {
-            profilelabel.stringValue = NSLocalizedString("Profile:", comment: "Execute ") + " default"
+            profilelabel.stringValue = "Default"
             profilelabel.textColor = setcolor(nsviewcontroller: self, color: .green)
         }
     }
