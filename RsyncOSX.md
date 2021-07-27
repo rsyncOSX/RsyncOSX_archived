@@ -16,7 +16,6 @@ Content:
 - [Some words about RsyncOSX](#some-words-about-rsyncosx)
 - [The --delete parameter](#the---delete-parameter)
 - [The source code and compile](#the-source-code-and-compile)
-- [A Sandboxed version](#a-sandboxed-version)
 - [About bugs](#about-bugs)
 - [About restoring files to a temporary restore catalog](#about-restoring-files-to-a-temporary-restore-catalog)
 - [Combine](#combine)
@@ -118,10 +117,6 @@ or [the --backup parameter](https://rsyncosx.netlify.app/post/userparameters/). 
 ### The source code and compile
 
 There are [some details about source and how to compile](https://rsyncosx.netlify.app/post/compile/).
-
-### A Sandboxed version
-
-[There is also released a minor version, RsyncGUI](https://itunes.apple.com/us/app/rsyncgui/id1449707783?l=nb&ls=1&mt=12) of RsyncOSX on Apple Mac App Store. See the [changelog](https://rsyncosx.netlify.app/post/rsyncguichangelog/). RsyncGUI utilizes stock version of rsync in macOS and RsyncGUI only supports synchronize task (no snapshots).
 
 ### About bugs
 
