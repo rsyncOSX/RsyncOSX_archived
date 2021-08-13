@@ -16,8 +16,7 @@ Content:
 - [Some words about RsyncOSX](#some-words-about-rsyncosx)
 - [The --delete parameter](#the---delete-parameter)
 - [The source code and compile](#the-source-code-and-compile)
-- [About bugs](#about-bugs)
-- [About restoring files to a temporary restore catalog](#about-restoring-files-to-a-temporary-restore-catalog)
+- [Restoring files](#restoring-files)
 - [Combine](#combine)
 - [Application icon](#application-icon)
 
@@ -118,11 +117,7 @@ or [the --backup parameter](https://rsyncosx.netlify.app/post/userparameters/). 
 
 There are [some details about source and how to compile](https://rsyncosx.netlify.app/post/compile/).
 
-### About bugs
-
- Over the years most bugs are smoked out. Thanks to users who reports bugs. Fighting bugs are difficult. I am not able to test RsyncOSX for all possible user interactions and use. I need support from other users discovering bugs or not expected results. If you discover a bug [please report it](https://github.com/rsyncOSX/RsyncOSX/issues).
-
-### About restoring files to a temporary restore catalog
+### Restoring files
 
 If you do a restore from the `remote` to the `source`, some files in the source might be deleted. This is due to how rsync works in `synchronize` mode. As a precaution **never** do a restore directly from the `remote` to the `source`, always do a restore to a temporary restore catalog.
 
