@@ -21,7 +21,7 @@ Latest build, for macOS Monterey, is [updated 11 August 2021](https://github.com
 
   - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
   - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/blob/main/README.md)
-  - the [changelog](https://rsyncosx.netlify.app/post/changelog/)
+  - the [changelog](https://rsyncui.netlify.app/post/changelog/)
   - the [development of RsyncUI](https://rsyncui.netlify.app/post/development/)
 
 ![](images/rsyncui.png)
