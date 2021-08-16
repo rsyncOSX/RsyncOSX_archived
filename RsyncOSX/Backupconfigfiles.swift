@@ -23,6 +23,7 @@ struct Backupconfigfiles: Errors {
                 let targetpath = "RsyncOSXcopy-" + Date().shortlocalized_string_from_date()
                 let targetFolder = try Folder(path: documentscatalog).createSubfolder(at: targetpath)
                 try originFolder?.copy(to: targetFolder)
+                Alerts.showInfo(info: "Copied")
             } catch let e {
                 let error = e as NSError
                 self.error(errordescription: error.description, errortype: .profilecreatedirectory)
