@@ -23,8 +23,8 @@ class ReadScheduleJSON: NamesandPaths {
                 if let profile = profile, let path = fullpathmacserial {
                     filename = path + "/" + profile + "/" + filenamejson
                 } else {
-                    if let fullroot = fullpathmacserial {
-                        filename = fullroot + "/" + filenamejson
+                    if let path = fullpathmacserial {
+                        filename = path + "/" + filenamejson
                     }
                 }
                 return URL(fileURLWithPath: filename)
