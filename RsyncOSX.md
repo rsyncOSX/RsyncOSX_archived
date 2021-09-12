@@ -31,7 +31,9 @@ RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-ba
 - [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/)
 - [the changelog](https://rsyncosx.netlify.app/post/changelog/)
 
-The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Even](https://github.com/olOwOlo/hugo-theme-even), Markdown and published on [Netlify](https://rsyncosx.netlify.app/). If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
+The above docs are based on [Hugo](https://gohugo.io/), the Hugo theme [Hello-friend-ng](https://github.com/rhazdon/hugo-theme-hello-friend-ng), Markdown and published on [Netlify](https://rsyncosx.netlify.app/).
+
+If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 ### Dependencies
 
