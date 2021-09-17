@@ -73,6 +73,39 @@ final class Snapshotlogsandcatalogs {
     // Merging remote snaphotcatalogs and existing logs
     private func mergeremotecatalogsandlogs() {
         var adjustedlogrecords = [Logrecordsschedules]()
+        let mycatalogs = catalogsanddates
+        let mylogrecords = logrecordssnapshot
+        // Loop through all real catalogs, find the corresponding logrecord if any
+        // and add the adjusted record
+        for i in 0 ..< (mycatalogs?.count ?? 0) {
+            // Real snapshotcatalog collected from remote and
+            // drop the "./" and add "(" and ")" before filter
+            let realsnapshotcatalog = "(" + (mycatalogs?[i].0 ?? "").dropFirst(2) + ")"
+            let record = mylogrecords?.filter { $0.resultExecuted.contains(realsnapshotcatalog) }
+            // Found one record
+            if record?.count ?? 0 > 0 {
+                if var record = record?[0] {
+                    let catalogelementlog = record.resultExecuted.split(separator: " ")[0]
+                    let snapshotcatalogfromschedulelog = "./" + catalogelementlog.dropFirst().dropLast()
+                    record.period = "... not yet tagged ..."
+                    record.snapshotCatalog = snapshotcatalogfromschedulelog
+                    adjustedlogrecords.append(record)
+                }
+            }
+        }
+        logrecordssnapshot = adjustedlogrecords.sorted { cat1, cat2 -> Bool in
+            if let cat1 = cat1.snapshotCatalog,
+               let cat2 = cat2.snapshotCatalog
+            {
+                return (Int(cat1.dropFirst(2)) ?? 0) > (Int(cat2.dropFirst(2)) ?? 0)
+            }
+            return false
+        }
+    }
+
+    // Merging remote snaphotcatalogs and existing logs
+    private func mmergeremotecatalogsandlogs() {
+        var adjustedlogrecords = [Logrecordsschedules]()
         let logcount = logrecordssnapshot?.count ?? 0
         for i in 0 ..< (catalogsanddates?.count ?? 0) {
             var j = 0
