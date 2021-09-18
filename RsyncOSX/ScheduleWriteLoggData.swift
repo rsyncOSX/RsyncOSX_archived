@@ -96,6 +96,9 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
             log.resultExecuted = result
             newrecord.logrecords = [Log]()
             newrecord.logrecords?.append(log)
+            if schedules == nil {
+                schedules = [ConfigurationSchedule]()
+            }
             schedules?.append(newrecord)
             return true
         }
