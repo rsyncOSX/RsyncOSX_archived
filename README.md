@@ -2,7 +2,7 @@
 
 I am the developer of RsyncOSX and RsyncUI which both are GUI´s for `rsync` on the Apple macOS plattform. It is `rsync`, the commandline tool, which does the actual synchronize task. The GUI´s are only for setting correct parameters and make it more easy to use `rsync`, which is a fantastic tool.
 
-If you are on **macOS Big Sur**, RsyncOSX is the GUI for you. If you are running **macOS Monterey** you can choose. You can also use both GUI´s on macOS Monterey in paralell. RsyncOSX is the only GUI which supports scheduling of task. Bot GUI´s are maintaned, so it is a matter of taste. 
+If you are on **macOS Big Sur**, RsyncOSX is the GUI for you. If you are running **macOS Monterey** you can choose. You can also use both GUI´s on macOS Monterey in paralell. RsyncOSX is the only GUI which supports scheduling of task. Both GUI´s are maintaned, so it is a matter of taste. 
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.6.7/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
