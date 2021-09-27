@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-I am the developer of RsyncOSX and RsyncUI which both are GUI´s for [rsync](https://github.com/WayneD/rsync) on the Apple macOS plattform. It is rsync, the commandline tool, which does the actual synchronize task. The GUI´s are only for setting correct parameters and make it more easy to use rsync, which is a fantastic tool.
+I am the developer of RsyncOSX and RsyncUI which both are GUI´s for the commandline tool [rsync](https://github.com/WayneD/rsync) on the Apple macOS plattform. It is rsync which does the actual synchronize task, not the GUI´s. The GUI´s are only for setting correct parameters and make it more easy to use rsync, which is a fantastic tool.
 
 If you are on **macOS Big Sur**, RsyncOSX is the GUI for you. If you are running **macOS Monterey** you can choose. You can also use both GUI´s on macOS Monterey in paralell. RsyncOSX is the only GUI which supports scheduling of task. Both GUI´s are maintaned, so it is a matter of taste.
 
