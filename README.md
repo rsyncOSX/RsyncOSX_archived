@@ -18,7 +18,7 @@ If you are on **macOS Big Sur**, RsyncOSX is the GUI for you. If you are running
 
 **RsyncUI** which will be released for **macOS Monterey**.
 
-Latest build is [9 September 2021](https://github.com/rsyncOSX/RsyncUI/releases). The target for RsyncUI is macOS Monterey.
+Latest build is [28 September 2021](https://github.com/rsyncOSX/RsyncUI/releases). The target for RsyncUI is macOS Monterey.
 
   - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
   - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/blob/main/README.md)
