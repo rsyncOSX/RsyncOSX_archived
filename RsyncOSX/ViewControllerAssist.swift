@@ -73,7 +73,7 @@ class ViewControllerAssist: NSViewController {
 
     private func initialize() {
         assist = Assist()
-        if let assist = self.assist {
+        if let assist = assist {
             initcomboxes(combobox: comboremotecomputers, values: assist.remoteservers)
             initcomboxes(combobox: comboremoteusers, values: assist.remoteusers)
             initcomboxes(combobox: combocatalogs, values: assist.catalogs)

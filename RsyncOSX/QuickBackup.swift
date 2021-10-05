@@ -82,7 +82,7 @@ final class QuickBackup: SetConfigurations {
     }
 
     func setcompleted() {
-        if let hiddenID = self.hiddenID {
+        if let hiddenID = hiddenID {
             if let dict = sortedlist?.filter({ ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID }) {
                 guard dict.count == 1 else { return }
                 if let index = sortedlist?.firstIndex(of: dict[0]) {

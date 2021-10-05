@@ -21,7 +21,7 @@ class ExecuteTaskNow: SetConfigurations {
     var command: RsyncProcess?
 
     func executetasknow() {
-        if let index = self.index,
+        if let index = index,
            let hiddenID = configurations?.gethiddenID(index: index)
         {
             outputprocess = OutputfromProcessRsync()
@@ -51,7 +51,7 @@ class ExecuteTaskNow: SetConfigurations {
 extension ExecuteTaskNow {
     func processtermination() {
         startstopindicators?.stopIndicator()
-        if let index = self.index {
+        if let index = index {
             configurations?.setCurrentDateonConfiguration(index: index, outputprocess: outputprocess)
         }
         deinitDelegate?.deinitexecutetasknow()

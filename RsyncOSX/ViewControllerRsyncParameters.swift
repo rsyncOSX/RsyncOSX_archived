@@ -63,7 +63,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     }
 
     @IBAction func togglersyncdaemon(_: NSButton) {
-        if let index = self.index() {
+        if let index = index() {
             switch rsyncdaemon.state {
             case .on:
                 configurations?.removeesshparameter(index: index, delete: true)
@@ -80,7 +80,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     }
 
     @IBAction func removecompressparameter(_: NSButton) {
-        if let index = self.index() {
+        if let index = index() {
             switch compressparameter.state {
             case .on:
                 configurations?.removecompressparameter(index: index, delete: true)
@@ -94,7 +94,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     }
 
     @IBAction func removeesshparameter(_: NSButton) {
-        if let index = self.index() {
+        if let index = index() {
             switch esshparameter.state {
             case .on:
                 configurations?.removeesshparameter(index: index, delete: true)
@@ -109,7 +109,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     }
 
     @IBAction func removedeleteparameter(_: NSButton) {
-        if let index = self.index() {
+        if let index = index() {
             switch deleteparamater.state {
             case .on:
                 configurations?.removeedeleteparameter(index: index, delete: true)
@@ -125,8 +125,8 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     // Function for enabling backup of changed files in a backup catalog.
     // Parameters are appended to last two parameters (12 and 13).
     @IBAction func backup(_: NSButton) {
-        if let index = self.index() {
-            if let configurations: [Configuration] = self.configurations?.getConfigurations() {
+        if let index = index() {
+            if let configurations: [Configuration] = configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
                 switch backupbutton.state {
                 case .on:
@@ -155,9 +155,9 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     // Parameters are appended to last parameter (14).
     @IBOutlet var suffixButton: NSButton!
     @IBAction func suffix(_: NSButton) {
-        if let index = self.index() {
+        if let index = index() {
             suffixButton2.state = .off
-            if let configurations: [Configuration] = self.configurations?.getConfigurations() {
+            if let configurations: [Configuration] = configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
                 switch suffixButton.state {
                 case .on:
@@ -176,8 +176,8 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
 
     @IBOutlet var suffixButton2: NSButton!
     @IBAction func suffix2(_: NSButton) {
-        if let index = self.index() {
-            if let configurations: [Configuration] = self.configurations?.getConfigurations() {
+        if let index = index() {
+            if let configurations: [Configuration] = configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
                 suffixButton.state = .off
                 switch suffixButton2.state {
@@ -211,8 +211,8 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
         }
         SharedReference.shared.setvcref(viewcontroller: .vcrsyncparameters, nsviewcontroller: self)
         guard diddissappear == false else { return }
-        if let index = self.index() {
-            if let configurations: [Configuration] = self.configurations?.getConfigurations() {
+        if let index = index() {
+            if let configurations: [Configuration] = configurations?.getConfigurations() {
                 let param = ComboboxRsyncParameters(config: configurations[index])
                 comboBoxValues = param.getComboBoxValues()
                 backupbutton.state = .off
@@ -284,10 +284,10 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
 
     // Function for saving changed or new parameters for one configuration.
     @IBAction func update(_: NSButton) {
-        if var configurations: [Configuration] = self.configurations?.getConfigurations() {
+        if var configurations: [Configuration] = configurations?.getConfigurations() {
             guard configurations.count > 0 else { return }
             // Get the index of selected configuration
-            if let index = self.index() {
+            if let index = index() {
                 let param = SetrsyncParameter()
                 configurations[index].parameter8 = param.setrsyncparameter(indexComboBox:
                     combo8.indexOfSelectedItem, value: getValue(value: param8.stringValue))
@@ -307,7 +307,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
                 if let port = sshport {
                     configurations[index].sshport = Int(port.stringValue)
                 }
-                if let sshkeypathandidentityfile = self.sshkeypathandidentityfile {
+                if let sshkeypathandidentityfile = sshkeypathandidentityfile {
                     if sshkeypathandidentityfile.stringValue.isEmpty == false {
                         configurations[index].sshkeypathandidentityfile = sshkeypathandidentityfile.stringValue
                     } else {

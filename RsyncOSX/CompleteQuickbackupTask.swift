@@ -15,7 +15,7 @@ final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
     // Function for update result of quickbacuptask the job
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(outputprocess: OutputfromProcess?) {
-        if let index = self.index {
+        if let index = index {
             configurations?.setCurrentDateonConfiguration(index: index, outputprocess: outputprocess)
             schedulesDelegate?.reloadschedulesobject()
         }

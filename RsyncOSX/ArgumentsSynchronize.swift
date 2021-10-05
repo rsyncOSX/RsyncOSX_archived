@@ -20,7 +20,7 @@ final class ArgumentsSynchronize: RsyncParameters {
     /// - paramater forDisplay: true if for display, false if not
     /// - returns: Array of Strings
     func argumentssynchronize(dryRun: Bool, forDisplay: Bool) -> [String]? {
-        if let config = self.config {
+        if let config = config {
             localCatalog = config.localCatalog
             if self.config?.task == SharedReference.shared.syncremote {
                 remoteargssyncremote(config: config)

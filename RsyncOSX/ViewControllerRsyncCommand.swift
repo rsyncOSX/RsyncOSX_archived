@@ -16,7 +16,7 @@ class ViewControllerRsyncCommand: NSViewController, SetConfigurations, Index {
     @IBOutlet var verifydryrun: NSButton!
 
     @IBAction func showrsynccommand(_: NSButton) {
-        if let index = self.index(),
+        if let index = index(),
            let config = configurations?.getConfigurations()?[index]
         {
             if synchronizedryrun.state == .on {
@@ -34,7 +34,7 @@ class ViewControllerRsyncCommand: NSViewController, SetConfigurations, Index {
     override func viewDidLoad() {
         super.viewDidLoad()
         SharedReference.shared.setvcref(viewcontroller: .vcrsynccommand, nsviewcontroller: self)
-        if let index = self.index(),
+        if let index = index(),
            let config = configurations?.getConfigurations()?[index]
         {
             rsynccommand.stringValue = RsyncCommandtoDisplay(.synchronize, config).getrsyncommand() ?? ""

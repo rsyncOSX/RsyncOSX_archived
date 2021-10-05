@@ -104,7 +104,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         sidebaractionsDelegate?.sidebaractions(action: .logsviewbuttons)
         info.textColor = setcolor(nsviewcontroller: self, color: .green)
         index = index()
-        if let index = self.index {
+        if let index = index {
             let hiddenID = configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = configurations?.getConfigurations()?[index] {
@@ -301,7 +301,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
         working.stopAnimation(nil)
-        if let index = self.index {
+        if let index = index {
             let hiddenID = configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = configurations?.getConfigurations()?[index] {

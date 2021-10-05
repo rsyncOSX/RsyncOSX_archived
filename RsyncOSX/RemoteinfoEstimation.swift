@@ -130,7 +130,7 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
 
 extension RemoteinfoEstimation {
     func processtermination() {
-        if let index = self.index {
+        if let index = index {
             let record = RemoteinfonumbersOnetask(outputprocess: outputprocess).record()
             record.setValue(configurations?.getConfigurations()?[index].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
             record.setValue(configurations?.getConfigurations()?[index].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)

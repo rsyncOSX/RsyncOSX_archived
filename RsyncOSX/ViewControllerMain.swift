@@ -94,7 +94,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        if let index = self.index {
+        if let index = index {
             executetask(index: index)
         }
     }
@@ -106,7 +106,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         guard checkforrsync() == false else { return }
-        if let index = self.index {
+        if let index = index {
             if let task = configurations?.getConfigurations()?[index].task {
                 guard SharedReference.shared.synctasks.contains(task) else {
                     info.stringValue = Infoexecute().info(num: 7)
@@ -247,7 +247,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Single task can be activated by double click from table
     func executeSingleTask() {
         guard checkforrsync() == false else { return }
-        if let index = self.index {
+        if let index = index {
             if let task = configurations?.getConfigurations()?[index].task {
                 guard SharedReference.shared.synctasks.contains(task) else {
                     info.stringValue = Infoexecute().info(num: 6)
@@ -332,7 +332,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func checksynchronizedfiles(_: NSButton) {
-        if let index = self.index {
+        if let index = index {
             if let config = configurations?.getConfigurations()?[index] {
                 guard config.task != SharedReference.shared.syncremote else {
                     info.stringValue = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
@@ -354,7 +354,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        if let index = self.index {
+        if let index = index {
             deleterow(index: index)
         }
     }

@@ -22,7 +22,7 @@ class ViewControllerSource: NSViewController {
     private func select() {
         if let pvc = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh {
             getSourceDelegateSsh = pvc
-            if let index = self.index {
+            if let index = index {
                 getSourceDelegateSsh?.getSourceindex(index: index)
             }
         }

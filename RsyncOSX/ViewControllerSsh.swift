@@ -101,7 +101,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
         sshcmd = Ssh(outputprocess: outputprocess,
                      processtermination: processtermination,
                      filehandler: filehandler)
-        if let hiddenID = self.hiddenID {
+        if let hiddenID = hiddenID {
             sshcmd?.copykeyfile(hiddenID: hiddenID)
             copykeycommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
             sshcmd?.verifyremotekey(hiddenID: hiddenID)

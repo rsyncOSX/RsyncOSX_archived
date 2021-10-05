@@ -62,7 +62,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
     func savesnapdayofweek() {
         var configurations = self.configurations?.getConfigurations()
         guard configurations?.count ?? 0 > 0 else { return }
-        if let index = self.index {
+        if let index = index {
             guard configurations?[index].task == SharedReference.shared.snapshot else { return }
             configurations?[index].snapdayoffweek = config?.snapdayoffweek
             configurations?[index].snaplast = config?.snaplast
@@ -207,7 +207,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             if (snapshotlogsandcatalogs?.snapshotcatalogstodelete?.count ?? 0) == 0 {
                 snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
             }
-            if let config = self.config {
+            if let config = config {
                 let arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
                 let command = OtherProcess(command: arguments.getCommand(),
                                            arguments: arguments.getArguments(),
@@ -270,7 +270,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             self.index = nil
             return
         }
-        if let config = self.config {
+        if let config = config {
             info.stringValue = Infosnapshots().info(num: 0)
             gettinglogs.startAnimation(nil)
             snapshotlogsandcatalogs = Snapshotlogsandcatalogs(config: config)
@@ -338,7 +338,7 @@ extension ViewControllerSnapshots: DismissViewController {
 extension ViewControllerSnapshots {
     func processtermination() {
         if let vc = SharedReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess,
-           let config = self.config
+           let config = config
         {
             if snapshotlogsandcatalogs?.snapshotcatalogstodelete == nil {
                 deletesnapshots.isEnabled = true

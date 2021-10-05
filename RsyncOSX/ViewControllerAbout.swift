@@ -35,14 +35,14 @@ class ViewControllerAbout: NSViewController {
     var resource: Resources?
 
     @IBAction func changelog(_: NSButton) {
-        if let resource = self.resource {
+        if let resource = resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .changelog))!)
         }
         view.window?.close()
     }
 
     @IBAction func documentation(_: NSButton) {
-        if let resource = self.resource {
+        if let resource = resource {
             NSWorkspace.shared.open(URL(string: resource.getResource(resource: .documents))!)
         }
         view.window?.close()

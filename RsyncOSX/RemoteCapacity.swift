@@ -6,7 +6,7 @@ final class RemoteCapacity: Connected {
     var command: OtherProcess?
 
     func getremotecapacity() {
-        if let config = self.config {
+        if let config = config {
             guard SharedReference.shared.process == nil else { return }
             outputprocess = OutputfromProcess()
             // let config = Configuration(dictionary: dict)

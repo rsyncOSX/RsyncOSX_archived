@@ -29,7 +29,7 @@ final class FullrestoreTask: SetConfigurations {
                 guard lastindex > -1 else { return }
                 arguments?[lastindex] = SharedReference.shared.temporarypathforrestore ?? ""
             }
-            if let arguments = self.arguments {
+            if let arguments = arguments {
                 process = RsyncProcess(arguments: arguments, config: nil, processtermination: processtermination, filehandler: filehandler)
                 outputprocess = OutputfromProcessRsync()
                 sendprocess?.sendoutputprocessreference(outputprocess: outputprocess)

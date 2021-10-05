@@ -52,7 +52,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
     // Update configuration, save and dismiss view
     @IBAction func update(_: NSButton) {
         if var config: [Configuration] = configurations?.getConfigurations() {
-            if let index = self.index() {
+            if let index = index() {
                 config[index].localCatalog = localCatalog.stringValue
                 config[index].offsiteCatalog = offsiteCatalog.stringValue
                 config[index].offsiteServer = offsiteServer.stringValue
@@ -122,7 +122,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
         posttask.stringValue = ""
         executeposttask.state = .off
         haltshelltasksonerror.state = .off
-        if let index = self.index() {
+        if let index = index() {
             self.index = index
             if let config: Configuration = configurations?.getConfigurations()?[index] {
                 localCatalog.stringValue = config.localCatalog
@@ -171,7 +171,7 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
     }
 
     private func changelabels() {
-        if let index = self.index {
+        if let index = index {
             if let config = configurations?.getConfigurations()?[index] {
                 switch config.task {
                 case SharedReference.shared.syncremote:

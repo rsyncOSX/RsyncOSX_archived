@@ -118,7 +118,7 @@ extension ViewControllerMain: DismissViewController {
 extension ViewControllerMain: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
-        if let index = self.index {
+        if let index = index {
             SharedReference.shared.process = nil
             self.index = nil
             mainTableView.deselectRow(index)
@@ -364,7 +364,7 @@ extension ViewControllerMain: GetMultipleSelectedIndexes {
     }
 
     func getindexes() -> [Int] {
-        if let indexes = self.indexes {
+        if let indexes = indexes {
             return indexes.map { $0 }
         } else {
             return []

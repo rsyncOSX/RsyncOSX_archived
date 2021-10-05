@@ -85,7 +85,7 @@ struct ComboboxRsyncParameters {
     // - parameter rsyncparameternumber : which stored rsync parameter, integer 8 - 14
     // - returns : touple with index for combobox and corresponding rsync value
     func getParameter(rsyncparameternumber: Int) -> (Int, String) {
-        if let config = self.config {
+        if let config = config {
             switch rsyncparameternumber {
             case 8:
                 return indexandvaluersyncparameter(config.parameter8)

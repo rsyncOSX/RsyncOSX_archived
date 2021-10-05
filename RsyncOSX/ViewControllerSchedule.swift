@@ -75,9 +75,9 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules,
             info.stringValue = Infoschedule().info(num: 2)
             let seconds: TimeInterval = starttime.dateValue.timeIntervalSinceNow
             let startdate: Date = self.startdate.dateValue.addingTimeInterval(seconds)
-            if let index = self.index {
+            if let index = index {
                 if let hiddenID = configurations?.gethiddenID(index: index),
-                   let schedule = self.schedule
+                   let schedule = schedule
                 {
                     guard hiddenID != -1 else { return }
                     schedules?.addschedule(hiddenID, schedule, startdate)
@@ -187,7 +187,7 @@ extension ViewControllerSchedule: DismissViewController {
 
 extension ViewControllerSchedule: Reloadandrefresh {
     func reloadtabledata() {
-        if let index = self.index {
+        if let index = index {
             if let hiddendID = configurations?.gethiddenID(index: index) {
                 scheduledetails = schedules?.readscheduleonetask(hiddenID: hiddendID)
             }

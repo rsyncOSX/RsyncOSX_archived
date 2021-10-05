@@ -66,7 +66,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
         super.viewDidAppear()
         complete = false
         index = index()
-        if let index = self.index {
+        if let index = index {
             let datelastbackup = configurations?.getConfigurations()?[index].dateRun ?? ""
             if datelastbackup.isEmpty == false {
                 let date = datelastbackup.en_us_date_from_string()
@@ -129,7 +129,7 @@ extension ViewControllerInformationLocalRemote {
         } else {
             setnumbers(outputprocess: outputprocess, local: false)
         }
-        if let index = self.index {
+        if let index = index {
             if complete == false {
                 complete = true
                 outputprocess = OutputfromProcess()

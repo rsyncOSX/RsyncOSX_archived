@@ -20,7 +20,7 @@ final class RestorefilesTask: SetConfigurations {
     var filehandler: () -> Void
 
     func executecopyfiles(remotefile: String, localCatalog: String, dryrun: Bool) {
-        if let config = self.config {
+        if let config = config {
             let arguments = RestorefilesArguments(task: .rsync, config: config, remoteFile: remotefile,
                                                   localCatalog: localCatalog, drynrun: dryrun).getArguments()
             outputprocess = OutputfromProcessRsync()

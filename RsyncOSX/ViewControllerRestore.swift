@@ -126,7 +126,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     func prepareforfilesrestoreandandgetremotefilelist() {
         guard checkforgetremotefiles() else { return }
-        if let index = self.index {
+        if let index = index {
             infolabel.isHidden = true
             remotefiles.stringValue = ""
             let hiddenID = Estimatedlistforsynchronization().getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
@@ -152,7 +152,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     func checkforgetremotefiles() -> Bool {
         guard checkforrsync() == false else { return false }
-        if let index = self.index {
+        if let index = index {
             guard connected(config: configurations?.getConfigurations()?[index]) == true else {
                 infolabel.stringValue = Inforestore().info(num: 4)
                 infolabel.isHidden = false
@@ -235,7 +235,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     }
 
     private func checkforfullrestore() -> Bool {
-        if let index = self.index {
+        if let index = index {
             guard connected(config: configurations!.getConfigurations()?[index]) == true else {
                 infolabel.stringValue = Inforestore().info(num: 4)
                 infolabel.isHidden = false
@@ -256,7 +256,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         let dialog: String = NSLocalizedString("Restore", comment: "Restore")
         let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
         if answer {
-            if let index = self.index {
+            if let index = index {
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 infolabel.stringValue = gotit
                 infolabel.isHidden = false
@@ -328,7 +328,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         guard checkforrsync() == false else { return }
         if restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
             guard checkforfullrestore() == true else { return }
-            if let index = self.index {
+            if let index = index {
                 let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
                 infolabel.stringValue = gotit
                 infolabel.isHidden = false

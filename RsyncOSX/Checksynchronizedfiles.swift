@@ -17,7 +17,7 @@ final class Checksynchronizedfiles: SetConfigurations {
 
     func checksynchronizedfiles() {
         guard SharedReference.shared.process == nil else { return }
-        if let index = self.index,
+        if let index = index,
            let hiddenID = configurations?.gethiddenID(index: index)
         {
             if let arguments = configurations?.arguments4verify(hiddenID: hiddenID) {

@@ -34,7 +34,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, Delay {
     }
 
     @IBAction func deleteProfile(_: NSButton) {
-        if let useprofile = self.useprofile {
+        if let useprofile = useprofile {
             profile?.deleteProfileDirectory(profileName: useprofile)
             _ = Selectprofile(profile: nil, selectedindex: nil)
         }

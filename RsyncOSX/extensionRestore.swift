@@ -33,7 +33,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
     }
 
     func searchFieldDidEndSearching(_: NSSearchField) {
-        if let index = self.index {
+        if let index = index {
             if configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int != nil {
                 working.startAnimation(nil)
             }

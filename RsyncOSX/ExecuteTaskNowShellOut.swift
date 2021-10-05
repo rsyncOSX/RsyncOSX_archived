@@ -14,7 +14,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     var error: Bool = false
 
     func executepretask() throws {
-        if let index = self.index {
+        if let index = index {
             if let pretask = configurations?.getConfigurations()?[index].pretask {
                 let task = try shellOut(to: pretask)
                 if task.contains("error"), (configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
@@ -28,7 +28,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     }
 
     func executeposttask() throws {
-        if let index = self.index {
+        if let index = index {
             if let posttask = configurations?.getConfigurations()?[index].posttask {
                 let task = try shellOut(to: posttask)
                 if task.contains("error"), (configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
@@ -41,7 +41,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     }
 
     override func executetasknow() {
-        if let index = self.index {
+        if let index = index {
             // Execute pretask
             if configurations?.getConfigurations()?[index].executepretask == 1 {
                 do {

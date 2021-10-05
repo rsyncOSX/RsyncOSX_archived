@@ -44,7 +44,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
         }
         switch workload?.peek() {
         case .estimatesinglerun:
-            if let index = self.index,
+            if let index = index,
                let hiddenID = configurations?.gethiddenID(index: index)
             {
                 indicatorDelegate?.startIndicator()
@@ -61,7 +61,7 @@ final class SingleTask: SetSchedules, SetConfigurations {
                 }
             }
         case .executesinglerun:
-            if let index = self.index,
+            if let index = index,
                let hiddenID = configurations?.gethiddenID(index: index)
             {
                 singletaskDelegate?.presentViewProgress()
@@ -100,8 +100,8 @@ final class SingleTask: SetSchedules, SetConfigurations {
 
 extension SingleTask {
     func processtermination() {
-        if let workload = self.workload,
-           let index = self.index
+        if let workload = workload,
+           let index = index
         {
             switch workload.pop() {
             case .estimatesinglerun:
