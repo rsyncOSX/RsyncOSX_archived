@@ -201,7 +201,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         super.viewDidAppear()
         // For sending messages to the sidebar
         sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        sidebaractionsDelegate?.sidebaractions(action: .JSONlabel)
         sidebaractionsDelegate?.sidebaractions(action: .mainviewbuttons)
         if SharedReference.shared.initialstart == 0 {
             view.window?.center()
@@ -380,9 +379,5 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             reset()
             singletask = nil
         }
-    }
-
-    @IBAction func enableconvertjsonbutton(_: NSButton) {
-        sidebaractionsDelegate?.sidebaractions(action: .enableconvertjsonbutton)
     }
 }

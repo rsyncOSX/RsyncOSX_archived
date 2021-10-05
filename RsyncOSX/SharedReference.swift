@@ -109,9 +109,6 @@ final class SharedReference {
     var monitornetworkconnection: Bool = false
     // Reference to the active process
     var process: Process?
-    // Read JSON
-    var json: Bool = true
-    var convertjsonbutton: Bool = false
     // JSON names
     var fileschedulesjson = "schedules.json"
     var fileconfigurationsjson = "configurations.json"

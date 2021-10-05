@@ -11,7 +11,6 @@ import Cocoa
 import Foundation
 
 enum Sidebarmessages {
-    case enableconvertjsonbutton
     case mainviewbuttons
     case addviewbuttons
     case scheduleviewbuttons
@@ -20,7 +19,6 @@ enum Sidebarmessages {
     case sshviewbuttons
     case restoreviewbuttons
     case reset
-    case JSONlabel
 }
 
 enum Sidebaractionsmessages {
@@ -52,8 +50,6 @@ protocol Sidebarbuttonactions: AnyObject {
 }
 
 class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync, Setcolor {
-    @IBOutlet var jsonbutton: NSButton!
-    @IBOutlet var jsonlabel: NSTextField!
     @IBOutlet var pathtorsyncosxschedbutton: NSButton!
     @IBOutlet var menuappisrunning: NSButton!
     // Buttons
@@ -190,32 +186,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         }
     }
 
-    @IBAction func Json(_: NSButton) {
-        let text: String = NSLocalizedString("Convert files?", comment: "main")
-        let dialog: String = NSLocalizedString("Convert", comment: "main")
-        let question: String = NSLocalizedString("Convert PLIST files?", comment: "main")
-        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-        if answer {
-            let configs = ReadConfigurationsPLIST(configurations?.getProfile())
-            let schedules = ReadSchedulesPLIST(configurations?.getProfile())
-            configs.writedatatojson()
-            schedules.writedatatojson()
-            NSApp.terminate(self)
-        }
-        jsonbutton.isHidden = true
-        SharedReference.shared.convertjsonbutton = false
-    }
-
-    func enableconvertjsonbutton() {
-        if SharedReference.shared.convertjsonbutton {
-            SharedReference.shared.convertjsonbutton = false
-        } else {
-            SharedReference.shared.convertjsonbutton = true
-        }
-        jsonbutton.title = "Convert"
-        jsonbutton.isHidden = !SharedReference.shared.convertjsonbutton
-    }
-
     func menuappicons() {
         globalMainQueue.async { () -> Void in
             let running = Running()
@@ -259,8 +229,6 @@ extension ViewControllerSideBar: Sidebaractions {
     func sidebaractions(action: Sidebarmessages) {
         whichviewispresented = action
         switch action {
-        case .enableconvertjsonbutton:
-            enableconvertjsonbutton()
         case .mainviewbuttons:
             button1.isHidden = false
             button2.isHidden = false
@@ -323,8 +291,6 @@ extension ViewControllerSideBar: Sidebaractions {
             button2.isHidden = true
             button3.isHidden = true
             button4.isHidden = true
-        case .JSONlabel:
-            jsonlabel.isHidden = !SharedReference.shared.json
         }
     }
 }

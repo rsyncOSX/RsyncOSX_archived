@@ -409,7 +409,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         statuslightpathrsyncosx.isHidden = true
         statuslightpathrsyncosxsched.isHidden = true
         statuslightsshkeypath.isHidden = true
-        jsonischanged = SharedReference.shared.json
     }
 
     // Function for check and set user configuration

@@ -50,11 +50,6 @@ final class WriteUserConfigurationPLIST: NamesandPaths {
         } else {
             monitornetworkconnection = 0
         }
-        if SharedReference.shared.json {
-            json = 1
-        } else {
-            json = 0
-        }
         marknumberofdayssince = String(SharedReference.shared.marknumberofdayssince)
         let dict: NSMutableDictionary = [
             DictionaryStrings.version3Rsync.rawValue: version3Rsync ?? 0 as Int,
