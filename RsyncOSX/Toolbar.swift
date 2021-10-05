@@ -11,7 +11,6 @@ import Cocoa
 import Foundation
 
 extension NSToolbarItem.Identifier {
-    static let allprofiles = NSToolbarItem.Identifier("allprofiles")
     static let backupnow = NSToolbarItem.Identifier("backupnow")
     static let estimateandquickbackup = NSToolbarItem.Identifier("estimateandquickbackup")
     static let executetasknow = NSToolbarItem.Identifier("executetasknow")
@@ -33,9 +32,6 @@ extension MainWindowsController: NSToolbarDelegate {
                  willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem?
     {
         switch itemIdentifier {
-        case .allprofiles:
-            let title = NSLocalizedString("List all profiles and configurations...", comment: "Toolbar")
-            return toolbarbuttonsandactions(.allprofiles, title, AppAssets.allprofiles, Selector.allprofiles)
         case .backupnow:
             let title = NSLocalizedString("Execute all tasks now...", comment: "Toolbar")
             return toolbarbuttonsandactions(.backupnow, title, AppAssets.backupnow, Selector.backupnow)
@@ -74,7 +70,6 @@ extension MainWindowsController: NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .flexibleSpace,
-            .allprofiles,
             .space,
             // .flexibleSpace,
             .backupnow,
@@ -90,7 +85,6 @@ extension MainWindowsController: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .flexibleSpace,
-            .allprofiles,
             .space,
             // .flexibleSpace,
             .backupnow,
