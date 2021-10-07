@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.6.7/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-**RsyncOSX version 6.6.7** is released for **macOS Big Sur** only. The major work in this release is integrating Combine. Due to requirements of some features in Combine, this version is build for **macOS Big Sur** only. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
+**RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
 Content:
 
@@ -125,11 +125,7 @@ If you do a restore from the `remote` to the `source`, some files in the source 
 
 ### Combine
 
-The major work in this release are **utilizing Combine** and only supporting **JSON files**. In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is also a great framework and makes the code easy to write and easy to read. It is most likely that RsyncOSX will avaliable for some years and why not upgrade RsyncOSX to utilize Combine.
-
-There are though some restrictions. In the Combine code for encode and write data to JSON file, the publisher requiere macOS BigSur or later. This release will only be avaliable for **macOS BigSur** and later.
-
-Much of the code where Combine is used is shared with RsyncUI. There is also some refactor and clean up other parts of the code in this release.
+The major work in the latest releases are **utilizing Combine** and only supporting **JSON files**. In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is a great framework and makes it more easy to write and read code. The publisher for encode and write data to JSON file requiere macOS BigSur or later.  Much of the code where Combine is used is shared with RsyncUI. There is also some refactor and clean up other parts of the code in this release.
 
 Combine is used in the following code:
 
