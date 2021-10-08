@@ -248,20 +248,6 @@
                                     <action selector="actionbutton3:" target="Jpl-76-tew" id="2dV-YS-Hrn"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sNJ-eB-6hc">
-                                <rect key="frame" x="24" y="134" width="75" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="JSON" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d0Q-96-jiR">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="Json:" target="Jpl-76-tew" id="Iuh-fB-iA1"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gtd-43-tO6">
                                 <rect key="frame" x="13" y="180" width="97" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -321,7 +307,6 @@ DQ
                         <outlet property="button2" destination="HyA-OL-xUh" id="OGv-Xk-Xaa"/>
                         <outlet property="button3" destination="btH-xq-kOR" id="ePT-SU-Th5"/>
                         <outlet property="button4" destination="Gtd-43-tO6" id="Fpq-cu-5iY"/>
-                        <outlet property="jsonbutton" destination="sNJ-eB-6hc" id="QfS-WK-tAF"/>
                         <outlet property="menuappisrunning" destination="KXa-DA-hNS" id="sfz-zK-d93"/>
                         <outlet property="pathtorsyncosxschedbutton" destination="Tk3-A0-aHr" id="gft-Ym-sMq"/>
                         <outlet property="profilelabel" destination="4c5-WB-fbQ" id="7Fc-Ow-jVM"/>
@@ -643,7 +628,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="677" y="1" width="57" height="17"/>
+                                                            <rect key="frame" x="677" y="1" width="56" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -707,7 +692,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="816" y="1" width="153" height="17"/>
+                                                            <rect key="frame" x="816" y="1" width="152" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
