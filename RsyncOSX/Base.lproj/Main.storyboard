@@ -874,7 +874,7 @@ DQ
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="e6M-Ii-UKK">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="e6M-Ii-UKK">
                                     <rect key="frame" x="1" y="159" width="851" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2117,21 +2117,8 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="aCc-3C-rgD">
-                                <rect key="frame" x="301" y="378" width="23" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="23" id="yuQ-kg-cV8"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="up" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="3UH-n1-nUH">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="sortdirection:" target="AlG-Cw-Xi9" id="MrY-mG-jWu"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XeS-qc-qta">
-                                <rect key="frame" x="718" y="375" width="132" height="17"/>
+                                <rect key="frame" x="718" y="375" width="132" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="Zuu-yK-nRI"/>
                                 </constraints>
@@ -2152,11 +2139,8 @@ DQ
                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="VzJ-2R-TK6">
-                                <rect key="frame" x="329" y="381" width="16" height="16"/>
-                            </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3YU-9a-eyi">
-                                <rect key="frame" x="854" y="375" width="132" height="17"/>
+                                <rect key="frame" x="854" y="375" width="132" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="8nk-yY-POu"/>
                                 </constraints>
@@ -2166,8 +2150,8 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWk-oQ-akj">
-                                <rect key="frame" x="695" y="374" width="23" height="20"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MWk-oQ-akj">
+                                <rect key="frame" x="695" y="373" width="23" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="19" id="eXB-VL-pL5"/>
                                 </constraints>
@@ -2179,31 +2163,28 @@ DQ
                                     <action selector="selectlogs:" target="AlG-Cw-Xi9" id="N55-Of-fRc"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="VzJ-2R-TK6">
+                                <rect key="frame" x="298" y="381" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="tPD-9l-XeG" secondAttribute="bottom" constant="6" id="0fM-st-15F"/>
-                            <constraint firstItem="t6k-ja-pKU" firstAttribute="bottom" secondItem="aCc-3C-rgD" secondAttribute="bottom" id="2zj-nP-M12"/>
                             <constraint firstItem="MWk-oQ-akj" firstAttribute="centerY" secondItem="XeS-qc-qta" secondAttribute="centerY" id="34F-qu-cFN"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="nOG-Nc-xqW" secondAttribute="leading" id="38i-ej-CFj"/>
                             <constraint firstAttribute="trailing" secondItem="3YU-9a-eyi" secondAttribute="trailing" constant="21" id="3NC-az-bum"/>
                             <constraint firstItem="MWk-oQ-akj" firstAttribute="top" secondItem="XeS-qc-qta" secondAttribute="top" id="3kz-s4-m6R"/>
-                            <constraint firstItem="VzJ-2R-TK6" firstAttribute="baseline" secondItem="XeS-qc-qta" secondAttribute="firstBaseline" id="CMi-Z3-RG6"/>
+                            <constraint firstItem="MWk-oQ-akj" firstAttribute="leading" secondItem="VzJ-2R-TK6" secondAttribute="trailing" constant="383" id="5wC-uh-yFb"/>
                             <constraint firstItem="3YU-9a-eyi" firstAttribute="leading" secondItem="XeS-qc-qta" secondAttribute="trailing" constant="8" symbolic="YES" id="CRb-je-zlM"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="20" symbolic="YES" id="Hvn-wm-Cba"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="centerX" secondItem="tPD-9l-XeG" secondAttribute="centerX" id="Iuj-G0-hua"/>
                             <constraint firstItem="XeS-qc-qta" firstAttribute="leading" secondItem="MWk-oQ-akj" secondAttribute="trailing" constant="4" id="OWX-wu-JGi"/>
-                            <constraint firstItem="VzJ-2R-TK6" firstAttribute="leading" secondItem="aCc-3C-rgD" secondAttribute="trailing" constant="5" id="PoF-Ig-crG"/>
                             <constraint firstAttribute="trailing" secondItem="nOG-Nc-xqW" secondAttribute="trailing" constant="20" symbolic="YES" id="X2P-Q6-lTL"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="top" secondItem="JhO-zm-vVD" secondAttribute="top" constant="7" id="YyK-GL-45r"/>
-                            <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="VzJ-2R-TK6" secondAttribute="bottom" constant="7" id="cQ6-gM-RaB"/>
-                            <constraint firstItem="t6k-ja-pKU" firstAttribute="top" secondItem="aCc-3C-rgD" secondAttribute="top" id="jHr-UI-Fyr"/>
                             <constraint firstItem="XeS-qc-qta" firstAttribute="baseline" secondItem="3YU-9a-eyi" secondAttribute="baseline" id="kQf-co-wfR"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="XeS-qc-qta" secondAttribute="bottom" constant="1" id="lqN-O6-Xw3"/>
-                            <constraint firstItem="VzJ-2R-TK6" firstAttribute="baseline" secondItem="3YU-9a-eyi" secondAttribute="firstBaseline" id="rHn-8c-ogY"/>
-                            <constraint firstItem="aCc-3C-rgD" firstAttribute="centerY" secondItem="VzJ-2R-TK6" secondAttribute="centerY" id="uQW-Ow-isf"/>
-                            <constraint firstItem="aCc-3C-rgD" firstAttribute="leading" secondItem="t6k-ja-pKU" secondAttribute="trailing" constant="11" id="vLf-4X-Sbq"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="t6k-ja-pKU" secondAttribute="bottom" constant="4" id="wOO-x0-Dg1"/>
                             <constraint firstItem="tPD-9l-XeG" firstAttribute="top" secondItem="nOG-Nc-xqW" secondAttribute="bottom" constant="3" id="yM0-U8-FMq"/>
+                            <constraint firstItem="VzJ-2R-TK6" firstAttribute="leading" secondItem="t6k-ja-pKU" secondAttribute="trailing" constant="8" symbolic="YES" id="zYs-kn-7uq"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2212,7 +2193,6 @@ DQ
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
                         <outlet property="selectedrows" destination="XeS-qc-qta" id="HFe-lE-Vfi"/>
-                        <outlet property="sortdirection" destination="aCc-3C-rgD" id="GvL-qU-4lB"/>
                         <outlet property="working" destination="VzJ-2R-TK6" id="soL-yM-4Sj"/>
                     </connections>
                 </viewController>
@@ -2391,13 +2371,13 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="JTr-0j-NoU" id="JNd-eu-YV7">
-                                            <rect key="frame" x="0.0" y="0.0" width="812" height="117"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="835" height="117"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="dateStart" width="135.6640625" minWidth="40" maxWidth="1000" id="p7O-cs-wwA">
+                                                <tableColumn identifier="dateStart" width="155.6640625" minWidth="40" maxWidth="1000" id="p7O-cs-wwA">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Start date">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -2463,7 +2443,7 @@ DQ
                                                     </buttonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="dateStop" width="127.546875" minWidth="40" maxWidth="1000" id="AIr-rt-OLN">
+                                                <tableColumn identifier="dateStop" width="170.546875" minWidth="40" maxWidth="1000" id="AIr-rt-OLN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Stop date">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -2503,8 +2483,8 @@ DQ
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9gk-vz-9Xr">
-                                    <rect key="frame" x="2" y="110" width="812" height="16"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9gk-vz-9Xr">
+                                    <rect key="frame" x="2" y="128" width="812" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="H57-uO-EgJ">
@@ -2512,7 +2492,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="JTr-0j-NoU">
-                                    <rect key="frame" x="0.0" y="0.0" width="812" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="835" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -3068,6 +3048,5 @@ DQ
         <image name="complete" width="48" height="48"/>
         <image name="menuapp" width="16" height="16"/>
         <image name="red" width="512" height="512"/>
-        <image name="up" width="256" height="256"/>
     </resources>
 </document>

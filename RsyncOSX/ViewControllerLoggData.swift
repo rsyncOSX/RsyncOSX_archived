@@ -24,7 +24,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
     @IBOutlet var scheduletable: NSTableView!
     @IBOutlet var search: NSSearchField!
     @IBOutlet var numberOflogfiles: NSTextField!
-    @IBOutlet var sortdirection: NSButton!
     @IBOutlet var selectedrows: NSTextField!
     @IBOutlet var info: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
@@ -36,17 +35,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
 
     @IBAction func showHelp(_: AnyObject?) {
         help()
-    }
-
-    @IBAction func sortdirection(_: NSButton) {
-        if sortascending == true {
-            sortascending = false
-            sortdirection.image = #imageLiteral(resourceName: "down")
-        } else {
-            sortascending = true
-            sortdirection.image = #imageLiteral(resourceName: "up")
-        }
-        sortbycolumn()
     }
 
     @IBAction func selectlogs(_: NSButton) {
@@ -94,7 +82,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules,
         scheduletable.dataSource = self
         search.delegate = self
         SharedReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
-        sortdirection.image = #imageLiteral(resourceName: "up")
         working.usesThreadedAnimation = true
     }
 
