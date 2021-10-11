@@ -80,7 +80,6 @@
 		E9284CF621308AE9006648C1 /* extensionsConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */; };
 		E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A623A203D7B1C000B9300 /* Notifications.swift */; };
 		E92B1A7F257A225600F0216C /* exstensionViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */; };
-		E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */; };
 		E933CBF626602FFF0028A26C /* NewversionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933CBF526602FFF0028A26C /* NewversionJSON.swift */; };
 		E9374D2E1E329A5800CD3945 /* CompleteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9374D2D1E329A5800CD3945 /* CompleteQuickbackupTask.swift */; };
 		E939EC4A20C048A000C47F91 /* extensionVCMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939EC4920C048A000C47F91 /* extensionVCMain.swift */; };
@@ -255,7 +254,6 @@
 		E92A623A203D7B1C000B9300 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exstensionViewControllers.swift; sourceTree = "<group>"; };
 		E92FD72922732134009A6042 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
-		E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNumbers.swift; sourceTree = "<group>"; };
 		E933CBF526602FFF0028A26C /* NewversionJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewversionJSON.swift; sourceTree = "<group>"; };
 		E9374D2D1E329A5800CD3945 /* CompleteQuickbackupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteQuickbackupTask.swift; sourceTree = "<group>"; };
 		E939EC4920C048A000C47F91 /* extensionVCMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCMain.swift; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 				E92755A121304F0000B1F781 /* Macserialnumber.swift */,
 				E92755A32130506000B1F781 /* Dateandtime.swift */,
 				E92755A52130539400B1F781 /* Dispatchqueues.swift */,
-				E933B6CC2196B30D0033D7D2 /* RemoteNumbers.swift */,
 				E9B9CCA521BC46B00042D5CE /* extensionDate.swift */,
 				E979628E227AE4F600115513 /* Info.swift */,
 				E994B7C922A39D7A00B435AB /* Environment.swift */,
@@ -1073,7 +1070,6 @@
 				E9EC81C8255C5BD600CE106E /* Checksynchronizedfiles.swift in Sources */,
 				E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */,
 				E9F5CED3265F5F090064618B /* TrimTwo.swift in Sources */,
-				E933B6CD2196B30D0033D7D2 /* RemoteNumbers.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */,
 				E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */,
 				E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */,
