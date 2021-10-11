@@ -68,7 +68,7 @@ extension ViewControllerMain: NewProfile {
     func createschedulesobject(profile: String?) -> Schedules? {
         schedules = nil
         schedules = Schedules(profile: profile)
-        schedulesortedandexpanded = ScheduleSortedAndExpand()
+        schedulesortedandexpanded = ScheduleSortedAndExpand(profile: profile)
         return schedules
     }
 

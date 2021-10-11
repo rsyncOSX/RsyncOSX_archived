@@ -47,6 +47,7 @@ struct Logrecordsschedules {
 
 final class ScheduleLoggData: SetConfigurations {
     var loggrecords: [Logrecordsschedules]?
+    var schedules: [ConfigurationSchedule]?
 
     func filter(search: String?) {
         globalDefaultQueue.async { () -> Void in
@@ -56,10 +57,10 @@ final class ScheduleLoggData: SetConfigurations {
 
     private func readandsortallloggdata(hiddenID: Int?) {
         var data = [Logrecordsschedules]()
-        if let input: [ConfigurationSchedule] = schedules?.getSchedule() {
+        if let input: [ConfigurationSchedule] = schedules {
             for i in 0 ..< input.count {
                 for j in 0 ..< (input[i].logrecords?.count ?? 0) {
-                    if let hiddenID = schedules?.getSchedule()?[i].hiddenID {
+                    if let hiddenID = schedules?[i].hiddenID {
                         var datestring: String?
                         var date: Date?
                         if let stringdate = input[i].logrecords?[j].dateExecuted {

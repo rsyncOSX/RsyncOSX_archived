@@ -111,7 +111,11 @@ class ScheduleWriteLoggData: SetConfigurations, ReloadTable, Deselect {
     }
 
     init(profile: String?) {
-        self.profile = profile
         schedules = nil
+        self.profile = profile
+        if let validhiddenIDs = configurations?.validhiddenID {
+            let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
+            schedules = readschedules.schedules
+        }
     }
 }

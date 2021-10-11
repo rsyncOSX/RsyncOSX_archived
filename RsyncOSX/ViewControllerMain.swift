@@ -291,7 +291,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             schedules = nil
             schedules = Schedules(profile: nil)
         }
-        schedulesortedandexpanded = ScheduleSortedAndExpand()
+        schedulesortedandexpanded = ScheduleSortedAndExpand(profile: nil)
     }
 
     func createandreloadconfigurations() {

@@ -12,7 +12,8 @@ import Foundation
 
 class ScheduleSortedAndExpand: SetConfigurations {
     var schedulesNSDictionary: [NSMutableDictionary]?
-    var scheduleConfiguration: [ConfigurationSchedule]?
+    var schedules: [ConfigurationSchedule]?
+    var profile: String?
     var expandedData: [NSMutableDictionary]?
     var sortedschedules: [NSMutableDictionary]?
 
@@ -197,42 +198,32 @@ class ScheduleSortedAndExpand: SetConfigurations {
     private func setallscheduledtasksNSDictionary() {
         var data = [NSMutableDictionary]()
         let scheduletypes: Set<String> = [Scheduletype.daily.rawValue, Scheduletype.weekly.rawValue, Scheduletype.once.rawValue]
-        for i in 0 ..< (scheduleConfiguration?.count ?? 0) where
-            scheduleConfiguration?[i].dateStop != nil && scheduletypes.contains(scheduleConfiguration?[i].schedule ?? "")
+        for i in 0 ..< (schedules?.count ?? 0) where
+        schedules?[i].dateStop != nil && scheduletypes.contains(schedules?[i].schedule ?? "")
         {
             let dict: NSMutableDictionary = [
-                DictionaryStrings.dateStart.rawValue: self.scheduleConfiguration?[i].dateStart ?? "",
-                DictionaryStrings.dateStop.rawValue: self.scheduleConfiguration?[i].dateStop ?? "",
-                DictionaryStrings.hiddenID.rawValue: self.scheduleConfiguration?[i].hiddenID ?? -1,
-                DictionaryStrings.schedule.rawValue: self.scheduleConfiguration?[i].schedule ?? "",
-                DictionaryStrings.profilename.rawValue: self.scheduleConfiguration![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile"),
+                DictionaryStrings.dateStart.rawValue: self.schedules?[i].dateStart ?? "",
+                DictionaryStrings.dateStop.rawValue: self.schedules?[i].dateStop ?? "",
+                DictionaryStrings.hiddenID.rawValue: self.schedules?[i].hiddenID ?? -1,
+                DictionaryStrings.schedule.rawValue: self.schedules?[i].schedule ?? "",
+                DictionaryStrings.profilename.rawValue: self.schedules![i].profilename ?? NSLocalizedString("Default profile", comment: "default profile"),
             ]
             data.append(dict as NSMutableDictionary)
         }
         schedulesNSDictionary = data
     }
-
-    init() {
+        
+        init(profile: String?) {
+            schedules = nil
+            self.profile = profile
+            if let validhiddenIDs = configurations?.validhiddenID {
+                let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
+                schedules = readschedules.schedules
+            }
         // Getting the Schedule and expanding all the jobs
         guard schedules != nil else { return }
         expandedData = [NSMutableDictionary]()
-        scheduleConfiguration = schedules?.getSchedule()
-        setallscheduledtasksNSDictionary()
-        sortAndExpandScheduleTasks()
-    }
 
-    init(allschedules: Allschedules?) {
-        guard allschedules != nil else { return }
-        expandedData = [NSMutableDictionary]()
-        scheduleConfiguration = allschedules?.getallschedules()
-        setallscheduledtasksNSDictionary()
-        sortAndExpandScheduleTasks()
-    }
-
-    // For XCtest
-    init(schedules: Schedules?) {
-        expandedData = [NSMutableDictionary]()
-        scheduleConfiguration = schedules?.getSchedule()
         setallscheduledtasksNSDictionary()
         sortAndExpandScheduleTasks()
     }

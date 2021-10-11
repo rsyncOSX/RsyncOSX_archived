@@ -19,12 +19,10 @@ enum Scheduletype: String {
     case stopped
 }
 
-class Schedules: ScheduleWriteLoggData {
-    // Return reference to Schedule data
-    func getSchedule() -> [ConfigurationSchedule]? {
-        return schedules
-    }
-
+class Schedules: SetConfigurations, ReloadTable, Deselect {
+    var schedules: [ConfigurationSchedule]?
+    var profile: String?
+    
     // Function adds new Shcedules (plans). Functions writes
     // schedule plans to permanent store.
     func addschedule(_ hiddenID: Int, _ schedule: Scheduletype, _ startdate: Date) {
@@ -176,8 +174,8 @@ class Schedules: ScheduleWriteLoggData {
         }
     }
 
-    override init(profile: String?) {
-        super.init(profile: profile)
+    init(profile: String?) {
+        schedules = nil
         self.profile = profile
         if let validhiddenIDs = configurations?.validhiddenID {
             let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
