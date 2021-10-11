@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class ScheduleSortedAndExpand: SetConfigurations, SetSchedules {
+class ScheduleSortedAndExpand: SetConfigurations {
     var schedulesNSDictionary: [NSMutableDictionary]?
     var scheduleConfiguration: [ConfigurationSchedule]?
     var expandedData: [NSMutableDictionary]?

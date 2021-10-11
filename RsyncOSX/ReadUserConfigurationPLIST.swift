@@ -49,11 +49,8 @@ final class ReadUserConfigurationPLIST: NamesandPaths {
                     SharedReference.shared.marknumberofdayssince = Double(marknumberofdayssince)!
                     if oldmarknumberofdayssince != SharedReference.shared.marknumberofdayssince {
                         weak var reloadconfigurationsDelegate: GetConfigurationsObject?
-                        weak var reloadschedulesDelegate: GetSchedulesObject?
                         reloadconfigurationsDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                        reloadschedulesDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                         reloadconfigurationsDelegate?.reloadconfigurationsobject()
-                        reloadschedulesDelegate?.reloadschedulesobject()
                     }
                 }
             }

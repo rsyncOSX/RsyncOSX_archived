@@ -27,7 +27,7 @@ protocol SingleTaskProcess: AnyObject {
     func terminateProgressProcess()
 }
 
-final class SingleTask: SetSchedules, SetConfigurations {
+final class SingleTask: SetConfigurations {
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
     weak var singletaskDelegate: SingleTaskProcess?
     weak var setprocessDelegate: SendOutputProcessreference?

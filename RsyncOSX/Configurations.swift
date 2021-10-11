@@ -14,7 +14,7 @@
 
 import Foundation
 
-class Configurations: ReloadTable, SetSchedules {
+class Configurations: ReloadTable {
     var profile: String?
     // The main structure storing all Configurations for tasks
     var configurations: [Configuration]?

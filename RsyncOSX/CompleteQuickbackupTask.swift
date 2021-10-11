@@ -10,14 +10,13 @@ import Foundation
 
 // Class for completion of Operation objects when Process object termination.
 // The object does also kicks of next scheduled job by setting new waiter time.
-final class CompleteQuickbackupTask: SetConfigurations, SetSchedules {
+final class CompleteQuickbackupTask: SetConfigurations {
     private var index: Int?
     // Function for update result of quickbacuptask the job
     // This function is executed when rsyn process terminates
     func finalizeScheduledJob(outputprocess: OutputfromProcess?) {
         if let index = index {
             configurations?.setCurrentDateonConfiguration(index: index, outputprocess: outputprocess)
-            schedulesDelegate?.reloadschedulesobject()
         }
     }
 

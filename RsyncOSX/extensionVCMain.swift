@@ -205,16 +205,6 @@ extension ViewControllerMain: GetConfigurationsObject {
     }
 }
 
-extension ViewControllerMain: GetSchedulesObject {
-    func reloadschedulesobject() {
-        createandreloadschedules()
-    }
-
-    func getschedulesobject() -> Schedules? {
-        return schedules
-    }
-}
-
 extension ViewControllerMain: Setinfoaboutrsync {
     internal func setinfoaboutrsync() {
         if SharedReference.shared.norsync == true {

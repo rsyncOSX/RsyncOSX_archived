@@ -11,7 +11,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerLoggData: NSViewController, SetConfigurations, SetSchedules, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor, Help {
+class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor, Help {
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotscheduleloggdata: Snapshotlogsandcatalogs?
     private var filterby: Sortandfilter?

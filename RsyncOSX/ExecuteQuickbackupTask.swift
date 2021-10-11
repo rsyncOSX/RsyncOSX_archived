@@ -6,7 +6,7 @@
 
 import Foundation
 
-final class ExecuteQuickbackupTask: SetSchedules, SetConfigurations {
+final class ExecuteQuickbackupTask: SetConfigurations {
     var outputprocess: OutputfromProcess?
     var arguments: [String]?
     var config: Configuration?

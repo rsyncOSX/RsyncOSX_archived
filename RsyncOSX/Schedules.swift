@@ -11,6 +11,14 @@
 import Cocoa
 import Foundation
 
+enum Scheduletype: String {
+    case once
+    case daily
+    case weekly
+    case manuel
+    case stopped
+}
+
 class Schedules: ScheduleWriteLoggData {
     // Return reference to Schedule data
     func getSchedule() -> [ConfigurationSchedule]? {

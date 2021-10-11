@@ -54,7 +54,6 @@
 		E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E905EDB31FED05B10044234E /* QuickBackup.swift */; };
 		E90F3C41201659720089D68B /* ViewControllerSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */; };
 		E912020722B3CFD90056AEFE /* Remotefilelist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912020622B3CFD90056AEFE /* Remotefilelist.swift */; };
-		E914B7722131197B00FFE398 /* extensionsSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E914B7712131197B00FFE398 /* extensionsSchedules.swift */; };
 		E915568625284F2A007573E1 /* Assist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915568525284F2A007573E1 /* Assist.swift */; };
 		E9196FDD2350CAC30037AA8B /* ComboboxRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */; };
 		E9196FDF2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */; };
@@ -225,7 +224,6 @@
 		E905EDB31FED05B10044234E /* QuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickBackup.swift; sourceTree = "<group>"; };
 		E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSnapshots.swift; sourceTree = "<group>"; };
 		E912020622B3CFD90056AEFE /* Remotefilelist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remotefilelist.swift; sourceTree = "<group>"; };
-		E914B7712131197B00FFE398 /* extensionsSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsSchedules.swift; sourceTree = "<group>"; };
 		E915568525284F2A007573E1 /* Assist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assist.swift; sourceTree = "<group>"; };
 		E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboboxRsyncParameters.swift; sourceTree = "<group>"; };
 		E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixstringsRsyncParameters.swift; sourceTree = "<group>"; };
@@ -533,7 +531,6 @@
 				E9B04CFA238848760072DA41 /* Reorg */,
 				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
 				E9F413BA1F63AC2A00C0945E /* Schedules.swift */,
-				E914B7712131197B00FFE398 /* extensionsSchedules.swift */,
 			);
 			name = Schedules;
 			sourceTree = "<group>";
@@ -1089,7 +1086,6 @@
 				A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */,
 				E9B04CFC2388489E0072DA41 /* Reorgschedule.swift in Sources */,
 				E9374D2E1E329A5800CD3945 /* CompleteQuickbackupTask.swift in Sources */,
-				E914B7722131197B00FFE398 /* extensionsSchedules.swift in Sources */,
 				E957B1121F5F17220099947A /* SharedReference.swift in Sources */,
 				E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */,
 				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,

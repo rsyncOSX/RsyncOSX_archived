@@ -17,7 +17,6 @@ protocol MenuappChanged: AnyObject {
 class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, ChangeTemporaryRestorePath {
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: GetConfigurationsObject?
-    weak var reloadschedulesDelegate: GetSchedulesObject?
     weak var menuappDelegate: MenuappChanged?
     weak var loadsshparametersDelegate: Loadsshparameters?
     var oldmarknumberofdayssince: Double?
@@ -136,7 +135,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             WriteUserConfigurationPLIST()
             if reload {
                 reloadconfigurationsDelegate?.reloadconfigurationsobject()
-                reloadschedulesDelegate?.reloadschedulesobject()
             }
             menuappDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
             loadsshparametersDelegate = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
@@ -387,7 +385,6 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
         sshport.delegate = self
         nologging.state = .on
         reloadconfigurationsDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        reloadschedulesDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         nameandpaths = NamesandPaths(.configurations)
     }
 

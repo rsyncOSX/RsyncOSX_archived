@@ -10,7 +10,7 @@
 import Cocoa
 import Foundation
 
-class ViewControllerSchedule: NSViewController, SetConfigurations, SetSchedules, VcMain, Checkforrsync, Setcolor, Help {
+class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Checkforrsync, Setcolor, Help {
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
