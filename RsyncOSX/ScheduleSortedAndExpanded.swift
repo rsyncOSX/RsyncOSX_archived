@@ -199,7 +199,7 @@ class ScheduleSortedAndExpand: SetConfigurations {
         var data = [NSMutableDictionary]()
         let scheduletypes: Set<String> = [Scheduletype.daily.rawValue, Scheduletype.weekly.rawValue, Scheduletype.once.rawValue]
         for i in 0 ..< (schedules?.count ?? 0) where
-        schedules?[i].dateStop != nil && scheduletypes.contains(schedules?[i].schedule ?? "")
+            schedules?[i].dateStop != nil && scheduletypes.contains(schedules?[i].schedule ?? "")
         {
             let dict: NSMutableDictionary = [
                 DictionaryStrings.dateStart.rawValue: self.schedules?[i].dateStart ?? "",
@@ -212,14 +212,14 @@ class ScheduleSortedAndExpand: SetConfigurations {
         }
         schedulesNSDictionary = data
     }
-        
-        init(profile: String?) {
-            schedules = nil
-            self.profile = profile
-            if let validhiddenIDs = configurations?.validhiddenID {
-                let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
-                schedules = readschedules.schedules
-            }
+
+    init(profile: String?) {
+        schedules = nil
+        self.profile = profile
+        if let validhiddenIDs = configurations?.validhiddenID {
+            let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
+            schedules = readschedules.schedules
+        }
         // Getting the Schedule and expanding all the jobs
         guard schedules != nil else { return }
         expandedData = [NSMutableDictionary]()

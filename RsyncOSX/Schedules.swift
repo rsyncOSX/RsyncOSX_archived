@@ -22,7 +22,7 @@ enum Scheduletype: String {
 class Schedules: SetConfigurations, ReloadTable, Deselect {
     var schedules: [ConfigurationSchedule]?
     var profile: String?
-    
+
     // Function adds new Shcedules (plans). Functions writes
     // schedule plans to permanent store.
     func addschedule(_ hiddenID: Int, _ schedule: Scheduletype, _ startdate: Date) {

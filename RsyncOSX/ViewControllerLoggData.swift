@@ -12,6 +12,10 @@ import Cocoa
 import Foundation
 
 class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor, Help {
+    // TODO: fix new name
+    var schedules: ScheduleWriteLoggData?
+    // TODO: fix new name
+
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotscheduleloggdata: Snapshotlogsandcatalogs?
     private var filterby: Sortandfilter?

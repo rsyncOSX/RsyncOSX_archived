@@ -11,6 +11,9 @@ import Cocoa
 import Foundation
 
 class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Checkforrsync, Setcolor, Help {
+    // TODO: fix new name
+    var schedules: Schedules?
+    // TODO: fix new name
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
