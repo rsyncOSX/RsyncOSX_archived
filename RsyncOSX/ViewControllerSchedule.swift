@@ -11,10 +11,9 @@ import Cocoa
 import Foundation
 
 class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Checkforrsync, Setcolor, Help {
-    // TODO: fix new name
     var schedules: Schedules?
     var sortedandexpanded: ScheduleSortedAndExpand?
-    // TODO: fix new name
+
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
     var schedule: Scheduletype?
@@ -184,20 +183,10 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
             profile = nil
         }
         profilepopupbutton.selectItem(at: selectedindex)
-        // TODO: send a message about reload configurations
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
         reloadtabledata()
     }
-}
 
-extension ViewControllerSchedule: DismissViewController {
-    func dismiss_view(viewcontroller: NSViewController) {
-        dismiss(viewcontroller)
-        reloadtabledata()
-    }
-}
-
-extension ViewControllerSchedule: Reloadandrefresh {
     func reloadtabledata() {
         schedules = nil
         sortedandexpanded = nil
@@ -214,6 +203,13 @@ extension ViewControllerSchedule: Reloadandrefresh {
             self.scheduletable.reloadData()
             self.scheduletabledetails.reloadData()
         }
+    }
+}
+
+extension ViewControllerSchedule: DismissViewController {
+    func dismiss_view(viewcontroller: NSViewController) {
+        dismiss(viewcontroller)
+        reloadtabledata()
     }
 }
 
