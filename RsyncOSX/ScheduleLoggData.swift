@@ -55,7 +55,7 @@ final class ScheduleLoggData: SetConfigurations {
         }
     }
 
-    private func readandsortallloggdata(hiddenID: Int?) {
+    private func readandsortallloggdata(hiddenID: Int?, profile _: String?) {
         var data = [Logrecordsschedules]()
         if let input: [ConfigurationSchedule] = schedules {
             for i in 0 ..< input.count {
@@ -91,9 +91,10 @@ final class ScheduleLoggData: SetConfigurations {
         loggrecords = data.sorted(by: \.date, using: >)
     }
 
-    init(hiddenID: Int?) {
+    init(hiddenID: Int?, profile: String?) {
+        schedules = ReadScheduleJSON(profile, configurations?.validhiddenID).schedules
         if loggrecords == nil {
-            readandsortallloggdata(hiddenID: hiddenID)
+            readandsortallloggdata(hiddenID: hiddenID, profile: profile)
         }
     }
 }
