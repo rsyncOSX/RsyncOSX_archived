@@ -52,10 +52,13 @@ extension ViewControllerMain: NewProfile {
         // Make sure loading profile
         displayProfile()
         reloadtabledata()
+        // TODO:
         // Reset in tabSchedule
-        reloadtable(vcontroller: .vctabschedule)
-        deselectrowtable(vcontroller: .vctabschedule)
-        reloadtable(vcontroller: .vcsnapshot)
+        /*
+         reloadtable(vcontroller: .vctabschedule)
+         deselectrowtable(vcontroller: .vctabschedule)
+         reloadtable(vcontroller: .vcsnapshot)
+         */
     }
 
     func reloadprofilepopupbutton() {
@@ -190,10 +193,6 @@ extension ViewControllerMain: GetConfigurationsObject {
     // After a write, a reload is forced.
     func reloadconfigurationsobject() {
         createandreloadconfigurations()
-    }
-
-    func getschedulesortedandexpanded() -> ScheduleSortedAndExpand? {
-        return schedulesortedandexpanded
     }
 }
 

@@ -213,13 +213,13 @@ class ScheduleSortedAndExpand: SetConfigurations {
         schedulesNSDictionary = data
     }
 
-    init(profile: String?) {
+    deinit {
         schedules = nil
-        self.profile = profile
-        if let validhiddenIDs = configurations?.validhiddenID {
-            let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
-            schedules = readschedules.schedules
-        }
+        print("deinit ScheduleSortedAndExpand")
+    }
+
+    init() {
+        schedules = ReadScheduleJSON(configurations?.getProfile(), configurations?.validhiddenID).schedules
         // Getting the Schedule and expanding all the jobs
         guard schedules != nil else { return }
         expandedData = [NSMutableDictionary]()

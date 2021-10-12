@@ -80,7 +80,6 @@ extension ViewControllerMain: NSTableViewDelegate {
         guard configurations != nil else { return nil }
         if row > (configurations?.configurations?.count ?? 0) - 1 { return nil }
         if let object = configurations?.configurations?[row],
-           let hiddenID: Int = configurations?.getConfigurations()?[row].hiddenID,
            let markdays: Bool = configurations?.getConfigurations()?[row].markdays,
            let tableColumn = tableColumn
         {
@@ -124,22 +123,6 @@ extension ViewControllerMain: NSTableViewDelegate {
                     if pre == 1 || post == 1 {
                         cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
                         cell.imageView?.alignment = .right
-                    }
-                    return cell
-                }
-            case DictionaryStrings.schedCellID.rawValue:
-                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                    if let obj = schedulesortedandexpanded {
-                        cell.textField?.stringValue = ""
-                        cell.imageView?.image = nil
-                        if obj.numberoftasks(hiddenID).0 > 0 {
-                            if obj.numberoftasks(hiddenID).1 > 3600 {
-                                cell.imageView?.image = NSImage(#imageLiteral(resourceName: "yellow"))
-                            } else {
-                                cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
-                            }
-                            cell.imageView?.alignment = .right
-                        }
                     }
                     return cell
                 }

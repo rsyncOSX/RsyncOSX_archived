@@ -19,9 +19,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var info: NSTextField!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
-    // Reference to Configurations and Schedules object
+    // Reference to Configurations
     var configurations: Configurations?
-    var schedules: Schedules?
     // Reference to the taskobjects
     var singletask: SingleTask?
     var executetasknow: ExecuteTaskNow?
@@ -33,8 +32,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var multipeselection: Bool = false
     // Getting output from rsync
     var outputprocess: OutputfromProcess?
-    // Reference to Schedules object
-    var schedulesortedandexpanded: ScheduleSortedAndExpand?
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
 
@@ -311,6 +308,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             profile = nil
         }
         profilepopupbutton.selectItem(at: selectedindex)
+        // TODO:
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 
@@ -352,7 +350,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 if answer {
                     // Delete Configurations and Schedules by hiddenID
                     configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
-                    schedules?.deletescheduleonetask(hiddenID: hiddenID)
                     deselect()
                     reloadtabledata()
                     // Reset in tabSchedule

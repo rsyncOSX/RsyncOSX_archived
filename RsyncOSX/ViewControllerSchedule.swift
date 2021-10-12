@@ -13,6 +13,7 @@ import Foundation
 class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Checkforrsync, Setcolor, Help {
     // TODO: fix new name
     var schedules: Schedules?
+    var sortedandexpanded: ScheduleSortedAndExpand?
     // TODO: fix new name
     var index: Int?
     // var schedulessorted: ScheduleSortedAndExpand?
@@ -131,7 +132,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        schedules = Schedules()
         sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
         info.stringValue = Infoschedule().info(num: 0)
@@ -144,6 +144,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
     override func viewDidDisappear() {
         super.viewDidDisappear()
         schedules = nil
+        sortedandexpanded = nil
     }
 
     // setting which table row is selected
@@ -183,6 +184,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
             profile = nil
         }
         profilepopupbutton.selectItem(at: selectedindex)
+        // TODO:
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
     }
 }
@@ -196,6 +198,12 @@ extension ViewControllerSchedule: DismissViewController {
 
 extension ViewControllerSchedule: Reloadandrefresh {
     func reloadtabledata() {
+        schedules = nil
+        sortedandexpanded = nil
+
+        schedules = Schedules()
+        sortedandexpanded = ScheduleSortedAndExpand()
+
         if let index = index {
             if let hiddendID = configurations?.gethiddenID(index: index) {
                 scheduledetails = schedules?.readscheduleonetask(hiddenID: hiddendID)
@@ -206,6 +214,12 @@ extension ViewControllerSchedule: Reloadandrefresh {
             self.scheduletabledetails.reloadData()
         }
     }
+}
+
+extension ViewControllerSchedule: NewProfile {
+    func newprofile(profile _: String?, selectedindex _: Int?) {}
+
+    func reloadprofilepopupbutton() {}
 }
 
 // Deselect a row

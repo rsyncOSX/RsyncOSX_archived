@@ -287,6 +287,9 @@ extension ViewControllerLoggData: NSTableViewDelegate {
 
 extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
+        scheduleloggdata = nil
+        snapshotscheduleloggdata = nil
+
         working.stopAnimation(nil)
         if let index = index {
             let hiddenID = configurations?.gethiddenID(index: index) ?? -1

@@ -236,6 +236,11 @@ class Configurations: ReloadTable {
         }
     }
 
+    deinit {
+        configurations = nil
+        print("deinit Configurations")
+    }
+
     init(profile: String?) {
         self.profile = profile
         configurations = nil

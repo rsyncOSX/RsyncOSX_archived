@@ -13,7 +13,6 @@ import Foundation
 protocol GetConfigurationsObject: AnyObject {
     func getconfigurationsobject() -> Configurations?
     func reloadconfigurationsobject()
-    func getschedulesortedandexpanded() -> ScheduleSortedAndExpand?
 }
 
 protocol SetConfigurations {
@@ -27,10 +26,6 @@ extension SetConfigurations {
 
     var configurations: Configurations? {
         return configurationsDelegate?.getconfigurationsobject()
-    }
-
-    var sortedandexpanded: ScheduleSortedAndExpand? {
-        return configurationsDelegate?.getschedulesortedandexpanded()
     }
 }
 
