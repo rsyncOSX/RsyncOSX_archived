@@ -12,10 +12,6 @@ import Cocoa
 import Foundation
 
 class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor, Help {
-    // TODO: fix new name
-    // private var schedulewriteloggdata: ScheduleWriteLoggData?
-    // TODO: fix new name
-
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotscheduleloggdata: Snapshotlogsandcatalogs?
     private var filterby: Sortandfilter?
@@ -65,9 +61,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
         let answer = Alerts.dialogOrCancel(question: question + " " + selectednumber() + " logrecords?", text: text, dialog: dialog)
         if answer {
             deselectrow()
-            // TODO: fix
-            // schedulewriteloggdata?.deleteselectedrows(scheduleloggdata: scheduleloggdata)
-            // TODO: fix
+            scheduleloggdata?.deleteselectedrows(scheduleloggdata: scheduleloggdata)
             scheduleloggdata = nil
             snapshotscheduleloggdata = nil
             reloadtabledata()
@@ -101,7 +95,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
             let hiddenID = configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = configurations?.getConfigurations()?[index] {
-                scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, profile: nil)
+                scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
                 // If task is snapshot get snapshotlogs
                 if connected(config: config),
                    config.task == SharedReference.shared.snapshot
@@ -113,7 +107,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
             }
         } else {
             info.stringValue = Infologgdata().info(num: 0)
-            scheduleloggdata = ScheduleLoggData(hiddenID: nil, profile: nil)
+            scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()
@@ -298,7 +292,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
             let hiddenID = configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
             if let config = configurations?.getConfigurations()?[index] {
-                scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID, profile: nil)
+                scheduleloggdata = ScheduleLoggData(hiddenID: hiddenID)
                 if connected(config: config),
                    snapshotscheduleloggdata == nil
                 {
@@ -307,7 +301,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
                 }
             }
         } else {
-            scheduleloggdata = ScheduleLoggData(hiddenID: nil, profile: nil)
+            scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
         globalMainQueue.async { () -> Void in
             self.scheduletable.reloadData()

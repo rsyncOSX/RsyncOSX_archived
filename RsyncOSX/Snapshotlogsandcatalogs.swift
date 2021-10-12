@@ -145,9 +145,7 @@ final class Snapshotlogsandcatalogs {
     init(config: Configuration) {
         guard config.task == SharedReference.shared.snapshot else { return }
         self.config = config
-        // TODO: fix profile
-        logrecordssnapshot = ScheduleLoggData(hiddenID: config.hiddenID, profile: nil).loggrecords
-        // TODO: fix profile
+        logrecordssnapshot = ScheduleLoggData(hiddenID: config.hiddenID).loggrecords
         getremotecataloginfo()
     }
 }

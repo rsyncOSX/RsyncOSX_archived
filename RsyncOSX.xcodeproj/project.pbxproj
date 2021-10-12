@@ -57,7 +57,6 @@
 		E915568625284F2A007573E1 /* Assist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915568525284F2A007573E1 /* Assist.swift */; };
 		E9196FDD2350CAC30037AA8B /* ComboboxRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */; };
 		E9196FDF2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */; };
-		E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */; };
 		E91B6E8A1FFA17B800A2231A /* ViewControllerRemoteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91B6E891FFA17B800A2231A /* ViewControllerRemoteInfo.swift */; };
 		E91E1A3422A9823B00AD0935 /* Norsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E1A3322A9823B00AD0935 /* Norsync.swift */; };
 		E9230C0E1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9230C0D1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift */; };
@@ -227,7 +226,6 @@
 		E915568525284F2A007573E1 /* Assist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assist.swift; sourceTree = "<group>"; };
 		E9196FDC2350CAC30037AA8B /* ComboboxRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboboxRsyncParameters.swift; sourceTree = "<group>"; };
 		E9196FDE2350CFCD0037AA8B /* SuffixstringsRsyncParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixstringsRsyncParameters.swift; sourceTree = "<group>"; };
-		E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleWriteLoggData.swift; sourceTree = "<group>"; };
 		E91B6E891FFA17B800A2231A /* ViewControllerRemoteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRemoteInfo.swift; sourceTree = "<group>"; };
 		E91E1A3322A9823B00AD0935 /* Norsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Norsync.swift; sourceTree = "<group>"; };
 		E92037AF22741D9900CC3EE5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -625,7 +623,6 @@
 			isa = PBXGroup;
 			children = (
 				A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */,
-				E91A688F1EA777690056BCFC /* ScheduleWriteLoggData.swift */,
 				E9C30B4A201623B00079C63D /* Snapshotlogsandcatalogs.swift */,
 			);
 			name = Loggdata;
@@ -1140,7 +1137,6 @@
 				E9EC78711EACE082001EED9B /* Ssh.swift in Sources */,
 				E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */,
 				E905DC111EACF7550003BF37 /* ViewControllerSsh.swift in Sources */,
-				E91A68901EA777690056BCFC /* ScheduleWriteLoggData.swift in Sources */,
 				E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
 				E943DC681FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift in Sources */,
