@@ -184,7 +184,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
             profile = nil
         }
         profilepopupbutton.selectItem(at: selectedindex)
-        // TODO:
+        // TODO : send a message about reload configurations
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
         reloadtabledata()
     }
