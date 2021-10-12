@@ -19,6 +19,7 @@ final class Selectprofile {
         } else {
             newProfileDelegate?.newprofile(profile: profile, selectedindex: selectedindex)
         }
+        newProfileDelegate?.reloadprofilepopupbutton()
         // Close edit and parameters view if open
         if let view = SharedReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?
