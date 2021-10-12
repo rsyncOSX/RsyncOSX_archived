@@ -12,7 +12,6 @@ import Foundation
 // Protocol for returning object Configurations
 protocol GetConfigurationsObject: AnyObject {
     func getconfigurationsobject() -> Configurations?
-    func reloadconfigurationsobject()
 }
 
 protocol SetConfigurations {
@@ -56,18 +55,6 @@ extension ReloadTable {
 
     var reloadDelegateSnapshot: Reloadandrefresh? {
         return SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
-    }
-
-    func reloadtable(vcontroller: ViewController) {
-        if vcontroller == .vctabmain {
-            reloadDelegateMain?.reloadtabledata()
-        } else if vcontroller == .vctabschedule {
-            reloadDelegateSchedule?.reloadtabledata()
-        } else if vcontroller == .vcloggdata {
-            reloadDelegateLoggData?.reloadtabledata()
-        } else if vcontroller == .vcsnapshot {
-            reloadDelegateSnapshot?.reloadtabledata()
-        }
     }
 }
 

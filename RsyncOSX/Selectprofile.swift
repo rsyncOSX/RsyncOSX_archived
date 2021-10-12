@@ -23,13 +23,13 @@ final class Selectprofile {
         scheduleProfileDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
         restoreProfileDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
         if self.profile == NSLocalizedString("Default profile", comment: "default profile") {
-            newProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
+            newProfileDelegate?.newprofile(selectedindex: selectedindex)
         } else {
-            newProfileDelegate?.newprofile(profile: self.profile, selectedindex: selectedindex)
+            newProfileDelegate?.newprofile(selectedindex: selectedindex)
         }
-        snapshotnewProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
-        scheduleProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
-        restoreProfileDelegate?.newprofile(profile: nil, selectedindex: selectedindex)
+        snapshotnewProfileDelegate?.newprofile(selectedindex: selectedindex)
+        scheduleProfileDelegate?.newprofile(selectedindex: selectedindex)
+        restoreProfileDelegate?.newprofile(selectedindex: selectedindex)
         // Close edit and parameters view if open
         if let view = SharedReference.shared.getvcref(viewcontroller: .vcrsyncparameters) as? ViewControllerRsyncParameters {
             weak var closeview: ViewControllerRsyncParameters?

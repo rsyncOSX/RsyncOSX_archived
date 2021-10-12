@@ -118,7 +118,6 @@ final class ScheduleLoggData: SetConfigurations, ReloadTable, Deselect {
             schedules?[deletes[i].0].logrecords?.remove(at: deletes[i].1)
         }
         WriteScheduleJSON(configurations?.getProfile(), schedules)
-        reloadtable(vcontroller: .vcloggdata)
     }
 
     func addlogpermanentstore(hiddenID: Int, result: String) {

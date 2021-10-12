@@ -127,7 +127,6 @@ class Configurations: ReloadTable {
             // Saving updated configuration in memory to persistent store
             WriteConfigurationJSON(profile, configurations)
             // Call the view and do a refresh of tableView
-            reloadtable(vcontroller: .vctabmain)
             _ = Logfile(TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata, error: false)
         }
     }

@@ -50,7 +50,6 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
 
         schedules?.append(newrecord)
         WriteScheduleJSON(configurations?.getProfile(), schedules)
-        reloadtable(vcontroller: .vctabschedule)
     }
 
     // Function deletes all Schedules by hiddenID. Invoked when Configurations are
@@ -65,8 +64,6 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
         }
         if delete {
             WriteScheduleJSON(configurations?.getProfile(), schedules)
-            // Send message about refresh tableView
-            reloadtable(vcontroller: .vctabmain)
         }
     }
 
@@ -133,9 +130,6 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
             }
             if update {
                 WriteScheduleJSON(configurations?.getProfile(), schedules)
-                // Send message about refresh tableView
-                reloadtable(vcontroller: .vctabmain)
-                reloadtable(vcontroller: .vctabschedule)
             }
         }
     }

@@ -189,7 +189,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         mainTableView.target = self
         mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
         // configurations
-        createandreloadconfigurations()
+        configurations = Configurations(profile: nil)
         initpopupbutton()
     }
 
@@ -275,12 +275,12 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
-    func createandreloadconfigurations() {
+    func createandreloadconfigurations(profile: String?) {
         guard configurations != nil else {
             configurations = Configurations(profile: nil)
             return
         }
-        if let profile = configurations?.getProfile() {
+        if let profile = profile {
             configurations = nil
             configurations = Configurations(profile: profile)
         } else {
@@ -308,8 +308,16 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             profile = nil
         }
         profilepopupbutton.selectItem(at: selectedindex)
-        // TODO:
-        _ = Selectprofile(profile: profile, selectedindex: selectedindex)
+        if let profile = profile {
+            configurations = nil
+            configurations = Configurations(profile: profile)
+        } else {
+            configurations = nil
+            configurations = Configurations(profile: nil)
+        }
+        globalMainQueue.async { () -> Void in
+            self.mainTableView.reloadData()
+        }
     }
 
     @IBAction func checksynchronizedfiles(_: NSButton) {
@@ -352,9 +360,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                     configurations?.deleteConfigurationsByhiddenID(hiddenID: hiddenID)
                     deselect()
                     reloadtabledata()
-                    // Reset in tabSchedule
-                    reloadtable(vcontroller: .vctabschedule)
-                    reloadtable(vcontroller: .vcsnapshot)
                 }
             }
             reset()

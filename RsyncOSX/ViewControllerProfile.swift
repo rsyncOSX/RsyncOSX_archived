@@ -11,7 +11,7 @@ import Foundation
 
 // Protocol for adding new profiles
 protocol NewProfile: AnyObject {
-    func newprofile(profile: String?, selectedindex: Int?)
+    func newprofile(selectedindex: Int?)
     func reloadprofilepopupbutton()
 }
 

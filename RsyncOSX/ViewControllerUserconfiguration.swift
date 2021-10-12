@@ -134,7 +134,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             setsshparameters()
             WriteUserConfigurationPLIST()
             if reload {
-                reloadconfigurationsDelegate?.reloadconfigurationsobject()
+                // TODO: do a reload of config data
+                // reloadconfigurationsDelegate?.reloadconfigurationsobject()
             }
             menuappDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
             loadsshparametersDelegate = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh

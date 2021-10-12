@@ -186,6 +186,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
         profilepopupbutton.selectItem(at: selectedindex)
         // TODO:
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
+        reloadtabledata()
     }
 }
 
@@ -217,7 +218,7 @@ extension ViewControllerSchedule: Reloadandrefresh {
 }
 
 extension ViewControllerSchedule: NewProfile {
-    func newprofile(profile _: String?, selectedindex _: Int?) {}
+    func newprofile(selectedindex _: Int?) {}
 
     func reloadprofilepopupbutton() {}
 }

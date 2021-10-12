@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 31.05.2018.
 //  Copyright © 2018 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable file_length
 
 import Cocoa
 import Foundation
@@ -38,7 +37,7 @@ extension ViewControllerMain: GetSelecetedIndex {
 // New profile is loaded.
 extension ViewControllerMain: NewProfile {
     // Function is called from profiles when new or default profiles is seleceted
-    func newprofile(profile: String?, selectedindex: Int?) {
+    func newprofile(selectedindex: Int?) {
         if let index = selectedindex {
             profilepopupbutton.selectItem(at: index)
         } else {
@@ -48,17 +47,10 @@ extension ViewControllerMain: NewProfile {
         singletask = nil
         deselect()
         // Read configurations
-        configurations = createconfigurationsobject(profile: profile)
+        configurations = createconfigurationsobject(profile: configurations?.getProfile())
         // Make sure loading profile
         displayProfile()
         reloadtabledata()
-        // TODO:
-        // Reset in tabSchedule
-        /*
-         reloadtable(vcontroller: .vctabschedule)
-         deselectrowtable(vcontroller: .vctabschedule)
-         reloadtable(vcontroller: .vcsnapshot)
-         */
     }
 
     func reloadprofilepopupbutton() {
@@ -188,11 +180,6 @@ extension ViewControllerMain: GetConfigurationsObject {
     func getconfigurationsobject() -> Configurations? {
         guard configurations != nil else { return nil }
         return configurations
-    }
-
-    // After a write, a reload is forced.
-    func reloadconfigurationsobject() {
-        createandreloadconfigurations()
     }
 }
 

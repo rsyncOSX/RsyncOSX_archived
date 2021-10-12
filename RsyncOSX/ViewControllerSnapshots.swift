@@ -492,7 +492,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
 }
 
 extension ViewControllerSnapshots: NewProfile {
-    func newprofile(profile _: String?, selectedindex: Int?) {
+    func newprofile(selectedindex: Int?) {
         if let index = selectedindex {
             profilepopupbutton.selectItem(at: index)
         } else {

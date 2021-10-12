@@ -50,7 +50,8 @@ final class ReadUserConfigurationPLIST: NamesandPaths {
                     if oldmarknumberofdayssince != SharedReference.shared.marknumberofdayssince {
                         weak var reloadconfigurationsDelegate: GetConfigurationsObject?
                         reloadconfigurationsDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                        reloadconfigurationsDelegate?.reloadconfigurationsobject()
+                        // TODO:
+                        // do a reload....
                     }
                 }
             }
