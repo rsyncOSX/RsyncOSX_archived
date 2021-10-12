@@ -132,24 +132,6 @@ extension ViewControllerRestore: TemporaryRestorePath {
     }
 }
 
-extension ViewControllerRestore: NewProfile {
-    func newprofile(selectedindex: Int?) {
-        if let index = selectedindex {
-            profilepopupbutton.selectItem(at: index)
-        } else {
-            initpopupbutton()
-        }
-        restoretabledata = nil
-        reset()
-        globalMainQueue.async { () -> Void in
-            self.restoretableView.reloadData()
-            self.rsynctableView.reloadData()
-        }
-    }
-
-    func reloadprofilepopupbutton() {}
-}
-
 extension ViewControllerRestore: OpenQuickBackup {
     func openquickbackup() {
         globalMainQueue.async { () -> Void in

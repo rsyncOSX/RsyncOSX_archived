@@ -37,7 +37,7 @@ extension ViewControllerMain: GetSelecetedIndex {
 // New profile is loaded.
 extension ViewControllerMain: NewProfile {
     // Function is called from profiles when new or default profiles is seleceted
-    func newprofile(selectedindex: Int?) {
+    func newprofile(profile: String?, selectedindex: Int?) {
         if let index = selectedindex {
             profilepopupbutton.selectItem(at: index)
         } else {
@@ -47,7 +47,7 @@ extension ViewControllerMain: NewProfile {
         singletask = nil
         deselect()
         // Read configurations
-        configurations = createconfigurationsobject(profile: configurations?.getProfile())
+        configurations = createconfigurationsobject(profile: profile)
         // Make sure loading profile
         displayProfile()
         reloadtabledata()

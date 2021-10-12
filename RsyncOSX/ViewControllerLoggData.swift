@@ -326,14 +326,6 @@ extension ViewControllerLoggData: DismissViewController {
     }
 }
 
-extension ViewControllerLoggData: NewProfile {
-    func newprofile(selectedindex _: Int?) {
-        reloadtabledata()
-    }
-
-    func reloadprofilepopupbutton() {}
-}
-
 extension ViewControllerLoggData: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {

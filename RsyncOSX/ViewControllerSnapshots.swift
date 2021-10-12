@@ -491,22 +491,6 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
     }
 }
 
-extension ViewControllerSnapshots: NewProfile {
-    func newprofile(selectedindex: Int?) {
-        if let index = selectedindex {
-            profilepopupbutton.selectItem(at: index)
-        } else {
-            initpopupbutton()
-        }
-        snapshotlogsandcatalogs = nil
-        globalMainQueue.async { () -> Void in
-            self.snapshotstableView.reloadData()
-        }
-    }
-
-    func reloadprofilepopupbutton() {}
-}
-
 extension ViewControllerSnapshots: NSComboBoxDelegate {
     func comboBoxSelectionDidChange(_: Notification) {
         switch selectdayofweek.indexOfSelectedItem {

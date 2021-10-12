@@ -103,15 +103,6 @@ extension ViewControllerMain: NSTableViewDelegate {
                     if cell.textField?.stringValue.isEmpty ?? true {
                         cell.textField?.stringValue = DictionaryStrings.localhost.rawValue
                     }
-                    if configurations?.tcpconnections?.connectionscheckcompleted ?? false == true {
-                        if (configurations?.tcpconnections?.gettestAllremoteserverConnections()?[row]) ?? false,
-                           tableColumn.identifier.rawValue == DictionaryStrings.offsiteServerCellID.rawValue
-                        {
-                            cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .red)
-                        } else {
-                            cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .black)
-                        }
-                    }
                     return cell
                 }
             case DictionaryStrings.ShellID.rawValue:

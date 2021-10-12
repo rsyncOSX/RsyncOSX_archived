@@ -184,7 +184,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
             profile = nil
         }
         profilepopupbutton.selectItem(at: selectedindex)
-        // TODO : send a message about reload configurations
+        // TODO: send a message about reload configurations
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
         reloadtabledata()
     }
@@ -215,12 +215,6 @@ extension ViewControllerSchedule: Reloadandrefresh {
             self.scheduletabledetails.reloadData()
         }
     }
-}
-
-extension ViewControllerSchedule: NewProfile {
-    func newprofile(selectedindex _: Int?) {}
-
-    func reloadprofilepopupbutton() {}
 }
 
 // Deselect a row

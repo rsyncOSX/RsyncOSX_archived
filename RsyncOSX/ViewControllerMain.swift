@@ -114,12 +114,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
     }
 
-    @IBAction func TCP(_: NSButton) {
-        configurations?.tcpconnections = TCPconnections()
-        configurations?.tcpconnections?.testAllremoteserverConnections()
-        displayProfile()
-    }
-
     // Presenting Information from Rsync
     @IBAction func information(_: NSButton) {
         globalMainQueue.async { () -> Void in

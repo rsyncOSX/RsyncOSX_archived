@@ -32,50 +32,6 @@ class TCPconnections: SetConfigurations, Delay {
         }
     }
 
-    // Getting the structure for test connection
-    func gettestAllremoteserverConnections() -> [Bool]? {
-        return indexBoolremoteserverOff
-    }
-
-    // Testing all remote servers.
-    // Adding connection true or false in array[bool]
-    // Do the check in background que, reload table in global main queue
-    func testAllremoteserverConnections() {
-        indexBoolremoteserverOff = nil
-        indexBoolremoteserverOff = [Bool]()
-        guard (configurations?.configurations?.count ?? -1) > 0 else {
-            // Tell main view profile menu might presented
-            newprofileDelegate?.reloadprofilepopupbutton()
-            return
-        }
-        globalBackgroundQueue.async { () -> Void in
-            var port: Int = 22
-            for i in 0 ..< (self.configurations?.configurations?.count ?? 0) {
-                if let config = self.configurations?.getConfigurations()?[i] {
-                    if config.offsiteServer.isEmpty == false {
-                        if let sshport: Int = config.sshport { port = sshport }
-                        let success = self.testTCPconnection(config.offsiteServer, port: port, timeout: 1)
-                        if success {
-                            self.indexBoolremoteserverOff?.append(false)
-                        } else {
-                            self.indexBoolremoteserverOff?.append(true)
-                        }
-                    } else {
-                        self.indexBoolremoteserverOff?.append(false)
-                    }
-                    // Reload table when all remote servers are checked
-                    if i == ((self.configurations?.configurations?.count ?? 0) - 1) {
-                        // Send message to do a refresh table in main view
-                        self.testconnectionsDelegate?.displayConnections()
-                        // Tell main view profile menu might presented
-                        self.newprofileDelegate?.reloadprofilepopupbutton()
-                        self.connectionscheckcompleted = true
-                    }
-                }
-            }
-        }
-    }
-
     init() {
         testconnectionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         newprofileDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
