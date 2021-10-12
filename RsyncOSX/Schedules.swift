@@ -21,7 +21,6 @@ enum Scheduletype: String {
 
 class Schedules: SetConfigurations, ReloadTable, Deselect {
     var schedules: [ConfigurationSchedule]?
-    var profile: String?
 
     // Function adds new Shcedules (plans). Functions writes
     // schedule plans to permanent store.
@@ -50,7 +49,7 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
         newrecord.schedule = scheduletype.rawValue
 
         schedules?.append(newrecord)
-        WriteScheduleJSON(profile, schedules)
+        WriteScheduleJSON(configurations?.getProfile(), schedules)
         reloadtable(vcontroller: .vctabschedule)
     }
 
@@ -65,7 +64,7 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
             delete = true
         }
         if delete {
-            WriteScheduleJSON(profile, schedules)
+            WriteScheduleJSON(configurations?.getProfile(), schedules)
             // Send message about refresh tableView
             reloadtable(vcontroller: .vctabmain)
         }
@@ -133,7 +132,7 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
                 }
             }
             if update {
-                WriteScheduleJSON(profile, schedules)
+                WriteScheduleJSON(configurations?.getProfile(), schedules)
                 // Send message about refresh tableView
                 reloadtable(vcontroller: .vctabmain)
                 reloadtable(vcontroller: .vctabschedule)
@@ -174,12 +173,12 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
         }
     }
 
-    init(profile: String?) {
+    deinit {
         schedules = nil
-        self.profile = profile
-        if let validhiddenIDs = configurations?.validhiddenID {
-            let readschedules = ReadScheduleJSON(profile, validhiddenIDs)
-            schedules = readschedules.schedules
-        }
+        print("deinit Schedules")
+    }
+
+    init() {
+        schedules = ReadScheduleJSON(configurations?.getProfile(), configurations?.validhiddenID).schedules
     }
 }

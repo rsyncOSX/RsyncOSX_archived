@@ -131,6 +131,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
 
     override func viewDidAppear() {
         super.viewDidAppear()
+        schedules = Schedules()
         sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
         info.stringValue = Infoschedule().info(num: 0)
@@ -138,6 +139,11 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
         startdate.dateValue = Date()
         starttime.dateValue = Date()
         reloadtabledata()
+    }
+
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        schedules = nil
     }
 
     // setting which table row is selected

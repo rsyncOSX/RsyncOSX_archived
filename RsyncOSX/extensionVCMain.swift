@@ -47,9 +47,8 @@ extension ViewControllerMain: NewProfile {
         reset()
         singletask = nil
         deselect()
-        // Read configurations and Scheduledata
+        // Read configurations
         configurations = createconfigurationsobject(profile: profile)
-        schedules = createschedulesobject(profile: profile)
         // Make sure loading profile
         displayProfile()
         reloadtabledata()
@@ -63,13 +62,6 @@ extension ViewControllerMain: NewProfile {
         globalMainQueue.async { () -> Void in
             self.displayProfile()
         }
-    }
-
-    func createschedulesobject(profile: String?) -> Schedules? {
-        schedules = nil
-        schedules = Schedules(profile: profile)
-        schedulesortedandexpanded = ScheduleSortedAndExpand(profile: profile)
-        return schedules
     }
 
     func createconfigurationsobject(profile: String?) -> Configurations? {

@@ -191,9 +191,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         SharedReference.shared.setvcref(viewcontroller: .vctabmain, nsviewcontroller: self)
         mainTableView.target = self
         mainTableView.doubleAction = #selector(ViewControllerMain.tableViewDoubleClick(sender:))
-        // configurations and schedules
+        // configurations
         createandreloadconfigurations()
-        createandreloadschedules()
         initpopupbutton()
     }
 
@@ -277,21 +276,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         } else {
             localprofileinfo?.setprofile(profile: nil)
         }
-    }
-
-    func createandreloadschedules() {
-        guard configurations != nil else {
-            schedules = Schedules(profile: nil)
-            return
-        }
-        if let profile = configurations?.getProfile() {
-            schedules = nil
-            schedules = Schedules(profile: profile)
-        } else {
-            schedules = nil
-            schedules = Schedules(profile: nil)
-        }
-        schedulesortedandexpanded = ScheduleSortedAndExpand(profile: nil)
     }
 
     func createandreloadconfigurations() {
