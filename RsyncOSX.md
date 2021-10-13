@@ -2,6 +2,10 @@
 
 **RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
+The work on **version 6.6.8** is commenced. The major part in this release are internal changes regarding reading logrecords into memory, cleanup in code and so on. There might be several hundred or thousend of logrecords and in the new version logrecords are not loaded until needed.  There are also some minor cleanups in the UI.
+
+This version will probably be released sometime in December 2021. Changes in code will be committed to the GitHub branch. Version 6.6.8 is work in progress. Bugs might occur and dont compile and use version 6.6.8 before it is released.
+
 Content:
 
 - [Install by Homebrew](#install-by-homebrew)
