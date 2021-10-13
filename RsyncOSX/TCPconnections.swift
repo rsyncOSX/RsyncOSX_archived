@@ -13,15 +13,11 @@ protocol Connections: AnyObject {
     func displayConnections()
 }
 
-class TCPconnections: SetConfigurations, Delay {
-    private var indexBoolremoteserverOff: [Bool]?
-    weak var testconnectionsDelegate: Connections?
-    weak var newprofileDelegate: NewProfile?
+final class TCPconnections {
     var client: TCPClient?
-    var connectionscheckcompleted: Bool = false
 
     // Test for TCP connection
-    func testTCPconnection(_ host: String, port: Int, timeout: Int) -> Bool {
+    func verifyTCPconnection(_ host: String, port: Int, timeout: Int) -> Bool {
         self.client = TCPClient(address: host, port: Int32(port))
         guard let client = client else { return true }
         switch client.connect(timeout: timeout) {
@@ -30,10 +26,5 @@ class TCPconnections: SetConfigurations, Delay {
         default:
             return false
         }
-    }
-
-    init() {
-        testconnectionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        newprofileDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 }

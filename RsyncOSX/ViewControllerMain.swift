@@ -124,11 +124,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
         guard SharedReference.shared.process == nil else { return }
-        if configurations?.tcpconnections?.connectionscheckcompleted ?? true {
-            presentAsModalWindow(viewControllerProfile!)
-        } else {
-            displayProfile()
-        }
+        presentAsModalWindow(viewControllerProfile!)
     }
 
     // Selecting About

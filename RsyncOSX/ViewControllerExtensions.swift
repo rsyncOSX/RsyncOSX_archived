@@ -234,7 +234,7 @@ extension Connected {
         if let config = config {
             if config.offsiteServer.isEmpty == false {
                 if let sshport: Int = config.sshport { port = sshport }
-                let success = TCPconnections().testTCPconnection(config.offsiteServer, port: port, timeout: 1)
+                let success = TCPconnections().verifyTCPconnection(config.offsiteServer, port: port, timeout: 1)
                 return success
             } else {
                 return true
@@ -247,7 +247,7 @@ extension Connected {
         if let server = server {
             let port: Int = 22
             if server.isEmpty == false {
-                let success = TCPconnections().testTCPconnection(server, port: port, timeout: 1)
+                let success = TCPconnections().verifyTCPconnection(server, port: port, timeout: 1)
                 return success
             } else {
                 return true
