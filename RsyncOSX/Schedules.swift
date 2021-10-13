@@ -174,5 +174,8 @@ class Schedules: SetConfigurations, ReloadTable, Deselect {
 
     init() {
         schedules = ReadScheduleJSON(configurations?.getProfile(), configurations?.validhiddenID).schedules
+        if schedules == nil {
+            schedules = [ConfigurationSchedule]()
+        }
     }
 }

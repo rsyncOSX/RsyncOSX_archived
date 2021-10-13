@@ -48,7 +48,7 @@ class WriteScheduleJSON: NamesandPaths {
         schedules.publisher
             .map { schedules -> [DecodeSchedule] in
                 var data = [DecodeSchedule]()
-                for i in 0 ..< schedules.count {
+                for i in 0 ..< schedules.count where schedules[i].delete ?? false == false {
                     data.append(DecodeSchedule(schedules[i]))
                 }
                 return data

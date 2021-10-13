@@ -270,10 +270,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     func createandreloadconfigurations(profile: String?) {
-        guard configurations != nil else {
-            configurations = Configurations(profile: nil)
-            return
-        }
         if let profile = profile {
             configurations = nil
             configurations = Configurations(profile: profile)

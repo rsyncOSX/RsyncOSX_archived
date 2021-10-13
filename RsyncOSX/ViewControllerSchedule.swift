@@ -11,7 +11,7 @@ import Cocoa
 import Foundation
 
 class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Checkforrsync, Setcolor, Help {
-    var schedules: Schedules?
+    var schedulesobject: Schedules?
     var sortedandexpanded: ScheduleSortedAndExpand?
 
     var index: Int?
@@ -57,7 +57,8 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
 
     // Sidebar update
     func update() {
-        schedules?.deleteandstopschedules(data: scheduledetails)
+        schedulesobject?.deleteandstopschedules(data: scheduledetails)
+        reloadtabledata()
     }
 
     @IBAction func selectdate(_: NSDatePicker) {
@@ -83,7 +84,8 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
                    let schedule = schedule
                 {
                     guard hiddenID != -1 else { return }
-                    schedules?.addschedule(hiddenID, schedule, startdate)
+                    schedulesobject?.addschedule(hiddenID, schedule, startdate)
+                    reloadtabledata()
                 }
             }
         }
@@ -142,7 +144,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        schedules = nil
+        schedulesobject = nil
         sortedandexpanded = nil
     }
 
@@ -155,7 +157,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
             if let index = indexes.first {
                 self.index = index
                 let hiddendID = configurations?.gethiddenID(index: self.index ?? -1)
-                scheduledetails = schedules?.readscheduleonetask(hiddenID: hiddendID)
+                scheduledetails = schedulesobject?.readscheduleonetask(hiddenID: hiddendID)
             } else {
                 index = nil
                 scheduledetails = nil
@@ -188,15 +190,15 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
     }
 
     func reloadtabledata() {
-        schedules = nil
+        schedulesobject = nil
         sortedandexpanded = nil
 
-        schedules = Schedules()
+        schedulesobject = Schedules()
         sortedandexpanded = ScheduleSortedAndExpand()
 
         if let index = index {
             if let hiddendID = configurations?.gethiddenID(index: index) {
-                scheduledetails = schedules?.readscheduleonetask(hiddenID: hiddendID)
+                scheduledetails = schedulesobject?.readscheduleonetask(hiddenID: hiddendID)
             }
         }
         globalMainQueue.async { () -> Void in
