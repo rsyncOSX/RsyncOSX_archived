@@ -116,9 +116,12 @@ class Configurations: ReloadTable {
     // TODO: fix
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputfromProcess?) {
         let number = Numbers(outputprocess: outputprocess)
+        var scheduleslogg: ScheduleLoggData?
         if let hiddenID = gethiddenID(index: index) {
             let numbers = number.stats()
-            // schedules?.addlogpermanentstore(hiddenID: hiddenID, result: numbers)
+            scheduleslogg = ScheduleLoggData(hiddenID: nil)
+            scheduleslogg?.addlogpermanentstore(hiddenID: hiddenID, result: numbers)
+            scheduleslogg = nil
             if configurations?[index].task == SharedReference.shared.snapshot {
                 increasesnapshotnum(index: index)
             }
