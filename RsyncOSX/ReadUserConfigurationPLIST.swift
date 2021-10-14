@@ -47,12 +47,6 @@ final class ReadUserConfigurationPLIST: NamesandPaths {
                 if Double(marknumberofdayssince)! > 0 {
                     let oldmarknumberofdayssince = SharedReference.shared.marknumberofdayssince
                     SharedReference.shared.marknumberofdayssince = Double(marknumberofdayssince)!
-                    if oldmarknumberofdayssince != SharedReference.shared.marknumberofdayssince {
-                        weak var reloadconfigurationsDelegate: GetConfigurationsObject?
-                        reloadconfigurationsDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                        // TODO:
-                        // do a reload....
-                    }
                 }
             }
             // Paths rsyncOSX and RsyncOSXsched

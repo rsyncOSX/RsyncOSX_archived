@@ -14,7 +14,7 @@
 
 import Foundation
 
-class Configurations: ReloadTable {
+class Configurations {
     var profile: String?
     // The main structure storing all Configurations for tasks
     var configurations: [Configuration]?
@@ -113,7 +113,6 @@ class Configurations: ReloadTable {
         return []
     }
 
-    // TODO: fix
     func setCurrentDateonConfiguration(index: Int, outputprocess: OutputfromProcess?) {
         let number = Numbers(outputprocess: outputprocess)
         var scheduleslogg: ScheduleLoggData?

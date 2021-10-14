@@ -19,7 +19,7 @@ enum Scheduletype: String {
     case stopped
 }
 
-class Schedules: SetConfigurations, ReloadTable, Deselect {
+class Schedules: SetConfigurations, Deselect {
     var schedules: [ConfigurationSchedule]?
 
     // Function adds new Shcedules (plans). Functions writes
