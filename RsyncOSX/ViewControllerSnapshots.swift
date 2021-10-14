@@ -313,8 +313,8 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             profile = nil
         }
         profilepopupbutton.selectItem(at: selectedindex)
-        // TODO:
         _ = Selectprofile(profile: profile, selectedindex: selectedindex)
+        reloadtabledata()
     }
 
     func tag() {
