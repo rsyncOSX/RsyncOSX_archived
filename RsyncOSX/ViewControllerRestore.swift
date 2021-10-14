@@ -110,6 +110,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         restoretabledata = nil
         globalMainQueue.async { () -> Void in
             self.restoretableView.reloadData()
+            self.rsynctableView.reloadData()
         }
     }
 
