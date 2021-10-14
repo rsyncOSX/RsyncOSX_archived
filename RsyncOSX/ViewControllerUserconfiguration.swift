@@ -14,7 +14,7 @@ protocol MenuappChanged: AnyObject {
     func menuappchanged()
 }
 
-class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, ChangeTemporaryRestorePath {
+class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewRsync, Delay, ChangeTemporaryRestorePath {
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: GetConfigurationsObject?
     weak var menuappDelegate: MenuappChanged?
@@ -134,8 +134,8 @@ class ViewControllerUserconfiguration: NSViewController, NewRsync, Delay, Change
             setsshparameters()
             WriteUserConfigurationPLIST()
             if reload {
-                // TODO: do a reload of config data
-                // reloadconfigurationsDelegate?.reloadconfigurationsobject()
+                // Do a reload of config data
+                _ = Selectprofile(profile: configurations?.getProfile(), selectedindex: nil)
             }
             menuappDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
             loadsshparametersDelegate = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
