@@ -45,7 +45,6 @@ final class ReadUserConfigurationPLIST: NamesandPaths {
             // Mark tasks
             if let marknumberofdayssince = dict.value(forKey: DictionaryStrings.marknumberofdayssince.rawValue) as? String {
                 if Double(marknumberofdayssince)! > 0 {
-                    let oldmarknumberofdayssince = SharedReference.shared.marknumberofdayssince
                     SharedReference.shared.marknumberofdayssince = Double(marknumberofdayssince)!
                 }
             }
