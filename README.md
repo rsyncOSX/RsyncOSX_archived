@@ -11,7 +11,7 @@ RsyncOSX is the only GUI which supports scheduling of task.
 **RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine.
 
 - the [documentation of RsyncOSX](https://rsyncosx.netlify.app/)
-- the [readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
+- the [readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/)
 - the [changelog](https://rsyncosx.netlify.app/post/changelog/)
 
 ![](images/rsyncosx.png)
@@ -23,7 +23,7 @@ RsyncOSX is the only GUI which supports scheduling of task.
 Latest build is [21 October 2021](https://github.com/rsyncOSX/RsyncUI/releases).
 
   - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
-  - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/blob/main/README.md)
+  - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
   - the [changelog](https://rsyncui.netlify.app/post/changelog/)
   - the [development of RsyncUI](https://rsyncui.netlify.app/post/development/)
 
