@@ -148,8 +148,11 @@ class Configurations {
     func deleteConfigurationsByhiddenID(hiddenID: Int) {
         let index = configurations?.firstIndex(where: { $0.hiddenID == hiddenID }) ?? -1
         guard index > -1 else { return }
+        let hiddenID = configurations?[index].hiddenID ?? -1
         configurations?.remove(at: index)
         WriteConfigurationJSON(profile, configurations)
+        // TODO: must take care of deleting schedules, eg update valdidhiddenIDs
+        validhiddenID?.remove(hiddenID)
     }
 
     // Add new configurations
