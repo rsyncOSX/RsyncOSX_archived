@@ -24,7 +24,7 @@ struct Setrsyncpath {
                 rsyncpath = SharedReference.shared.usrlocalbinrsync
             }
         } else {
-            rsyncpath = "/usr/bin/" + SharedReference.shared.rsync
+            rsyncpath = SharedReference.shared.usrbinrsync
         }
         guard SharedReference.shared.rsyncversion3 == true else {
             SharedReference.shared.norsync = false

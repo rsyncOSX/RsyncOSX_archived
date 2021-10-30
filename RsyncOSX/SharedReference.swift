@@ -58,10 +58,10 @@ final class SharedReference {
     let opthomebrewbinrsync: String = "/opt/homebrew/bin/rsync"
     var macosarm: Bool = false
     // Where RsyncOSX config files are stored
-    var configpath: String = "/.rsyncosx/"
+    let configpath: String = "/.rsyncosx/"
     // User config PLIST files
-    var userconfigplist: String = "/config.plist"
-    var userconfigkey: String = "config"
+    let userconfigplist: String = "/config.plist"
+    let userconfigkey: String = "config"
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
@@ -89,8 +89,8 @@ final class SharedReference {
     // Paths
     var pathrsyncosx: String?
     var pathrsyncosxsched: String?
-    var namersyncosx = "RsyncOSX.app"
-    var namersyncosssched = "RsyncOSXsched.app"
+    let namersyncosx = "RsyncOSX.app"
+    let namersyncosssched = "RsyncOSXsched.app"
     // Mac serialnumer
     var macserialnumber: String?
     // True if menuapp is running
@@ -112,8 +112,8 @@ final class SharedReference {
     // Reference to the active process
     var process: Process?
     // JSON names
-    var fileschedulesjson = "schedules.json"
-    var fileconfigurationsjson = "configurations.json"
+    let fileschedulesjson = "schedules.json"
+    let fileconfigurationsjson = "configurations.json"
     // for automatic backup
     var estimatedlistforsynchronization: Estimatedlistforsynchronization?
     let reloadstring: String = "no.blogspot.RsyncOSX.reload"
