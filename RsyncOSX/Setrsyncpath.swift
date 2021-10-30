@@ -18,7 +18,11 @@ struct Setrsyncpath {
         if let pathforrsync = SharedReference.shared.localrsyncpath {
             rsyncpath = pathforrsync + SharedReference.shared.rsync
         } else if SharedReference.shared.rsyncversion3 {
-            rsyncpath = "/usr/local/bin/" + SharedReference.shared.rsync
+            if SharedReference.shared.macosarm {
+                rsyncpath = SharedReference.shared.opthomebrewbinrsync
+            } else {
+                rsyncpath = SharedReference.shared.usrlocalbinrsync
+            }
         } else {
             rsyncpath = "/usr/bin/" + SharedReference.shared.rsync
         }

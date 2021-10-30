@@ -314,7 +314,11 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         let fileManager = FileManager.default
         var path: String?
         if pathorfilename == nil {
-            path = SharedReference.shared.usrlocalbinrsync
+            if SharedReference.shared.macosarm {
+                path = SharedReference.shared.opthomebrewbinrsync
+            } else {
+                path = SharedReference.shared.usrlocalbinrsync
+            }
         } else {
             path = pathorfilename
         }

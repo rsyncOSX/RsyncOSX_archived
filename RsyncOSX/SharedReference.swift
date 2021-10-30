@@ -52,9 +52,11 @@ final class SharedReference {
     // No valid rsyncPath - true if no valid rsync is found
     var norsync: Bool = false
     // rsync command
-    var rsync: String = "rsync"
-    var usrbinrsync: String = "/usr/bin/rsync"
-    var usrlocalbinrsync: String = "/usr/local/bin/rsync"
+    let rsync: String = "rsync"
+    let usrbinrsync: String = "/usr/bin/rsync"
+    let usrlocalbinrsync: String = "/usr/local/bin/rsync"
+    let opthomebrewbinrsync: String = "/opt/homebrew/bin/rsync"
+    var macosarm: Bool = false
     // Where RsyncOSX config files are stored
     var configpath: String = "/.rsyncosx/"
     // User config PLIST files

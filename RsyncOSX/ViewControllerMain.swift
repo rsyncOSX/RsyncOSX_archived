@@ -169,6 +169,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         super.viewDidLoad()
         // Create base profile catalog
         CatalogProfile().createrootprofilecatalog()
+        // Check on Apple Silicon
+        let silicon = ProcessInfo().machineHardwareName?.contains("arm64") ?? false
+        if silicon {
+            SharedReference.shared.macosarm = true
+        } else {
+            SharedReference.shared.macosarm = false
+        }
         // Must read userconfig when loading main view, view only load once
         ReadUserConfigurationPLIST()
         mainTableView.delegate = self
