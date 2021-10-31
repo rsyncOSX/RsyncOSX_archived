@@ -2,10 +2,6 @@
 
 **RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
-The work on **version 6.6.8** is commenced. There will be some minor cleanup of GUI, but the major work is internal. There might be several hundred or thousands of logrecords. Reading and loading logrecords into memory is moved to when they are needed. And not when the app is started or a new profile is selected. The change will improve memory footprint and speed up the application.
-
-This version will probably be released sometime in December 2021.
-
 Content:
 
 - [Install by Homebrew](#install-by-homebrew)
