@@ -50,7 +50,6 @@ protocol Sidebarbuttonactions: AnyObject {
 }
 
 class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync, Setcolor {
-
     // Buttons
     @IBOutlet var button1: NSButton!
     @IBOutlet var button2: NSButton!

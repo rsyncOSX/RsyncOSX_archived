@@ -142,7 +142,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         guard SharedReference.shared.process == nil else { return }
         delete()
     }
-    
+
     @IBAction func rsyncosxsched(_: NSButton) {
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else { return }

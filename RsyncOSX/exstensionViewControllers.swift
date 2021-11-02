@@ -10,7 +10,6 @@ import Cocoa
 import Foundation
 
 extension ViewControllerSideBar {
-
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }
@@ -41,7 +40,6 @@ extension ViewControllerSideBar {
 }
 
 extension ViewControllerNewConfigurations {
-
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }
@@ -71,7 +69,6 @@ extension ViewControllerNewConfigurations {
 }
 
 extension ViewControllerSchedule {
-
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }
@@ -101,7 +98,6 @@ extension ViewControllerSchedule {
 }
 
 extension ViewControllerSnapshots {
-   
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }
@@ -137,7 +133,6 @@ extension ViewControllerSnapshots {
 }
 
 extension ViewControllerRestore {
-
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }
@@ -167,7 +162,6 @@ extension ViewControllerRestore {
 }
 
 extension ViewControllerLoggData {
-
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }
@@ -197,7 +191,6 @@ extension ViewControllerLoggData {
 }
 
 extension ViewControllerSsh {
-
     // Toolbar - Userconfiguration button
     @IBAction func userconfiguration(_: NSButton) {
         guard SharedReference.shared.process == nil else { return }

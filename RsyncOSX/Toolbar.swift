@@ -102,7 +102,6 @@ extension MainWindowsController: NSToolbarDelegate {
 }
 
 struct AppAssets {
-
     static var backupnow: NSImage! = {
         NSImage(named: "backupnow")
     }()
