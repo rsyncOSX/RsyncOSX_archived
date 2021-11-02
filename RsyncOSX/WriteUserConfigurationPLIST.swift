@@ -18,7 +18,6 @@ final class WriteUserConfigurationPLIST: NamesandPaths {
         var haltonerror: Int?
         var monitornetworkconnection: Int?
         var array = [NSMutableDictionary]()
-        var json: Int?
 
         if SharedReference.shared.rsyncversion3 {
             version3Rsync = 1
@@ -59,7 +58,6 @@ final class WriteUserConfigurationPLIST: NamesandPaths {
             DictionaryStrings.marknumberofdayssince.rawValue: marknumberofdayssince ?? "5.0",
             DictionaryStrings.haltonerror.rawValue: haltonerror ?? 0 as Int,
             DictionaryStrings.monitornetworkconnection.rawValue: monitornetworkconnection ?? 0 as Int,
-            DictionaryStrings.json.rawValue: json ?? 0 as Int,
         ]
         if let rsyncpath = SharedReference.shared.localrsyncpath {
             dict.setObject(rsyncpath, forKey: DictionaryStrings.rsyncPath.rawValue as NSCopying)
