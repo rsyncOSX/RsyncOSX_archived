@@ -10,14 +10,9 @@
 import Cocoa
 import Foundation
 
-protocol MenuappChanged: AnyObject {
-    func menuappchanged()
-}
-
 class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewRsync, Delay, ChangeTemporaryRestorePath {
     var dirty: Bool = false
     weak var reloadconfigurationsDelegate: GetConfigurationsObject?
-    weak var menuappDelegate: MenuappChanged?
     weak var loadsshparametersDelegate: Loadsshparameters?
     var oldmarknumberofdayssince: Double?
     var reload: Bool = false
@@ -137,9 +132,7 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
                 // Do a reload of config data
                 _ = Selectprofile(profile: configurations?.getProfile(), selectedindex: nil)
             }
-            menuappDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
             loadsshparametersDelegate = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
-            menuappDelegate?.menuappchanged()
             loadsshparametersDelegate?.loadsshparameters()
             changetemporaryrestorepath()
         }

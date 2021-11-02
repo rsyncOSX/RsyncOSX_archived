@@ -110,6 +110,11 @@
                                                 <action selector="alloutput:" target="Ady-hI-5gd" id="FD2-Ix-5aR"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Schedules app" keyEquivalent="s" id="QC2-qp-Fu0" userLabel="Info">
+                                            <connections>
+                                                <action selector="rsyncosxsched:" target="Ady-hI-5gd" id="BVq-Oi-JKd"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
@@ -259,36 +264,6 @@
                                     <action selector="actionbutton4:" target="Jpl-76-tew" id="1H1-pl-krT"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3H-39-w1p">
-                                <rect key="frame" x="30" y="357.5" width="26.5" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarBookmarksTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="UGg-cv-elN">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="mal-sc-mlY" kind="show" id="Aqn-sk-pa8"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tk3-A0-aHr">
-                                <rect key="frame" x="64" y="360" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="menuapp" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Z6y-9e-b4T">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="rsyncosxsched:" target="Jpl-76-tew" id="Eeq-bN-GTw"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXa-DA-hNS">
-                                <rect key="frame" x="90" y="364" width="13" height="13"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="red" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="HxN-48-tto">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4c5-WB-fbQ">
                                 <rect key="frame" x="-2" y="280" width="127" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -298,6 +273,17 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3H-39-w1p">
+                                <rect key="frame" x="48" y="360.5" width="26.5" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarBookmarksTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="UGg-cv-elN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="mal-sc-mlY" kind="show" id="Aqn-sk-pa8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2nI-S8-MCI"/>
                         <viewLayoutGuide key="layoutMargins" id="vvh-gv-FED"/>
@@ -307,8 +293,6 @@
                         <outlet property="button2" destination="HyA-OL-xUh" id="OGv-Xk-Xaa"/>
                         <outlet property="button3" destination="btH-xq-kOR" id="ePT-SU-Th5"/>
                         <outlet property="button4" destination="Gtd-43-tO6" id="Fpq-cu-5iY"/>
-                        <outlet property="menuappisrunning" destination="KXa-DA-hNS" id="sfz-zK-d93"/>
-                        <outlet property="pathtorsyncosxschedbutton" destination="Tk3-A0-aHr" id="gft-Ym-sMq"/>
                         <outlet property="profilelabel" destination="4c5-WB-fbQ" id="7Fc-Ow-jVM"/>
                     </connections>
                 </viewController>
@@ -604,7 +588,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="693" y="1" width="58" height="17"/>
+                                                            <rect key="frame" x="693" y="1" width="55" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -668,7 +652,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="832" y="1" width="154" height="17"/>
+                                                            <rect key="frame" x="832" y="1" width="151" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -3007,7 +2991,5 @@
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSTouchBarBookmarksTemplate" width="18" height="14"/>
         <image name="complete" width="48" height="48"/>
-        <image name="menuapp" width="16" height="16"/>
-        <image name="red" width="512" height="512"/>
     </resources>
 </document>

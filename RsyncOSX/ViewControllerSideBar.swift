@@ -50,8 +50,7 @@ protocol Sidebarbuttonactions: AnyObject {
 }
 
 class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync, Setcolor {
-    @IBOutlet var pathtorsyncosxschedbutton: NSButton!
-    @IBOutlet var menuappisrunning: NSButton!
+
     // Buttons
     @IBOutlet var button1: NSButton!
     @IBOutlet var button2: NSButton!
@@ -61,14 +60,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     @IBOutlet var profilelabel: NSTextField!
 
     var whichviewispresented: Sidebarmessages?
-
-    @IBAction func rsyncosxsched(_: NSButton) {
-        let running = Running()
-        guard running.rsyncOSXschedisrunning == false else { return }
-        guard running.verifyrsyncosxsched() == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: (SharedReference.shared.pathrsyncosxsched ?? "/Applications/") + SharedReference.shared.namersyncosssched))
-        NSApp.terminate(self)
-    }
 
     @IBAction func actionbutton1(_: NSButton) {
         if let view = whichviewispresented {
@@ -186,24 +177,9 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         }
     }
 
-    func menuappicons() {
-        globalMainQueue.async { () -> Void in
-            let running = Running()
-            if running.rsyncOSXschedisrunning == true {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "green")
-            } else {
-                self.menuappisrunning.image = #imageLiteral(resourceName: "red")
-            }
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         SharedReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
-        pathtorsyncosxschedbutton.toolTip = NSLocalizedString("The menu app", comment: "Execute")
-        delayWithSeconds(0.5) {
-            self.menuappicons()
-        }
     }
 }
 
@@ -216,12 +192,6 @@ extension ViewControllerSideBar: SetProfileinfo {
             profilelabel.stringValue = "Default"
             profilelabel.textColor = setcolor(nsviewcontroller: self, color: .green)
         }
-    }
-}
-
-extension ViewControllerSideBar: MenuappChanged {
-    func menuappchanged() {
-        menuappicons()
     }
 }
 
