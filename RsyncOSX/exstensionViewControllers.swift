@@ -10,10 +10,6 @@ import Cocoa
 import Foundation
 
 extension ViewControllerSideBar {
-    @IBAction func allprofiles(_: NSButton) {
-        guard SharedReference.shared.process == nil else { return }
-        presentAsModalWindow(allprofiles!)
-    }
 
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
@@ -45,9 +41,6 @@ extension ViewControllerSideBar {
 }
 
 extension ViewControllerNewConfigurations {
-    @IBAction func allprofiles(_: NSButton) {
-        presentAsModalWindow(allprofiles!)
-    }
 
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
@@ -78,9 +71,6 @@ extension ViewControllerNewConfigurations {
 }
 
 extension ViewControllerSchedule {
-    @IBAction func allprofiles(_: NSButton) {
-        presentAsModalWindow(allprofiles!)
-    }
 
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
@@ -111,10 +101,7 @@ extension ViewControllerSchedule {
 }
 
 extension ViewControllerSnapshots {
-    @IBAction func allprofiles(_: NSButton) {
-        presentAsModalWindow(allprofiles!)
-    }
-
+   
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }
@@ -150,9 +137,6 @@ extension ViewControllerSnapshots {
 }
 
 extension ViewControllerRestore {
-    @IBAction func allprofiles(_: NSButton) {
-        presentAsModalWindow(allprofiles!)
-    }
 
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
@@ -183,9 +167,6 @@ extension ViewControllerRestore {
 }
 
 extension ViewControllerLoggData {
-    @IBAction func allprofiles(_: NSButton) {
-        presentAsModalWindow(allprofiles!)
-    }
 
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
@@ -216,9 +197,6 @@ extension ViewControllerLoggData {
 }
 
 extension ViewControllerSsh {
-    @IBAction func allprofiles(_: NSButton) {
-        presentAsModalWindow(allprofiles!)
-    }
 
     // Toolbar - Userconfiguration button
     @IBAction func userconfiguration(_: NSButton) {

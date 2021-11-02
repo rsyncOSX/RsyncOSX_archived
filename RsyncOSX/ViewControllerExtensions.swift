@@ -106,12 +106,6 @@ extension VcMain {
         return (sheetviewstoryboard?.instantiateController(withIdentifier: "RsyncCommand")
             as? NSViewController)
     }
-
-    // All profiles
-    var allprofiles: NSViewController? {
-        return (sheetviewstoryboard?.instantiateController(withIdentifier: "ViewControllerAllProfilesID")
-            as? NSViewController)
-    }
 }
 
 // Protocol for dismissing a viewcontroller

@@ -35,11 +35,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Send messages to the sidebar
     weak var sidebaractionsDelegate: Sidebaractions?
 
-    // Toolbar - all profiles
-    @IBAction func allprofiles(_: NSButton) {
-        presentAsModalWindow(allprofiles!)
-    }
-
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
         guard checkforrsync() == false else { return }

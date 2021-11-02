@@ -19,7 +19,6 @@ extension NSToolbarItem.Identifier {
 }
 
 extension Selector {
-    static let allprofiles = #selector(ViewControllerSideBar.allprofiles(_:))
     static let backupnow = #selector(ViewControllerSideBar.automaticbackup(_:))
     static let estimateandquickbackup = #selector(ViewControllerSideBar.totinfo(_:))
     static let executetasknow = #selector(ViewControllerMain.executemultipleselectedindexes(_:))
@@ -103,9 +102,6 @@ extension MainWindowsController: NSToolbarDelegate {
 }
 
 struct AppAssets {
-    static var allprofiles: NSImage! = {
-        NSImage(named: "allprofiles")
-    }()
 
     static var backupnow: NSImage! = {
         NSImage(named: "backupnow")
