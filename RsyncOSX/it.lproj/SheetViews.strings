@@ -88,8 +88,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aGI-eL-V5x"; */
 "aGI-eL-V5x.title" = "Text Cell";
 
-/* Class = "NSButtonCell"; title = "v 3.1.2, 3.1.3, 3.2.x rsync - set optional path if NOT in /usr/local/bin"; ObjectID = "aGX-D5-vw1"; */
-"aGX-D5-vw1.title" = "v 3.1.2, 3.1.3, 3.2.x rsync - imposta un percorso opzionale se NON è in /usr/local/bin";
+/* Class = "NSButtonCell"; title = "v3.2.x rsync - set optional path if NOT by Homebrew"; ObjectID = "aGX-D5-vw1"; */
+"aGX-D5-vw1.title" = "v3.2.x rsync - imposta un percorso opzionale se NON da Homebrew";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aHc-sW-goK"; */
 "aHc-sW-goK.title" = "Text Cell";

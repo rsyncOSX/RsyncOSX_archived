@@ -43,7 +43,7 @@ class WriteConfigurationJSON: NamesandPaths {
     @discardableResult
     init(_ profile: String?, _ configurations: [Configuration]?) {
         super.init(.configurations)
-        print("WriteConfigurationJSON")
+        // print("WriteConfigurationJSON")
         // Set profile and filename ahead of encoding an write
         self.profile = profile
         configurations.publisher
