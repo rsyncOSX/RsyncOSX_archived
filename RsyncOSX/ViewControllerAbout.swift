@@ -31,6 +31,15 @@ class ViewControllerAbout: NSViewController {
     var germanstring: String = NSLocalizedString("German translation by: Andre Voigtmann", comment: "german")
     var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle'", comment: "italian")
     var dutchstring: String = NSLocalizedString("Dutch translation by: Marcellino Santoso", comment: "ducth")
+    var appName: String {
+        (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? "RsyncOSX"
+    }
+    var appVersion: String {
+        (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "1.0"
+    }
+    var appBuild: String {
+        (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String) ?? "1.0"
+    }
 
     var resource: Resources?
 
@@ -77,9 +86,8 @@ class ViewControllerAbout: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         downloadbutton.isEnabled = false
-        if let version = Checkfornewversion().rsyncOSXversion() {
-            self.version.stringValue = "RsyncOSX ver: " + version
-        }
+        let version = appVersion + " build" + "(" + appBuild + ")"
+        self.version.stringValue = "RsyncOSX ver: " + version
         thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
         rsyncversionstring.stringValue = SharedReference.shared.rsyncversionstring ?? ""
         configpath.stringValue = NamesandPaths(.configurations).fullpathmacserial ?? ""
