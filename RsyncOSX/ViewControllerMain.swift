@@ -314,6 +314,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         globalMainQueue.async { () -> Void in
             self.mainTableView.reloadData()
         }
+        displayProfile()
     }
 
     @IBAction func checksynchronizedfiles(_: NSButton) {
