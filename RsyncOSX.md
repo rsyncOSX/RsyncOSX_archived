@@ -87,7 +87,7 @@ Localization is done by utilizing [Crowdin](https://crowdin.com/project/rsyncosx
 
 ### Version of rsync
 
-RsyncOSX is verified with rsync versions 2.6.9, 3.1.2, 3.1.3 and 3.2.x. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.netlify.app/post/rsync/) the latest version of rsync.
+RsyncOSX is verified with rsync versions 2.6.9 and 3.2.x. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.netlify.app/post/rsync/) the latest version of rsync by Homebrew.
 
 ### Some words about RsyncOSX
 
