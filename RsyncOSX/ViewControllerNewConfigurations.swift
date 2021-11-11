@@ -56,11 +56,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var haltshelltasksonerror: NSButton!
 
     @IBAction func catalog1(_: NSButton) {
-        changeConfigFolder(true)
+        selectcatalog(true)
     }
 
     @IBAction func catalog2(_: NSButton) {
-        changeConfigFolder(false)
+        selectcatalog(false)
     }
 
     // Selecting profiles
@@ -233,14 +233,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
-    @objc func changeConfigFolder(_ localcatalog: Bool) {
+    @objc func selectcatalog(_ localcatalog: Bool) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = false
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = true
-        openPanel.canCreateDirectories = true
-        openPanel.title = NSLocalizedString("change_the_folder", comment: "")
-
+        openPanel.canCreateDirectories = false
+        openPanel.title = NSLocalizedString("select catalog", comment: "")
         openPanel.begin { [weak self] result -> Void in
             if result == .OK {
                 let selectedPath = openPanel.url?.path ?? ""
@@ -249,7 +248,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                 } else {
                     self?.offsiteCatalog.stringValue = selectedPath
                 }
-                print(selectedPath)
             } else {
                 openPanel.close()
             }
