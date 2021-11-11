@@ -54,6 +54,15 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var posttask: NSTextField!
     @IBOutlet var executeposttask: NSButton!
     @IBOutlet var haltshelltasksonerror: NSButton!
+
+    @IBAction func catalog1(_: NSButton) {
+        changeConfigFolder(true)
+    }
+
+    @IBAction func catalog2(_: NSButton) {
+        changeConfigFolder(false)
+    }
+
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
         presentAsModalWindow(viewControllerProfile!)
@@ -222,6 +231,29 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                                          processtermination: processtermination,
                                          filehandler: filehandler)
         updatecurrent.executeProcess(outputprocess: outputprocess)
+    }
+
+    @objc func changeConfigFolder(_ localcatalog: Bool) {
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseFiles = false
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = true
+        openPanel.canCreateDirectories = true
+        openPanel.title = NSLocalizedString("change_the_folder", comment: "")
+
+        openPanel.begin { [weak self] result -> Void in
+            if result == .OK {
+                let selectedPath = openPanel.url?.path ?? ""
+                if localcatalog {
+                    self?.localCatalog.stringValue = selectedPath
+                } else {
+                    self?.offsiteCatalog.stringValue = selectedPath
+                }
+                print(selectedPath)
+            } else {
+                openPanel.close()
+            }
+        }
     }
 }
 
