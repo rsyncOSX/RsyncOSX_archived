@@ -62,6 +62,14 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBAction func catalog2(_: NSButton) {
         selectcatalog(false)
     }
+    
+    @IBAction func pretask(_: NSButton) {
+        selectpreposttask(true)
+    }
+    
+    @IBAction func posttask(_: NSButton) {
+        selectpreposttask(false)
+    }
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
@@ -247,6 +255,27 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                     self?.localCatalog.stringValue = selectedPath
                 } else {
                     self?.offsiteCatalog.stringValue = selectedPath
+                }
+            } else {
+                openPanel.close()
+            }
+        }
+    }
+    
+    @objc func selectpreposttask(_ pretask: Bool) {
+        let openPanel = NSOpenPanel()
+        openPanel.canChooseFiles = true
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.title = NSLocalizedString("select catalog", comment: "")
+        openPanel.begin { [weak self] result -> Void in
+            if result == .OK {
+                let selectedPath = openPanel.url?.path ?? ""
+                if pretask {
+                    self?.pretask.stringValue = selectedPath
+                } else {
+                    self?.posttask.stringValue = selectedPath
                 }
             } else {
                 openPanel.close()
