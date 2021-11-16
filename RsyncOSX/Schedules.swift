@@ -169,7 +169,7 @@ class Schedules: SetConfigurations, Deselect {
 
     deinit {
         schedules = nil
-        print("deinit Schedules")
+        // print("deinit Schedules")
     }
 
     init() {

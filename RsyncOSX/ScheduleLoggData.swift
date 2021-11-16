@@ -189,7 +189,7 @@ final class ScheduleLoggData: SetConfigurations, ReloadTable, Deselect {
 
     deinit {
         schedules = nil
-        print("deinit ScheduleLoggData")
+        // print("deinit ScheduleLoggData")
     }
 
     init(hiddenID: Int?) {

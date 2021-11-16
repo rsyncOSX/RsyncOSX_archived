@@ -242,7 +242,7 @@ class Configurations {
 
     deinit {
         configurations = nil
-        print("deinit Configurations")
+        // print("deinit Configurations")
     }
 
     init(profile: String?) {
