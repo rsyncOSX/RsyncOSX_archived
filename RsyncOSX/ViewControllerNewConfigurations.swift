@@ -62,11 +62,11 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBAction func catalog2(_: NSButton) {
         selectcatalog(false)
     }
-    
+
     @IBAction func pretask(_: NSButton) {
         selectpreposttask(true)
     }
-    
+
     @IBAction func posttask(_: NSButton) {
         selectpreposttask(false)
     }
@@ -261,7 +261,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             }
         }
     }
-    
+
     @objc func selectpreposttask(_ pretask: Bool) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = true
