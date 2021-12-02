@@ -4,7 +4,7 @@ I am the developer of RsyncOSX and RsyncUI which both are GUI´s on the Apple ma
 
 RsyncOSX and RsyncUI is **not** developed to be an easy to use synchronize and backup tool. The main purpose is to assist and ease the use of rsync to synchronize files on your Mac to remote FreeBSD and Linux servers. And of course restore files from those remote servers.
 
-The UI of RsyncOSX and RsyncUI can for users who dont know rsync, be difficult or complex to understand. Using the applications requires some knowledge of rsync. The main objective is to ease the use of rsync, not teach macOS users how to use rsync. That is beyond the scope. Setting the wrong parameters to rsync can result in deleted data. Neither RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is very important to execute a simulated run, --dry-run, and inspect what happens before a real run.
+The UI of RsyncOSX and RsyncUI can for users who dont know rsync, be difficult or complex to understand. Using the applications requires some knowledge of rsync. The main objective is to ease the use of rsync, not teach macOS users how to use rsync. That is beyond the scope. Setting the wrong parameters to rsync can result in deleted data. Neither RsyncOSX nor RsyncUI will stop you from doing so. That is why it is very important to execute a simulated run, --dry-run, and inspect what happens before a real run.
 
 If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey**, you can use both GUI´s in paralell. Both GUI´s are maintaned, so it is a matter of taste.
 
@@ -24,7 +24,7 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 **RsyncUI** is released for **macOS Monterey**.
 
-Latest build is [11 November 2021](https://github.com/rsyncOSX/RsyncUI/releases). Next version (v1.2.4) will merge the two task views, multiple tasks and single task, into one view. There is a [release candidate](https://github.com/rsyncOSX/RsyncUI/releases/tag/v1.2.4) for version 1.2.4. There is a link in the Changelog to what is changed.
+Latest build is [11 November 2021](https://github.com/rsyncOSX/RsyncUI/releases). Next version (v1.2.4) will merge the two task views, multiple tasks and single task, into one view. There is a [release candidate](https://github.com/rsyncOSX/RsyncUI/releases/tag/v1.2.4) for version 1.2.4. There is a [link](https://rsyncui.netlify.app/post/newversion/) in the changelog to what is changed.
 
   - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
   - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
