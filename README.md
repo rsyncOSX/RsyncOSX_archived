@@ -20,11 +20,11 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 ![](images/rsyncosx.png)
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.4/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.3/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.5/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.3/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
 
 **RsyncUI** is released for **macOS Monterey**.
 
-Latest build is [11 November 2021](https://github.com/rsyncOSX/RsyncUI/releases). Next version (v1.2.4) will merge the two task views, multiple tasks and single task, into one view. There is a [release candidate](https://github.com/rsyncOSX/RsyncUI/releases/tag/v1.2.4) for version 1.2.4. There is a [link](https://rsyncui.netlify.app/post/newversion/) in the changelog to what is changed.
+Latest build is [6 December 2021](https://github.com/rsyncOSX/RsyncUI/releases).
 
   - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
   - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
