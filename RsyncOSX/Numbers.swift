@@ -212,7 +212,7 @@ final class Numbers: SetConfigurations {
         output = TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata
         // Getting the summarized output from output.
         if (output?.count ?? 0) > 2 {
-            resultRsync = (output?[(output?.count ?? 0) - 2])
+            resultRsync = output?[(output?.count ?? 0) - 2]
         }
         files = output?.filter { $0.contains("files transferred:") }
         // ver 3.x - [Number of regular files transferred: 24]

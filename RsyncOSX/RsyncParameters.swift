@@ -128,8 +128,8 @@ class RsyncParameters {
         // -e "ssh -i ~/.ssh/id_rsa -p 22"
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
-        var sshportadded: Bool = false
-        var sshkeypathandidentityfileadded: Bool = false
+        var sshportadded = false
+        var sshkeypathandidentityfileadded = false
         // var sshkeypathandidentityfile: String? = config.sshkeypathandidentityfile
         // -e
         arguments?.append(parameter5)
@@ -172,8 +172,8 @@ class RsyncParameters {
         // -e "ssh -i ~/.ssh/id_rsa -p 22"
         let parameter5: String = config.parameter5
         let parameter6: String = config.parameter6
-        var sshportadded: Bool = false
-        var sshkeypathandidentityfileadded: Bool = false
+        var sshportadded = false
+        var sshkeypathandidentityfileadded = false
         // var sshkeypathandidentityfile: String? = config.sshkeypathandidentityfile
         // -e
         arguments?.append(parameter5)

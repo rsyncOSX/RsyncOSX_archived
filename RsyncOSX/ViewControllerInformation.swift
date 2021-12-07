@@ -24,7 +24,7 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
     override func viewDidAppear() {
         super.viewDidAppear()
         output = getinfo()
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.detailsTable.reloadData()
         }
     }
@@ -37,7 +37,7 @@ class ViewControllerInformation: NSViewController, SetDismisser, OutPut {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         for i in 0 ..< (output?.count ?? 0) {
-            pasteboard.writeObjects([(output?[i])! as NSPasteboardWriting])
+            pasteboard.writeObjects([output?[i] as! NSPasteboardWriting])
         }
     }
 }

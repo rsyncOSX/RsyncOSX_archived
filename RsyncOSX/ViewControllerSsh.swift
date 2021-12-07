@@ -137,14 +137,14 @@ extension ViewControllerSsh: NSTableViewDelegate {
 
 extension ViewControllerSsh {
     func processtermination() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.checkforPrivateandPublicRSAKeypair()
         }
     }
 
     func filehandler() {
         data = outputprocess?.getOutput()
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.detailsTable.reloadData()
         }
     }

@@ -15,7 +15,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
         if (notification.object as? NSTextField) == search {
             delayWithSeconds(0.25) {
                 if self.search.stringValue.isEmpty {
-                    globalMainQueue.async { () -> Void in
+                    globalMainQueue.async { () in
                         if let index = self.index {
                             if let hiddenID = self.configurations?.getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int {
                                 self.remotefilelist = Remotefilelist(hiddenID: hiddenID)
@@ -23,7 +23,7 @@ extension ViewControllerRestore: NSSearchFieldDelegate {
                         }
                     }
                 } else {
-                    globalMainQueue.async { () -> Void in
+                    globalMainQueue.async { () in
                         self.restoretabledata = self.restoretabledata?.filter { $0.contains(self.search.stringValue) }
                         self.restoretableView.reloadData()
                     }
@@ -134,7 +134,7 @@ extension ViewControllerRestore: TemporaryRestorePath {
 
 extension ViewControllerRestore: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         }
     }
@@ -143,7 +143,7 @@ extension ViewControllerRestore: OpenQuickBackup {
 extension ViewControllerRestore: Updateremotefilelist {
     func updateremotefilelist() {
         restoretabledata = remotefilelist?.remotefilelist
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.restoretableView.reloadData()
         }
         working.stopAnimation(nil)

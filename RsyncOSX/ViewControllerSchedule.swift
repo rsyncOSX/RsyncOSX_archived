@@ -110,7 +110,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerProfile!)
         }
     }
@@ -162,7 +162,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
                 index = nil
                 scheduledetails = nil
             }
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.scheduletabledetails.reloadData()
                 self.scheduletable.reloadData()
             }
@@ -201,7 +201,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
                 scheduledetails = schedulesobject?.readscheduleonetask(hiddenID: hiddendID)
             }
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.scheduletable.reloadData()
             self.scheduletabledetails.reloadData()
         }
@@ -226,7 +226,7 @@ extension ViewControllerSchedule: DeselectRowTable {
 
 extension ViewControllerSchedule: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         }
     }

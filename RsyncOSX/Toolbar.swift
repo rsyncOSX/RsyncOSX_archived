@@ -102,23 +102,13 @@ extension MainWindowsController: NSToolbarDelegate {
 }
 
 struct AppAssets {
-    static var backupnow: NSImage! = {
-        NSImage(named: "backupnow")
-    }()
+    static var backupnow: NSImage! = NSImage(named: "backupnow")
 
-    static var estimateandquickbackup: NSImage! = {
-        NSImage(named: "estimateandquickbackup")
-    }()
+    static var estimateandquickbackup: NSImage! = NSImage(named: "estimateandquickbackup")
 
-    static var executetasknow: NSImage! = {
-        NSImage(named: "executetasknow")
-    }()
+    static var executetasknow: NSImage! = NSImage(named: "executetasknow")
 
-    static var abort: NSImage! = {
-        NSImage(named: "abort")
-    }()
+    static var abort: NSImage! = NSImage(named: "abort")
 
-    static var userconfig: NSImage! = {
-        NSImage(named: "userconfig")
-    }()
+    static var userconfig: NSImage! = NSImage(named: "userconfig")
 }

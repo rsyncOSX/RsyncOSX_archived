@@ -55,7 +55,7 @@ class Schedules: SetConfigurations, Deselect {
     // Function deletes all Schedules by hiddenID. Invoked when Configurations are
     // deleted. When a Configuration are deleted all tasks connected to
     func deletescheduleonetask(hiddenID: Int) {
-        var delete: Bool = false
+        var delete = false
         for i in 0 ..< (schedules?.count ?? 0) where schedules?[i].hiddenID == hiddenID {
             // Mark Schedules for delete
             // Cannot delete in memory, index out of bound is result
@@ -71,7 +71,7 @@ class Schedules: SetConfigurations, Deselect {
     func readscheduleonetask(hiddenID: Int?) -> [NSMutableDictionary]? {
         if let hiddenID = hiddenID {
             var data = [NSMutableDictionary]()
-            let allschedulesonetask = schedules?.filter { $0.hiddenID == hiddenID }
+            let allschedulesonetask = schedules?.filter { $0.hiddenID == hiddenID && $0.schedule != Scheduletype.manuel.rawValue }
             for i in 0 ..< (allschedulesonetask?.count ?? 0) {
                 let row: NSMutableDictionary = [
                     DictionaryStrings.dateStart.rawValue: allschedulesonetask?[i].dateStart ?? "",
@@ -109,7 +109,7 @@ class Schedules: SetConfigurations, Deselect {
 
     // Function either deletes or stops Schedules.
     func deleteandstopschedules(data: [NSMutableDictionary]?) {
-        var update: Bool = false
+        var update = false
         if (data?.count ?? 0) > 0 {
             if let stop = data?.filter({ ($0.value(forKey: DictionaryStrings.stopCellID.rawValue) as? Int) == 1 }) {
                 // Stop Schedules

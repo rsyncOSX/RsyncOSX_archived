@@ -23,7 +23,7 @@ final class Checkfornewversion {
 
     // If new version set URL for download link and notify caller
     private func urlnewVersion() {
-        globalBackgroundQueue.async { () -> Void in
+        globalBackgroundQueue.async { () in
             if let url = URL(string: self.urlPlist ?? "") {
                 do {
                     let contents = NSDictionary(contentsOf: url)

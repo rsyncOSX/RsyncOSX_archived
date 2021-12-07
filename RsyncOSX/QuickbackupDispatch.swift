@@ -15,7 +15,7 @@ class QuickbackupDispatch {
     var filehandler: () -> Void
 
     private func dispatchtask(seconds: Int, outputprocess: OutputfromProcess?) {
-        let work = DispatchWorkItem { () -> Void in
+        let work = DispatchWorkItem { () in
             _ = ExecuteQuickbackupTask(processtermination: self.processtermination,
                                        filehandler: self.filehandler,
                                        outputprocess: outputprocess)

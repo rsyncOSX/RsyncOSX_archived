@@ -215,7 +215,7 @@ class ScheduleSortedAndExpand: SetConfigurations {
 
     deinit {
         schedules = nil
-        print("deinit ScheduleSortedAndExpand")
+        // print("deinit ScheduleSortedAndExpand")
     }
 
     init() {

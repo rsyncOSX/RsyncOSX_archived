@@ -26,7 +26,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
             logging = Logfile(false)
             getoutputDelegate = logging
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.outputtable.reloadData()
         }
     }
@@ -41,7 +41,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
     override func viewDidAppear() {
         super.viewDidAppear()
         getoutputDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.outputtable.reloadData()
         }
     }
@@ -64,7 +64,7 @@ class ViewControllerAllOutput: NSViewController, Delay {
         rsyncorlog.state = .off
         logging = Logfile(true)
         getoutputDelegate = logging
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.outputtable.reloadData()
         }
     }
@@ -96,13 +96,13 @@ extension ViewControllerAllOutput: Reloadandrefresh {
     func reloadtabledata() {
         if rsyncorlog.state == .on {
             getoutputDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.outputtable.reloadData()
             }
         } else {
             logging = Logfile(false)
             getoutputDelegate = logging
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.outputtable.reloadData()
             }
         }

@@ -97,12 +97,12 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
     override func viewDidAppear() {
         super.viewDidAppear()
         guard diddissappear == false else {
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.mainTableView.reloadData()
             }
             return
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
         count.stringValue = number()
@@ -203,7 +203,7 @@ extension ViewControllerRemoteInfo: NSTableViewDelegate, Attributedestring {
 
 extension ViewControllerRemoteInfo {
     func processtermination() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
         let progress = Double(remoteestimatedlist?.maxCount() ?? 0) - Double(remoteestimatedlist?.inprogressCount() ?? 0)
@@ -217,7 +217,7 @@ extension ViewControllerRemoteInfo: StartStopProgressIndicator {
     }
 
     func stop() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
         progress.stopAnimation(nil)

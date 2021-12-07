@@ -81,12 +81,12 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         sidebaractionsDelegate?.sidebaractions(action: .restoreviewbuttons)
         guard diddissappear == false else {
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.rsynctableView.reloadData()
             }
             return
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.rsynctableView.reloadData()
         }
         reset()
@@ -108,7 +108,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             restoreactions?.index = true
         }
         restoretabledata = nil
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.restoretableView.reloadData()
             self.rsynctableView.reloadData()
         }
@@ -120,7 +120,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         guard restorefilestask != nil else { return }
         restorefilestask?.executecopyfiles(remotefile: remotefiles.stringValue, localCatalog: tmprestorepath.stringValue, dryrun: false)
         outputprocess = restorefilestask?.outputprocess
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerProgress!)
         }
     }
@@ -163,7 +163,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 infolabel.stringValue = Inforestore().info(num: 5)
                 infolabel.isHidden = false
                 restoretabledata = nil
-                globalMainQueue.async { () -> Void in
+                globalMainQueue.async { () in
                     self.restoretableView.reloadData()
                 }
                 return false
@@ -205,7 +205,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 index = nil
                 reset()
             }
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.restoretableView.reloadData()
             }
         }
@@ -261,7 +261,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
                 infolabel.stringValue = gotit
                 infolabel.isHidden = false
-                globalMainQueue.async { () -> Void in
+                globalMainQueue.async { () in
                     self.presentAsSheet(self.viewControllerProgress!)
                 }
                 fullrestoretask = FullrestoreTask(dryrun: false, processtermination: processtermination, filehandler: filehandler)
@@ -296,7 +296,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func goforrestorebyfile() {
         restoreactions?.restorefiles = true
         restoreactions?.fullrestore = false
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.restoretableView.reloadData()
         }
     }
@@ -306,7 +306,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         restoreactions?.fullrestore = true
         restoreactions?.restorefiles = false
         restoreactions?.tmprestorepathselected = true
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.restoretableView.reloadData()
         }
     }

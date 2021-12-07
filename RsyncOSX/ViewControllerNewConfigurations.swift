@@ -84,7 +84,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     func cleartable() {
         newconfigurations = nil
         newconfigurations = NewConfigurations()
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.resetinputfields()
         }
     }
@@ -248,7 +248,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         openPanel.canChooseDirectories = true
         openPanel.canCreateDirectories = false
         openPanel.title = NSLocalizedString("select catalog", comment: "")
-        openPanel.begin { [weak self] result -> Void in
+        openPanel.begin { [weak self] result in
             if result == .OK {
                 let selectedPath = openPanel.url?.path ?? ""
                 if localcatalog {
@@ -269,7 +269,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
         openPanel.title = NSLocalizedString("select catalog", comment: "")
-        openPanel.begin { [weak self] result -> Void in
+        openPanel.begin { [weak self] result in
             if result == .OK {
                 let selectedPath = openPanel.url?.path ?? ""
                 if pretask {
@@ -314,7 +314,7 @@ extension ViewControllerNewConfigurations {
 
 extension ViewControllerNewConfigurations: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         }
     }

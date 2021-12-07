@@ -11,7 +11,7 @@ import Foundation
 
 class MainWindowsController: NSWindowController {
     func addtoolbar() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             let toolbar = NSToolbar(identifier: "Toolbar")
             toolbar.allowsUserCustomization = false
             toolbar.autosavesConfiguration = false

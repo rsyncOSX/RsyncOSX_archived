@@ -12,7 +12,7 @@ import Foundation
 
 extension ViewControllerMain: SingleTaskProcess {
     func presentViewProgress() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerProgress!)
         }
     }
@@ -20,11 +20,11 @@ extension ViewControllerMain: SingleTaskProcess {
     func presentViewInformation(outputprocess: OutputfromProcess?) {
         self.outputprocess = outputprocess
         if appendnow() {
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.mainTableView.reloadData()
             }
         } else {
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.presentAsSheet(self.viewControllerInformation!)
             }
         }

@@ -13,7 +13,7 @@ final class AllConfigurations {
     var allprofiles: [String]?
 
     func filter(search: String?) {
-        globalDefaultQueue.async { () -> Void in
+        globalDefaultQueue.async { () in
             self.allconfigurations = self.allconfigurations?.filter { $0.dateRun!.contains(search ?? "") }
         }
     }

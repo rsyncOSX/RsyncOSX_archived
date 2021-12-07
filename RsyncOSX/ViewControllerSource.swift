@@ -42,7 +42,7 @@ class ViewControllerSource: NSViewController {
     }
 
     override func viewDidAppear() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
     }

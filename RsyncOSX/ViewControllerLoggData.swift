@@ -46,7 +46,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
                 scheduleloggdata?.loggrecords?[i].delete = 1
             }
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg") + " " + self.selectednumber()
             self.scheduletable.reloadData()
         }
@@ -109,7 +109,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
             info.stringValue = Infologgdata().info(num: 0)
             scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.scheduletable.reloadData()
         }
     }
@@ -153,7 +153,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
         default:
             return
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.scheduletable.reloadData()
         }
     }
@@ -176,7 +176,7 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
                 }) {}
             }
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.scheduletable.reloadData()
         }
     }
@@ -190,7 +190,7 @@ extension ViewControllerLoggData: NSSearchFieldDelegate {
                 self.reloadtabledata()
             } else {
                 self.scheduleloggdata?.filter(search: filterstring)
-                globalMainQueue.async { () -> Void in
+                globalMainQueue.async { () in
                     self.scheduletable.reloadData()
                 }
             }
@@ -277,7 +277,7 @@ extension ViewControllerLoggData: NSTableViewDelegate {
                 default:
                     break
                 }
-                globalMainQueue.async { () -> Void in
+                globalMainQueue.async { () in
                     self.selectedrows.stringValue = NSLocalizedString("Selected logs:", comment: "Logg") + " " + self.selectednumber()
                 }
             }
@@ -306,7 +306,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
         } else {
             scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.scheduletable.reloadData()
         }
     }
@@ -314,7 +314,7 @@ extension ViewControllerLoggData: Reloadandrefresh {
 
 extension ViewControllerLoggData: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         }
     }

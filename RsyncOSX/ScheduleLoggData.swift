@@ -52,7 +52,7 @@ final class ScheduleLoggData: SetConfigurations, ReloadTable, Deselect {
     typealias Row = (Int, Int)
 
     func filter(search: String?) {
-        globalDefaultQueue.async { () -> Void in
+        globalDefaultQueue.async { () in
             self.loggrecords = self.loggrecords?.filter { $0.dateExecuted.contains(search ?? "") }
         }
     }

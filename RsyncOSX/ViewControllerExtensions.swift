@@ -224,7 +224,7 @@ protocol Connected {
 
 extension Connected {
     func connected(config: Configuration?) -> Bool {
-        var port: Int = 22
+        var port = 22
         if let config = config {
             if config.offsiteServer.isEmpty == false {
                 if let sshport: Int = config.sshport { port = sshport }
@@ -239,7 +239,7 @@ extension Connected {
 
     func connected(server: String?) -> Bool {
         if let server = server {
-            let port: Int = 22
+            let port = 22
             if server.isEmpty == false {
                 let success = TCPconnections().verifyTCPconnection(server, port: port, timeout: 1)
                 return success

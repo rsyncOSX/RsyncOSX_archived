@@ -98,7 +98,7 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
     private func setnumbers(outputprocess: OutputfromProcess?, local: Bool) {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             let infotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
             if local {
                 self.localtotalNumber.stringValue = infotask.totalNumber ?? ""

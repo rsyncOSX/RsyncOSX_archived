@@ -21,7 +21,7 @@ extension ViewControllerMain: GetOutput {
 extension ViewControllerMain: Reloadandrefresh {
     // Refresh tableView in main
     func reloadtabledata() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
     }
@@ -54,7 +54,7 @@ extension ViewControllerMain: NewProfile {
     }
 
     func reloadprofilepopupbutton() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.displayProfile()
         }
     }
@@ -76,7 +76,7 @@ extension ViewControllerMain: RsyncIsChanged {
 // Check for remote connections, reload table when completed.
 extension ViewControllerMain: Connections {
     func displayConnections() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
     }
@@ -84,7 +84,7 @@ extension ViewControllerMain: Connections {
 
 extension ViewControllerMain: NewVersionDiscovered {
     func notifyNewVersion() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.info.stringValue = Infoexecute().info(num: 9)
         }
     }
@@ -93,7 +93,7 @@ extension ViewControllerMain: NewVersionDiscovered {
 extension ViewControllerMain: DismissViewController {
     func dismiss_view(viewcontroller: NSViewController) {
         dismiss(viewcontroller)
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
             self.displayProfile()
         }
@@ -117,7 +117,7 @@ extension ViewControllerMain: DeselectRowTable {
 extension ViewControllerMain: RsyncError {
     func rsyncerror() {
         // Set on or off in user configuration
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.info.stringValue = "Rsync error, see logfile..."
             self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
             self.info.isHidden = false
@@ -132,7 +132,7 @@ extension ViewControllerMain: RsyncError {
 // If, for any reason, handling files or directory throws an error
 extension ViewControllerMain: ErrorMessage {
     func errormessage(errorstr: String, error errortype: RsyncOSXTypeErrors) {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             if errortype == .logfilesize {
                 self.info.stringValue = "Reduce size logfile, filesize is: " + errorstr
                 self.info.textColor = self.setcolor(nsviewcontroller: self, color: .red)
@@ -207,7 +207,7 @@ extension ViewControllerMain: SendOutputProcessreference {
 
 extension ViewControllerMain: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         }
     }

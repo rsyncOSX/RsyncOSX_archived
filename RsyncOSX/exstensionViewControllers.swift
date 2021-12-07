@@ -21,7 +21,7 @@ extension ViewControllerSideBar {
     @IBAction func totinfo(_: NSButton) {
         guard checkforrsync() == false else { return }
         guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
@@ -51,7 +51,7 @@ extension ViewControllerNewConfigurations {
     @IBAction func totinfo(_: NSButton) {
         guard checkforrsync() == false else { return }
         guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
@@ -80,7 +80,7 @@ extension ViewControllerSchedule {
     @IBAction func totinfo(_: NSButton) {
         guard checkforrsync() == false else { return }
         guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
@@ -109,7 +109,7 @@ extension ViewControllerSnapshots {
     @IBAction func totinfo(_: NSButton) {
         guard checkforrsync() == false else { return }
         guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
@@ -144,7 +144,7 @@ extension ViewControllerRestore {
     @IBAction func totinfo(_: NSButton) {
         guard checkforrsync() == false else { return }
         guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
@@ -173,7 +173,7 @@ extension ViewControllerLoggData {
     @IBAction func totinfo(_: NSButton) {
         guard checkforrsync() == false else { return }
         guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }

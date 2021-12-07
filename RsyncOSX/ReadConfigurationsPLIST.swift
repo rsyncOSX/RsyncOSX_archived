@@ -19,7 +19,7 @@ final class ReadConfigurationsPLIST: NamesandPaths {
 
     // JSON data already exists
     var jsonfileexist: Bool {
-        var filename: String = ""
+        var filename = ""
         if let profile = profile, let path = fullpathmacserial {
             filename = path + "/" + profile + "/" + SharedReference.shared.fileconfigurationsjson
         } else {
@@ -82,7 +82,7 @@ final class ReadConfigurationsPLIST: NamesandPaths {
         self.profile = profile
         filenamedatastore.publisher
             .compactMap { name -> URL? in
-                var filename: String = ""
+                var filename = ""
                 if let profile = profile, let path = fullpathmacserial {
                     filename = path + "/" + profile + "/" + name
                 } else {

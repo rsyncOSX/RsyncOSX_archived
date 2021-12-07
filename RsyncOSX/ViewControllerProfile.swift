@@ -73,7 +73,7 @@ class ViewControllerProfile: NSViewController, SetConfigurations, Delay {
         super.viewDidAppear()
         profile = CatalogProfile()
         profilesArray = profile?.getcatalogsasstringnames()
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.profilesTable.reloadData()
         }
         newprofile.stringValue = ""

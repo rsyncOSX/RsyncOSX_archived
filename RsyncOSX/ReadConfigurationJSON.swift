@@ -58,7 +58,7 @@ class ReadConfigurationJSON: NamesandPaths {
         // print("ReadConfigurationJSON")
         filenamedatastore.publisher
             .compactMap { filenamejson -> URL in
-                var filename: String = ""
+                var filename = ""
                 if let profile = profile, let path = fullpathmacserial {
                     filename = path + "/" + profile + "/" + filenamejson
                 } else {

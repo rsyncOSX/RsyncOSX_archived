@@ -126,7 +126,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         stringdeletesnapshotsnum.stringValue = String(deletesnapshots.intValue)
         numbersinsequencetodelete = Int(deletesnapshots.intValue - 1)
         markfordelete(numberstomark: numbersinsequencetodelete!)
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.snapshotstableView.reloadData()
         }
         info.stringValue = NSLocalizedString("Delete number of snapshots:", comment: "plan") + " " + String(deletesnapshots.intValue)
@@ -140,7 +140,7 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
         stringdeletesnapshotsdaysnum.stringValue = String(deletesnapshotsdays.intValue)
         numbersinsequencetodelete = snapshotlogsandcatalogs?.countbydays(num: Double(deletesnapshotsdays.intValue))
         markfordelete(numberstomark: numbersinsequencetodelete!)
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.snapshotstableView.reloadData()
         }
         info.stringValue = NSLocalizedString("Delete snapshots older than:", comment: "plan") + " " + String(deletesnapshotsdays.intValue)
@@ -443,7 +443,7 @@ extension ViewControllerSnapshots: Reloadandrefresh {
         gettinglogs.stopAnimation(nil)
         numbersinsequencetodelete = nil
         preselectcomboboxes()
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.snapshotstableView.reloadData()
             self.rsynctableView.reloadData()
         }
@@ -466,7 +466,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         }
                         self.numbersinsequencetodelete = Int(self.deletesnapshots.intValue) - 1
                         self.markfordelete(numberstomark: self.numbersinsequencetodelete ?? 0)
-                        globalMainQueue.async { () -> Void in
+                        globalMainQueue.async { () in
                             self.snapshotstableView.reloadData()
                         }
                     } else {
@@ -479,7 +479,7 @@ extension ViewControllerSnapshots: NSTextFieldDelegate {
                         self.deletesnapshotsdays.intValue = Int32(num)
                         self.numbersinsequencetodelete = self.snapshotlogsandcatalogs?.countbydays(num: Double(self.stringdeletesnapshotsdaysnum.stringValue) ?? 0)
                         self.markfordelete(numberstomark: self.numbersinsequencetodelete ?? 0)
-                        globalMainQueue.async { () -> Void in
+                        globalMainQueue.async { () in
                             self.snapshotstableView.reloadData()
                         }
                     } else {
@@ -527,7 +527,7 @@ extension ViewControllerSnapshots: NSComboBoxDelegate {
 
 extension ViewControllerSnapshots: OpenQuickBackup {
     func openquickbackup() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerQuickBackup!)
         }
     }

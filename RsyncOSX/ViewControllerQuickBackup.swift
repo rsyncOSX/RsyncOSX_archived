@@ -62,13 +62,13 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     override func viewDidAppear() {
         super.viewDidAppear()
         guard diddissappear == false else {
-            globalMainQueue.async { () -> Void in
+            globalMainQueue.async { () in
                 self.mainTableView.reloadData()
             }
             return
         }
         quickbackup = QuickBackup()
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
     }
@@ -149,7 +149,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
 
 extension ViewControllerQuickBackup: Reloadandrefresh {
     func reloadtabledata() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
     }

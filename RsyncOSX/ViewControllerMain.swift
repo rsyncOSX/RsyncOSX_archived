@@ -44,7 +44,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Toolbar - Abort button
     @IBAction func abort(_: NSButton) {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.abortOperations()
         }
     }
@@ -59,7 +59,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBAction func totinfo(_: NSButton) {
         guard checkforrsync() == false else { return }
         multipeselection = false
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
@@ -74,7 +74,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             return
         }
         multipeselection = true
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerRemoteInfo!)
         }
     }
@@ -111,7 +111,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     // Presenting Information from Rsync
     @IBAction func information(_: NSButton) {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.presentAsSheet(self.viewControllerInformation!)
         }
     }
@@ -205,7 +205,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         if (configurations?.configurations?.count ?? 0) > 0 {
             if index == nil {
-                globalMainQueue.async { () -> Void in
+                globalMainQueue.async { () in
                     self.mainTableView.reloadData()
                 }
             }
@@ -283,7 +283,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             configurations = nil
             configurations = Configurations(profile: nil)
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
     }
@@ -311,7 +311,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             configurations = nil
             configurations = Configurations(profile: nil)
         }
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
         displayProfile()

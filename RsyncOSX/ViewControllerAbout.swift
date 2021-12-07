@@ -104,7 +104,7 @@ class ViewControllerAbout: NSViewController {
 extension ViewControllerAbout: NewVersionDiscovered {
     // Notifies if new version is discovered
     func notifyNewVersion() {
-        globalMainQueue.async { () -> Void in
+        globalMainQueue.async { () in
             self.downloadbutton.isEnabled = true
             self.thereisanewversion.stringValue = NSLocalizedString("New version is available:", comment: "About")
         }
