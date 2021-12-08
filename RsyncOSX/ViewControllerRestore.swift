@@ -159,7 +159,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 infolabel.isHidden = false
                 return false
             }
-            guard configurations!.getConfigurations()?[index].task != SharedReference.shared.syncremote else {
+            guard configurations?.getConfigurations()?[index].task != SharedReference.shared.syncremote else {
                 infolabel.stringValue = Inforestore().info(num: 5)
                 infolabel.isHidden = false
                 restoretabledata = nil
@@ -192,7 +192,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             }
         } else {
             let indexes = myTableViewFromNotification.selectedRowIndexes
-            checkedforfullrestore.state = .off
+            // checkedforfullrestore.state = .off
             if let index = indexes.first {
                 self.index = index
                 restoretabledata = nil
@@ -341,9 +341,9 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
                 }
             }
         } else {
-            guard restoreactions?.remotefileverified ?? false else { return }
+            guard restoreactions?.remotefileverified ?? false, SharedReference.shared.temporarypathforrestore != nil else { return }
             working.startAnimation(nil)
-            restorefilestask?.executecopyfiles(remotefile: remotefiles!.stringValue, localCatalog: tmprestorepath!.stringValue, dryrun: true)
+            restorefilestask?.executecopyfiles(remotefile: remotefiles?.stringValue ?? "", localCatalog: tmprestorepath?.stringValue ?? "", dryrun: true)
             outputprocess = restorefilestask?.outputprocess
         }
     }
