@@ -34,7 +34,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     @IBOutlet var remotefiles: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
     @IBOutlet var search: NSSearchField!
-    @IBOutlet var checkedforfullrestore: NSButton!
     @IBOutlet var tmprestorepath: NSTextField!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
     @IBOutlet var infolabel: NSTextField!
@@ -313,14 +312,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     // Sidebar restore
     func restore() {
-        if checkedforfullrestore.state == .on {
-            if restoreactions?.goforfullrestoretotemporarypath() == true {
-                executefullrestore()
-            }
-        } else {
-            if restoreactions?.goforrestorefilestotemporarypath() == true {
-                executerestorefiles()
-            }
+        if restoreactions?.goforrestorefilestotemporarypath() == true {
+            executerestorefiles()
         }
     }
 

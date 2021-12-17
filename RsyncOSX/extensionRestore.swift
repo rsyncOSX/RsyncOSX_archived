@@ -158,9 +158,6 @@ extension ViewControllerRestore: Sidebarbuttonactions {
             goforrestorebyfile()
             getremotefilelist()
         case .Estimate:
-            if checkedforfullrestore.state == .on {
-                goforfullrestore()
-            }
             estimate()
         case .Restore:
             restore()
