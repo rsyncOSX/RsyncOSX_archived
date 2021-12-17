@@ -127,7 +127,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func prepareforfilesrestoreandandgetremotefilelist() {
         guard checkforgetremotefiles() else { return }
         if let index = index {
-            infolabel.isHidden = true
+            // infolabel.isHidden = true
             remotefiles.stringValue = ""
             let hiddenID = Estimatedlistforsynchronization().getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int ?? -1
             if Estimatedlistforsynchronization().getConfigurationsDataSourceSynchronize()?[index].value(forKey: DictionaryStrings.taskCellID.rawValue) as? String ?? "" != SharedReference.shared.snapshot {
@@ -176,7 +176,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func tableViewSelectionDidChange(_ notification: Notification) {
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         if myTableViewFromNotification == restoretableView {
-            infolabel.isHidden = true
+            // infolabel.isHidden = true
             let indexes = myTableViewFromNotification.selectedRowIndexes
             if let index = indexes.first {
                 guard restoretabledata != nil else { return }
@@ -234,42 +234,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
         }
     }
 
-    private func checkforfullrestore() -> Bool {
-        if let index = index {
-            guard connected(config: configurations!.getConfigurations()?[index]) == true else {
-                infolabel.stringValue = Inforestore().info(num: 4)
-                infolabel.isHidden = false
-                return false
-            }
-            guard configurations?.getConfigurations()?[index].task != SharedReference.shared.syncremote else {
-                infolabel.stringValue = Inforestore().info(num: 5)
-                infolabel.isHidden = false
-                return false
-            }
-        }
-        return true
-    }
-
-    func executefullrestore() {
-        let question: String = NSLocalizedString("Do you REALLY want to start a restore?", comment: "Restore")
-        let text: String = NSLocalizedString("Cancel or Restore", comment: "Restore")
-        let dialog: String = NSLocalizedString("Restore", comment: "Restore")
-        let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
-        if answer {
-            if let index = index {
-                let gotit: String = NSLocalizedString("Executing restore...", comment: "Restore")
-                infolabel.stringValue = gotit
-                infolabel.isHidden = false
-                globalMainQueue.async { () in
-                    self.presentAsSheet(self.viewControllerProgress!)
-                }
-                fullrestoretask = FullrestoreTask(dryrun: false, processtermination: processtermination, filehandler: filehandler)
-                fullrestoretask?.executerestore(index: index)
-                outputprocess = fullrestoretask?.outputprocess
-            }
-        }
-    }
-
     func settmprestorepathfromuserconfig() {
         let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
         tmprestorepath.stringValue = SharedReference.shared.temporarypathforrestore ?? setuserconfig
@@ -287,24 +251,13 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
             infolabel.stringValue = Inforestore().info(num: 1)
             return false
         } else {
-            infolabel.isHidden = true
+            // infolabel.isHidden = true
             return true
         }
     }
 
     func goforrestorebyfile() {
         restoreactions?.restorefiles = true
-        restoreactions?.fullrestore = false
-        globalMainQueue.async { () in
-            self.restoretableView.reloadData()
-        }
-    }
-
-    func goforfullrestore() {
-        restoretabledata = nil
-        restoreactions?.fullrestore = true
-        restoreactions?.restorefiles = false
-        restoreactions?.tmprestorepathselected = true
         globalMainQueue.async { () in
             self.restoretableView.reloadData()
         }
@@ -319,26 +272,10 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     // Sidebar estimate
     func estimate() {
-        guard checkforrsync() == false else { return }
-        if restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
-            guard checkforfullrestore() == true else { return }
-            if let index = index {
-                let gotit: String = NSLocalizedString("Getting info, please wait...", comment: "Restore")
-                infolabel.stringValue = gotit
-                infolabel.isHidden = false
-                working.startAnimation(nil)
-                if restoreactions?.goforfullrestoreestimatetemporarypath() ?? false {
-                    fullrestoretask = FullrestoreTask(dryrun: true, processtermination: processtermination, filehandler: filehandler)
-                    fullrestoretask?.executerestore(index: index)
-                    outputprocess = fullrestoretask?.outputprocess
-                }
-            }
-        } else {
-            guard restoreactions?.remotefileverified ?? false, SharedReference.shared.temporarypathforrestore != nil else { return }
-            working.startAnimation(nil)
-            restorefilestask?.executecopyfiles(remotefile: remotefiles?.stringValue ?? "", localCatalog: tmprestorepath?.stringValue ?? "", dryrun: true)
-            outputprocess = restorefilestask?.outputprocess
-        }
+        guard restoreactions?.remotefileverified ?? false, SharedReference.shared.temporarypathforrestore != nil else { return }
+        working.startAnimation(nil)
+        restorefilestask?.executecopyfiles(remotefile: remotefiles?.stringValue ?? "", localCatalog: tmprestorepath?.stringValue ?? "", dryrun: true)
+        outputprocess = restorefilestask?.outputprocess
     }
 
     func initpopupbutton() {
