@@ -6,7 +6,6 @@
 //  Copyright © 2017 Thomas Evensen. All rights reserved.
 //
 
-import Files
 import Foundation
 
 enum Result<Value, Error: Swift.Error> {

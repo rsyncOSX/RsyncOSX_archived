@@ -8,7 +8,6 @@
 //  swiftlint:disable line_length
 
 import Foundation
-import ShellOut
 
 final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     var error: Bool = false

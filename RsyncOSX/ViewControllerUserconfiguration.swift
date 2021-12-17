@@ -160,7 +160,7 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
     }
 
     private func setmarknumberofdayssince() {
-        if let marknumberofdayssince = Double(self.marknumberofdayssince.stringValue) {
+        if let marknumberofdayssince = Double(marknumberofdayssince.stringValue) {
             oldmarknumberofdayssince = SharedReference.shared.marknumberofdayssince
             SharedReference.shared.marknumberofdayssince = marknumberofdayssince
             if oldmarknumberofdayssince != marknumberofdayssince {

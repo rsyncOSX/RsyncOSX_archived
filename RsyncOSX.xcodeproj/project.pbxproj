@@ -99,7 +99,6 @@
 		E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */; };
 		E94D6E3321A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */; };
 		E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */; };
-		E957642124BF9F7C008C66E1 /* ShellOut in Frameworks */ = {isa = PBXBuildFile; productRef = E957642024BF9F7C008C66E1 /* ShellOut */; };
 		E957B1121F5F17220099947A /* SharedReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957B1111F5F17220099947A /* SharedReference.swift */; };
 		E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */; };
 		E958D62522B65ADF00755074 /* Selectprofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958D62422B65ADF00755074 /* Selectprofile.swift */; };
@@ -126,7 +125,6 @@
 		E9A1725C250F675B00F26529 /* RsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1725B250F675B00F26529 /* RsyncProcess.swift */; };
 		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
-		E9AC1335254A0FC600835A3F /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = E9AC1334254A0FC600835A3F /* Files */; };
 		E9B04CFC2388489E0072DA41 /* Reorgschedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B04CFB2388489E0072DA41 /* Reorgschedule.swift */; };
 		E9B9675724BCB68500F623C9 /* PreandPostTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9675624BCB68500F623C9 /* PreandPostTasks.swift */; };
 		E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9CCA521BC46B00042D5CE /* extensionDate.swift */; };
@@ -137,6 +135,8 @@
 		E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A410235311FE00BCF1C4 /* ArgumentsRestore.swift */; };
 		E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4A4122353139200BCF1C4 /* ArgumentsVerify.swift */; };
 		E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C6EA891ED2AE2F00680D4D /* Numbers.swift */; };
+		E9CB70E2276C6E6C003F8D79 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB70E1276C6E6C003F8D79 /* Files.swift */; };
+		E9CB70E4276C6E81003F8D79 /* ShellOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CB70E3276C6E81003F8D79 /* ShellOut.swift */; };
 		E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */; };
 		E9DF6DD5227976030083405C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD3227976030083405C /* InfoPlist.strings */; };
 		E9DF6DD8227976030083405C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9DF6DD6227976030083405C /* Localizable.strings */; };
@@ -315,6 +315,8 @@
 		E9C4A410235311FE00BCF1C4 /* ArgumentsRestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsRestore.swift; sourceTree = "<group>"; };
 		E9C4A4122353139200BCF1C4 /* ArgumentsVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsVerify.swift; sourceTree = "<group>"; };
 		E9C6EA891ED2AE2F00680D4D /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
+		E9CB70E1276C6E6C003F8D79 /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		E9CB70E3276C6E81003F8D79 /* ShellOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellOut.swift; sourceTree = "<group>"; };
 		E9D5F468248041BD003C9396 /* Keypathidentityfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keypathidentityfile.swift; sourceTree = "<group>"; };
 		E9DE2CCE228A835C003BC663 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E9DF6DD4227976030083405C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -345,8 +347,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9AC1335254A0FC600835A3F /* Files in Frameworks */,
-				E957642124BF9F7C008C66E1 /* ShellOut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +456,7 @@
 		A04492C41D65901400B3CE17 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E9CB70E0276C6E59003F8D79 /* Imports */,
 				A04492C21D658FC300B3CE17 /* yudpsocket */,
 				E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */,
 				E9C6EA891ED2AE2F00680D4D /* Numbers.swift */,
@@ -827,6 +828,15 @@
 			name = Reorg;
 			sourceTree = "<group>";
 		};
+		E9CB70E0276C6E59003F8D79 /* Imports */ = {
+			isa = PBXGroup;
+			children = (
+				E9CB70E3276C6E81003F8D79 /* ShellOut.swift */,
+				E9CB70E1276C6E6C003F8D79 /* Files.swift */,
+			);
+			name = Imports;
+			sourceTree = "<group>";
+		};
 		E9D0B3F523099549009ABB74 /* Singletask */ = {
 			isa = PBXGroup;
 			children = (
@@ -887,8 +897,6 @@
 			);
 			name = RsyncOSX;
 			packageProductDependencies = (
-				E957642024BF9F7C008C66E1 /* ShellOut */,
-				E9AC1334254A0FC600835A3F /* Files */,
 			);
 			productName = RsyncOSX;
 			productReference = A04492821D658EE800B3CE17 /* RsyncOSX.app */;
@@ -955,8 +963,6 @@
 			);
 			mainGroup = A04492791D658EE800B3CE17;
 			packageReferences = (
-				E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */,
-				E9AC1333254A0FC600835A3F /* XCRemoteSwiftPackageReference "Files" */,
 			);
 			productRefGroup = A04492831D658EE800B3CE17 /* Products */;
 			projectDirPath = "";
@@ -1034,6 +1040,7 @@
 				E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */,
 				E9F5CED0265F5F090064618B /* TrimFour.swift in Sources */,
 				E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */,
+				E9CB70E2276C6E6C003F8D79 /* Files.swift in Sources */,
 				E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */,
 				E933CBF626602FFF0028A26C /* NewversionJSON.swift in Sources */,
 				E99D187423041C47003F1796 /* ResultYTC.swift in Sources */,
@@ -1083,6 +1090,7 @@
 				A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */,
 				E9B04CFC2388489E0072DA41 /* Reorgschedule.swift in Sources */,
 				E9374D2E1E329A5800CD3945 /* CompleteQuickbackupTask.swift in Sources */,
+				E9CB70E4276C6E81003F8D79 /* ShellOut.swift in Sources */,
 				E957B1121F5F17220099947A /* SharedReference.swift in Sources */,
 				E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */,
 				E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */,
@@ -1483,38 +1491,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rsyncOSX/ShellOut.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.0;
-			};
-		};
-		E9AC1333254A0FC600835A3F /* XCRemoteSwiftPackageReference "Files" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rsyncOSX/Files";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E957642024BF9F7C008C66E1 /* ShellOut */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E957641F24BF9F7C008C66E1 /* XCRemoteSwiftPackageReference "ShellOut" */;
-			productName = ShellOut;
-		};
-		E9AC1334254A0FC600835A3F /* Files */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9AC1333254A0FC600835A3F /* XCRemoteSwiftPackageReference "Files" */;
-			productName = Files;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A044927A1D658EE800B3CE17 /* Project object */;
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
 
-import Files
 import Foundation
 
 struct Backupconfigfiles: Errors {

@@ -13,7 +13,6 @@ final class QuickBackup: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
-    var index: Int?
     var hiddenID: Int?
     var maxcount: Int?
     weak var reloadtableDelegate: Reloadandrefresh?
@@ -73,7 +72,6 @@ final class QuickBackup: SetConfigurations {
             {
                 stackoftasktobeexecuted?.remove(at: 0)
                 self.hiddenID = hiddenID
-                self.index = index
                 sortedlist?[index].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
                 maxcount = Int(sortedlist?[index].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
                 executequickbackuptask(hiddenID: hiddenID)
@@ -86,7 +84,6 @@ final class QuickBackup: SetConfigurations {
             if let dict = sortedlist?.filter({ ($0.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int) == hiddenID }) {
                 guard dict.count == 1 else { return }
                 if let index = sortedlist?.firstIndex(of: dict[0]) {
-                    self.index = index
                     sortedlist?[index].setValue(true, forKey: DictionaryStrings.completeCellID.rawValue)
                     sortedlist?[index].setValue(false, forKey: DictionaryStrings.inprogressCellID.rawValue)
                 }
@@ -135,7 +132,6 @@ extension QuickBackup {
         {
             stackoftasktobeexecuted?.remove(at: 0)
             self.hiddenID = hiddenID
-            self.index = index
             sortedlist?[index].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
             maxcount = Int(sortedlist?[index].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
             executequickbackuptask(hiddenID: hiddenID)

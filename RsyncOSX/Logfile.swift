@@ -7,7 +7,6 @@
 //
 // swiftlint:disable line_length
 
-import Files
 import Foundation
 
 final class Logfile: NamesandPaths {
