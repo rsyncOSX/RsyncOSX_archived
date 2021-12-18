@@ -1520,7 +1520,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
-                            <box verticalHuggingPriority="249" misplaced="YES" title="File or catalog to restore" translatesAutoresizingMaskIntoConstraints="NO" id="PIK-cY-cmQ">
+                            <box verticalHuggingPriority="249" title="File or catalog to restore" translatesAutoresizingMaskIntoConstraints="NO" id="PIK-cY-cmQ">
                                 <rect key="frame" x="17" y="16" width="580" height="57"/>
                                 <view key="contentView" id="PXY-Lz-PCz">
                                     <rect key="frame" x="3" y="3" width="574" height="39"/>
@@ -1546,8 +1546,11 @@
                                         </textField>
                                     </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="BAq-jA-Nfa"/>
+                                </constraints>
                             </box>
-                            <box misplaced="YES" title="Restore to tmp catalog" translatesAutoresizingMaskIntoConstraints="NO" id="NLG-RX-DcT">
+                            <box title="Restore to tmp catalog" translatesAutoresizingMaskIntoConstraints="NO" id="NLG-RX-DcT">
                                 <rect key="frame" x="17" y="77" width="580" height="59"/>
                                 <view key="contentView" id="1ef-3n-U44">
                                     <rect key="frame" x="3" y="3" width="574" height="41"/>
@@ -1573,6 +1576,9 @@
                                         </textField>
                                     </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="B7G-Ra-29f"/>
+                                </constraints>
                             </box>
                             <popUpButton misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5J-cK-ajI">
                                 <rect key="frame" x="833" y="380" width="152" height="18"/>
@@ -1592,7 +1598,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOq-r0-svp">
-                                <rect key="frame" x="18" y="357" width="578" height="14"/>
+                                <rect key="frame" x="18" y="355" width="578" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="574" id="0NM-Sf-9dj"/>
                                     <constraint firstAttribute="height" constant="14" id="6Ct-Cj-8iU"/>
