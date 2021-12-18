@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 12/09/2016.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable line_length type_body_length
+//  swiftlint:disable line_length
 
 import Cocoa
 import Foundation
