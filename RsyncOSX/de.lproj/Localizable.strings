@@ -271,7 +271,7 @@
 "no stopdate" = "kein Stopdatum";
 
 /* Restore */
-"No such temporay catalog for restore, set it in user config." = "Kein solcher temporärer Katalog für die Wiederherstellung, setzen Sie ihn in der Benutzer-Konfiguration.";
+"No such temporary catalog for restore, set it in user config." = "Kein solcher temporärer Katalog für die Wiederherstellung, setzen Sie ihn in der Benutzer-Konfiguration.";
 
 /* plan */
 "none" = "keine";

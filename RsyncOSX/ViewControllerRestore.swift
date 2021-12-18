@@ -247,7 +247,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     func verifytmprestorepath() -> Bool {
         let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: tmprestorepath.stringValue) == false {
+        if fileManager.fileExists(atPath: SharedReference.shared.temporarypathforrestore ?? "") == false {
             infolabel.stringValue = Inforestore().info(num: 1)
             return false
         } else {

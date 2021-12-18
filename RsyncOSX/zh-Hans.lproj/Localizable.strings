@@ -271,7 +271,7 @@
 "no stopdate" = "没有停止日期";
 
 /* Restore */
-"No such temporay catalog for restore, set it in user config." = "没有这样的临时目录来恢复，请在用户配置中设置它。";
+"No such temporary catalog for restore, set it in user config." = "没有这样的临时目录来恢复，请在用户配置中设置它。";
 
 /* plan */
 "none" = "无";
