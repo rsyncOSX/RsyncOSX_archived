@@ -91,7 +91,7 @@ extension ViewControllerRestore {
                 infolabel.stringValue = NSLocalizedString("Seems to be nothing to restore", comment: "Restore")
                 restoreactions?.estimated = false
             } else {
-                infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: maxcount), number: NumberFormatter.Style.decimal) + ", size: " + NumberFormatter.localizedString(from: NSNumber(value: transferredNumberSizebytes), number: NumberFormatter.Style.decimal) + " kB"
+                infolabel.stringValue = NSLocalizedString("Number of remote files:", comment: "Restore") + " " + NumberFormatter.localizedString(from: NSNumber(value: maxcount), number: NumberFormatter.Style.decimal)
                 restoreactions?.estimated = true
             }
         }

@@ -151,7 +151,6 @@ class Configurations {
         let hiddenID = configurations?[index].hiddenID ?? -1
         configurations?.remove(at: index)
         WriteConfigurationJSON(profile, configurations)
-        // TODO: must take care of deleting schedules, eg update valdidhiddenIDs
         validhiddenID?.remove(hiddenID)
     }
 
