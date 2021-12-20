@@ -25,7 +25,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
     @IBOutlet var search: NSSearchField!
     @IBOutlet var numberOflogfiles: NSTextField!
     @IBOutlet var selectedrows: NSTextField!
-    @IBOutlet var info: NSTextField!
     @IBOutlet var working: NSProgressIndicator!
 
     // Selecting profiles
@@ -89,7 +88,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
         super.viewDidAppear()
         sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         sidebaractionsDelegate?.sidebaractions(action: .logsviewbuttons)
-        info.textColor = setcolor(nsviewcontroller: self, color: .green)
         index = index()
         if let index = index {
             let hiddenID = configurations?.gethiddenID(index: index) ?? -1
@@ -103,10 +101,8 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
                     working.startAnimation(nil)
                     snapshotscheduleloggdata = Snapshotlogsandcatalogs(config: config)
                 }
-                info.stringValue = Infologgdata().info(num: 1)
             }
         } else {
-            info.stringValue = Infologgdata().info(num: 0)
             scheduleloggdata = ScheduleLoggData(hiddenID: nil)
         }
         globalMainQueue.async { () in

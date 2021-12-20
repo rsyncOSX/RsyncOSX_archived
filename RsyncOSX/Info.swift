@@ -48,23 +48,6 @@ struct Infoexecute {
     }
 }
 
-struct Infologgdata {
-    // Loggdata
-    let info21: String = NSLocalizedString("Got index from Synchronize and listing logs for one configuration...", comment: "Loggdata")
-    let info22: String = NSLocalizedString("Got index from Snapshots and listing logs for one configuration...", comment: "Loggdata")
-
-    func info(num: Int) -> String {
-        switch num {
-        case 1:
-            return info21
-        case 2:
-            return info22
-        default:
-            return ""
-        }
-    }
-}
-
 struct Inforestore {
     // Restore
     let info31: String = NSLocalizedString("No such temporary catalog for restore, set it in user config.", comment: "Restore")
