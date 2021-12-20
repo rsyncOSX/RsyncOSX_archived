@@ -117,6 +117,8 @@ final class SharedReference {
     // for automatic backup
     var estimatedlistforsynchronization: Estimatedlistforsynchronization?
     let reloadstring: String = "no.blogspot.RsyncOSX.reload"
+    // If firstime use
+    var firsttime = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

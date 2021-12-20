@@ -76,6 +76,10 @@ class ReadConfigurationJSON: NamesandPaths {
                 case .finished:
                     return
                 case let .failure(error):
+                    // Mark first time used, only for default profile
+                    if profile == nil {
+                        SharedReference.shared.firsttime = true
+                    }
                     let error = error as NSError
                     self.error(errordescription: error.description, errortype: .readerror)
                 }
