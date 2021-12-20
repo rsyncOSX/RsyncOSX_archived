@@ -212,6 +212,16 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         }
         rsyncischanged()
         displayProfile()
+        // Display first time use
+        if SharedReference.shared.firsttime {
+            let question: String = NSLocalizedString("Welcome to RsyncOSX", comment: "Main")
+            let text: String = NSLocalizedString("This is some important info about the first time use and RsyncOSX", comment: "Main")
+            let dialog: String = NSLocalizedString("Open", comment: "Main")
+            let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+            if answer {
+                NSWorkspace.shared.open(URL(string: Resources().getResource(resource: .firsttimeuse))!)
+            }
+        }
     }
 
     override func viewDidDisappear() {
