@@ -12,7 +12,7 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.6.8/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.6.7/total) [![Crowdin](https://badges.crowdin.net/rsyncosx/localized.svg)](https://crowdin.com/project/rsyncosx) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-**RsyncOSX** is released for **macOS Big Sur** and later due to requirements in some features of Combine.
+**RsyncOSX** is released for **macOS Big Sur** and later due to requirements in some features of Combine. There is also a [version 6.6.9 release candidate](https://github.com/rsyncOSX/RsyncOSX/releases).
 
 - the [documentation of RsyncOSX](https://rsyncosx.netlify.app/)
 - the [readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
