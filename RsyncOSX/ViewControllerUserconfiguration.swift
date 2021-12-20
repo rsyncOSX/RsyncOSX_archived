@@ -38,7 +38,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
     @IBOutlet var environment: NSTextField!
     @IBOutlet var environmentvalue: NSTextField!
     @IBOutlet var enableenvironment: NSButton!
-    @IBOutlet var togglecheckdatabutton: NSButton!
     @IBOutlet var haltonerror: NSButton!
     @IBOutlet var sshport: NSTextField!
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
@@ -59,16 +58,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
             SharedReference.shared.haltonerror = true
         }
         setdirty()
-    }
-
-    @IBAction func togglecheckdata(_: NSButton) {
-        if SharedReference.shared.checkinput {
-            togglecheckdatabutton.state = .off
-            SharedReference.shared.checkinput = false
-        } else {
-            togglecheckdatabutton.state = .on
-            SharedReference.shared.checkinput = true
-        }
     }
 
     @IBAction func toggleenableenvironment(_: NSButton) {
@@ -443,11 +432,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
             environmentvalue.stringValue = SharedReference.shared.environmentvalue!
         } else {
             environmentvalue.stringValue = ""
-        }
-        if SharedReference.shared.checkinput {
-            togglecheckdatabutton.state = .on
-        } else {
-            togglecheckdatabutton.state = .off
         }
         if SharedReference.shared.haltonerror {
             haltonerror.state = .on

@@ -101,7 +101,7 @@ final class SharedReference {
     var environment: String?
     var environmentvalue: String?
     // Check input when loading schedules
-    var checkinput: Bool = false
+    // var checkinput: Bool = false
     // Halt on error
     var haltonerror: Bool = false
     // Global SSH parameters

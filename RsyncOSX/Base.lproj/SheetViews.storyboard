@@ -125,10 +125,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="-394" y="-1169"/>
         </scene>
-        <!--View Controller Configuration-->
+        <!--Configuration-->
         <scene sceneID="NNR-WO-YsO">
             <objects>
-                <viewController title="View Controller Configuration" storyboardIdentifier="StoryboardUserconfigID" id="5ZM-Hb-7h1" customClass="ViewControllerUserconfiguration" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Configuration" storyboardIdentifier="StoryboardUserconfigID" id="5ZM-Hb-7h1" customClass="ViewControllerUserconfiguration" customModule="RsyncOSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="xoy-bm-ysi">
                         <rect key="frame" x="0.0" y="0.0" width="579" height="545"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -385,25 +385,6 @@ DQ
                                     </subviews>
                                 </view>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9Z-Ef-cUA">
-                                <rect key="frame" x="418" y="219" width="155" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Check data" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Gdf-hX-OQO">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="togglecheckdata:" target="5ZM-Hb-7h1" id="621-d1-4xy"/>
-                                </connections>
-                            </button>
-                            <box fixedFrame="YES" title="Check data when loading" translatesAutoresizingMaskIntoConstraints="NO" id="An2-lr-KmW">
-                                <rect key="frame" x="397" y="206" width="165" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="PMe-d7-LAT">
-                                    <rect key="frame" x="3" y="3" width="159" height="32"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </box>
                             <box fixedFrame="YES" title="Halt on error" translatesAutoresizingMaskIntoConstraints="NO" id="fkm-lT-83Y">
                                 <rect key="frame" x="17" y="206" width="188" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -557,7 +538,6 @@ DQ
                         <outlet property="statuslightpathrsyncosxsched" destination="R78-GK-6iX" id="Yod-li-a5S"/>
                         <outlet property="statuslightsshkeypath" destination="1Vi-v7-wkg" id="UYc-8t-te0"/>
                         <outlet property="statuslighttemppath" destination="rKo-fM-nth" id="qKU-SR-Jqw"/>
-                        <outlet property="togglecheckdatabutton" destination="N9Z-Ef-cUA" id="Bx6-SI-343"/>
                         <outlet property="version3rsync" destination="mPa-RY-tSM" id="68b-KV-EQv"/>
                     </connections>
                 </viewController>
