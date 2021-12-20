@@ -215,7 +215,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         // Display first time use
         if SharedReference.shared.firsttime {
             let question: String = NSLocalizedString("Welcome to RsyncOSX", comment: "Main")
-            let text: String = NSLocalizedString("This is some important info about the first time use and RsyncOSX", comment: "Main")
+            let text: String = NSLocalizedString("This is some important info about the first time use of RsyncOSX", comment: "Main")
             let dialog: String = NSLocalizedString("Open", comment: "Main")
             let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
             if answer {
