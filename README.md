@@ -1,12 +1,12 @@
 ## Hi there 👋
 
-I am the developer of RsyncOSX and RsyncUI which both are GUI´s on the Apple macOS plattform for the commandline tool [rsync](https://github.com/WayneD/rsync). It is rsync which does the actual synchronize task, not the GUI´s. The GUI´s are only for setting parameters to rsync and make it easy to use rsync, which is a fantastic tool.
+I am the developer of RsyncOSX and RsyncUI which both are GUI´s on the Apple macOS plattform for the command line tool [rsync](https://github.com/WayneD/rsync). It is `rsync` which does the actual synchronize task, not the GUI´s. The GUI´s are only for setting parameters and make it easy to use `rsync`, which is a fantastic tool.
 
-RsyncOSX and RsyncUI is not developed to be an easy to use synchronize and backup tool. The main purpose is to assist and ease the use of `rsync` to synchronize files on your Mac to remote FreeBSD and Linux servers or to a local attached disk. And of course restore files if required.
+RsyncOSX and RsyncUI are not developed to be easy to use synchronize and backup tools. The main purpose is to assist and ease the use of `rsync` to synchronize files on your Mac to remote FreeBSD and Linux servers or to a local attached disk. And of course restore files if required.
 
-The UI of RsyncOSX and RsyncUI can for users who dont know `rsync`, be difficult or complex to understand. The main objective is to ease the use of `rsync`, not teach macOS users how to use it. That is beyond the scope. Setting the wrong parameters to rsync can result in deleted data. And RsyncOSX and RsyncUI will not stop you for doing so. That is why it is very important to execute a simulated run (`--dry-run`) and inspect what happens before a real run.
+The UI of RsyncOSX and RsyncUI can for users who dont know `rsync`, be difficult or complex to understand. The main objective is to ease the use of `rsync`, not teach macOS users how to use it. That is beyond the scope. Setting the wrong parameters to rsync can result in deleted data. And RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is very important to execute a simulated run (`--dry-run`) and inspect what happens before a real run.
 
-If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey**, you can use both GUI´s in paralell. Both GUI´s are maintaned, so it is a matter of taste.
+If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey**, you can use both GUI´s in parallell.
 
 RsyncOSX is the only GUI which supports scheduling of task.
 
