@@ -4,7 +4,7 @@ I am the developer of RsyncOSX and RsyncUI which both are GUI´s on the Apple ma
 
 RsyncOSX and RsyncUI are not developed to be easy to use synchronize and backup tools. The main purpose is to assist and ease the use of `rsync` to synchronize files on your Mac to remote FreeBSD and Linux servers or to a local attached disk. And of course restore files if required.
 
-The UI of RsyncOSX and RsyncUI can for users who dont know `rsync`, be difficult or complex to understand. The main objective is to ease the use of `rsync`, not teach macOS users how to use it. That is beyond the scope. Setting the wrong parameters to rsync can result in deleted data. And RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is very important to execute a simulated run (`--dry-run`) and inspect what happens before a real run.
+The UI of RsyncOSX and RsyncUI can for users who dont know `rsync`, be difficult or complex to understand. The main objective is to ease the use of `rsync`, not teach macOS users how to use it. That is beyond the scope. Setting the wrong parameters to rsync can result in deleted data. RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is very important to execute a simulated run (`--dry-run`) and inspect what happens before a real run.
 
 If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey**, you can use both GUI´s in parallell.
 
