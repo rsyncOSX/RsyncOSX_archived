@@ -45,6 +45,7 @@ class WriteConfigurationJSON: NamesandPaths {
         // print("WriteConfigurationJSON")
         // Set profile and filename ahead of encoding an write
         self.profile = profile
+        SharedReference.shared.firsttime = false
         configurations.publisher
             .map { configurations -> [DecodeConfiguration] in
                 var data = [DecodeConfiguration]()
