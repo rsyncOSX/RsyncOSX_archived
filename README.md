@@ -12,7 +12,7 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.6.9/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.6.8/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-**RsyncOSX** is released for **macOS Big Sur** and later due to requirements in some features of Combine.
+**RsyncOSX** is released for **macOS Big Sur** and later due to requirements in some features of Combine. Latest build is [28 December 2021](https://github.com/rsyncOSX/RsyncOSX/releases).
 
 - the [documentation of RsyncOSX](https://rsyncosx.netlify.app/)
 - the [readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
@@ -24,12 +24,11 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 **RsyncUI** is released for **macOS Monterey**.
 
-Latest build is [6 December 2021](https://github.com/rsyncOSX/RsyncUI/releases).
+Latest build is [31 December 2021](https://github.com/rsyncOSX/RsyncUI/releases).
 
   - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
   - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
   - the [changelog](https://rsyncui.netlify.app/post/changelog/)
-  - the [development of RsyncUI](https://rsyncui.netlify.app/post/development/)
 
 ![](images/rsyncui.png)
 
