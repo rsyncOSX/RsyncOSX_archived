@@ -25,7 +25,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
     @IBOutlet var search: NSSearchField!
     @IBOutlet var numberOflogfiles: NSTextField!
     @IBOutlet var selectedrows: NSTextField!
-    @IBOutlet var working: NSProgressIndicator!
 
     // Selecting profiles
     @IBAction func profiles(_: NSButton) {
@@ -81,7 +80,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
         scheduletable.dataSource = self
         search.delegate = self
         SharedReference.shared.setvcref(viewcontroller: .vcloggdata, nsviewcontroller: self)
-        working.usesThreadedAnimation = true
     }
 
     override func viewDidAppear() {
@@ -98,7 +96,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
                 if connected(config: config),
                    config.task == SharedReference.shared.snapshot
                 {
-                    working.startAnimation(nil)
                     snapshotscheduleloggdata = Snapshotlogsandcatalogs(config: config)
                 }
             }
@@ -114,7 +111,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
         super.viewDidDisappear()
         scheduleloggdata = nil
         snapshotscheduleloggdata = nil
-        working.stopAnimation(nil)
     }
 
     private func deselectrow() {
@@ -285,8 +281,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
     func reloadtabledata() {
         scheduleloggdata = nil
         snapshotscheduleloggdata = nil
-
-        working.stopAnimation(nil)
         if let index = index {
             let hiddenID = configurations?.gethiddenID(index: index) ?? -1
             guard hiddenID > -1 else { return }
@@ -295,7 +289,6 @@ extension ViewControllerLoggData: Reloadandrefresh {
                 if connected(config: config),
                    snapshotscheduleloggdata == nil
                 {
-                    if config.task == SharedReference.shared.snapshot { working.startAnimation(nil) }
                     snapshotscheduleloggdata = Snapshotlogsandcatalogs(config: config)
                 }
             }

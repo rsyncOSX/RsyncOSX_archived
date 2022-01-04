@@ -556,7 +556,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="ohI-wV-8Z2">
-                                                            <rect key="frame" x="595" y="1" width="95" height="17"/>
+                                                            <rect key="frame" x="595" y="1" width="94" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGc-oH-DMC">
@@ -588,7 +588,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="693" y="1" width="63" height="17"/>
+                                                            <rect key="frame" x="693" y="1" width="58" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -620,7 +620,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="rZZ-a7-CR3">
-                                                            <rect key="frame" x="756" y="1" width="73" height="17"/>
+                                                            <rect key="frame" x="756" y="1" width="72" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PVO-ws-1Vo">
@@ -652,7 +652,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="832" y="1" width="160" height="17"/>
+                                                            <rect key="frame" x="832" y="1" width="154" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -2052,18 +2052,13 @@
                                     <action selector="selectlogs:" target="AlG-Cw-Xi9" id="N55-Of-fRc"/>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="VzJ-2R-TK6">
-                                <rect key="frame" x="298" y="381" width="16" height="16"/>
-                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="nOG-Nc-xqW" secondAttribute="bottom" constant="20" symbolic="YES" id="2A2-9I-WLs"/>
                             <constraint firstAttribute="trailing" secondItem="nOG-Nc-xqW" secondAttribute="trailing" constant="20" symbolic="YES" id="4jz-KE-8NN"/>
-                            <constraint firstItem="VzJ-2R-TK6" firstAttribute="leading" secondItem="t6k-ja-pKU" secondAttribute="trailing" constant="8" symbolic="YES" id="Dcp-fe-rfl"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="top" secondItem="t6k-ja-pKU" secondAttribute="bottom" constant="4" id="HMr-Ua-Mau"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="centerY" secondItem="MWk-oQ-akj" secondAttribute="centerY" id="PnM-s4-FPt"/>
                             <constraint firstItem="nOG-Nc-xqW" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="20" symbolic="YES" id="RmV-3A-GYQ"/>
-                            <constraint firstItem="VzJ-2R-TK6" firstAttribute="top" secondItem="JhO-zm-vVD" secondAttribute="top" constant="10" id="dIx-iH-Rsi"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="leading" secondItem="JhO-zm-vVD" secondAttribute="leading" constant="20" symbolic="YES" id="eRH-Ud-Eq0"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="centerY" secondItem="XeS-qc-qta" secondAttribute="centerY" id="t9o-Wi-zvf"/>
                             <constraint firstItem="t6k-ja-pKU" firstAttribute="centerY" secondItem="3YU-9a-eyi" secondAttribute="centerY" id="tA2-F9-mm6"/>
@@ -2075,7 +2070,6 @@
                         <outlet property="scheduletable" destination="VmR-YZ-iuN" id="Q8s-Bw-QnZ"/>
                         <outlet property="search" destination="t6k-ja-pKU" id="lHP-Fs-hLu"/>
                         <outlet property="selectedrows" destination="XeS-qc-qta" id="HFe-lE-Vfi"/>
-                        <outlet property="working" destination="VzJ-2R-TK6" id="soL-yM-4Sj"/>
                     </connections>
                 </viewController>
                 <customObject id="tDc-Qe-jSm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
