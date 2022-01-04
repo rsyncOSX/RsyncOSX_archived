@@ -158,9 +158,6 @@ extension Snapshotlogsandcatalogs {
         weak var reloadsnapshots: Reloadandrefresh?
         reloadsnapshots = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         reloadsnapshots?.reloadtabledata()
-        weak var reloadlogg: Reloadandrefresh?
-        reloadlogg = SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-        reloadlogg?.reloadtabledata()
     }
 
     func filehandler() {}
