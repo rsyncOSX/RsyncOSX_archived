@@ -25,10 +25,10 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     var singletask: SingleTask?
     var executetasknow: ExecuteTaskNow?
     // Index to selected row, index is set when row is selected
-    var index: Int?
+    var localindex: Int?
     var lastindex: Int?
     // Indexes, multiple selection
-    var indexes: IndexSet?
+    var indexset: IndexSet?
     var multipeselection: Bool = false
     // Getting output from rsync
     var outputprocess: OutputfromProcess?
@@ -69,7 +69,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBAction func executemultipleselectedindexes(_: NSButton) {
         guard checkforrsync() == false else { return }
         guard SharedReference.shared.process == nil else { return }
-        guard indexes != nil else {
+        guard indexset != nil else {
             info.stringValue = Infoexecute().info(num: 6)
             return
         }
@@ -82,23 +82,23 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBAction func executetasknow(_: NSButton) {
         guard SharedReference.shared.process == nil else { return }
         guard checkforrsync() == false else { return }
-        guard index != nil else {
+        guard localindex != nil else {
             info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        if let index = index {
+        if let index = localindex {
             executetask(index: index)
         }
     }
 
     @IBAction func infoonetask(_: NSButton) {
         guard SharedReference.shared.process == nil else { return }
-        guard index != nil else {
+        guard localindex != nil else {
             info.stringValue = Infoexecute().info(num: 1)
             return
         }
         guard checkforrsync() == false else { return }
-        if let index = index {
+        if let index = localindex {
             if let task = configurations?.getConfigurations()?[index].task {
                 guard SharedReference.shared.synctasks.contains(task) else {
                     info.stringValue = Infoexecute().info(num: 7)
@@ -204,7 +204,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             Checkfornewversion()
         }
         if (configurations?.configurations?.count ?? 0) > 0 {
-            if index == nil {
+            if localindex == nil {
                 globalMainQueue.async { () in
                     self.mainTableView.reloadData()
                 }
@@ -252,7 +252,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     // Single task can be activated by double click from table
     func executeSingleTask() {
         guard checkforrsync() == false else { return }
-        if let index = index {
+        if let index = localindex {
             if let task = configurations?.getConfigurations()?[index].task {
                 guard SharedReference.shared.synctasks.contains(task) else {
                     info.stringValue = Infoexecute().info(num: 6)
@@ -328,7 +328,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func checksynchronizedfiles(_: NSButton) {
-        if let index = index {
+        if let index = localindex {
             if let config = configurations?.getConfigurations()?[index] {
                 guard config.task != SharedReference.shared.syncremote else {
                     info.stringValue = NSLocalizedString("Cannot verify a syncremote task...", comment: "Verify")
@@ -346,11 +346,11 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
 
     func delete() {
         guard SharedReference.shared.process == nil else { return }
-        guard index != nil else {
+        guard localindex != nil else {
             info.stringValue = Infoexecute().info(num: 1)
             return
         }
-        if let index = index {
+        if let index = localindex {
             deleterow(index: index)
         }
     }

@@ -36,20 +36,20 @@ extension ViewControllerMain: NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         info.stringValue = ""
         // If change row during estimation
-        if SharedReference.shared.process != nil, index != nil { abortOperations() }
+        if SharedReference.shared.process != nil, localindex != nil { abortOperations() }
         info.stringValue = Infoexecute().info(num: 0)
         let myTableViewFromNotification = (notification.object as? NSTableView)!
         let indexes = myTableViewFromNotification.selectedRowIndexes
         if let index = indexes.first {
-            self.index = index
-            self.indexes = mainTableView.selectedRowIndexes
+            localindex = index
+            indexset = mainTableView.selectedRowIndexes
             if lastindex != index {
                 singletask = nil
             }
             lastindex = index
         } else {
-            index = nil
-            self.indexes = nil
+            localindex = nil
+            indexset = nil
             singletask = nil
             reloadtabledata()
         }
@@ -65,8 +65,8 @@ extension ViewControllerMain: NSTableViewDelegate {
             return [delete]
         } else {
             let execute = NSTableViewRowAction(style: .regular, title: NSLocalizedString("Execute", comment: "Main")) { _, _ in
-                if self.index != nil, self.singletask != nil {
-                    if self.index == row { self.executeSingleTask() }
+                if self.localindex != nil, self.singletask != nil {
+                    if self.localindex == row { self.executeSingleTask() }
                 } else {
                     self.executetask(index: row)
                 }
@@ -90,7 +90,7 @@ extension ViewControllerMain: NSTableViewDelegate {
                     cell.textField?.stringValue = object.task
                     cell.imageView?.image = nil
                     cell.imageView?.alignment = .right
-                    if row == index {
+                    if row == localindex {
                         if singletask != nil {
                             cell.imageView?.image = NSImage(#imageLiteral(resourceName: "green"))
                         }

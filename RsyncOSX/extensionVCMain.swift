@@ -30,7 +30,7 @@ extension ViewControllerMain: Reloadandrefresh {
 // Get index of selected row
 extension ViewControllerMain: GetSelecetedIndex {
     func getindex() -> Int? {
-        return index
+        return localindex
     }
 }
 
@@ -105,9 +105,9 @@ extension ViewControllerMain: DismissViewController {
 extension ViewControllerMain: DeselectRowTable {
     // deselect a row after row is deleted
     func deselect() {
-        if let index = index {
+        if let index = localindex {
             SharedReference.shared.process = nil
-            self.index = nil
+            localindex = nil
             mainTableView.deselectRow(index)
         }
     }
@@ -156,7 +156,7 @@ extension ViewControllerMain: Abort {
     func abortOperations() {
         _ = InterruptProcess()
         working.stopAnimation(nil)
-        index = nil
+        localindex = nil
         info.stringValue = ""
     }
 }
@@ -332,7 +332,7 @@ extension ViewControllerMain: GetMultipleSelectedIndexes {
     }
 
     func getindexes() -> [Int] {
-        if let indexes = indexes {
+        if let indexes = indexset {
             return indexes.map { $0 }
         } else {
             return []
