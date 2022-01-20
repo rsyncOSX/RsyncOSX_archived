@@ -93,6 +93,7 @@ class ViewControllerAbout: NSViewController {
         thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
         rsyncversionstring.stringValue = SharedReference.shared.rsyncversionstring ?? ""
         configpath.stringValue = NamesandPaths(.configurations).fullpathmacserial ?? ""
+        Checkfornewversion()
     }
 
     override func viewDidDisappear() {
