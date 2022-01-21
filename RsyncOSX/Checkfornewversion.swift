@@ -19,7 +19,6 @@ final class Checkfornewversion {
     private var urlNewVersion: String?
 
     weak var newversionDelegateMain: NewVersionDiscovered?
-    weak var newversionDelegateAbout: NewVersionDiscovered?
 
     // If new version set URL for download link and notify caller
     private func urlnewVersion() {
@@ -32,9 +31,8 @@ final class Checkfornewversion {
                         // Setting reference to new version if any
                         SharedReference.shared.URLnewVersion = self.urlNewVersion
                         self.newversionDelegateMain = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                        self.newversionDelegateAbout = SharedReference.shared.getvcref(viewcontroller: .vcabout) as? ViewControllerAbout
                         self.newversionDelegateMain?.notifyNewVersion()
-                        self.newversionDelegateAbout?.notifyNewVersion()
+                        SharedReference.shared.newversionofrsyncosx = true
                     }
                 }
             }

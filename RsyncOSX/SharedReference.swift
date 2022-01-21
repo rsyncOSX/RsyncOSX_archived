@@ -119,6 +119,8 @@ final class SharedReference {
     let reloadstring: String = "no.blogspot.RsyncOSX.reload"
     // If firstime use
     var firsttime = false
+    // if new version
+    var newversionofrsyncosx = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

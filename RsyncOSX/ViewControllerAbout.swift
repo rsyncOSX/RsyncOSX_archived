@@ -93,21 +93,16 @@ class ViewControllerAbout: NSViewController {
         thereisanewversion.stringValue = NSLocalizedString("You have the latest ...", comment: "About")
         rsyncversionstring.stringValue = SharedReference.shared.rsyncversionstring ?? ""
         configpath.stringValue = NamesandPaths(.configurations).fullpathmacserial ?? ""
-        Checkfornewversion()
+        if SharedReference.shared.newversionofrsyncosx {
+            globalMainQueue.async { () in
+                self.downloadbutton.isEnabled = true
+                self.thereisanewversion.stringValue = NSLocalizedString("New version is available:", comment: "About")
+            }
+        }
     }
 
     override func viewDidDisappear() {
         super.viewDidDisappear()
         downloadbutton.isEnabled = false
-    }
-}
-
-extension ViewControllerAbout: NewVersionDiscovered {
-    // Notifies if new version is discovered
-    func notifyNewVersion() {
-        globalMainQueue.async { () in
-            self.downloadbutton.isEnabled = true
-            self.thereisanewversion.stringValue = NSLocalizedString("New version is available:", comment: "About")
-        }
     }
 }
