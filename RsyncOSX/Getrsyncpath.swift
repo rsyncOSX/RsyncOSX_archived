@@ -20,7 +20,7 @@ struct Getrsyncpath {
                     rsyncpath = SharedReference.shared.usrlocalbinrsync
                 }
             } else {
-                rsyncpath = SharedReference.shared.localrsyncpath ?? "" + SharedReference.shared.rsync
+                rsyncpath = (SharedReference.shared.localrsyncpath ?? "") + SharedReference.shared.rsync
             }
         } else {
             rsyncpath = SharedReference.shared.usrbinrsync
