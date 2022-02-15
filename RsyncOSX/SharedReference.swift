@@ -59,13 +59,15 @@ final class SharedReference {
     var macosarm: Bool = false
     // Where RsyncOSX config files are stored
     let configpath: String = "/.rsyncosx/"
-    // User config PLIST files
+    // User config PLIST file
     let userconfigplist: String = "/config.plist"
     let userconfigkey: String = "config"
+    // User config JSON file
+    let userconfigjson: String = "rsyncosxconfig.json"
     // Detailed logging
     var detailedlogging: Bool = true
     // Temporary path for restore
-    var temporarypathforrestore: String?
+    var pathforrestore: String?
     var completeoperation: CompleteQuickbackupTask?
     // Loggfile
     var minimumlogging: Bool = false

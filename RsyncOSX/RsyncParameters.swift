@@ -377,7 +377,7 @@ class RsyncParameters {
             if forDisplay { arguments?.append(" ") }
         }
         if tmprestore {
-            let restorepath = SharedReference.shared.temporarypathforrestore ?? ""
+            let restorepath = SharedReference.shared.pathforrestore ?? ""
             arguments?.append(restorepath)
         } else {
             arguments?.append(localCatalog ?? "")

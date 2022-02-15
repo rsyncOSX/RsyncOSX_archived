@@ -37,9 +37,9 @@ final class ReadUserConfigurationPLIST: NamesandPaths {
             // Temporary path for restores single files or directory
             if let restorePath = dict.value(forKey: DictionaryStrings.restorePath.rawValue) as? String {
                 if restorePath.count > 0 {
-                    SharedReference.shared.temporarypathforrestore = restorePath
+                    SharedReference.shared.pathforrestore = restorePath
                 } else {
-                    SharedReference.shared.temporarypathforrestore = nil
+                    SharedReference.shared.pathforrestore = nil
                 }
             }
             // Mark tasks

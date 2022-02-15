@@ -162,12 +162,12 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         if restorePath.stringValue.isEmpty == false {
             if restorePath.stringValue.hasSuffix("/") == false {
                 restorePath.stringValue += "/"
-                SharedReference.shared.temporarypathforrestore = restorePath.stringValue
+                SharedReference.shared.pathforrestore = restorePath.stringValue
             } else {
-                SharedReference.shared.temporarypathforrestore = restorePath.stringValue
+                SharedReference.shared.pathforrestore = restorePath.stringValue
             }
         } else {
-            SharedReference.shared.temporarypathforrestore = nil
+            SharedReference.shared.pathforrestore = nil
         }
         setdirty()
     }
@@ -412,8 +412,8 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         } else {
             rsyncPath.stringValue = ""
         }
-        if SharedReference.shared.temporarypathforrestore != nil {
-            restorePath.stringValue = SharedReference.shared.temporarypathforrestore!
+        if SharedReference.shared.pathforrestore != nil {
+            restorePath.stringValue = SharedReference.shared.pathforrestore!
         } else {
             restorePath.stringValue = ""
         }

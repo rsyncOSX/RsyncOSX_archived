@@ -236,8 +236,8 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     func settmprestorepathfromuserconfig() {
         let setuserconfig: String = NSLocalizedString(" ... set in User configuration ...", comment: "Restore")
-        tmprestorepath.stringValue = SharedReference.shared.temporarypathforrestore ?? setuserconfig
-        if (SharedReference.shared.temporarypathforrestore ?? "").isEmpty == true {
+        tmprestorepath.stringValue = SharedReference.shared.pathforrestore ?? setuserconfig
+        if (SharedReference.shared.pathforrestore ?? "").isEmpty == true {
             restoreactions?.tmprestorepathselected = false
         } else {
             restoreactions?.tmprestorepathselected = true
@@ -247,7 +247,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     func verifytmprestorepath() -> Bool {
         let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: SharedReference.shared.temporarypathforrestore ?? "") == false {
+        if fileManager.fileExists(atPath: SharedReference.shared.pathforrestore ?? "") == false {
             infolabel.stringValue = Inforestore().info(num: 1)
             return false
         } else {
@@ -272,7 +272,7 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
 
     // Sidebar estimate
     func estimate() {
-        guard restoreactions?.remotefileverified ?? false, SharedReference.shared.temporarypathforrestore != nil else { return }
+        guard restoreactions?.remotefileverified ?? false, SharedReference.shared.pathforrestore != nil else { return }
         working.startAnimation(nil)
         restorefilestask?.executecopyfiles(remotefile: remotefiles?.stringValue ?? "", localCatalog: tmprestorepath?.stringValue ?? "", dryrun: true)
         outputprocess = restorefilestask?.outputprocess

@@ -99,6 +99,10 @@
 		E94D6E3221A5BBA400DDDB61 /* QuickbackupDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */; };
 		E94D6E3321A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */; };
 		E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */; };
+		E95727A127BB838C00E726E6 /* ReadUserConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95727A027BB838C00E726E6 /* ReadUserConfigurationJSON.swift */; };
+		E95727A327BB83C300E726E6 /* WriteUserConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95727A227BB83C300E726E6 /* WriteUserConfigurationJSON.swift */; };
+		E95727A527BB840600E726E6 /* UserConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95727A427BB840600E726E6 /* UserConfiguration.swift */; };
+		E95727A827BB847A00E726E6 /* DecodeUserConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95727A727BB847A00E726E6 /* DecodeUserConfiguration.swift */; };
 		E957B1121F5F17220099947A /* SharedReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957B1111F5F17220099947A /* SharedReference.swift */; };
 		E958CDDF1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */; };
 		E958D62522B65ADF00755074 /* Selectprofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958D62422B65ADF00755074 /* Selectprofile.swift */; };
@@ -274,6 +278,10 @@
 		E94D6E2E21A5BBA300DDDB61 /* QuickbackupDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickbackupDispatch.swift; sourceTree = "<group>"; };
 		E94D6E2F21A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecuteQuickbackupTask.swift; sourceTree = "<group>"; };
 		E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAllOutput.swift; sourceTree = "<group>"; };
+		E95727A027BB838C00E726E6 /* ReadUserConfigurationJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadUserConfigurationJSON.swift; sourceTree = "<group>"; };
+		E95727A227BB83C300E726E6 /* WriteUserConfigurationJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteUserConfigurationJSON.swift; sourceTree = "<group>"; };
+		E95727A427BB840600E726E6 /* UserConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfiguration.swift; sourceTree = "<group>"; };
+		E95727A727BB847A00E726E6 /* DecodeUserConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeUserConfiguration.swift; sourceTree = "<group>"; };
 		E957B1111F5F17220099947A /* SharedReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedReference.swift; sourceTree = "<group>"; };
 		E958CDDE1FA4CEBD00EA37A5 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		E958D62422B65ADF00755074 /* Selectprofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectprofile.swift; sourceTree = "<group>"; };
@@ -558,6 +566,7 @@
 				E924C0B6265E5C54006F148C /* Storage */,
 				E924C0B1265E5A7F006F148C /* Schedules */,
 				E924C0AC265E596A006F148C /* Configurations */,
+				E95727A627BB845000E726E6 /* Userconfig */,
 				E924C0AB265E5956006F148C /* Userconfig */,
 			);
 			name = Combine;
@@ -634,6 +643,8 @@
 			children = (
 				E860894C265E0FEC00C9E641 /* WriteUserConfigurationPLIST.swift */,
 				E860894A265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift */,
+				E95727A027BB838C00E726E6 /* ReadUserConfigurationJSON.swift */,
+				E95727A227BB83C300E726E6 /* WriteUserConfigurationJSON.swift */,
 			);
 			name = Userconfig;
 			sourceTree = "<group>";
@@ -711,6 +722,15 @@
 				E939EC4920C048A000C47F91 /* extensionVCMain.swift */,
 			);
 			name = extensionVCMain;
+			sourceTree = "<group>";
+		};
+		E95727A627BB845000E726E6 /* Userconfig */ = {
+			isa = PBXGroup;
+			children = (
+				E95727A427BB840600E726E6 /* UserConfiguration.swift */,
+				E95727A727BB847A00E726E6 /* DecodeUserConfiguration.swift */,
+			);
+			name = Userconfig;
 			sourceTree = "<group>";
 		};
 		E957B1131F5F2A3A0099947A /* ViewControllerReference */ = {
@@ -1041,6 +1061,7 @@
 				E9F5CED0265F5F090064618B /* TrimFour.swift in Sources */,
 				E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */,
 				E9CB70E2276C6E6C003F8D79 /* Files.swift in Sources */,
+				E95727A527BB840600E726E6 /* UserConfiguration.swift in Sources */,
 				E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */,
 				E933CBF626602FFF0028A26C /* NewversionJSON.swift in Sources */,
 				E99D187423041C47003F1796 /* ResultYTC.swift in Sources */,
@@ -1119,6 +1140,7 @@
 				E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */,
 				E924C0BE265E5C77006F148C /* WriteConfigurationJSON.swift in Sources */,
 				E9F5CED1265F5F090064618B /* TrimThree.swift in Sources */,
+				E95727A127BB838C00E726E6 /* ReadUserConfigurationJSON.swift in Sources */,
 				E924C0BD265E5C77006F148C /* ReadScheduleJSON.swift in Sources */,
 				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
 				E94F0708211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift in Sources */,
@@ -1130,6 +1152,7 @@
 				E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */,
 				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
 				E9F5CED2265F5F090064618B /* TrimOne.swift in Sources */,
+				E95727A827BB847A00E726E6 /* DecodeUserConfiguration.swift in Sources */,
 				A04492B41D658F2100B3CE17 /* RestorefilesArguments.swift in Sources */,
 				E9433865265EB7D200F73B07 /* ReadConfigurationsPLIST.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
@@ -1140,6 +1163,7 @@
 				E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */,
 				E997CF3D265E99660085F015 /* ConvertOneConfig.swift in Sources */,
 				E905EDB41FED05B10044234E /* QuickBackup.swift in Sources */,
+				E95727A327BB83C300E726E6 /* WriteUserConfigurationJSON.swift in Sources */,
 				A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */,
 				A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */,
 				E9EC78711EACE082001EED9B /* Ssh.swift in Sources */,

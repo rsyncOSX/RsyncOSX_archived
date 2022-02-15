@@ -62,7 +62,7 @@ final class WriteUserConfigurationPLIST: NamesandPaths {
         if let rsyncpath = SharedReference.shared.localrsyncpath {
             dict.setObject(rsyncpath, forKey: DictionaryStrings.rsyncPath.rawValue as NSCopying)
         }
-        if let restorepath = SharedReference.shared.temporarypathforrestore {
+        if let restorepath = SharedReference.shared.pathforrestore {
             dict.setObject(restorepath, forKey: DictionaryStrings.restorePath.rawValue as NSCopying)
         } else {
             dict.setObject("", forKey: DictionaryStrings.restorePath.rawValue as NSCopying)

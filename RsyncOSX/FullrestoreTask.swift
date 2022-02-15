@@ -21,13 +21,13 @@ final class FullrestoreTask: SetConfigurations {
                                                                  argtype: .argdryRun)
                 let lastindex = (arguments?.count ?? 0) - 1
                 guard lastindex > -1 else { return }
-                arguments?[lastindex] = SharedReference.shared.temporarypathforrestore ?? ""
+                arguments?[lastindex] = SharedReference.shared.pathforrestore ?? ""
             } else {
                 arguments = configurations?.arguments4tmprestore(hiddenID: hiddenID,
                                                                  argtype: .arg)
                 let lastindex = (arguments?.count ?? 0) - 1
                 guard lastindex > -1 else { return }
-                arguments?[lastindex] = SharedReference.shared.temporarypathforrestore ?? ""
+                arguments?[lastindex] = SharedReference.shared.pathforrestore ?? ""
             }
             if let arguments = arguments {
                 process = RsyncProcess(arguments: arguments, config: nil, processtermination: processtermination, filehandler: filehandler)
