@@ -42,7 +42,6 @@
 		E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F9F1123F030B200E3DEBC /* extensionRestore.swift */; };
 		E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E091721BD29A3006BD293 /* Tagsnapshots.swift */; };
 		E860894B265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860894A265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift */; };
-		E860894D265E0FEC00C9E641 /* WriteUserConfigurationPLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860894C265E0FEC00C9E641 /* WriteUserConfigurationPLIST.swift */; };
 		E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */; };
 		E8783FAD2580B25900E0D485 /* Estimatedlistforsynchronization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8783FAC2580B25900E0D485 /* Estimatedlistforsynchronization.swift */; };
 		E8C2866923C6362F0032DCE0 /* Validatenewconfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */; };
@@ -85,10 +84,6 @@
 		E93ADA6C24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */; };
 		E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */; };
 		E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */; };
-		E9433863265EB7D200F73B07 /* ConfigurationPLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943385F265EB7D200F73B07 /* ConfigurationPLIST.swift */; };
-		E9433864265EB7D200F73B07 /* ReadSchedulesPLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9433860265EB7D200F73B07 /* ReadSchedulesPLIST.swift */; };
-		E9433865265EB7D200F73B07 /* ReadConfigurationsPLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9433861265EB7D200F73B07 /* ReadConfigurationsPLIST.swift */; };
-		E9433866265EB7D200F73B07 /* ConfigurationSchedulePLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9433862265EB7D200F73B07 /* ConfigurationSchedulePLIST.swift */; };
 		E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */; };
 		E943DC681FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC671FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift */; };
 		E943DC6A1FF9141D00E6B8B7 /* RemoteinfoEstimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */; };
@@ -210,7 +205,6 @@
 		E82F9F1123F030B200E3DEBC /* extensionRestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionRestore.swift; sourceTree = "<group>"; };
 		E84E091721BD29A3006BD293 /* Tagsnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagsnapshots.swift; sourceTree = "<group>"; };
 		E860894A265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadUserConfigurationPLIST.swift; sourceTree = "<group>"; };
-		E860894C265E0FEC00C9E641 /* WriteUserConfigurationPLIST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteUserConfigurationPLIST.swift; sourceTree = "<group>"; };
 		E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backupconfigfiles.swift; sourceTree = "<group>"; };
 		E8783FAC2580B25900E0D485 /* Estimatedlistforsynchronization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estimatedlistforsynchronization.swift; sourceTree = "<group>"; };
 		E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatenewconfigs.swift; sourceTree = "<group>"; };
@@ -261,10 +255,6 @@
 		E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCScheduletableviewDelegate.swift; sourceTree = "<group>"; };
 		E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEstimatingTasks.swift; sourceTree = "<group>"; };
 		E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerQuickBackup.swift; sourceTree = "<group>"; };
-		E943385F265EB7D200F73B07 /* ConfigurationPLIST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationPLIST.swift; sourceTree = "<group>"; };
-		E9433860265EB7D200F73B07 /* ReadSchedulesPLIST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadSchedulesPLIST.swift; sourceTree = "<group>"; };
-		E9433861265EB7D200F73B07 /* ReadConfigurationsPLIST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadConfigurationsPLIST.swift; sourceTree = "<group>"; };
-		E9433862265EB7D200F73B07 /* ConfigurationSchedulePLIST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationSchedulePLIST.swift; sourceTree = "<group>"; };
 		E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteinfonumbersOnetask.swift; sourceTree = "<group>"; };
 		E943DC671FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateremoteInformationOnetask.swift; sourceTree = "<group>"; };
 		E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteinfoEstimation.swift; sourceTree = "<group>"; };
@@ -641,7 +631,6 @@
 		E924C0AB265E5956006F148C /* Userconfig */ = {
 			isa = PBXGroup;
 			children = (
-				E860894C265E0FEC00C9E641 /* WriteUserConfigurationPLIST.swift */,
 				E860894A265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift */,
 				E95727A027BB838C00E726E6 /* ReadUserConfigurationJSON.swift */,
 				E95727A227BB83C300E726E6 /* WriteUserConfigurationJSON.swift */,
@@ -670,7 +659,6 @@
 		E924C0B6265E5C54006F148C /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				E943385E265EB79900F73B07 /* PLIST */,
 				E924C0BF265E6266006F148C /* JSON */,
 			);
 			name = Storage;
@@ -701,17 +689,6 @@
 				E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */,
 			);
 			name = extensionVCSchedule;
-			sourceTree = "<group>";
-		};
-		E943385E265EB79900F73B07 /* PLIST */ = {
-			isa = PBXGroup;
-			children = (
-				E943385F265EB7D200F73B07 /* ConfigurationPLIST.swift */,
-				E9433862265EB7D200F73B07 /* ConfigurationSchedulePLIST.swift */,
-				E9433861265EB7D200F73B07 /* ReadConfigurationsPLIST.swift */,
-				E9433860265EB7D200F73B07 /* ReadSchedulesPLIST.swift */,
-			);
-			name = PLIST;
 			sourceTree = "<group>";
 		};
 		E94649662313121000ADDF22 /* extensionVCMain */ = {
@@ -1071,7 +1048,6 @@
 				E979628F227AE4F600115513 /* Info.swift in Sources */,
 				E94649652313112300ADDF22 /* extensionVCMaintableviewDelegate.swift in Sources */,
 				E925F9882356E23500DF7943 /* SetrsyncParameter.swift in Sources */,
-				E860894D265E0FEC00C9E641 /* WriteUserConfigurationPLIST.swift in Sources */,
 				E9FD805A2574EAE8003E1AA2 /* ViewControllerRsyncCommand.swift in Sources */,
 				E924C0AE265E598B006F148C /* Configuration.swift in Sources */,
 				E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */,
@@ -1125,7 +1101,6 @@
 				E9F4A0C220A9A7DE0019A9F6 /* AllSchedules.swift in Sources */,
 				E8C2866923C6362F0032DCE0 /* Validatenewconfigs.swift in Sources */,
 				E9BC4DE7230277A10058CB52 /* ExecuteTaskNow.swift in Sources */,
-				E9433866265EB7D200F73B07 /* ConfigurationSchedulePLIST.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,
 				E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */,
 				E92755A42130506000B1F781 /* Dateandtime.swift in Sources */,
@@ -1148,15 +1123,12 @@
 				E8EC68F82576909400A71383 /* MainWindowsController.swift in Sources */,
 				A091C65B1D86A59500278E74 /* RestorefilesTask.swift in Sources */,
 				E959F7DC257964B400A9830F /* Toolbar.swift in Sources */,
-				E9433863265EB7D200F73B07 /* ConfigurationPLIST.swift in Sources */,
 				E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */,
 				A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */,
 				E9F5CED2265F5F090064618B /* TrimOne.swift in Sources */,
 				E95727A827BB847A00E726E6 /* DecodeUserConfiguration.swift in Sources */,
 				A04492B41D658F2100B3CE17 /* RestorefilesArguments.swift in Sources */,
-				E9433865265EB7D200F73B07 /* ReadConfigurationsPLIST.swift in Sources */,
 				A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */,
-				E9433864265EB7D200F73B07 /* ReadSchedulesPLIST.swift in Sources */,
 				E915568625284F2A007573E1 /* Assist.swift in Sources */,
 				E80A6FFA257E2B120093AB29 /* RemoteCapacity.swift in Sources */,
 				A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */,
