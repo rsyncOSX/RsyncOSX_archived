@@ -115,6 +115,8 @@ struct UserConfiguration: Codable {
         sshport = data.sshport
         environment = data.environment
         environmentvalue = data.environmentvalue
+        pathrsyncosx = data.pathrsyncosx
+        pathrsyncosxsched = data.pathrsyncosxsched
         // Set user configdata read from permanent store
         setuserconfigdata()
     }
@@ -142,13 +144,6 @@ struct UserConfiguration: Codable {
         } else {
             fulllogging = -1
         }
-        /*
-         if SharedReference.shared.nologging {
-             nologging = 1
-         } else {
-             nologging = -1
-         }
-          */
         if SharedReference.shared.monitornetworkconnection {
             monitornetworkconnection = 1
         } else {
@@ -176,6 +171,12 @@ struct UserConfiguration: Codable {
         }
         if SharedReference.shared.environmentvalue != nil {
             environmentvalue = SharedReference.shared.environmentvalue
+        }
+        if SharedReference.shared.pathrsyncosx != nil {
+            pathrsyncosx = SharedReference.shared.pathrsyncosx
+        }
+        if SharedReference.shared.pathrsyncosxsched != nil {
+            pathrsyncosxsched = SharedReference.shared.pathrsyncosxsched
         }
     }
 }

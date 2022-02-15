@@ -180,7 +180,8 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             SharedReference.shared.macosarm = false
         }
         // Must read userconfig when loading main view, view only load once
-        ReadUserConfigurationPLIST()
+        // ReadUserConfigurationPLIST()
+        ReadUserConfigurationJSON()
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.allowsMultipleSelection = true

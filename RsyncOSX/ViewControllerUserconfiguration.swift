@@ -116,7 +116,8 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
             setmarknumberofdayssince()
             setEnvironment()
             setsshparameters()
-            WriteUserConfigurationPLIST()
+            // WriteUserConfigurationPLIST()
+            WriteUserConfigurationJSON(UserConfiguration())
             if reload {
                 // Do a reload of config data
                 _ = Selectprofile(profile: configurations?.getProfile(), selectedindex: nil)

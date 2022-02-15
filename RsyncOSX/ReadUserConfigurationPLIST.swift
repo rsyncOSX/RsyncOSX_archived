@@ -138,7 +138,7 @@ final class ReadUserConfigurationPLIST: NamesandPaths {
                         }
                     }
                     guard userconfig.count > 0 else { return }
-                    setuserconfiguration(userconfig[0])
+                    // setuserconfiguration(userconfig[0])
                 }
                 subscriptons.removeAll()
             }).store(in: &subscriptons)

@@ -42,5 +42,7 @@ class ReadUserConfigurationJSON: NamesandPaths {
                 UserConfiguration(data)
                 subscriptons.removeAll()
             }.store(in: &subscriptons)
+        _ = Setrsyncpath()
+        _ = RsyncVersionString()
     }
 }

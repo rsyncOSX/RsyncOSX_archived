@@ -6,6 +6,8 @@
 //
 // swiftlint:disable line_length function_body_length cyclomatic_complexity trailing_comma
 
+// NOT USED ANYMORE
+
 import Foundation
 
 final class WriteUserConfigurationPLIST: NamesandPaths {

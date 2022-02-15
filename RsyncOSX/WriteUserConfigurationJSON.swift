@@ -21,6 +21,10 @@ class WriteUserConfigurationJSON: NamesandPaths {
                 if let data = data {
                     try file.write(data)
                 }
+                if SharedReference.shared.menuappisrunning {
+                    Notifications().showNotification("Sending reload message to menu app")
+                    DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("no.blogspot.RsyncOSX.reload"), object: nil, deliverImmediately: true)
+                }
             } catch let e {
                 let error = e as NSError
                 self.error(errordescription: error.description, errortype: .readerror)
