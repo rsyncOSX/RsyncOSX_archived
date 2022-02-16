@@ -106,6 +106,12 @@ extension VcMain {
         return (sheetviewstoryboard?.instantiateController(withIdentifier: "RsyncCommand")
             as? NSViewController)
     }
+
+    // Schedules view
+    var schedulesview: NSViewController? {
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "ViewControllertabSchedule")
+            as? NSViewController)
+    }
 }
 
 // Protocol for dismissing a viewcontroller
