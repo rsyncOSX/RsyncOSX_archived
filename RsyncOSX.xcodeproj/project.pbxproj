@@ -584,8 +584,6 @@
 				A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */,
 				A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */,
 				A004D8191D9586580016914F /* ViewControllerLoggData.swift */,
-				A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */,
-				E93ADA6A24F0F09000AC1ADB /* extensionVCSchedule */,
 				E94649662313121000ADDF22 /* extensionVCMain */,
 			);
 			name = Tabviews;
@@ -607,6 +605,8 @@
 				E996431B231AEFA100E05B40 /* ViewControllerSource.swift */,
 				E9591FD9252654EB00F2F95A /* ViewControllerAssist.swift */,
 				E9FD80592574EAE8003E1AA2 /* ViewControllerRsyncCommand.swift */,
+				A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */,
+				E93ADA6A24F0F09000AC1ADB /* extensionVCSchedule */,
 			);
 			name = Sheetviews;
 			sourceTree = "<group>";

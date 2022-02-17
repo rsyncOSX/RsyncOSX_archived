@@ -68,35 +68,6 @@ extension ViewControllerNewConfigurations {
     }
 }
 
-extension ViewControllerSchedule {
-    // Toolbar -  Find tasks and Execute backup
-    @IBAction func automaticbackup(_: NSButton) {
-        guard checkforrsync() == false else { return }
-        guard SharedReference.shared.process == nil else { return }
-        presentAsSheet(viewControllerEstimating!)
-    }
-
-    // Toolbar - Estimate and Quickbackup
-    @IBAction func totinfo(_: NSButton) {
-        guard checkforrsync() == false else { return }
-        guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
-        }
-    }
-
-    // Toolbar - Userconfiguration button
-    @IBAction func userconfiguration(_: NSButton) {
-        guard SharedReference.shared.process == nil else { return }
-        presentAsModalWindow(viewControllerUserconfiguration!)
-    }
-
-    // Toolbar - All ouput
-    @IBAction func alloutput(_: NSButton) {
-        presentAsModalWindow(viewControllerAllOutput!)
-    }
-}
-
 extension ViewControllerSnapshots {
     // Toolbar -  Find tasks and Execute backup
     @IBAction func automaticbackup(_: NSButton) {
