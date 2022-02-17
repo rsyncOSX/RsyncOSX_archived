@@ -43,6 +43,15 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var statuslightsshkeypath: NSImageView!
     @IBOutlet var monitornetworkconnection: NSButton!
+    @IBOutlet var enableschedules: NSButton!
+    
+    @IBAction func toggleenableschedules(_: NSButton) {
+        if enableschedules.state.rawValue == 1 {
+            SharedReference.shared.enableschdules = true
+        } else {
+            SharedReference.shared.enableschdules = false
+        }
+    }
 
     @IBAction func copyconfigfiles(_: NSButton) {
         _ = Backupconfigfiles()

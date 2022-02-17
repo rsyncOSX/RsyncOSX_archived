@@ -512,11 +512,23 @@ DQ
                                     <action selector="copyconfigfiles:" target="5ZM-Hb-7h1" id="qVI-pw-Obg"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJy-fr-gR4">
+                                <rect key="frame" x="418" y="224" width="137" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Enable schedules" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sFl-xn-sSZ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleenableschedules:" target="5ZM-Hb-7h1" id="ui3-aH-Iqr"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="detailedlogging" destination="ca5-HV-4JV" id="uUd-eI-Sih"/>
                         <outlet property="enableenvironment" destination="1tb-B6-k5E" id="bqq-AE-WUm"/>
+                        <outlet property="enableschedules" destination="MJy-fr-gR4" id="zDe-fd-mcI"/>
                         <outlet property="environment" destination="saE-Bc-TM5" id="kLP-Ay-U4n"/>
                         <outlet property="environmentvalue" destination="77H-ns-Z9k" id="O8f-i0-J4c"/>
                         <outlet property="fulllogging" destination="bam-ho-f35" id="jm6-yY-uki"/>
@@ -543,7 +555,7 @@ DQ
                 </viewController>
                 <customObject id="M3X-Kw-asJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320" y="-1107"/>
+            <point key="canvasLocation" x="319.5" y="-1107.5"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Oca-h6-WBt">
@@ -1204,7 +1216,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="oTG-dZ-vLI">
-                                                            <rect key="frame" x="443.5" y="1" width="232" height="20"/>
+                                                            <rect key="frame" x="444" y="1" width="232" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2y-Ka-0se">
@@ -1236,7 +1248,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="dsQ-7K-RHQ">
-                                                            <rect key="frame" x="678.5" y="1" width="55" height="20"/>
+                                                            <rect key="frame" x="679" y="1" width="55" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-Oh-T0L">
