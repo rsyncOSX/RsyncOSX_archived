@@ -99,8 +99,6 @@ extension ViewControllerEstimatingTasks: StartStopProgressIndicator {
         weak var openDelegate: OpenQuickBackup?
         if (presentingViewController as? ViewControllerMain) != nil {
             openDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        } else if (presentingViewController as? ViewControllerSchedule) != nil {
-            openDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
         } else if (presentingViewController as? ViewControllerNewConfigurations) != nil {
             openDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
         } else if (presentingViewController as? ViewControllerRestore) != nil {

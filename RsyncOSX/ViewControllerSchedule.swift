@@ -19,8 +19,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
     var schedule: Scheduletype?
     // Scheduleetails
     var scheduledetails: [NSMutableDictionary]?
-    // Send messages to the sidebar
-    weak var sidebaractionsDelegate: Sidebaractions?
     var addschduleisallowed = false
     var configurations: Estimatedlistforsynchronization?
 
@@ -30,33 +28,29 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
     @IBOutlet var scheduletabledetails: NSTableView!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
-    @IBAction func showHelp(_: AnyObject?) {
-        help()
-    }
-
     // Sidebar Once
-    func once() {
+    @IBAction func once(_: NSButton) {
         guard addschduleisallowed else { return }
         schedule = .once
         addschedule()
     }
 
     // Sidebar Daily
-    func daily() {
+    @IBAction func daily(_: NSButton) {
         guard addschduleisallowed else { return }
         schedule = .daily
         addschedule()
     }
 
     // Sidebar Weekly
-    func weekly() {
+    @IBAction func weekly(_: NSButton) {
         guard addschduleisallowed else { return }
         schedule = .weekly
         addschedule()
     }
 
     // Sidebar update
-    func update() {
+    @IBAction func update(_: NSButton) {
         schedulesobject?.deleteandstopschedules(data: scheduledetails)
         reloadtabledata()
     }
@@ -108,13 +102,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
         }
     }
 
-    // Selecting profiles
-    @IBAction func profiles(_: NSButton) {
-        globalMainQueue.async { () in
-            self.presentAsSheet(self.viewControllerProfile!)
-        }
-    }
-
     @IBOutlet var startdate: NSDatePicker!
     @IBOutlet var starttime: NSDatePicker!
     @IBOutlet var selectedstart: NSTextField!
@@ -133,8 +120,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, VcMain, Check
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        sidebaractionsDelegate?.sidebaractions(action: .scheduleviewbuttons)
         info.stringValue = Infoschedule().info(num: 0)
         selectedstart.isHidden = true
         startdate.dateValue = Date()
@@ -221,30 +206,5 @@ extension ViewControllerSchedule: DeselectRowTable {
     func deselect() {
         guard index != nil else { return }
         scheduletable.deselectRow(index!)
-    }
-}
-
-extension ViewControllerSchedule: OpenQuickBackup {
-    func openquickbackup() {
-        globalMainQueue.async { () in
-            self.presentAsSheet(self.viewControllerQuickBackup!)
-        }
-    }
-}
-
-extension ViewControllerSchedule: Sidebarbuttonactions {
-    func sidebarbuttonactions(action: Sidebaractionsmessages) {
-        switch action {
-        case .Once:
-            once()
-        case .Daily:
-            daily()
-        case .Weekly:
-            weekly()
-        case .Update:
-            update()
-        default:
-            return
-        }
     }
 }
