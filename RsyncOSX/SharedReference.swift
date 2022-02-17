@@ -123,6 +123,8 @@ final class SharedReference {
     var firsttime = false
     // if new version
     var newversionofrsyncosx = false
+    // enable schdules
+    var enableschdules = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?

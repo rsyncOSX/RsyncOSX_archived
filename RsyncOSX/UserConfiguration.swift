@@ -32,6 +32,8 @@ struct UserConfiguration: Codable {
     // Paths
     var pathrsyncosx: String?
     var pathrsyncosxsched: String?
+    // Énable schedules
+    var enableschdules: Int?
 
     private func setuserconfigdata() {
         if rsyncversion3 == 1 {
@@ -97,6 +99,15 @@ struct UserConfiguration: Codable {
         if pathrsyncosxsched != nil {
             SharedReference.shared.pathrsyncosxsched = pathrsyncosxsched
         }
+        if let enableschdules = enableschdules {
+            if enableschdules == 1 {
+                SharedReference.shared.enableschdules = true
+            } else {
+                SharedReference.shared.enableschdules = false
+            }
+        } else {
+            SharedReference.shared.enableschdules = false
+        }
     }
 
     // Used when reading JSON data from store
@@ -117,6 +128,7 @@ struct UserConfiguration: Codable {
         environmentvalue = data.environmentvalue
         pathrsyncosx = data.pathrsyncosx
         pathrsyncosxsched = data.pathrsyncosxsched
+        enableschdules = data.enableschdules ?? -1
         // Set user configdata read from permanent store
         setuserconfigdata()
     }
@@ -177,6 +189,11 @@ struct UserConfiguration: Codable {
         }
         if SharedReference.shared.pathrsyncosxsched != nil {
             pathrsyncosxsched = SharedReference.shared.pathrsyncosxsched
+        }
+        if SharedReference.shared.enableschdules {
+            enableschdules = 1
+        } else {
+            enableschdules = -1
         }
     }
 }

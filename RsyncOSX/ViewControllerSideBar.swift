@@ -214,7 +214,11 @@ extension ViewControllerSideBar: Sidebaractions {
             button2.isHidden = false
             button3.isHidden = false
             button4.isHidden = false
-            button5.isHidden = false
+            if SharedReference.shared.enableschdules {
+                button5.isHidden = false
+            } else {
+                button5.isHidden = true
+            }
             button1.title = NSLocalizedString("Change", comment: "Sidebar")
             button2.title = NSLocalizedString("Parameter", comment: "Sidebar")
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
