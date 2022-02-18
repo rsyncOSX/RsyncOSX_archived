@@ -480,10 +480,10 @@ DQ
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="Monitor network connection" translatesAutoresizingMaskIntoConstraints="NO" id="42J-7j-3md">
-                                <rect key="frame" x="397" y="257" width="165" height="50"/>
+                                <rect key="frame" x="397" y="260" width="165" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="PIU-Xw-hUY">
-                                    <rect key="frame" x="3" y="3" width="159" height="32"/>
+                                    <rect key="frame" x="3" y="3" width="159" height="29"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </box>
@@ -512,17 +512,27 @@ DQ
                                     <action selector="copyconfigfiles:" target="5ZM-Hb-7h1" id="qVI-pw-Obg"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJy-fr-gR4">
-                                <rect key="frame" x="418" y="224" width="137" height="18"/>
+                            <box fixedFrame="YES" title="Enable schedules" translatesAutoresizingMaskIntoConstraints="NO" id="eV8-7g-ms7">
+                                <rect key="frame" x="399" y="206" width="163" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Enable schedules" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sFl-xn-sSZ">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="toggleenableschedules:" target="5ZM-Hb-7h1" id="ui3-aH-Iqr"/>
-                                </connections>
-                            </button>
+                                <view key="contentView" id="imw-Sn-0DF">
+                                    <rect key="frame" x="3" y="3" width="157" height="35"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJy-fr-gR4">
+                                            <rect key="frame" x="18" y="10" width="137" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Enable" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sFl-xn-sSZ">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="toggleenableschedules:" target="5ZM-Hb-7h1" id="ui3-aH-Iqr"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -1216,7 +1226,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="oTG-dZ-vLI">
-                                                            <rect key="frame" x="444" y="1" width="232" height="20"/>
+                                                            <rect key="frame" x="443.5" y="1" width="232" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2y-Ka-0se">
@@ -1248,7 +1258,7 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="dsQ-7K-RHQ">
-                                                            <rect key="frame" x="679" y="1" width="55" height="20"/>
+                                                            <rect key="frame" x="678.5" y="1" width="55" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJy-Oh-T0L">

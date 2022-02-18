@@ -44,13 +44,14 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
     @IBOutlet var statuslightsshkeypath: NSImageView!
     @IBOutlet var monitornetworkconnection: NSButton!
     @IBOutlet var enableschedules: NSButton!
-    
+
     @IBAction func toggleenableschedules(_: NSButton) {
         if enableschedules.state.rawValue == 1 {
             SharedReference.shared.enableschdules = true
         } else {
             SharedReference.shared.enableschdules = false
         }
+        setdirty()
     }
 
     @IBAction func copyconfigfiles(_: NSButton) {
@@ -452,6 +453,11 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
             monitornetworkconnection.state = .on
         } else {
             monitornetworkconnection.state = .off
+        }
+        if SharedReference.shared.enableschdules {
+            enableschedules.state = .on
+        } else {
+            enableschedules.state = .off
         }
     }
 }
