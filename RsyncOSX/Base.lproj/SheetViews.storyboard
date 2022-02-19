@@ -522,7 +522,7 @@ DQ
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJy-fr-gR4">
                                             <rect key="frame" x="18" y="10" width="137" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Enable" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sFl-xn-sSZ">
+                                            <buttonCell key="cell" type="check" title="Schedules" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sFl-xn-sSZ">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
