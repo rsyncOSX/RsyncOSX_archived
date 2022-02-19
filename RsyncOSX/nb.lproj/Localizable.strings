@@ -11,12 +11,8 @@
 "Aborting delete operation..." = "Avslutter slette operasjon...";
 
 /* Add schedule
-   New
    Sidebar */
 "Add" = "Legg til";
-
-/* New */
-"Add config?" = "Legge til?";
 
 /* Add schedule */
 "Add Schedule?" = "Legg til oppgave?";
@@ -33,23 +29,11 @@
 /* Add schedule */
 "Cancel or Add" = "Avbryt eller legg til";
 
-/* Userconfig */
-"Cancel or Continue?" = "Avbryt eller Fortsett?";
-
 /* Execute
    Logg
    Profiles
    Snapshots */
 "Cancel or Delete" = "Avbryt eller slett";
-
-/* Userconfig */
-"Cancel or Reboot?" = "Avbryte eller omstart?";
-
-/* Restore */
-"Cancel or Restore" = "Avbryt eller gjenopprette";
-
-/* Logg */
-"Cancel or Save" = "Avbryt eller Lagre";
 
 /* Restore */
 "Cannot copy from a syncremote task..." = "Kan ikke gjenopprett fra syncremote...";
@@ -72,9 +56,6 @@
 /* Sidebar */
 "Command" = "Kommando";
 
-/* Userconfig */
-"Continue" = "Fortsett";
-
 /* Restore */
 "Copy single files or directory?" = "Gjenopprett fil eller katalog?";
 
@@ -86,9 +67,6 @@
 
 /* main */
 "daily" = "daglig";
-
-/* Sidebar */
-"Daily" = "Daglig";
 
 /* Remote Info */
 "Date last synchronize:" = "Dato siste synkronisering:";
@@ -129,9 +107,6 @@
 /* Snapshots */
 "Do you REALLY want to delete selected snapshots" = "Vil du slette valgte snapshots";
 
-/* Restore */
-"Do you REALLY want to start a restore?" = "Vi du starte en full gjenopprett?";
-
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ikke endre snapshot nummer hvis du ikke vet hva du gjør...";
 
@@ -171,9 +146,6 @@
 /* Toolbar */
 "Execute selected tasks..." = "Utfør valgt oppgaver...";
 
-/* Restore */
-"Executing restore..." = "Utfører gjenopprett...";
-
 /* Execute */
 "Executing..." = "Utfører...";
 
@@ -183,26 +155,11 @@
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Liste over filer i snapshot oppgaver kan være stor?";
 
-/* Userconfig */
-"Format of config files is about to be changed to JSON." = "Formatet på konfigurasjonsfiler er i ferd med å bli endret til JSON.";
-
-/* Userconfig */
-"Format of config files is about to be changed to PLIST." = "Formatet til konfigurasjonsfiler er i ferd med å bli endret til PLIST.";
-
 /* plan */
 "Friday" = "fredag";
 
 /* german */
 "German translation by: Andre Voigtmann" = "Tysk oversettelse av: Andre Voigtmann";
-
-/* Restore */
-"Getting info, please wait..." = "Henter informasjon, vennligst vent...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Hentet index fra Snapshots og lister logg for en konfigurasjon...";
-
-/* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "Hentet index fra Synkroniser og lister logg for en konfigurasjon...";
 
 /* Schedules */
 "Got index from Synchronize..." = "Hentet index fra Synkroniser...";
@@ -219,17 +176,11 @@
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Italinsk oversettelse av: Stefano Steve Cutelle'";
 
-/* Logg */
-"JSON file exists: " = "JSON filen finnes: ";
-
 /* plan */
 "Keep" = "Behold";
 
 /* plan */
 "last" = "siste";
-
-/* Toolbar */
-"List all profiles and configurations..." = "List alle profiler og konfigurasjoner...";
 
 /* No comment provided by engineer. */
 "Load" = "Last";
@@ -251,9 +202,6 @@
 
 /* plan */
 "Monday" = "mandag";
-
-/* Userconfig */
-"New format is not equal to current." = "Nytt format er ikke lik gjeldende format.";
 
 /* Execute */
 "New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
@@ -285,9 +233,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Ikke en snapshot oppgave...";
 
-/* AllProfiles */
-"Number of configurations:" = "Antall konfigurasjoner:";
-
 /* Logg */
 "Number of logs:" = "Antall logger:";
 
@@ -304,28 +249,13 @@
 "once" = "engang";
 
 /* Sidebar */
-"Once" = "Engang";
-
-/* Sidebar */
 "Parameter" = "Parameter";
-
-/* Logg */
-"PLIST file exists: " = "PLIST-fil finnes: ";
 
 /* Execute */
 "Possible error logging..." = "Mulig feil logging...";
 
 /* plan */
 "previous month" = "forrige måned";
-
-/* Execute */
-"Profile:" = "Profil:";
-
-/* Execute */
-"Profile: please wait..." = "Profil: vennligst vent...";
-
-/* Userconfig */
-"Reboot" = "Omstart";
 
 /* Sidebar */
 "Remote" = "Ekstern";
@@ -346,8 +276,7 @@
 /* plan */
 "Saturday" = "lørdag";
 
-/* Logg
-   Sidebar
+/* Sidebar
    Userconfig */
 "Save" = "Lagre";
 
@@ -367,6 +296,9 @@
 
 /* Execute */
 "Select a task...." = "Velg en oppgave...";
+
+/* No comment provided by engineer. */
+"select catalog" = "velg catalog";
 
 /* Execute */
 "Select one or more tasks..." = "Velg en eller flere oppgaver...";
@@ -402,12 +334,6 @@
 /* Sidebar */
 "Tag" = "Tag";
 
-/* Execute */
-"The menu app" = "Meny app";
-
-/* New */
-"This is added before?" = "Denne er lagt til tidligere?";
-
 /* plan */
 "this month" = "denne måned";
 
@@ -420,17 +346,14 @@
 /* plan */
 "Tuesday" = "tirsdag";
 
-/* Sidebar */
-"Update" = "Oppdater";
-
 /* plan */
 "Wednesday" = "onsdag";
 
 /* main */
 "weekly" = "ukentlig";
 
-/* Sidebar */
-"Weekly" = "Ukentlig";
+/* Main */
+"Welcome to RsyncOSX" = "Velkommen til RsyncOSX";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kan ikke slette så mange, max er";
