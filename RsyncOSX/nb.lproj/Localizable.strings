@@ -286,6 +286,9 @@
 /* Schedules */
 "Scheduled tasks in menu app..." = "Planlagte oppgaver i meny app...";
 
+/* Sidebar */
+"Schedules" = "Oppgaver";
+
 /* Copy files
    Remote Info
    Verify */
@@ -360,6 +363,4 @@
 
 /* About */
 "You have the latest ..." = "Du har siste versjon...";
-
-"Schedules" = "Oppgaver";
 

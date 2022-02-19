@@ -50,7 +50,7 @@
 "5Yz-zB-bJ2.headerCell.title" = "Lokal katalog";
 
 /* Class = "NSViewController"; title = "Configuration"; ObjectID = "5ZM-Hb-7h1"; */
-"5ZM-Hb-7h1.title" = "View Controller Configuration";
+"5ZM-Hb-7h1.title" = "Konfigurasjon";
 
 /* Class = "NSTextFieldCell"; title = "All rights reserved."; ObjectID = "6Dd-GG-IMP"; */
 "6Dd-GG-IMP.title" = "Alle rettigheter forbeholdt.";
@@ -90,6 +90,9 @@
 
 /* Class = "NSBox"; title = "Monitor network connection"; ObjectID = "42J-7j-3md"; */
 "42J-7j-3md.title" = "Overvåk nettverkstilkobling";
+
+/* Class = "NSTableColumn"; headerCell.title = "Start date"; ObjectID = "a0l-Ae-D89"; */
+"a0l-Ae-D89.headerCell.title" = "Start dato";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "aGI-eL-V5x"; */
 "aGI-eL-V5x.title" = "Text Cell";
@@ -409,6 +412,9 @@
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "RDM-U3-FSK"; */
 "RDM-U3-FSK.title" = "Table View Cell";
 
+/* Class = "NSTableColumn"; headerCell.title = "Stop"; ObjectID = "rks-Yu-KY3"; */
+"rks-Yu-KY3.headerCell.title" = "Stopp";
+
 /* Class = "NSButtonCell"; title = "pretask"; ObjectID = "roF-Ec-44Z"; */
 "roF-Ec-44Z.title" = "pretask";
 
@@ -420,6 +426,9 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Task"; ObjectID = "sBv-bG-KFA"; */
 "sBv-bG-KFA.headerCell.title" = "Oppgave";
+
+/* Class = "NSButtonCell"; title = "Schedules"; ObjectID = "sFl-xn-sSZ"; */
+"sFl-xn-sSZ.title" = "Oppgaver";
 
 /* Class = "NSBox"; title = "Basic info"; ObjectID = "Sl0-qk-unj"; */
 "Sl0-qk-unj.title" = "Informasjon";
