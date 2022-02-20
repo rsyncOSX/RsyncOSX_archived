@@ -11,12 +11,8 @@
 "Aborting delete operation..." = "Löschvorgang wird abgebrochen...";
 
 /* Add schedule
-   New
    Sidebar */
 "Add" = "Neu";
-
-/* New */
-"Add config?" = "Konfiguration hinzufügen?";
 
 /* Add schedule */
 "Add Schedule?" = "Zeitplan hinzufügen?";
@@ -33,23 +29,11 @@
 /* Add schedule */
 "Cancel or Add" = "Abbrechen oder hinzufügen";
 
-/* Userconfig */
-"Cancel or Continue?" = "Abbrechen oder fortfahren?";
-
 /* Execute
    Logg
    Profiles
    Snapshots */
 "Cancel or Delete" = "Abbrechen oder Löschen";
-
-/* Userconfig */
-"Cancel or Reboot?" = "Abbrechen oder Neustarten?";
-
-/* Restore */
-"Cancel or Restore" = "Abbrechen oder Wiederherstellen";
-
-/* Logg */
-"Cancel or Save" = "Abbrechen oder Speichern";
 
 /* Restore */
 "Cannot copy from a syncremote task..." = "Kann nicht von einer syncremote Aufgabe kopieren...";
@@ -72,9 +56,6 @@
 /* Sidebar */
 "Command" = "Befehl";
 
-/* Userconfig */
-"Continue" = "Fortfahren";
-
 /* Restore */
 "Copy single files or directory?" = "Einzelne Dateien oder Ordner kopieren?";
 
@@ -86,9 +67,6 @@
 
 /* main */
 "daily" = "täglich";
-
-/* Sidebar */
-"Daily" = "Täglich";
 
 /* Remote Info */
 "Date last synchronize:" = "Datum der letzten Synchronisierung:";
@@ -129,9 +107,6 @@
 /* Snapshots */
 "Do you REALLY want to delete selected snapshots" = "Möchten Sie die ausgewählten Schnappschüsse LÖSCHEN";
 
-/* Restore */
-"Do you REALLY want to start a restore?" = "Willst du EIN WIEDERHERSTELLEN starten?";
-
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Ändern Sie nicht das Snapshot-Num, wenn Sie nicht wissen, was Sie tun...";
 
@@ -171,9 +146,6 @@
 /* Toolbar */
 "Execute selected tasks..." = "Ausgewählte Tasks ausführen...";
 
-/* Restore */
-"Executing restore..." = "Wiederherstellung wird ausgeführt...";
-
 /* Execute */
 "Executing..." = "Wird ausgeführt...";
 
@@ -183,26 +155,11 @@
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Die Liste für Snapshot-Aufgaben könnte enorm sein?";
 
-/* Userconfig */
-"Format of config files is about to be changed to JSON." = "Das Format der Konfigurationsdateien wird in JSON geändert.";
-
-/* Userconfig */
-"Format of config files is about to be changed to PLIST." = "Das Format der Konfigurationsdateien wird in PLIST geändert.";
-
 /* plan */
 "Friday" = "Freitag";
 
 /* german */
 "German translation by: Andre Voigtmann" = "Deutsche Übersetzung von: Andre Voigtmann";
-
-/* Restore */
-"Getting info, please wait..." = "Info wird abgerufen, bitte warten...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Index aus Snapshots und Listing-Logs für eine Konfiguration...";
-
-/* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "Index aus Synchronisier und Auflistung von Logs für eine Konfiguration...";
 
 /* Schedules */
 "Got index from Synchronize..." = "Index von Synchronisier...";
@@ -219,17 +176,11 @@
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Italienische Übersetzung von: Stefano Steve Cutelle'";
 
-/* Logg */
-"JSON file exists: " = "JSON-Datei existiert: ";
-
 /* plan */
 "Keep" = "Behalten";
 
 /* plan */
 "last" = "zuletzt";
-
-/* Toolbar */
-"List all profiles and configurations..." = "Alle Profile und Konfigurationen auflisten...";
 
 /* No comment provided by engineer. */
 "Load" = "Laden";
@@ -251,9 +202,6 @@
 
 /* plan */
 "Monday" = "Montag";
-
-/* Userconfig */
-"New format is not equal to current." = "Das neue Format entspricht nicht dem aktuelle.";
 
 /* Execute */
 "New version is available - see About" = "Neue Version ist verfügbar - siehe Über";
@@ -285,9 +233,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Keine snapshot aufgabe...";
 
-/* AllProfiles */
-"Number of configurations:" = "Anzahl der Konfigurationen:";
-
 /* Logg */
 "Number of logs:" = "Anzahl der Logs:";
 
@@ -304,28 +249,13 @@
 "once" = "einmal";
 
 /* Sidebar */
-"Once" = "Einmalig";
-
-/* Sidebar */
 "Parameter" = "Parameter";
-
-/* Logg */
-"PLIST file exists: " = "JSON-Datei existiert: ";
 
 /* Execute */
 "Possible error logging..." = "Mögliche Fehlermeldung...";
 
 /* plan */
 "previous month" = "vorheriger Monat";
-
-/* Execute */
-"Profile:" = "Profil:";
-
-/* Execute */
-"Profile: please wait..." = "Profil: Bitte warten...";
-
-/* Userconfig */
-"Reboot" = "Neustart";
 
 /* Sidebar */
 "Remote" = "Remote";
@@ -346,8 +276,7 @@
 /* plan */
 "Saturday" = "Samstag";
 
-/* Logg
-   Sidebar
+/* Sidebar
    Userconfig */
 "Save" = "Speichern";
 
@@ -402,12 +331,6 @@
 /* Sidebar */
 "Tag" = "Tag";
 
-/* Execute */
-"The menu app" = "Die Menü-App";
-
-/* New */
-"This is added before?" = "Dies wird vorher hinzugefügt?";
-
 /* plan */
 "this month" = "in diesem Monat";
 
@@ -420,17 +343,11 @@
 /* plan */
 "Tuesday" = "Dienstag";
 
-/* Sidebar */
-"Update" = "Aktualisieren";
-
 /* plan */
 "Wednesday" = "Mittwoch";
 
 /* main */
 "weekly" = "wöchentlich";
-
-/* Sidebar */
-"Weekly" = "Wöchentlich";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Du kannst nicht so viele löschen, maximal";
