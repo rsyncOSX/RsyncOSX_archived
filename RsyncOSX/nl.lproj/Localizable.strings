@@ -11,12 +11,8 @@
 "Aborting delete operation..." = "Verwijderen operatie afbreken...";
 
 /* Add schedule
-   New
    Sidebar */
 "Add" = "Toevoegen";
-
-/* New */
-"Add config?" = "Configuratie toevoegen?";
 
 /* Add schedule */
 "Add Schedule?" = "Schema toevoegen?";
@@ -33,23 +29,11 @@
 /* Add schedule */
 "Cancel or Add" = "Annuleren of toevoegen";
 
-/* Userconfig */
-"Cancel or Continue?" = "Annuleren of doorgaan?";
-
 /* Execute
    Logg
    Profiles
    Snapshots */
 "Cancel or Delete" = "Annuleren of verwijderen";
-
-/* Userconfig */
-"Cancel or Reboot?" = "Annuleren of herstarten?";
-
-/* Restore */
-"Cancel or Restore" = "Annuleren of herstellen";
-
-/* Logg */
-"Cancel or Save" = "Annuleren of opslaan";
 
 /* Restore */
 "Cannot copy from a syncremote task..." = "Kan niet kopiëren van een syncremote taak...";
@@ -72,9 +56,6 @@
 /* Sidebar */
 "Command" = "Commando";
 
-/* Userconfig */
-"Continue" = "Doorgaan";
-
 /* Restore */
 "Copy single files or directory?" = "Enkelbestanden of map kopiëren?";
 
@@ -86,9 +67,6 @@
 
 /* main */
 "daily" = "dagelijks";
-
-/* Sidebar */
-"Daily" = "Dagelijks";
 
 /* Remote Info */
 "Date last synchronize:" = "Dagen sinds laatste synchronisatie:";
@@ -129,9 +107,6 @@
 /* Snapshots */
 "Do you REALLY want to delete selected snapshots" = "Wilt u de geselecteerde items werkelijk verwijderen";
 
-/* Restore */
-"Do you REALLY want to start a restore?" = "Wil je echt een herstel starten?";
-
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Verander de snapshot num niet als je niet «re weet wat je doet...";
 
@@ -171,9 +146,6 @@
 /* Toolbar */
 "Execute selected tasks..." = "Geselecteerde taken uitvoeren...";
 
-/* Restore */
-"Executing restore..." = "Herstellen uitvoeren...";
-
 /* Execute */
 "Executing..." = "Uitvoeren...";
 
@@ -183,26 +155,11 @@
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "Bestandslijst voor snapshot taken kan enorm zijn?";
 
-/* Userconfig */
-"Format of config files is about to be changed to JSON." = "Opmaak van configuratiebestanden is bezig te worden gewijzigd naar JSON.";
-
-/* Userconfig */
-"Format of config files is about to be changed to PLIST." = "Opmaak van configuratiebestanden is bezig te worden gewijzigd naar PLIST.";
-
 /* plan */
 "Friday" = "vrijdag";
 
 /* german */
 "German translation by: Andre Voigtmann" = "Duitse vertaling door: Andre Voigtmann";
-
-/* Restore */
-"Getting info, please wait..." = "Gegevens ophalen, een ogenblik aub...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Kreeg index uit Snapshots en het vermelden van logs voor één configuratie...";
-
-/* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "Kreeg index bij synchroniseren en vermelden van logs voor één configuratie...";
 
 /* Schedules */
 "Got index from Synchronize..." = "Kreeg index van synchronisatie...";
@@ -219,17 +176,11 @@
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Italiaanse vertaling door: Stefano Cutelle'";
 
-/* Logg */
-"JSON file exists: " = "JSON bestand bestaat: ";
-
 /* plan */
 "Keep" = "Behouden";
 
 /* plan */
 "last" = "laatste";
-
-/* Toolbar */
-"List all profiles and configurations..." = "Alle profielen en configuraties weergeven...";
 
 /* No comment provided by engineer. */
 "Load" = "Belasting";
@@ -251,9 +202,6 @@
 
 /* plan */
 "Monday" = "maandag";
-
-/* Userconfig */
-"New format is not equal to current." = "Nieuwe indeling is niet gelijk aan huidige.";
 
 /* Execute */
 "New version is available - see About" = "Nieuwe versie is beschikbaar - zie over";
@@ -285,9 +233,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Not a snapshot task...";
 
-/* AllProfiles */
-"Number of configurations:" = "Aantal configuraties:";
-
 /* Logg */
 "Number of logs:" = "Aantal logs:";
 
@@ -304,28 +249,13 @@
 "once" = "eenmalig";
 
 /* Sidebar */
-"Once" = "Eenmalig";
-
-/* Sidebar */
 "Parameter" = "Masker";
-
-/* Logg */
-"PLIST file exists: " = "PLIST bestand bestaat: ";
 
 /* Execute */
 "Possible error logging..." = "Mogelijke fout loggen...";
 
 /* plan */
 "previous month" = "vorige maand";
-
-/* Execute */
-"Profile:" = "Profiel:";
-
-/* Execute */
-"Profile: please wait..." = "Profiel: even geduld...";
-
-/* Userconfig */
-"Reboot" = "Herstarten";
 
 /* Sidebar */
 "Remote" = "Extern";
@@ -346,8 +276,7 @@
 /* plan */
 "Saturday" = "zaterdag";
 
-/* Logg
-   Sidebar
+/* Sidebar
    Userconfig */
 "Save" = "Opslaan";
 
@@ -402,12 +331,6 @@
 /* Sidebar */
 "Tag" = "Tag";
 
-/* Execute */
-"The menu app" = "De menu app";
-
-/* New */
-"This is added before?" = "Dit is al eerder toegevoegd?";
-
 /* plan */
 "this month" = "deze maand";
 
@@ -420,17 +343,11 @@
 /* plan */
 "Tuesday" = "dinsdag";
 
-/* Sidebar */
-"Update" = "Vernieuwen";
-
 /* plan */
 "Wednesday" = "woensdag";
 
 /* main */
 "weekly" = "wekelijks";
-
-/* Sidebar */
-"Weekly" = "Wekelijks";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "U kunt niet verwijderen zoveel max.";
