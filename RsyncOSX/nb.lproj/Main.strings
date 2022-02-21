@@ -13,9 +13,6 @@
 /* Class = "NSMenuItem"; title = "RsyncOSX"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "RsyncOSX";
 
-/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "1Yh-6C-SGM"; */
-"1Yh-6C-SGM.title" = "Item 3";
-
 /* Class = "NSTextFieldCell"; title = "ID:"; ObjectID = "2Kr-a7-U09"; */
 "2Kr-a7-U09.title" = "ID:";
 
@@ -211,9 +208,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "Date executed"; ObjectID = "Emj-io-EGu"; */
 "Emj-io-EGu.headerCell.title" = "Dato kjørt";
 
-/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "Eol-qW-iFp"; */
-"Eol-qW-iFp.title" = "Item 2";
-
 /* Class = "NSTextFieldCell"; title = "rsyncversionshort"; ObjectID = "EU9-bF-96n"; */
 "EU9-bF-96n.title" = "rsyncversionshort";
 
@@ -340,9 +334,6 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OIG-cZ-jQ9"; */
 "OIG-cZ-jQ9.title" = "Text Cell";
 
-/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "ol1-nP-KDc"; */
-"ol1-nP-KDc.title" = "Item 2";
-
 /* Class = "NSMenuItem"; title = "Hide RsyncOSX"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "Lukk RsyncOSX";
 
@@ -451,9 +442,6 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U4F-fe-c48"; */
 "U4F-fe-c48.title" = "Text Cell";
 
-/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "ULX-F5-gk5"; */
-"ULX-F5-gk5.title" = "Item 3";
-
 /* Class = "NSMenu"; title = "RsyncOSX"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "RsyncOSX";
 
@@ -465,9 +453,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Period"; ObjectID = "VFf-HQ-GLW"; */
 "VFf-HQ-GLW.headerCell.title" = "Periode";
-
-/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "vk8-N5-cuG"; */
-"vk8-N5-cuG.title" = "Item 3";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "VWl-UA-V1i"; */
 "VWl-UA-V1i.title" = "Text Cell";
@@ -516,9 +501,6 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Remote catalog"; ObjectID = "yQh-8M-Dxo"; */
 "yQh-8M-Dxo.headerCell.title" = "Ekstern katalog";
-
-/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "yuJ-90-GfH"; */
-"yuJ-90-GfH.title" = "Item 2";
 
 /* Class = "NSButtonCell"; title = "New"; ObjectID = "Z5S-KF-h0s"; */
 "Z5S-KF-h0s.title" = "Ny";
