@@ -11,12 +11,8 @@
 "Aborting delete operation..." = "正在中止删除操作...";
 
 /* Add schedule
-   New
    Sidebar */
 "Add" = "添加";
-
-/* New */
-"Add config?" = "添加配置？";
 
 /* Add schedule */
 "Add Schedule?" = "添加日程安排？";
@@ -33,23 +29,11 @@
 /* Add schedule */
 "Cancel or Add" = "取消或添加";
 
-/* Userconfig */
-"Cancel or Continue?" = "取消或继续？";
-
 /* Execute
    Logg
    Profiles
    Snapshots */
 "Cancel or Delete" = "取消或删除";
-
-/* Userconfig */
-"Cancel or Reboot?" = "取消或恢复?";
-
-/* Restore */
-"Cancel or Restore" = "取消或恢复";
-
-/* Logg */
-"Cancel or Save" = "取消或添加";
 
 /* Restore */
 "Cannot copy from a syncremote task..." = "无法从同步任务复制...";
@@ -72,9 +56,6 @@
 /* Sidebar */
 "Command" = "指令";
 
-/* Userconfig */
-"Continue" = "继续";
-
 /* Restore */
 "Copy single files or directory?" = "复制单个文件或目录？";
 
@@ -86,9 +67,6 @@
 
 /* main */
 "daily" = "每天";
-
-/* Sidebar */
-"Daily" = "每天";
 
 /* Remote Info */
 "Date last synchronize:" = "自上次同步以来的天数：";
@@ -129,9 +107,6 @@
 /* Snapshots */
 "Do you REALLY want to delete selected snapshots" = "您是否希望删除选中的快照？";
 
-/* Restore */
-"Do you REALLY want to start a restore?" = "你真的想要重新开始吗？";
-
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "如果您不知道正在做什么，请不要更改快照号码...";
 
@@ -171,9 +146,6 @@
 /* Toolbar */
 "Execute selected tasks..." = "执行选定的任务...";
 
-/* Restore */
-"Executing restore..." = "正在执行还原...";
-
 /* Execute */
 "Executing..." = "正在执行";
 
@@ -183,26 +155,11 @@
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "快照任务的文件列表可能是巨大的吗？";
 
-/* Userconfig */
-"Format of config files is about to be changed to JSON." = "配置文件的格式将更改为 JSON";
-
-/* Userconfig */
-"Format of config files is about to be changed to PLIST." = "配置文件的格式将更改为 JSON";
-
 /* plan */
 "Friday" = "星期五";
 
 /* german */
 "German translation by: Andre Voigtmann" = "德语翻译人：Andre Voigtmann";
-
-/* Restore */
-"Getting info, please wait..." = "正在获取信息，请稍候...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "从 Snapshots 获取索引并列出一个配置的日志...";
-
-/* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "从一个配置的执行和列表日志中获取索引...";
 
 /* Schedules */
 "Got index from Synchronize..." = "从执行中获取索引...";
@@ -219,17 +176,11 @@
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "意大利语翻译：Stefano Steve Cutelle'";
 
-/* Logg */
-"JSON file exists: " = "JSON 文件已存在： ";
-
 /* plan */
 "Keep" = "保留";
 
 /* plan */
 "last" = "最后一个";
-
-/* Toolbar */
-"List all profiles and configurations..." = "列出所有配置文件...";
 
 /* No comment provided by engineer. */
 "Load" = "负载";
@@ -251,9 +202,6 @@
 
 /* plan */
 "Monday" = "周一";
-
-/* Userconfig */
-"New format is not equal to current." = "新格式不等于当前格式。";
 
 /* Execute */
 "New version is available - see About" = "新版本可用 - 请参阅关于";
@@ -285,9 +233,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "不是快照任务......";
 
-/* AllProfiles */
-"Number of configurations:" = "配置数：";
-
 /* Logg */
 "Number of logs:" = "日志数：";
 
@@ -304,28 +249,13 @@
 "once" = "一次";
 
 /* Sidebar */
-"Once" = "一次";
-
-/* Sidebar */
 "Parameter" = "参数";
-
-/* Logg */
-"PLIST file exists: " = "JSON 文件已存在： ";
 
 /* Execute */
 "Possible error logging..." = "可能的错误记录...";
 
 /* plan */
 "previous month" = "上月";
-
-/* Execute */
-"Profile:" = "配置：";
-
-/* Execute */
-"Profile: please wait..." = "配置文件：请稍候...";
-
-/* Userconfig */
-"Reboot" = "重启";
 
 /* Sidebar */
 "Remote" = "远程";
@@ -346,8 +276,7 @@
 /* plan */
 "Saturday" = "周六";
 
-/* Logg
-   Sidebar
+/* Sidebar
    Userconfig */
 "Save" = "保存";
 
@@ -402,12 +331,6 @@
 /* Sidebar */
 "Tag" = "Tag";
 
-/* Execute */
-"The menu app" = "菜单应用";
-
-/* New */
-"This is added before?" = "这是以前添加的吗？";
-
 /* plan */
 "this month" = "本月";
 
@@ -420,17 +343,11 @@
 /* plan */
 "Tuesday" = "星期二";
 
-/* Sidebar */
-"Update" = "更新";
-
 /* plan */
 "Wednesday" = "星期三";
 
 /* main */
 "weekly" = "每周";
-
-/* Sidebar */
-"Weekly" = "每周的";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "你不能删除这么多, 最大是";
