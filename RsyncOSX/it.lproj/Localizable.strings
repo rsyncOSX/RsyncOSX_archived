@@ -11,12 +11,8 @@
 "Aborting delete operation..." = "Interruzione operazione cancellata...";
 
 /* Add schedule
-   New
    Sidebar */
 "Add" = "Aggiungi";
-
-/* New */
-"Add config?" = "Aggiungere configurazione?";
 
 /* Add schedule */
 "Add Schedule?" = "Aggiungi una pianificazione?";
@@ -33,23 +29,11 @@
 /* Add schedule */
 "Cancel or Add" = "Annulla o aggiungi";
 
-/* Userconfig */
-"Cancel or Continue?" = "Annullare o Continuare?";
-
 /* Execute
    Logg
    Profiles
    Snapshots */
 "Cancel or Delete" = "Annulla oppure elimina";
-
-/* Userconfig */
-"Cancel or Reboot?" = "Annullare o Riavviare?";
-
-/* Restore */
-"Cancel or Restore" = "Annulla o ripristina";
-
-/* Logg */
-"Cancel or Save" = "Annulla o salva";
 
 /* Restore */
 "Cannot copy from a syncremote task..." = "Impossibile copiare da un' attività di sync remota...";
@@ -72,9 +56,6 @@
 /* Sidebar */
 "Command" = "Comando";
 
-/* Userconfig */
-"Continue" = "Continua";
-
 /* Restore */
 "Copy single files or directory?" = "Copiare file singoli o directory?";
 
@@ -86,9 +67,6 @@
 
 /* main */
 "daily" = "ogni giorno";
-
-/* Sidebar */
-"Daily" = "Giornaliero";
 
 /* Remote Info */
 "Date last synchronize:" = "Data ultima sincronizzazione:";
@@ -129,9 +107,6 @@
 /* Snapshots */
 "Do you REALLY want to delete selected snapshots" = "Vuoi VERAMENTE ELIMINARE le istantanee selezionate";
 
-/* Restore */
-"Do you REALLY want to start a restore?" = "Vuoi VERAMENTE AVVIARE il RIPRISTINO?";
-
 /* Snapshots */
 "Dont change the snapshot num if you don´t know what you are doing..." = "Non cambiare il numero istantanee se non sai cosa stai facendo...";
 
@@ -171,9 +146,6 @@
 /* Toolbar */
 "Execute selected tasks..." = "Esegui attività contrassegnate batch...";
 
-/* Restore */
-"Executing restore..." = "Esecuzione del ripristino...";
-
 /* Execute */
 "Executing..." = "Esecuzione...";
 
@@ -183,26 +155,11 @@
 /* Restore */
 "Filelist for snapshot tasks might be huge?" = "La lista dei file per le attività istantanee potrebbe essere enorme?";
 
-/* Userconfig */
-"Format of config files is about to be changed to JSON." = "Il formato dei file di configurazione sta per essere cambiato in JSON.";
-
-/* Userconfig */
-"Format of config files is about to be changed to PLIST." = "Il formato dei file di configurazione sta per essere cambiato in PLIST.";
-
 /* plan */
 "Friday" = "Venerdì";
 
 /* german */
 "German translation by: Andre Voigtmann" = "Traduzione in tedesco di: Andre Voigtmann";
-
-/* Restore */
-"Getting info, please wait..." = "Ricezione delle informazioni, attendere prego...";
-
-/* Loggdata */
-"Got index from Snapshots and listing logs for one configuration..." = "Ricevo indice da Instantanea e elenco dei log per una configurazione...";
-
-/* Loggdata */
-"Got index from Synchronize and listing logs for one configuration..." = "Ricevo indice da Instantanea e elenco dei log per una configurazione...";
 
 /* Schedules */
 "Got index from Synchronize..." = "Ottengo indice da Sincronizzazione...";
@@ -219,17 +176,11 @@
 /* italian */
 "Italian translation by: Stefano Steve Cutelle'" = "Traduzione italiana di: Stefano Steve Cutelle'";
 
-/* Logg */
-"JSON file exists: " = "File JSON esiste: ";
-
 /* plan */
 "Keep" = "Mantieni";
 
 /* plan */
 "last" = "ultimo";
-
-/* Toolbar */
-"List all profiles and configurations..." = "Elenca tutti i profili e le configurazioni...";
 
 /* No comment provided by engineer. */
 "Load" = "Carica";
@@ -251,9 +202,6 @@
 
 /* plan */
 "Monday" = "Lunedì";
-
-/* Userconfig */
-"New format is not equal to current." = "Il nuovo formato non è uguale a corrente.";
 
 /* Execute */
 "New version is available - see About" = "È disponibile una nuova versione - vai nel menu About";
@@ -285,9 +233,6 @@
 /* Snapshots */
 "Not a snapshot task..." = "Non è un' attività di istantanea...";
 
-/* AllProfiles */
-"Number of configurations:" = "Numero di configurazioni:";
-
 /* Logg */
 "Number of logs:" = "Numero di log:";
 
@@ -304,28 +249,13 @@
 "once" = "una sola volta";
 
 /* Sidebar */
-"Once" = "Mai";
-
-/* Sidebar */
 "Parameter" = "Parametri";
-
-/* Logg */
-"PLIST file exists: " = "File JSON esiste: ";
 
 /* Execute */
 "Possible error logging..." = "Possibile errore di logging...";
 
 /* plan */
 "previous month" = "mese precedente";
-
-/* Execute */
-"Profile:" = "Profilo:";
-
-/* Execute */
-"Profile: please wait..." = "Profilo: attendere prego...";
-
-/* Userconfig */
-"Reboot" = "Riavvio";
 
 /* Sidebar */
 "Remote" = "Remoto";
@@ -346,8 +276,7 @@
 /* plan */
 "Saturday" = "Sabato";
 
-/* Logg
-   Sidebar
+/* Sidebar
    Userconfig */
 "Save" = "Salva";
 
@@ -402,12 +331,6 @@
 /* Sidebar */
 "Tag" = "Tag";
 
-/* Execute */
-"The menu app" = "Il menu app";
-
-/* New */
-"This is added before?" = "Questo è stato aggiunto prima?";
-
 /* plan */
 "this month" = "questo mese";
 
@@ -420,17 +343,11 @@
 /* plan */
 "Tuesday" = "Martedì";
 
-/* Sidebar */
-"Update" = "Aggiorna";
-
 /* plan */
 "Wednesday" = "Mercoledì";
 
 /* main */
 "weekly" = "settimanale";
-
-/* Sidebar */
-"Weekly" = "Settimanale";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Non è possibile eliminare così tante istantanee, limite raggiunto";
