@@ -26,7 +26,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, Checkforrsync
     @IBOutlet var scheduletable: NSTableView!
     @IBOutlet var info: NSTextField!
     @IBOutlet var scheduletabledetails: NSTableView!
-    @IBOutlet var profilepopupbutton: NSPopUpButton!
 
     // Sidebar Once
     @IBAction func once(_: NSButton) {
@@ -115,7 +114,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, Checkforrsync
         scheduletabledetails.delegate = self
         scheduletabledetails.dataSource = self
         SharedReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
-        initpopupbutton()
     }
 
     override func viewDidAppear() {
@@ -152,26 +150,6 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, Checkforrsync
                 self.scheduletable.reloadData()
             }
         }
-    }
-
-    func initpopupbutton() {
-        var profilestrings: [String]?
-        profilestrings = CatalogProfile().getcatalogsasstringnames()
-        profilestrings?.insert(NSLocalizedString("Default profile", comment: "default profile"), at: 0)
-        profilepopupbutton.removeAllItems()
-        profilepopupbutton.addItems(withTitles: profilestrings ?? [])
-        profilepopupbutton.selectItem(at: 0)
-    }
-
-    @IBAction func selectprofile(_: NSButton) {
-        var profile = profilepopupbutton.titleOfSelectedItem
-        let selectedindex = profilepopupbutton.indexOfSelectedItem
-        if profile == NSLocalizedString("Default profile", comment: "default profile") {
-            profile = nil
-        }
-        profilepopupbutton.selectItem(at: selectedindex)
-        _ = Selectprofile(profile: profile, selectedindex: selectedindex)
-        reloadtabledata()
     }
 
     func reloadtabledata() {
