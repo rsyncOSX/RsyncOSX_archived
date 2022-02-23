@@ -73,7 +73,7 @@
                                         <menuItem isSeparatorItem="YES" id="w7S-mK-okW"/>
                                         <menuItem title="Delete" keyEquivalent="d" id="Ad7-9e-Q7b" userLabel="Delete">
                                             <connections>
-                                                <action selector="actionbutton3:" target="Ady-hI-5gd" id="UB7-59-JLd"/>
+                                                <action selector="delete:" target="Ady-hI-5gd" id="62R-8K-gDA"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Il2-Y3-lKm"/>
@@ -598,7 +598,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="693" y="1" width="51" height="17"/>
+                                                            <rect key="frame" x="693" y="1" width="57" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -662,7 +662,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="832" y="1" width="147" height="17"/>
+                                                            <rect key="frame" x="832" y="1" width="153" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
