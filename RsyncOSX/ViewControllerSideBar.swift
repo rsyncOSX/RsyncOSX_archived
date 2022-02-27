@@ -13,7 +13,6 @@ import Foundation
 enum Sidebarmessages {
     case mainviewbuttons
     case addviewbuttons
-    // case scheduleviewbuttons
     case snapshotviewbuttons
     case logsviewbuttons
     case sshviewbuttons
@@ -26,10 +25,6 @@ enum Sidebaractionsmessages {
     case Parameter
     case Delete
     case Add
-    // case Once
-    // case Daily
-    // case Weekly
-    // case Update
     case Save
     case Filelist
     case Estimate
