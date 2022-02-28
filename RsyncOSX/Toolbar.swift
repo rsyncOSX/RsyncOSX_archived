@@ -27,7 +27,8 @@ extension Selector {
 }
 
 extension MainWindowsController: NSToolbarDelegate {
-    func toolbar(_: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+    func toolbar(_: NSToolbar,
+                 itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
                  willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem?
     {
         switch itemIdentifier {
@@ -52,7 +53,11 @@ extension MainWindowsController: NSToolbarDelegate {
         return nil
     }
 
-    func toolbarbuttonsandactions(_ itemIdentifier: NSToolbarItem.Identifier, _ title: String, _ image: NSImage, _ selector: Selector) -> NSToolbarItem {
+    func toolbarbuttonsandactions(_ itemIdentifier: NSToolbarItem.Identifier,
+                                  _ title: String,
+                                  _ image: NSImage,
+                                  _ selector: Selector) -> NSToolbarItem
+    {
         let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
         toolbarItem.autovalidates = false
         let button = NSButton()

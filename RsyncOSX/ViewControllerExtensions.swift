@@ -129,7 +129,7 @@ extension SetDismisser {
     }
 
     var dismissDelegateSchedule: DismissViewController? {
-        return SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+        return SharedReference.shared.getvcref(viewcontroller: .vcschedule) as? ViewControllerSchedule
     }
 
     var dismissDelegateCopyFiles: DismissViewController? {
@@ -155,7 +155,7 @@ extension SetDismisser {
     func dismissview(viewcontroller _: NSViewController, vcontroller: ViewController) {
         if vcontroller == .vctabmain {
             dismissDelegateMain?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vctabschedule {
+        } else if vcontroller == .vcschedule {
             dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcrestore {
             dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
@@ -187,7 +187,7 @@ extension Deselect {
     }
 
     var deselectDelegateSchedule: DeselectRowTable? {
-        return SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
+        return SharedReference.shared.getvcref(viewcontroller: .vcschedule) as? ViewControllerSchedule
     }
 
     func deselectrowtable(vcontroller: ViewController) {

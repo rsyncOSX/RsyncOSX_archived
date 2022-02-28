@@ -67,8 +67,6 @@ class ViewControllerEstimatingTasks: NSViewController, Abort, SetConfigurations,
     private func closeview() {
         if (presentingViewController as? ViewControllerMain) != nil {
             dismissview(viewcontroller: self, vcontroller: .vctabmain)
-        } else if (presentingViewController as? ViewControllerSchedule) != nil {
-            dismissview(viewcontroller: self, vcontroller: .vctabschedule)
         } else if (presentingViewController as? ViewControllerNewConfigurations) != nil {
             dismissview(viewcontroller: self, vcontroller: .vcnewconfigurations)
         } else if (presentingViewController as? ViewControllerRestore) != nil {

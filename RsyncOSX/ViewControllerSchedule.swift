@@ -113,7 +113,7 @@ class ViewControllerSchedule: NSViewController, SetConfigurations, Checkforrsync
         scheduletable.dataSource = self
         scheduletabledetails.delegate = self
         scheduletabledetails.dataSource = self
-        SharedReference.shared.setvcref(viewcontroller: .vctabschedule, nsviewcontroller: self)
+        SharedReference.shared.setvcref(viewcontroller: .vcschedule, nsviewcontroller: self)
     }
 
     override func viewDidAppear() {

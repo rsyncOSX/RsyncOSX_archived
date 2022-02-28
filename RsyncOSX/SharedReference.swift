@@ -14,7 +14,7 @@ enum ViewController {
     case vctabmain
     case vcloggdata
     case vcnewconfigurations
-    case vctabschedule
+    case vcschedule
     case vcrestore
     case vcssh
     case vcsnapshot
@@ -173,7 +173,7 @@ final class SharedReference {
             return viewControllerLoggData
         case .vcnewconfigurations:
             return viewControllerNewConfigurations
-        case .vctabschedule:
+        case .vcschedule:
             return viewControllertabSchedule
         case .vcrestore:
             return viewControllerRestore
@@ -216,7 +216,7 @@ final class SharedReference {
             viewControllerLoggData = nsviewcontroller
         case .vcnewconfigurations:
             viewControllerNewConfigurations = nsviewcontroller
-        case .vctabschedule:
+        case .vcschedule:
             viewControllertabSchedule = nsviewcontroller
         case .vcrestore:
             viewControllerRestore = nsviewcontroller
