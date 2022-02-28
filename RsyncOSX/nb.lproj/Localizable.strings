@@ -203,6 +203,10 @@
 /* plan */
 "Monday" = "mandag";
 
+/* network
+   network error */
+"Network connection is dropped" = "Nettverks kobling er mistet";
+
 /* Execute */
 "New version is available - see About" = "Ny versjon er tilgjengelig - se Om";
 
@@ -336,6 +340,12 @@
 
 /* Sidebar */
 "Tag" = "Tag";
+
+/* rsync error */
+"There are errors in output" = "Let er feil i utdata";
+
+/* Main */
+"There are some important info about the first time use of RsyncOSX" = "Det er viktig informasjon å lese for førstegangs bruk av RsyncOSX";
 
 /* plan */
 "this month" = "denne måned";
