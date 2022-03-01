@@ -203,6 +203,10 @@
 /* plan */
 "Monday" = "Lunedì";
 
+/* network
+   network error */
+"Network connection is dropped" = "La connessione di rete è interrotta";
+
 /* Execute */
 "New version is available - see About" = "È disponibile una nuova versione - vai nel menu About";
 
@@ -248,6 +252,9 @@
 /* main */
 "once" = "una sola volta";
 
+/* Main */
+"Open" = "Aprire";
+
 /* Sidebar */
 "Parameter" = "Parametri";
 
@@ -286,6 +293,9 @@
 /* Schedules */
 "Scheduled tasks in menu app..." = "Attività pianificate nell'app menu...";
 
+/* Sidebar */
+"Schedules" = "Orari";
+
 /* Copy files
    Remote Info
    Verify */
@@ -296,6 +306,9 @@
 
 /* Execute */
 "Select a task...." = "Seleziona Attività....";
+
+/* No comment provided by engineer. */
+"select catalog" = "seleziona catalogo";
 
 /* Execute */
 "Select one or more tasks..." = "Seleziona una o più attività...";
@@ -331,6 +344,12 @@
 /* Sidebar */
 "Tag" = "Tag";
 
+/* rsync error */
+"There are errors in output" = "Sono presenti errori nell'output";
+
+/* Main */
+"There are some important info about the first time use of RsyncOSX" = "Ci sono alcune informazioni importanti sul primo utilizzo di RsyncOSX";
+
 /* plan */
 "this month" = "questo mese";
 
@@ -348,6 +367,9 @@
 
 /* main */
 "weekly" = "settimanale";
+
+/* Main */
+"Welcome to RsyncOSX" = "Benvenuto in RsyncOSX";
 
 /* Snapshots */
 "You cannot delete that many, max are" = "Non è possibile eliminare così tante istantanee, limite raggiunto";
