@@ -72,7 +72,7 @@ final class SharedReference {
     // Loggfile
     var minimumlogging: Bool = false
     var fulllogging: Bool = false
-    var logname: String = "rsynclog.txt"
+    var logname: String = "rsyncosx.txt"
     // String tasks
     var synchronize: String = "synchronize"
     var snapshot: String = "snapshot"
