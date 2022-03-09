@@ -323,7 +323,6 @@ enum DictionaryStrings: String {
     case environmentvalue
     case haltonerror
     case monitornetworkconnection
-    case json
     case used
     case avail
     case availpercent
@@ -334,8 +333,6 @@ enum DictionaryStrings: String {
     case catalogs
     case localhome
     case transferredNumber
-    case sibling
-    case parent
     case timetostart
     case start
     case snapshotCatalog
@@ -355,7 +352,6 @@ enum DictionaryStrings: String {
     case profilename
     case index
     case ShellID
-    case schedCellID
     case localhost
     case period
 }

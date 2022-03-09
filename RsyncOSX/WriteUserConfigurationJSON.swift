@@ -4,6 +4,7 @@
 //
 //  Created by Thomas Evensen on 12/02/2022.
 //
+// swiftlint:disable line_length
 
 import Combine
 import Foundation
@@ -21,9 +22,12 @@ class WriteUserConfigurationJSON: NamesandPaths {
                 if let data = data {
                     try file.write(data)
                 }
-                if SharedReference.shared.menuappisrunning {
+                if SharedReference.shared.menuappisrunning &&
+                    SharedReference.shared.enableschdules
+                {
                     Notifications().showNotification("Sending reload message to menu app")
-                    DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("no.blogspot.RsyncOSX.reload"), object: nil, deliverImmediately: true)
+                    DistributedNotificationCenter.default().postNotificationName(NSNotification.Name("no.blogspot.RsyncOSX.reload"),
+                                                                                 object: nil, deliverImmediately: true)
                 }
             } catch let e {
                 let error = e as NSError

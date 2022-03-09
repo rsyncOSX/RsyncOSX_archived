@@ -23,7 +23,9 @@ class WriteScheduleJSON: NamesandPaths {
                 let file = try folder.createFile(named: filenamejson)
                 if let data = data {
                     try file.write(data)
-                    if SharedReference.shared.menuappisrunning {
+                    if SharedReference.shared.menuappisrunning &&
+                        SharedReference.shared.enableschdules
+                    {
                         Notifications().showNotification(SharedReference.shared.reloadstring)
                         DistributedNotificationCenter.default()
                             .postNotificationName(NSNotification.Name(SharedReference.shared.reloadstring),
