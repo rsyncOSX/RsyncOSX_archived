@@ -53,6 +53,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     @IBOutlet var button5: NSButton!
 
     @IBOutlet var profilelabel: NSTextField!
+    @IBOutlet var rsyncversionshort: NSTextField!
 
     var whichviewispresented: Sidebarmessages?
 
@@ -186,6 +187,11 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         super.viewDidLoad()
         SharedReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
     }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        rsyncischanged()
+    }
 }
 
 extension ViewControllerSideBar: SetProfileinfo {
@@ -269,6 +275,23 @@ extension ViewControllerSideBar: Sidebaractions {
             button3.isHidden = true
             button4.isHidden = true
             button5.isHidden = true
+        }
+    }
+}
+
+// Rsync path is changed, update displayed rsync command
+extension ViewControllerSideBar: RsyncIsChanged {
+    func rsyncischanged() {
+        setinfoaboutrsync()
+    }
+}
+
+extension ViewControllerSideBar: Setinfoaboutrsync {
+    internal func setinfoaboutrsync() {
+        if SharedReference.shared.norsync == true {
+            rsyncversionshort.stringValue = "no rsync"
+        } else {
+            rsyncversionshort.stringValue = SharedReference.shared.rsyncversionshort ?? "rsync version"
         }
     }
 }

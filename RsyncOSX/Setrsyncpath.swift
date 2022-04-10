@@ -12,7 +12,7 @@ struct Setrsyncpath {
     weak var setinfoaboutrsyncDelegate: Setinfoaboutrsync?
 
     init() {
-        setinfoaboutrsyncDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        setinfoaboutrsyncDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         var rsyncpath: String?
         // If not in /usr/bin or /usr/local/bin, rsyncPath is set if none of the above
         if let pathforrsync = SharedReference.shared.localrsyncpath {

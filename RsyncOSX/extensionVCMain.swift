@@ -66,13 +66,6 @@ extension ViewControllerMain: NewProfile {
     }
 }
 
-// Rsync path is changed, update displayed rsync command
-extension ViewControllerMain: RsyncIsChanged {
-    func rsyncischanged() {
-        setinfoaboutrsync()
-    }
-}
-
 // Check for remote connections, reload table when completed.
 extension ViewControllerMain: Connections {
     func displayConnections() {
@@ -97,7 +90,6 @@ extension ViewControllerMain: DismissViewController {
             self.mainTableView.reloadData()
             self.displayProfile()
         }
-        setinfoaboutrsync()
     }
 }
 
@@ -180,16 +172,6 @@ extension ViewControllerMain: GetConfigurationsObject {
     func getconfigurationsobject() -> Configurations? {
         guard configurations != nil else { return nil }
         return configurations
-    }
-}
-
-extension ViewControllerMain: Setinfoaboutrsync {
-    internal func setinfoaboutrsync() {
-        if SharedReference.shared.norsync == true {
-            info.stringValue = Infoexecute().info(num: 3)
-        } else {
-            rsyncversionshort.stringValue = SharedReference.shared.rsyncversionshort ?? ""
-        }
     }
 }
 

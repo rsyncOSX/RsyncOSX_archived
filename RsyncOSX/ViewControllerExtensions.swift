@@ -306,7 +306,7 @@ protocol NewRsync {
 
 extension NewRsync {
     func newrsync() {
-        let view = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        let view = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         view?.rsyncischanged()
     }
 }

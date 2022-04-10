@@ -15,7 +15,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     @IBOutlet var mainTableView: NSTableView!
     // Progressbar indicating work
     @IBOutlet var working: NSProgressIndicator!
-    @IBOutlet var rsyncversionshort: NSTextField!
     @IBOutlet var info: NSTextField!
     @IBOutlet var profilepopupbutton: NSPopUpButton!
 
@@ -144,6 +143,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
     }
 
     @IBAction func rsyncosxsched(_: NSButton) {
+        guard SharedReference.shared.enableschdules == true else { return }
         let running = Running()
         guard running.rsyncOSXschedisrunning == false else { return }
         guard running.verifyrsyncosxsched() == true else { return }
@@ -211,7 +211,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                 }
             }
         }
-        rsyncischanged()
         displayProfile()
         // Display first time use
         if SharedReference.shared.firsttime {

@@ -32,7 +32,8 @@ extension RsyncVersionString {
             SharedReference.shared.rsyncversionstring = rsyncversionstring
         }
         weak var shortstringDelegate: RsyncIsChanged?
-        shortstringDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        // shortstringDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        shortstringDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         shortstringDelegate?.rsyncischanged()
     }
 
