@@ -112,6 +112,12 @@ extension VcMain {
         return (sheetviewstoryboard?.instantiateController(withIdentifier: "ViewControllertabSchedule")
             as? NSViewController)
     }
+
+    // Userconfiguration
+    var addtaskViewController: NSViewController? {
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardAddTaskID")
+            as? NSViewController)
+    }
 }
 
 // Protocol for dismissing a viewcontroller

@@ -37,6 +37,13 @@ extension ViewControllerSideBar {
     @IBAction func alloutput(_: NSButton) {
         presentAsModalWindow(viewControllerAllOutput!)
     }
+
+    // Toolbar - Userconfiguration button
+    @IBAction func addtask(_: NSButton) {
+        guard checkforrsync() == false else { return }
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(addtaskViewController!)
+    }
 }
 
 extension ViewControllerNewConfigurations {

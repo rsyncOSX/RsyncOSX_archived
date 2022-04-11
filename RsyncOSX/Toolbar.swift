@@ -25,7 +25,7 @@ extension Selector {
     static let executetasknow = #selector(ViewControllerMain.executemultipleselectedindexes(_:))
     static let abort = #selector(ViewControllerMain.abort(_:))
     static let userconfig = #selector(ViewControllerSideBar.userconfiguration(_:))
-    static let addtaask = #selector(ViewControllerSideBar.userconfiguration(_:))
+    static let addtask = #selector(ViewControllerSideBar.addtask(_:))
 }
 
 extension MainWindowsController: NSToolbarDelegate {
@@ -51,7 +51,7 @@ extension MainWindowsController: NSToolbarDelegate {
             return toolbarbuttonsandactions(.userconfig, title, AppAssets.userconfig, Selector.userconfig)
         case .addtask:
             let title = NSLocalizedString("Add task...", comment: "Toolbar")
-            return toolbarbuttonsandactions(.userconfig, title, AppAssets.addtask, Selector.userconfig)
+            return toolbarbuttonsandactions(.addtask, title, AppAssets.addtask, Selector.addtask)
         default:
             break
         }
@@ -82,7 +82,7 @@ extension MainWindowsController: NSToolbarDelegate {
             .space,
             .addtask,
             .space,
-            // .flexibleSpace,
+            .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
             .executetasknow,
@@ -99,7 +99,7 @@ extension MainWindowsController: NSToolbarDelegate {
             .space,
             .addtask,
             .space,
-            // .flexibleSpace,
+            .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
             .executetasknow,
@@ -126,5 +126,5 @@ struct AppAssets {
 
     static var userconfig: NSImage! = NSImage(named: "userconfig")
 
-    static var addtask: NSImage! = NSImage(named: "allprofiles")
+    static var addtask: NSImage! = NSImage(named: "greenplus")
 }
