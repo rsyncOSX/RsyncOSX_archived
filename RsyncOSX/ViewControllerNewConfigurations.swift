@@ -127,7 +127,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         super.viewDidAppear()
         // For sending messages to the sidebar
         sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
+        // sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
         backuptypeselected = .synchronize
         addingtrailingbackslash.state = .off
         backuptype.selectItem(at: 0)

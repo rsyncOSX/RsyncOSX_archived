@@ -581,7 +581,6 @@
 				E82F9F1023F0306100E3DEBC /* extensionRestore */,
 				E90F3C40201659720089D68B /* ViewControllerSnapshots.swift */,
 				E905DC101EACF7550003BF37 /* ViewControllerSsh.swift */,
-				A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */,
 				A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */,
 				A004D8191D9586580016914F /* ViewControllerLoggData.swift */,
 				E94649662313121000ADDF22 /* extensionVCMain */,
@@ -592,6 +591,7 @@
 		E8EF5EB9231A871600444F9E /* Sheetviews */ = {
 			isa = PBXGroup;
 			children = (
+				A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */,
 				A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */,
 				A08110661D6DA7D8009444D3 /* ViewControllerProgressProcess.swift */,
 				A054F1A81D6D773E00D27688 /* ViewControllerInformation.swift */,

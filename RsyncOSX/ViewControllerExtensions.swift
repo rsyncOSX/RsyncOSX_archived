@@ -113,9 +113,9 @@ extension VcMain {
             as? NSViewController)
     }
 
-    // Userconfiguration
+    // Add task
     var addtaskViewController: NSViewController? {
-        return (sheetviewstoryboard?.instantiateController(withIdentifier: "StoryboardAddTaskID")
+        return (sheetviewstoryboard?.instantiateController(withIdentifier: "AddTaskID")
             as? NSViewController)
     }
 }
