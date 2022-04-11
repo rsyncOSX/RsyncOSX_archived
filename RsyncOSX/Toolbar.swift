@@ -16,6 +16,7 @@ extension NSToolbarItem.Identifier {
     static let executetasknow = NSToolbarItem.Identifier("executetasknow")
     static let abort = NSToolbarItem.Identifier("abort")
     static let userconfig = NSToolbarItem.Identifier("userconfig")
+    static let addtask = NSToolbarItem.Identifier("addconfig")
 }
 
 extension Selector {
@@ -24,6 +25,7 @@ extension Selector {
     static let executetasknow = #selector(ViewControllerMain.executemultipleselectedindexes(_:))
     static let abort = #selector(ViewControllerMain.abort(_:))
     static let userconfig = #selector(ViewControllerSideBar.userconfiguration(_:))
+    static let addtaask = #selector(ViewControllerSideBar.userconfiguration(_:))
 }
 
 extension MainWindowsController: NSToolbarDelegate {
@@ -47,6 +49,9 @@ extension MainWindowsController: NSToolbarDelegate {
         case .userconfig:
             let title = NSLocalizedString("Show userconfig...", comment: "Toolbar")
             return toolbarbuttonsandactions(.userconfig, title, AppAssets.userconfig, Selector.userconfig)
+        case .addtask:
+            let title = NSLocalizedString("Add task...", comment: "Toolbar")
+            return toolbarbuttonsandactions(.userconfig, title, AppAssets.addtask, Selector.userconfig)
         default:
             break
         }
@@ -75,6 +80,8 @@ extension MainWindowsController: NSToolbarDelegate {
         return [
             .flexibleSpace,
             .space,
+            .addtask,
+            .space,
             // .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
@@ -89,6 +96,8 @@ extension MainWindowsController: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .flexibleSpace,
+            .space,
+            .addtask,
             .space,
             // .flexibleSpace,
             .backupnow,
@@ -116,4 +125,6 @@ struct AppAssets {
     static var abort: NSImage! = NSImage(named: "abort")
 
     static var userconfig: NSImage! = NSImage(named: "userconfig")
+
+    static var addtask: NSImage! = NSImage(named: "allprofiles")
 }
