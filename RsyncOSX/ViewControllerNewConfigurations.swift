@@ -32,8 +32,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                           SharedReference.shared.syncremote]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
-    // Send messages to the sidebar
-    weak var sidebaractionsDelegate: Sidebaractions?
 
     @IBOutlet var viewParameter1: NSTextField!
     @IBOutlet var viewParameter2: NSTextField!
@@ -71,17 +69,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         selectpreposttask(false)
     }
 
-    // Selecting profiles
-    @IBAction func profiles(_: NSButton) {
-        presentAsModalWindow(viewControllerProfile!)
-    }
-
-    @IBAction func showHelp(_: AnyObject?) {
-        help()
-    }
-
     // Sidebar Clear button
-    func cleartable() {
+    @IBAction func delete(_: NSButton) {
         newconfigurations = nil
         newconfigurations = NewConfigurations()
         globalMainQueue.async { () in
@@ -125,8 +114,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        // For sending messages to the sidebar
-        sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         // sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
         backuptypeselected = .synchronize
         addingtrailingbackslash.state = .off
@@ -165,7 +152,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     }
 
     // Sidebar Add button
-    func addConfig() {
+    @IBAction func addtask(_: NSButton) {
         if localCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
             localCatalog.stringValue += "/"
         }
@@ -300,24 +287,10 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerNewConfigurations: DismissViewController {
-    func dismiss_view(viewcontroller: NSViewController) {
-        dismiss(viewcontroller)
-    }
-}
-
 extension ViewControllerNewConfigurations {
     func processtermination() {}
 
     func filehandler() {}
-}
-
-extension ViewControllerNewConfigurations: OpenQuickBackup {
-    func openquickbackup() {
-        globalMainQueue.async { () in
-            self.presentAsSheet(self.viewControllerQuickBackup!)
-        }
-    }
 }
 
 extension ViewControllerNewConfigurations: AssistTransfer {
@@ -336,19 +309,6 @@ extension ViewControllerNewConfigurations: AssistTransfer {
             default:
                 return
             }
-        }
-    }
-}
-
-extension ViewControllerNewConfigurations: Sidebarbuttonactions {
-    func sidebarbuttonactions(action: Sidebaractionsmessages) {
-        switch action {
-        case .Delete:
-            cleartable()
-        case .Add:
-            addConfig()
-        default:
-            return
         }
     }
 }

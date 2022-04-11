@@ -142,10 +142,6 @@ extension SetDismisser {
         return SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
     }
 
-    var dismissDelegateNewConfigurations: DismissViewController? {
-        return SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-    }
-
     var dimissDelegateSnapshot: DismissViewController? {
         return SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
     }
@@ -165,8 +161,6 @@ extension SetDismisser {
             dismissDelegateSchedule?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcrestore {
             dismissDelegateCopyFiles?.dismiss_view(viewcontroller: (self as? NSViewController)!)
-        } else if vcontroller == .vcnewconfigurations {
-            dismissDelegateNewConfigurations?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcsnapshot {
             dimissDelegateSnapshot?.dismiss_view(viewcontroller: (self as? NSViewController)!)
         } else if vcontroller == .vcloggdata {
