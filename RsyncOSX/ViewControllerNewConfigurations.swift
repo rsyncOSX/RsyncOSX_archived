@@ -55,6 +55,14 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var executeposttask: NSButton!
     @IBOutlet var haltshelltasksonerror: NSButton!
 
+    // Assist
+    @IBOutlet var comboremoteusers: NSComboBox!
+    @IBOutlet var comboremotecomputers: NSComboBox!
+    @IBOutlet var combocatalogs: NSComboBox!
+    @IBOutlet var combolocalhome: NSComboBox!
+
+    var assist: Assist?
+
     @IBAction func catalog1(_: NSButton) {
         selectcatalog(true)
     }
@@ -127,6 +135,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         viewParameter4.stringValue = delete
         viewParameter5.stringValue = eparam + " " + ssh
         changelabels()
+        // Assist
+        initialize()
     }
 
     override func viewDidDisappear() {
@@ -273,6 +283,70 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             }
         }
     }
+
+    @IBAction func addremote(_: NSButton) {
+        if let home = combolocalhome.objectValue as? String,
+           let catalog = combocatalogs.objectValue as? String,
+           let user = comboremoteusers.objectValue as? String,
+           let remotecomputer = comboremotecomputers.objectValue as? String
+        {
+            var transfer = [String]()
+            transfer.append(home + "/" + catalog)
+            transfer.append("~/" + catalog)
+            transfer.append(user)
+            transfer.append(remotecomputer)
+            assisttransfer(values: transfer)
+        }
+    }
+
+    @IBAction func addlocal(_: NSButton) {
+        if let home = combolocalhome.objectValue as? String,
+           let catalog = combocatalogs.objectValue as? String
+        {
+            var transfer = [String]()
+            transfer.append(home + "/" + catalog)
+            transfer.append("/mounted_Volume/" + catalog)
+            assisttransfer(values: transfer)
+        }
+    }
+
+    private func assisttransfer(values: [String]?) {
+        if let values = values {
+            switch values.count {
+            case 2:
+                localCatalog.stringValue = values[0]
+                offsiteCatalog.stringValue = values[1]
+            case 4:
+                // remote
+                localCatalog.stringValue = values[0]
+                offsiteCatalog.stringValue = values[1]
+                offsiteUsername.stringValue = values[2]
+                offsiteServer.stringValue = values[3]
+            default:
+                return
+            }
+        }
+    }
+
+    private func initialize() {
+        assist = Assist()
+        if let assist = assist {
+            initcomboxes(combobox: comboremotecomputers, values: assist.remoteservers)
+            initcomboxes(combobox: comboremoteusers, values: assist.remoteusers)
+            initcomboxes(combobox: combocatalogs, values: assist.catalogs)
+            initcomboxes(combobox: combolocalhome, values: assist.localhome)
+        }
+    }
+
+    private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {
+        combobox.removeAllItems()
+        combobox.addItems(withObjectValues: Array(values ?? []))
+        if values?.count ?? 0 > 0 {
+            combobox.selectItem(at: 0)
+        } else {
+            combobox.stringValue = ""
+        }
+    }
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDataSource {
@@ -295,24 +369,4 @@ extension ViewControllerNewConfigurations {
     func processtermination() {}
 
     func filehandler() {}
-}
-
-extension ViewControllerNewConfigurations: AssistTransfer {
-    func assisttransfer(values: [String]?) {
-        if let values = values {
-            switch values.count {
-            case 2:
-                localCatalog.stringValue = values[0]
-                offsiteCatalog.stringValue = values[1]
-            case 4:
-                // remote
-                localCatalog.stringValue = values[0]
-                offsiteCatalog.stringValue = values[1]
-                offsiteUsername.stringValue = values[2]
-                offsiteServer.stringValue = values[3]
-            default:
-                return
-            }
-        }
-    }
 }
