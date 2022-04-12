@@ -78,34 +78,26 @@ extension MainWindowsController: NSToolbarDelegate {
 
     func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            .flexibleSpace,
-            .space,
             .addtask,
             .space,
-            .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
             .executetasknow,
             .space,
             .abort,
-            // .flexibleSpace,
             .userconfig,
         ]
     }
 
     func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            .flexibleSpace,
-            .space,
             .addtask,
             .space,
-            .flexibleSpace,
             .backupnow,
             .estimateandquickbackup,
             .executetasknow,
             .space,
             .abort,
-            // .flexibleSpace,
             .userconfig,
         ]
     }
