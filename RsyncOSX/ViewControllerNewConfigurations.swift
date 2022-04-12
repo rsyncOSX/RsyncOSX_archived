@@ -33,6 +33,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
 
+    weak var reloadtabledata: Reloadandrefresh?
+
     @IBOutlet var viewParameter1: NSTextField!
     @IBOutlet var viewParameter2: NSTextField!
     @IBOutlet var viewParameter3: NSTextField!
@@ -216,6 +218,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         guard Validatenewconfigs(newconfig, true).validated == true else { return }
         configurations?.addNewConfigurations(newconfig)
         resetinputfields()
+        reloadtabledata = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        reloadtabledata?.reloadtabledata()
     }
 
     func snapshotcreateremotecatalog(_ config: Configuration, _ outputprocess: OutputfromProcess?) {
