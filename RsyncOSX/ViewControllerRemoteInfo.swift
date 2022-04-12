@@ -31,8 +31,6 @@ class ViewControllerRemoteInfo: NSViewController, SetDismisser, Abort, Setcolor 
             weak var openDelegate: OpenQuickBackup?
             if (presentingViewController as? ViewControllerMain) != nil {
                 openDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-            } else if (presentingViewController as? ViewControllerNewConfigurations) != nil {
-                openDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
             } else if (presentingViewController as? ViewControllerRestore) != nil {
                 openDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
             } else if (presentingViewController as? ViewControllerLoggData) != nil {

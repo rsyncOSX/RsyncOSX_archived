@@ -32,8 +32,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                           SharedReference.shared.syncremote]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
-    // Send messages to the sidebar
-    weak var sidebaractionsDelegate: Sidebaractions?
+
+    weak var reloadtabledata: Reloadandrefresh?
 
     @IBOutlet var viewParameter1: NSTextField!
     @IBOutlet var viewParameter2: NSTextField!
@@ -55,6 +55,14 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     @IBOutlet var executeposttask: NSButton!
     @IBOutlet var haltshelltasksonerror: NSButton!
 
+    // Assist
+    @IBOutlet var comboremoteusers: NSComboBox!
+    @IBOutlet var comboremotecomputers: NSComboBox!
+    @IBOutlet var combocatalogs: NSComboBox!
+    @IBOutlet var combolocalhome: NSComboBox!
+
+    var assist: Assist?
+
     @IBAction func catalog1(_: NSButton) {
         selectcatalog(true)
     }
@@ -71,17 +79,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         selectpreposttask(false)
     }
 
-    // Selecting profiles
-    @IBAction func profiles(_: NSButton) {
-        presentAsModalWindow(viewControllerProfile!)
-    }
-
-    @IBAction func showHelp(_: AnyObject?) {
-        help()
-    }
-
     // Sidebar Clear button
-    func cleartable() {
+    @IBAction func delete(_: NSButton) {
         newconfigurations = nil
         newconfigurations = NewConfigurations()
         globalMainQueue.async { () in
@@ -125,9 +124,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        // For sending messages to the sidebar
-        sidebaractionsDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
-        sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
+        // sidebaractionsDelegate?.sidebaractions(action: .addviewbuttons)
         backuptypeselected = .synchronize
         addingtrailingbackslash.state = .off
         backuptype.selectItem(at: 0)
@@ -138,6 +135,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         viewParameter4.stringValue = delete
         viewParameter5.stringValue = eparam + " " + ssh
         changelabels()
+        // Assist
+        initialize()
     }
 
     override func viewDidDisappear() {
@@ -165,7 +164,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     }
 
     // Sidebar Add button
-    func addConfig() {
+    @IBAction func addtask(_: NSButton) {
         if localCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
             localCatalog.stringValue += "/"
         }
@@ -229,6 +228,8 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         guard Validatenewconfigs(newconfig, true).validated == true else { return }
         configurations?.addNewConfigurations(newconfig)
         resetinputfields()
+        reloadtabledata = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        reloadtabledata?.reloadtabledata()
     }
 
     func snapshotcreateremotecatalog(_ config: Configuration, _ outputprocess: OutputfromProcess?) {
@@ -282,6 +283,70 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             }
         }
     }
+
+    @IBAction func addremote(_: NSButton) {
+        if let home = combolocalhome.objectValue as? String,
+           let catalog = combocatalogs.objectValue as? String,
+           let user = comboremoteusers.objectValue as? String,
+           let remotecomputer = comboremotecomputers.objectValue as? String
+        {
+            var transfer = [String]()
+            transfer.append(home + "/" + catalog)
+            transfer.append("~/" + catalog)
+            transfer.append(user)
+            transfer.append(remotecomputer)
+            assisttransfer(values: transfer)
+        }
+    }
+
+    @IBAction func addlocal(_: NSButton) {
+        if let home = combolocalhome.objectValue as? String,
+           let catalog = combocatalogs.objectValue as? String
+        {
+            var transfer = [String]()
+            transfer.append(home + "/" + catalog)
+            transfer.append("/mounted_Volume/" + catalog)
+            assisttransfer(values: transfer)
+        }
+    }
+
+    private func assisttransfer(values: [String]?) {
+        if let values = values {
+            switch values.count {
+            case 2:
+                localCatalog.stringValue = values[0]
+                offsiteCatalog.stringValue = values[1]
+            case 4:
+                // remote
+                localCatalog.stringValue = values[0]
+                offsiteCatalog.stringValue = values[1]
+                offsiteUsername.stringValue = values[2]
+                offsiteServer.stringValue = values[3]
+            default:
+                return
+            }
+        }
+    }
+
+    private func initialize() {
+        assist = Assist()
+        if let assist = assist {
+            initcomboxes(combobox: comboremotecomputers, values: assist.remoteservers)
+            initcomboxes(combobox: comboremoteusers, values: assist.remoteusers)
+            initcomboxes(combobox: combocatalogs, values: assist.catalogs)
+            initcomboxes(combobox: combolocalhome, values: assist.localhome)
+        }
+    }
+
+    private func initcomboxes(combobox: NSComboBox, values: Set<String>?) {
+        combobox.removeAllItems()
+        combobox.addItems(withObjectValues: Array(values ?? []))
+        if values?.count ?? 0 > 0 {
+            combobox.selectItem(at: 0)
+        } else {
+            combobox.stringValue = ""
+        }
+    }
 }
 
 extension ViewControllerNewConfigurations: NSTableViewDataSource {
@@ -300,55 +365,8 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerNewConfigurations: DismissViewController {
-    func dismiss_view(viewcontroller: NSViewController) {
-        dismiss(viewcontroller)
-    }
-}
-
 extension ViewControllerNewConfigurations {
     func processtermination() {}
 
     func filehandler() {}
-}
-
-extension ViewControllerNewConfigurations: OpenQuickBackup {
-    func openquickbackup() {
-        globalMainQueue.async { () in
-            self.presentAsSheet(self.viewControllerQuickBackup!)
-        }
-    }
-}
-
-extension ViewControllerNewConfigurations: AssistTransfer {
-    func assisttransfer(values: [String]?) {
-        if let values = values {
-            switch values.count {
-            case 2:
-                localCatalog.stringValue = values[0]
-                offsiteCatalog.stringValue = values[1]
-            case 4:
-                // remote
-                localCatalog.stringValue = values[0]
-                offsiteCatalog.stringValue = values[1]
-                offsiteUsername.stringValue = values[2]
-                offsiteServer.stringValue = values[3]
-            default:
-                return
-            }
-        }
-    }
-}
-
-extension ViewControllerNewConfigurations: Sidebarbuttonactions {
-    func sidebarbuttonactions(action: Sidebaractionsmessages) {
-        switch action {
-        case .Delete:
-            cleartable()
-        case .Add:
-            addConfig()
-        default:
-            return
-        }
-    }
 }

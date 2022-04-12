@@ -37,34 +37,11 @@ extension ViewControllerSideBar {
     @IBAction func alloutput(_: NSButton) {
         presentAsModalWindow(viewControllerAllOutput!)
     }
-}
 
-extension ViewControllerNewConfigurations {
-    // Toolbar -  Find tasks and Execute backup
-    @IBAction func automaticbackup(_: NSButton) {
-        guard checkforrsync() == false else { return }
+    // Toolbar - Add task button
+    @IBAction func addtask(_: NSButton) {
         guard SharedReference.shared.process == nil else { return }
-        presentAsSheet(viewControllerEstimating!)
-    }
-
-    // Toolbar - Estimate and Quickbackup
-    @IBAction func totinfo(_: NSButton) {
-        guard checkforrsync() == false else { return }
-        guard SharedReference.shared.process == nil else { return }
-        globalMainQueue.async { () in
-            self.presentAsSheet(self.viewControllerRemoteInfo!)
-        }
-    }
-
-    // Toolbar - Userconfiguration button
-    @IBAction func userconfiguration(_: NSButton) {
-        guard SharedReference.shared.process == nil else { return }
-        presentAsModalWindow(viewControllerUserconfiguration!)
-    }
-
-    // Toolbar - All ouput
-    @IBAction func alloutput(_: NSButton) {
-        presentAsModalWindow(viewControllerAllOutput!)
+        presentAsModalWindow(addtaskViewController!)
     }
 }
 
@@ -101,6 +78,12 @@ extension ViewControllerSnapshots {
         info.stringValue = Infosnapshots().info(num: 2)
         snapshotlogsandcatalogs?.snapshotcatalogstodelete = nil
     }
+
+    // Toolbar - Add task button
+    @IBAction func addtask(_: NSButton) {
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(addtaskViewController!)
+    }
 }
 
 extension ViewControllerRestore {
@@ -129,6 +112,12 @@ extension ViewControllerRestore {
     // Toolbar - All ouput
     @IBAction func alloutput(_: NSButton) {
         presentAsModalWindow(viewControllerAllOutput!)
+    }
+
+    // Toolbar - Add task button
+    @IBAction func addtask(_: NSButton) {
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(addtaskViewController!)
     }
 }
 
@@ -159,6 +148,12 @@ extension ViewControllerLoggData {
     @IBAction func alloutput(_: NSButton) {
         presentAsModalWindow(viewControllerAllOutput!)
     }
+
+    // Toolbar - Add task button
+    @IBAction func addtask(_: NSButton) {
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(addtaskViewController!)
+    }
 }
 
 extension ViewControllerSsh {
@@ -166,5 +161,19 @@ extension ViewControllerSsh {
     @IBAction func userconfiguration(_: NSButton) {
         guard SharedReference.shared.process == nil else { return }
         presentAsModalWindow(viewControllerUserconfiguration!)
+    }
+
+    // Toolbar - Add task button
+    @IBAction func addtask(_: NSButton) {
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(addtaskViewController!)
+    }
+}
+
+extension ViewControllerMain {
+    // Toolbar - Add task button
+    @IBAction func addtask(_: NSButton) {
+        guard SharedReference.shared.process == nil else { return }
+        presentAsModalWindow(addtaskViewController!)
     }
 }

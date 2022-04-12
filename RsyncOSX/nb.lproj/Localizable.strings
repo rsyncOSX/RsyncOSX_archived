@@ -17,6 +17,9 @@
 /* Add schedule */
 "Add Schedule?" = "Legg til oppgave?";
 
+/* Toolbar */
+"Add task..." = "Legg til oppgave...";
+
 /* Sidebar */
 "Assist" = "Assist";
 
