@@ -340,6 +340,9 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "pZb-i1-xyG"; */
 "pZb-i1-xyG.headerCell.title" = "Server Remoto";
 
+/* Class = "NSMenuItem"; title = "Schedules app"; ObjectID = "QC2-qp-Fu0"; */
+"QC2-qp-Fu0.title" = "Schedules app";
+
 /* Class = "NSTextFieldCell"; title = "dayofweek"; ObjectID = "QOZ-8g-24B"; */
 "QOZ-8g-24B.title" = "giorno della settimana";
 
@@ -396,6 +399,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "U4F-fe-c48"; */
 "U4F-fe-c48.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Profile"; ObjectID = "uKL-cP-zdK"; */
+"uKL-cP-zdK.title" = "Profili";
 
 /* Class = "NSMenu"; title = "RsyncOSX"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "RsyncOSX";

@@ -17,6 +17,9 @@
 /* Add schedule */
 "Add Schedule?" = "Schema toevoegen?";
 
+/* Toolbar */
+"Add task..." = "Voeg taak toe...";
+
 /* Sidebar */
 "Assist" = "Assisteren";
 
