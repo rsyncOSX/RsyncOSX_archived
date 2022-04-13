@@ -63,22 +63,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     var assist: Assist?
 
-    @IBAction func catalog1(_: NSButton) {
-        selectcatalog(true)
-    }
-
-    @IBAction func catalog2(_: NSButton) {
-        selectcatalog(false)
-    }
-
-    @IBAction func pretask(_: NSButton) {
-        selectpreposttask(true)
-    }
-
-    @IBAction func posttask(_: NSButton) {
-        selectpreposttask(false)
-    }
-
     // Sidebar Clear button
     @IBAction func delete(_: NSButton) {
         newconfigurations = nil
@@ -242,46 +226,34 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         updatecurrent.executeProcess(outputprocess: outputprocess)
     }
 
-    @objc func selectcatalog(_ localcatalog: Bool) {
+    @IBAction func selectlocalcatalog(_: NSButton) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = false
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = true
         openPanel.canCreateDirectories = false
         openPanel.title = NSLocalizedString("select catalog", comment: "")
-        openPanel.begin { [weak self] result in
-            if result == .OK {
-                let selectedPath = openPanel.url?.path ?? ""
-                if localcatalog {
-                    self?.localCatalog.stringValue = selectedPath
-                } else {
-                    self?.offsiteCatalog.stringValue = selectedPath
-                }
-            } else {
-                openPanel.close()
+        openPanel.beginSheetModal(for: view.window!, completionHandler: { num in
+            if num == NSApplication.ModalResponse.OK {
+                let path = openPanel.url?.path ?? ""
+                self.localCatalog.stringValue = path
             }
-        }
+        })
     }
 
-    @objc func selectpreposttask(_ pretask: Bool) {
+    @IBAction func selectoffsiteCatalog(_: NSButton) {
         let openPanel = NSOpenPanel()
-        openPanel.canChooseFiles = true
+        openPanel.canChooseFiles = false
         openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = false
+        openPanel.canChooseDirectories = true
         openPanel.canCreateDirectories = false
         openPanel.title = NSLocalizedString("select catalog", comment: "")
-        openPanel.begin { [weak self] result in
-            if result == .OK {
-                let selectedPath = openPanel.url?.path ?? ""
-                if pretask {
-                    self?.pretask.stringValue = selectedPath
-                } else {
-                    self?.posttask.stringValue = selectedPath
-                }
-            } else {
-                openPanel.close()
+        openPanel.beginSheetModal(for: view.window!, completionHandler: { num in
+            if num == NSApplication.ModalResponse.OK {
+                let path = openPanel.url?.path ?? ""
+                self.offsiteCatalog.stringValue = path
             }
-        }
+        })
     }
 
     @IBAction func addremote(_: NSButton) {
