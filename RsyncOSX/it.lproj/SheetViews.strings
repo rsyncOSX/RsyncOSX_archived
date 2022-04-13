@@ -46,6 +46,9 @@
 /* Class = "NSButtonCell"; title = "full log"; ObjectID = "3Yg-aP-B8a"; */
 "3Yg-aP-B8a.title" = "log completo";
 
+/* Class = "NSTextFieldCell"; title = "Optional"; ObjectID = "4B6-3h-GGv"; */
+"4B6-3h-GGv.title" = "Opzionale";
+
 /* Class = "NSBox"; title = "Logging to file"; ObjectID = "4bX-99-nNu"; */
 "4bX-99-nNu.title" = "Logging su file";
 

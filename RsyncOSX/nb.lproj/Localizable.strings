@@ -129,7 +129,7 @@
 "Estimate" = "Estimer";
 
 /* Execute */
-"Estimating..." = "Estimer...";
+"Estimating..." = "Estimerer...";
 
 /* Remote info */
 "Estimation completed" = "Estimering ferdig";
@@ -254,6 +254,9 @@
 
 /* main */
 "once" = "engang";
+
+/* Main */
+"Open" = "Åpne";
 
 /* Sidebar */
 "Parameter" = "Parameter";

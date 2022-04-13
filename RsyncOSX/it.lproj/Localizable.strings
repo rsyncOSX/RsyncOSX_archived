@@ -17,6 +17,9 @@
 /* Add schedule */
 "Add Schedule?" = "Aggiungi una pianificazione?";
 
+/* Toolbar */
+"Add task..." = "Aggiungi attività...";
+
 /* Sidebar */
 "Assist" = "Assist";
 
