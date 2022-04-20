@@ -6,6 +6,8 @@ The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult 
 
 If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey**, you can use both GUI´s in parallell.
 
+`Rsync` version 3.2.4 is released 15 April 2022. Both RsyncOSX and RsyncUI seems to work as expected with the latest release of `rsync`.
+
 RsyncOSX is the only GUI which supports scheduling of task.
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.2/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.1/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
@@ -18,11 +20,11 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 ![](images/rsyncosx.png)
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.7/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.6/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.8/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.2.7/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
 
 **RsyncUI** is released for **macOS Monterey**.
 
-Latest build is [17 March 2022](https://github.com/rsyncOSX/RsyncUI/releases).
+Latest build is [20 April 2022](https://github.com/rsyncOSX/RsyncUI/releases).
 
   - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
   - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
