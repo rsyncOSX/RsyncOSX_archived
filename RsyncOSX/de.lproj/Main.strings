@@ -173,7 +173,7 @@
 "ecv-vl-IKk.headerCell.title" = "Server";
 
 /* Class = "NSViewController"; title = "Synchronize"; ObjectID = "egt-C3-u4G"; */
-"egt-C3-u4G.title" = "Synchronisier";
+"egt-C3-u4G.title" = "Synchronisieren";
 
 /* Class = "NSBox"; title = "Select snapshots to keep"; ObjectID = "eIC-WC-dFt"; */
 "eIC-WC-dFt.title" = "Wähle Schnappschüsse zum Behalten";
