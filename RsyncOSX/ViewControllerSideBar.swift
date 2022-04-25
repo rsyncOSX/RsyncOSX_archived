@@ -51,6 +51,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     @IBOutlet var button3: NSButton!
     @IBOutlet var button4: NSButton!
     @IBOutlet var button5: NSButton!
+    @IBOutlet var button6: NSButton!
 
     @IBOutlet var profilelabel: NSTextField!
     @IBOutlet var rsyncversionshort: NSTextField!
@@ -113,7 +114,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         if let view = whichviewispresented {
             switch view {
             case .mainviewbuttons:
-                // Delete
                 guard SharedReference.shared.process == nil else { return }
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
@@ -185,6 +185,18 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         }
     }
 
+    @IBAction func actionbutton6(_: NSButton) {
+        if let view = whichviewispresented {
+            switch view {
+            case .mainviewbuttons:
+                guard SharedReference.shared.process == nil else { return }
+                presentAsModalWindow(addtaskViewController!)
+            default:
+                return
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         SharedReference.shared.setvcref(viewcontroller: .vcsidebar, nsviewcontroller: self)
@@ -222,11 +234,13 @@ extension ViewControllerSideBar: Sidebaractions {
             } else {
                 button5.isHidden = true
             }
+            button6.isHidden = false
             button1.title = NSLocalizedString("Change", comment: "Sidebar")
             button2.title = NSLocalizedString("Parameter", comment: "Sidebar")
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
             button4.title = NSLocalizedString("Command", comment: "Sidebar")
             button5.title = NSLocalizedString("Schedules", comment: "Sidebar")
+            button6.title = NSLocalizedString("Add task", comment: "Sidebar")
         /*
          case .addviewbuttons:
              button1.isHidden = false
@@ -244,6 +258,7 @@ extension ViewControllerSideBar: Sidebaractions {
             button3.isHidden = false
             button4.isHidden = false
             button5.isHidden = true
+            button6.isHidden = true
             button2.title = NSLocalizedString("Tag", comment: "Sidebar")
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
             button4.title = NSLocalizedString("Save", comment: "Sidebar")
@@ -253,6 +268,7 @@ extension ViewControllerSideBar: Sidebaractions {
             button3.isHidden = false
             button4.isHidden = false
             button5.isHidden = true
+            button6.isHidden = true
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
             button4.title = NSLocalizedString("Scan", comment: "Sidebar")
         case .sshviewbuttons:
@@ -261,6 +277,7 @@ extension ViewControllerSideBar: Sidebaractions {
             button3.isHidden = false
             button4.isHidden = false
             button5.isHidden = true
+            button6.isHidden = true
             button3.title = NSLocalizedString("Create key", comment: "Sidebar")
             button4.title = NSLocalizedString("Remote", comment: "Sidebar")
         case .restoreviewbuttons:
@@ -269,6 +286,7 @@ extension ViewControllerSideBar: Sidebaractions {
             button3.isHidden = false
             button4.isHidden = false
             button5.isHidden = true
+            button6.isHidden = true
             button1.title = NSLocalizedString("Filelist", comment: "Sidebar")
             button2.title = NSLocalizedString("Estimate", comment: "Sidebar")
             button3.title = NSLocalizedString("Restore", comment: "Sidebar")
@@ -279,6 +297,7 @@ extension ViewControllerSideBar: Sidebaractions {
             button3.isHidden = true
             button4.isHidden = true
             button5.isHidden = true
+            button6.isHidden = true
         }
     }
 }

@@ -83,7 +83,7 @@
 "Ad7-9e-Q7b.title" = "Löschen";
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "agF-l0-sEY"; */
-"agF-l0-sEY.title" = "Schließen";
+"agF-l0-sEY.title" = "Abbrechen";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "aHy-27-4y5"; */
 "aHy-27-4y5.title" = "Tabellenansicht Zelle";
@@ -173,7 +173,7 @@
 "ecv-vl-IKk.headerCell.title" = "Server";
 
 /* Class = "NSViewController"; title = "Synchronize"; ObjectID = "egt-C3-u4G"; */
-"egt-C3-u4G.title" = "Synchronisier";
+"egt-C3-u4G.title" = "Synchronisieren";
 
 /* Class = "NSBox"; title = "Select snapshots to keep"; ObjectID = "eIC-WC-dFt"; */
 "eIC-WC-dFt.title" = "Wähle Schnappschüsse zum Behalten";
