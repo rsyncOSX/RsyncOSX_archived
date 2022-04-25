@@ -146,7 +146,7 @@
 "C02-2P-sZY.title" = "Fehler: kein rsync im Pfad";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "c4B-sF-zQp"; */
-"c4B-sF-zQp.title" = "Schließen";
+"c4B-sF-zQp.title" = "Schliessen";
 
 /* Class = "NSTableColumn"; headerCell.title = "Active"; ObjectID = "C6v-ND-xcg"; */
 "C6v-ND-xcg.headerCell.title" = "Aktiv";
@@ -221,7 +221,7 @@
 "eyg-hn-auR.title" = "RsyncCommand";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "EyG-oC-0mI"; */
-"EyG-oC-0mI.title" = "Schließen";
+"EyG-oC-0mI.title" = "Abbrechen";
 
 /* Class = "NSBox"; title = "Paths for RsyncOSX and RsyncOSXsched"; ObjectID = "f92-Tg-lIP"; */
 "f92-Tg-lIP.title" = "Pfade für RsyncOSX und RsyncOSXsched";
@@ -416,7 +416,7 @@
 "pj5-Cd-kRj.title" = "nächste Snapshot-Nummer zurücksetzen";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "Psh-2Z-WR3"; */
-"Psh-2Z-WR3.title" = "Schließen";
+"Psh-2Z-WR3.title" = "Schliessen";
 
 /* Class = "NSTextFieldCell"; title = "German"; ObjectID = "Pug-Q9-dIQ"; */
 "Pug-Q9-dIQ.title" = "Deutsch";
@@ -434,7 +434,7 @@
 "QTX-Tk-wR7.title" = "Table View Cell";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "QwE-z3-4DN"; */
-"QwE-z3-4DN.title" = "Schließen";
+"QwE-z3-4DN.title" = "Schliessen";
 
 /* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "qWL-Hg-a0Q"; */
 "qWL-Hg-a0Q.title" = "Label";
@@ -488,7 +488,7 @@
 "THE-V0-Rop.title" = "entfernen --delete";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "tKI-SN-B4m"; */
-"tKI-SN-B4m.title" = "Schließen";
+"tKI-SN-B4m.title" = "Schliessen";
 
 /* Class = "NSTextFieldCell"; title = "Number of files:"; ObjectID = "Tlv-oS-Xch"; */
 "Tlv-oS-Xch.title" = "Anzahl der Dateien:";
