@@ -18,7 +18,7 @@
 "Add Schedule?" = "Zeitplan hinzufügen?";
 
 /* Toolbar */
-"Add task..." = "Aufgabe hinzufügen...";
+"Add task" = "Aufgabe";
 
 /* Sidebar */
 "Assist" = "Hilfe";
