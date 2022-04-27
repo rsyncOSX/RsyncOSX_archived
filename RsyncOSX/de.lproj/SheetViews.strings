@@ -212,7 +212,7 @@
 "EQk-pr-cNb.headerCell.title" = "Remote katalog";
 
 /* Class = "NSBox"; title = "Enable schedules"; ObjectID = "eV8-7g-ms7"; */
-"eV8-7g-ms7.title" = "Zeitpläne aktivieren";
+"eV8-7g-ms7.title" = "Zeitplan aktivieren";
 
 /* Class = "NSTextFieldCell"; title = "Italian"; ObjectID = "eVf-zN-JFe"; */
 "eVf-zN-JFe.title" = "Italienisch";
@@ -464,7 +464,7 @@
 "ScE-Vc-xPU.headerCell.title" = "ID";
 
 /* Class = "NSButtonCell"; title = "Schedules"; ObjectID = "sFl-xn-sSZ"; */
-"sFl-xn-sSZ.title" = "Zeitplanes";
+"sFl-xn-sSZ.title" = "Zeitplan";
 
 /* Class = "NSBox"; title = "Basic info"; ObjectID = "Sl0-qk-unj"; */
 "Sl0-qk-unj.title" = "Basisdaten";
