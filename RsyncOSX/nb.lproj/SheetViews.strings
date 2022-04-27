@@ -1,5 +1,5 @@
 /* Class = "NSViewController"; title = "Schedule"; ObjectID = "0BQ-Xg-zMQ"; */
-"0BQ-Xg-zMQ.title" = "Oppgave";
+"0BQ-Xg-zMQ.title" = "Plan";
 
 /* Class = "NSButtonCell"; title = "remove --compress"; ObjectID = "0H0-9M-KHh"; */
 "0H0-9M-KHh.title" = "slett --compress";
@@ -212,7 +212,7 @@
 "EQk-pr-cNb.headerCell.title" = "Ekstern katalog";
 
 /* Class = "NSBox"; title = "Enable schedules"; ObjectID = "eV8-7g-ms7"; */
-"eV8-7g-ms7.title" = "Velg oppgaver";
+"eV8-7g-ms7.title" = "Velg plan";
 
 /* Class = "NSTextFieldCell"; title = "Italian"; ObjectID = "eVf-zN-JFe"; */
 "eVf-zN-JFe.title" = "Italiensk";
@@ -464,7 +464,7 @@
 "ScE-Vc-xPU.headerCell.title" = "ID";
 
 /* Class = "NSButtonCell"; title = "Schedules"; ObjectID = "sFl-xn-sSZ"; */
-"sFl-xn-sSZ.title" = "Oppgaver";
+"sFl-xn-sSZ.title" = "Plan";
 
 /* Class = "NSBox"; title = "Basic info"; ObjectID = "Sl0-qk-unj"; */
 "Sl0-qk-unj.title" = "Informasjon";
