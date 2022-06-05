@@ -6,7 +6,7 @@ The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult 
 
 If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey**, you can use both GUI´s in parallell.
 
-Please be aware it is an external task or process which actually executes the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the external task for counting progress and termination. The user can abort all tasks at any time. Please let abort of a task to finish and cleanup properly before starting a new task. It might take a few seconds. If not RsyncUI might become unresponsive.
+Please be aware it is an external task or process which actually executes the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the external task for counting progress and termination. The user can abort a tasks at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
 
 One advantage of utilizing `rsync` is that it can restart the synchronize task from where it was aborted.
 
