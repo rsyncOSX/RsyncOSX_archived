@@ -10,8 +10,6 @@ Please be aware it is an external task or process which actually executes the co
 
 One advantage of utilizing `rsync` is that it can restart the synchronize task from where it was aborted.
 
-Version  3.2.4 of `rsync` was released 15 April 2022. Both RsyncOSX and RsyncUI as expected with the latest release of `rsync`.
-
 RsyncOSX is the only GUI which supports scheduling of task.
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.3/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
