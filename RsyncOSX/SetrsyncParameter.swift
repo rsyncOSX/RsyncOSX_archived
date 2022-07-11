@@ -13,11 +13,6 @@ struct SetrsyncParameter {
     typealias Argument = (String, Int)
     var rsyncparameters: [Argument]?
 
-    // Computes the raw argument for rsync to save in configuration
-    // Function for computing the raw argument for rsync to save in configuration
-    // - parameter indexComboBox: index of selected ComboBox
-    // - parameter value: the value of rsync parameter
-    // - return: array of String
     func setrsyncparameter(indexComboBox: Int, value: String?) -> String {
         guard indexComboBox < rsyncparameters?.count ?? -1, indexComboBox > -1 else { return "" }
         switch rsyncparameters![indexComboBox].1 {
