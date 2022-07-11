@@ -139,7 +139,17 @@ extension ViewControllerMain: NSTableViewDelegate {
                 }
             case DictionaryStrings.daysID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                    cell.textField?.stringValue = object.dayssincelastbackup ?? ""
+                    var dayssincelastbackup: String? {
+                        if let date = object.dateRun {
+                            let lastbackup = date.en_us_date_from_string()
+                            let seconds: TimeInterval = lastbackup.timeIntervalSinceNow * -1
+                            return String(format: "%.2f", seconds / (60 * 60 * 24))
+                        } else {
+                            return nil
+                        }
+                    }
+
+                    cell.textField?.stringValue = dayssincelastbackup ?? ""
                     cell.textField?.alignment = .right
                     if markdays {
                         cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .red)
