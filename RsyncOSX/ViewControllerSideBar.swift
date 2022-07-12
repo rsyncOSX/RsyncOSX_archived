@@ -12,7 +12,6 @@ import Foundation
 
 enum Sidebarmessages {
     case mainviewbuttons
-    // case addviewbuttons
     case snapshotviewbuttons
     case logsviewbuttons
     case sshviewbuttons
@@ -64,11 +63,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             case .mainviewbuttons:
                 guard SharedReference.shared.process == nil else { return }
                 presentAsModalWindow(editViewController!)
-            /*
-             case .addviewbuttons:
-                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-                 deleteDelegate?.sidebarbuttonactions(action: .Add)
-              */
             case .snapshotviewbuttons:
                 return
             case .logsviewbuttons:
@@ -90,10 +84,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             case .mainviewbuttons:
                 guard SharedReference.shared.process == nil else { return }
                 presentAsModalWindow(viewControllerRsyncParams!)
-            /*
-             case .addviewbuttons:
-                 presentAsModalWindow(viewControllerAssist!)
-             */
             case .snapshotviewbuttons:
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 deleteDelegate?.sidebarbuttonactions(action: .Tag)
@@ -117,12 +107,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
                 guard SharedReference.shared.process == nil else { return }
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
-            /*
-             case .addviewbuttons:
-                 // Delete
-                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcnewconfigurations) as? ViewControllerNewConfigurations
-                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
-             */
             case .snapshotviewbuttons:
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
@@ -209,7 +193,7 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
 }
 
 extension ViewControllerSideBar: SetProfileinfo {
-    func setprofile(profile: String?) {
+    func setprofile(profile _: String?) {
         if let profile = configurations?.getProfile() {
             profilelabel.stringValue = profile
             profilelabel.textColor = setcolor(nsviewcontroller: self, color: .white)
@@ -241,17 +225,6 @@ extension ViewControllerSideBar: Sidebaractions {
             button4.title = NSLocalizedString("Command", comment: "Sidebar")
             button5.title = NSLocalizedString("Schedules", comment: "Sidebar")
             button6.title = NSLocalizedString("Add task", comment: "Sidebar")
-        /*
-         case .addviewbuttons:
-             button1.isHidden = false
-             button2.isHidden = false
-             button3.isHidden = false
-             button4.isHidden = true
-             button5.isHidden = true
-             button1.title = NSLocalizedString("Add", comment: "Sidebar")
-             button2.title = NSLocalizedString("Assist", comment: "Sidebar")
-             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
-          */
         case .snapshotviewbuttons:
             button1.isHidden = true
             button2.isHidden = false
