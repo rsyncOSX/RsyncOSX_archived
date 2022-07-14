@@ -28,6 +28,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     @IBOutlet var mainTableView: NSTableView!
     @IBOutlet var abortbutton: NSButton!
     @IBOutlet var completed: NSTextField!
+    @IBOutlet var inwork: NSProgressIndicator!
 
     // Either abort or close
     @IBAction func abort(_: NSButton) {
@@ -69,6 +70,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
+        inwork.startAnimation(self)
     }
 
     override func viewDidDisappear() {
@@ -158,5 +160,6 @@ extension ViewControllerQuickBackup: QuickBackupCompleted {
         completed.isHidden = false
         completed.textColor = setcolor(nsviewcontroller: self, color: .green)
         executing = false
+        inwork.stopAnimation(self)
     }
 }
