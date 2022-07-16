@@ -29,6 +29,8 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
     @IBOutlet var executeposttask: NSButton!
     @IBOutlet var haltshelltasksonerror: NSButton!
 
+    weak var reloadtabledata: Reloadandrefresh?
+
     var index: Int?
 
     @IBAction func enabledisableresetsnapshotnum(_: NSButton) {
@@ -93,6 +95,8 @@ class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
                 }
                 guard Validatenewconfigs(config[index], false).validated == true else { return }
                 configurations?.updateConfigurations(config[index], index: index)
+                reloadtabledata = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                reloadtabledata?.reloadtabledata()
                 view.window?.close()
             }
         }
