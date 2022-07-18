@@ -32,15 +32,13 @@ The info on web is published by utilizing [Hugo](https://gohugo.io/), the Hugo t
 
 ### Dependencies
 
-The application is implemented in pure Swift, ViewControllers and Storyboard(Cocoa and Foundation classes). From the latest release there are three source code dependencies:
+The application is implemented in pure Swift, ViewControllers and Storyboard (Cocoa and Foundation classes). From the latest release there are three source code dependencies:
 
 - check for TCP connectivity by utilizing [SwiftSocket](https://github.com/swiftsocket/SwiftSocket), some functions require connections to remote servers
 - execute pre and post shellscripts by utilizing John Sundell´s [ShellOut](https://github.com/JohnSundell/ShellOut)
 - utilizing John Sundell´s [Files](https://github.com/JohnSundell/Files) for reading files and catalogs
 
 All three are available as source code and automatically included as part of building RsyncOSX.
-
-Working with JSON require to encode and decode the JSON file. The tool [JSONExport](https://github.com/Ahmed-Ali/JSONExport) is used to create the required Swift structs ([configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeConfiguration.swift), [schedules and logs](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/DecodeSchedule.swift)) for decode JSON file into the approriate Swift structs.
 
 ### Tools used
 
@@ -71,6 +69,7 @@ RsyncOSX is [signed and notarized ](https://rsyncosx.netlify.app/post/notarized/
 ### Localization
 
 RsyncOSX is [localized](https://rsyncosx.netlify.app/post/localization/) to:
+
 - Chinese (Simplified) -  by [StringKe (Chen)](https://github.com/StringKe)
 - German - by [Andre Voigtmann](https://github.com/andre68723)
 - Norwegian - by me
@@ -80,7 +79,7 @@ RsyncOSX is [localized](https://rsyncosx.netlify.app/post/localization/) to:
 
 ### Version of rsync
 
-RsyncOSX is verified with rsync versions 2.6.9 and 3.2.x. Other versions of rsync will work but numbers about transferred files is not set in logs. It is recommended to [install](https://rsyncosx.netlify.app/post/rsync/) the latest version of rsync by Homebrew.
+It is recommended to [install](https://rsyncosx.netlify.app/post/rsync/) the latest version of rsync by Homebrew.
 
 ### The source code and compile
 
