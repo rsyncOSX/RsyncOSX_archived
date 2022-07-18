@@ -8,9 +8,9 @@ The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult 
 
 If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey**, you can use both GUI´s in parallell.
 
-Please be aware it is an external task or process which actually executes the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the external task for counting progress and termination. The user can abort a tasks at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
+Please be aware it is an external task not controlled by RsyncOSX which executes the command line tool `rsync`. RsyncOSX is monitoring the task for progress and termination. The user can abort a tasks at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
 
-One advantage of utilizing `rsync` is that it can restart the synchronize task from where it was aborted.
+One of many advantages of utilizing `rsync` is that it can restart and continue the synchronize task from where it was aborted.
 
 RsyncOSX is the only GUI which supports scheduling of task.
 
@@ -30,9 +30,9 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 Latest build is [20 April 2022](https://github.com/rsyncOSX/RsyncUI/releases).
 
-  - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
-  - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
-  - the [changelog](https://rsyncui.netlify.app/post/changelog/)
+- the [documentation of RsyncUI](https://rsyncui.netlify.app/)
+- the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
+- the [changelog](https://rsyncui.netlify.app/post/changelog/)
 
 ![](images/rsyncui.png)
 
