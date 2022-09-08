@@ -86,19 +86,19 @@ class ReadConfigurationJSON: NamesandPaths {
             } receiveValue: { [unowned self] data in
                 var configurations = [Configuration]()
                 for i in 0 ..< data.count {
-                        let configuration = Configuration(data[i])
-                        // Validate sync task
-                        if SharedReference.shared.synctasks.contains(configuration.task) {
-                            if validhiddenIDs.contains(configuration.hiddenID) == false {
-                                configurations.append(configuration)
-                                // Create set of validated hidden IDs, used when
-                                // loading schedules and logs
-                                validhiddenIDs.insert(configuration.hiddenID)
-                            }
+                    let configuration = Configuration(data[i])
+                    // Validate sync task
+                    if SharedReference.shared.synctasks.contains(configuration.task) {
+                        if validhiddenIDs.contains(configuration.hiddenID) == false {
+                            configurations.append(configuration)
+                            // Create set of validated hidden IDs, used when
+                            // loading schedules and logs
+                            validhiddenIDs.insert(configuration.hiddenID)
                         }
                     }
-                    self.configurations = configurations
-                    subscriptons.removeAll()
+                }
+                self.configurations = configurations
+                subscriptons.removeAll()
             }.store(in: &subscriptons)
     }
 }

@@ -52,9 +52,9 @@ class WriteConfigurationJSON: NamesandPaths {
             .map { configurations -> [DecodeConfiguration] in
                 var data = [DecodeConfiguration]()
                 for i in 0 ..< configurations.count {
-                        data.append(DecodeConfiguration(configurations[i]))
-                    }
-                    return data
+                    data.append(DecodeConfiguration(configurations[i]))
+                }
+                return data
             }
             .encode(encoder: JSONEncoder())
             .sink(receiveCompletion: { completion in

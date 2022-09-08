@@ -44,18 +44,18 @@ class ReadScheduleJSON: NamesandPaths {
             } receiveValue: { [unowned self] data in
                 var schedules = [ConfigurationSchedule]()
                 for i in 0 ..< data.count {
-                        var schedule = ConfigurationSchedule(data[i])
-                        schedule.profilename = profile
-                        // Validate that the hidden ID is OK,
-                        // schedule != Scheduletype.stopped.rawValue, logs count > 0
-                        if let validhiddenID = validhiddenID {
-                            if validhiddenID.contains(schedule.hiddenID) {
-                                schedules.append(schedule)
-                            }
+                    var schedule = ConfigurationSchedule(data[i])
+                    schedule.profilename = profile
+                    // Validate that the hidden ID is OK,
+                    // schedule != Scheduletype.stopped.rawValue, logs count > 0
+                    if let validhiddenID = validhiddenID {
+                        if validhiddenID.contains(schedule.hiddenID) {
+                            schedules.append(schedule)
                         }
                     }
-                    self.schedules = schedules
-                    subscriptons.removeAll()
+                }
+                self.schedules = schedules
+                subscriptons.removeAll()
             }.store(in: &subscriptons)
         // Sorting schedule after hiddenID
         /* Dont need to sort
