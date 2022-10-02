@@ -41,7 +41,6 @@
 		E826416E2583A13B00036579 /* ConfigurationsAsDictionarys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E826416D2583A13B00036579 /* ConfigurationsAsDictionarys.swift */; };
 		E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82F9F1123F030B200E3DEBC /* extensionRestore.swift */; };
 		E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E091721BD29A3006BD293 /* Tagsnapshots.swift */; };
-		E860894B265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860894A265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift */; };
 		E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */; };
 		E8783FAD2580B25900E0D485 /* Estimatedlistforsynchronization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8783FAC2580B25900E0D485 /* Estimatedlistforsynchronization.swift */; };
 		E8C2866923C6362F0032DCE0 /* Validatenewconfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */; };
@@ -203,7 +202,6 @@
 		E826416D2583A13B00036579 /* ConfigurationsAsDictionarys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsAsDictionarys.swift; sourceTree = "<group>"; };
 		E82F9F1123F030B200E3DEBC /* extensionRestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionRestore.swift; sourceTree = "<group>"; };
 		E84E091721BD29A3006BD293 /* Tagsnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagsnapshots.swift; sourceTree = "<group>"; };
-		E860894A265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadUserConfigurationPLIST.swift; sourceTree = "<group>"; };
 		E86EDFB925302C2A00579CFE /* Backupconfigfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backupconfigfiles.swift; sourceTree = "<group>"; };
 		E8783FAC2580B25900E0D485 /* Estimatedlistforsynchronization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estimatedlistforsynchronization.swift; sourceTree = "<group>"; };
 		E8C2866823C6362F0032DCE0 /* Validatenewconfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatenewconfigs.swift; sourceTree = "<group>"; };
@@ -628,7 +626,6 @@
 		E924C0AB265E5956006F148C /* Userconfig */ = {
 			isa = PBXGroup;
 			children = (
-				E860894A265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift */,
 				E95727A027BB838C00E726E6 /* ReadUserConfigurationJSON.swift */,
 				E95727A227BB83C300E726E6 /* WriteUserConfigurationJSON.swift */,
 			);
@@ -1052,7 +1049,6 @@
 				E9E88FD01EB25A080028432F /* ArgumentsSsh.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
 				A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */,
-				E860894B265E0FD500C9E641 /* ReadUserConfigurationPLIST.swift in Sources */,
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
 				E8EC68FE2576938600A71383 /* TabViewController.swift in Sources */,
 				E903F76322A8F8E6008EA38D /* Setrsyncpath.swift in Sources */,
