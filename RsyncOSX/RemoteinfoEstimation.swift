@@ -19,7 +19,7 @@ final class RemoteinfoEstimation: SetConfigurations {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
-    var outputprocess: OutputfromProcess?
+    // var outputprocess: OutputfromProcess?
     var records: [NSMutableDictionary]?
     var updateviewprocesstermination: () -> Void
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
@@ -85,16 +85,14 @@ final class RemoteinfoEstimation: SetConfigurations {
         SharedReference.shared.estimatedlistforsynchronization = estimatedlistandconfigs
     }
 
-    private func startestimation() {
+    @MainActor
+    private func startestimation() async {
         guard (stackoftasktobeestimated?.count ?? 0) > 0 else { return }
         if let index = stackoftasktobeestimated?.remove(at: 0).1 {
             self.index = index
-            outputprocess = OutputfromProcess()
             startstopProgressIndicatorDelegate?.start()
-            /*
-             let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
-             estimation.startestimation()
-              */
+            let estimation = EstimateremoteInformationOnetask(index: index, local: false, processtermination: processtermination)
+            await estimation.startestimation()
         }
     }
 
@@ -105,7 +103,9 @@ final class RemoteinfoEstimation: SetConfigurations {
         prepareandstartexecutetasks()
         records = [NSMutableDictionary]()
         estimatedlistandconfigs = Estimatedlistforsynchronization()
-        startestimation()
+        Task {
+            await startestimation()
+        }
     }
 
     deinit {
@@ -131,9 +131,9 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
 }
 
 extension RemoteinfoEstimation {
-    func processtermination() {
+    func processtermination(data: [String]?) {
         if let index = index {
-            let record = RemoteinfonumbersOnetask(outputprocess: outputprocess).record()
+            let record = RemoteinfonumbersOnetask(outputfromrsync: data).record()
             record.setValue(configurations?.getConfigurations()?[index].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
             record.setValue(configurations?.getConfigurations()?[index].offsiteCatalog, forKey: DictionaryStrings.offsiteCatalog.rawValue)
             record.setValue(configurations?.getConfigurations()?[index].hiddenID, forKey: DictionaryStrings.hiddenID.rawValue)
@@ -155,13 +155,12 @@ extension RemoteinfoEstimation {
             }
             // Update View
             updateviewprocesstermination()
-            outputprocess = OutputfromProcessRsync()
             if let nextindex = stackoftasktobeestimated?.remove(at: 0).1 {
                 self.index = nextindex
-                /*
-                 let estimation = EstimateremoteInformationOnetask(index: nextindex, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
-                 estimation.startestimation()
-                  */
+                Task {
+                    let estimation = EstimateremoteInformationOnetask(index: nextindex, local: false, processtermination: processtermination)
+                    await estimation.startestimation()
+                }
             }
         }
     }

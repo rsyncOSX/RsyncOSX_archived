@@ -86,7 +86,7 @@ final class RsyncAsync {
 
     deinit {
         SharedReference.shared.process = nil
-        // print("deinit RsyncAsync")
+        print("deinit RsyncAsync")
     }
 }
 

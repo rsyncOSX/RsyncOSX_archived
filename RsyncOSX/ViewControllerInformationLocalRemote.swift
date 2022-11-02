@@ -38,7 +38,6 @@ struct LocaleRemoteInfo {
 
 class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor, Connected {
     private var index: Int?
-    private var outputprocess: OutputfromProcess?
     private var complete: Bool = false
     private var localremoteinfo: LocaleRemoteInfo?
 
@@ -81,14 +80,10 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             if connected(config: configurations?.getConfigurations()?[index]) == true {
                 localremoteinfo = LocaleRemoteInfo()
                 working.startAnimation(nil)
-
-                outputprocess = OutputfromProcess()
-
                 let estimation = EstimateremoteInformationOnetask(index: index, local: true, processtermination: processtermination)
                 Task {
                     await estimation.startestimation()
                 }
-
             } else {
                 gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
                 gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
@@ -137,16 +132,11 @@ extension ViewControllerInformationLocalRemote {
         if let index = index {
             if complete == false {
                 complete = true
-
                 let estimation = EstimateremoteInformationOnetask(index: index, local: false, processtermination: processtermination)
                 Task {
                     await estimation.startestimation()
                 }
             }
         }
-    }
-
-    func filehandler() {
-        //
     }
 }
