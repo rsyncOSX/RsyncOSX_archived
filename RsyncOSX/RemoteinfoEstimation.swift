@@ -91,8 +91,10 @@ final class RemoteinfoEstimation: SetConfigurations {
             self.index = index
             outputprocess = OutputfromProcess()
             startstopProgressIndicatorDelegate?.start()
-            let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
-            estimation.startestimation()
+            /*
+             let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
+             estimation.startestimation()
+              */
         }
     }
 
@@ -156,8 +158,10 @@ extension RemoteinfoEstimation {
             outputprocess = OutputfromProcessRsync()
             if let nextindex = stackoftasktobeestimated?.remove(at: 0).1 {
                 self.index = nextindex
-                let estimation = EstimateremoteInformationOnetask(index: nextindex, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
-                estimation.startestimation()
+                /*
+                 let estimation = EstimateremoteInformationOnetask(index: nextindex, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
+                 estimation.startestimation()
+                  */
             }
         }
     }
