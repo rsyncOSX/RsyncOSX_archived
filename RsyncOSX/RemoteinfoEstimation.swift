@@ -165,6 +165,7 @@ extension RemoteinfoEstimation {
         }
     }
 
+    // in ViewControllerAllOutput from ViewCotrollerMain
     func presentoutputfromrsync(data: [String]?) {
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain

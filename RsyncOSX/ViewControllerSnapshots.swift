@@ -209,11 +209,10 @@ class ViewControllerSnapshots: NSViewController, SetDismisser, SetConfigurations
             }
             if let config = config {
                 let arguments = SnapshotDeleteCatalogsArguments(config: config, remotecatalog: remotecatalog)
-                let command = OtherProcess(command: arguments.getCommand(),
-                                           arguments: arguments.getArguments(),
-                                           processtermination: processtermination,
-                                           filehandler: filehandler)
-                command.executeProcess(outputprocess: nil)
+                let command = CommandProcess(command: arguments.getCommand(),
+                                             arguments: arguments.getArguments(),
+                                             processtermination: processtermination)
+                command.executeProcess()
             }
         }
     }
@@ -337,7 +336,7 @@ extension ViewControllerSnapshots: DismissViewController {
 }
 
 extension ViewControllerSnapshots {
-    func processtermination() {
+    func processtermination(_: [String]?) {
         if let vc = SharedReference.shared.getvcref(viewcontroller: .vcprogressview) as? ViewControllerProgressProcess,
            let config = config
         {
@@ -352,8 +351,6 @@ extension ViewControllerSnapshots {
             deletesnapshotcatalogs()
         }
     }
-
-    func filehandler() {}
 }
 
 extension ViewControllerSnapshots: Count {

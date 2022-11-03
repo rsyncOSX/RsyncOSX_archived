@@ -30,8 +30,9 @@ class Remotefilelist: SetConfigurations {
                                                   remoteFile: nil,
                                                   localCatalog: nil,
                                                   drynrun: nil).getArguments()
+            guard arguments != nil else { return }
             Task {
-                await getfilelist(arguments: arguments!)
+                await getfilelist(arguments: arguments ?? [])
             }
         }
     }
@@ -44,6 +45,7 @@ extension Remotefilelist {
         presentoutputfromrsync(data: data)
     }
 
+    // in ViewControllerAllOutput from ViewCotrollerMain
     func presentoutputfromrsync(data: [String]?) {
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
