@@ -155,7 +155,6 @@
 		E9F941651FC5FCC3005F2439 /* Logfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F941631FC5FCC3005F2439 /* Logfile.swift */; };
 		E9FC539524BB2B2A00784238 /* ExecuteTaskNowShellOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC539424BB2B2A00784238 /* ExecuteTaskNowShellOut.swift */; };
 		E9FD805A2574EAE8003E1AA2 /* ViewControllerRsyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD80592574EAE8003E1AA2 /* ViewControllerRsyncCommand.swift */; };
-		E9FE959B25134BD800B9AF5D /* OtherProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE959A25134BD800B9AF5D /* OtherProcess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -339,7 +338,6 @@
 		E9F941631FC5FCC3005F2439 /* Logfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logfile.swift; sourceTree = "<group>"; };
 		E9FC539424BB2B2A00784238 /* ExecuteTaskNowShellOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteTaskNowShellOut.swift; sourceTree = "<group>"; };
 		E9FD80592574EAE8003E1AA2 /* ViewControllerRsyncCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRsyncCommand.swift; sourceTree = "<group>"; };
-		E9FE959A25134BD800B9AF5D /* OtherProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProcess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -731,9 +729,9 @@
 		E958BB2723070BBB00349C81 /* Mainprocess */ = {
 			isa = PBXGroup;
 			children = (
+				E99AEAFE29124018006A5197 /* CommandProcess.swift */,
 				E94C852B249B3ECA0017696C /* InterruptProcess.swift */,
 				E9A1725B250F675B00F26529 /* RsyncProcess.swift */,
-				E9FE959A25134BD800B9AF5D /* OtherProcess.swift */,
 			);
 			name = Mainprocess;
 			sourceTree = "<group>";
@@ -777,7 +775,6 @@
 		E99AEAFD2912400A006A5197 /* Async */ = {
 			isa = PBXGroup;
 			children = (
-				E99AEAFE29124018006A5197 /* CommandProcess.swift */,
 				E99AEB0029124018006A5197 /* CommandProcessAsync.swift */,
 				E99AEAFF29124018006A5197 /* RsyncAsync.swift */,
 				E99AEB0129124018006A5197 /* RsyncProcessAsync.swift */,
@@ -1072,7 +1069,6 @@
 				E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */,
 				A04492B21D658F2100B3CE17 /* RsyncParameters.swift in Sources */,
 				E9230C0E1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift in Sources */,
-				E9FE959B25134BD800B9AF5D /* OtherProcess.swift in Sources */,
 				E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */,
 				E924C0B3265E5AA2006F148C /* ConfigurationSchedule.swift in Sources */,
 				A00FE1AA1D6A1AAB00012089 /* Alerts.swift in Sources */,

@@ -11,8 +11,7 @@ import Foundation
 
 class Ssh: Catalogsandfiles {
     // Process termination and filehandler closures
-    var processtermination: () -> Void
-    var filehandler: () -> Void
+    var processtermination: ([String]?) -> Void
     var commandCopyPasteTerminal: String?
     var rsaStringPath: String?
     // Arrays listing all key files
@@ -20,7 +19,6 @@ class Ssh: Catalogsandfiles {
     var argumentsssh: ArgumentsSsh?
     var command: String?
     var arguments: [String]?
-    var outputprocess: OutputfromProcess?
 
     // Create rsa keypair
     func creatersakeypair() {
@@ -63,21 +61,15 @@ class Ssh: Catalogsandfiles {
     // Execute command
     func executeSshCommand() {
         guard arguments != nil else { return }
-        let process = OtherProcess(command: command,
-                                   arguments: arguments,
-                                   processtermination: processtermination,
-                                   filehandler: filehandler)
-        process.executeProcess(outputprocess: outputprocess)
+        let process = CommandProcess(command: command,
+                                     arguments: arguments,
+                                     processtermination: processtermination)
+        process.executeProcess()
     }
 
-    init(outputprocess: OutputfromProcess?,
-         processtermination: @escaping () -> Void,
-         filehandler: @escaping () -> Void)
-    {
+    init(processtermination: @escaping ([String]?) -> Void) {
         self.processtermination = processtermination
-        self.filehandler = filehandler
         super.init(.ssh)
-        self.outputprocess = outputprocess
         keyFileStrings = getfullpathsshkeys()
         createsshkeyrootpath()
     }
