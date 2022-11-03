@@ -11,31 +11,28 @@ import Foundation
 final class Snapshotlogsandcatalogs {
     var logrecordssnapshot: [Logrecordsschedules]?
     var config: Configuration?
-    var outputprocess: OutputfromProcess?
     var snapshotcatalogstodelete: [String]?
 
     typealias Catalogsanddates = (String, Date)
     var catalogsanddates: [Catalogsanddates]?
 
-    private func getremotecataloginfo() {
-        outputprocess = OutputfromProcess()
+    @MainActor
+    private func getremotecataloginfo() async {
         let arguments = RestorefilesArguments(task: .snapshotcatalogs,
                                               config: config,
                                               remoteFile: nil,
                                               localCatalog: nil,
                                               drynrun: nil)
-        let command = RsyncProcess(arguments: arguments.getArguments(),
-                                   config: nil,
-                                   processtermination: processtermination,
-                                   filehandler: filehandler)
-        command.executeProcess(outputprocess: outputprocess)
+        let command = RsyncAsync(arguments: arguments.getArguments(),
+                                 processtermination: processtermination)
+        await command.executeProcess()
     }
 
     // Getting, from process, remote snapshotcatalogs
     // sort snapshotcatalogs
-    private func prepareremotesnapshotcatalogs() {
+    private func prepareremotesnapshotcatalogs(data: [String]?) {
         // Check for split lines and merge lines if true
-        let data = PrepareOutput(outputprocess?.getOutput() ?? [])
+        let data = PrepareOutput(data ?? [])
         if data.splitlines { data.alignsplitlines() }
         var catalogs = TrimOne(data.trimmeddata).trimmeddata
         var datescatalogs = TrimFour(data.trimmeddata).trimmeddata
@@ -146,19 +143,19 @@ final class Snapshotlogsandcatalogs {
         guard config.task == SharedReference.shared.snapshot else { return }
         self.config = config
         logrecordssnapshot = ScheduleLoggData(hiddenID: config.hiddenID).loggrecords
-        getremotecataloginfo()
+        Task {
+            await getremotecataloginfo()
+        }
     }
 }
 
 extension Snapshotlogsandcatalogs {
-    func processtermination() {
-        prepareremotesnapshotcatalogs()
+    func processtermination(data: [String]?) {
+        prepareremotesnapshotcatalogs(data: data)
         calculateddayssincesynchronize()
         mergeremotecatalogsandlogs()
         weak var reloadsnapshots: Reloadandrefresh?
         reloadsnapshots = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
         reloadsnapshots?.reloadtabledata()
     }
-
-    func filehandler() {}
 }

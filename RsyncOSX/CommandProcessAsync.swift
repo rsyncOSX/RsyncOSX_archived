@@ -85,7 +85,7 @@ final class CommandProcessAsync {
 
     deinit {
         SharedReference.shared.process = nil
-        // print("deinit RsyncAsync")
+        print("deinit CommandRsyncAsync")
     }
 }
 
