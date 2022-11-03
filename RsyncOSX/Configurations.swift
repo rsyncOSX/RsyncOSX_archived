@@ -18,8 +18,6 @@ class Configurations {
     var profile: String?
     // The main structure storing all Configurations for tasks
     var configurations: [Configuration]?
-    // Reference to check TCP-connections
-    var tcpconnections: TCPconnections?
     // valid hiddenIDs
     var validhiddenID: Set<Int>?
 

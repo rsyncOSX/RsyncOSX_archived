@@ -105,7 +105,6 @@
 		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
-		E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
 		E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */; };
@@ -146,7 +145,6 @@
 		E9EC81C8255C5BD600CE106E /* Checksynchronizedfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC81C7255C5BD600CE106E /* Checksynchronizedfiles.swift */; };
 		E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */; };
 		E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F413BA1F63AC2A00C0945E /* Schedules.swift */; };
-		E9F4A0C220A9A7DE0019A9F6 /* AllSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4A0C120A9A7DE0019A9F6 /* AllSchedules.swift */; };
 		E9F5CECF265F5F090064618B /* PrepareOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECA265F5F090064618B /* PrepareOutput.swift */; };
 		E9F5CED0265F5F090064618B /* TrimFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECB265F5F090064618B /* TrimFour.swift */; };
 		E9F5CED1265F5F090064618B /* TrimThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECC265F5F090064618B /* TrimThree.swift */; };
@@ -280,7 +278,6 @@
 		E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuArgumentsSsh.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E973B6F7238F1AF600B0FD12 /* Equal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equal.swift; sourceTree = "<group>"; };
-		E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllConfigurations.swift; sourceTree = "<group>"; };
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullrestoreTask.swift; sourceTree = "<group>"; };
@@ -329,7 +326,6 @@
 		E9F109412421F22700528BEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9F109422421F22700528BEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9F413BA1F63AC2A00C0945E /* Schedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
-		E9F4A0C120A9A7DE0019A9F6 /* AllSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSchedules.swift; sourceTree = "<group>"; };
 		E9F5CECA265F5F090064618B /* PrepareOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareOutput.swift; sourceTree = "<group>"; };
 		E9F5CECB265F5F090064618B /* TrimFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimFour.swift; sourceTree = "<group>"; };
 		E9F5CECC265F5F090064618B /* TrimThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimThree.swift; sourceTree = "<group>"; };
@@ -401,7 +397,6 @@
 				A0BAA5F21D70C33A003BE69F /* Configurations */,
 				E8608949265E0EF800C9E641 /* Combine */,
 				E915568425284EFA007573E1 /* Assist */,
-				E9764F5E204BEE710018C0D7 /* AllProfiles */,
 				E99FC81E200FDDBC00477B1A /* ProcessArguments */,
 				E9F941611FC5FCAE005F2439 /* Logging */,
 				E99D50781EE16241003621D3 /* RsyncParameters */,
@@ -753,15 +748,6 @@
 			name = Equal;
 			sourceTree = "<group>";
 		};
-		E9764F5E204BEE710018C0D7 /* AllProfiles */ = {
-			isa = PBXGroup;
-			children = (
-				E9764F5F204BEE970018C0D7 /* AllConfigurations.swift */,
-				E9F4A0C120A9A7DE0019A9F6 /* AllSchedules.swift */,
-			);
-			name = AllProfiles;
-			sourceTree = "<group>";
-		};
 		E988FCBC1F9BCF0A00F21FB9 /* QuickbackupOperation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1043,7 +1029,6 @@
 				E9614AD61F231AFC00CAE21A /* RsyncCommandtoDisplay.swift in Sources */,
 				E91E1A3422A9823B00AD0935 /* Norsync.swift in Sources */,
 				E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */,
-				E9764F60204BEE970018C0D7 /* AllConfigurations.swift in Sources */,
 				E9F5CED0265F5F090064618B /* TrimFour.swift in Sources */,
 				E9C4A40F23530F7E00BCF1C4 /* ArgumentsLocalcatalogInfo.swift in Sources */,
 				E9CB70E2276C6E6C003F8D79 /* Files.swift in Sources */,
@@ -1106,7 +1091,6 @@
 				E9D5F469248041BD003C9396 /* Keypathidentityfile.swift in Sources */,
 				A054F1A91D6D773E00D27688 /* ViewControllerInformation.swift in Sources */,
 				E94D6E3321A5BBA400DDDB61 /* ExecuteQuickbackupTask.swift in Sources */,
-				E9F4A0C220A9A7DE0019A9F6 /* AllSchedules.swift in Sources */,
 				E8C2866923C6362F0032DCE0 /* Validatenewconfigs.swift in Sources */,
 				E9BC4DE7230277A10058CB52 /* ExecuteTaskNow.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,

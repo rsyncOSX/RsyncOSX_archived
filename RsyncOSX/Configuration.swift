@@ -36,13 +36,6 @@ enum StringDayofweek: String, CaseIterable, Identifiable, CustomStringConvertibl
     var description: String { rawValue.localizedLowercase }
 }
 
-enum PlanSnapshots: String, CaseIterable, CustomStringConvertible {
-    case Every // keepallselcteddayofweek
-    case Last // islastSelectedDayinMonth
-
-    var description: String { rawValue.localizedLowercase }
-}
-
 struct Configuration: Codable {
     var hiddenID: Int
     var task: String
