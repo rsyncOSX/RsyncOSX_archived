@@ -10,9 +10,7 @@ import Foundation
 
 final class EstimateremoteInformationOnetask: SetConfigurations {
     var arguments: [String]?
-    // Process termination and filehandler closures
     var processtermination: ([String]?) -> Void
-    var outputprocess: OutputfromProcess?
 
     @MainActor
     func startestimation() async {
@@ -25,8 +23,7 @@ final class EstimateremoteInformationOnetask: SetConfigurations {
 
     init(index: Int,
          local: Bool,
-         processtermination: @escaping ([String]?) -> Void)
-    {
+         processtermination: @escaping ([String]?) -> Void) {
         self.processtermination = processtermination
         if let hiddenID = configurations?.gethiddenID(index: index) {
             if local {

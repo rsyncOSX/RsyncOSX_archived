@@ -402,18 +402,18 @@ private extension Process {
 
         #if !os(Linux)
             outputPipe.fileHandleForReading.readabilityHandler = { handler in
-                let data = handler.availableData
+                let outputfromrsync = handler.availableData
                 outputQueue.async {
-                    outputData.append(data)
-                    outputHandle?.write(data)
+                    outputData.append(outputfromrsync)
+                    outputHandle?.write(outputfromrsync)
                 }
             }
 
             errorPipe.fileHandleForReading.readabilityHandler = { handler in
-                let data = handler.availableData
+                let outputfromrsync = handler.availableData
                 outputQueue.async {
-                    errorData.append(data)
-                    errorHandle?.write(data)
+                    errorData.append(outputfromrsync)
+                    errorHandle?.write(outputfromrsync)
                 }
             }
         #endif

@@ -19,7 +19,6 @@ final class RemoteinfoEstimation: SetConfigurations {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
-    // var outputprocess: OutputfromProcess?
     var records: [NSMutableDictionary]?
     var updateviewprocesstermination: () -> Void
     weak var startstopProgressIndicatorDelegate: StartStopProgressIndicator?
@@ -132,6 +131,7 @@ extension RemoteinfoEstimation: CountRemoteEstimatingNumberoftasks {
 
 extension RemoteinfoEstimation {
     func processtermination(data: [String]?) {
+        presentoutputfromrsync(data: data)
         if let index = index {
             let record = RemoteinfonumbersOnetask(outputfromrsync: data).record()
             record.setValue(configurations?.getConfigurations()?[index].localCatalog, forKey: DictionaryStrings.localCatalog.rawValue)
@@ -165,10 +165,11 @@ extension RemoteinfoEstimation {
         }
     }
 
-    func filehandler() {
+    func presentoutputfromrsync(data: [String]?) {
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.outputfromrsync(data: data)
             outputeverythingDelegate?.reloadtable()
         }
     }
