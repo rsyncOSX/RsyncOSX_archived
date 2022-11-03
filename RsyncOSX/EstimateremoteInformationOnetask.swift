@@ -23,7 +23,8 @@ final class EstimateremoteInformationOnetask: SetConfigurations {
 
     init(index: Int,
          local: Bool,
-         processtermination: @escaping ([String]?) -> Void) {
+         processtermination: @escaping ([String]?) -> Void)
+    {
         self.processtermination = processtermination
         if let hiddenID = configurations?.gethiddenID(index: index) {
             if local {
