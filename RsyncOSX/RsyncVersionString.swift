@@ -8,36 +8,34 @@
 
 import Foundation
 
-struct RsyncVersionString {
-    var outputprocess: OutputfromProcess?
+final class RsyncVersionString {
+    @MainActor
+    private func rsyncversion(arguments: [String]?) async {
+        let command = RsyncAsync(arguments: arguments,
+                                 processtermination: processtermination)
+        await command.executeProcess()
+    }
+
     init() {
         if SharedReference.shared.norsync == false {
-            outputprocess = OutputfromProcess()
-            let command = RsyncProcess(arguments: ["--version"],
-                                       config: nil,
-                                       processtermination: processtermination,
-                                       filehandler: filehandler)
-            command.executeProcess(outputprocess: outputprocess)
+            Task {
+                await rsyncversion(arguments: ["--version"])
+            }
         }
     }
 }
 
 extension RsyncVersionString {
-    func processtermination() {
-        guard outputprocess?.getOutput()?.count ?? 0 > 0 else { return }
-        if let rsyncversionshort = outputprocess?.getOutput()?[0],
-           let rsyncversionstring = outputprocess?.getOutput()?.joined(separator: "\n")
+    func processtermination(data: [String]?) {
+        guard data?.count ?? 0 > 0 else { return }
+        if let rsyncversionshort = data?[0],
+           let rsyncversionstring = data?.joined(separator: "\n")
         {
             SharedReference.shared.rsyncversionshort = rsyncversionshort
             SharedReference.shared.rsyncversionstring = rsyncversionstring
         }
         weak var shortstringDelegate: RsyncIsChanged?
-        // shortstringDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         shortstringDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsidebar) as? ViewControllerSideBar
         shortstringDelegate?.rsyncischanged()
-    }
-
-    func filehandler() {
-        // none
     }
 }
