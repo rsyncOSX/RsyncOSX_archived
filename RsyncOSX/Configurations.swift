@@ -131,6 +131,26 @@ class Configurations {
         }
     }
 
+    func setCurrentDateonConfiguration(index: Int, outputfromrsync: [String]?) {
+        let number = Numbers(outputfromrsync ?? [])
+        var scheduleslogg: ScheduleLoggData?
+        if let hiddenID = gethiddenID(index: index) {
+            let numbers = number.stats()
+            scheduleslogg = ScheduleLoggData(hiddenID: nil)
+            scheduleslogg?.addlogpermanentstore(hiddenID: hiddenID, result: numbers)
+            scheduleslogg = nil
+            if configurations?[index].task == SharedReference.shared.snapshot {
+                increasesnapshotnum(index: index)
+            }
+            let currendate = Date()
+            configurations?[index].dateRun = currendate.en_us_string_from_date()
+            // Saving updated configuration in memory to persistent store
+            WriteConfigurationJSON(profile, configurations)
+            // Call the view and do a refresh of tableView
+            _ = Logfile(TrimTwo(outputfromrsync ?? []).trimmeddata, error: false)
+        }
+    }
+
     // Function is updating Configurations in memory (by record) and
     // then saves updated Configurations from memory to persistent store
     func updateConfigurations(_ config: Configuration?, index: Int) {

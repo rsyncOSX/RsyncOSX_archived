@@ -13,55 +13,55 @@ protocol DeinitExecuteTaskNow: AnyObject {
 }
 
 class ExecuteTaskNow: SetConfigurations {
-    weak var setprocessDelegate: SendOutputProcessreference?
     weak var startstopindicators: StartStopProgressIndicatorSingleTask?
     weak var deinitDelegate: DeinitExecuteTaskNow?
-    var outputprocess: OutputfromProcess?
     var index: Int?
-    var command: RsyncProcess?
+    var command: RsyncProcessAsync?
 
-    func executetasknow() {
+    @MainActor
+    func executetasknow() async {
         if let index = index,
            let hiddenID = configurations?.gethiddenID(index: index)
         {
-            outputprocess = OutputfromProcessRsync()
             if let arguments = configurations?.arguments4rsync(hiddenID: hiddenID,
                                                                argtype: .arg)
             {
-                command = RsyncProcess(arguments: arguments,
-                                       config: configurations?.getConfigurations()?[index],
-                                       processtermination: processtermination,
-                                       filehandler: filehandler)
-                command?.executeProcess(outputprocess: outputprocess)
                 startstopindicators?.startIndicatorExecuteTaskNow()
-                setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
+                command = RsyncProcessAsync(arguments: arguments,
+                                            config: configurations?.getConfigurations()?[index],
+                                            processtermination: processtermination)
+                await command?.executeProcess()
             }
         }
     }
 
     init(index: Int) {
         self.index = index
-        setprocessDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         startstopindicators = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         deinitDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        executetasknow()
+        Task {
+            await executetasknow()
+        }
     }
 }
 
 extension ExecuteTaskNow {
-    func processtermination() {
+    func processtermination(data: [String]?) {
         startstopindicators?.stopIndicator()
         if let index = index {
-            configurations?.setCurrentDateonConfiguration(index: index, outputprocess: outputprocess)
+            configurations?.setCurrentDateonConfiguration(index: index, outputfromrsync: data)
         }
         deinitDelegate?.deinitexecutetasknow()
         command = nil
+        presentoutputfromrsync(data: data)
     }
 
-    func filehandler() {
+    // in ViewControllerAllOutput from ViewCotrollerMain
+    func presentoutputfromrsync(data: [String]?) {
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.outputfromrsync(data: data)
             outputeverythingDelegate?.reloadtable()
         }
     }
