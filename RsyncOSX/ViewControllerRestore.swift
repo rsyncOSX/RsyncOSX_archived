@@ -16,7 +16,6 @@ protocol Updateremotefilelist: AnyObject {
 
 class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connected, VcMain, Checkforrsync, Setcolor, Help {
     var restorefilestask: RestorefilesTask?
-    var fullrestoretask: FullrestoreTask?
     var remotefilelist: Remotefilelist?
     var index: Int?
     var restoretabledata: [String]?
@@ -100,7 +99,6 @@ class ViewControllerRestore: NSViewController, SetConfigurations, Delay, Connect
     func reset() {
         restoretabledata = nil
         restorefilestask = nil
-        fullrestoretask = nil
         // Restore state
         restoreactions = RestoreActions(closure: verifytmprestorepath)
         if index != nil {

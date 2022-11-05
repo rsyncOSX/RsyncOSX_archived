@@ -57,7 +57,6 @@
 		E91B6E8A1FFA17B800A2231A /* ViewControllerRemoteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91B6E891FFA17B800A2231A /* ViewControllerRemoteInfo.swift */; };
 		E91E1A3422A9823B00AD0935 /* Norsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91E1A3322A9823B00AD0935 /* Norsync.swift */; };
 		E9230C0E1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9230C0D1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift */; };
-		E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9231AFA1F6E3D260055000C /* NewConfigurations.swift */; };
 		E9234FFB1EB068AE00A4C550 /* Catalogsandfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9234FFA1EB068AE00A4C550 /* Catalogsandfiles.swift */; };
 		E9235E7A201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */; };
 		E924C0AE265E598B006F148C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924C0AD265E598B006F148C /* Configuration.swift */; };
@@ -102,12 +101,10 @@
 		E959F7DC257964B400A9830F /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E959F7DB257964B400A9830F /* Toolbar.swift */; };
 		E9614AD61F231AFC00CAE21A /* RsyncCommandtoDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* RsyncCommandtoDisplay.swift */; };
 		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
-		E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
 		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
-		E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */; };
 		E98E1041257A4FD30018055B /* RestoreActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98E1040257A4FD30018055B /* RestoreActions.swift */; };
 		E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EF115249E23E100FD4669 /* NetworkMonitor.swift */; };
 		E994B7CA22A39D7A00B435AB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994B7C922A39D7A00B435AB /* Environment.swift */; };
@@ -224,7 +221,6 @@
 		E91E1A3322A9823B00AD0935 /* Norsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Norsync.swift; sourceTree = "<group>"; };
 		E92037AF22741D9900CC3EE5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E9230C0D1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RsyncParametersSingleFilesArguments.swift; sourceTree = "<group>"; };
-		E9231AFA1F6E3D260055000C /* NewConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConfigurations.swift; sourceTree = "<group>"; };
 		E9234FFA1EB068AE00A4C550 /* Catalogsandfiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Catalogsandfiles.swift; sourceTree = "<group>"; };
 		E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDeleteCatalogsArguments.swift; sourceTree = "<group>"; };
 		E9240FB222C26A0600203207 /* RsyncOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RsyncOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,12 +271,10 @@
 		E9614AD51F231AFC00CAE21A /* RsyncCommandtoDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncCommandtoDisplay.swift; sourceTree = "<group>"; };
 		E96291B0213049D7005119A7 /* TCPconnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPconnections.swift; sourceTree = "<group>"; };
 		E96604E5228A7FAB00BE6161 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuArgumentsSsh.swift; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		E973B6F7238F1AF600B0FD12 /* Equal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equal.swift; sourceTree = "<group>"; };
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
-		E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullrestoreTask.swift; sourceTree = "<group>"; };
 		E98E1040257A4FD30018055B /* RestoreActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreActions.swift; sourceTree = "<group>"; };
 		E98EF115249E23E100FD4669 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E994B7C922A39D7A00B435AB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -511,7 +505,6 @@
 			children = (
 				E973B6F6238F1AC500B0FD12 /* Equal */,
 				E97E3BA61F6256DB00411D0E /* Configurations.swift */,
-				E9231AFA1F6E3D260055000C /* NewConfigurations.swift */,
 				E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */,
 			);
 			name = Configurations;
@@ -735,7 +728,6 @@
 			isa = PBXGroup;
 			children = (
 				A091C65A1D86A59500278E74 /* RestorefilesTask.swift */,
-				E982BA2720CEB59F00E71918 /* FullrestoreTask.swift */,
 			);
 			name = Restore;
 			sourceTree = "<group>";
@@ -792,7 +784,6 @@
 				A04492A01D658F2100B3CE17 /* RestorefilesArguments.swift */,
 				E9230C0D1E6DDC57001D9954 /* RsyncParametersSingleFilesArguments.swift */,
 				E9235E79201BC27F0060E3B2 /* SnapshotDeleteCatalogsArguments.swift */,
-				E96A95912195D5F3000326F2 /* DuArgumentsSsh.swift */,
 			);
 			name = ProcessArguments;
 			sourceTree = "<group>";
@@ -1016,7 +1007,6 @@
 				E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */,
 				E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */,
 				A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */,
-				E9231AFB1F6E3D270055000C /* NewConfigurations.swift in Sources */,
 				E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */,
 				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */,
@@ -1061,7 +1051,6 @@
 				E9C6EA8A1ED2AE2F00680D4D /* Numbers.swift in Sources */,
 				E9F5CED3265F5F090064618B /* TrimTwo.swift in Sources */,
 				A0762A1F1DB4A8F000538CE9 /* CatalogProfile.swift in Sources */,
-				E982BA2820CEB59F00E71918 /* FullrestoreTask.swift in Sources */,
 				E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */,
 				E945D61420B736E9000E787B /* ViewControllerInformationLocalRemote.swift in Sources */,
 				E84E091821BD29A3006BD293 /* Tagsnapshots.swift in Sources */,
@@ -1101,7 +1090,6 @@
 				E801A06A2573FFA90014212A /* ViewControllerSideBar.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
 				E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */,
-				E96A95922195D5F3000326F2 /* DuArgumentsSsh.swift in Sources */,
 				E99AEB0329124018006A5197 /* RsyncAsync.swift in Sources */,
 				E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */,
 				E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */,

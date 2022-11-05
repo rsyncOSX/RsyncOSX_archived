@@ -17,7 +17,6 @@ enum Typebackup {
 }
 
 class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Delay, Index, VcMain, Checkforrsync, Help {
-    var newconfigurations: NewConfigurations?
     var tabledata: [NSMutableDictionary]?
     let archive: String = "--archive"
     let verbose: String = "--verbose"
@@ -65,8 +64,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     // Sidebar Clear button
     @IBAction func delete(_: NSButton) {
-        newconfigurations = nil
-        newconfigurations = NewConfigurations()
         globalMainQueue.async { () in
             self.resetinputfields()
         }
@@ -99,7 +96,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        newconfigurations = NewConfigurations()
         localCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
         offsiteCatalog.toolTip = NSLocalizedString("By using Finder drag and drop filepaths.", comment: "Tooltip")
         SharedReference.shared.setvcref(viewcontroller: .vcnewconfigurations, nsviewcontroller: self)
@@ -316,22 +312,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             combobox.selectItem(at: 0)
         } else {
             combobox.stringValue = ""
-        }
-    }
-}
-
-extension ViewControllerNewConfigurations: NSTableViewDataSource {
-    func numberOfRows(in _: NSTableView) -> Int {
-        return newconfigurations?.newConfigurationsCount() ?? 0
-    }
-}
-
-extension ViewControllerNewConfigurations: NSTableViewDelegate {
-    func tableView(_: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        if let object: NSMutableDictionary = newconfigurations?.getnewConfigurations()?[row], let tableColumn = tableColumn {
-            return object[tableColumn.identifier] as? String
-        } else {
-            return nil
         }
     }
 }
