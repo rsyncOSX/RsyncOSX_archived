@@ -39,11 +39,6 @@ final class Checkfornewversion {
         }
     }
 
-    // Return version of RsyncOSX
-    func rsyncOSXversion() -> String? {
-        return runningVersion
-    }
-
     @discardableResult
     init() {
         runningVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""

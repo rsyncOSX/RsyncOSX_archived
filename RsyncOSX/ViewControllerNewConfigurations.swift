@@ -17,7 +17,7 @@ enum Typebackup {
 }
 
 class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Delay, Index, VcMain, Checkforrsync, Help {
-    var newconfigurations: NewConfigurations?
+    // var newconfigurations: NewConfigurations?
     var tabledata: [NSMutableDictionary]?
     let archive: String = "--archive"
     let verbose: String = "--verbose"
