@@ -10,10 +10,7 @@ import Foundation
 
 final class Checksynchronizedfiles: SetConfigurations {
     var index: Int?
-    weak var setprocessDelegate: SendOutputProcessreference?
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
-    var outputprocess: OutputfromProcess?
-    var command: RsyncProcess?
 
     func checksynchronizedfiles() {
         guard SharedReference.shared.process == nil else { return }
@@ -21,42 +18,40 @@ final class Checksynchronizedfiles: SetConfigurations {
            let hiddenID = configurations?.gethiddenID(index: index)
         {
             if let arguments = configurations?.arguments4verify(hiddenID: hiddenID) {
-                outputprocess = OutputfromProcess()
-                outputprocess?.addlinefromoutput(str: "*** Checking synchronized data ***")
-                outputprocess?.addlinefromoutput(str: "*** using --checksum parameter ***")
-                outputprocess?.addlinefromoutput(str: "")
-                verifyandchanged(arguments: arguments)
+                Task {
+                    await verifyandchanged(arguments: arguments)
+                }
             }
         }
     }
 
-    private func verifyandchanged(arguments: [String]) {
+    @MainActor
+    private func verifyandchanged(arguments: [String]) async {
         indicatorDelegate?.startIndicator()
-        command = RsyncProcess(arguments: arguments,
-                               config: nil,
-                               processtermination: processtermination,
-                               filehandler: filehandler)
-        command?.executeProcess(outputprocess: outputprocess)
-        setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
+        let command = RsyncProcessAsync(arguments: arguments,
+                                        config: nil,
+                                        processtermination: processtermination)
+        await command.executeProcess()
     }
 
     init(index: Int?) {
         self.index = index
-        setprocessDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         indicatorDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 }
 
 extension Checksynchronizedfiles {
-    func processtermination() {
-        command = nil
+    func processtermination(data: [String]?) {
         indicatorDelegate?.stopIndicator()
+        presentoutputfromrsync(data: data)
     }
 
-    func filehandler() {
+    // in ViewControllerAllOutput from ViewCotrollerMain
+    func presentoutputfromrsync(data: [String]?) {
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.outputfromrsync(data: data)
             outputeverythingDelegate?.reloadtable()
         }
     }

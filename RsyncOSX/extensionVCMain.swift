@@ -223,6 +223,17 @@ extension ViewControllerMain: ViewOutputDetails {
             return false
         }
     }
+
+    func outputfromrsync(data: [String]?) {
+        if outputprocess == nil {
+            outputprocess = OutputfromProcess()
+        }
+        if let data = data {
+            for i in 0 ..< data.count {
+                outputprocess?.addlinefromoutput(str: data[i])
+            }
+        }
+    }
 }
 
 enum Color {
@@ -300,6 +311,7 @@ protocol ViewOutputDetails: AnyObject {
     func reloadtable()
     func appendnow() -> Bool
     func getalloutput() -> [String]
+    func outputfromrsync(data: [String]?)
 }
 
 // Get multiple selected indexes

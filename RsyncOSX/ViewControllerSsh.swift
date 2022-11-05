@@ -45,9 +45,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     // Sidebar create keys
     func createPublicPrivateRSAKeyPair() {
         outputprocess = OutputfromProcess()
-        sshcmd = Ssh(outputprocess: outputprocess,
-                     processtermination: processtermination,
-                     filehandler: filehandler)
+        sshcmd = Ssh(processtermination: processtermination)
         guard sshcmd?.islocalpublicrsakeypresent() ?? true == false else { return }
         sshcmd?.creatersakeypair()
     }
@@ -85,9 +83,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     }
 
     func checkforPrivateandPublicRSAKeypair() {
-        sshcmd = Ssh(outputprocess: nil,
-                     processtermination: processtermination,
-                     filehandler: filehandler)
+        sshcmd = Ssh(processtermination: processtermination)
         if sshcmd?.islocalpublicrsakeypresent() ?? false {
             rsaCheck.state = .on
         } else {
@@ -98,9 +94,7 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
     func copylocalpubrsakeyfile() {
         guard sshcmd?.islocalpublicrsakeypresent() ?? false == true else { return }
         outputprocess = OutputfromProcess()
-        sshcmd = Ssh(outputprocess: outputprocess,
-                     processtermination: processtermination,
-                     filehandler: filehandler)
+        sshcmd = Ssh(processtermination: processtermination)
         if let hiddenID = hiddenID {
             sshcmd?.copykeyfile(hiddenID: hiddenID)
             copykeycommand.stringValue = sshcmd?.commandCopyPasteTerminal ?? ""
@@ -136,15 +130,10 @@ extension ViewControllerSsh: NSTableViewDelegate {
 }
 
 extension ViewControllerSsh {
-    func processtermination() {
+    func processtermination(data: [String]?) {
         globalMainQueue.async { () in
             self.checkforPrivateandPublicRSAKeypair()
-        }
-    }
-
-    func filehandler() {
-        data = outputprocess?.getOutput()
-        globalMainQueue.async { () in
+            self.data = data
             self.detailsTable.reloadData()
         }
     }

@@ -48,11 +48,6 @@ extension MainWindowsController: NSToolbarDelegate {
         case .userconfig:
             let title = NSLocalizedString("Show userconfig...", comment: "Toolbar")
             return toolbarbuttonsandactions(.userconfig, title, AppAssets.userconfig, Selector.userconfig)
-        /*
-         case .addtask:
-             let title = NSLocalizedString("Add task...", comment: "Toolbar")
-             return toolbarbuttonsandactions(.addtask, title, AppAssets.addtask, Selector.addtask)
-         */
         default:
             break
         }
@@ -79,7 +74,6 @@ extension MainWindowsController: NSToolbarDelegate {
 
     func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            // .addtask,
             .space,
             .backupnow,
             .estimateandquickbackup,
@@ -92,7 +86,6 @@ extension MainWindowsController: NSToolbarDelegate {
 
     func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
-            // .addtask,
             .space,
             .backupnow,
             .estimateandquickbackup,

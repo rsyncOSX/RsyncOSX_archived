@@ -160,6 +160,8 @@ final class Logfile: NamesandPaths {
 }
 
 extension Logfile: ViewOutputDetails {
+    func outputfromrsync(data _: [String]?) {}
+
     func reloadtable() {}
 
     func appendnow() -> Bool { return false }

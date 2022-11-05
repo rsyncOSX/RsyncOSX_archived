@@ -18,8 +18,6 @@ class Configurations {
     var profile: String?
     // The main structure storing all Configurations for tasks
     var configurations: [Configuration]?
-    // Reference to check TCP-connections
-    var tcpconnections: TCPconnections?
     // valid hiddenIDs
     var validhiddenID: Set<Int>?
 
@@ -130,6 +128,26 @@ class Configurations {
             WriteConfigurationJSON(profile, configurations)
             // Call the view and do a refresh of tableView
             _ = Logfile(TrimTwo(outputprocess?.getOutput() ?? []).trimmeddata, error: false)
+        }
+    }
+
+    func setCurrentDateonConfiguration(index: Int, outputfromrsync: [String]?) {
+        let number = Numbers(outputfromrsync ?? [])
+        var scheduleslogg: ScheduleLoggData?
+        if let hiddenID = gethiddenID(index: index) {
+            let numbers = number.stats()
+            scheduleslogg = ScheduleLoggData(hiddenID: nil)
+            scheduleslogg?.addlogpermanentstore(hiddenID: hiddenID, result: numbers)
+            scheduleslogg = nil
+            if configurations?[index].task == SharedReference.shared.snapshot {
+                increasesnapshotnum(index: index)
+            }
+            let currendate = Date()
+            configurations?[index].dateRun = currendate.en_us_string_from_date()
+            // Saving updated configuration in memory to persistent store
+            WriteConfigurationJSON(profile, configurations)
+            // Call the view and do a refresh of tableView
+            _ = Logfile(TrimTwo(outputfromrsync ?? []).trimmeddata, error: false)
         }
     }
 

@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length cyclomatic_complexity line_length
+//  swiftlint:disable function_body_length cyclomatic_complexity line_length type_body_length
 
 import Cocoa
 import Foundation
@@ -216,14 +216,13 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         reloadtabledata?.reloadtabledata()
     }
 
-    func snapshotcreateremotecatalog(_ config: Configuration, _ outputprocess: OutputfromProcess?) {
+    func snapshotcreateremotecatalog(_ config: Configuration, _: OutputfromProcess?) {
         guard config.offsiteServer.isEmpty == false else { return }
         let args = SnapshotCreateCatalogArguments(config: config)
-        let updatecurrent = OtherProcess(command: args.getCommand(),
-                                         arguments: args.getArguments(),
-                                         processtermination: processtermination,
-                                         filehandler: filehandler)
-        updatecurrent.executeProcess(outputprocess: outputprocess)
+        let updatecurrent = CommandProcess(command: args.getCommand(),
+                                           arguments: args.getArguments(),
+                                           processtermination: processtermination)
+        updatecurrent.executeProcess()
     }
 
     @IBAction func selectlocalcatalog(_: NSButton) {
@@ -338,7 +337,5 @@ extension ViewControllerNewConfigurations: NSTableViewDelegate {
 }
 
 extension ViewControllerNewConfigurations {
-    func processtermination() {}
-
-    func filehandler() {}
+    func processtermination(_: [String]?) {}
 }

@@ -38,7 +38,6 @@ struct LocaleRemoteInfo {
 
 class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Index, SetConfigurations, Setcolor, Connected {
     private var index: Int?
-    private var outputprocess: OutputfromProcess?
     private var complete: Bool = false
     private var localremoteinfo: LocaleRemoteInfo?
 
@@ -81,9 +80,10 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
             if connected(config: configurations?.getConfigurations()?[index]) == true {
                 localremoteinfo = LocaleRemoteInfo()
                 working.startAnimation(nil)
-                outputprocess = OutputfromProcess()
-                let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: true, processtermination: processtermination, filehandler: filehandler)
-                estimation.startestimation()
+                let estimation = EstimateremoteInformationOnetask(index: index, local: true, processtermination: processtermination)
+                Task {
+                    await estimation.startestimation()
+                }
             } else {
                 gotit.stringValue = NSLocalizedString("Seems not to be connected...", comment: "Remote Info")
                 gotit.textColor = setcolor(nsviewcontroller: self, color: .green)
@@ -97,9 +97,9 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
 
     // Function for getting numbers out of output object updated when
     // Process object executes the job.
-    private func setnumbers(outputprocess: OutputfromProcess?, local: Bool) {
+    private func setnumbers(outputfromrsync: [String]?, local: Bool) {
         globalMainQueue.async { () in
-            let infotask = RemoteinfonumbersOnetask(outputprocess: outputprocess)
+            let infotask = RemoteinfonumbersOnetask(outputfromrsync: outputfromrsync)
             if local {
                 self.localtotalNumber.stringValue = infotask.totalNumber ?? ""
                 self.localtotalNumberSizebytes.stringValue = infotask.totalNumberSizebytes ?? ""
@@ -123,23 +123,20 @@ class ViewControllerInformationLocalRemote: NSViewController, SetDismisser, Inde
 }
 
 extension ViewControllerInformationLocalRemote {
-    func processtermination() {
+    func processtermination(data: [String]?) {
         if complete == false {
-            setnumbers(outputprocess: outputprocess, local: true)
+            setnumbers(outputfromrsync: data, local: true)
         } else {
-            setnumbers(outputprocess: outputprocess, local: false)
+            setnumbers(outputfromrsync: data, local: false)
         }
         if let index = index {
             if complete == false {
                 complete = true
-                outputprocess = OutputfromProcess()
-                let estimation = EstimateremoteInformationOnetask(index: index, outputprocess: outputprocess, local: false, processtermination: processtermination, filehandler: filehandler)
-                estimation.startestimation()
+                let estimation = EstimateremoteInformationOnetask(index: index, local: false, processtermination: processtermination)
+                Task {
+                    await estimation.startestimation()
+                }
             }
         }
-    }
-
-    func filehandler() {
-        //
     }
 }

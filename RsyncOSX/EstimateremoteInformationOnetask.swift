@@ -10,33 +10,22 @@ import Foundation
 
 final class EstimateremoteInformationOnetask: SetConfigurations {
     var arguments: [String]?
-    // Process termination and filehandler closures
-    var processtermination: () -> Void
-    var filehandler: () -> Void
-    weak var setprocessDelegate: SendOutputProcessreference?
-    var outputprocess: OutputfromProcess?
+    var processtermination: ([String]?) -> Void
 
-    func startestimation() {
+    @MainActor
+    func startestimation() async {
         if let arguments = arguments {
-            let process = RsyncProcess(arguments: arguments,
-                                       config: nil,
-                                       processtermination: processtermination,
-                                       filehandler: filehandler)
-            process.executeProcess(outputprocess: outputprocess)
-            setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
+            let process = RsyncAsync(arguments: arguments,
+                                     processtermination: processtermination)
+            await process.executeProcess()
         }
     }
 
     init(index: Int,
-         outputprocess: OutputfromProcess?,
          local: Bool,
-         processtermination: @escaping () -> Void,
-         filehandler: @escaping () -> Void)
+         processtermination: @escaping ([String]?) -> Void)
     {
-        setprocessDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        self.outputprocess = outputprocess
         self.processtermination = processtermination
-        self.filehandler = filehandler
         if let hiddenID = configurations?.gethiddenID(index: index) {
             if local {
                 arguments = configurations?.arguments4rsync(hiddenID: hiddenID, argtype: .argdryRunlocalcataloginfo)

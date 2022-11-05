@@ -39,7 +39,8 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
         }
     }
 
-    override func executetasknow() {
+    @MainActor
+    override func executetasknow() async {
         if let index = index {
             // Execute pretask
             if configurations?.getConfigurations()?[index].executepretask == 1 {
@@ -56,16 +57,13 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
             }
 
             guard error == false else { return }
-            outputprocess = OutputfromProcessRsync()
             if let hiddenID = configurations?.gethiddenID(index: index) {
                 if let arguments = configurations?.arguments4rsync(hiddenID: hiddenID, argtype: .arg) {
-                    let process = RsyncProcess(arguments: arguments,
-                                               config: configurations?.getConfigurations()?[index],
-                                               processtermination: processtermination,
-                                               filehandler: filehandler)
-                    process.executeProcess(outputprocess: outputprocess)
                     startstopindicators?.startIndicatorExecuteTaskNow()
-                    setprocessDelegate?.sendoutputprocessreference(outputprocess: outputprocess)
+                    let process = RsyncProcessAsync(arguments: arguments,
+                                                    config: configurations?.getConfigurations()?[index],
+                                                    processtermination: processtermination)
+                    await process.executeProcess()
                 }
             }
         }

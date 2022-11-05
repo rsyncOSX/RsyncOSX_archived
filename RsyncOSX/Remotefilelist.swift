@@ -12,38 +12,45 @@ import Foundation
 class Remotefilelist: SetConfigurations {
     var config: Configuration?
     var remotefilelist: [String]?
-    var outputprocess: OutputfromProcess?
     weak var setremotefilelistDelegate: Updateremotefilelist?
-    weak var outputeverythingDelegate: ViewOutputDetails?
+
+    @MainActor
+    private func getfilelist(arguments: [String]) async {
+        let command = RsyncAsync(arguments: arguments,
+                                 processtermination: processtermination)
+        await command.executeProcess()
+    }
 
     init(hiddenID: Int) {
         setremotefilelistDelegate = SharedReference.shared.getvcref(viewcontroller: .vcrestore) as? ViewControllerRestore
-        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if let index = configurations?.getIndex(hiddenID) {
             config = configurations?.getConfigurations()?[index]
-            outputprocess = OutputfromProcess()
             let arguments = RestorefilesArguments(task: .rsyncfilelistings,
                                                   config: config,
                                                   remoteFile: nil,
                                                   localCatalog: nil,
                                                   drynrun: nil).getArguments()
-            let command = RsyncProcess(arguments: arguments,
-                                       config: config,
-                                       processtermination: processtermination,
-                                       filehandler: filehandler)
-            command.executeProcess(outputprocess: outputprocess)
+            guard arguments != nil else { return }
+            Task {
+                await getfilelist(arguments: arguments ?? [])
+            }
         }
     }
 }
 
 extension Remotefilelist {
-    func processtermination() {
-        remotefilelist = TrimOne(outputprocess?.getOutput() ?? []).trimmeddata
+    func processtermination(data: [String]?) {
+        remotefilelist = TrimOne(data ?? []).trimmeddata
         setremotefilelistDelegate?.updateremotefilelist()
+        presentoutputfromrsync(data: data)
     }
 
-    func filehandler() {
+    // in ViewControllerAllOutput from ViewCotrollerMain
+    func presentoutputfromrsync(data: [String]?) {
+        weak var outputeverythingDelegate: ViewOutputDetails?
+        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {
+            outputeverythingDelegate?.outputfromrsync(data: data)
             outputeverythingDelegate?.reloadtable()
         }
     }
