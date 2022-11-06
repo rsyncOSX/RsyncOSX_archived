@@ -97,7 +97,7 @@ final class SynchronizeAlltasksNow: SetConfigurations {
         guard sortedlist?.count ?? 0 > 0 else { return }
         sortbydays()
         hiddenID = nil
-        reloadtableDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+        reloadtableDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerSynchronizeAll
         prepareandstartexecutetasks()
     }
 
@@ -122,7 +122,7 @@ extension SynchronizeAlltasksNow {
             hiddenID = nil
             reloadtableDelegate?.reloadtabledata()
             weak var completed: SynchronizeallCompleted?
-            completed = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+            completed = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerSynchronizeAll
             completed?.synchronizeallcompleted()
             return
         }
@@ -141,7 +141,7 @@ extension SynchronizeAlltasksNow {
     func filehandler() {
         weak var localprocessupdateDelegate: Reloadandrefresh?
         weak var outputeverythingDelegate: ViewOutputDetails?
-        localprocessupdateDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+        localprocessupdateDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerSynchronizeAll
         localprocessupdateDelegate?.reloadtabledata()
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {

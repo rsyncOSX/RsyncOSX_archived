@@ -1,5 +1,5 @@
 //
-//  ViewControllerQuickBackup.swift
+//  ViewControllerSynchronizeAll.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 22.12.2017.
@@ -14,7 +14,7 @@ protocol SynchronizeallCompleted: AnyObject {
     func synchronizeallcompleted()
 }
 
-class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, Setcolor {
+class ViewControllerSynchronizeAll: NSViewController, SetDismisser, Abort, Delay, Setcolor {
     var seconds: Int?
     var row: Int?
     var filterby: Sortandfilter?
@@ -98,13 +98,13 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     }
 }
 
-extension ViewControllerQuickBackup: NSTableViewDataSource {
+extension ViewControllerSynchronizeAll: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
         return synchronizealltasksnow?.sortedlist?.count ?? 0
     }
 }
 
-extension ViewControllerQuickBackup: NSTableViewDelegate {
+extension ViewControllerSynchronizeAll: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard synchronizealltasksnow?.sortedlist != nil else { return nil }
         guard row < (synchronizealltasksnow?.sortedlist?.count ?? 0) else { return nil }
@@ -147,7 +147,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerQuickBackup: Reloadandrefresh {
+extension ViewControllerSynchronizeAll: Reloadandrefresh {
     func reloadtabledata() {
         globalMainQueue.async { () in
             self.mainTableView.reloadData()
@@ -155,7 +155,7 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
     }
 }
 
-extension ViewControllerQuickBackup: SynchronizeallCompleted {
+extension ViewControllerSynchronizeAll: SynchronizeallCompleted {
     func synchronizeallcompleted() {
         completed.isHidden = false
         completed.textColor = setcolor(nsviewcontroller: self, color: .green)

@@ -78,7 +78,7 @@
 		E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */; };
 		E93ADA6C24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */; };
 		E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */; };
-		E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */; };
+		E942FF291FED41D0004191B5 /* ViewControllerSynchronizeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerSynchronizeAll.swift */; };
 		E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */; };
 		E943DC681FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC671FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift */; };
 		E943DC6A1FF9141D00E6B8B7 /* RemoteinfoEstimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */; };
@@ -241,7 +241,7 @@
 		E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesandPaths.swift; sourceTree = "<group>"; };
 		E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCScheduletableviewDelegate.swift; sourceTree = "<group>"; };
 		E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEstimatingTasks.swift; sourceTree = "<group>"; };
-		E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerQuickBackup.swift; sourceTree = "<group>"; };
+		E942FF281FED41D0004191B5 /* ViewControllerSynchronizeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSynchronizeAll.swift; sourceTree = "<group>"; };
 		E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteinfonumbersOnetask.swift; sourceTree = "<group>"; };
 		E943DC671FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateremoteInformationOnetask.swift; sourceTree = "<group>"; };
 		E943DC691FF9141D00E6B8B7 /* RemoteinfoEstimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteinfoEstimation.swift; sourceTree = "<group>"; };
@@ -579,7 +579,7 @@
 				A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */,
 				A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */,
 				A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */,
-				E942FF281FED41D0004191B5 /* ViewControllerQuickBackup.swift */,
+				E942FF281FED41D0004191B5 /* ViewControllerSynchronizeAll.swift */,
 				E94F0707211D8FCC00B2C3D8 /* ViewControllerAllOutput.swift */,
 				E945D61320B736E9000E787B /* ViewControllerInformationLocalRemote.swift */,
 				A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */,
@@ -986,7 +986,7 @@
 				A04972511D6595B200086EFD /* OutputfromProcess.swift in Sources */,
 				E943DC6A1FF9141D00E6B8B7 /* RemoteinfoEstimation.swift in Sources */,
 				E939EC4A20C048A000C47F91 /* extensionVCMain.swift in Sources */,
-				E942FF291FED41D0004191B5 /* ViewControllerQuickBackup.swift in Sources */,
+				E942FF291FED41D0004191B5 /* ViewControllerSynchronizeAll.swift in Sources */,
 				E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */,
 				E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */,
 				A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */,
