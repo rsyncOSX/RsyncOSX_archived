@@ -35,7 +35,6 @@ protocol Reloadandrefresh: AnyObject {
 
 protocol ReloadTable {
     var reloadDelegateMain: Reloadandrefresh? { get }
-    // var reloadDelegateSchedule: Reloadandrefresh? { get }
     var reloadDelegateLoggData: Reloadandrefresh? { get }
     var reloadDelegateSnapshot: Reloadandrefresh? { get }
 }
@@ -45,11 +44,6 @@ extension ReloadTable {
         return SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
-    /*
-     var reloadDelegateSchedule: Reloadandrefresh? {
-         return SharedReference.shared.getvcref(viewcontroller: .vctabschedule) as? ViewControllerSchedule
-     }
-     */
     var reloadDelegateLoggData: Reloadandrefresh? {
         return SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
     }

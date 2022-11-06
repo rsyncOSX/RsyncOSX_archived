@@ -10,8 +10,8 @@
 import Cocoa
 import Foundation
 
-protocol QuickBackupCompleted: AnyObject {
-    func quickbackupcompleted()
+protocol SynchronizeallCompleted: AnyObject {
+    func synchronizeallcompleted()
 }
 
 class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, Setcolor {
@@ -155,8 +155,8 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
     }
 }
 
-extension ViewControllerQuickBackup: QuickBackupCompleted {
-    func quickbackupcompleted() {
+extension ViewControllerQuickBackup: SynchronizeallCompleted {
+    func synchronizeallcompleted() {
         completed.isHidden = false
         completed.textColor = setcolor(nsviewcontroller: self, color: .green)
         executing = false

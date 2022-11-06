@@ -117,11 +117,13 @@ extension SynchronizeAlltasksNow {
     func processtermination() {
         setcompleted()
         configurations?.setCurrentDateonConfiguration(index: index ?? 0, outputprocess: outputprocess)
-
         guard (stackoftasktobeexecuted?.count ?? 0) > 0 else {
             stackoftasktobeexecuted = nil
             hiddenID = nil
             reloadtableDelegate?.reloadtabledata()
+            weak var completed: SynchronizeallCompleted?
+            completed = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+            completed?.synchronizeallcompleted()
             return
         }
         if let hiddenID = stackoftasktobeexecuted?[0].0,
