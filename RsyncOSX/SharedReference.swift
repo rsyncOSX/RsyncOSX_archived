@@ -41,8 +41,6 @@ final class SharedReference {
         return Singleton.instance
     }
 
-    // Reference to the quick backup task
-    var quickbackuptask: NSDictionary?
     // Download URL if new version is avaliable
     var URLnewVersion: String?
     // True if version 3.1.2 or 3.1.3 of rsync in /usr/local/bin
@@ -68,7 +66,6 @@ final class SharedReference {
     var detailedlogging: Bool = true
     // Temporary path for restore
     var pathforrestore: String?
-    var completeoperation: CompleteQuickbackupTask?
     // Loggfile
     var minimumlogging: Bool = false
     var fulllogging: Bool = false

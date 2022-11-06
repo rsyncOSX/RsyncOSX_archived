@@ -1,23 +1,23 @@
 //
-//  QuickBackup.swift
+//  SynchronizeAlltasksNow.swift
 //  RsyncOSX
 //
-//  Created by Thomas Evensen on 22.12.2017.
-//  Copyright © 2017 Thomas Evensen. All rights reserved.
+//  Created by Thomas Evensen on 06/11/2022.
+//  Copyright © 2022 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length trailing_comma
+// swiftlint:disable line_length
 
 import Foundation
 
-final class QuickBackup: SetConfigurations {
+final class SynchronizeAlltasksNow: SetConfigurations {
     var sortedlist: [NSMutableDictionary]?
     typealias Row = (Int, Int)
     var stackoftasktobeexecuted: [Row]?
     var hiddenID: Int?
+    var index: Int?
     var maxcount: Int?
     weak var reloadtableDelegate: Reloadandrefresh?
     var outputprocess: OutputfromProcess?
-    var command: QuickbackupDispatch?
 
     func sortbydays() {
         guard sortedlist != nil else { return }
@@ -37,18 +37,19 @@ final class QuickBackup: SetConfigurations {
     }
 
     private func executequickbackuptask(hiddenID: Int) {
-        let now = Date()
-        SharedReference.shared.quickbackuptask = [
-            DictionaryStrings.start.rawValue: now,
-            DictionaryStrings.hiddenID.rawValue: hiddenID,
-            DictionaryStrings.dateStart.rawValue: "01 Jan 1900 00:00".en_us_date_from_string(),
-            DictionaryStrings.schedule.rawValue: Scheduletype.manuel.rawValue,
-        ]
         outputprocess = nil
         outputprocess = OutputfromProcessRsync()
-        command = QuickbackupDispatch(processtermination: processtermination,
-                                      filehandler: filehandler,
-                                      outputprocess: outputprocess)
+        if let index = configurations?.getIndex(hiddenID) {
+            if let config = configurations?.getConfigurations()?[index] {
+                self.index = index
+                let arguments = ArgumentsSynchronize(config: config).argumentssynchronize(dryRun: false, forDisplay: false)
+                let command = RsyncProcess(arguments: arguments,
+                                           config: config,
+                                           processtermination: processtermination,
+                                           filehandler: filehandler)
+                command.executeProcess(outputprocess: outputprocess)
+            }
+        }
     }
 
     private func prepareandstartexecutetasks() {
@@ -96,7 +97,7 @@ final class QuickBackup: SetConfigurations {
         guard sortedlist?.count ?? 0 > 0 else { return }
         sortbydays()
         hiddenID = nil
-        reloadtableDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+        reloadtableDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerSynchronizeAll
         prepareandstartexecutetasks()
     }
 
@@ -112,19 +113,17 @@ final class QuickBackup: SetConfigurations {
     }
 }
 
-extension QuickBackup {
+extension SynchronizeAlltasksNow {
     func processtermination() {
         setcompleted()
-        SharedReference.shared.completeoperation?.finalizeScheduledJob(outputprocess: outputprocess)
-        SharedReference.shared.completeoperation = nil
+        configurations?.setCurrentDateonConfiguration(index: index ?? 0, outputprocess: outputprocess)
         guard (stackoftasktobeexecuted?.count ?? 0) > 0 else {
             stackoftasktobeexecuted = nil
             hiddenID = nil
             reloadtableDelegate?.reloadtabledata()
-            weak var quickbackupcompletedDelegate: QuickBackupCompleted?
-            quickbackupcompletedDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
-            quickbackupcompletedDelegate?.quickbackupcompleted()
-            command = nil
+            weak var completed: SynchronizeallCompleted?
+            completed = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerSynchronizeAll
+            completed?.synchronizeallcompleted()
             return
         }
         if let hiddenID = stackoftasktobeexecuted?[0].0,
@@ -136,14 +135,13 @@ extension QuickBackup {
             maxcount = Int(sortedlist?[index].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
             executequickbackuptask(hiddenID: hiddenID)
             reloadtableDelegate?.reloadtabledata()
-            command = nil
         }
     }
 
     func filehandler() {
         weak var localprocessupdateDelegate: Reloadandrefresh?
         weak var outputeverythingDelegate: ViewOutputDetails?
-        localprocessupdateDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerQuickBackup
+        localprocessupdateDelegate = SharedReference.shared.getvcref(viewcontroller: .vcquickbackup) as? ViewControllerSynchronizeAll
         localprocessupdateDelegate?.reloadtabledata()
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
         if outputeverythingDelegate?.appendnow() ?? false {

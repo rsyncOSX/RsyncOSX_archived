@@ -1,5 +1,5 @@
 //
-//  ViewControllerQuickBackup.swift
+//  ViewControllerSynchronizeAll.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 22.12.2017.
@@ -10,15 +10,15 @@
 import Cocoa
 import Foundation
 
-protocol QuickBackupCompleted: AnyObject {
-    func quickbackupcompleted()
+protocol SynchronizeallCompleted: AnyObject {
+    func synchronizeallcompleted()
 }
 
-class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, Setcolor {
+class ViewControllerSynchronizeAll: NSViewController, SetDismisser, Abort, Delay, Setcolor {
     var seconds: Int?
     var row: Int?
     var filterby: Sortandfilter?
-    var quickbackup: QuickBackup?
+    var synchronizealltasksnow: SynchronizeAlltasksNow?
     var executing: Bool = true
     var max: Double?
     var maxInt: Int?
@@ -32,8 +32,8 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
 
     // Either abort or close
     @IBAction func abort(_: NSButton) {
-        quickbackup?.abort()
-        quickbackup = nil
+        synchronizealltasksnow?.abort()
+        synchronizealltasksnow = nil
         abort()
         if (presentingViewController as? ViewControllerMain) != nil {
             dismissview(viewcontroller: self, vcontroller: .vctabmain)
@@ -66,7 +66,7 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
             }
             return
         }
-        quickbackup = QuickBackup()
+        synchronizealltasksnow = SynchronizeAlltasksNow()
         globalMainQueue.async { () in
             self.mainTableView.reloadData()
         }
@@ -77,12 +77,12 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
         super.viewDidDisappear()
         diddissappear = true
         // release the quickobject
-        quickbackup = nil
+        synchronizealltasksnow = nil
     }
 
     private func initiateProgressbar(progress: NSProgressIndicator) {
         progress.isHidden = false
-        if let calculatedNumberOfFiles = quickbackup?.maxcount {
+        if let calculatedNumberOfFiles = synchronizealltasksnow?.maxcount {
             progress.maxValue = Double(calculatedNumberOfFiles)
             max = Double(calculatedNumberOfFiles)
             maxInt = calculatedNumberOfFiles
@@ -93,28 +93,28 @@ class ViewControllerQuickBackup: NSViewController, SetDismisser, Abort, Delay, S
     }
 
     private func updateProgressbar(progress: NSProgressIndicator) {
-        let value = Double((quickbackup?.outputprocess?.getOutput()?.count) ?? 0)
+        let value = Double((synchronizealltasksnow?.outputprocess?.getOutput()?.count) ?? 0)
         progress.doubleValue = value
     }
 }
 
-extension ViewControllerQuickBackup: NSTableViewDataSource {
+extension ViewControllerSynchronizeAll: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return quickbackup?.sortedlist?.count ?? 0
+        return synchronizealltasksnow?.sortedlist?.count ?? 0
     }
 }
 
-extension ViewControllerQuickBackup: NSTableViewDelegate {
+extension ViewControllerSynchronizeAll: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard quickbackup?.sortedlist != nil else { return nil }
-        guard row < (quickbackup?.sortedlist?.count ?? 0) else { return nil }
-        if let object: NSDictionary = quickbackup?.sortedlist?[row],
+        guard synchronizealltasksnow?.sortedlist != nil else { return nil }
+        guard row < (synchronizealltasksnow?.sortedlist?.count ?? 0) else { return nil }
+        if let object: NSDictionary = synchronizealltasksnow?.sortedlist?[row],
            let cellIdentifier: String = tableColumn?.identifier.rawValue
         {
             let hiddenID = object.value(forKey: DictionaryStrings.hiddenID.rawValue) as? Int
             switch cellIdentifier {
             case "percentCellID":
-                guard hiddenID == quickbackup?.hiddenID else { return nil }
+                guard hiddenID == synchronizealltasksnow?.hiddenID else { return nil }
                 if let cell: NSProgressIndicator = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSProgressIndicator {
                     if row > indexinitiated {
                         indexinitiated = row
@@ -125,9 +125,9 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
                     return cell
                 }
             case "countCellID":
-                guard hiddenID == quickbackup?.hiddenID else { return nil }
+                guard hiddenID == synchronizealltasksnow?.hiddenID else { return nil }
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                    let filestodo = (maxInt ?? 0) - (quickbackup?.outputprocess?.getOutput()?.count ?? 0)
+                    let filestodo = (maxInt ?? 0) - (synchronizealltasksnow?.outputprocess?.getOutput()?.count ?? 0)
                     if filestodo > 0 {
                         cell.textField?.stringValue = String(filestodo)
                         return cell
@@ -147,7 +147,7 @@ extension ViewControllerQuickBackup: NSTableViewDelegate {
     }
 }
 
-extension ViewControllerQuickBackup: Reloadandrefresh {
+extension ViewControllerSynchronizeAll: Reloadandrefresh {
     func reloadtabledata() {
         globalMainQueue.async { () in
             self.mainTableView.reloadData()
@@ -155,8 +155,8 @@ extension ViewControllerQuickBackup: Reloadandrefresh {
     }
 }
 
-extension ViewControllerQuickBackup: QuickBackupCompleted {
-    func quickbackupcompleted() {
+extension ViewControllerSynchronizeAll: SynchronizeallCompleted {
+    func synchronizeallcompleted() {
         completed.isHidden = false
         completed.textColor = setcolor(nsviewcontroller: self, color: .green)
         executing = false
