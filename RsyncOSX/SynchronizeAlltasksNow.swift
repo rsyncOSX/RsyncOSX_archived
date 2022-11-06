@@ -104,7 +104,7 @@ final class SynchronizeAlltasksNow: SetConfigurations {
     deinit {
         self.stackoftasktobeexecuted = nil
         SharedReference.shared.estimatedlistforsynchronization = nil
-        // print("deinit QuickBackup")
+        print("deinit SynchronizeAlltasksNow")
     }
 
     func abort() {
