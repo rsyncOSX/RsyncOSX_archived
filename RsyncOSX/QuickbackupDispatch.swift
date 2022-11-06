@@ -8,7 +8,7 @@
 
 import Foundation
 
-class QuickbackupDispatch {
+final class QuickbackupDispatch {
     weak var workitem: DispatchWorkItem?
     // Process termination and filehandler closures
     var processtermination: () -> Void

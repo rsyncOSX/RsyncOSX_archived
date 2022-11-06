@@ -15,7 +15,7 @@ final class RsyncAsync: Errors {
     // Verify network connection
     // Arguments to command
     var arguments: [String]?
-    // Process termination and filehandler closures
+    // Process termination closure
     var processtermination: ([String]?) -> Void
     // Output
     var outputprocess: OutputfromProcess?
