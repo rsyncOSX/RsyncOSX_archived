@@ -18,7 +18,7 @@ protocol DisableEnablePopupSelectProfile: AnyObject {
     func enableselectpopupprofile()
 }
 
-final class RsyncProcess {
+final class RsyncProcess: Errors {
     // Combine subscribers
     var subscriptons = Set<AnyCancellable>()
     // Process termination and filehandler closures
@@ -109,9 +109,7 @@ final class RsyncProcess {
             try task.run()
         } catch let e {
             let error = e as NSError
-            let outputprocess = OutputfromProcess()
-            outputprocess.addlinefromoutput(str: error.description)
-            _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
+            self.error(errordescription: error.localizedDescription, errortype: .task)
         }
     }
 

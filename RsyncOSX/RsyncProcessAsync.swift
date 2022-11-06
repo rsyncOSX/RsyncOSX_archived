@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 @MainActor
-final class RsyncProcessAsync {
+final class RsyncProcessAsync: Errors {
     // Combine subscribers
     var subscriptons = Set<AnyCancellable>()
     // Verify network connection
@@ -94,7 +94,7 @@ final class RsyncProcessAsync {
             try task.run()
         } catch let e {
             let error = e
-            // propogateerror(error: error)
+            self.error(errordescription: error.localizedDescription, errortype: .task)
         }
     }
 
@@ -123,11 +123,3 @@ final class RsyncProcessAsync {
         self.profilepopupDelegate?.enableselectpopupprofile()
     }
 }
-
-/*
- extension CommandProcess: PropogateError {
-     func propogateerror(error: Error) {
-         SharedReference.shared.errorobject?.propogateerror(error: error)
-     }
- }
- */
