@@ -86,6 +86,7 @@ class ViewControllerSynchronizeAll: NSViewController, SetDismisser, Abort, Delay
             progress.maxValue = Double(calculatedNumberOfFiles)
             max = Double(calculatedNumberOfFiles)
             maxInt = calculatedNumberOfFiles + SharedReference.shared.extralines
+            print("maxint = \(String(describing: maxInt))")
         }
         progress.minValue = 0
         progress.doubleValue = 0
