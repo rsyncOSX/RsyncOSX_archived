@@ -19,6 +19,8 @@ final class RsyncAsync {
     var processtermination: ([String]?) -> Void
     // Output
     var outputprocess: OutputfromProcess?
+    // Enable and disable select profile
+    weak var profilepopupDelegate: DisableEnablePopupSelectProfile?
 
     func executeProcess() async {
         // Must check valid rsync exists
@@ -62,6 +64,7 @@ final class RsyncAsync {
                 // print("process termination")
                 self.subscriptons.removeAll()
             }.store(in: &subscriptons)
+        profilepopupDelegate?.disableselectpopupprofile()
         SharedReference.shared.process = task
         do {
             try task.run()
@@ -82,10 +85,13 @@ final class RsyncAsync {
         self.arguments = arguments
         self.processtermination = processtermination
         outputprocess = OutputfromProcess()
+        profilepopupDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     deinit {
         SharedReference.shared.process = nil
+        // Enable select profile
+        self.profilepopupDelegate?.enableselectpopupprofile()
         print("deinit RsyncAsync")
     }
 }

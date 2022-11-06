@@ -10,10 +10,6 @@
 import Cocoa
 import Foundation
 
-protocol CloseEdit: Any {
-    func closeview()
-}
-
 class ViewControllerEdit: NSViewController, SetConfigurations, Index, Delay {
     @IBOutlet var localCatalog: NSTextField!
     @IBOutlet var offsiteCatalog: NSTextField!
@@ -210,7 +206,7 @@ extension ViewControllerEdit: NSTextFieldDelegate {
 }
 
 // Needed for automatically close view if another config is selected
-extension ViewControllerEdit: CloseEdit {
+extension ViewControllerEdit {
     func closeview() {
         view.window?.close()
     }
