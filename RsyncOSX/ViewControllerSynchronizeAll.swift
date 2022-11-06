@@ -85,7 +85,7 @@ class ViewControllerSynchronizeAll: NSViewController, SetDismisser, Abort, Delay
         if let calculatedNumberOfFiles = synchronizealltasksnow?.maxcount {
             progress.maxValue = Double(calculatedNumberOfFiles)
             max = Double(calculatedNumberOfFiles)
-            maxInt = calculatedNumberOfFiles
+            maxInt = calculatedNumberOfFiles + SharedReference.shared.extralines
         }
         progress.minValue = 0
         progress.doubleValue = 0
@@ -128,6 +128,7 @@ extension ViewControllerSynchronizeAll: NSTableViewDelegate {
                 guard hiddenID == synchronizealltasksnow?.hiddenID else { return nil }
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     let filestodo = (maxInt ?? 0) - (synchronizealltasksnow?.outputprocess?.getOutput()?.count ?? 0)
+                    print(filestodo)
                     if filestodo > 0 {
                         cell.textField?.stringValue = String(filestodo)
                         return cell
