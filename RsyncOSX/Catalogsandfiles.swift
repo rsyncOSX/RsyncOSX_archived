@@ -38,6 +38,7 @@ enum RsyncOSXTypeErrors: LocalizedError {
     case emptylogfile
     case readerror
     case rsyncerror
+    case task
 
     var errorDescription: String? {
         switch self {
@@ -59,6 +60,8 @@ enum RsyncOSXTypeErrors: LocalizedError {
             return "Some error trying to read a file"
         case .rsyncerror:
             return NSLocalizedString("There are errors in output", comment: "rsync error")
+        case .task:
+            return "Execute task failed"
         }
     }
 }

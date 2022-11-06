@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-final class CommandProcess {
+final class CommandProcess: Errors {
     // Combine subscribers
     var subscriptons = Set<AnyCancellable>()
     // Process termination and filehandler closures
@@ -67,7 +67,7 @@ final class CommandProcess {
             try task.run()
         } catch let e {
             let error = e
-            // propogateerror(error: error)
+            self.error(errordescription: error.localizedDescription, errortype: .task)
         }
     }
 
@@ -86,11 +86,3 @@ final class CommandProcess {
         // print("deinit OtherProcessCmdCombine")
     }
 }
-
-/*
- extension CommandProcess: PropogateError {
-     func propogateerror(error: Error) {
-         SharedReference.shared.errorobject?.propogateerror(error: error)
-     }
- }
- */

@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 @MainActor
-final class CommandProcessAsync {
+final class CommandProcessAsync: Errors {
     // Combine subscribers
     var subscriptons = Set<AnyCancellable>()
     // Command to be executed, normally rsync
@@ -64,7 +64,7 @@ final class CommandProcessAsync {
             try task.run()
         } catch let e {
             let error = e
-            // propogateerror(error: error)
+            self.error(errordescription: error.localizedDescription, errortype: .task)
         }
     }
 
@@ -88,11 +88,3 @@ final class CommandProcessAsync {
         print("deinit CommandRsyncAsync")
     }
 }
-
-/*
- extension CommandProcess: PropogateError {
-     func propogateerror(error: Error) {
-         SharedReference.shared.errorobject?.propogateerror(error: error)
-     }
- }
- */
