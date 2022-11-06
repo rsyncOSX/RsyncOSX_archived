@@ -336,7 +336,7 @@ class ViewControllerRsyncParameters: NSViewController, SetConfigurations, Index 
     }
 }
 
-extension ViewControllerRsyncParameters: CloseEdit {
+extension ViewControllerRsyncParameters {
     func closeview() {
         view.window?.close()
     }

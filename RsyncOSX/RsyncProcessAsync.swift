@@ -21,6 +21,8 @@ final class RsyncProcessAsync {
     var processtermination: ([String]?) -> Void
     // Output
     var outputprocess: OutputfromProcess?
+    // Enable and disable select profile
+    weak var profilepopupDelegate: DisableEnablePopupSelectProfile?
 
     func executemonitornetworkconnection() {
         guard config?.offsiteServer.isEmpty == false else { return }
@@ -86,6 +88,7 @@ final class RsyncProcessAsync {
                 // Release Combine subscribers
                 self.subscriptons.removeAll()
             }.store(in: &subscriptons)
+        profilepopupDelegate?.disableselectpopupprofile()
         SharedReference.shared.process = task
         do {
             try task.run()
@@ -109,12 +112,15 @@ final class RsyncProcessAsync {
         self.processtermination = processtermination
         outputprocess = OutputfromProcess()
         executemonitornetworkconnection()
+        profilepopupDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
     deinit {
         self.monitor?.stopMonitoring()
         self.monitor = nil
         SharedReference.shared.process = nil
+        // Enable select profile
+        self.profilepopupDelegate?.enableselectpopupprofile()
     }
 }
 
