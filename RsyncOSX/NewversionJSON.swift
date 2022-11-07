@@ -65,7 +65,7 @@ final class NewversionJSON: ObservableObject, Errors {
                         self.error(errordescription: error.description, errortype: .readerror)
                     }
                 }, receiveValue: { [unowned self] result in
-                    print(result)
+                    // print(result)
                     verifynewversion(result)
                 })
         }

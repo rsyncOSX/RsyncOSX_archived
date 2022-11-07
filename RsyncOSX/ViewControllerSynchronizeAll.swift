@@ -128,7 +128,6 @@ extension ViewControllerSynchronizeAll: NSTableViewDelegate {
                 guard hiddenID == synchronizealltasksnow?.hiddenID else { return nil }
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     let filestodo = (maxInt ?? 0) - (synchronizealltasksnow?.outputprocess?.getOutput()?.count ?? 0)
-                    print(filestodo)
                     if filestodo > 0 {
                         cell.textField?.stringValue = String(filestodo)
                         return cell
