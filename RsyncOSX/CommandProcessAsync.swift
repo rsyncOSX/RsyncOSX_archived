@@ -85,6 +85,6 @@ final class CommandProcessAsync: Errors {
 
     deinit {
         SharedReference.shared.process = nil
-        print("deinit CommandRsyncAsync")
+        // print("deinit CommandRsyncAsync")
     }
 }

@@ -92,6 +92,6 @@ final class RsyncAsync: Errors {
         SharedReference.shared.process = nil
         // Enable select profile
         self.profilepopupDelegate?.enableselectpopupprofile()
-        print("deinit RsyncAsync")
+        // print("deinit RsyncAsync")
     }
 }
