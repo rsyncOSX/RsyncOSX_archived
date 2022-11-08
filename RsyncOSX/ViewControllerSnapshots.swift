@@ -424,7 +424,7 @@ extension ViewControllerSnapshots: NSTableViewDelegate {
             if tableColumn.identifier.rawValue == DictionaryStrings.selectCellID.rawValue {
                 var select: Int = snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID ?? 0
                 if select == 0 { select = 1 } else if select == 1 { select = 0 }
-                guard row < (snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) - 1 else { return }
+                guard row < (snapshotlogsandcatalogs?.logrecordssnapshot?.count ?? 0) else { return }
                 snapshotlogsandcatalogs?.logrecordssnapshot?[row].selectCellID = select
             }
         }
