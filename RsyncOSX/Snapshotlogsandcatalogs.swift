@@ -14,6 +14,7 @@ final class Snapshotlogsandcatalogs {
     var snapshotcatalogstodelete: [String]?
     typealias Catalogsanddates = (String, Date)
     var catalogsanddates: [Catalogsanddates]?
+    var firstsnapshotctalognodelete: String?
 
     @MainActor
     private func getremotecataloginfo() async {
@@ -96,6 +97,8 @@ final class Snapshotlogsandcatalogs {
             }
             return false
         }
+        guard logrecordssnapshot?.count ?? 0 > 0 else { return }
+        firstsnapshotctalognodelete = logrecordssnapshot?[(logrecordssnapshot?.count ?? 0) - 1].snapshotCatalog
     }
 
     func calculatedays(datestringlocalized: String) -> Double? {
@@ -110,19 +113,11 @@ final class Snapshotlogsandcatalogs {
             if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
             let snaproot = self.config?.offsiteCatalog
             let snapcatalog = self.logrecordssnapshot?[i].snapshotCatalog
-            self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
+            if snapcatalog != firstsnapshotctalognodelete {
+                self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
+            }
+            if self.snapshotcatalogstodelete?.count ?? 0 == 0 { self.snapshotcatalogstodelete = nil }
         }
-        if validatedelete() == false {
-            snapshotcatalogstodelete = nil
-        }
-    }
-
-    func validatedelete() -> Bool {
-        guard (snapshotcatalogstodelete?.count ?? 0) > 0 else { return false }
-        let selectedrecords = logrecordssnapshot?.filter { $0.selectCellID == 1 }
-        guard selectedrecords?.count == snapshotcatalogstodelete?.count else { return false }
-        // for i in 0 ..< (self.snapshotcatalogstodelete?.count ?? 0) {}
-        return true
     }
 
     func countbydays(num: Double) -> Int {
