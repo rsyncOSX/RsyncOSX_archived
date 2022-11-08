@@ -15,6 +15,7 @@ final class Snapshotlogsandcatalogs {
     typealias Catalogsanddates = (String, Date)
     var catalogsanddates: [Catalogsanddates]?
     var firstsnapshotctalognodelete: String?
+    var lastsnapshotctalognodelete: String?
 
     @MainActor
     private func getremotecataloginfo() async {
@@ -99,6 +100,7 @@ final class Snapshotlogsandcatalogs {
         }
         guard logrecordssnapshot?.count ?? 0 > 0 else { return }
         firstsnapshotctalognodelete = logrecordssnapshot?[(logrecordssnapshot?.count ?? 0) - 1].snapshotCatalog
+        lastsnapshotctalognodelete = logrecordssnapshot?[0].snapshotCatalog
     }
 
     func calculatedays(datestringlocalized: String) -> Double? {
@@ -113,7 +115,7 @@ final class Snapshotlogsandcatalogs {
             if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
             let snaproot = self.config?.offsiteCatalog
             let snapcatalog = self.logrecordssnapshot?[i].snapshotCatalog
-            if snapcatalog != firstsnapshotctalognodelete {
+            if snapcatalog != firstsnapshotctalognodelete, snapcatalog != lastsnapshotctalognodelete {
                 self.snapshotcatalogstodelete?.append((snaproot ?? "") + (snapcatalog ?? "").dropFirst(2))
             }
             if self.snapshotcatalogstodelete?.count ?? 0 == 0 { self.snapshotcatalogstodelete = nil }
