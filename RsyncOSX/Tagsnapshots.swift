@@ -10,8 +10,8 @@
 import Foundation
 
 final class Tagsnapshots {
-    var day: NumDayofweek?
-    var nameofday: StringDayofweek?
+    var day: NumDayofweek = .Monday
+    var nameofday: StringDayofweek = .Monday
     var daylocalized = [NSLocalizedString("Sunday", comment: "plan"),
                         NSLocalizedString("Monday", comment: "plan"),
                         NSLocalizedString("Tuesday", comment: "plan"),
@@ -94,12 +94,12 @@ final class Tagsnapshots {
                 datecomponentsfromstring(datestringlocalized: now).month,
                 datecomponentsfromstring(datestringlocalized: datesnapshotstring).year == datecomponentsfromstring(datestringlocalized: now).year
             {
-                if datefromstring(datestringlocalized: datesnapshotstring).isSelectedDayofWeek(day: self.day!) == false {
+                if datefromstring(datestringlocalized: datesnapshotstring).isSelectedDayofWeek(day: self.day) == false {
                     let tag = NSLocalizedString("Delete", comment: "plan") + " " + day + ", " + month + " " + NSLocalizedString("this month", comment: "plan")
                     snapshotlogsandcatalogs?.logrecordssnapshot?[index].period = tag
                     return true
                 } else {
-                    let tag = NSLocalizedString("Keep", comment: "plan") + " " + month + " " + daylocalized[self.day!.rawValue - 1] + " " + NSLocalizedString("this month", comment: "plan")
+                    let tag = NSLocalizedString("Keep", comment: "plan") + " " + month + " " + daylocalized[self.day.rawValue - 1] + " " + NSLocalizedString("this month", comment: "plan")
                     snapshotlogsandcatalogs?.logrecordssnapshot?[index].period = tag
                     return false
                 }
@@ -153,7 +153,7 @@ final class Tagsnapshots {
     }
 
     func islastSelectedDayinMonth(_ date: Date) -> Bool {
-        if date.isSelectedDayofWeek(day: day!), date.daymonth() > 24 {
+        if date.isSelectedDayofWeek(day: day), date.daymonth() > 24 {
             return true
         } else {
             return false
@@ -161,7 +161,7 @@ final class Tagsnapshots {
     }
 
     func isselectedDayinWeek(_ date: Date) -> Bool {
-        return day!.rawValue == date.getWeekday()
+        return day.rawValue == date.getWeekday()
     }
 
     private func reset() {

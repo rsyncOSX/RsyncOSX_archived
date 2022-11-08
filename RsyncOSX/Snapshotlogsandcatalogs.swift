@@ -1,5 +1,5 @@
 //
-//  SnapshotsLoggData.swift
+//  Snapshotlogsandcatalogs.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 22.01.2018.
@@ -12,7 +12,6 @@ final class Snapshotlogsandcatalogs {
     var logrecordssnapshot: [Logrecordsschedules]?
     var config: Configuration?
     var snapshotcatalogstodelete: [String]?
-
     typealias Catalogsanddates = (String, Date)
     var catalogsanddates: [Catalogsanddates]?
 
@@ -107,7 +106,7 @@ final class Snapshotlogsandcatalogs {
     }
 
     func preparesnapshotcatalogsfordelete() {
-        for i in 0 ..< ((logrecordssnapshot?.count ?? 0) - 1) where logrecordssnapshot?[i].selectCellID == 1 {
+        for i in 0 ..< (logrecordssnapshot?.count ?? 0) where logrecordssnapshot?[i].selectCellID == 1 {
             if self.snapshotcatalogstodelete == nil { self.snapshotcatalogstodelete = [] }
             let snaproot = self.config?.offsiteCatalog
             let snapcatalog = self.logrecordssnapshot?[i].snapshotCatalog
