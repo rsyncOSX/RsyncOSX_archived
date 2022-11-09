@@ -38,7 +38,7 @@ final class SingleTask: SetConfigurations {
     var workload: SingleTaskWorkQueu?
     var command: RsyncProcess?
 
-    func executesingletask() {
+    func synchronizesingletask() {
         if workload == nil {
             workload = SingleTaskWorkQueu()
         }
