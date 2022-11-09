@@ -31,6 +31,11 @@ class ViewControllerAllOutput: NSViewController, Delay {
         }
     }
 
+    @IBAction func clearoutput(_: NSButton) {
+        getoutputDelegate?.outputfromrsync(data: nil)
+        reloadtabledata()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         SharedReference.shared.setvcref(viewcontroller: .vcalloutput, nsviewcontroller: self)

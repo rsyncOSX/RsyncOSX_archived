@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="abu-zT-Ht4">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -618,7 +618,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Aw0-NM-D64">
-                                                            <rect key="frame" x="693" y="1" width="58" height="17"/>
+                                                            <rect key="frame" x="693" y="1" width="45" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-fC-zkL">
@@ -682,7 +682,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="0XZ-pS-KpO">
-                                                            <rect key="frame" x="832" y="1" width="154" height="17"/>
+                                                            <rect key="frame" x="832" y="1" width="141" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-bL-6Ro">
@@ -2188,21 +2188,34 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljv-WI-ijF">
+                                <rect key="frame" x="723" y="14" width="66" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xZy-Vz-Mvv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearoutput:" target="mal-sc-mlY" id="GCh-GK-DRt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="baseline" secondItem="79S-p9-m7a" secondAttribute="baseline" id="4PG-1J-hFc"/>
                             <constraint firstAttribute="bottom" secondItem="79S-p9-m7a" secondAttribute="bottom" constant="20" symbolic="YES" id="5t1-Pp-XMT"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="trailing" constant="-172" id="74A-an-3RD"/>
                             <constraint firstItem="FVg-4h-I7H" firstAttribute="leading" secondItem="o2i-f4-3Jh" secondAttribute="trailing" constant="8" symbolic="YES" id="A92-Rh-yLr"/>
-                            <constraint firstItem="79S-p9-m7a" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="16" id="D5J-Wp-t7a"/>
+                            <constraint firstItem="79S-p9-m7a" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="17" id="D5J-Wp-t7a"/>
                             <constraint firstAttribute="bottom" secondItem="o2i-f4-3Jh" secondAttribute="bottom" constant="20" symbolic="YES" id="Hcx-yK-JDC"/>
                             <constraint firstItem="6Ks-5W-3qb" firstAttribute="leading" secondItem="FVg-4h-I7H" secondAttribute="trailing" constant="-267" id="LKX-Ed-2RB"/>
                             <constraint firstItem="JxY-5V-aG6" firstAttribute="leading" secondItem="sfF-Cw-fbW" secondAttribute="leading" constant="20" symbolic="YES" id="LNH-xB-ZBT"/>
+                            <constraint firstItem="ljv-WI-ijF" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="16" id="LoD-pi-l6v"/>
+                            <constraint firstAttribute="bottom" secondItem="ljv-WI-ijF" secondAttribute="bottom" constant="21" id="Lz1-i0-r3g"/>
+                            <constraint firstAttribute="trailing" secondItem="ljv-WI-ijF" secondAttribute="trailing" constant="20" symbolic="YES" id="P6k-9g-mta"/>
                             <constraint firstItem="79S-p9-m7a" firstAttribute="leading" secondItem="6Ks-5W-3qb" secondAttribute="trailing" constant="5" id="Sr5-XW-k7O"/>
                             <constraint firstAttribute="bottom" secondItem="6Ks-5W-3qb" secondAttribute="bottom" constant="20" symbolic="YES" id="V86-zn-ZaX"/>
-                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="16" id="Z3J-PW-cez"/>
+                            <constraint firstItem="6Ks-5W-3qb" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="17" id="Z3J-PW-cez"/>
                             <constraint firstItem="JxY-5V-aG6" firstAttribute="top" secondItem="sfF-Cw-fbW" secondAttribute="top" constant="20" symbolic="YES" id="gCt-wk-uqU"/>
-                            <constraint firstItem="FVg-4h-I7H" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="20" id="grj-Ls-b5K"/>
+                            <constraint firstItem="FVg-4h-I7H" firstAttribute="top" secondItem="JxY-5V-aG6" secondAttribute="bottom" constant="21" id="grj-Ls-b5K"/>
                             <constraint firstItem="o2i-f4-3Jh" firstAttribute="top" secondItem="6Ks-5W-3qb" secondAttribute="top" id="igN-S5-jVM"/>
                             <constraint firstAttribute="bottom" secondItem="FVg-4h-I7H" secondAttribute="bottom" constant="21" id="l5m-J0-vuI"/>
                             <constraint firstAttribute="trailing" secondItem="JxY-5V-aG6" secondAttribute="trailing" constant="20" symbolic="YES" id="lCk-S0-ByQ"/>
