@@ -263,13 +263,13 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
                     info.stringValue = Infoexecute().info(num: 10)
                     info.textColor = setcolor(nsviewcontroller: self, color: .green)
                     singletask = SingleTask(index: index)
-                    singletask?.executesingletask()
+                    singletask?.synchronizesingletask()
                     return
                 }
                 // Real run
                 info.stringValue = Infoexecute().info(num: 11)
                 info.textColor = setcolor(nsviewcontroller: self, color: .green)
-                singletask?.executesingletask()
+                singletask?.synchronizesingletask()
             }
         }
     }

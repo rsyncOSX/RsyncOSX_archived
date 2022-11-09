@@ -36,7 +36,7 @@ final class SynchronizeAlltasksNow: SetConfigurations {
         reloadtableDelegate?.reloadtabledata()
     }
 
-    private func executequickbackuptask(hiddenID: Int) {
+    private func synchronizealltasks(hiddenID: Int) {
         outputprocess = nil
         outputprocess = OutputfromProcessRsync()
         if let index = configurations?.getIndex(hiddenID) {
@@ -75,7 +75,7 @@ final class SynchronizeAlltasksNow: SetConfigurations {
                 self.hiddenID = hiddenID
                 sortedlist?[index].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
                 maxcount = Int(sortedlist?[index].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
-                executequickbackuptask(hiddenID: hiddenID)
+                synchronizealltasks(hiddenID: hiddenID)
             }
         }
     }
@@ -133,7 +133,7 @@ extension SynchronizeAlltasksNow {
             self.hiddenID = hiddenID
             sortedlist?[index].setValue(true, forKey: DictionaryStrings.inprogressCellID.rawValue)
             maxcount = Int(sortedlist?[index].value(forKey: DictionaryStrings.transferredNumber.rawValue) as? String ?? "0")
-            executequickbackuptask(hiddenID: hiddenID)
+            synchronizealltasks(hiddenID: hiddenID)
             reloadtableDelegate?.reloadtabledata()
         }
     }
