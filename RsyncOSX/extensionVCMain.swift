@@ -232,6 +232,8 @@ extension ViewControllerMain: ViewOutputDetails {
             for i in 0 ..< data.count {
                 outputprocess?.addlinefromoutput(str: data[i])
             }
+        } else {
+            outputprocess?.output = []
         }
     }
 }
