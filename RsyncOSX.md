@@ -1,5 +1,3 @@
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.4/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
-
 **RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
 Content:
@@ -54,7 +52,7 @@ All the above, except Xcode are installed by using [Homebrew](https://brew.sh/).
 
 ### Scheduling
 
-Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://rsyncosx.netlify.app/post/menuapp/).
+Scheduling is [not enabled by default](https://rsyncosx.netlify.app/post/scheduletasks/). Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://rsyncosx.netlify.app/post/menuapp/).
 
 ### Remote servers
 
