@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class Checksynchronizedfiles: SetConfigurations {
+final class Checksynchronizedfiles: SetConfigurations, Presentoutput {
     var index: Int?
     weak var indicatorDelegate: StartStopProgressIndicatorSingleTask?
 
@@ -44,15 +44,5 @@ extension Checksynchronizedfiles {
     func processtermination(data: [String]?) {
         indicatorDelegate?.stopIndicator()
         presentoutputfromrsync(data: data)
-    }
-
-    // in ViewControllerAllOutput from ViewCotrollerMain
-    func presentoutputfromrsync(data: [String]?) {
-        weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        if outputeverythingDelegate?.appendnow() ?? false {
-            outputeverythingDelegate?.outputfromrsync(data: data)
-            outputeverythingDelegate?.reloadtable()
-        }
     }
 }
