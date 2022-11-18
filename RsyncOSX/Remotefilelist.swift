@@ -9,7 +9,7 @@
 
 import Foundation
 
-class Remotefilelist: SetConfigurations {
+class Remotefilelist: SetConfigurations, Presentoutput {
     var config: Configuration?
     var remotefilelist: [String]?
     weak var setremotefilelistDelegate: Updateremotefilelist?
@@ -44,8 +44,13 @@ extension Remotefilelist {
         setremotefilelistDelegate?.updateremotefilelist()
         presentoutputfromrsync(data: data)
     }
+}
 
-    // in ViewControllerAllOutput from ViewCotrollerMain
+protocol Presentoutput {
+    func presentoutputfromrsync(data: [String]?)
+}
+
+extension Presentoutput {
     func presentoutputfromrsync(data: [String]?) {
         weak var outputeverythingDelegate: ViewOutputDetails?
         outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain

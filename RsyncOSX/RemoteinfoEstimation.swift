@@ -15,7 +15,7 @@ protocol SetRemoteInfo: AnyObject {
     func getremoteinfo() -> RemoteinfoEstimation?
 }
 
-final class RemoteinfoEstimation: SetConfigurations {
+final class RemoteinfoEstimation: SetConfigurations, Presentoutput {
     // (hiddenID, index)
     typealias Row = (Int, Int)
     var stackoftasktobeestimated: [Row]?
@@ -162,16 +162,6 @@ extension RemoteinfoEstimation {
                     await estimation.startestimation()
                 }
             }
-        }
-    }
-
-    // in ViewControllerAllOutput from ViewCotrollerMain
-    func presentoutputfromrsync(data: [String]?) {
-        weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        if outputeverythingDelegate?.appendnow() ?? false {
-            outputeverythingDelegate?.outputfromrsync(data: data)
-            outputeverythingDelegate?.reloadtable()
         }
     }
 }

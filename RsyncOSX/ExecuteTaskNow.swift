@@ -12,7 +12,7 @@ protocol DeinitExecuteTaskNow: AnyObject {
     func deinitexecutetasknow()
 }
 
-class ExecuteTaskNow: SetConfigurations {
+class ExecuteTaskNow: SetConfigurations, Presentoutput {
     weak var startstopindicators: StartStopProgressIndicatorSingleTask?
     weak var deinitDelegate: DeinitExecuteTaskNow?
     var index: Int?
@@ -54,15 +54,5 @@ extension ExecuteTaskNow {
         deinitDelegate?.deinitexecutetasknow()
         command = nil
         presentoutputfromrsync(data: data)
-    }
-
-    // in ViewControllerAllOutput from ViewCotrollerMain
-    func presentoutputfromrsync(data: [String]?) {
-        weak var outputeverythingDelegate: ViewOutputDetails?
-        outputeverythingDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        if outputeverythingDelegate?.appendnow() ?? false {
-            outputeverythingDelegate?.outputfromrsync(data: data)
-            outputeverythingDelegate?.reloadtable()
-        }
     }
 }
