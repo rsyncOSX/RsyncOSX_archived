@@ -28,7 +28,7 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 **RsyncUI** is released for **macOS Monterey** and later.
 
-Latest build is [10 November 2022](https://github.com/rsyncOSX/RsyncUI/releases) (release candidate).
+Latest build is [18 November 2022](https://github.com/rsyncOSX/RsyncUI/releases).
 
 - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
 - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
