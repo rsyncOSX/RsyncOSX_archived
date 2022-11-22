@@ -67,42 +67,6 @@ class Configurations {
         return []
     }
 
-    // Function return arguments for rsync, either arguments for
-    // real runn or arguments for --dry-run for Configuration at selected index
-    func arguments4restore(hiddenID: Int, argtype: ArgumentsRsync) -> [String] {
-        if let config = configurations?.filter({ $0.hiddenID == hiddenID }) {
-            guard config.count == 1 else { return [] }
-            switch argtype {
-            case .arg:
-                return ArgumentsRestore(config: config[0]).argumentsrestore(dryRun: false,
-                                                                            forDisplay: false, tmprestore: false) ?? []
-            case .argdryRun:
-                return ArgumentsRestore(config: config[0]).argumentsrestore(dryRun: true,
-                                                                            forDisplay: false, tmprestore: false) ?? []
-            default:
-                return []
-            }
-        }
-        return []
-    }
-
-    func arguments4tmprestore(hiddenID: Int, argtype: ArgumentsRsync) -> [String] {
-        if let config = configurations?.filter({ $0.hiddenID == hiddenID }) {
-            guard config.count == 1 else { return [] }
-            switch argtype {
-            case .arg:
-                return ArgumentsRestore(config: config[0]).argumentsrestore(dryRun: false,
-                                                                            forDisplay: false, tmprestore: true) ?? []
-            case .argdryRun:
-                return ArgumentsRestore(config: config[0]).argumentsrestore(dryRun: true,
-                                                                            forDisplay: false, tmprestore: true) ?? []
-            default:
-                return []
-            }
-        }
-        return []
-    }
-
     func arguments4verify(hiddenID: Int) -> [String] {
         if let config = configurations?.filter({ $0.hiddenID == hiddenID }) {
             guard config.count == 1 else { return [] }

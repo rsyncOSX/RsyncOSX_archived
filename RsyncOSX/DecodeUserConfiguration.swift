@@ -74,23 +74,4 @@ struct DecodeUserConfiguration: Codable {
         pathrsyncosxsched = try values.decodeIfPresent(String.self, forKey: .pathrsyncosxsched)
         enableschdules = try values.decodeIfPresent(Int.self, forKey: .enableschdules)
     }
-
-    init(_ userconfiguration: UserConfiguration) {
-        rsyncversion3 = userconfiguration.rsyncversion3
-        detailedlogging = userconfiguration.detailedlogging
-        minimumlogging = userconfiguration.minimumlogging
-        fulllogging = userconfiguration.fulllogging
-        // nologging = userconfiguration.nologging
-        monitornetworkconnection = userconfiguration.monitornetworkconnection
-        localrsyncpath = userconfiguration.localrsyncpath
-        pathforrestore = userconfiguration.pathforrestore
-        marknumberofdayssince = userconfiguration.marknumberofdayssince
-        sshkeypathandidentityfile = userconfiguration.sshkeypathandidentityfile
-        sshport = userconfiguration.sshport
-        environment = userconfiguration.environment
-        environmentvalue = userconfiguration.environmentvalue
-        pathrsyncosx = userconfiguration.pathrsyncosx
-        pathrsyncosxsched = userconfiguration.pathrsyncosxsched
-        enableschdules = userconfiguration.enableschdules
-    }
 }
