@@ -17,17 +17,18 @@ enum Result<Value, Error: Swift.Error> {
 // typealias Handler = (Result<Data, Error>) -> Void
 typealias HandlerNSNumber = (Result<NSNumber, Error>) throws -> Void
 
-extension Result {
-    func get() throws -> Value {
-        switch self {
-        case let .success(value):
-            return value
-        case let .failure(error):
-            throw error
-        }
-    }
-}
-
+/*
+ extension Result {
+     func get() throws -> Value {
+         switch self {
+         case let .success(value):
+             return value
+         case let .failure(error):
+             throw error
+         }
+     }
+ }
+ */
 enum RsyncOSXTypeErrors: LocalizedError {
     case writelogfile
     case profilecreatedirectory

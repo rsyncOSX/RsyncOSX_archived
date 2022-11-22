@@ -23,28 +23,28 @@ enum Networkerror: LocalizedError {
 final class NetworkMonitor {
     var monitor: NWPathMonitor?
     var netStatusChangeHandler: (() -> Void)?
+    /*
+     var isConnected: Bool {
+         guard let monitor = monitor else { return false }
+         return monitor.currentPath.status == .satisfied
+     }
 
-    var isConnected: Bool {
-        guard let monitor = monitor else { return false }
-        return monitor.currentPath.status == .satisfied
-    }
+     var interfaceType: NWInterface.InterfaceType? {
+         guard let monitor = monitor else { return nil }
+         return monitor.currentPath.availableInterfaces.filter {
+             monitor.currentPath.usesInterfaceType($0.type)
+         }.first?.type
+     }
 
-    var interfaceType: NWInterface.InterfaceType? {
-        guard let monitor = monitor else { return nil }
-        return monitor.currentPath.availableInterfaces.filter {
-            monitor.currentPath.usesInterfaceType($0.type)
-        }.first?.type
-    }
+     var availableInterfacesTypes: [NWInterface.InterfaceType]? {
+         guard let monitor = monitor else { return nil }
+         return monitor.currentPath.availableInterfaces.map { $0.type }
+     }
 
-    var availableInterfacesTypes: [NWInterface.InterfaceType]? {
-        guard let monitor = monitor else { return nil }
-        return monitor.currentPath.availableInterfaces.map { $0.type }
-    }
-
-    var isExpensive: Bool {
-        return monitor?.currentPath.isExpensive ?? false
-    }
-
+     var isExpensive: Bool {
+         return monitor?.currentPath.isExpensive ?? false
+     }
+     */
     init() {
         startMonitoring()
     }
