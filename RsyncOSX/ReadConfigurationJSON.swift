@@ -8,23 +8,24 @@
 import Combine
 import Foundation
 
-struct UniqueserversandLogins: Hashable {
-    var offsiteUsername: String?
-    var offsiteServer: String?
+/*
+ struct UniqueserversandLogins: Hashable {
+     var offsiteUsername: String?
+     var offsiteServer: String?
 
-    init(_ username: String,
-         _ servername: String)
-    {
-        offsiteServer = servername
-        offsiteUsername = username
-    }
+     init(_ username: String,
+          _ servername: String)
+     {
+         offsiteServer = servername
+         offsiteUsername = username
+     }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(offsiteUsername)
-        hasher.combine(offsiteServer)
-    }
-}
-
+     func hash(into hasher: inout Hasher) {
+         hasher.combine(offsiteUsername)
+         hasher.combine(offsiteServer)
+     }
+ }
+ */
 class ReadConfigurationJSON: NamesandPaths {
     var configurations: [Configuration]?
     var filenamedatastore = [SharedReference.shared.fileconfigurationsjson]
