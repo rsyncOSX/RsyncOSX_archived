@@ -11,7 +11,7 @@ import Cocoa
 import Foundation
 
 extension NSToolbarItem.Identifier {
-    static let backupnow = NSToolbarItem.Identifier("backupnow")
+    static let synchronizeall = NSToolbarItem.Identifier("synchronizeall")
     static let estimateandquickbackup = NSToolbarItem.Identifier("estimateandquickbackup")
     static let executetasknow = NSToolbarItem.Identifier("executetasknow")
     static let abort = NSToolbarItem.Identifier("abort")
@@ -19,7 +19,7 @@ extension NSToolbarItem.Identifier {
 }
 
 extension Selector {
-    static let backupnow = #selector(ViewControllerSideBar.automaticbackup(_:))
+    static let synchronizeall = #selector(ViewControllerSideBar.automaticbackup(_:))
     static let estimateandquickbackup = #selector(ViewControllerSideBar.totinfo(_:))
     static let executetasknow = #selector(ViewControllerMain.executemultipleselectedindexes(_:))
     static let abort = #selector(ViewControllerMain.abort(_:))
@@ -32,9 +32,9 @@ extension MainWindowsController: NSToolbarDelegate {
                  willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem?
     {
         switch itemIdentifier {
-        case .backupnow:
+        case .synchronizeall:
             let title = NSLocalizedString("Execute all tasks now...", comment: "Toolbar")
-            return toolbarbuttonsandactions(.backupnow, title, AppAssets.backupnow, Selector.backupnow)
+            return toolbarbuttonsandactions(.synchronizeall, title, AppAssets.synchronizeall, Selector.synchronizeall)
         case .estimateandquickbackup:
             let title = NSLocalizedString("Execute estimate and quickbackup for all tasks...", comment: "Toolbar")
             return toolbarbuttonsandactions(.estimateandquickbackup, title, AppAssets.estimateandquickbackup, Selector.estimateandquickbackup)
@@ -74,7 +74,7 @@ extension MainWindowsController: NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .space,
-            .backupnow,
+            .synchronizeall,
             .estimateandquickbackup,
             .executetasknow,
             .space,
@@ -86,7 +86,7 @@ extension MainWindowsController: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
         return [
             .space,
-            .backupnow,
+            .synchronizeall,
             .estimateandquickbackup,
             .executetasknow,
             .space,
@@ -101,7 +101,7 @@ extension MainWindowsController: NSToolbarDelegate {
 }
 
 struct AppAssets {
-    static var backupnow: NSImage! = NSImage(named: "backupnow")
+    static var synchronizeall: NSImage! = NSImage(named: "synchronizeall")
 
     static var estimateandquickbackup: NSImage! = NSImage(named: "estimateandquickbackup")
 
