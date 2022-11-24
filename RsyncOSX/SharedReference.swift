@@ -22,7 +22,6 @@ enum ViewController {
     case vcprogressview
     case vcquickbackup
     case vcremoteinfo
-    case vcallprofiles
     case vcestimatingtasks
     case vcinfolocalremote
     case vcalloutput
@@ -145,8 +144,6 @@ final class SharedReference {
     private var viewControllerRemoteInfo: NSViewController?
     // Snapshot
     private var viewControllerSnapshot: NSViewController?
-    // All profiles
-    private var viewControllerAllProfiles: NSViewController?
     // Estimating tasks
     private var viewControllerEstimatingTasks: NSViewController?
     // Local and remote info
@@ -186,8 +183,6 @@ final class SharedReference {
             return viewControllerRemoteInfo
         case .vcsnapshot:
             return viewControllerSnapshot
-        case .vcallprofiles:
-            return viewControllerAllProfiles
         case .vcestimatingtasks:
             return viewControllerEstimatingTasks
         case .vcinfolocalremote:
@@ -229,8 +224,6 @@ final class SharedReference {
             viewControllerRemoteInfo = nsviewcontroller
         case .vcsnapshot:
             viewControllerSnapshot = nsviewcontroller
-        case .vcallprofiles:
-            viewControllerAllProfiles = nsviewcontroller
         case .vcestimatingtasks:
             viewControllerEstimatingTasks = nsviewcontroller
         case .vcinfolocalremote:
