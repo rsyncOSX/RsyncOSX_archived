@@ -12,8 +12,6 @@ import Foundation
 final class RsyncProcessAsync: Errors {
     // Combine subscribers
     var subscriptons = Set<AnyCancellable>()
-    // Verify network connection
-    var config: Configuration?
     var monitor: NetworkMonitor?
     // Arguments to command
     var arguments: [String]?
@@ -24,7 +22,7 @@ final class RsyncProcessAsync: Errors {
     // Enable and disable select profile
     weak var profilepopupDelegate: DisableEnablePopupSelectProfile?
 
-    func executemonitornetworkconnection() {
+    func executemonitornetworkconnection(config: Configuration?) {
         guard config?.offsiteServer.isEmpty == false else { return }
         guard SharedReference.shared.monitornetworkconnection == true else { return }
         monitor = NetworkMonitor()
@@ -33,7 +31,7 @@ final class RsyncProcessAsync: Errors {
                 try statusDidChange()
             } catch let e {
                 let error = e
-                // propogateerror(error: error)
+                self.error(errordescription: error.localizedDescription, errortype: .task)
             }
         }
     }
@@ -108,10 +106,9 @@ final class RsyncProcessAsync: Errors {
          processtermination: @escaping ([String]?) -> Void)
     {
         self.arguments = arguments
-        self.config = config
         self.processtermination = processtermination
         outputprocess = OutputfromProcess()
-        executemonitornetworkconnection()
+        executemonitornetworkconnection(config: config)
         profilepopupDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 

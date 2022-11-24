@@ -24,15 +24,13 @@ final class RsyncProcess: Errors {
     // Process termination and filehandler closures
     var processtermination: () -> Void
     var filehandler: () -> Void
-    // Verify network connection
-    var config: Configuration?
     var monitor: NetworkMonitor?
     // Arguments to command
     var arguments: [String]?
     // Enable and disable select profile
     weak var profilepopupDelegate: DisableEnablePopupSelectProfile?
 
-    func executemonitornetworkconnection() {
+    func executemonitornetworkconnection(config: Configuration?) {
         guard config?.offsiteServer.isEmpty == false else { return }
         guard SharedReference.shared.monitornetworkconnection == true else { return }
         monitor = NetworkMonitor()
@@ -126,8 +124,7 @@ final class RsyncProcess: Errors {
         self.arguments = arguments
         self.processtermination = processtermination
         self.filehandler = filehandler
-        self.config = config
-        executemonitornetworkconnection()
+        executemonitornetworkconnection(config: config)
         profilepopupDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
     }
 
