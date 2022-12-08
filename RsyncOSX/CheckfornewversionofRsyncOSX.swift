@@ -28,7 +28,7 @@ struct VersionsofRsyncOSX: Codable {
     }
 }
 
-struct GetversionsofRsyncUI {
+struct GetversionsofRsyncOSX {
     let urlSession = URLSession.shared
     let jsonDecoder = JSONDecoder()
 
@@ -48,14 +48,14 @@ final class CheckfornewversionofRsyncOSX {
 
     func getversionsofrsyncosx() async {
         do {
-            let versions = GetversionsofRsyncUI()
+            let versions = GetversionsofRsyncOSX()
             if let versionsofrsyncosx = try await versions.getversionsofrsyncosxbyurl() {
                 let runningversion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
                 let check = versionsofrsyncosx.filter { runningversion.isEmpty ? true : $0.version == runningversion }
                 if check.count > 0 {
                     SharedReference.shared.URLnewVersion = check[0].url
-                    self.newversionDelegateMain = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                    self.newversionDelegateMain?.notifyNewVersion()
+                    newversionDelegateMain = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+                    newversionDelegateMain?.notifyNewVersion()
                     SharedReference.shared.newversionofrsyncosx = true
                 } else {
                     SharedReference.shared.newversionofrsyncosx = false
@@ -67,4 +67,3 @@ final class CheckfornewversionofRsyncOSX {
         }
     }
 }
-
