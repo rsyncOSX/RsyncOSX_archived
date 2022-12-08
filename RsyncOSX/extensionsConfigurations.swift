@@ -53,6 +53,10 @@ extension ReloadTable {
     }
 }
 
+protocol OpenOutputfromrsync: AnyObject {
+    func openoutputfromrsync()
+}
+
 // Used to select argument
 enum ArgumentsRsync {
     case arg

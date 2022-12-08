@@ -33,6 +33,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     var diddissappear: Bool = false
 
     weak var reloadtabledata: Reloadandrefresh?
+    weak var openoutput: OpenOutputfromrsync?
 
     @IBOutlet var viewParameter1: NSTextField!
     @IBOutlet var viewParameter2: NSTextField!
@@ -318,4 +319,10 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
 extension ViewControllerNewConfigurations {
     func processtermination(_: [String]?) {}
+
+    // Toolbar - All ouput
+    @IBAction func alloutput(_: NSButton) {
+        openoutput = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+        openoutput?.openoutputfromrsync()
+    }
 }

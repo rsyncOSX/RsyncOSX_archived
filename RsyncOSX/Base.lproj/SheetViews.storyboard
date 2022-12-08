@@ -3719,6 +3719,17 @@ DQ
                                     <constraint firstAttribute="height" constant="56" id="oRu-Fq-1Bt"/>
                                 </constraints>
                             </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFn-9w-qKe">
+                                <rect key="frame" x="148" y="15" width="70" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Verify" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aDj-bp-cbQ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="alloutput:" target="0zy-1t-lZa" id="Y0A-cE-APY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="MlC-FW-pkQ" firstAttribute="top" secondItem="dRx-75-ciX" secondAttribute="bottom" constant="65" id="0pR-vq-Jpc"/>
