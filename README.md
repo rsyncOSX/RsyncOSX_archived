@@ -4,13 +4,23 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 
 It is `rsync` which executes the synchronize task. The GUI´s are only for setting parameters and make it more easy to use `rsync`, which is a fantastic tool.
 
+### Very important to read and understand
+
 The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult to understand. Setting wrong parameters to rsync can result in deleted data. RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is **very** important to execute a simulated run, a `--dry-run`, and verify the result before the real run.
+
+Please read  the [documentation of RsyncOSX](https://rsyncosx.netlify.app/) or [documentation of RsyncUI](https://rsyncui.netlify.app/) for how to add a task and how to execute a simulated run, a `--dry-run`, to verify the task.  
+
+### Version of macOS
 
 If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey** or **macOS Ventura**, you can use both GUI´s in parallell.
 
-Please be aware it is an external task not controlled by RsyncOSX which executes the command line tool `rsync`. RsyncOSX is monitoring the task for progress and termination. The user can abort a tasks at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
+### External task does the job
+
+Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncUI which executes the command line tool `rsync`. RsyncOSX is monitoring the task for progress and termination. The user can abort a tasks at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
 
 One of many advantages of utilizing `rsync` is that it can restart and continue the synchronize task from where it was aborted.
+
+### RsyncOSX
 
 RsyncOSX is the only GUI which supports scheduling of task.
 
@@ -23,6 +33,8 @@ RsyncOSX is the only GUI which supports scheduling of task.
 - the [changelog](https://rsyncosx.netlify.app/post/changelog/)
 
 ![](images/rsyncosx.png)
+
+### RsyncUI
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD)  ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.4.0/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.3.9/total)  [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
 
