@@ -9,10 +9,6 @@
 
 import Foundation
 
-protocol NewVersionDiscovered: AnyObject {
-    func notifyNewVersion()
-}
-
 final class Checkfornewversion {
     private var runningVersion: String?
     private var urlPlist: String?
