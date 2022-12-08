@@ -202,7 +202,9 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         if SharedReference.shared.initialstart == 0 {
             view.window?.center()
             SharedReference.shared.initialstart = 1
-            Checkfornewversion()
+            Task {
+                await CheckfornewversionofRsyncOSX().getversionsofrsyncosx()
+            }
         }
         if (configurations?.configurations?.count ?? 0) > 0 {
             if localindex == nil {

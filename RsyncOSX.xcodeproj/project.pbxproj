@@ -13,7 +13,6 @@
 		A00FE1AA1D6A1AAB00012089 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A91D6A1AAB00012089 /* Alerts.swift */; };
 		A017E2A01D7D3242003016F5 /* ViewControllerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */; };
 		A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */; };
-		A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0400C861D794FF8008A3949 /* Checkfornewversion.swift */; };
 		A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */; };
 		A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04492851D658EE800B3CE17 /* AppDelegate.swift */; };
 		A044928A1D658EE800B3CE17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A04492891D658EE800B3CE17 /* Assets.xcassets */; };
@@ -164,7 +163,6 @@
 		A00FE1A91D6A1AAB00012089 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		A017E29F1D7D3242003016F5 /* ViewControllerEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerEdit.swift; sourceTree = "<group>"; };
 		A03876E01DB4FD9D00C14AEA /* ViewControllerProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProfile.swift; sourceTree = "<group>"; };
-		A0400C861D794FF8008A3949 /* Checkfornewversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkfornewversion.swift; sourceTree = "<group>"; };
 		A0430AD91DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTaskWorkQueu.swift; sourceTree = "<group>"; };
 		A04492821D658EE800B3CE17 /* RsyncOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RsyncOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A04492851D658EE800B3CE17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -437,7 +435,6 @@
 				E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */,
 				E9C6EA891ED2AE2F00680D4D /* Numbers.swift */,
 				A00FE1A91D6A1AAB00012089 /* Alerts.swift */,
-				A0400C861D794FF8008A3949 /* Checkfornewversion.swift */,
 				E9EB64F72941C567002829C6 /* CheckfornewversionofRsyncOSX.swift */,
 				E96CA1FD1E094C3000CD1D03 /* Resources.swift */,
 				E9614AD51F231AFC00CAE21A /* RsyncCommandtoDisplay.swift */,
@@ -996,7 +993,6 @@
 				E9E70A3C1FF3BCB30099554D /* RsyncVersionString.swift in Sources */,
 				E9E88FD01EB25A080028432F /* ArgumentsSsh.swift in Sources */,
 				A03876E11DB4FD9D00C14AEA /* ViewControllerProfile.swift in Sources */,
-				A0400C871D794FF8008A3949 /* Checkfornewversion.swift in Sources */,
 				A04492AA1D658F2100B3CE17 /* yudpsocket.c in Sources */,
 				E8EC68FE2576938600A71383 /* TabViewController.swift in Sources */,
 				E903F76322A8F8E6008EA38D /* Setrsyncpath.swift in Sources */,
