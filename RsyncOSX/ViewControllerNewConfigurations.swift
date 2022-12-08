@@ -31,7 +31,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                           SharedReference.shared.syncremote]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
-
     weak var reloadtabledata: Reloadandrefresh?
 
     @IBOutlet var viewParameter1: NSTextField!
@@ -145,6 +144,15 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 
     // Sidebar Add button
     @IBAction func addtask(_: NSButton) {
+        if let newconfig = qualifynewconfig() {
+            configurations?.addNewConfigurations(newconfig)
+            resetinputfields()
+            reloadtabledata = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
+            reloadtabledata?.reloadtabledata()
+        }
+    }
+
+    private func qualifynewconfig() -> Configuration? {
         if localCatalog.stringValue.hasSuffix("/") == false, addingtrailingbackslash.state == .off {
             localCatalog.stringValue += "/"
         }
@@ -169,12 +177,12 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
             newconfig.snapshotnum = 1
             newconfig.task = SharedReference.shared.snapshot
             // Must be connected to create base remote snapshot catalog
-            guard Validatenewconfigs(newconfig, true).validated == true else { return }
+            guard Validatenewconfigs(newconfig, true).validated == true else { return nil }
             outputprocess = OutputfromProcess()
             // If connected create base remote snapshotcatalog
             snapshotcreateremotecatalog(newconfig, outputprocess)
         } else if backuptypeselected == .syncremote {
-            guard offsiteServer.stringValue.isEmpty == false else { return }
+            guard offsiteServer.stringValue.isEmpty == false else { return nil }
             newconfig.task = SharedReference.shared.syncremote
         }
         // Pre task
@@ -205,11 +213,9 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         } else {
             newconfig.haltshelltasksonerror = 0
         }
-        guard Validatenewconfigs(newconfig, true).validated == true else { return }
-        configurations?.addNewConfigurations(newconfig)
-        resetinputfields()
-        reloadtabledata = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-        reloadtabledata?.reloadtabledata()
+        guard Validatenewconfigs(newconfig, true).validated == true else { return nil }
+
+        return newconfig
     }
 
     func snapshotcreateremotecatalog(_ config: Configuration, _: OutputfromProcess?) {

@@ -238,6 +238,12 @@ extension ViewControllerMain: ViewOutputDetails {
     }
 }
 
+extension ViewControllerMain: OpenOutputfromrsync {
+    func openoutputfromrsync() {
+        presentAsModalWindow(viewControllerAllOutput!)
+    }
+}
+
 enum Color {
     case red
     case white
