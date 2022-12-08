@@ -131,9 +131,15 @@ extension ViewControllerMain: NSTableViewDelegate {
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     let stringdate = object.dateRun ?? ""
                     if stringdate.isEmpty {
-                        cell.textField?.stringValue = ""
+                        if singletask == nil {
+                            cell.textField?.stringValue = "not verified (dryrun)"
+                        } else {
+                            cell.textField?.stringValue = Date().localized_string_from_date()
+                        }
+                        cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .red)
                     } else {
                         cell.textField?.stringValue = stringdate.en_us_date_from_string().localized_string_from_date()
+                        cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .black)
                     }
                     return cell
                 }

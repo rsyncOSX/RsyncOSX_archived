@@ -325,4 +325,3 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 extension ViewControllerNewConfigurations {
     func processtermination(_: [String]?) {}
 }
-
