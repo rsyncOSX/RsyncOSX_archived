@@ -16,7 +16,7 @@ If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you hav
 
 ### External task does the job
 
-Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncUI which executes the command line tool `rsync`. RsyncOSX is monitoring the task for progress and termination. The user can abort a tasks at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
+Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncUI which executes the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the task for progress and termination. The user can abort a tasks at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
 
 One of many advantages of utilizing `rsync` is that it can restart and continue the synchronize task from where it was aborted.
 
