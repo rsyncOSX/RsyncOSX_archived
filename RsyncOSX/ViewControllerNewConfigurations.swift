@@ -16,7 +16,7 @@ enum Typebackup {
     case syncremote
 }
 
-class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Delay, Index, VcMain, Checkforrsync, Help, Presentoutput {
+class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Delay, Index, VcMain, Checkforrsync, Help {
     var tabledata: [NSMutableDictionary]?
     let archive: String = "--archive"
     let verbose: String = "--verbose"
@@ -31,10 +31,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
                           SharedReference.shared.syncremote]
     var backuptypeselected: Typebackup = .synchronize
     var diddissappear: Bool = false
-
     weak var reloadtabledata: Reloadandrefresh?
-    weak var openoutput: OpenOutputfromrsync?
-    weak var setprocessDelegate: SendOutputProcessreference?
 
     @IBOutlet var viewParameter1: NSTextField!
     @IBOutlet var viewParameter2: NSTextField!
@@ -326,22 +323,6 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
 }
 
 extension ViewControllerNewConfigurations {
-    func processtermination(data: [String]?) {
-        presentoutputfromrsync(data: data)
-    }
-
-    // Toolbar - All ouput
-    @IBAction func alloutput(_: NSButton) {
-        if let newconfig = qualifynewconfig() {
-            if let arguments = ArgumentsSynchronize(config: newconfig).argumentssynchronize(dryRun: true, forDisplay: false) {
-                let command = RsyncAsync(arguments: arguments,
-                                         processtermination: processtermination)
-                // openoutput = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
-                // openoutput?.openoutputfromrsync()
-                Task {
-                    await command.executeProcess()
-                }
-            }
-        }
-    }
+    func processtermination(_: [String]?) {}
 }
+
