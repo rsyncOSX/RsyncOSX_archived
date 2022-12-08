@@ -24,7 +24,7 @@ struct Resources {
     private var changelog: String = "https://rsyncosx.netlify.app/post/changelog/"
     private var documents: String = "https://rsyncosx.netlify.app/post/rsyncosxdocs/"
     private var urlPlist: String = "https://raw.githubusercontent.com/rsyncOSX/RsyncOSX/master/versionRsyncOSX/versionRsyncOSX.plist"
-    private var urlJSON: String = "https://raw.githubusercontent.com/rsyncOSX/RsyncUI/master/versionRsyncUI/versionRsyncUI.json"
+    private var urlJSON: String = "https://raw.githubusercontent.com/rsyncOSX/RsyncOSX/master/versionRsyncOSX/versionRsyncOSX.json"
     private var firsttimeuse: String = "https://rsyncosx.netlify.app/post/important/"
 
     // Get the resource.
