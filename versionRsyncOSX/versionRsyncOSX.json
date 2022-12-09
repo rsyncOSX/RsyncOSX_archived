@@ -10,5 +10,13 @@
      {
         "version": "6.7.4",
         "url": "https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.7.5/RsyncOSX.6.7.5.dmg"
+    },
+     {
+        "version": "6.7.5",
+        "url": "https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.7.5/RsyncOSX.6.7.5.dmg"
+    },
+     {
+        "version": "6.7.6",
+        "url": "https://github.com/rsyncOSX/RsyncOSX/releases/download/v6.7.5/RsyncOSX.6.7.5.dmg"
     }
 ]
