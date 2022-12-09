@@ -133,7 +133,8 @@ extension ViewControllerMain: NSTableViewDelegate {
                     if stringdate.isEmpty {
                         if singletask == nil {
                             cell.textField?.stringValue = "not verified (dryrun)"
-                        } else {
+                        }
+                        if singletask != nil && row == localindex {
                             cell.textField?.stringValue = Date().localized_string_from_date()
                         }
                         cell.textField?.textColor = setcolor(nsviewcontroller: self, color: .red)
