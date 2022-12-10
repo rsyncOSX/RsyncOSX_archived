@@ -8,7 +8,7 @@ It is `rsync` which executes the synchronize task. The GUI´s are only for setti
 
 The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult to understand. Setting wrong parameters to rsync can result in deleted data. RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is **very** important to execute a simulated run, a `--dry-run`, and verify the result before the real run.
 
-Please read  the [documentation of RsyncOSX](https://rsyncosx.netlify.app/) or [documentation of RsyncUI](https://rsyncui.netlify.app/) for how to add a task and how to execute a simulated run, a `--dry-run`, to verify the task.  
+Please read  the [documentation of RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/) or [documentation of RsyncUI](https://rsyncui.netlify.app/post/rsyncuidocs/) for how to add a task and how to execute a simulated run, a `--dry-run`, to verify a task. 
 
 ### Version of macOS
 
