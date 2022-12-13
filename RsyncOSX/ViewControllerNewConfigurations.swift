@@ -287,14 +287,41 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
         if let values = values {
             switch values.count {
             case 2:
-                localCatalog.stringValue = values[0]
-                offsiteCatalog.stringValue = values[1]
+                if localCatalog.stringValue.isEmpty != true || offsiteCatalog.stringValue.isEmpty != true {
+                    let question: String = NSLocalizedString("Overwrite data", comment: "Logg") + "?"
+                    let text: String = NSLocalizedString("Cancel or Add", comment: "Add schedule")
+                    let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
+                    let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                    if answer {
+                        localCatalog.stringValue = values[0]
+                        offsiteCatalog.stringValue = values[1]
+                    }
+                } else {
+                    localCatalog.stringValue = values[0]
+                    offsiteCatalog.stringValue = values[1]
+                }
+
             case 4:
                 // remote
-                localCatalog.stringValue = values[0]
-                offsiteCatalog.stringValue = values[1]
-                offsiteUsername.stringValue = values[2]
-                offsiteServer.stringValue = values[3]
+                if localCatalog.stringValue.isEmpty != true || offsiteCatalog.stringValue.isEmpty != true ||
+                    offsiteUsername.stringValue.isEmpty != true || offsiteServer.stringValue.isEmpty != true
+                {
+                    let question: String = NSLocalizedString("Overwrite data", comment: "Logg") + "?"
+                    let text: String = NSLocalizedString("Cancel or Add", comment: "Add schedule")
+                    let dialog: String = NSLocalizedString("Add", comment: "Add schedule")
+                    let answer = Alerts.dialogOrCancel(question: question, text: text, dialog: dialog)
+                    if answer {
+                        localCatalog.stringValue = values[0]
+                        offsiteCatalog.stringValue = values[1]
+                        offsiteUsername.stringValue = values[2]
+                        offsiteServer.stringValue = values[3]
+                    }
+                } else {
+                    localCatalog.stringValue = values[0]
+                    offsiteCatalog.stringValue = values[1]
+                    offsiteUsername.stringValue = values[2]
+                    offsiteServer.stringValue = values[3]
+                }
             default:
                 return
             }
