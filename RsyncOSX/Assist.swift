@@ -16,6 +16,25 @@ final class Assist {
     var remoteusers = Set<String>()
     var nameandpaths: NamesandPaths?
 
+    func setserversandlogins(_ configurations: [Configuration]?) {
+        guard configurations != nil else { return }
+        var configurations = configurations?.filter {
+            SharedReference.shared.synctasks.contains($0.task)
+        }
+        for i in 0 ..< (configurations?.count ?? 0) {
+            if let config = configurations?[i] {
+                let remoteserver = config.offsiteServer
+                let remoteuser = config.offsiteUsername
+                if remoteservers.contains(remoteserver) == false {
+                    remoteservers.insert(remoteserver)
+                }
+                if remoteusers.contains(remoteuser) == false {
+                    remoteusers.insert(remoteuser)
+                }
+            }
+        }
+    }
+
     func setcatalogs() -> Set<String>? {
         if let atpath = nameandpaths?.userHomeDirectoryPath {
             var catalogs = Set<String>()
@@ -37,29 +56,12 @@ final class Assist {
         return home
     }
 
-    func setremotes() {
-        if let remote = ConfigurationsAsDictionarys().uniqueserversandlogins() {
-            for i in 0 ..< remote.count {
-                if let remoteserver = (remote[i].value(forKey: DictionaryStrings.offsiteServerCellID.rawValue) as? String),
-                   let remoteuser = (remote[i].value(forKey: DictionaryStrings.offsiteUsernameID.rawValue) as? String)
-                {
-                    if remoteusers.contains(remoteuser) == false {
-                        remoteusers.insert(remoteuser)
-                    }
-                    if remoteservers.contains(remoteserver) == false {
-                        remoteservers.insert(remoteserver)
-                    }
-                }
-            }
-        }
-    }
-
-    init() {
+    init(configurations: [Configuration]?) {
         nameandpaths = NamesandPaths(.configurations)
         localhome = setlocalhome()
         if let catalogs = setcatalogs() {
             self.catalogs = catalogs
         }
-        setremotes()
+        setserversandlogins(configurations)
     }
 }
