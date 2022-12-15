@@ -5,7 +5,7 @@
 //  Created by Thomas Evensen on 13/02/16.
 //  Copyright © 2016 Thomas Evensen. All rights reserved.
 //
-//  swiftlint:disable function_body_length cyclomatic_complexity line_length type_body_length
+//  swiftlint:disable function_body_length cyclomatic_complexity type_body_length
 
 import Cocoa
 import Foundation
@@ -329,7 +329,7 @@ class ViewControllerNewConfigurations: NSViewController, SetConfigurations, Dela
     }
 
     private func initialize() {
-        assist = Assist()
+        assist = Assist(configurations: configurations?.getConfigurations())
         if let assist = assist {
             initcomboxes(combobox: comboremotecomputers, values: assist.remoteservers)
             initcomboxes(combobox: comboremoteusers, values: assist.remoteusers)
