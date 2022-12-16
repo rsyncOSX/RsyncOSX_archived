@@ -5,7 +5,6 @@
 //  Created by Thomas Evensen on 03/10/2020.
 //  Copyright © 2020 Thomas Evensen. All rights reserved.
 //
-// swiftlint:disable line_length
 
 import Foundation
 
@@ -18,9 +17,6 @@ final class Assist {
 
     func setserversandlogins(_ configurations: [Configuration]?) {
         guard configurations != nil else { return }
-        var configurations = configurations?.filter {
-            SharedReference.shared.synctasks.contains($0.task)
-        }
         for i in 0 ..< (configurations?.count ?? 0) {
             if let config = configurations?[i] {
                 let remoteserver = config.offsiteServer
