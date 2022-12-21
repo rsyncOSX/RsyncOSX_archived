@@ -43,7 +43,7 @@ protocol Sidebarbuttonactions: AnyObject {
     func sidebarbuttonactions(action: Sidebaractionsmessages)
 }
 
-class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync, Setcolor {
+class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain, Checkforrsync, Setcolor, Index {
     // Buttons
     @IBOutlet var button1: NSButton!
     @IBOutlet var button2: NSButton!
@@ -62,6 +62,10 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             switch view {
             case .mainviewbuttons:
                 guard SharedReference.shared.process == nil else { return }
+                guard indexisselected() else {
+                    Alerts.showInfo(info: NSLocalizedString("Please select a task", comment: "Sidebar"))
+                    return
+                }
                 presentAsModalWindow(editViewController!)
             case .snapshotviewbuttons:
                 return
@@ -83,6 +87,10 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             switch view {
             case .mainviewbuttons:
                 guard SharedReference.shared.process == nil else { return }
+                guard indexisselected() else {
+                    Alerts.showInfo(info: NSLocalizedString("Please select a task", comment: "Sidebar"))
+                    return
+                }
                 presentAsModalWindow(viewControllerRsyncParams!)
             case .snapshotviewbuttons:
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
@@ -105,6 +113,10 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             switch view {
             case .mainviewbuttons:
                 guard SharedReference.shared.process == nil else { return }
+                guard indexisselected() else {
+                    Alerts.showInfo(info: NSLocalizedString("Please select a task", comment: "Sidebar"))
+                    return
+                }
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vctabmain) as? ViewControllerMain
                 deleteDelegate?.sidebarbuttonactions(action: .Delete)
             case .snapshotviewbuttons:
@@ -130,6 +142,10 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             switch view {
             case .mainviewbuttons:
                 guard SharedReference.shared.process == nil else { return }
+                guard indexisselected() else {
+                    Alerts.showInfo(info: NSLocalizedString("Please select a task", comment: "Sidebar"))
+                    return
+                }
                 presentAsModalWindow(rsynccommand!)
             case .snapshotviewbuttons:
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
@@ -189,6 +205,14 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     override func viewDidAppear() {
         super.viewDidAppear()
         rsyncischanged()
+    }
+
+    private func indexisselected() -> Bool {
+        if index() != nil {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
