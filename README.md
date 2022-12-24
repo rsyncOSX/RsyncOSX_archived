@@ -20,6 +20,10 @@ Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncU
 
 One of many advantages of utilizing `rsync` is that it can restart and continue the synchronize task from where it was aborted.
 
+### Parameters to rsync
+
+`rsync` supports a ton of parameters and most likely the advanced user of `rsync` wants to apply parameters and verify the effect. I am **not** an advanced user of `rsync`, but both RsyncOSX and RsyncUI supports adding parameters. The GUI for verifying parameters is better within RsyncUI than RsyncOSX. Both apps can be used in parallell and if you prefer RsyncOSX you might still use RsyncUI to add and test parameters for `rsync`. The `rsync` command line is dynamically updated when updating parameters and presented in RsyncUI and there is a verify button for testing before saving. 
+
 ### RsyncOSX
 
 RsyncOSX is the only GUI which supports scheduling of task.
