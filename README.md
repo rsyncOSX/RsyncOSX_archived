@@ -28,9 +28,9 @@ One of many advantages of utilizing `rsync` is that it can restart and continue 
 
 RsyncOSX is the only GUI which supports scheduling of task.
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.5/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.6/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.5/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-**RsyncOSX** is released for **macOS Big Sur** and later. Latest build is [18 November 2022](https://github.com/rsyncOSX/RsyncOSX/releases) and there is a release candidate released [23 December 2022](https://github.com/rsyncOSX/RsyncOSX/releases/tag/v6.7.6).
+**RsyncOSX** is released for **macOS Big Sur** and later. Latest build is [13 January 2023](https://github.com/rsyncOSX/RsyncOSX/releases).
 
 - the [documentation of RsyncOSX](https://rsyncosx.netlify.app/)
 - the [readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
