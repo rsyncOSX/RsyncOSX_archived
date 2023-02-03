@@ -313,8 +313,8 @@
 /* Class = "NSTableColumn"; headerCell.title = "Remote server"; ObjectID = "Jin-mB-AHC"; */
 "Jin-mB-AHC.headerCell.title" = "Remote-Server";
 
-/* Class = "NSButtonCell"; title = "Dowload"; ObjectID = "Jiw-mS-iX6"; */
-"Jiw-mS-iX6.title" = "Dowload";
+/* Class = "NSButtonCell"; title = "Download"; ObjectID = "Jiw-mS-iX6"; */
+"Jiw-mS-iX6.title" = "Download";
 
 /* Class = "NSBox"; title = "Remove parameters"; ObjectID = "jpr-7x-6cO"; */
 "jpr-7x-6cO.title" = "Parameter entfernen";

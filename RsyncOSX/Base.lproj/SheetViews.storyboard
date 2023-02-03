@@ -983,7 +983,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QOo-Uz-Wx0">
-                                <rect key="frame" x="277" y="375" width="87" height="32"/>
+                                <rect key="frame" x="277" y="375" width="95" height="32"/>
                                 <buttonCell key="cell" type="push" title="Docs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ikZ-7O-uFM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1056,8 +1056,8 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hbh-cm-COW">
-                                <rect key="frame" x="277" y="351" width="87" height="32"/>
-                                <buttonCell key="cell" type="push" title="Dowload" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jiw-mS-iX6">
+                                <rect key="frame" x="277" y="351" width="95" height="32"/>
+                                <buttonCell key="cell" type="push" title="Download" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jiw-mS-iX6">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
