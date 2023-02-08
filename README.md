@@ -2,10 +2,10 @@
 
 RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command line tool [rsync](https://github.com/WayneD/rsync). 
 
-| App      | Lines of code | Swift files | Version 1.0 |
-| ----------- | ----------- |   ----------- | -------- |
-| RsyncOSX   | about 160K   | 130       | 14 March 2016 |	
-| RsyncUI   | about 170K        | 170       | 6 May 2021 |
+| App      | Lines of code | Swift files | Version 1.0 |  | Latest version |
+| ----------- | ----------- |   ----------- | -------- |  -------- |
+| RsyncOSX   | about 160K   | 130       | 14 March 2016 |	6.7.6 - 13 Jan 2023|
+| RsyncUI   | about 170K        | 170       | 6 May 2021 | 1.4.2 - 6 Jan 2023 |
 
 | App      | Code | Paradigm |
 | ----------- | ----------- |   ----------- |
