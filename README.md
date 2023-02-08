@@ -5,7 +5,7 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 | App      | Lines of code | Swift files | Version 1.0 |  Latest version |
 | ----------- | ----------- |   ----------- | -------- |  -------- |
 | RsyncOSX   | about 160K   | 130       | 14 March 2016 |	6.7.6 - 13 Jan 2023|
-| RsyncUI   | about 170K        | 170       | 6 May 2021 | 1.4.2 - 6 Jan 2023 |
+| RsyncUI   | about 170K        | 170       | 6 May 2021 | 1.4.3 - 8 Feb 2023 |
 
 | App      | Code | Paradigm |
 | ----------- | ----------- |   ----------- |
@@ -50,9 +50,9 @@ RsyncOSX is the only GUI which supports scheduling of task.
 
 ### RsyncUI
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.4.2/total)  [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.4.3/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.4.2/total)  [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
 
-**RsyncUI** is released for **macOS Monterey** and later. Latest build is [6 January 2023](https://github.com/rsyncOSX/RsyncUI/releases).
+**RsyncUI** is released for **macOS Monterey** and later. Latest build is [8 February 2023](https://github.com/rsyncOSX/RsyncUI/releases).
 
 - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
 - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
