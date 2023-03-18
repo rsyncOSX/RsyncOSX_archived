@@ -14,6 +14,13 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 
 It is `rsync` which executes the synchronize task. The GUI´s are only for setting parameters and make it more easy to use `rsync`, which is a fantastic tool.
 
+### Install by Homebrew
+
+Both apps might be installed by Homebrew
+
+- RsyncOSX : `brew install --cask rsyncosx`
+- RsyncUI: `brew install --cask rsyncui`
+
 ### Important to verify
 
 The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult to understand. Setting wrong parameters to rsync can result in deleted data. RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is **very** important to execute a simulated run, a `--dry-run`, and **verify** the result before the real run.
