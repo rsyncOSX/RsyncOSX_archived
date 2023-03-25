@@ -1,4 +1,0 @@
-[submodule "ShellOut"]
-	path = ShellOut
-	url = https://github.com/JohnSundell/ShellOut.git
-	branch = master
