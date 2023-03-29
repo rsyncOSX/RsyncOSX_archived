@@ -16,18 +16,6 @@ enum Scheduletype: String {
     case manuel
 }
 
-enum Sortandfilter {
-    case offsitecatalog
-    case localcatalog
-    case profile
-    case offsiteserver
-    case task
-    case backupid
-    case numberofdays
-    case executedate
-    case none
-}
-
 struct Logrecordsschedules {
     var hiddenID: Int
     var localCatalog: String

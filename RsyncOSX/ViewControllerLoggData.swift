@@ -14,7 +14,6 @@ import Foundation
 class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index, Connected, VcMain, Checkforrsync, Setcolor, Help {
     private var scheduleloggdata: ScheduleLoggData?
     private var snapshotscheduleloggdata: Snapshotlogsandcatalogs?
-    private var filterby: Sortandfilter?
     private var index: Int?
     private var column: Int = 0
     private var sortascending: Bool = true

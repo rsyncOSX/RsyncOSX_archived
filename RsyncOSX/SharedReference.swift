@@ -114,8 +114,6 @@ final class SharedReference {
     private var viewControllerRestore: NSViewController?
     // Reference to the New tasks
     private var viewControllerNewConfigurations: NSViewController?
-    // Reference to the  Schedule
-    private var viewControllertabSchedule: NSViewController?
     // Which profile to use, if default nil
     private var viewControllerLoggData: NSViewController?
     // Reference to Ssh view

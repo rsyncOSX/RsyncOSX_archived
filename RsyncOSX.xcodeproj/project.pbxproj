@@ -64,10 +64,8 @@
 		E924C0BE265E5C77006F148C /* WriteConfigurationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924C0BA265E5C77006F148C /* WriteConfigurationJSON.swift */; };
 		E925F9882356E23500DF7943 /* SetrsyncParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E925F9872356E23500DF7943 /* SetrsyncParameter.swift */; };
 		E92755A221304F0000B1F781 /* Macserialnumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A121304F0000B1F781 /* Macserialnumber.swift */; };
-		E92755A42130506000B1F781 /* Dateandtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A32130506000B1F781 /* Dateandtime.swift */; };
 		E92755A62130539400B1F781 /* Dispatchqueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92755A52130539400B1F781 /* Dispatchqueues.swift */; };
 		E9284CF621308AE9006648C1 /* extensionsConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */; };
-		E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92A623A203D7B1C000B9300 /* Notifications.swift */; };
 		E92B1A7F257A225600F0216C /* exstensionViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */; };
 		E939EC4A20C048A000C47F91 /* extensionVCMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939EC4920C048A000C47F91 /* extensionVCMain.swift */; };
 		E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */; };
@@ -92,7 +90,6 @@
 		E9614AD61F231AFC00CAE21A /* RsyncCommandtoDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9614AD51F231AFC00CAE21A /* RsyncCommandtoDisplay.swift */; };
 		E96291B1213049D7005119A7 /* TCPconnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96291B0213049D7005119A7 /* TCPconnections.swift */; };
 		E96CA1FE1E094C3000CD1D03 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CA1FD1E094C3000CD1D03 /* Resources.swift */; };
-		E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E973B6F7238F1AF600B0FD12 /* Equal.swift */; };
 		E979628F227AE4F600115513 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = E979628E227AE4F600115513 /* Info.swift */; };
 		E97E3BA71F6256DB00411D0E /* Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E3BA61F6256DB00411D0E /* Configurations.swift */; };
 		E98E1041257A4FD30018055B /* RestoreActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98E1040257A4FD30018055B /* RestoreActions.swift */; };
@@ -132,7 +129,6 @@
 		E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */; };
 		E9F5CECF265F5F090064618B /* PrepareOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECA265F5F090064618B /* PrepareOutput.swift */; };
 		E9F5CED0265F5F090064618B /* TrimFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECB265F5F090064618B /* TrimFour.swift */; };
-		E9F5CED1265F5F090064618B /* TrimThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECC265F5F090064618B /* TrimThree.swift */; };
 		E9F5CED2265F5F090064618B /* TrimOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECD265F5F090064618B /* TrimOne.swift */; };
 		E9F5CED3265F5F090064618B /* TrimTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECE265F5F090064618B /* TrimTwo.swift */; };
 		E9F941651FC5FCC3005F2439 /* Logfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F941631FC5FCC3005F2439 /* Logfile.swift */; };
@@ -217,10 +213,8 @@
 		E924C0BA265E5C77006F148C /* WriteConfigurationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteConfigurationJSON.swift; sourceTree = "<group>"; };
 		E925F9872356E23500DF7943 /* SetrsyncParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetrsyncParameter.swift; sourceTree = "<group>"; };
 		E92755A121304F0000B1F781 /* Macserialnumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macserialnumber.swift; sourceTree = "<group>"; };
-		E92755A32130506000B1F781 /* Dateandtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dateandtime.swift; sourceTree = "<group>"; };
 		E92755A52130539400B1F781 /* Dispatchqueues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatchqueues.swift; sourceTree = "<group>"; };
 		E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionsConfigurations.swift; sourceTree = "<group>"; };
-		E92A623A203D7B1C000B9300 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exstensionViewControllers.swift; sourceTree = "<group>"; };
 		E92FD72922732134009A6042 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		E939EC4920C048A000C47F91 /* extensionVCMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCMain.swift; sourceTree = "<group>"; };
@@ -250,7 +244,6 @@
 		E96291B0213049D7005119A7 /* TCPconnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPconnections.swift; sourceTree = "<group>"; };
 		E96604E5228A7FAB00BE6161 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E96CA1FD1E094C3000CD1D03 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
-		E973B6F7238F1AF600B0FD12 /* Equal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equal.swift; sourceTree = "<group>"; };
 		E979628E227AE4F600115513 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		E97E3BA61F6256DB00411D0E /* Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurations.swift; sourceTree = "<group>"; };
 		E98E1040257A4FD30018055B /* RestoreActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreActions.swift; sourceTree = "<group>"; };
@@ -298,7 +291,6 @@
 		E9F109422421F22700528BEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9F5CECA265F5F090064618B /* PrepareOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareOutput.swift; sourceTree = "<group>"; };
 		E9F5CECB265F5F090064618B /* TrimFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimFour.swift; sourceTree = "<group>"; };
-		E9F5CECC265F5F090064618B /* TrimThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimThree.swift; sourceTree = "<group>"; };
 		E9F5CECD265F5F090064618B /* TrimOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimOne.swift; sourceTree = "<group>"; };
 		E9F5CECE265F5F090064618B /* TrimTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimTwo.swift; sourceTree = "<group>"; };
 		E9F941631FC5FCC3005F2439 /* Logfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logfile.swift; sourceTree = "<group>"; };
@@ -425,10 +417,8 @@
 				E9EB64F72941C567002829C6 /* CheckfornewversionofRsyncOSX.swift */,
 				E96CA1FD1E094C3000CD1D03 /* Resources.swift */,
 				E9614AD51F231AFC00CAE21A /* RsyncCommandtoDisplay.swift */,
-				E92A623A203D7B1C000B9300 /* Notifications.swift */,
 				E96291B0213049D7005119A7 /* TCPconnections.swift */,
 				E92755A121304F0000B1F781 /* Macserialnumber.swift */,
-				E92755A32130506000B1F781 /* Dateandtime.swift */,
 				E92755A52130539400B1F781 /* Dispatchqueues.swift */,
 				E9B9CCA521BC46B00042D5CE /* extensionDate.swift */,
 				E979628E227AE4F600115513 /* Info.swift */,
@@ -475,7 +465,6 @@
 		A0BAA5F21D70C33A003BE69F /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				E973B6F6238F1AC500B0FD12 /* Equal */,
 				E97E3BA61F6256DB00411D0E /* Configurations.swift */,
 				E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */,
 			);
@@ -675,14 +664,6 @@
 			name = Restore;
 			sourceTree = "<group>";
 		};
-		E973B6F6238F1AC500B0FD12 /* Equal */ = {
-			isa = PBXGroup;
-			children = (
-				E973B6F7238F1AF600B0FD12 /* Equal.swift */,
-			);
-			name = Equal;
-			sourceTree = "<group>";
-		};
 		E99AEAFD2912400A006A5197 /* Async */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,7 +707,6 @@
 				E9F5CECA265F5F090064618B /* PrepareOutput.swift */,
 				E9F5CECB265F5F090064618B /* TrimFour.swift */,
 				E9F5CECD265F5F090064618B /* TrimOne.swift */,
-				E9F5CECC265F5F090064618B /* TrimThree.swift */,
 				E9F5CECE265F5F090064618B /* TrimTwo.swift */,
 				A049724F1D6595B200086EFD /* OutputfromProcess.swift */,
 				E802EFFF24681EA6007B2556 /* OutputfromProcessRsync.swift */,
@@ -999,19 +979,15 @@
 				E8C2866923C6362F0032DCE0 /* Validatenewconfigs.swift in Sources */,
 				E9BC4DE7230277A10058CB52 /* ExecuteTaskNow.swift in Sources */,
 				A0430ADA1DAFFD3C00BBC106 /* SingleTaskWorkQueu.swift in Sources */,
-				E92A623B203D7B1C000B9300 /* Notifications.swift in Sources */,
-				E92755A42130506000B1F781 /* Dateandtime.swift in Sources */,
 				A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */,
 				E9A1725C250F675B00F26529 /* RsyncProcess.swift in Sources */,
 				E801A06A2573FFA90014212A /* ViewControllerSideBar.swift in Sources */,
 				A04492BB1D658F2100B3CE17 /* ytcpsocket.swift in Sources */,
-				E973B6F8238F1AF600B0FD12 /* Equal.swift in Sources */,
 				E99AEB0329124018006A5197 /* RsyncAsync.swift in Sources */,
 				E996431C231AEFA100E05B40 /* ViewControllerSource.swift in Sources */,
 				E9C4A411235311FE00BCF1C4 /* ArgumentsRestore.swift in Sources */,
 				E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */,
 				E924C0BE265E5C77006F148C /* WriteConfigurationJSON.swift in Sources */,
-				E9F5CED1265F5F090064618B /* TrimThree.swift in Sources */,
 				E95727A127BB838C00E726E6 /* ReadUserConfigurationJSON.swift in Sources */,
 				E924C0BD265E5C77006F148C /* ReadScheduleJSON.swift in Sources */,
 				E9C30B4B201623B00079C63D /* Snapshotlogsandcatalogs.swift in Sources */,
@@ -1248,7 +1224,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 93M47F4H9T;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1258,7 +1234,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 6.7.6;
+				MARKETING_VERSION = 6.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1276,7 +1252,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 93M47F4H9T;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1286,7 +1262,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 6.7.6;
+				MARKETING_VERSION = 6.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = no.blogspot.RsyncOSX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

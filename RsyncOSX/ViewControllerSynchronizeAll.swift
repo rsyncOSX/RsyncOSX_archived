@@ -17,7 +17,6 @@ protocol SynchronizeallCompleted: AnyObject {
 class ViewControllerSynchronizeAll: NSViewController, SetDismisser, Abort, Delay, Setcolor {
     var seconds: Int?
     var row: Int?
-    var filterby: Sortandfilter?
     var synchronizealltasksnow: SynchronizeAlltasksNow?
     var executing: Bool = true
     var max: Double?

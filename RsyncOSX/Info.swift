@@ -74,26 +74,6 @@ struct Inforestore {
     }
 }
 
-struct Infoschedule {
-    // Schedules
-    let info11: String = NSLocalizedString("Select a task....", comment: "Execute")
-    let info42: String = NSLocalizedString("Scheduled tasks in menu app...", comment: "Schedules")
-    let info43: String = NSLocalizedString("Got index from Synchronize...", comment: "Schedules")
-
-    func info(num: Int) -> String {
-        switch num {
-        case 1:
-            return info11
-        case 2:
-            return info42
-        case 3:
-            return info43
-        default:
-            return ""
-        }
-    }
-}
-
 struct Infosnapshots {
     // Snapshots
     let info51: String = NSLocalizedString("Not a snapshot task...", comment: "Snapshots")

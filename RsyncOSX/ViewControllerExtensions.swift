@@ -107,12 +107,6 @@ extension VcMain {
             as? NSViewController)
     }
 
-    // Schedules view
-    var schedulesview: NSViewController? {
-        return (sheetviewstoryboard?.instantiateController(withIdentifier: "ViewControllertabSchedule")
-            as? NSViewController)
-    }
-
     // Add task
     var addtaskViewController: NSViewController? {
         return (sheetviewstoryboard?.instantiateController(withIdentifier: "AddTaskID")

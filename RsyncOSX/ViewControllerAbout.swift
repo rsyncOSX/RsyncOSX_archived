@@ -24,16 +24,13 @@ class ViewControllerAbout: NSViewController {
     @IBOutlet var configpath: NSTextField!
     @IBOutlet var dutch: NSTextField!
 
-    var copyrigthstring: String = NSLocalizedString("Copyright ©2020 Thomas Evensen", comment: "copyright")
+    var copyrigthstring: String = NSLocalizedString("Copyright ©2023 Thomas Evensen", comment: "copyright")
     var iconbystring: String = NSLocalizedString("Icon by: Zsolt Sándor", comment: "icon")
     var chinesestring: String = NSLocalizedString("Chinese (Simplified) translation by: StringKe (Chen)", comment: "chinese")
     var norwegianstring: String = NSLocalizedString("Norwegian translation by: Thomas Evensen", comment: "norwegian")
     var germanstring: String = NSLocalizedString("German translation by: Andre Voigtmann", comment: "german")
     var italianstring: String = NSLocalizedString("Italian translation by: Stefano Steve Cutelle'", comment: "italian")
     var dutchstring: String = NSLocalizedString("Dutch translation by: Marcellino Santoso", comment: "ducth")
-    var appName: String {
-        (Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String) ?? "RsyncOSX"
-    }
 
     var appVersion: String {
         (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "1.0"
