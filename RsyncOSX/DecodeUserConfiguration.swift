@@ -29,12 +29,6 @@ struct DecodeUserConfiguration: Codable {
     // Environment variable
     let environment: String?
     let environmentvalue: String?
-    // Paths
-    // Paths
-    let pathrsyncosx: String?
-    let pathrsyncosxsched: String?
-    // Enable schedules
-    let enableschdules: Int?
 
     enum CodingKeys: String, CodingKey {
         case rsyncversion3
@@ -50,9 +44,6 @@ struct DecodeUserConfiguration: Codable {
         case sshport
         case environment
         case environmentvalue
-        case pathrsyncosx
-        case pathrsyncosxsched
-        case enableschdules
     }
 
     init(from decoder: Decoder) throws {
@@ -70,8 +61,5 @@ struct DecodeUserConfiguration: Codable {
         sshport = try values.decodeIfPresent(Int.self, forKey: .sshport)
         environment = try values.decodeIfPresent(String.self, forKey: .environment)
         environmentvalue = try values.decodeIfPresent(String.self, forKey: .environmentvalue)
-        pathrsyncosx = try values.decodeIfPresent(String.self, forKey: .pathrsyncosx)
-        pathrsyncosxsched = try values.decodeIfPresent(String.self, forKey: .pathrsyncosxsched)
-        enableschdules = try values.decodeIfPresent(Int.self, forKey: .enableschdules)
     }
 }

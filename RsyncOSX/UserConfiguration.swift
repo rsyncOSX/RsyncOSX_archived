@@ -94,21 +94,6 @@ struct UserConfiguration: Codable {
         if environmentvalue != nil {
             SharedReference.shared.environmentvalue = environmentvalue
         }
-        if pathrsyncosx != nil {
-            SharedReference.shared.pathrsyncosx = pathrsyncosx
-        }
-        if pathrsyncosxsched != nil {
-            SharedReference.shared.pathrsyncosxsched = pathrsyncosxsched
-        }
-        if let enableschdules = enableschdules {
-            if enableschdules == 1 {
-                SharedReference.shared.enableschdules = true
-            } else {
-                SharedReference.shared.enableschdules = false
-            }
-        } else {
-            SharedReference.shared.enableschdules = false
-        }
     }
 
     // Used when reading JSON data from store
@@ -127,9 +112,6 @@ struct UserConfiguration: Codable {
         sshport = data.sshport
         environment = data.environment
         environmentvalue = data.environmentvalue
-        pathrsyncosx = data.pathrsyncosx
-        pathrsyncosxsched = data.pathrsyncosxsched
-        enableschdules = data.enableschdules ?? -1
         // Set user configdata read from permanent store
         setuserconfigdata()
     }
@@ -184,17 +166,6 @@ struct UserConfiguration: Codable {
         }
         if SharedReference.shared.environmentvalue != nil {
             environmentvalue = SharedReference.shared.environmentvalue
-        }
-        if SharedReference.shared.pathrsyncosx != nil {
-            pathrsyncosx = SharedReference.shared.pathrsyncosx
-        }
-        if SharedReference.shared.pathrsyncosxsched != nil {
-            pathrsyncosxsched = SharedReference.shared.pathrsyncosxsched
-        }
-        if SharedReference.shared.enableschdules {
-            enableschdules = 1
-        } else {
-            enableschdules = -1
         }
     }
 }

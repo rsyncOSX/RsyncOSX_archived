@@ -49,7 +49,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
     @IBOutlet var button2: NSButton!
     @IBOutlet var button3: NSButton!
     @IBOutlet var button4: NSButton!
-    @IBOutlet var button5: NSButton!
     @IBOutlet var button6: NSButton!
 
     @IBOutlet var profilelabel: NSTextField!
@@ -165,26 +164,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
         }
     }
 
-    @IBAction func actionbutton5(_: NSButton) {
-        if let view = whichviewispresented {
-            switch view {
-            case .mainviewbuttons:
-                guard SharedReference.shared.process == nil else { return }
-                presentAsModalWindow(schedulesview!)
-            case .snapshotviewbuttons:
-                return
-            case .logsviewbuttons:
-                return
-            case .sshviewbuttons:
-                return
-            case .restoreviewbuttons:
-                return
-            default:
-                return
-            }
-        }
-    }
-
     @IBAction func actionbutton6(_: NSButton) {
         if let view = whichviewispresented {
             switch view {
@@ -237,24 +216,17 @@ extension ViewControllerSideBar: Sidebaractions {
             button2.isHidden = false
             button3.isHidden = false
             button4.isHidden = false
-            if SharedReference.shared.enableschdules {
-                button5.isHidden = false
-            } else {
-                button5.isHidden = true
-            }
             button6.isHidden = false
             button1.title = NSLocalizedString("Change", comment: "Sidebar")
             button2.title = NSLocalizedString("Parameter", comment: "Sidebar")
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
             button4.title = NSLocalizedString("Command", comment: "Sidebar")
-            button5.title = NSLocalizedString("Schedules", comment: "Sidebar")
             button6.title = NSLocalizedString("Add task", comment: "Sidebar")
         case .snapshotviewbuttons:
             button1.isHidden = true
             button2.isHidden = false
             button3.isHidden = false
             button4.isHidden = false
-            button5.isHidden = true
             button6.isHidden = true
             button2.title = NSLocalizedString("Tag", comment: "Sidebar")
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
@@ -264,7 +236,6 @@ extension ViewControllerSideBar: Sidebaractions {
             button2.isHidden = true
             button3.isHidden = false
             button4.isHidden = false
-            button5.isHidden = true
             button6.isHidden = true
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
             button4.title = NSLocalizedString("Scan", comment: "Sidebar")
@@ -273,7 +244,6 @@ extension ViewControllerSideBar: Sidebaractions {
             button2.isHidden = true
             button3.isHidden = false
             button4.isHidden = false
-            button5.isHidden = true
             button6.isHidden = true
             button3.title = NSLocalizedString("Create key", comment: "Sidebar")
             button4.title = NSLocalizedString("Remote", comment: "Sidebar")
@@ -282,7 +252,6 @@ extension ViewControllerSideBar: Sidebaractions {
             button2.isHidden = false
             button3.isHidden = false
             button4.isHidden = false
-            button5.isHidden = true
             button6.isHidden = true
             button1.title = NSLocalizedString("Filelist", comment: "Sidebar")
             button2.title = NSLocalizedString("Estimate", comment: "Sidebar")
@@ -293,7 +262,6 @@ extension ViewControllerSideBar: Sidebaractions {
             button2.isHidden = true
             button3.isHidden = true
             button4.isHidden = true
-            button5.isHidden = true
             button6.isHidden = true
         }
     }

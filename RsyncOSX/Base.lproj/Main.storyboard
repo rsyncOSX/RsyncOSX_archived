@@ -284,17 +284,6 @@
                                     <segue destination="mal-sc-mlY" kind="show" id="Aqn-sk-pa8"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yos-5W-V1f">
-                                <rect key="frame" x="13" y="130" width="97" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Button5" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BkR-nM-Vx1">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="actionbutton5:" target="Jpl-76-tew" id="CC8-wF-yFY"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMe-Rl-B2c">
                                 <rect key="frame" x="14" y="0.0" width="111" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -324,7 +313,6 @@
                         <outlet property="button2" destination="HyA-OL-xUh" id="OGv-Xk-Xaa"/>
                         <outlet property="button3" destination="btH-xq-kOR" id="ePT-SU-Th5"/>
                         <outlet property="button4" destination="Gtd-43-tO6" id="Fpq-cu-5iY"/>
-                        <outlet property="button5" destination="Yos-5W-V1f" id="Vwi-5e-k1e"/>
                         <outlet property="button6" destination="mdE-iU-aAZ" id="s2A-o7-YYP"/>
                         <outlet property="profilelabel" destination="4c5-WB-fbQ" id="7Fc-Ow-jVM"/>
                         <outlet property="rsyncversionshort" destination="yMe-Rl-B2c" id="slf-0e-oqV"/>

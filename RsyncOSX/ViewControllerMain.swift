@@ -142,15 +142,6 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
         delete()
     }
 
-    @IBAction func rsyncosxsched(_: NSButton) {
-        guard SharedReference.shared.enableschdules == true else { return }
-        let running = Running()
-        guard running.rsyncOSXschedisrunning == false else { return }
-        guard running.verifyrsyncosxsched() == true else { return }
-        NSWorkspace.shared.open(URL(fileURLWithPath: (SharedReference.shared.pathrsyncosxsched ?? "/Applications/") + SharedReference.shared.namersyncosssched))
-        NSApp.terminate(self)
-    }
-
     func executetask(index: Int?) {
         if let index = index {
             if let task = configurations?.getConfigurations()?[index].task {

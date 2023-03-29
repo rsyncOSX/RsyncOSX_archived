@@ -14,7 +14,6 @@ enum ViewController {
     case vctabmain
     case vcloggdata
     case vcnewconfigurations
-    case vcschedule
     case vcrestore
     case vcssh
     case vcsnapshot
@@ -81,15 +80,8 @@ final class SharedReference {
     var logfilesize: Int = 100_000
     // Extra lines in rsync output
     var extralines: Int = 18
-    // Paths
-    var pathrsyncosx: String?
-    var pathrsyncosxsched: String?
-    let namersyncosx = "RsyncOSX.app"
-    let namersyncosssched = "RsyncOSXsched.app"
     // Mac serialnumer
     var macserialnumber: String?
-    // True if menuapp is running
-    var menuappisrunning: Bool = false
     // Initial start
     var initialstart: Int = 0
     // Setting environmentvariable for Process object
@@ -111,13 +103,10 @@ final class SharedReference {
     let fileconfigurationsjson = "configurations.json"
     // for automatic backup
     var estimatedlistforsynchronization: Estimatedlistforsynchronization?
-    let reloadstring: String = "no.blogspot.RsyncOSX.reload"
     // If firstime use
     var firsttime = false
     // if new version
     var newversionofrsyncosx = false
-    // enable schdules
-    var enableschdules = false
 
     // Reference to main View
     private var viewControllertabMain: NSViewController?
@@ -164,8 +153,6 @@ final class SharedReference {
             return viewControllerLoggData
         case .vcnewconfigurations:
             return viewControllerNewConfigurations
-        case .vcschedule:
-            return viewControllertabSchedule
         case .vcrestore:
             return viewControllerRestore
         case .vcssh:
@@ -205,8 +192,6 @@ final class SharedReference {
             viewControllerLoggData = nsviewcontroller
         case .vcnewconfigurations:
             viewControllerNewConfigurations = nsviewcontroller
-        case .vcschedule:
-            viewControllertabSchedule = nsviewcontroller
         case .vcrestore:
             viewControllerRestore = nsviewcontroller
         case .vcssh:

@@ -173,11 +173,6 @@ extension ViewControllerMain: NSTableViewDelegate {
                     cell.textField?.stringValue = object.offsiteCatalog
                     return cell
                 }
-            case DictionaryStrings.offsiteServerCellID.rawValue:
-                if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
-                    cell.textField?.stringValue = object.offsiteServer
-                    return cell
-                }
             case DictionaryStrings.backupIDCellID.rawValue:
                 if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: self) as? NSTableCellView {
                     cell.textField?.stringValue = object.backupID

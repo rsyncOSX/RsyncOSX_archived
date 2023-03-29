@@ -12,6 +12,10 @@
 
 import Foundation
 
+enum Scheduletype: String {
+    case manuel
+}
+
 enum Sortandfilter {
     case offsitecatalog
     case localcatalog

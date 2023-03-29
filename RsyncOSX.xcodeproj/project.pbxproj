@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */; };
 		A004D81A1D9586580016914F /* ViewControllerLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A004D8191D9586580016914F /* ViewControllerLoggData.swift */; };
 		A00FE1A81D6A19CF00012089 /* ViewControllerNewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */; };
 		A00FE1AA1D6A1AAB00012089 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00FE1A91D6A1AAB00012089 /* Alerts.swift */; };
@@ -30,7 +29,6 @@
 		A091C65B1D86A59500278E74 /* RestorefilesTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A091C65A1D86A59500278E74 /* RestorefilesTask.swift */; };
 		A0A403521D76BD2E00A30017 /* ViewControllerRsyncParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */; };
 		A0B340B21D67077A00C6DAC3 /* ViewControllerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */; };
-		A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */; };
 		A0B3D9741D758E20001E190E /* ViewControllerUserconfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */; };
 		A0FAF5CF1DDF2E5F0009FE7A /* ViewControllerAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */; };
 		A0FC45641D9545CC005208EF /* ScheduleLoggData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */; };
@@ -73,7 +71,6 @@
 		E92B1A7F257A225600F0216C /* exstensionViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92B1A7E257A225600F0216C /* exstensionViewControllers.swift */; };
 		E939EC4A20C048A000C47F91 /* extensionVCMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939EC4920C048A000C47F91 /* extensionVCMain.swift */; };
 		E93A10E224D0AA83000ACDFA /* NamesandPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */; };
-		E93ADA6C24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */; };
 		E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */; };
 		E942FF291FED41D0004191B5 /* ViewControllerSynchronizeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E942FF281FED41D0004191B5 /* ViewControllerSynchronizeAll.swift */; };
 		E943DC661FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */; };
@@ -111,7 +108,6 @@
 		E99E2CCE22A9260E009C60FF /* Getrsyncpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */; };
 		E99FC81D200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */; };
 		E9A1725C250F675B00F26529 /* RsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1725B250F675B00F26529 /* RsyncProcess.swift */; };
-		E9A63064202B425D00F1FFF1 /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A63063202B425D00F1FFF1 /* Running.swift */; };
 		E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */; };
 		E9B9675724BCB68500F623C9 /* PreandPostTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9675624BCB68500F623C9 /* PreandPostTasks.swift */; };
 		E9B9CCA621BC46B00042D5CE /* extensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9CCA521BC46B00042D5CE /* extensionDate.swift */; };
@@ -134,7 +130,6 @@
 		E9EC78711EACE082001EED9B /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC78701EACE082001EED9B /* Ssh.swift */; };
 		E9EC81C8255C5BD600CE106E /* Checksynchronizedfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EC81C7255C5BD600CE106E /* Checksynchronizedfiles.swift */; };
 		E9F068EC1F27B7FB00DDF1A1 /* SingleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F068EB1F27B7FB00DDF1A1 /* SingleTask.swift */; };
-		E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F413BA1F63AC2A00C0945E /* Schedules.swift */; };
 		E9F5CECF265F5F090064618B /* PrepareOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECA265F5F090064618B /* PrepareOutput.swift */; };
 		E9F5CED0265F5F090064618B /* TrimFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECB265F5F090064618B /* TrimFour.swift */; };
 		E9F5CED1265F5F090064618B /* TrimThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F5CECC265F5F090064618B /* TrimThree.swift */; };
@@ -156,7 +151,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSortedAndExpanded.swift; sourceTree = "<group>"; };
 		A004D8191D9586580016914F /* ViewControllerLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerLoggData.swift; sourceTree = "<group>"; };
 		A00FE1A71D6A19CF00012089 /* ViewControllerNewConfigurations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerNewConfigurations.swift; sourceTree = "<group>"; };
 		A00FE1A91D6A1AAB00012089 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
@@ -181,7 +175,6 @@
 		A091C65A1D86A59500278E74 /* RestorefilesTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestorefilesTask.swift; sourceTree = "<group>"; };
 		A0A403501D76BD2E00A30017 /* ViewControllerRsyncParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRsyncParameters.swift; sourceTree = "<group>"; };
 		A0B340B11D67077A00C6DAC3 /* ViewControllerMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMain.swift; sourceTree = "<group>"; };
-		A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSchedule.swift; sourceTree = "<group>"; };
 		A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUserconfiguration.swift; sourceTree = "<group>"; };
 		A0FAF5CE1DDF2E5F0009FE7A /* ViewControllerAbout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAbout.swift; sourceTree = "<group>"; };
 		A0FC45631D9545CC005208EF /* ScheduleLoggData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleLoggData.swift; sourceTree = "<group>"; };
@@ -232,7 +225,6 @@
 		E92FD72922732134009A6042 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
 		E939EC4920C048A000C47F91 /* extensionVCMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCMain.swift; sourceTree = "<group>"; };
 		E93A10E124D0AA83000ACDFA /* NamesandPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesandPaths.swift; sourceTree = "<group>"; };
-		E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionVCScheduletableviewDelegate.swift; sourceTree = "<group>"; };
 		E9407BB8208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEstimatingTasks.swift; sourceTree = "<group>"; };
 		E942FF281FED41D0004191B5 /* ViewControllerSynchronizeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSynchronizeAll.swift; sourceTree = "<group>"; };
 		E943DC651FF90A6600E6B8B7 /* RemoteinfonumbersOnetask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteinfonumbersOnetask.swift; sourceTree = "<group>"; };
@@ -274,7 +266,6 @@
 		E99E2CCD22A9260E009C60FF /* Getrsyncpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Getrsyncpath.swift; sourceTree = "<group>"; };
 		E99FC81C200FD88D00477B1A /* SnapshotCreateCatalogArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotCreateCatalogArguments.swift; sourceTree = "<group>"; };
 		E9A1725B250F675B00F26529 /* RsyncProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsyncProcess.swift; sourceTree = "<group>"; };
-		E9A63063202B425D00F1FFF1 /* Running.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
 		E9A8D81B1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRemoteFileListingsArguments.swift; sourceTree = "<group>"; };
 		E9AE2E90217E3270003486E0 /* RsyncOSX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RsyncOSX.entitlements; sourceTree = "<group>"; };
 		E9B06F102541A736000345E2 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
@@ -305,7 +296,6 @@
 		E9F109402421F22700528BEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		E9F109412421F22700528BEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9F109422421F22700528BEA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E9F413BA1F63AC2A00C0945E /* Schedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
 		E9F5CECA265F5F090064618B /* PrepareOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareOutput.swift; sourceTree = "<group>"; };
 		E9F5CECB265F5F090064618B /* TrimFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimFour.swift; sourceTree = "<group>"; };
 		E9F5CECC265F5F090064618B /* TrimThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrimThree.swift; sourceTree = "<group>"; };
@@ -373,7 +363,6 @@
 			children = (
 				E84E091621BD2974006BD293 /* Tagsnapshots */,
 				E91A688E1EA7771B0056BCFC /* Loggdata */,
-				A0BAA5F31D70C349003BE69F /* Schedules */,
 				A0BAA5F21D70C33A003BE69F /* Configurations */,
 				E8608949265E0EF800C9E641 /* Combine */,
 				E915568425284EFA007573E1 /* Assist */,
@@ -436,7 +425,6 @@
 				E9EB64F72941C567002829C6 /* CheckfornewversionofRsyncOSX.swift */,
 				E96CA1FD1E094C3000CD1D03 /* Resources.swift */,
 				E9614AD51F231AFC00CAE21A /* RsyncCommandtoDisplay.swift */,
-				E9A63063202B425D00F1FFF1 /* Running.swift */,
 				E92A623A203D7B1C000B9300 /* Notifications.swift */,
 				E96291B0213049D7005119A7 /* TCPconnections.swift */,
 				E92755A121304F0000B1F781 /* Macserialnumber.swift */,
@@ -492,15 +480,6 @@
 				E9284CF521308AE9006648C1 /* extensionsConfigurations.swift */,
 			);
 			name = Configurations;
-			sourceTree = "<group>";
-		};
-		A0BAA5F31D70C349003BE69F /* Schedules */ = {
-			isa = PBXGroup;
-			children = (
-				A0041EEE1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift */,
-				E9F413BA1F63AC2A00C0945E /* Schedules.swift */,
-			);
-			name = Schedules;
 			sourceTree = "<group>";
 		};
 		E82F9F1023F0306100E3DEBC /* extensionRestore */ = {
@@ -574,8 +553,6 @@
 				A0B3D9731D758E20001E190E /* ViewControllerUserconfiguration.swift */,
 				E996431B231AEFA100E05B40 /* ViewControllerSource.swift */,
 				E9FD80592574EAE8003E1AA2 /* ViewControllerRsyncCommand.swift */,
-				A0B340B31D67079700C6DAC3 /* ViewControllerSchedule.swift */,
-				E93ADA6A24F0F09000AC1ADB /* extensionVCSchedule */,
 			);
 			name = Sheetviews;
 			sourceTree = "<group>";
@@ -641,14 +618,6 @@
 				E924C0B7265E5C77006F148C /* WriteScheduleJSON.swift */,
 			);
 			name = JSON;
-			sourceTree = "<group>";
-		};
-		E93ADA6A24F0F09000AC1ADB /* extensionVCSchedule */ = {
-			isa = PBXGroup;
-			children = (
-				E93ADA6B24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift */,
-			);
-			name = extensionVCSchedule;
 			sourceTree = "<group>";
 		};
 		E94649662313121000ADDF22 /* extensionVCMain */ = {
@@ -961,11 +930,8 @@
 				E942FF291FED41D0004191B5 /* ViewControllerSynchronizeAll.swift in Sources */,
 				E82F9F1223F030B200E3DEBC /* extensionRestore.swift in Sources */,
 				E86EDFBA25302C2A00579CFE /* Backupconfigfiles.swift in Sources */,
-				A0B340B41D67079700C6DAC3 /* ViewControllerSchedule.swift in Sources */,
 				E98EF116249E23E100FD4669 /* NetworkMonitor.swift in Sources */,
-				A0041EEF1D7D4357002BF081 /* ScheduleSortedAndExpanded.swift in Sources */,
 				E9A8D81C1ED20AEB009648DE /* GetRemoteFileListingsArguments.swift in Sources */,
-				E9A63064202B425D00F1FFF1 /* Running.swift in Sources */,
 				E9196FDD2350CAC30037AA8B /* ComboboxRsyncParameters.swift in Sources */,
 				E924C0BC265E5C77006F148C /* ReadConfigurationJSON.swift in Sources */,
 				E9F941651FC5FCC3005F2439 /* Logfile.swift in Sources */,
@@ -1074,12 +1040,10 @@
 				E9C4A4132353139200BCF1C4 /* ArgumentsVerify.swift in Sources */,
 				A04492861D658EE800B3CE17 /* AppDelegate.swift in Sources */,
 				E943DC681FF9115200E6B8B7 /* EstimateremoteInformationOnetask.swift in Sources */,
-				E93ADA6C24F0F0EB00AC1ADB /* extensionVCScheduletableviewDelegate.swift in Sources */,
 				E9FC539524BB2B2A00784238 /* ExecuteTaskNowShellOut.swift in Sources */,
 				E924C0B5265E5BEC006F148C /* DecodeSchedule.swift in Sources */,
 				E912020722B3CFD90056AEFE /* Remotefilelist.swift in Sources */,
 				E99D18722304199A003F1796 /* Socket.swift in Sources */,
-				E9F413BB1F63AC2A00C0945E /* Schedules.swift in Sources */,
 				E9B9675724BCB68500F623C9 /* PreandPostTasks.swift in Sources */,
 				E9407BB9208AFB7C00A6780E /* ViewControllerEstimatingTasks.swift in Sources */,
 				A091C6581D86A0A800278E74 /* ViewControllerRestore.swift in Sources */,

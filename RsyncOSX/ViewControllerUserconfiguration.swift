@@ -28,12 +28,8 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
     @IBOutlet var minimumlogging: NSButton!
     @IBOutlet var nologging: NSButton!
     @IBOutlet var marknumberofdayssince: NSTextField!
-    @IBOutlet var pathRsyncOSX: NSTextField!
-    @IBOutlet var pathRsyncOSXsched: NSTextField!
     @IBOutlet var statuslightpathrsync: NSImageView!
     @IBOutlet var statuslighttemppath: NSImageView!
-    @IBOutlet var statuslightpathrsyncosx: NSImageView!
-    @IBOutlet var statuslightpathrsyncosxsched: NSImageView!
     @IBOutlet var savebutton: NSButton!
     @IBOutlet var environment: NSTextField!
     @IBOutlet var environmentvalue: NSTextField!
@@ -43,16 +39,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
     @IBOutlet var sshkeypathandidentityfile: NSTextField!
     @IBOutlet var statuslightsshkeypath: NSImageView!
     @IBOutlet var monitornetworkconnection: NSButton!
-    @IBOutlet var enableschedules: NSButton!
-
-    @IBAction func toggleenableschedules(_: NSButton) {
-        if enableschedules.state.rawValue == 1 {
-            SharedReference.shared.enableschdules = true
-        } else {
-            SharedReference.shared.enableschdules = false
-        }
-        setdirty()
-    }
 
     @IBAction func copyconfigfiles(_: NSButton) {
         _ = Backupconfigfiles()
@@ -233,76 +219,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         }
     }
 
-    private func verifypathtorsyncosx() {
-        var pathtorsyncosx: String?
-        statuslightpathrsyncosx.isHidden = false
-        guard pathRsyncOSX.stringValue.isEmpty == false else {
-            nopathtorsyncosx()
-            return
-        }
-        if pathRsyncOSX.stringValue.contains("$HOME") {
-            let replaced = pathRsyncOSX.stringValue.replacingOccurrences(of: "$HOME",
-                                                                         with: nameandpaths?.userHomeDirectoryPath ?? "")
-            pathRsyncOSX.stringValue = replaced
-        }
-        if pathRsyncOSX.stringValue.contains("$home") {
-            let replaced = pathRsyncOSX.stringValue.replacingOccurrences(of: "$home",
-                                                                         with: nameandpaths?.userHomeDirectoryPath ?? "")
-            pathRsyncOSX.stringValue = replaced
-        }
-        if pathRsyncOSX.stringValue.hasSuffix("/") == false {
-            pathtorsyncosx = pathRsyncOSX.stringValue + "/"
-        } else {
-            pathtorsyncosx = pathRsyncOSX.stringValue
-        }
-        if verifypatexists(pathorfilename: pathtorsyncosx! + SharedReference.shared.namersyncosx) {
-            SharedReference.shared.pathrsyncosx = pathtorsyncosx
-            statuslightpathrsyncosx.image = #imageLiteral(resourceName: "green")
-        } else {
-            nopathtorsyncosx()
-        }
-    }
-
-    private func verifypathtorsyncsched() {
-        var pathtorsyncosxsched: String?
-        statuslightpathrsyncosxsched.isHidden = false
-        guard pathRsyncOSXsched.stringValue.isEmpty == false else {
-            nopathtorsyncossched()
-            return
-        }
-        if pathRsyncOSXsched.stringValue.contains("$HOME") {
-            let replaced = pathRsyncOSXsched.stringValue.replacingOccurrences(of: "$HOME",
-                                                                              with: nameandpaths?.userHomeDirectoryPath ?? "")
-            pathRsyncOSXsched.stringValue = replaced
-        }
-        if pathRsyncOSXsched.stringValue.contains("$home") {
-            let replaced = pathRsyncOSXsched.stringValue.replacingOccurrences(of: "$home",
-                                                                              with: nameandpaths?.userHomeDirectoryPath ?? "")
-            pathRsyncOSXsched.stringValue = replaced
-        }
-        if pathRsyncOSXsched.stringValue.hasSuffix("/") == false {
-            pathtorsyncosxsched = pathRsyncOSXsched.stringValue + "/"
-        } else {
-            pathtorsyncosxsched = pathRsyncOSXsched.stringValue
-        }
-        if verifypatexists(pathorfilename: pathtorsyncosxsched! + SharedReference.shared.namersyncosssched) {
-            SharedReference.shared.pathrsyncosxsched = pathtorsyncosxsched
-            statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "green")
-        } else {
-            nopathtorsyncossched()
-        }
-    }
-
-    private func nopathtorsyncossched() {
-        SharedReference.shared.pathrsyncosxsched = nil
-        statuslightpathrsyncosxsched.image = #imageLiteral(resourceName: "red")
-    }
-
-    private func nopathtorsyncosx() {
-        SharedReference.shared.pathrsyncosx = nil
-        statuslightpathrsyncosx.image = #imageLiteral(resourceName: "red")
-    }
-
     private func verifypatexists(pathorfilename: String?) -> Bool {
         let fileManager = FileManager.default
         var path: String?
@@ -376,8 +292,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         rsyncPath.delegate = self
         restorePath.delegate = self
         marknumberofdayssince.delegate = self
-        pathRsyncOSX.delegate = self
-        pathRsyncOSXsched.delegate = self
         environment.delegate = self
         sshkeypathandidentityfile.delegate = self
         sshport.delegate = self
@@ -391,8 +305,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         dirty = false
         marknumberofdayssince.stringValue = String(SharedReference.shared.marknumberofdayssince)
         reload = false
-        pathRsyncOSXsched.stringValue = SharedReference.shared.pathrsyncosxsched ?? ""
-        pathRsyncOSX.stringValue = SharedReference.shared.pathrsyncosx ?? ""
         sshkeypathandidentityfile.stringValue = SharedReference.shared.sshkeypathandidentityfile ?? ""
         if let sshport = SharedReference.shared.sshport {
             self.sshport.stringValue = String(sshport)
@@ -401,8 +313,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         verifyrsync()
         statuslighttemppath.isHidden = true
         statuslightpathrsync.isHidden = true
-        statuslightpathrsyncosx.isHidden = true
-        statuslightpathrsyncosxsched.isHidden = true
         statuslightsshkeypath.isHidden = true
     }
 
@@ -454,11 +364,6 @@ class ViewControllerUserconfiguration: NSViewController, SetConfigurations, NewR
         } else {
             monitornetworkconnection.state = .off
         }
-        if SharedReference.shared.enableschdules {
-            enableschedules.state = .on
-        } else {
-            enableschedules.state = .off
-        }
     }
 }
 
@@ -478,12 +383,6 @@ extension ViewControllerUserconfiguration: NSTextFieldDelegate {
                 return
             case self.marknumberofdayssince:
                 return
-            case self.pathRsyncOSX:
-                self.verifypathtorsyncsched()
-                self.verifypathtorsyncosx()
-            case self.pathRsyncOSXsched:
-                self.verifypathtorsyncsched()
-                self.verifypathtorsyncosx()
             case self.sshkeypathandidentityfile:
                 self.verifysshkeypath()
             case self.sshport:
