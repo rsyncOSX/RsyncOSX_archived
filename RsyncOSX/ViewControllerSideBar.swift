@@ -32,7 +32,7 @@ enum Sidebaractionsmessages {
     case CreateKey
     case Remote
     case Tag
-    case Snap
+    // case Snap
 }
 
 protocol Sidebaractions: AnyObject {
@@ -149,9 +149,6 @@ class ViewControllerSideBar: NSViewController, SetConfigurations, Delay, VcMain,
             case .snapshotviewbuttons:
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcsnapshot) as? ViewControllerSnapshots
                 deleteDelegate?.sidebarbuttonactions(action: .Save)
-            case .logsviewbuttons:
-                weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcloggdata) as? ViewControllerLoggData
-                deleteDelegate?.sidebarbuttonactions(action: .Snap)
             case .sshviewbuttons:
                 weak var deleteDelegate = SharedReference.shared.getvcref(viewcontroller: .vcssh) as? ViewControllerSsh
                 deleteDelegate?.sidebarbuttonactions(action: .Remote)
@@ -235,10 +232,9 @@ extension ViewControllerSideBar: Sidebaractions {
             button1.isHidden = true
             button2.isHidden = true
             button3.isHidden = false
-            button4.isHidden = false
+            button4.isHidden = true
             button6.isHidden = true
             button3.title = NSLocalizedString("Delete", comment: "Sidebar")
-            button4.title = NSLocalizedString("Scan", comment: "Sidebar")
         case .sshviewbuttons:
             button1.isHidden = true
             button2.isHidden = true

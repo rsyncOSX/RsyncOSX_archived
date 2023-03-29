@@ -149,29 +149,6 @@ class ViewControllerLoggData: NSViewController, SetConfigurations, Delay, Index,
             self.scheduletable.reloadData()
         }
     }
-
-    func marklogsfromsnapshots() {
-        guard SharedReference.shared.process == nil else { return }
-        // Merged log records for snapshots based on real snapshot catalogs
-        guard snapshotscheduleloggdata?.logrecordssnapshot?.count ?? 0 > 0 else { return }
-        // All log records
-        guard scheduleloggdata?.loggrecords?.count ?? 0 > 0 else { return }
-        for i in 0 ..< (scheduleloggdata?.loggrecords?.count ?? 0) {
-            scheduleloggdata?.loggrecords?[i].delete = 1
-            if let logrecordssnapshot = snapshotscheduleloggdata?.logrecordssnapshot {
-                if logrecordssnapshot.contains(where: { record in
-                    if record.resultExecuted == self.scheduleloggdata?.loggrecords?[i].resultExecuted {
-                        self.scheduleloggdata?.loggrecords?[i].delete = 0
-                        return true
-                    }
-                    return false
-                }) {}
-            }
-        }
-        globalMainQueue.async { () in
-            self.scheduletable.reloadData()
-        }
-    }
 }
 
 extension ViewControllerLoggData: NSSearchFieldDelegate {
@@ -318,8 +295,6 @@ extension ViewControllerLoggData: DismissViewController {
 extension ViewControllerLoggData: Sidebarbuttonactions {
     func sidebarbuttonactions(action: Sidebaractionsmessages) {
         switch action {
-        case .Snap:
-            marklogsfromsnapshots()
         case .Delete:
             deletealllogs()
         default:

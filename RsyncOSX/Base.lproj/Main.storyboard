@@ -110,11 +110,6 @@
                                                 <action selector="alloutput:" target="Ady-hI-5gd" id="FD2-Ix-5aR"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Schedules app" keyEquivalent="s" id="QC2-qp-Fu0" userLabel="Info">
-                                            <connections>
-                                                <action selector="rsyncosxsched:" target="Ady-hI-5gd" id="BVq-Oi-JKd"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="sGr-C3-QGG"/>
                                         <menuItem title="Abort" keyEquivalent="a" id="k2Y-Hy-jMj" userLabel="Abort">
                                             <connections>
