@@ -8,6 +8,7 @@ DerivedData/
 Logs/
 Build/
 ModuleCache.noindex/
+SDKStatCaches.noindex/
 
 ## Various settings
 *.pbxuser
@@ -76,3 +77,4 @@ fastlane/test_output
 *.xcbkptlist
 .DS_Store
 SourcePackages
+*.sdkstatcache
