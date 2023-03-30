@@ -35,7 +35,6 @@ class ReadScheduleJSON: NamesandPaths {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    // print("The publisher finished normally.")
                     return
                 case let .failure(error):
                     let error = error as NSError
@@ -47,7 +46,6 @@ class ReadScheduleJSON: NamesandPaths {
                     var schedule = ConfigurationSchedule(data[i])
                     schedule.profilename = profile
                     // Validate that the hidden ID is OK,
-                    // schedule != Scheduletype.stopped.rawValue, logs count > 0
                     if let validhiddenID = validhiddenID {
                         if validhiddenID.contains(schedule.hiddenID) {
                             schedules.append(schedule)

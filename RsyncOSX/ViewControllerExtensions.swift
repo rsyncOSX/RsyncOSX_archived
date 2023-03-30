@@ -41,12 +41,6 @@ extension VcMain {
             as? NSViewController)
     }
 
-    // AssistID
-    var viewControllerAssist: NSViewController? {
-        return (sheetviewstoryboard?.instantiateController(withIdentifier: "AssistID")
-            as? NSViewController)
-    }
-
     // Profile
     var viewControllerProfile: NSViewController? {
         return (sheetviewstoryboard?.instantiateController(withIdentifier: "ProfileID")

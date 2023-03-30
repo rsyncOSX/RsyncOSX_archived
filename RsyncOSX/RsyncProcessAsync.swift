@@ -96,11 +96,6 @@ final class RsyncProcessAsync: Errors {
         }
     }
 
-    // Terminate Process, used when user Aborts task.
-    func abortProcess() {
-        _ = InterruptProcess()
-    }
-
     init(arguments: [String]?,
          config: Configuration?,
          processtermination: @escaping ([String]?) -> Void)

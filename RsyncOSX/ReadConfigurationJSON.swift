@@ -8,52 +8,12 @@
 import Combine
 import Foundation
 
-/*
- struct UniqueserversandLogins: Hashable {
-     var offsiteUsername: String?
-     var offsiteServer: String?
-
-     init(_ username: String,
-          _ servername: String)
-     {
-         offsiteServer = servername
-         offsiteUsername = username
-     }
-
-     func hash(into hasher: inout Hasher) {
-         hasher.combine(offsiteUsername)
-         hasher.combine(offsiteServer)
-     }
- }
- */
 class ReadConfigurationJSON: NamesandPaths {
     var configurations: [Configuration]?
     var filenamedatastore = [SharedReference.shared.fileconfigurationsjson]
     var subscriptons = Set<AnyCancellable>()
     var validhiddenIDs = Set<Int>()
 
-    /*
-     func setuniqueserversandlogins() -> [UniqueserversandLogins]? {
-         let configs = configurations?.filter {
-             SharedReference.shared.synctasks.contains($0.task)
-         }
-         guard configs?.count ?? 0 > 0 else { return nil }
-         var uniqueserversandlogins = [UniqueserversandLogins]()
-         for i in 0 ..< (configs?.count ?? 0) {
-             if let config = configs?[i] {
-                 if config.offsiteUsername.isEmpty == false, config.offsiteServer.isEmpty == false {
-                     let record = UniqueserversandLogins(config.offsiteUsername, config.offsiteServer)
-                     if uniqueserversandlogins.filter({ ($0.offsiteUsername == record.offsiteUsername) &&
-                             ($0.offsiteServer == record.offsiteServer)
-                     }).count == 0 {
-                         uniqueserversandlogins.append(record)
-                     }
-                 }
-             }
-         }
-         return uniqueserversandlogins
-     }
-     */
     init(_ profile: String?) {
         super.init(.configurations)
         filenamedatastore.publisher
