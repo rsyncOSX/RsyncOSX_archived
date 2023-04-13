@@ -4,7 +4,7 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 
 | App      | Lines & files | Code | Version 1.0 |  Latest version | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
-| RsyncOSX   | about 160K, 130  | Storyboard, Swift, imperativ   | 14 March 2016 |	6.7.6 - 13 Jan 2023 | 
+| RsyncOSX   | about 160K, 130  | Storyboard, Swift, imperativ   | 14 March 2016 |	6.8.0 - 13 April 2023 | 
 | RsyncUI   | about 170K, 170       | SwiftUI, Swift, declarativ     | 6 May 2021 | 1.4.8 - 24 Mar 2023 | 
 
 It is `rsync` which executes the synchronize task. The GUI´s are only for setting parameters and make it more easy to use `rsync`, which is a fantastic tool.
@@ -38,9 +38,9 @@ One of many advantages of utilizing `rsync` is that it can restart and continue 
 
 ### RsyncOSX
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.6/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.8.0/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.7.6/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
 
-**RsyncOSX** is released for **macOS Big Sur** and later. Latest build is [13 January 2023](https://github.com/rsyncOSX/RsyncOSX/releases).
+**RsyncOSX** is released for **macOS Big Sur** and later. Latest build is [13 April 2023](https://github.com/rsyncOSX/RsyncOSX/releases).
 
 - the [documentation of RsyncOSX](https://rsyncosx.netlify.app/)
 - the [readme for RsyncOSX](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md)
