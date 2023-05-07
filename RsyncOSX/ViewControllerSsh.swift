@@ -52,8 +52,8 @@ class ViewControllerSsh: NSViewController, SetConfigurations, VcMain, Checkforrs
 
     // Sidebar kilde
     var viewControllerSource: NSViewController? {
-        return (sheetviewstoryboard?.instantiateController(withIdentifier: "CopyFilesID")
-            as? NSViewController)
+        return sheetviewstoryboard?.instantiateController(withIdentifier: "CopyFilesID")
+            as? NSViewController
     }
 
     func source() {

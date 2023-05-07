@@ -315,6 +315,7 @@ class ViewControllerMain: NSViewController, ReloadTable, Deselect, VcMain, Delay
             configurations = Configurations(profile: nil)
         }
         singletask = nil
+        localindex = nil
         info.stringValue = ""
         globalMainQueue.async { () in
             self.mainTableView.reloadData()
