@@ -13,7 +13,7 @@ It is `rsync` which executes the synchronize task. The GUI´s are only for setti
 
 Both apps might be installed by Homebrew
 
-- RsyncOSX : `brew install --cask rsyncosx`
+- RsyncOSX: `brew install --cask rsyncosx`
 - RsyncUI: `brew install --cask rsyncui`
 
 ### Important to verify
@@ -26,9 +26,9 @@ Please read  the [documentation of RsyncOSX](https://rsyncosx.netlify.app/post/r
 
 If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey** or **macOS Ventura**, you can use both GUI´s in parallell.
 
-### External task does the job
+### External task executing rsync 
 
-Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncUI which executes the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the task for progress and termination. The user can abort a task at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
+Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncUI which [executes](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/RsyncProcessAsync.swift) the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the task for progress and termination. The user can abort a task at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
 
 One of many advantages of utilizing `rsync` is that it can restart and continue the synchronize task from where it was aborted.
 
