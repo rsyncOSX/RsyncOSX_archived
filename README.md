@@ -4,8 +4,8 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 
 | App      | Lines & files | Code | Latest version  |  Version 1.0 | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
-| RsyncOSX   | about 160K, 130  | Storyboard, Swift, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
-| RsyncUI   | about 170K, 170       | SwiftUI, Swift, declarativ     | 1.6.1 - 20 June 2023  | 6 May 2021  | 
+| RsyncOSX   | about 11K, 121  | Storyboard, Swift, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
+| RsyncUI   | about 14K, 168       | SwiftUI, Swift, declarativ     | 1.6.1 - 20 June 2023  | 6 May 2021  | 
 
 It is `rsync` which executes the synchronize task. The GUI´s are only for setting parameters and make it more easy to use `rsync`, which is a fantastic tool.
 
