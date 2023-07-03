@@ -24,7 +24,7 @@ Please read  the [documentation of RsyncOSX](https://rsyncosx.netlify.app/post/r
 
 ### Version of macOS
 
-If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey** or **macOS Ventura**, you can use both GUI´s in parallell.
+If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey** and later, you can use both GUI´s in parallell.
 
 ### External task executing rsync 
 
