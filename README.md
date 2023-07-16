@@ -5,7 +5,7 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 | App      | Lines & files | Code | Latest version  |  Version 1.0 | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
 | RsyncOSX   | about 11K, 121  | Storyboard, Swift, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
-| RsyncUI   | about 14K, 168       | SwiftUI, Swift, declarativ     | 1.6.3 - 29 June 2023  | 6 May 2021  | 
+| RsyncUI   | about 14K, 168       | SwiftUI, Swift, declarativ     | 1.6.5 - 16 July 2023  | 6 May 2021  | 
 
 It is `rsync` which executes the synchronize task. The GUI´s are only for setting parameters and make it more easy to use `rsync`, which is a fantastic tool.
 
@@ -13,8 +13,10 @@ It is `rsync` which executes the synchronize task. The GUI´s are only for setti
 
 Both apps might be installed by Homebrew
 
-- RsyncOSX: `brew install --cask rsyncosx`
-- RsyncUI: `brew install --cask rsyncui`
+- RsyncOSX: `brew install --cask rsyncosx` (support for **macOS Big Sur** and later)
+- RsyncUI: `brew install --cask rsyncui` (support for **macOS Monterey** and later)
+
+Both apps might be used in parallell, but not at the same time due to locking of files. Data is read and updated from the same location on storage.
 
 ### Important to verify
 
@@ -22,15 +24,9 @@ The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult 
 
 Please read  the [documentation of RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/) or [documentation of RsyncUI](https://rsyncui.netlify.app/post/rsyncuidocs/) for how to add a task and how to execute a simulated run, a `--dry-run`, to verify a task. 
 
-### Version of macOS
-
-If you have installed **macOS Big Sur**, RsyncOSX is the GUI for you. If you have installed **macOS Monterey** and later, you can use both GUI´s in parallell.
-
 ### External task executing rsync 
 
 Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncUI which [executes](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/RsyncProcessAsync.swift) the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the task for progress and termination. The user can abort a task at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
-
-One of many advantages of utilizing `rsync` is that it can restart and continue the synchronize task from where it was aborted.
 
 ### Parameters to rsync
 
@@ -50,9 +46,9 @@ One of many advantages of utilizing `rsync` is that it can restart and continue 
 
 ### RsyncUI
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.6.3/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.6.5/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.6.3/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
 
-**RsyncUI** is released for **macOS Monterey** and later. Latest build is [29 June 2023](https://github.com/rsyncOSX/RsyncUI/releases).
+**RsyncUI** is released for **macOS Monterey** and later. Latest build is [16 July 2023](https://github.com/rsyncOSX/RsyncUI/releases).
 
 - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
 - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
