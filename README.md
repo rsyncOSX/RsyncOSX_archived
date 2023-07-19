@@ -13,8 +13,8 @@ It is `rsync` which executes the synchronize task. The GUI´s are only for setti
 
 Both apps might be installed by Homebrew
 
-- RsyncOSX: `brew install --cask rsyncosx` (support for **macOS Big Sur** and later)
-- RsyncUI: `brew install --cask rsyncui` (support for **macOS Monterey** and later)
+- RsyncOSX: `brew install --cask rsyncosx` - for **macOS Big Sur** and later
+- RsyncUI: `brew install --cask rsyncui` - for **macOS Monterey** and later
 
 Both apps might be used in parallell, but not at the same time due to locking of files. Data is read and updated from the same location on storage.
 
