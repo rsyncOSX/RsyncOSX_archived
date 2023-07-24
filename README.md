@@ -16,7 +16,13 @@ Both apps might be installed by Homebrew
 - RsyncOSX: `brew install --cask rsyncosx` - for **macOS Big Sur** and later
 - RsyncUI: `brew install --cask rsyncui` - for **macOS Monterey** and later
 
-Both apps might be used in parallell, but not at the same time due to locking of files. Data is read and updated from the same location on storage.
+### Why two apps
+
+The development of RsyncOSX commenced in 2015 as a private project to learn Swift. In 2019, Apple released SwiftUI, which is a development framework for building user interfaces for iOS, iPadOS, watchOS, TVOS, and macOS. SwiftUI became very popular quickly, and after some investigation, I decided to commence another private project to learn SwiftUI. The model part of RsyncOSX was at that time quite stable, and I decided to refactor the GUI part of RsyncOSX by utilizing SwiftUI. And that is the short story behind the two applications.
+
+According to Apple, SwiftUI is the future. In my own experience, coding in SwiftUI is way easier and more predictable than in Storyboard and Swift, which are the basis for RsyncOSX. Both apps are maintained, but RsyncUI is the future, and all new development is within RsyncUI. And with every new release of macOS, Swift and Xcode there are new exciting features in SwiftUI.
+
+Both apps might be used in parallel, but not at the same time due to the locking of files. Data is read and updated from the same location on storage.
 
 ### Important to verify
 
@@ -30,7 +36,7 @@ Please be aware it is an external task **not controlled** by RsyncOSX nor RsyncU
 
 ### Parameters to rsync
 
-`rsync` supports a ton of parameters and most likely the advanced user of `rsync` wants to apply parameters and verify the effect. I am **not** an advanced user of `rsync`, but both RsyncOSX and RsyncUI supports adding parameters. The GUI for verifying parameters is better within RsyncUI than RsyncOSX. Both apps can be used in parallell and if you prefer RsyncOSX you might still use RsyncUI to add and test parameters for `rsync`. The `rsync` command line is dynamically updated when updating parameters and presented in RsyncUI and there is a verify button for testing before saving. 
+`rsync` supports a ton of parameters and most likely the advanced user of `rsync` wants to apply parameters and verify the effect. I am **not** an advanced user of `rsync`, but both RsyncOSX and RsyncUI supports adding parameters. 
 
 ### RsyncOSX
 
