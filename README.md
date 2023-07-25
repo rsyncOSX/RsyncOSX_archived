@@ -32,7 +32,7 @@ The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult 
 
 ### External task executing rsync 
 
-Please be aware it is an external task *not controlled* by RsyncOSX nor RsyncUI which [executes](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/RsyncProcessAsync.swift) the command line tool `rsync`. RsyncOSX and RsyncUI are monitoring the task for progress and termination. The user can abort a task at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
+Please be aware it is an external task *not controlled* by RsyncOSX nor RsyncUI which [executes](https://github.com/rsyncOSX/RsyncUI/blob/main/RsyncUI/Model/Process/Main/Async/RsyncProcessAsync.swift) the command line tool `rsync`. The progress and termination of the external `rsync` task is monitored. The user can abort the task at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
 
 ### Parameters to rsync
 
