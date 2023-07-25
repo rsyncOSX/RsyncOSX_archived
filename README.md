@@ -13,12 +13,14 @@ It is `rsync` which executes the synchronize task. The GUI´s are only for setti
 
 Both apps might be installed by Homebrew
 
-- RsyncOSX: `brew install --cask rsyncosx` - for **macOS Big Sur** and later
-- RsyncUI: `brew install --cask rsyncui` - for **macOS Monterey** and later
+| App      | Homebrew | macOS | 
+| ----------- | ----------- |   ----------- | 
+| RsyncOSX   | `brew install --cask rsyncosx`  |  for **macOS Big Sur** and later   | 
+| RsyncUI   | `brew install --cask rsyncui`    | for **macOS Monterey** and later     | 
 
 ### Why two apps
 
-The development of RsyncOSX commenced in 2015 as a private project to learn Swift. In 2019, Apple released SwiftUI, which is a development framework for building user interfaces for iOS, iPadOS, watchOS, TVOS, and macOS. SwiftUI became very popular quickly, and after some investigation, I decided to commence another private project to learn SwiftUI. The model part of RsyncOSX was at that time quite stable, and I decided to refactor the GUI part of RsyncOSX by utilizing SwiftUI. And that is the short story behind the two applications.
+The development of RsyncOSX commenced in 2015 as a private project to learn Swift. In 2019, Apple released SwiftUI, which is a development framework for building user interfaces for iOS, iPadOS, watchOS, TVOS, and macOS. SwiftUI quickly became very popular, and after some investigation, I decided to commence another private project to learn SwiftUI. The model part of RsyncOSX was at that time quite stable, and I decided to refactor the GUI part of RsyncOSX by utilizing SwiftUI. And that is the short story behind the two applications.
 
 According to Apple, SwiftUI is the future. In my own experience, coding in SwiftUI is way easier and more predictable than in Storyboard and Swift, which are the basis for RsyncOSX. Both apps are maintained, but RsyncUI is the future, and all new development is within RsyncUI. And with every new release of macOS, Swift and Xcode there are new exciting features in SwiftUI.
 
