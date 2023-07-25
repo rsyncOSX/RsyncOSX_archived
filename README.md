@@ -13,10 +13,10 @@ It is `rsync` which executes the synchronize task. The GUI´s are only for setti
 
 Both apps might be installed by Homebrew
 
-| App      | Homebrew | macOS | 
-| ----------- | ----------- |   ----------- | 
-| RsyncOSX   | `brew install --cask rsyncosx`  |  for **macOS Big Sur** and later   | 
-| RsyncUI   | `brew install --cask rsyncui`    | for **macOS Monterey** and later     | 
+| App      | Homebrew | macOS |  Documentation |
+| ----------- | ----------- |   ----------- |  ----------- |
+| RsyncOSX   | `brew install --cask rsyncosx`  |  **macOS Big Sur** and later   |   [RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/) |
+| RsyncUI   | `brew install --cask rsyncui`    | **macOS Monterey** and later     |   [RsyncUI](https://rsyncui.netlify.app/post/rsyncuidocs/) |
 
 ### Why two apps
 
@@ -29,8 +29,6 @@ Both apps might be used in parallel, but not at the same time due to the locking
 ### Important to verify
 
 The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult to understand. Setting wrong parameters to rsync can result in deleted data. RsyncOSX nor RsyncUI will not stop you for doing so. That is why it is **very** important to execute a simulated run, a `--dry-run`, and **verify** the result before the real run.
-
-Please read  the [documentation of RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/) or [documentation of RsyncUI](https://rsyncui.netlify.app/post/rsyncuidocs/) for how to add a task and how to execute a simulated run, a `--dry-run`, to verify a task. 
 
 ### External task executing rsync 
 
