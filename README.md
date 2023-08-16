@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command line tool [rsync](https://github.com/WayneD/rsync). The main difference between the two apps are how the User Interface (UI) is built.
+RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command line tool [rsync](https://github.com/WayneD/rsync). The main difference between the two apps is how the User Interface (UI) is built.
 
 | App      | Lines & files | UI | Latest version  |  Version 1.0 | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
