@@ -5,7 +5,7 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 | App      | Lines & files | UI | Latest version  |  Version 1.0 | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
 | RsyncOSX   | about 11K, 121  | Storyboard, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
-| RsyncUI   | about 14K, 168  | SwiftUI, declarativ     | 1.6.6 - 1 August 2023  | 6 May 2021  | 
+| RsyncUI   | about 14K, 168  | SwiftUI, declarativ     | 1.7.0 - 16 August 2023  | 6 May 2021  | 
 
 It is `rsync` which executes the synchronize task. The GUI´s are for organizing tasks for synchronizing of data and setting parameters to `rsync`.  And make it more easy to use it, which is a fantastic tool.
 
@@ -52,9 +52,9 @@ Please be aware it is an external task *not controlled* by RsyncOSX nor RsyncUI 
 
 ### RsyncUI
 
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD)  ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.6.6/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.7.0/total)  ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.6.6/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
 
-**RsyncUI** is released for **macOS Monterey** and later. Latest build is [1 August 2023](https://github.com/rsyncOSX/RsyncUI/releases).
+**RsyncUI** is released for **macOS Monterey** and later. Latest build is [16 August 2023](https://github.com/rsyncOSX/RsyncUI/releases).
 
 - the [documentation of RsyncUI](https://rsyncui.netlify.app/)
 - the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
