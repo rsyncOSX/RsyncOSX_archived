@@ -5,7 +5,7 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 | App      | Lines & files | UI | Latest version  |  Version 1.0 | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
 | RsyncOSX   | about 11K, 121  | Storyboard, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
-| RsyncUI   | about 14K, 168  | SwiftUI, declarativ     | 1.7.0 - 16 August 2023  | 6 May 2021  | 
+| RsyncUI   | about 14K, 165  | SwiftUI, declarativ     | 1.7.0 - 16 August 2023  | 6 May 2021  | 
 
 It is `rsync` which executes the synchronize task. The GUI´s are for organizing tasks for synchronizing of data and setting parameters to `rsync`.  And make it more easy to use it, which is a fantastic tool.
 
@@ -32,7 +32,7 @@ The UI of RsyncOSX and RsyncUI can for users who dont know `rsync` be difficult 
 
 ### External task executing rsync 
 
-Please be aware it is an external task *not controlled* by RsyncOSX nor RsyncUI which [executes](https://github.com/rsyncOSX/RsyncUI/blob/main/RsyncUI/Model/Process/Main/Async/RsyncProcessAsync.swift) the command line tool `rsync`. The progress and termination of the external `rsync` task is monitored. The user can abort the task at any time. Please let the abort to finish and cleanup properly before starting a new task. It might take a few seconds. If not the apps might become unresponsive.
+Please be aware that this is an external task *not controlled* by RsyncOSX or RsyncUI, which executes the command-line tool rsync. The progress and termination of the external rsync task are monitored. The user can abort the task at any time. Please let the abort finish and cleanup properly before starting a new task. It might take a few seconds. If not, the apps might become unresponsive.
 
 ### Parameters to rsync
 
