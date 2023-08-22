@@ -7,11 +7,11 @@ RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command lin
 | RsyncOSX   | about 11K, 121  | Storyboard, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
 | RsyncUI   | about 14K, 165  | SwiftUI, declarativ     | 1.7.0 - 16 August 2023  | 6 May 2021  | 
 
-It is `rsync` which executes the synchronize task. The GUI´s are for organizing tasks for synchronizing of data and setting parameters to `rsync`.  And make it more easy to use it, which is a fantastic tool.
+It is `rsync` which executes the synchronize task. The GUI´s are for organizing tasks for synchronizing of data and setting parameters to rsync.  And make it more easy to use rsync, which is a fantastic tool.
 
 ### Install by Homebrew
 
-Both apps might be installed by Homebrew
+Both apps might be installed by Homebrew.
 
 | App      | Homebrew | macOS |  Documentation |
 | ----------- | ----------- |   ----------- |  ----------- |
@@ -22,7 +22,7 @@ Both apps might be installed by Homebrew
 
 The development of RsyncOSX commenced in 2015 as a private project to learn Swift. In 2019, Apple released SwiftUI, which is a development framework for building user interfaces for iOS, iPadOS, watchOS, TVOS, and macOS. SwiftUI quickly became very popular, and after some investigation, I decided to commence another private project to learn SwiftUI. The model part of RsyncOSX was at that time quite stable, and I decided to refactor the GUI part of RsyncOSX by utilizing SwiftUI. And that is the short story behind the two applications.
 
-According to Apple, SwiftUI is the future. In my own experience, coding in SwiftUI is way easier and more predictable than in Storyboard and Swift, which are the basis for RsyncOSX. Both apps are maintained, but RsyncUI is the future, and all new development is within RsyncUI. And with every new release of macOS, Swift and Xcode there are new exciting features in SwiftUI.
+According to Apple, SwiftUI is the future. In my own experience, coding in SwiftUI is easier and more predictable than by Storyboard and Swift, which are the basis for RsyncOSX. Both apps are maintained, but RsyncUI is the future, and new development is within RsyncUI. And with every new release of macOS, Swift and Xcode there are new exciting features in SwiftUI.
 
 Both apps might be used in parallel, but not at the same time due to the locking of files. Data is read and updated from the same location on storage.
 
