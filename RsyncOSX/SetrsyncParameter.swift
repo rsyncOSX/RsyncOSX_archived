@@ -1,5 +1,5 @@
 //
-//  RsyncParameters.swift
+//  SetrsyncParameter.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 03/10/2016.

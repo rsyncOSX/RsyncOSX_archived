@@ -1,5 +1,5 @@
 //
-//  VersionofRsyncOSX.swift
+//  CheckfornewversionofRsyncOSX.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 08/12/2022.

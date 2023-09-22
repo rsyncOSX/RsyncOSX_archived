@@ -1,5 +1,5 @@
 //
-//  extensionsViewControllertabMain.swift
+//  extensionVCMain.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 31.05.2018.

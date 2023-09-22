@@ -1,5 +1,5 @@
 //
-//  RsyncProcessCmdClosure.swift
+//  RsyncProcess.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 14/09/2020.

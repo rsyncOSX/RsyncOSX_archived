@@ -271,7 +271,7 @@ extension ViewControllerSideBar: RsyncIsChanged {
 }
 
 extension ViewControllerSideBar: Setinfoaboutrsync {
-    internal func setinfoaboutrsync() {
+    func setinfoaboutrsync() {
         if SharedReference.shared.norsync == true {
             rsyncversionshort.stringValue = "no rsync"
         } else {
