@@ -1,5 +1,5 @@
 //
-//  alerts.swift
+//  Alerts.swift
 //  Rsync
 //
 //  Created by Thomas Evensen on 01/02/16.

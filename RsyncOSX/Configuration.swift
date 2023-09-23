@@ -1,5 +1,5 @@
 //
-//  ConfigurationsJSON.swift
+//  Configuration.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 26/05/2021.

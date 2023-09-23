@@ -1,5 +1,5 @@
 //
-//  Rsyncpath.swift
+//  Setrsyncpath.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 06/06/2019.
