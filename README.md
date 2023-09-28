@@ -10,7 +10,6 @@ Both apps might be installed by Homebrew.
 | ----------- | ----------- |   ----------- |  ----------- |
 | RsyncOSX   | `brew install --cask rsyncosx`  |  **macOS Big Sur** and later   |   [RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/) |
 | RsyncUI   | `brew install --cask rsyncui`    | **macOS Monterey** and later     |   [RsyncUI](https://rsyncui.netlify.app/post/rsyncuidocs/) |
-| RsyncUI   | not on Homebrew    | **macOS Sonoma** only    |   [RsyncUI](https://rsyncui.netlify.app/post/rsyncuidocs/) |
 
 ### Why two apps and latest versions
 
@@ -20,7 +19,7 @@ The development of RsyncOSX commenced in 2015 as a private project to learn Swif
 | ----------- | ----------- |   ----------- | -------- |  -------- |
 | RsyncOSX   | about 11K, 121  | Storyboard, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
 | RsyncUI   | about 14K, 165  | SwiftUI, declarativ     | 1.7.2 - 23 September 2023  | 6 May 2021  | 
-| RsyncUI   |   |     | 1.7.5 - 28 September 2023  | macOS Sonoma only  | 
+| RsyncUI   |  macOS Sonoma only |     | 1.7.5 - 28 September 2023  |  | 
 
 According to Apple, SwiftUI is the future. In my own experience, coding in SwiftUI is easier and more predictable than by Storyboard and Swift, which are the basis for RsyncOSX. Both apps are maintained, but RsyncUI is the future, and new development is within RsyncUI. And with every new release of macOS, Swift and Xcode there are new exciting features in SwiftUI.
 
