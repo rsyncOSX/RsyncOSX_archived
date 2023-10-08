@@ -1,20 +1,5 @@
 **RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
-Content:
-
-- [Install by Homebrew](#install-by-homebrew)
-- [Documents, issues and changelog](#documents-issues-and-changelog)
-- [Dependencies](#dependencies)
-- [Tools used](#tools-used)
-- [Scheduling](#scheduling)
-- [Remote servers](#remote-servers)
-- [Signing and notarizing](#signing-and-notarizing)
-- [Localization](#localization)
-- [Version of rsync](#version-of-rsync)
-- [The source code and compile](#the-source-code-and-compile)
-- [Combine](#combine)
-- [Application icon](#application-icon)
-
 ### Install by Homebrew
 
 RsyncOSX can also be installed by Homebrew: `brew install --cask rsyncosx`
@@ -25,8 +10,6 @@ RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-ba
 
 - [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/)
 - [the changelog](https://rsyncosx.netlify.app/post/changelog/)
-
-The info on web is published by utilizing [Hugo](https://gohugo.io/), the Hugo theme [Hello-friend-ng](https://github.com/rhazdon/hugo-theme-hello-friend-ng) and published on [Netlify](https://rsyncosx.netlify.app/). If you want to discuss changes or report bugs please [create an issue](https://github.com/rsyncOSX/RsyncOSX/issues).
 
 ### Dependencies
 
@@ -50,16 +33,6 @@ The following tools are used in development:
 
 All the above, except Xcode are installed by using [Homebrew](https://brew.sh/).
 
-### Scheduling
-
-Scheduling is [not enabled by default](https://rsyncosx.netlify.app/post/scheduletasks/). Scheduled tasks are added and deleted within RsyncOSX. Executing the scheduled tasks is by the [menu app](https://rsyncosx.netlify.app/post/menuapp/).
-
-### Remote servers
-
-If destination is a **remote server**, RsyncOSX is dependent on [setting up password-less logins](https://rsyncosx.netlify.app/post/remotelogins/). Both ssh-keys and rsync daemon setup are possible. It is advised utilizing ssh-keys because communication between source and destination (client and server) is encrypted.
-
-If destination is a **local attached volume**, the above is not relevant.
-
 ### Signing and notarizing
 
 RsyncOSX is [signed and notarized ](https://rsyncosx.netlify.app/post/notarized/).
@@ -74,27 +47,6 @@ RsyncOSX is [localized](https://rsyncosx.netlify.app/post/localization/) to:
 - English - the base language of RsyncOSX
 - Italian - by [Stefano Steve Cutelle'](https://github.com/stefanocutelle)
 - Dutch - by [Marcellino Santoso](https://github.com/maebs)
-
-### Version of rsync
-
-It is recommended to [install](https://rsyncosx.netlify.app/post/rsync/) the latest version of rsync by Homebrew.
-
-### The source code and compile
-
-There are [some details about source and how to compile](https://rsyncosx.netlify.app/post/compile/).
-
-### Combine
-
-The major work in the latest releases are **utilizing Combine** and only supporting **JSON files**. In development of [RsyncUI](https://github.com/rsyncOSX/RsyncUI), I "discovered" the new declarative framework Combine. Combine is a great framework and makes it more easy to write and read code. The publisher for encode and write data to JSON file requiere macOS BigSur or later.  Much of the code where Combine is used is shared with RsyncUI. There is also some refactor and clean up other parts of the code in this release.
-
-Combine is used in the following code:
-
-- [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadUserConfigurationPLIST.swift) user configurations from permanent store
-- [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadConfigurationJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/WriteConfigurationJSON.swift) configurations
-- [read](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadScheduleJSON.swift) and [write](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/WriteScheduleJSON.swift) schedules and logs
-- read and convert [configurations](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadConfigurationsPLIST.swift) and [schedules](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/ReadSchedulesPLIST.swift) from PLIST format to JSON format
-- [the process object](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/RsyncProcess.swift), executing tasks
-- preparing [the output](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX/TrimTwo.swift) from rsync process
 
 ### Application icon
 
