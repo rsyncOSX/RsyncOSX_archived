@@ -1,17 +1,17 @@
 **RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
 
-### Install by Homebrew
+## Install by Homebrew
 
 RsyncOSX can also be installed by Homebrew: `brew install --cask rsyncosx`
 
-### Documents, issues and changelog
+## Documents, issues and changelog
 
 RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files. RsyncOSX is compiled with support for **macOS Big Sur and later**.
 
 - [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/)
 - [the changelog](https://rsyncosx.netlify.app/post/changelog/)
 
-### Dependencies
+## Dependencies
 
 The application is implemented in pure Swift, ViewControllers and Storyboard (Cocoa and Foundation classes). From the latest release there are three source code dependencies:
 
@@ -21,7 +21,7 @@ The application is implemented in pure Swift, ViewControllers and Storyboard (Co
 
 All three are available as source code and automatically included as part of building RsyncOSX.
 
-### Tools used
+## Tools used
 
 The following tools are used in development:
 
@@ -33,11 +33,11 @@ The following tools are used in development:
 
 All the above, except Xcode are installed by using [Homebrew](https://brew.sh/).
 
-### Signing and notarizing
+## Signing and notarizing
 
 RsyncOSX is [signed and notarized ](https://rsyncosx.netlify.app/post/notarized/).
 
-### Localization
+## Localization
 
 RsyncOSX is [localized](https://rsyncosx.netlify.app/post/localization/) to:
 
@@ -48,7 +48,7 @@ RsyncOSX is [localized](https://rsyncosx.netlify.app/post/localization/) to:
 - Italian - by [Stefano Steve Cutelle'](https://github.com/stefanocutelle)
 - Dutch - by [Marcellino Santoso](https://github.com/maebs)
 
-### Application icon
+## Application icon
 
 The application icon is created by [Zsolt Sándor](https://github.com/graphis). All rights reserved to Zsolt Sándor.
 
