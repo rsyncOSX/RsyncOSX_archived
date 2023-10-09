@@ -43,9 +43,7 @@ class ExecuteTaskNow: SetConfigurations, Presentoutput {
             await executetasknow()
         }
     }
-}
 
-extension ExecuteTaskNow {
     func processtermination(data: [String]?) {
         startstopindicators?.stopIndicator()
         if let index = index {

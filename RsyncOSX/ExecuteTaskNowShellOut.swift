@@ -8,31 +8,33 @@
 //  swiftlint:disable line_length
 
 import Foundation
+import ShellOut
 
 final class ExecuteTaskNowShellOut: ExecuteTaskNow {
     var error: Bool = false
 
-    func executepretask() throws {
+    func executepretask() async throws {
         if let index = index {
             if let pretask = configurations?.getConfigurations()?[index].pretask {
-                let task = try shellOut(to: pretask)
-                if task.contains("error"), (configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
+                do {
+                    try await shellOut(to: pretask)
+                } catch {
                     let outputprocess = OutputfromProcess()
-                    outputprocess.addlinefromoutput(str: "ShellOut: pretask containes error, aborting")
+                    outputprocess.addlinefromoutput(str: "ShellOut: execute pretask failed")
                     _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
-                    error = true
                 }
             }
         }
     }
 
-    func executeposttask() throws {
+    func executeposttask() async throws {
         if let index = index {
             if let posttask = configurations?.getConfigurations()?[index].posttask {
-                let task = try shellOut(to: posttask)
-                if task.contains("error"), (configurations?.getConfigurations()?[index].haltshelltasksonerror ?? 0) == 1 {
+                do {
+                    try await shellOut(to: posttask)
+                } catch {
                     let outputprocess = OutputfromProcess()
-                    outputprocess.addlinefromoutput(str: "ShellOut: posstak containes error")
+                    outputprocess.addlinefromoutput(str: "ShellOut: execute posttask failed")
                     _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
                 }
             }
@@ -45,7 +47,7 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
             // Execute pretask
             if configurations?.getConfigurations()?[index].executepretask == 1 {
                 do {
-                    try executepretask()
+                    try await executepretask()
                 } catch let e {
                     let error = e as? ShellOutError
                     let outputprocess = OutputfromProcess()
@@ -69,19 +71,28 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
         }
     }
 
-    deinit {
-        // Execute posttask
-        guard self.error == false else { return }
-        if let index = self.index {
-            if self.configurations?.getConfigurations()?[index].executeposttask == 1 {
-                do {
-                    try self.executeposttask()
-                } catch let e {
-                    let error = e as? ShellOutError
-                    let outputprocess = OutputfromProcess()
-                    outputprocess.addlinefromoutput(str: "ShellOut: posttask fault")
-                    outputprocess.addlinefromoutput(str: error?.message ?? "")
-                    _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
+    override func processtermination(data: [String]?) {
+        startstopindicators?.stopIndicator()
+        if let index = index {
+            configurations?.setCurrentDateonConfiguration(index: index, outputfromrsync: data)
+        }
+        deinitDelegate?.deinitexecutetasknow()
+        command = nil
+        presentoutputfromrsync(data: data)
+        // Execute pretask
+        if let index = index {
+            if configurations?.getConfigurations()?[index].executeposttask == 1 {
+                Task {
+                    do {
+                        try await executeposttask()
+                    } catch let e {
+                        let error = e as? ShellOutError
+                        let outputprocess = OutputfromProcess()
+                        outputprocess.addlinefromoutput(str: "ShellOut: pretask fault, aborting")
+                        outputprocess.addlinefromoutput(str: error?.message ?? "")
+                        _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
+                        self.error = true
+                    }
                 }
             }
         }
