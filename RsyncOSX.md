@@ -1,15 +1,11 @@
-**RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. See [the Combine part](https://github.com/rsyncOSX/RsyncOSX/blob/master/RsyncOSX.md#Combine) in the readme for RsyncOSX.
+**RsyncOSX** is released for **macOS Big Sur** and later due to requirements of some features in Combine. 
+
+- the [documentation of RsyncOSX](https://rsyncosx.netlify.app/)
+- the [changelog](https://rsyncosx.netlify.app/post/changelog/)
 
 ## Install by Homebrew
 
 RsyncOSX can also be installed by Homebrew: `brew install --cask rsyncosx`
-
-## Documents, issues and changelog
-
-RsyncOSX is a GUI on top of the command line utility `rsync`. Rsync is a file-based synchronization and backup tool. There is no custom solution for the backup archive. You can quit utilizing RsyncOSX (and rsync) at any time and still have access to all synchronized files. RsyncOSX is compiled with support for **macOS Big Sur and later**.
-
-- [info and guidelines about using RsyncOSX](https://rsyncosx.netlify.app/)
-- [the changelog](https://rsyncosx.netlify.app/post/changelog/)
 
 ## Dependencies
 
