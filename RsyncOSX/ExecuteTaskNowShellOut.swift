@@ -85,13 +85,6 @@ final class ExecuteTaskNowShellOut: ExecuteTaskNow {
                 Task {
                     do {
                         try await executeposttask()
-                    } catch let e {
-                        let error = e as? ShellOutError
-                        let outputprocess = OutputfromProcess()
-                        outputprocess.addlinefromoutput(str: "ShellOut: pretask fault, aborting")
-                        outputprocess.addlinefromoutput(str: error?.message ?? "")
-                        _ = Logfile(TrimTwo(outputprocess.getOutput() ?? []).trimmeddata, error: true)
-                        self.error = true
                     }
                 }
             }
