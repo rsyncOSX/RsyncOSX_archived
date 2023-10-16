@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-RsyncOSX and RsyncUI are GUI´s on the Apple macOS plattform for the command line tool [rsync](https://github.com/WayneD/rsync). The main difference between the two apps is how the User Interface (UI) is built. It is `rsync` which executes the synchronize data tasks. The GUI´s are for organizing tasks, setting parameters to rsync and make it more easy to use rsync, which is a fantastic tool.
+RsyncUI and RsyncOSX are GUI´s on the Apple macOS plattform for the command line tool [rsync](https://github.com/WayneD/rsync). The main difference between the two apps is how the User Interface (UI) is built. It is `rsync` which executes the synchronize data tasks. The GUI´s are for organizing tasks, setting parameters to rsync and make it more easy to use rsync, which is a fantastic tool.
 
 ### Install by Homebrew
 
@@ -8,8 +8,8 @@ Both apps might be installed by Homebrew.
 
 | App      | Homebrew | macOS |  Documentation |
 | ----------- | ----------- |   ----------- |  ----------- |
-| RsyncOSX   | `brew install --cask rsyncosx`  |  **macOS Big Sur** and later   |   [RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/) |
 | RsyncUI   | `brew install --cask rsyncui`    | **macOS Monterey** and later     |   [RsyncUI](https://rsyncui.netlify.app/post/rsyncuidocs/) |
+| RsyncOSX   | `brew install --cask rsyncosx`  |  **macOS Big Sur** and later   |   [RsyncOSX](https://rsyncosx.netlify.app/post/rsyncosxdocs/) |
 
 ### Why two apps and latest versions
 
@@ -19,8 +19,8 @@ There are two versions for RsyncUI, one for all versions of macOS including macO
 
 | App      | Lines & files | UI | Latest version  |  Version 1.0 | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
-| RsyncOSX   | about 11K, 121  | Storyboard, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
 | RsyncUI   | about 14K, 165  | SwiftUI, declarativ     | 1.7.2 - 23 September 2023  | 6 May 2021  | 
+| RsyncOSX   | about 11K, 121  | Storyboard, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
 
 According to Apple, SwiftUI is the future. In my own experience, coding in SwiftUI is easier and more predictable than by Storyboard and Swift, which are the basis for RsyncOSX. Both apps are maintained, but RsyncUI is the future, and new development is within RsyncUI. And with every new release of macOS, Swift and Xcode there are new exciting features in SwiftUI.
 
@@ -38,6 +38,18 @@ Please be aware it is an external task *not controlled* by RsyncOSX or RsyncUI, 
 
 `rsync` supports a ton of parameters and most likely the advanced user of `rsync` wants to apply parameters. Both RsyncOSX and RsyncUI supports utilizing parameters.  
 
+### RsyncUI
+
+[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.7.2/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
+
+**RsyncUI** is released for **macOS Monterey** and later. Latest builds are [ 23 and 28 September 2023](https://github.com/rsyncOSX/RsyncUI/releases).
+
+- the [documentation of RsyncUI](https://rsyncui.netlify.app/)
+- the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
+- the [changelog](https://rsyncui.netlify.app/post/changelog/)
+
+![](images/rsyncui.png)
+
 ### RsyncOSX
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX/v6.8.0/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/d375f6d7-dc9f-4913-ab43-bfd46d172eb2/deploy-status)](https://app.netlify.com/sites/rsyncosx/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncOSX)](https://github.com/rsyncOSX/RsyncOSX/issues)
@@ -49,18 +61,6 @@ Please be aware it is an external task *not controlled* by RsyncOSX or RsyncUI, 
 - the [changelog](https://rsyncosx.netlify.app/post/changelog/)
 
 ![](images/rsyncosx.png)
-
-### RsyncUI
-
-[![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/blob/main/Licence.MD)  ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.7.2/total) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncUI/v1.7.1/total) [![Netlify Status](https://api.netlify.com/api/v1/badges/1d14d49b-ff14-4142-b135-771db071b58a/deploy-status)](https://app.netlify.com/sites/rsyncui/deploys) [![GitHub issues](https://img.shields.io/github/issues/rsyncOSX/RsyncUI)](https://github.com/rsyncOSX/RsyncUI/issues)
-
-**RsyncUI** is released for **macOS Monterey** and later. Latest builds are [ 23 and 28 September 2023](https://github.com/rsyncOSX/RsyncUI/releases).
-
-- the [documentation of RsyncUI](https://rsyncui.netlify.app/)
-- the [readme for RsyncUI](https://github.com/rsyncOSX/RsyncUI/)
-- the [changelog](https://rsyncui.netlify.app/post/changelog/)
-
-![](images/rsyncui.png)
 
 ![My github stats](https://github-readme-stats.vercel.app/api?username=rsyncOSX&show_icons=true&hide_border=true&theme=dark)
 
