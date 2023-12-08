@@ -17,7 +17,7 @@ The development of RsyncOSX commenced in *2015* as a private project to learn Sw
 
 | App      | Lines & files | UI | Latest version  |  Version 1.0 | 
 | ----------- | ----------- |   ----------- | -------- |  -------- |
-| RsyncUI   | about 14K, 165  | SwiftUI, declarativ     | 1.7.9 - 7 December 2023  | 6 May 2021  | 
+| RsyncUI   | about 15.5k, 175  | SwiftUI, declarativ     | 1.7.9 - 7 December 2023  | 6 May 2021  | 
 | RsyncOSX   | about 11K, 121  | Storyboard, imperativ   | 6.8.0 - 13 April 2023 |	14 March 2016 | 
 
 ### The future
