@@ -1,5 +1,5 @@
 //
-//  ViewControllerNew.swift
+//  ViewControllerNewConfigurations.swift
 //  Rsync
 //
 //  Created by Thomas Evensen on 13/02/16.

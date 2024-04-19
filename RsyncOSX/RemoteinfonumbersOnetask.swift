@@ -1,5 +1,5 @@
 //
-//  RemoteInfoTask.swift
+//  RemoteinfonumbersOnetask.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 31.12.2017.

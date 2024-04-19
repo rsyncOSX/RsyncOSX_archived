@@ -8,6 +8,7 @@
 // swiftlint:disable trailing_comma
 
 import Foundation
+
 struct SuffixstringsRsyncParameters {
     // Preselected parameters for storing a backup of deleted or changed files before
     // rsync synchronises the directories

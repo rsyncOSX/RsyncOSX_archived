@@ -1,5 +1,5 @@
 //
-//  ViewControllerQuickBackup.swift
+//  ViewControllerRemoteInfo.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 22.12.2017.

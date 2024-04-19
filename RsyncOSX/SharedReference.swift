@@ -1,5 +1,5 @@
 //
-//  ViewControllerReference.swift
+//  SharedReference.swift
 //  RsyncOSX
 //
 //  Created by Thomas Evensen on 05.09.2017.
