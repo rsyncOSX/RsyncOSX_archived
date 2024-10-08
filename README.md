@@ -2,7 +2,7 @@
 
 August 24, 2024.
 
-This repository is now archived, read only and not maintained. RsyncOSX, the app, is still avaliable from this repository and Homebrew. Please use RsyncUI if you are on macOS Sonoma and later.
+This repository is archived, read only and not maintained. RsyncOSX, the app, is still avaliable from this repository and Homebrew. Please use RsyncUI if you are on macOS Sonoma and later. The user documentation is also removed due to not maintained.
 
 [![GitHub license](https://img.shields.io/github/license/rsyncOSX/RsyncOSX_archived)](https://github.com/rsyncOSX/RsyncOSX/blob/master/Licence.MD) ![GitHub Releases](https://img.shields.io/github/downloads/rsyncosx/RsyncOSX_archived/v6.8.0/total)
 
